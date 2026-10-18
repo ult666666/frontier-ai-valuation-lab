@@ -34,7 +34,7 @@
           "period": "FY2026 estimate",
           "status": "Analyst assumption",
           "sourceId": "S18",
-          "note": "Reported Q1\u2013Q3 total $33.1B plus illustrative Q4 $20.16B. No full-year actual is claimed."
+          "note": "Reported Q1–Q3 total $33.1B plus illustrative Q4 $20.16B. No full-year actual is claimed."
         }
       ],
       "limitations": [
@@ -232,7 +232,7 @@
       "url": "https://www.ft.com/content/6011d061-eee3-4193-b3b7-8ee4155f538c",
       "type": "Reported evidence",
       "use": "Reported company cash-flow forecast.",
-      "limit": "FT reviewed company presentation; obtained via search extract; direct open hit subscription wall. Also corroborated by Reuters turn6search0."
+      "limit": "FT report of a company presentation, available through a search extract; the full article required a subscription. Treat forecast amounts as attributed reporting, not realized outcomes."
     },
     {
       "id": "S16",

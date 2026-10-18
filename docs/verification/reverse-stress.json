@@ -1,0 +1,44 @@
+{
+  "edgeCases": [
+    {
+      "assumptions": {
+        "rev2026": 53.26,
+        "g1": 0.45,
+        "g2": 0.24,
+        "g3": 0.12,
+        "m27": -0.02,
+        "m30": 0.18,
+        "m36": 0.22,
+        "turns": 2.5,
+        "wacc": 5e-324,
+        "tg": 0,
+        "roic": 0.2,
+        "stub": -3,
+        "tax": 0.25
+      },
+      "projectError": "These inputs exceed the model’s numeric range.",
+      "reverseError": "These inputs exceed the model’s numeric range."
+    },
+    {
+      "assumptions": {
+        "rev2026": 53.26,
+        "g1": 0.45,
+        "g2": 0.24,
+        "g3": 0.12,
+        "m27": -0.02,
+        "m30": 0.18,
+        "m36": 0.22,
+        "turns": 2.5,
+        "wacc": 1e-310,
+        "tg": 0,
+        "roic": 0.2,
+        "stub": -3,
+        "tax": 0.25
+      },
+      "projectError": "These inputs exceed the model’s numeric range.",
+      "reverseError": "These inputs exceed the model’s numeric range."
+    }
+  ],
+  "randomCases": 11203,
+  "failedKnownRoots": []
+}

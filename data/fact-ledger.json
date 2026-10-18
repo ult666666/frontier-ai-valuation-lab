@@ -15,7 +15,6 @@
       "title": "Series H financing",
       "url": "https://www.anthropic.com/news/series-h",
       "publication_date": "2026-05-28",
-      "ref": "turn3view2",
       "quality": "Primary company announcement; unaudited operating run-rate claim."
     },
     {
@@ -24,7 +23,6 @@
       "title": "Latest funding round close",
       "url": "https://openai.com/index/accelerating-the-next-phase-ai/",
       "publication_date": "2026-03-31",
-      "ref": "turn3view1",
       "quality": "Primary company announcement; committed capital is not a current cash balance."
     },
     {
@@ -33,7 +31,6 @@
       "title": "OpenAI proposed financing",
       "url": "https://www.reuters.com/legal/transactional/openai-targets-30-billion-funding-14-trillion-valuation-bloomberg-news-reports-2026-09-29/",
       "publication_date": "2026-09-29",
-      "ref": "turn2view4",
       "quality": "Reported early-stage talks, no closed financing; company did not comment."
     },
     {
@@ -43,7 +40,6 @@
       "url": "https://www.reuters.com/business/finance/investors-temper-anthropic-ipo-valuation-expectations-over-revenue-growth-2026-10-15/",
       "publication_date": "2026-10-15T21:00:00Z",
       "updated_date": "2026-10-16",
-      "ref": "turn3view0",
       "quality": "Multiple unnamed people with knowledge of investor-day disclosures; company did not respond."
     },
     {
@@ -53,7 +49,6 @@
       "url": "https://www.investing.com/news/stock-market-news/openais-annualized-revenue-20-billion-less-than-previously-signaled-ft-reports-4939854",
       "publication_date": "2026-10-08T21:12:29Z",
       "updated_date": "2026-10-09",
-      "ref": "turn5view6",
       "quality": "Reuters source familiar with company communications; first reported by FT; company did not comment."
     },
     {
@@ -63,7 +58,6 @@
       "url": "https://www.reuters.com/technology/anthropic-revenue-run-rate-tops-65-billion-source-says-2026-08-17/",
       "publication_date": "2026-08-17T21:36:00Z",
       "updated_date": "2026-08-18",
-      "ref": "turn2view3",
       "quality": "One person familiar with investor update; not a public financial statement."
     },
     {
@@ -73,7 +67,6 @@
       "url": "https://www.reuters.com/business/finance/anthropics-ipo-prospectus-shows-sweeping-ai-vision-surging-costs-2026-09-28/",
       "publication_date": "2026-09-28T23:17:00Z",
       "updated_date": "2026-09-29",
-      "ref": "turn4view1",
       "quality": "Reporter reviewed confidential prospectus; underlying statements not reviewed here."
     },
     {
@@ -82,7 +75,6 @@
       "title": "OpenAI leaked financial statements",
       "url": "https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/",
       "publication_date": "2026-06-16T16:18:07Z",
-      "ref": "turn7view2",
       "quality": "Reports leaked statements obtained by Ed Zitron and separately reviewed by FT; described as audited; underlying statements not reviewed here."
     },
     {
@@ -92,7 +84,6 @@
       "url": "https://www.reuters.com/world/anthropic-ipo-prospectus-lays-bare-deep-dependence-big-tech-partners-2026-09-29/",
       "publication_date": "2026-09-29T20:53:00Z",
       "updated_date": "2026-09-30",
-      "ref": "turn5view7",
       "quality": "Confidential prospectus reviewed by Reuters plus its fee analysis."
     },
     {
@@ -101,7 +92,6 @@
       "title": "Amended Microsoft commercial agreement",
       "url": "https://openai.com/index/next-phase-of-microsoft-partnership/",
       "publication_date": "2026-04-27",
-      "ref": "turn5view0",
       "quality": "Primary bilateral contract summary; royalty percentage and total cap not specified."
     },
     {
@@ -110,7 +100,6 @@
       "title": "Expanded Anthropic collaboration",
       "url": "https://www.aboutamazon.com/news/company-news/amazon-invests-additional-5-billion-anthropic-ai",
       "publication_date": "2026-04-20",
-      "ref": "turn7view1",
       "quality": "Primary investor/supplier announcement; future investment conditional on commercial milestones."
     },
     {
@@ -119,7 +108,6 @@
       "title": "Amazon strategic partnership",
       "url": "https://openai.com/index/amazon-partnership/",
       "publication_date": "2026-02-27",
-      "ref": "turn4view3",
       "quality": "Primary announcement; future investment installment conditional."
     },
     {
@@ -128,7 +116,6 @@
       "title": "Anthropic infrastructure commitments",
       "url": "https://www.reuters.com/business/anthropics-518-billion-ai-buildout-hinges-largely-deals-that-cannot-be-canceled-2026-09-29/",
       "publication_date": "2026-09-29T10:08:00Z",
-      "ref": "turn5view4",
       "quality": "Reporter reviewed confidential prospectus; debt and lease accounting notes unavailable."
     },
     {
@@ -137,7 +124,6 @@
       "title": "Anthropic chip-financing offer",
       "url": "https://www.reuters.com/business/anthropic-offers-blackstone-double-digit-yield-chip-financing-deal-ft-reports-2026-10-17/",
       "publication_date": "2026-10-17T00:57:00Z",
-      "ref": "turn5view5",
       "quality": "Reported offer; Reuters explicitly could not independently verify."
     },
     {
@@ -146,8 +132,7 @@
       "title": "OpenAI funding-needs forecast",
       "url": "https://www.ft.com/content/6011d061-eee3-4193-b3b7-8ee4155f538c",
       "publication_date": "2026-09-18T22:33:32Z",
-      "ref": "turn6news27",
-      "quality": "FT reviewed company presentation; obtained via search extract; direct open hit subscription wall. Also corroborated by Reuters turn6search0."
+      "quality": "FT report of a company presentation, available through a search extract; the full article required a subscription. Treat forecast amounts as attributed reporting, not realized outcomes."
     },
     {
       "id": "S16",
@@ -155,7 +140,6 @@
       "title": "OpenAI corporate structure",
       "url": "https://openai.com/our-structure/",
       "publication_date": "Undated live page; structure announced 2025-10-28",
-      "ref": "turn7view3",
       "quality": "Primary, but stated ownership percentages are at 2025 recapitalization close."
     },
     {
@@ -164,7 +148,6 @@
       "title": "Long-Term Benefit Trust",
       "url": "https://www.anthropic.com/news/the-long-term-benefit-trust",
       "publication_date": "2023-09-19; subsequently updated",
-      "ref": "turn7view4",
       "quality": "Primary governance description; not a full current cap table."
     }
   ],
@@ -434,7 +417,7 @@
         "amd_capacity_expected_greater_than": 20
       },
       "unit": "USD billion except percentage",
-      "observation_date": "Confidential prospectus reviewed 2026-09-29; mainly 7\u201310-year commitments",
+      "observation_date": "Confidential prospectus reviewed 2026-09-29; mainly 7–10-year commitments",
       "status": "reported_commitments",
       "confidence": "High reporting quality; accounting classification and payment schedule incomplete",
       "source": "S13",

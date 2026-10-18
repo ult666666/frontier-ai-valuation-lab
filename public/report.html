@@ -1,0 +1,186 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Final research and model review of an illustrative Anthropic and OpenAI economic FCFF valuation."><title>Research &amp; Audit Review · Frontier AI Valuation Lab</title><style>
+    :root{--ink:#182b35;--muted:#596c73;--paper:#faf8f3;--line:#d9ded8;--teal:#16675e;--accent:#b76a4d}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,sans-serif}
+    a{color:var(--teal);text-underline-offset:4px}header{padding:26px max(24px,calc((100vw - 1000px)/2));border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    header strong{font-weight:650}nav{display:flex;gap:24px;font-size:14px}main{max-width:1000px;margin:auto;padding:38px 24px 80px}
+    section{padding:38px 0 44px;border-bottom:1px solid var(--line)}.kicker,.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:700}
+    h1,h2{font-family:Georgia,serif;font-weight:400;line-height:1.1;letter-spacing:-.035em}h1{font-size:clamp(45px,6vw,75px);max-width:790px}h2{font-size:clamp(34px,4vw,49px);margin:16px 0 30px}
+    p{max-width:890px;margin:14px 0}.lead{font-size:19px;line-height:1.7}.subtitle{font-family:Georgia,serif;font-size:27px}.small,.source{font-size:13px;color:var(--muted)}.heading{font-weight:700;margin-top:26px}.formula{padding:15px 20px;background:#edf1eb;border-left:3px solid var(--teal);font-family:ui-monospace,monospace;font-size:14px}
+    .table-wrap{overflow:auto;margin:24px 0}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:13px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{background:var(--ink);color:white;font-weight:500}tbody tr:nth-child(even){background:#f0f2ec}td:first-child{font-weight:550}footer{padding:30px 24px;text-align:center;font-size:12px;color:var(--muted)}
+    @media(max-width:600px){main{padding:15px 18px 50px}section{padding:28px 0}th,td{padding:10px;font-size:12px}.lead{font-size:17px}nav{gap:18px}}
+    @media print{header,footer{display:none}body{background:white;font-size:10pt}main{padding:0}section{break-before:page;border:0;padding:0}section:first-child{break-before:auto}h1{font-size:35pt}h2{font-size:26pt}p{font-size:10pt}.lead{font-size:11pt}table{font-size:8pt}th,td{padding:7px}.table-wrap{overflow:visible}.formula{font-size:9pt}}
+    </style></head><body>
+<header><strong>Frontier AI Valuation Lab</strong><nav aria-label="Report navigation"><a href="./index.html">Open workstation</a><a href="./downloads/Frontier_AI_Valuation_Review.pdf">PDF review</a><a href="./downloads/Frontier_AI_Valuation_Model.xlsx">Excel model</a></nav></header><main>
+<section aria-labelledby="section-0"><div class="kicker">01 / Research conclusion</div><h1 id="section-0">A valuation should be inspectable.</h1>
+<p class="eyebrow">ANTHROPIC × OPENAI / FINAL REVIEW / MODEL 3.0.0</p>
+<p class="subtitle">Frontier AI Valuation Lab</p>
+<p class="small">Charles Dai · Independent fintech portfolio project · 18 October 2026</p>
+<p class="lead">The model connects revenue, economic operating profit, reinvestment and terminal returns. Its base scenarios imply operating enterprise values of $367.8B for Anthropic and $258.9B for OpenAI. These are conditional calculations under published assumptions, not verified security values or investment recommendations.</p>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Operating EV · USD B</th><th scope="col">Bear</th><th scope="col">Base</th><th scope="col">Bull</th></tr></thead><tbody>
+<tr><td>Anthropic</td><td>−13.2</td><td>367.8</td><td>1,884.3</td></tr>
+<tr><td>OpenAI</td><td>−68.5</td><td>258.9</td><td>1,505.7</td></tr>
+</tbody></table></div>
+<p class="body">The range is intentionally wide. Scenario labels have no assigned probabilities. Negative continuation EV remains visible; it is not a negative share price and does not value an abandonment or restructuring option.</p>
+<p class="heading">What matters most</p>
+<p class="body">Terminal economics dominate. The present value of the perpetuity accounts for 78.4% of Anthropic Base EV and 99.9% of OpenAI Base EV. Near-term revenue momentum alone cannot settle the valuation question.</p>
+<p class="body">Growth consumes capital. The model charges incremental sales for aggregate reinvestment and ties perpetual reinvestment to growth divided by ROIC. High sales growth can destroy value when margins and capital productivity are insufficient.</p>
+<p class="body">Financing prices measure something different. Anthropic&#x27;s completed Series H disclosed $965B post-money equity; OpenAI&#x27;s closed round disclosed $852B post-money equity. Both remain dated reference points, without an invented current net-cash bridge. [<a href="https://www.anthropic.com/news/series-h" target="_blank" rel="noopener noreferrer">S01</a>] [<a href="https://openai.com/index/accelerating-the-next-phase-ai/" target="_blank" rel="noopener noreferrer">S02</a>]</p>
+<p class="small">Release scope: a shared browser/Node model, a real JSON API, independent Python arithmetic, an editable formula workbook, source provenance and a documented audit. Research and implementation used AI assistance; numerical conclusions are checked through reproducible calculations.</p>
+</section>
+<section aria-labelledby="section-1"><div class="kicker">02 / Evidence quality</div><h2 id="section-1">Keep the quantities distinct.</h2>
+<p class="lead">Research cutoff: 18 October 2026, 09:22:26 PDT (16:22:26 UTC). This is a dated research snapshot. It does not continuously refresh company information.</p>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Evidence</th><th scope="col">Observed or reported basis</th><th scope="col">Model treatment</th></tr></thead><tbody>
+<tr><td>Anthropic financing [<a href="https://www.anthropic.com/news/series-h" target="_blank" rel="noopener noreferrer">S01</a>]</td><td>$65B Series H; $965B post-money, 28 May. Includes $15B previously committed hyperscaler investments.</td><td>Retain equity label and date; do not add overlapping funding headlines or infer current cash.</td></tr>
+<tr><td>OpenAI financing [<a href="https://openai.com/index/accelerating-the-next-phase-ai/" target="_blank" rel="noopener noreferrer">S02</a>]</td><td>$122B committed capital; $852B post-money, 31 March. $4.7B credit facility undrawn at close.</td><td>Committed capital is not current cash; an undrawn facility is not drawn debt.</td></tr>
+<tr><td>Revenue periods [<a href="https://www.reuters.com/business/finance/investors-temper-anthropic-ipo-valuation-expectations-over-revenue-growth-2026-10-15/" target="_blank" rel="noopener noreferrer">S04</a>, <a href="https://www.investing.com/news/stock-market-news/openais-annualized-revenue-20-billion-less-than-previously-signaled-ft-reports-4939854" target="_blank" rel="noopener noreferrer">S05</a>, <a href="https://www.reuters.com/business/finance/anthropics-q3-revenue-surges-45-nearly-17-billion-2026-10-14/" target="_blank" rel="noopener noreferrer">S18</a>]</td><td>Anthropic Q3 revenue $16.8B; Q2 $11.6B. OpenAI September annualized pace reported below about $50B.</td><td>Quarterly actual-period reporting, annualized pace and FY assumptions retain distinct labels.</td></tr>
+<tr><td>Proposed valuations [<a href="https://www.reuters.com/legal/transactional/openai-targets-30-billion-funding-14-trillion-valuation-bloomberg-news-reports-2026-09-29/" target="_blank" rel="noopener noreferrer">S03</a>, <a href="https://www.reuters.com/business/finance/investors-temper-anthropic-ipo-valuation-expectations-over-revenue-growth-2026-10-15/" target="_blank" rel="noopener noreferrer">S04</a>]</td><td>OpenAI $1.4T pre-money financing discussion; Anthropic investor IPO expectations around $1.5T.</td><td>Uncompleted, attributed discussions; neither becomes the model&#x27;s EV target.</td></tr>
+<tr><td>Commercial terms [<a href="https://openai.com/index/next-phase-of-microsoft-partnership/" target="_blank" rel="noopener noreferrer">S10</a>]</td><td>April amendment ends Microsoft-to-OpenAI revenue share. The opposite direction continues through 2030 with an undisclosed cap.</td><td>Do not reuse older reciprocal-sharing or exclusivity assumptions; no undisclosed rate is invented.</td></tr>
+<tr><td>Compute commitments [<a href="https://www.reuters.com/business/anthropics-518-billion-ai-buildout-hinges-largely-deals-that-cannot-be-canceled-2026-09-29/" target="_blank" rel="noopener noreferrer">S13</a>, <a href="https://www.reuters.com/business/anthropic-offers-blackstone-double-digit-yield-chip-financing-deal-ft-reports-2026-10-17/" target="_blank" rel="noopener noreferrer">S14</a>]</td><td>Reported multiyear commitments and proposed infrastructure financing have different timing and legal forms.</td><td>Do not subtract every commitment as debt while leaving associated operating costs and investment in FCFF.</td></tr>
+</tbody></table></div>
+<p class="heading">Revenue normalization needs both sides of the ledger</p>
+<p class="body">A gross-to-net presentation change can alter reported sales and percentage margins without changing dollar cash flows. A controlled accounting test scales starting revenue and capital turns by the same factor while inversely scaling margins; the model preserves EV. The test is an accounting illustration, not an estimate of either company&#x27;s partner take rate. [<a href="https://www.reuters.com/world/anthropic-ipo-prospectus-lays-bare-deep-dependence-big-tech-partners-2026-09-29/" target="_blank" rel="noopener noreferrer">S09</a>]</p>
+<p class="small">Evidence that would materially improve the analysis: current unrestricted cash and funded debt; accounting-consistent revenue and operating profit; compute payment and lease schedules; taxable loss details; financing installment conditions; and investor preference or dilution terms. These are model information needs, not assumptions of disclosure.</p>
+</section>
+<section aria-labelledby="section-2"><div class="kicker">03 / Underwriting assumptions</div><h2 id="section-2">Make the forecast explicit.</h2>
+<p class="lead">All operating presets are retained from the reviewed October 16 model. The valuation date advances to October 18. This makes the final review&#x27;s implementation changes distinguishable from a discretionary re-underwriting of the scenarios.</p>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Base assumption</th><th scope="col">Anthropic</th><th scope="col">OpenAI</th></tr></thead><tbody>
+<tr><td>FY2026 revenue · USD B</td><td>53.3</td><td>35.0</td></tr>
+<tr><td>Growth 2027–2030</td><td>45.0%</td><td>50.0%</td></tr>
+<tr><td>Growth 2031–2033</td><td>24.0%</td><td>26.0%</td></tr>
+<tr><td>Growth 2034–2036</td><td>12.0%</td><td>12.0%</td></tr>
+<tr><td>Economic EBIT margin 2027</td><td>-2.0%</td><td>-20.0%</td></tr>
+<tr><td>Economic EBIT margin 2030</td><td>18.0%</td><td>12.0%</td></tr>
+<tr><td>Economic EBIT margin 2036</td><td>22.0%</td><td>25.0%</td></tr>
+<tr><td>Sales / invested capital</td><td>2.50×</td><td>2.00×</td></tr>
+<tr><td>Discount rate / assumed WACC</td><td>12.5%</td><td>12.5%</td></tr>
+<tr><td>Perpetual growth</td><td>3.0%</td><td>3.0%</td></tr>
+<tr><td>Terminal ROIC</td><td>20.0%</td><td>20.0%</td></tr>
+<tr><td>Remaining-2026 economic FCFF · USD B</td><td>−3.0</td><td>−8.0</td></tr>
+<tr><td>Tax rate on positive EBIT</td><td>25.0%</td><td>25.0%</td></tr>
+</tbody></table></div>
+<p class="heading">Anthropic revenue bridge</p>
+<p class="body">Base FY2026 revenue of $53.26B combines reported Q1–Q3 of $4.7B, $11.6B and $16.8B with assumed Q4 of $20.16B. Bear Q4 equals Q3; Bull Q4 grows 40% sequentially. None is a full-year actual. [<a href="https://www.reuters.com/business/finance/anthropics-q3-revenue-surges-45-nearly-17-billion-2026-10-14/" target="_blank" rel="noopener noreferrer">S18</a>]</p>
+<p class="heading">OpenAI revenue bridge</p>
+<p class="body">The $35B FY2026 Base starting point, with $32B/$38B alternatives, is an explicit analyst assumption retained from V2. The source record does not present it as company guidance. A September run-rate cannot determine the full-year total without a monthly revenue path. [<a href="https://www.investing.com/news/stock-market-news/openais-annualized-revenue-20-billion-less-than-previously-signaled-ft-reports-4939854" target="_blank" rel="noopener noreferrer">S05</a>]</p>
+<p class="small">The 2026 stub is the assumed remaining economic FCFF, not a proportional annual forecast or an observed cash balance. Both company models have a fixed 2036 explicit horizon. Growth, margin, capital efficiency, discount rate and terminal returns can be edited within the published input domain.</p>
+</section>
+<section aria-labelledby="section-3"><div class="kicker">04 / Cash-flow diagnostics</div><h2 id="section-3">See what drives the value.</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Base EV reconciliation · USD B</th><th scope="col">Anthropic</th><th scope="col">OpenAI</th></tr></thead><tbody>
+<tr><td>PV remaining-2026 FCFF</td><td>−2.929</td><td>−7.811</td></tr>
+<tr><td>PV 2027–2036 FCFF</td><td>82.397</td><td>7.987</td></tr>
+<tr><td>PV terminal value</td><td>288.304</td><td>258.687</td></tr>
+<tr><td>Operating enterprise value</td><td>367.771</td><td>258.863</td></tr>
+</tbody></table></div>
+<p class="body">The explicit subtotal in the API includes the stub. The table above separates it once to make the identity inspectable. The terminal value uses the same discount date as 2036 FCFF, with no extra year of discounting.</p>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Base diagnostic</th><th scope="col">Anthropic</th><th scope="col">OpenAI</th></tr></thead><tbody>
+<tr><td>2036 revenue · USD B</td><td>630.7</td><td>498.0</td></tr>
+<tr><td>2036 economic FCFF · USD B</td><td>77.0</td><td>66.7</td></tr>
+<tr><td>2037 terminal FCFF · USD B</td><td>91.1</td><td>81.7</td></tr>
+<tr><td>Terminal FCFF change from 2036</td><td>18.3%</td><td>22.6%</td></tr>
+<tr><td>Terminal reinvestment / NOPAT</td><td>15.0%</td><td>15.0%</td></tr>
+<tr><td>Implied explicit incremental ROIC</td><td>41.2%</td><td>37.5%</td></tr>
+<tr><td>Chosen terminal ROIC</td><td>20.0%</td><td>20.0%</td></tr>
+<tr><td>Peak cumulative economic deficit · USD B</td><td>30.5</td><td>79.8</td></tr>
+</tbody></table></div>
+<p class="heading">Inspect the terminal transition</p>
+<p class="body">Explicit growth uses a sales-to-capital proxy; perpetual growth uses a separate terminal ROIC. Their difference changes reinvestment at the transition. The implied explicit return is stable margin × (1 − tax) × capital turns; exact next-year reinvestment equivalence also depends on the growth convention. A large jump is an assumption to investigate, not an arithmetic identity to hide.</p>
+<p class="heading">Treat the deficit as an operating stress measure</p>
+<p class="small">The most negative cumulative economic FCFF includes the stub and annual modeled flows. It is not a treasury funding requirement: opening liquidity, monthly cash timing, stock compensation, contractual payment schedules and financing mechanics are not fully modeled. Do not subtract this deficit again from EV.</p>
+</section>
+<section aria-labelledby="section-4"><div class="kicker">05 / Calculation contract</div><h2 id="section-4">One model. Reproducible arithmetic.</h2>
+<p class="lead">Forecast revenue compounds in three growth stages. Margins interpolate from 2027 to 2030, then from 2030 to 2036. Taxes apply only to positive EBIT; there is no loss refund or modeled NOL asset.</p>
+<p class="formula">Economic FCFF = revenue × economic EBIT margin − modeled tax − Δrevenue / capital turns</p>
+<p class="body">The aggregate net reinvestment proxy includes net capital expenditure, capitalized investment and working capital. Adding a second NWC or capex deduction without replacing the proxy would double count investment. Economic margins retain a cash-equivalent allowance for stock compensation.</p>
+<p class="formula">PV = FCFF / (1 + WACC)^(actual elapsed days / 365.25)</p>
+<p class="body">Discount the remaining-2026 input to 31 December 2026 and annual 2027–2036 flows to each year end. This release uses the calendar valuation date 18 October 2026. The 2036 horizon is fixed and visibly labeled.</p>
+<p class="formula">Terminal FCFF = 2037 NOPAT × (1 − terminal growth / terminal ROIC)</p>
+<p class="formula">Terminal value = terminal FCFF / (WACC − terminal growth)</p>
+<p class="body">Perpetual growth requires capital. The stable-growth relation follows Damodaran&#x27;s reinvestment/return framework. It does not establish company-specific inputs. Terminal growth must be nonnegative and below both the discount rate and ROIC. [<a href="https://pages.stern.nyu.edu/adamodar/New_Home_Page/valquestions/a11.htm" target="_blank" rel="noopener noreferrer">S19</a>]</p>
+<p class="heading">Reverse DCF without a false monotonicity assumption</p>
+<p class="body">Holding other assumptions fixed, EV is a quartic polynomial in 1 + early growth. The solver partitions the 0–200% growth domain at derivative critical points, checks tangent and boundary roots, bisects sign changes and verifies each result through the forward calculation. It returns no solution, one solution or multiple solutions. A future NOL schedule or growth-dependent margin policy would require revisiting this algebra.</p>
+<p class="heading">Application and API controls</p>
+<p class="body">Every required input must be numeric, finite and in range. Unknown keys, blank inputs and invalid terminal relationships are rejected. The Node API limits request bodies to 16 KiB and sensitivity grids to 9 × 9. Browser calculations and the API share the production model; an independent Python implementation and hand-derived fixture check the arithmetic separately.</p>
+<p class="small">A stateless backend is sufficient for a deterministic public model. Scenario saving stays in the visitor&#x27;s browser. No paid API, account setup, database or private investor data is needed to run the project.</p>
+</section>
+<section aria-labelledby="section-5"><div class="kicker">06 / Final fortification</div><h2 id="section-5">Turn failure cases into controls.</h2>
+<p class="lead">The final review preserved the previous terminal and date corrections, then tested custom-input behavior beyond the original preset checks. The resulting fixes are documented and reproducible.</p>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Finding</th><th scope="col">Why it mattered</th><th scope="col">Release treatment</th></tr></thead><tbody>
+<tr><td>Multiple reverse solutions</td><td>A valid low-margin case reaches $5B EV at two growth rates; the prior solver returned none.</td><td>Enumerate admissible roots and expose multiple or unreachable outcomes. Include tangent-root regression.</td></tr>
+<tr><td>Invalid spreadsheet turns</td><td>V2 negative capital turns created investment inflows while arithmetic checks could still display PASS.</td><td>Numeric/range/relationship checks suppress affected outputs. One authoritative scenario selector.</td></tr>
+<tr><td>Numerical overflow</td><td>A finite but enormous input could create Infinity or NaN.</td><td>Magnitude limits plus calculated-output finiteness checks; typed API errors.</td></tr>
+<tr><td>Unused horizon input</td><td>An editable terminal year did not drive the workbook forecast.</td><td>Remove the misleading control and label the fixed 2036 horizon.</td></tr>
+<tr><td>Evidence ambiguity</td><td>Financing, run-rate, accounting and commitments could be compared on incompatible bases.</td><td>Dated source register, explicit assumptions, separate equity references and hypothetical bridge.</td></tr>
+</tbody></table></div>
+<p class="heading">Independent numerical evidence</p>
+<p class="body">The V2 baseline passed its existing 7 Python tests and 60 JavaScript assertions. Independent workbook review reconciled 1,164 cached values. These results established consistency, while the newly reproduced failures showed that consistency alone did not validate the input domain.</p>
+<p class="body">V3 adds regressions for the demonstrated defects. An independent constant-growth fixture produces $200.314718645B EV. A separate deterministic numerical exercise recovered all 11,203 supported positive forward targets in a 20,000-scenario sample within 1e-6 of their known growth. The Python parity suite compares every forecast field under preset and varied economics.</p>
+<p class="heading">Release interpretation</p>
+<p class="small">This project is ready to demonstrate inspectable financial modeling and full stack engineering within its documented scope. It remains a simplified economic FCFF model with incomplete private-company information. No per-share valuation, probability-weighted target, investment advice or verified current balance sheet is claimed.</p>
+</section>
+<section aria-labelledby="section-6"><div class="kicker">07 / Source register</div><h2 id="section-6">Evidence you can inspect.</h2>
+<p class="small">Each source has a defined use and an access or interpretation limit. Company disclosures, attributed reporting and methodology references are distinct evidence classes.</p>
+<p class="heading">[<a href="https://www.anthropic.com/news/series-h" target="_blank" rel="noopener noreferrer">S01</a>] Series H financing</p>
+<p class="small">Anthropic · 2026-05-28 · Company disclosure</p>
+<p class="source">Completed Series H financing. Company-announced revenue run-rate. Primary company announcement; unaudited operating run-rate claim.</p>
+<p class="heading">[<a href="https://openai.com/index/accelerating-the-next-phase-ai/" target="_blank" rel="noopener noreferrer">S02</a>] Latest funding round close</p>
+<p class="small">OpenAI · 2026-03-31 · Company disclosure</p>
+<p class="source">Closed funding round. Company-announced monthly revenue. Primary company announcement; committed capital is not a current cash balance.</p>
+<p class="heading">[<a href="https://www.reuters.com/legal/transactional/openai-targets-30-billion-funding-14-trillion-valuation-bloomberg-news-reports-2026-09-29/" target="_blank" rel="noopener noreferrer">S03</a>] OpenAI proposed financing</p>
+<p class="small">Reuters citing Bloomberg · 2026-09-29 · Reported evidence</p>
+<p class="source">Proposed financing target. Reported early-stage talks, no closed financing; company did not comment.</p>
+<p class="heading">[<a href="https://www.reuters.com/business/finance/investors-temper-anthropic-ipo-valuation-expectations-over-revenue-growth-2026-10-15/" target="_blank" rel="noopener noreferrer">S04</a>] Anthropic investor-day update</p>
+<p class="small">Reuters · 2026-10-15T21:00:00Z · Reported evidence</p>
+<p class="source">Investor IPO valuation expectations. Quarterly revenue and adjusted profitability. Multiple unnamed people with knowledge of investor-day disclosures; company did not respond.</p>
+<p class="heading">[<a href="https://www.investing.com/news/stock-market-news/openais-annualized-revenue-20-billion-less-than-previously-signaled-ft-reports-4939854" target="_blank" rel="noopener noreferrer">S05</a>] OpenAI September revenue correction</p>
+<p class="small">Reuters via Investing.com · 2026-10-08T21:12:29Z · Reported evidence</p>
+<p class="source">September revenue run-rate. Quarterly revenue. Reuters source familiar with company communications; first reported by FT; company did not comment.</p>
+<p class="heading">[<a href="https://www.reuters.com/technology/anthropic-revenue-run-rate-tops-65-billion-source-says-2026-08-17/" target="_blank" rel="noopener noreferrer">S06</a>] Anthropic July run-rate</p>
+<p class="small">Reuters · 2026-08-17T21:36:00Z · Reported evidence</p>
+<p class="source">Latest directly retrieved reported monthly run-rate. One person familiar with investor update; not a public financial statement.</p>
+<p class="heading">[<a href="https://www.reuters.com/business/finance/anthropics-ipo-prospectus-shows-sweeping-ai-vision-surging-costs-2026-09-28/" target="_blank" rel="noopener noreferrer">S07</a>] Anthropic confidential prospectus financials</p>
+<p class="small">Reuters · 2026-09-28T23:17:00Z · Reported evidence</p>
+<p class="source">Reported FY2025 financials. Reporter reviewed confidential prospectus; underlying statements not reviewed here.</p>
+</section>
+<section aria-labelledby="section-7"><div class="kicker">08 / Source register</div><h2 id="section-7">Evidence you can inspect.</h2>
+<p class="small">Each source has a defined use and an access or interpretation limit. Company disclosures, attributed reporting and methodology references are distinct evidence classes.</p>
+<p class="heading">[<a href="https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/" target="_blank" rel="noopener noreferrer">S08</a>] OpenAI leaked financial statements</p>
+<p class="small">Ars Technica · 2026-06-16T16:18:07Z · Reported evidence</p>
+<p class="source">Reported FY2025 financials. Reports leaked statements obtained by Ed Zitron and separately reviewed by FT; described as audited; underlying statements not reviewed here.</p>
+<p class="heading">[<a href="https://www.reuters.com/world/anthropic-ipo-prospectus-lays-bare-deep-dependence-big-tech-partners-2026-09-29/" target="_blank" rel="noopener noreferrer">S09</a>] Anthropic partner accounting and concentration</p>
+<p class="small">Reuters · 2026-09-29T20:53:00Z · Reported evidence</p>
+<p class="source">2025 cloud channel revenue and fees. Confidential prospectus reviewed by Reuters plus its fee analysis.</p>
+<p class="heading">[<a href="https://openai.com/index/next-phase-of-microsoft-partnership/" target="_blank" rel="noopener noreferrer">S10</a>] Amended Microsoft commercial agreement</p>
+<p class="small">OpenAI (also Microsoft) · 2026-04-27 · Company disclosure</p>
+<p class="source">Microsoft amended commercial terms. Primary bilateral contract summary; royalty percentage and total cap not specified.</p>
+<p class="heading">[<a href="https://www.aboutamazon.com/news/company-news/amazon-invests-additional-5-billion-anthropic-ai" target="_blank" rel="noopener noreferrer">S11</a>] Expanded Anthropic collaboration</p>
+<p class="small">Amazon · 2026-04-20 · Company disclosure</p>
+<p class="source">Amazon investment and compute agreement. Primary investor/supplier announcement; future investment conditional on commercial milestones.</p>
+<p class="heading">[<a href="https://openai.com/index/amazon-partnership/" target="_blank" rel="noopener noreferrer">S12</a>] Amazon strategic partnership</p>
+<p class="small">OpenAI · 2026-02-27 · Company disclosure</p>
+<p class="source">Amazon investment and compute agreement. Primary announcement; future investment installment conditional.</p>
+<p class="heading">[<a href="https://www.reuters.com/business/anthropics-518-billion-ai-buildout-hinges-largely-deals-that-cannot-be-canceled-2026-09-29/" target="_blank" rel="noopener noreferrer">S13</a>] Anthropic infrastructure commitments</p>
+<p class="small">Reuters · 2026-09-29T10:08:00Z · Reported evidence</p>
+<p class="source">Infrastructure obligations in confidential prospectus. Reporter reviewed confidential prospectus; debt and lease accounting notes unavailable.</p>
+<p class="heading">[<a href="https://www.reuters.com/business/anthropic-offers-blackstone-double-digit-yield-chip-financing-deal-ft-reports-2026-10-17/" target="_blank" rel="noopener noreferrer">S14</a>] Anthropic chip-financing offer</p>
+<p class="small">Reuters citing FT · 2026-10-17T00:57:00Z · Reported evidence</p>
+<p class="source">Chip financing offered to Blackstone. Reported offer; Reuters explicitly could not independently verify.</p>
+</section>
+<section aria-labelledby="section-8"><div class="kicker">09 / Source register</div><h2 id="section-8">Evidence you can inspect.</h2>
+<p class="small">Each source has a defined use and an access or interpretation limit. Company disclosures, attributed reporting and methodology references are distinct evidence classes.</p>
+<p class="heading">[<a href="https://www.ft.com/content/6011d061-eee3-4193-b3b7-8ee4155f538c" target="_blank" rel="noopener noreferrer">S15</a>] OpenAI funding-needs forecast</p>
+<p class="small">Financial Times · 2026-09-18T22:33:32Z · Reported evidence</p>
+<p class="source">Reported company cash-flow forecast. FT report of a company presentation, available through a search extract; the full article required a subscription. Treat forecast amounts as attributed reporting, not realized outcomes.</p>
+<p class="heading">[<a href="https://openai.com/our-structure/" target="_blank" rel="noopener noreferrer">S16</a>] OpenAI corporate structure</p>
+<p class="small">OpenAI · Undated live page; structure announced 2025-10-28 · Company disclosure</p>
+<p class="source">Recapitalization equity and control. Primary, but stated ownership percentages are at 2025 recapitalization close.</p>
+<p class="heading">[<a href="https://www.anthropic.com/news/the-long-term-benefit-trust" target="_blank" rel="noopener noreferrer">S17</a>] Long-Term Benefit Trust</p>
+<p class="small">Anthropic · 2023-09-19; subsequently updated · Company disclosure</p>
+<p class="source">Public benefit corporation and Trust governance. Primary governance description; not a full current cap table.</p>
+<p class="heading">[<a href="https://www.reuters.com/business/finance/anthropics-q3-revenue-surges-45-nearly-17-billion-2026-10-14/" target="_blank" rel="noopener noreferrer">S18</a>] Anthropic Q3 investor-day revenue</p>
+<p class="small">Reuters · 2026-10-14; updated 2026-10-15 · Reported evidence</p>
+<p class="source">Q1 $4.7B, Q2 $11.6B and Q3 $16.8B underpin the illustrative full-year revenue bridge. Based on investor-day reporting; underlying statements and an adjusted-profit reconciliation were not reviewed.</p>
+<p class="heading">[<a href="https://pages.stern.nyu.edu/adamodar/New_Home_Page/valquestions/a11.htm" target="_blank" rel="noopener noreferrer">S19</a>] Stable growth and reinvestment</p>
+<p class="small">Aswath Damodaran / NYU Stern · Undated; retrieved 2026-10-18 · Academic methodology</p>
+<p class="source">Terminal reinvestment rate equals perpetual growth divided by return on capital. Supports a valuation relationship, not a company-specific discount rate, return on capital or growth assumption.</p>
+</section>
+<footer>Charles Dai · Independent educational research · Model 3.0.0 · USD billions · 18 October 2026<br>Source publications and company names remain the property of their respective owners.</footer></main></body></html>

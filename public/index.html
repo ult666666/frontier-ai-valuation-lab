@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3f1ea">
+  <meta name="description" content="An interactive, source-backed enterprise valuation model for Anthropic and OpenAI. Explore cash flows, sensitivity, reverse DCF and the assumptions behind frontier AI valuations. A fintech research project by Charles Dai.">
+  <meta property="og:title" content="Frontier AI Valuation Lab — Charles Dai">
+  <meta property="og:description" content="Explore what the cash flows must support. An inspectable financial model for Anthropic and OpenAI, with a shared browser and server engine.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Frontier AI Valuation Lab · Charles Dai</title>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to valuation model</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./" aria-label="Frontier AI Valuation Lab home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V7h22M5 16h15M14 25V7" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="26" cy="25" r="3" fill="currentColor"/></svg>
+        <span>Frontier AI <span class="brand-light">Valuation Lab</span></span>
+      </a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://ult666666.github.io/">Charles Dai <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+        <a class="button button-dark button-small" href="./downloads/Frontier_AI_Valuation_Model.xlsx" download>Model workbook <span aria-hidden="true">↓</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow"><span class="small-rule"></span> Independent research <span class="eyebrow-separator">/</span> Fintech 01</div>
+        <h1 id="hero-title">The price of<br><em>frontier intelligence.</em></h1>
+        <p class="hero-description">Two companies reshaping AI. One transparent framework for the cash flows behind their valuations.</p>
+      </div>
+      <aside class="research-note" aria-label="Research context">
+        <div class="eyebrow">Research snapshot <span class="note-index">01 / 02</span></div>
+        <p class="note-heading">What must the<br>cash flows support?</p>
+        <p>Change the growth, margin and capital assumptions. Trace each result from revenue to enterprise value.</p>
+        <div class="note-meta"><span>Valuation date</span><strong>18 Oct 2026</strong><span>Reporting units</span><strong>USD billions</strong></div>
+      </aside>
+    </section>
+
+    <section class="comparison-section" aria-labelledby="comparison-title">
+      <div class="section-kicker"><h2 id="comparison-title">The starting cases</h2><span>Illustrative base assumptions · Enterprise value</span></div>
+      <div class="company-comparison" id="company-comparison" aria-live="polite"><div class="loading-placeholder">Loading research and model assumptions…</div></div>
+      <p class="comparison-footnote"><span class="info-dot" aria-hidden="true">i</span> Enterprise value measures the operating business. Completed financing prices and valuation expectations are separate equity references.</p>
+    </section>
+
+    <div class="section-navigation" id="section-navigation">
+      <div class="tabs" role="tablist" aria-label="Research sections">
+        <button id="tab-model" class="tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-model" tabindex="0" data-tab="model"><span class="tab-number">01</span> Valuation model</button>
+        <button id="tab-sources" class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-sources" tabindex="-1" data-tab="sources"><span class="tab-number">02</span> Evidence & sources</button>
+        <button id="tab-methodology" class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-methodology" tabindex="-1" data-tab="methodology"><span class="tab-number">03</span> Methodology & audit</button>
+      </div>
+      <span class="model-status"><span class="status-dot" aria-hidden="true"></span><span id="model-version">Shared model engine</span></span>
+    </div>
+
+    <section id="panel-model" class="tab-panel" role="tabpanel" aria-labelledby="tab-model">
+      <div class="workspace-heading" id="workspace" tabindex="-1">
+        <div><div class="eyebrow">The interactive model</div><h2>Build the cash-flow case.</h2></div>
+        <div class="company-switch segmented-control" role="group" aria-label="Select company">
+          <button type="button" class="is-active" data-company="Anthropic" aria-pressed="true"><span class="company-dot anthropic"></span>Anthropic</button>
+          <button type="button" data-company="OpenAI" aria-pressed="false"><span class="company-dot openai"></span>OpenAI</button>
+        </div>
+      </div>
+
+      <div id="load-error" class="error-banner" role="alert" hidden></div>
+      <div class="workspace-grid" id="model-workspace" data-company="Anthropic">
+        <aside class="assumptions-panel" aria-labelledby="assumptions-heading">
+          <div class="panel-title-row"><h3 id="assumptions-heading">Assumptions</h3><span class="case-label" id="case-label">Base case</span></div>
+          <div class="case-switch segmented-control" role="group" aria-label="Select scenario">
+            <button type="button" data-scenario="Bear" aria-pressed="false">Bear</button>
+            <button type="button" data-scenario="Base" class="is-active" aria-pressed="true">Base</button>
+            <button type="button" data-scenario="Bull" aria-pressed="false">Bull</button>
+          </div>
+          <form id="assumptions-form" novalidate aria-label="Editable valuation assumptions">
+            <div id="assumption-fields"></div>
+          </form>
+          <div id="input-errors" class="input-errors" role="alert" hidden></div>
+          <div class="assumption-actions"><button type="button" class="button button-outline" id="reset-scenario" disabled>Reset current case <span aria-hidden="true">↺</span></button></div>
+          <details class="local-scenarios">
+            <summary>Save & load a local scenario</summary>
+            <p>Saved in this browser. Download JSON to keep a portable copy.</p>
+            <label for="save-name">Scenario name</label>
+            <input id="save-name" type="text" maxlength="70" placeholder="My growth case" autocomplete="off">
+            <button type="button" id="save-scenario" class="button button-dark" disabled>Save current scenario</button>
+            <label for="saved-scenarios">Saved scenarios</label>
+            <select id="saved-scenarios"><option value="">No saved scenarios</option></select>
+            <button type="button" id="load-scenario" class="button button-outline" disabled>Load selected scenario</button>
+            <p class="local-status" id="local-status" role="status"></p>
+          </details>
+        </aside>
+
+        <div class="model-results">
+          <section class="valuation-section" aria-labelledby="valuation-heading">
+            <div class="results-heading"><div class="eyebrow" id="active-model-label">Anthropic / Base</div><span class="assumption-tag">Illustrative forecast</span></div>
+            <h3 class="sr-only" id="valuation-heading">Enterprise valuation</h3>
+            <div id="valuation-summary" class="valuation-summary"><div class="result-placeholder">Your modeled enterprise value will appear here.</div></div>
+            <div id="model-warnings" class="model-warnings" hidden></div>
+            <div class="verification-row">
+              <p id="api-status" class="api-status" role="status"><span class="status-dot" aria-hidden="true"></span>Calculated in your browser · Server check available</p>
+              <button type="button" id="verify-server" class="text-button" disabled>Verify on server <span aria-hidden="true">↗</span></button>
+            </div>
+          </section>
+
+          <section class="forecast-section" aria-labelledby="forecast-heading">
+            <div class="section-heading"><div><div class="eyebrow">From assumptions to cash flow</div><h3 id="forecast-heading">The path to 2036</h3></div><div class="chart-switch segmented-control" role="group" aria-label="Chart metric"><button type="button" data-metric="revenue" class="is-active" aria-pressed="true">Revenue</button><button type="button" data-metric="fcf" aria-pressed="false">Free cash flow</button></div></div>
+            <div class="chart-topline" id="chart-topline"></div>
+            <div class="chart-container" id="forecast-chart" role="region" aria-label="Forecast chart" tabindex="0"><div class="result-placeholder">Loading forecast…</div></div>
+            <p class="chart-note" id="chart-note">Annual forecast · USD billions · 2027–2036</p>
+            <details class="forecast-details">
+              <summary><span>Annual forecast & cash-flow reconciliation</span><span class="summary-hint">View table</span></summary>
+              <div class="table-scroll" id="forecast-table" tabindex="0" role="region" aria-label="Annual forecast table"></div>
+            </details>
+          </section>
+
+          <section class="sensitivity-section" aria-labelledby="sensitivity-heading">
+            <div class="section-heading"><div><div class="eyebrow">The valuation range</div><h3 id="sensitivity-heading">Cost of capital × long-term growth</h3></div><span class="unit-label">Enterprise value · USD bn</span></div>
+            <div class="table-scroll" id="sensitivity-table" tabindex="0" role="region" aria-label="Enterprise value sensitivity table"><div class="result-placeholder">Sensitivity follows the current assumptions.</div></div>
+            <p class="small-note">The outlined cell is the current case. Other assumptions stay fixed. A dash marks an invalid WACC, growth or terminal ROIC combination.</p>
+          </section>
+
+          <section class="reverse-section" aria-labelledby="reverse-heading">
+            <div class="section-heading"><div><div class="eyebrow">Work backward from a value</div><h3 id="reverse-heading">What growth would it take?</h3></div><span class="outline-tag">Reverse DCF</span></div>
+            <p class="section-description">Solve the 2027–2030 annual revenue growth required to reach your target enterprise value. Later growth, margins and capital assumptions stay fixed.</p>
+            <form id="reverse-form" class="reverse-form" novalidate><div class="reverse-field"><label for="reverse-target">Target enterprise value <span>USD billions</span></label><div class="input-wrap"><span class="input-prefix" aria-hidden="true">$</span><input id="reverse-target" type="number" step="any" placeholder="Enter an EV target" inputmode="decimal" aria-describedby="reverse-note"></div></div><button type="submit" class="button button-dark" id="solve-reverse" disabled>Solve required growth <span aria-hidden="true">→</span></button></form>
+            <div id="reverse-output" class="reverse-output" role="status"><p>Enter an enterprise value to explore a required growth path.</p></div>
+            <p class="small-note" id="reverse-note">Search range: 0–200% early growth. A solved path is a conditional scenario; it is not a likelihood or an investment recommendation. A financing price is not an EV target without an explicit bridge.</p>
+          </section>
+
+          <section class="bridge-section" aria-labelledby="bridge-heading">
+            <details id="bridge-details"><summary><span id="bridge-heading">Optional hypothetical equity bridge</span><span class="summary-hint">Add adjustments</span></summary>
+              <div class="bridge-body"><p class="section-description">Translate enterprise value using your cash, debt and other claims assumptions. Zeroes are editable placeholders, not disclosed balances.</p><label class="checkbox-label"><input id="bridge-enabled" type="checkbox"> Enable hypothetical equity calculation</label><div class="bridge-inputs"><div><label for="bridge-cash">Cash <span>USD bn</span></label><input id="bridge-cash" type="number" min="0" step="any" value="0" inputmode="decimal" disabled></div><div><label for="bridge-debt">Debt <span>USD bn</span></label><input id="bridge-debt" type="number" min="0" step="any" value="0" inputmode="decimal" disabled></div><div><label for="bridge-claims">Other claims <span>USD bn</span></label><input id="bridge-claims" type="number" min="0" step="any" value="0" inputmode="decimal" disabled></div></div><div id="bridge-output" class="bridge-output" role="status">Enable the bridge to apply your assumptions.</div><p class="small-note">Equity value = enterprise value + cash − debt − other claims. This simplified bridge does not model share classes, dilution or preferences.</p></div>
+            </details>
+          </section>
+
+          <div class="export-bar"><div><strong>Take the model with you.</strong><p>Exports use your current valid assumptions.</p></div><div class="export-actions"><button type="button" class="button button-outline" id="export-json" disabled>Scenario JSON <span aria-hidden="true">↓</span></button><button type="button" class="button button-outline" id="export-csv" disabled>Forecast CSV <span aria-hidden="true">↓</span></button></div></div>
+          <p class="export-status sr-only" id="export-status" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-sources" class="tab-panel" role="tabpanel" aria-labelledby="tab-sources" hidden>
+      <div class="editorial-heading"><div><div class="eyebrow">The evidence behind the inputs</div><h2>Different numbers.<br><em>Different meanings.</em></h2></div><p>Reported revenue, annualized run-rate and capital raised answer different questions. This research preserves those distinctions and identifies where assumptions begin.</p></div>
+      <div class="evidence-legend"><span class="evidence-tag">Company disclosure</span><span class="evidence-tag">Reported information</span><span class="evidence-tag">Financing reference</span><span class="evidence-tag assumption">Model assumption</span></div>
+      <div id="company-evidence" class="company-evidence"></div>
+      <div class="sources-heading"><h3>Source register</h3><span id="sources-asof" class="unit-label">Research snapshot · 18 Oct 2026</span></div>
+      <div id="source-register" class="source-register"></div>
+      <p class="small-note source-disclaimer">Source labels describe the evidence used. They do not establish audited financial statements. Public information may omit accounting definitions, timing, contractual conditions and balance-sheet detail.</p>
+    </section>
+
+    <section id="panel-methodology" class="tab-panel" role="tabpanel" aria-labelledby="tab-methodology" hidden>
+      <div class="editorial-heading"><div><div class="eyebrow">Transparent by construction</div><h2>Every assumption.<br><em>Every cash flow.</em></h2></div><p>A free cash flow to the firm model, with explicit reinvestment, actual-date discounting and a separate equity bridge. Inspect the calculation and its limits.</p></div>
+      <div class="methodology-grid"><div class="methodology-main">
+        <article class="method-step"><span class="step-number">01</span><div><h3>Build an explicit operating forecast</h3><p>Revenue grows in three periods: 2027–2030, 2031–2033 and 2034–2036. EBIT margins interpolate through the 2027, 2030 and 2036 assumptions. The 2026 revenue input is a model starting point and is identified separately from disclosed revenue or run-rate.</p><div class="formula">Revenue<sub>t</sub> = Revenue<sub>t−1</sub> × (1 + growth<sub>t</sub>)</div></div></article>
+        <article class="method-step"><span class="step-number">02</span><div><h3>Charge growth for the capital it requires</h3><p>Positive EBIT is taxed at the assumed rate. Net reinvestment equals incremental revenue divided by sales-to-invested-capital. That amount includes net capex and working capital; adding either separately would count it twice.</p><div class="formula">FCFF = EBIT − tax − net reinvestment</div><p class="method-caveat">The model does not include NOL carryforwards or tax assets. Negative EBIT receives no modeled tax benefit.</p></div></article>
+        <article class="method-step"><span class="step-number">03</span><div><h3>Discount from the actual valuation date</h3><p>The remaining-2026 FCFF input is discounted from 18 October 2026 to year-end. Full forecast cash flows are discounted to each subsequent year-end using elapsed days divided by 365.25. The stub appears once in enterprise value.</p><div class="formula">PV(FCFF<sub>t</sub>) = FCFF<sub>t</sub> / (1 + WACC)<sup>elapsed days / 365.25</sup></div></div></article>
+        <article class="method-step"><span class="step-number">04</span><div><h3>Make terminal reinvestment explicit</h3><p>Terminal cash flow uses next-year NOPAT and reinvestment consistent with perpetual growth and terminal return on invested capital. WACC and terminal ROIC must both exceed perpetual growth. The model exposes how much EV comes from terminal value and how terminal FCFF changes from 2036.</p><div class="formula">Terminal FCFF = NOPAT<sub>2037</sub> × (1 − g / terminal ROIC)<br>Terminal value = Terminal FCFF / (WACC − g)</div></div></article>
+        <article class="method-step"><span class="step-number">05</span><div><h3>Keep enterprise and equity value distinct</h3><p>The primary result values the operating business. The optional bridge adds assumed cash and subtracts assumed debt and other claims. Completed funding-round prices, reported asks and capital commitments retain their own labels; none is silently substituted for enterprise value.</p></div></article>
+      </div><aside class="methodology-aside"><div class="audit-note"><div class="eyebrow">Inspect the work</div><h3>An open research process.</h3><p>The repository includes the model, API, independent reference calculations, tests and an audit record. The workbook provides a formula-based view of the same assumptions.</p><a class="button button-dark" href="./report.html">Read the research & audit report <span aria-hidden="true">↗</span></a><a class="text-button" href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">Explore source & tests <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div><div class="limits-note"><h3>Read the limits with the result</h3><ul><li>All forecasts are illustrative assumptions, not management guidance unless explicitly attributed.</li><li>Peak cumulative FCFF deficit is a simplified operating funding indicator. Opening liquidity, intrayear timing and contractual payments are unknown.</li><li>Terminal cash flow can differ sharply from the last explicit year because reinvestment changes basis.</li><li>A revenue accounting change requires corresponding adjustments to margins and capital efficiency; rescaling revenue alone changes the economics.</li><li>The reverse DCF holds every assumption except early growth fixed and does not estimate a probability.</li></ul></div><div class="runtime-note"><span class="status-dot" aria-hidden="true"></span><div><strong>One shared engine</strong><p>The browser and Node API use the same pure JavaScript model. Server verification compares the current scenario’s numerical outputs. Static deployments can calculate locally without an API.</p></div></div></aside></div>
+    </section>
+
+    <section class="closing-note" aria-label="Project purpose"><div><span class="eyebrow">Finance meets engineering</span><h2>A valuation should be inspectable.</h2></div><p>Built by <a href="https://ult666666.github.io/">Charles Dai</a> to connect financial research, reproducible modeling and full stack development.</p><a class="circle-link" href="https://github.com/ult666666/frontier-ai-valuation-lab" aria-label="Explore the project on GitHub">↗</a></section>
+  </main>
+  <footer class="site-footer"><div><span>Frontier AI Valuation Lab</span><span>Independent educational research · No investment recommendation</span><span>USD billions / 18 Oct 2026</span></div></footer>
+  <noscript><div class="noscript-notice">Enable JavaScript to use the interactive valuation model. You can also <a href="./report.html">read the research report</a> or <a href="./downloads/Frontier_AI_Valuation_Model.xlsx">download the workbook</a>.</div></noscript>
+</body>
+</html>
