@@ -1,0 +1,511 @@
+{
+  "metadata": {
+    "as_of": "2026-10-18T09:22:26-07:00",
+    "timezone": "America/Los_Angeles",
+    "as_of_utc": "2026-10-18T16:22:26Z",
+    "retrieved_on": "2026-10-18",
+    "currency": "USD",
+    "search_method": "Exa: 35 search result slots across four angles, then current system1 verification and source reads. Not exhaustive.",
+    "cutoff_policy": "No material published after the observed research cutoff is admitted. Publication and observation dates are separate. No October 18 end-of-day assumption."
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "publisher": "Anthropic",
+      "title": "Series H financing",
+      "url": "https://www.anthropic.com/news/series-h",
+      "publication_date": "2026-05-28",
+      "ref": "turn3view2",
+      "quality": "Primary company announcement; unaudited operating run-rate claim."
+    },
+    {
+      "id": "S02",
+      "publisher": "OpenAI",
+      "title": "Latest funding round close",
+      "url": "https://openai.com/index/accelerating-the-next-phase-ai/",
+      "publication_date": "2026-03-31",
+      "ref": "turn3view1",
+      "quality": "Primary company announcement; committed capital is not a current cash balance."
+    },
+    {
+      "id": "S03",
+      "publisher": "Reuters citing Bloomberg",
+      "title": "OpenAI proposed financing",
+      "url": "https://www.reuters.com/legal/transactional/openai-targets-30-billion-funding-14-trillion-valuation-bloomberg-news-reports-2026-09-29/",
+      "publication_date": "2026-09-29",
+      "ref": "turn2view4",
+      "quality": "Reported early-stage talks, no closed financing; company did not comment."
+    },
+    {
+      "id": "S04",
+      "publisher": "Reuters",
+      "title": "Anthropic investor-day update",
+      "url": "https://www.reuters.com/business/finance/investors-temper-anthropic-ipo-valuation-expectations-over-revenue-growth-2026-10-15/",
+      "publication_date": "2026-10-15T21:00:00Z",
+      "updated_date": "2026-10-16",
+      "ref": "turn3view0",
+      "quality": "Multiple unnamed people with knowledge of investor-day disclosures; company did not respond."
+    },
+    {
+      "id": "S05",
+      "publisher": "Reuters via Investing.com",
+      "title": "OpenAI September revenue correction",
+      "url": "https://www.investing.com/news/stock-market-news/openais-annualized-revenue-20-billion-less-than-previously-signaled-ft-reports-4939854",
+      "publication_date": "2026-10-08T21:12:29Z",
+      "updated_date": "2026-10-09",
+      "ref": "turn5view6",
+      "quality": "Reuters source familiar with company communications; first reported by FT; company did not comment."
+    },
+    {
+      "id": "S06",
+      "publisher": "Reuters",
+      "title": "Anthropic July run-rate",
+      "url": "https://www.reuters.com/technology/anthropic-revenue-run-rate-tops-65-billion-source-says-2026-08-17/",
+      "publication_date": "2026-08-17T21:36:00Z",
+      "updated_date": "2026-08-18",
+      "ref": "turn2view3",
+      "quality": "One person familiar with investor update; not a public financial statement."
+    },
+    {
+      "id": "S07",
+      "publisher": "Reuters",
+      "title": "Anthropic confidential prospectus financials",
+      "url": "https://www.reuters.com/business/finance/anthropics-ipo-prospectus-shows-sweeping-ai-vision-surging-costs-2026-09-28/",
+      "publication_date": "2026-09-28T23:17:00Z",
+      "updated_date": "2026-09-29",
+      "ref": "turn4view1",
+      "quality": "Reporter reviewed confidential prospectus; underlying statements not reviewed here."
+    },
+    {
+      "id": "S08",
+      "publisher": "Ars Technica",
+      "title": "OpenAI leaked financial statements",
+      "url": "https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/",
+      "publication_date": "2026-06-16T16:18:07Z",
+      "ref": "turn7view2",
+      "quality": "Reports leaked statements obtained by Ed Zitron and separately reviewed by FT; described as audited; underlying statements not reviewed here."
+    },
+    {
+      "id": "S09",
+      "publisher": "Reuters",
+      "title": "Anthropic partner accounting and concentration",
+      "url": "https://www.reuters.com/world/anthropic-ipo-prospectus-lays-bare-deep-dependence-big-tech-partners-2026-09-29/",
+      "publication_date": "2026-09-29T20:53:00Z",
+      "updated_date": "2026-09-30",
+      "ref": "turn5view7",
+      "quality": "Confidential prospectus reviewed by Reuters plus its fee analysis."
+    },
+    {
+      "id": "S10",
+      "publisher": "OpenAI (also Microsoft)",
+      "title": "Amended Microsoft commercial agreement",
+      "url": "https://openai.com/index/next-phase-of-microsoft-partnership/",
+      "publication_date": "2026-04-27",
+      "ref": "turn5view0",
+      "quality": "Primary bilateral contract summary; royalty percentage and total cap not specified."
+    },
+    {
+      "id": "S11",
+      "publisher": "Amazon",
+      "title": "Expanded Anthropic collaboration",
+      "url": "https://www.aboutamazon.com/news/company-news/amazon-invests-additional-5-billion-anthropic-ai",
+      "publication_date": "2026-04-20",
+      "ref": "turn7view1",
+      "quality": "Primary investor/supplier announcement; future investment conditional on commercial milestones."
+    },
+    {
+      "id": "S12",
+      "publisher": "OpenAI",
+      "title": "Amazon strategic partnership",
+      "url": "https://openai.com/index/amazon-partnership/",
+      "publication_date": "2026-02-27",
+      "ref": "turn4view3",
+      "quality": "Primary announcement; future investment installment conditional."
+    },
+    {
+      "id": "S13",
+      "publisher": "Reuters",
+      "title": "Anthropic infrastructure commitments",
+      "url": "https://www.reuters.com/business/anthropics-518-billion-ai-buildout-hinges-largely-deals-that-cannot-be-canceled-2026-09-29/",
+      "publication_date": "2026-09-29T10:08:00Z",
+      "ref": "turn5view4",
+      "quality": "Reporter reviewed confidential prospectus; debt and lease accounting notes unavailable."
+    },
+    {
+      "id": "S14",
+      "publisher": "Reuters citing FT",
+      "title": "Anthropic chip-financing offer",
+      "url": "https://www.reuters.com/business/anthropic-offers-blackstone-double-digit-yield-chip-financing-deal-ft-reports-2026-10-17/",
+      "publication_date": "2026-10-17T00:57:00Z",
+      "ref": "turn5view5",
+      "quality": "Reported offer; Reuters explicitly could not independently verify."
+    },
+    {
+      "id": "S15",
+      "publisher": "Financial Times",
+      "title": "OpenAI funding-needs forecast",
+      "url": "https://www.ft.com/content/6011d061-eee3-4193-b3b7-8ee4155f538c",
+      "publication_date": "2026-09-18T22:33:32Z",
+      "ref": "turn6news27",
+      "quality": "FT reviewed company presentation; obtained via search extract; direct open hit subscription wall. Also corroborated by Reuters turn6search0."
+    },
+    {
+      "id": "S16",
+      "publisher": "OpenAI",
+      "title": "OpenAI corporate structure",
+      "url": "https://openai.com/our-structure/",
+      "publication_date": "Undated live page; structure announced 2025-10-28",
+      "ref": "turn7view3",
+      "quality": "Primary, but stated ownership percentages are at 2025 recapitalization close."
+    },
+    {
+      "id": "S17",
+      "publisher": "Anthropic",
+      "title": "Long-Term Benefit Trust",
+      "url": "https://www.anthropic.com/news/the-long-term-benefit-trust",
+      "publication_date": "2023-09-19; subsequently updated",
+      "ref": "turn7view4",
+      "quality": "Primary governance description; not a full current cap table."
+    }
+  ],
+  "facts": [
+    {
+      "id": "A_FIN",
+      "entity": "Anthropic",
+      "metric": "Completed Series H financing",
+      "value": {
+        "post_money_equity_valuation": 965,
+        "round_size": 65,
+        "already_committed_hyperscaler_included": 15,
+        "amazon_included": 5
+      },
+      "unit": "USD billion",
+      "observation_date": "2026-05-28",
+      "status": "company_disclosed",
+      "confidence": "High for announced transaction terms",
+      "source": "S01",
+      "model_implication": "Use $965B as dated completed post-money equity benchmark. Do not re-add $15B prior commitments or the included $5B Amazon investment."
+    },
+    {
+      "id": "O_FIN",
+      "entity": "OpenAI",
+      "metric": "Closed funding round",
+      "value": {
+        "post_money_equity_valuation": 852,
+        "committed_capital": 122,
+        "undrawn_revolver_at_close": 4.7
+      },
+      "unit": "USD billion",
+      "observation_date": "2026-03-31",
+      "status": "company_disclosed",
+      "confidence": "High for announced terms, not current liquidity",
+      "source": "S02",
+      "model_implication": "Use $852B completed post-money equity benchmark. $122B is committed capital; $4.7B facility was undrawn at close and is not debt outstanding."
+    },
+    {
+      "id": "O_ASK",
+      "entity": "OpenAI",
+      "metric": "Proposed financing target",
+      "value": {
+        "pre_money_equity_valuation": 1400,
+        "minimum_proposed_raise": 30
+      },
+      "unit": "USD billion",
+      "observation_date": "2026-09-29",
+      "status": "reported_proposed_financing",
+      "confidence": "Medium; early discussions reported through Bloomberg",
+      "source": "S03",
+      "model_implication": "Keep separate from completed rounds. Mechanical post-money would be at least $1,430B if unchanged terms close; this is arithmetic, not a reported completed valuation."
+    },
+    {
+      "id": "A_IPO",
+      "entity": "Anthropic",
+      "metric": "Investor IPO valuation expectations",
+      "value": {
+        "some_investors_discussing": 1500,
+        "prior_expectation": 2000
+      },
+      "unit": "USD billion",
+      "observation_date": "2026-10-14 investor day",
+      "status": "reported_investor_expectation",
+      "confidence": "Medium; multiple sources, no executed transaction",
+      "source": "S04",
+      "model_implication": "Scenario reference only. Neither amount replaces the completed $965B financing benchmark."
+    },
+    {
+      "id": "A_RR_PRIMARY",
+      "entity": "Anthropic",
+      "metric": "Company-announced revenue run-rate",
+      "value": {
+        "greater_than": 47
+      },
+      "unit": "USD billion/year annualized",
+      "observation_date": "Earlier in 2026-05, day unspecified",
+      "status": "company_disclosed_run_rate",
+      "confidence": "High that company announced it; not audited annual revenue",
+      "source": "S01",
+      "model_implication": "Historical pace metric. Do not enter as FY2026 actual revenue."
+    },
+    {
+      "id": "O_MONTH_PRIMARY",
+      "entity": "OpenAI",
+      "metric": "Company-announced monthly revenue",
+      "value": 2,
+      "unit": "USD billion/month",
+      "observation_date": "2026-03-31 announcement; current month unspecified",
+      "status": "company_disclosed_monthly_pace",
+      "confidence": "High that company announced it; measurement period vague",
+      "source": "S02",
+      "model_implication": "A $24B annualized equivalent is derived arithmetic, not FY2026 revenue."
+    },
+    {
+      "id": "A_RR_JUL",
+      "entity": "Anthropic",
+      "metric": "Latest directly retrieved reported monthly run-rate",
+      "value": {
+        "greater_than": 65
+      },
+      "unit": "USD billion/year annualized",
+      "observation_date": "2026-07-31",
+      "status": "reported_run_rate",
+      "confidence": "Medium-high reporting confidence, underlying figure unaudited here",
+      "source": "S06",
+      "model_implication": "Label July observation separately from August publication. Later Q3 actual-period reporting is more recent evidence."
+    },
+    {
+      "id": "O_RR_SEP",
+      "entity": "OpenAI",
+      "metric": "September revenue run-rate",
+      "value": {
+        "approximately_below": 50
+      },
+      "unit": "USD billion/year annualized",
+      "observation_date": "2026-09",
+      "status": "reported_run_rate",
+      "confidence": "Medium-high reporting confidence",
+      "source": "S05",
+      "model_implication": "Supersedes earlier near-$70B comparison claim. This is a metric-basis correction, not proof revenue declined."
+    },
+    {
+      "id": "A_Q3",
+      "entity": "Anthropic",
+      "metric": "Quarterly revenue and adjusted profitability",
+      "value": {
+        "q3_revenue": 16.8,
+        "q2_revenue_latest_comparator": 11.6,
+        "qoq_growth_pct": 45,
+        "adjusted_profitable": true
+      },
+      "unit": "USD billion except percent/boolean",
+      "observation_date": "Quarter ended 2026-09-30",
+      "status": "reported_actual_period",
+      "confidence": "Medium-high; investor-day figures, reconciliation unavailable",
+      "source": "S04",
+      "model_implication": "Use $11.6B Q2 when using this latest report; earlier Reuters used $11.5B. Adjusted profitability is not GAAP EBIT or free cash flow."
+    },
+    {
+      "id": "O_Q2",
+      "entity": "OpenAI",
+      "metric": "Quarterly revenue",
+      "value": 6.7,
+      "unit": "USD billion",
+      "observation_date": "Quarter ended 2026-06-30",
+      "status": "reported_actual_period",
+      "confidence": "Medium-high reporting confidence",
+      "source": "S05",
+      "model_implication": "Do not align this older quarter with Anthropic Q3 as a same-period comparison."
+    },
+    {
+      "id": "A_FY2025",
+      "entity": "Anthropic",
+      "metric": "Reported FY2025 financials",
+      "value": {
+        "revenue_approx": 4.6,
+        "operating_loss": 8.06,
+        "net_loss_approx": 42,
+        "financing_remeasurement_charge_approx": 34,
+        "compute_and_infrastructure_expense": 7.33,
+        "cash_and_short_term_investments": 20.28
+      },
+      "unit": "USD billion",
+      "observation_date": "FY ended / balance at 2025-12-31",
+      "status": "reported_historical_financials",
+      "confidence": "High reporting quality; confidential prospectus not directly reviewed",
+      "source": "S07",
+      "model_implication": "Net loss is not cash burn; financing remeasurement dominates. December liquidity cannot be used as an October cash balance."
+    },
+    {
+      "id": "O_FY2025",
+      "entity": "OpenAI",
+      "metric": "Reported FY2025 financials",
+      "value": {
+        "revenue": 13.07,
+        "cost_of_revenue": 7.5,
+        "research_and_development": 19.18,
+        "operating_loss": 20.92
+      },
+      "unit": "USD billion",
+      "observation_date": "FY ended 2025-12-31",
+      "status": "reported_historical_financials",
+      "confidence": "Medium; reputable secondary coverage of leaked statements reviewed by FT",
+      "source": "S08",
+      "model_implication": "Keep annual realized revenue separate from exit run-rate. Training/R&D and serving costs must both be covered in modeled operating cash flows."
+    },
+    {
+      "id": "A_CHANNEL",
+      "entity": "Anthropic",
+      "metric": "2025 cloud channel revenue and fees",
+      "value": {
+        "cloud_sales": 2.16,
+        "cloud_share_of_revenue_pct": 47,
+        "distribution_fees": 0.351,
+        "largest_two_customer_share_pct": 24
+      },
+      "unit": "USD billion except percentages",
+      "observation_date": "FY ended 2025-12-31",
+      "status": "reported_historical_financials_and_reuters_analysis",
+      "confidence": "High reporting quality; source prospectus not directly reviewed",
+      "source": "S09",
+      "model_implication": "Fees are reported in sales/marketing/partnerships expense. The ~16% fee applies to channel sales, not all revenue. Gross margin and revenue multiples need common definitions."
+    },
+    {
+      "id": "O_MS_UPDATE",
+      "entity": "OpenAI",
+      "metric": "Microsoft amended commercial terms",
+      "value": {
+        "microsoft_to_openai_revenue_share": "ended",
+        "openai_to_microsoft_revenue_share": "continues through 2030 at same percentage, total cap",
+        "ip_license": "non-exclusive through 2032"
+      },
+      "unit": "Contract terms",
+      "observation_date": "2026-04-27",
+      "status": "company_disclosed",
+      "confidence": "High; primary bilateral summary",
+      "source": "S10",
+      "model_implication": "Do not carry old reciprocal royalties or exclusivity into forecast. Percentage and cap are not disclosed in this primary summary."
+    },
+    {
+      "id": "A_AWS",
+      "entity": "Anthropic",
+      "metric": "Amazon investment and compute agreement",
+      "value": {
+        "aws_purchase_commitment_greater_than": 100,
+        "term_years": 10,
+        "amazon_initial_investment": 5,
+        "amazon_conditional_future_investment_up_to": 20
+      },
+      "unit": "USD billion except years",
+      "observation_date": "2026-04-20",
+      "status": "company_disclosed",
+      "confidence": "High for announced scope; future tranche conditional",
+      "source": "S11",
+      "model_implication": "Separate equity financing inflow from operating/capacity spending. Initial $5B is included in Series H, not incremental to it."
+    },
+    {
+      "id": "O_AWS",
+      "entity": "OpenAI",
+      "metric": "Amazon investment and compute agreement",
+      "value": {
+        "existing_compute_agreement": 38,
+        "additional_compute_commitment": 100,
+        "additional_term_years": 8,
+        "amazon_initial_investment": 15,
+        "amazon_conditional_investment": 35
+      },
+      "unit": "USD billion except years",
+      "observation_date": "2026-02-27",
+      "status": "company_disclosed",
+      "confidence": "High for announced terms; conditions and latest disbursement not verified",
+      "source": "S12",
+      "model_implication": "No assumption all announced investments are current cash. Do not classify $138B aggregate nominal service commitments as borrowing."
+    },
+    {
+      "id": "A_COMPUTE",
+      "entity": "Anthropic",
+      "metric": "Infrastructure obligations in confidential prospectus",
+      "value": {
+        "total_at_least": 518,
+        "noncancelable_or_minimum_payment_share_approx_pct": 80,
+        "google_service_minimum": 111.1,
+        "amazon_service_minimum": 110,
+        "microsoft_service_minimum": 31.4,
+        "broadcom_equipment_lease_obligations": 161.2,
+        "xai_capacity_spend_up_to": 84.5,
+        "amd_capacity_expected_greater_than": 20
+      },
+      "unit": "USD billion except percentage",
+      "observation_date": "Confidential prospectus reviewed 2026-09-29; mainly 7\u201310-year commitments",
+      "status": "reported_commitments",
+      "confidence": "High reporting quality; accounting classification and payment schedule incomplete",
+      "source": "S13",
+      "model_implication": "Mixed service floors, leases and cancelable capacity. Do not subtract $518B from EV as debt; schedule relevant costs and avoid double counting existing forecast expense."
+    },
+    {
+      "id": "A_BLACKSTONE",
+      "entity": "Anthropic",
+      "metric": "Chip financing offered to Blackstone",
+      "value": {
+        "proposed_financing": 9,
+        "yield_greater_than_pct": 10,
+        "lease_term_years": 5
+      },
+      "unit": "USD billion except percentage/years",
+      "observation_date": "2026-10-16 report",
+      "status": "reported_proposal_unverified_by_reuters",
+      "confidence": "Medium-low; FT sources relayed by Reuters",
+      "source": "S14",
+      "model_implication": "Debt is described as backed by Anthropic leases; borrower/recourse/closing unknown. No addition to direct corporate debt without documentation."
+    },
+    {
+      "id": "O_FCF_FORECAST",
+      "entity": "OpenAI",
+      "metric": "Reported company cash-flow forecast",
+      "value": {
+        "cumulative_negative_fcf_2026_2030": 278,
+        "forecast_revenue_2026": 36,
+        "forecast_revenue_2030": 350,
+        "forecast_compute_spend_through_2030": 856
+      },
+      "unit": "USD billion",
+      "observation_date": "Company presentation reported 2026-09-18",
+      "status": "reported_management_forecast",
+      "confidence": "Medium-high that FT reported the presentation; not an outcome forecast endorsement",
+      "source": "S15",
+      "model_implication": "Use as a funding-needs stress case, not cash burn already incurred or disclosed guidance. $350B is a reported 2030 projection."
+    },
+    {
+      "id": "O_GOVERNANCE",
+      "entity": "OpenAI",
+      "metric": "Recapitalization equity and control",
+      "value": {
+        "foundation_pct": 26,
+        "microsoft_approx_pct": 27,
+        "employees_and_other_investors_pct": 47,
+        "foundation_warrant": "Additional equity if share price exceeds tenfold threshold after 15 years",
+        "control": "Foundation appoints Group directors"
+      },
+      "unit": "Percent/contract terms",
+      "observation_date": "At recapitalization close 2025-10-28",
+      "status": "company_disclosed_historical_capital_structure",
+      "confidence": "High for historical description, not current diluted percentages",
+      "source": "S16",
+      "model_implication": "Do not carry historical percentages into October 2026 cap table unchanged; subsequent issuance and warrant matter to per-share value."
+    },
+    {
+      "id": "A_GOVERNANCE",
+      "entity": "Anthropic",
+      "metric": "Public benefit corporation and Trust governance",
+      "value": {
+        "structure": "Delaware PBC",
+        "trust_stock": "Class T",
+        "rights": "Trust elects/removes directors, phased toward majority under milestones"
+      },
+      "unit": "Governance terms",
+      "observation_date": "Structure described 2023-09-19; live page includes later updates",
+      "status": "company_disclosed",
+      "confidence": "High for published structure, no current economic cap table",
+      "source": "S17",
+      "model_implication": "Governance rights do not identify economic ownership percentages. Fully diluted share count, preferred rights and current net debt remain unverified."
+    }
+  ]
+}
