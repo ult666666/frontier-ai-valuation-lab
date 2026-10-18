@@ -149,18 +149,40 @@ def evaluate_presets(presets: dict) -> dict:
             for company, cases in presets.items()}
 
 
+def workbook_cases(presets: dict) -> dict:
+    """Independent expectations for a bounded set of workbook input edits."""
+    base = presets["Anthropic"]["Base"]
+    fixture = {"rev2026": 100, "g1": .04, "g2": .04, "g3": .04,
+               "m27": .2, "m30": .2, "m36": .2, "turns": 2.5, "wacc": .1,
+               "tg": .03, "roic": .2, "stub": -3, "tax": .25}
+    inputs = {
+        "Hand-derived fixture": fixture,
+        "Zero perpetual growth, zero tax, positive stub": {**base, "tg": 0, "tax": 0, "stub": 2},
+        "Nonpositive EV retained": {**base, "turns": .05},
+        "Terminal ROIC below WACC": {**base, "roic": .08},
+        "Changed late growth and margin": {**base, "g3": .08, "m36": .31},
+        "All growth zero": {**base, "g1": 0, "g2": 0, "g3": 0, "tg": 0},
+    }
+    return {name: {"inputs": values, "result": project(values)} for name, values in inputs.items()}
+
+
 def main() -> None:
     root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--presets", type=Path, default=root / "data" / "presets.json")
     parser.add_argument("--output", type=Path, help="Write JSON here; otherwise print it.")
+    parser.add_argument("--include-workbook-cases", action="store_true", help="Include input-edit fixtures for workbook QA.")
     args = parser.parse_args()
+    presets = json.loads(args.presets.read_text())
     payload = {
         "modelVersion": MODEL_VERSION,
         "valuationDate": VALUATION_DATE.isoformat(),
         "currency": "USD billions",
-        "results": evaluate_presets(json.loads(args.presets.read_text())),
+        "inputs": presets,
+        "results": evaluate_presets(presets),
     }
+    if args.include_workbook_cases:
+        payload["additionalCases"] = workbook_cases(presets)
     content = json.dumps(payload, indent=2, allow_nan=False) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

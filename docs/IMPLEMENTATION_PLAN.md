@@ -22,10 +22,10 @@ USD billions; valuation date 2026-10-18; preserve source artifacts; no credentia
 
 ## Tasks
 
-- [ ] **1. Research and audit:** reconcile recovered V2 and original sources; independently inspect engine and workbook; record material findings in `docs/AUDIT.md` and source records in `data/research.json`.
-- [ ] **2. Model/API:** write hand-derived and failure-focused Node tests, observe failures, implement shared model, request validation and real Node API, verify independent Python parity. Interfaces are defined in the design document.
-- [ ] **3. Interactive UI:** implement only browser files `public/index.html`, `public/styles.css`, `public/app.js`, and SVG assets. Consume shared engine/data; test scenario changes, invalid input, exports, reset and API behavior.
-- [ ] **4. Model deliverables and documentation:** generate formula workbook, reviewed report and reproducible exports, reconcile with current results, render and inspect. Document methodology, API, assumptions, limitations, local use and attribution.
+- [x] **1. Research and audit:** reconcile recovered V2 and original sources; independently inspect engine and workbook; record material findings in `docs/AUDIT.md` and source records in `data/research.json`.
+- [x] **2. Model/API:** write hand-derived and failure-focused Node tests, observe failures, implement shared model, request validation and real Node API, verify independent Python parity. Interfaces are defined in the design document.
+- [x] **3. Interactive UI:** implement only browser files `public/index.html`, `public/styles.css`, `public/app.js`, and SVG assets. Consume shared engine/data; test scenario changes, invalid input, exports, reset and API behavior.
+- [x] **4. Model deliverables and documentation:** generate formula workbook, reviewed report and reproducible exports, reconcile with current results, render and inspect. Document methodology, API, assumptions, limitations, local use and attribution.
 - [ ] **5. Publish and integrate:** run whole-project checks and independent review, publish new public repository and tested demo, update existing portfolio/profile, verify remote commit, CI, URLs and desktop delivery.
 
 ## Decision log
@@ -33,3 +33,5 @@ USD billions; valuation date 2026-10-18; preserve source artifacts; no credentia
 - 2026-10-18: recovered the October 16 package from prior deliverables because the desktop handoff confirmed it had never been copied to either Mac. The October 8 originals on both Macs have identical hashes.
 - 2026-10-18: selected a stateless Node API and browser fallback. A database does not serve this deterministic public analysis.
 - 2026-10-18: original separate Muse XLSX/PDF were not present; the recovered V2 workbook is the audited workbook baseline.
+
+- 2026-10-18: final app gate passed 22 Node/model/API/release tests, 36 valid + 73 invalid independent Python cases, and 57 browser checks. The rebuilt workbook passed 2,058 numerical comparisons and 169 input/selector rejection cases.

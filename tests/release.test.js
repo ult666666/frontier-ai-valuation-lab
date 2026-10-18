@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {MODEL_VERSION, VALUATION_DATE} from '../public/lib/model.js';
 
-const publicRoot=fileURLToPath(new URL('../public/',import.meta.url));
+const publicRoot=path.resolve(fileURLToPath(new URL('../public/',import.meta.url)));
 
 test('published HTML links resolve to actual public assets',async()=>{
   for(const name of ['index.html','report.html']){
@@ -14,8 +14,9 @@ test('published HTML links resolve to actual public assets',async()=>{
       const ref=match[1];
       if(/^(https?:|mailto:|#|data:)/.test(ref))continue;
       const pathname=ref.split(/[?#]/)[0];
-      const resolved=path.resolve(publicRoot,pathname);
-      assert.ok(resolved.startsWith(publicRoot),`${name} link escapes public directory: ${ref}`);
+      let resolved=path.resolve(publicRoot,pathname);
+      assert.ok(resolved===publicRoot||resolved.startsWith(publicRoot+path.sep),`${name} link escapes public directory: ${ref}`);
+      if((await stat(resolved)).isDirectory())resolved=path.join(resolved,'index.html');
       assert.ok((await stat(resolved)).isFile(),`${name} has missing asset ${ref}`);
     }
   }

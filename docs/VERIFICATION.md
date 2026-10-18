@@ -4,7 +4,7 @@ This record distinguishes calculation checks, application interaction and deploy
 
 ## Financial model and HTTP API
 
-`npm test` runs the financial regression suite, real HTTP API tests and release-asset checks. It covers actual-date discounting, reinvestment, tax losses, negative continuation EV, accounting invariance, hypothetical equity bridges, invalid inputs, multiple reverse solutions and tangent roots. API tests exercise actual local HTTP requests, malformed payloads, the body-size limit, method/path boundaries and server valuation, inverse and sensitivity actions.
+`npm test` passed **22 tests** across the financial regression suite, real HTTP API tests and release-asset checks. It covers actual-date discounting, reinvestment, tax losses, negative continuation EV, accounting invariance, hypothetical equity bridges, invalid inputs, multiple reverse solutions and tangent roots. API tests exercise actual local HTTP requests, malformed payloads, the body-size limit, method/path boundaries and server valuation, inverse and sensitivity actions.
 
 The independent constant-growth fixture returns **$200.31471864537804B EV**. It is derived separately from the company presets.
 
@@ -38,7 +38,7 @@ node tests/browser-smoke.mjs
 
 The nine-page PDF was rendered and every page visually inspected for clipping, overlap, missing glyphs and table readability. The HTML and PDF share one content builder and consume the same dated model result snapshot. The report exposes source links, assumptions, cash-flow reconciliation, terminal diagnostics and review findings.
 
-Workbook recalculation and control evidence is recorded separately in `verification/workbook-checks.json` when the formula model is finalized. Formula consistency and invalid-input rejection are different checks; neither is replaced by a PASS label driven only by an arithmetic identity.
+The five-sheet workbook passed **2,058 numerical comparisons** across six presets and six independently calculated edited cases, plus **169 invalid-input and scenario-selector cases**. Its **435 formulas** were exported and reimported with matching Base EVs. Evidence is in [workbook-checks.json](verification/workbook-checks.json). Formula consistency and invalid-input rejection are different checks; neither is replaced by a PASS label driven only by an arithmetic identity. Recalculation used the artifact authoring runtime; a native Microsoft Excel calculation was not performed. Sensitivity and reverse DCF remain in the application, rather than an approximate worksheet solver.
 
 ## Deployment policy
 
