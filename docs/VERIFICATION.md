@@ -40,6 +40,18 @@ The nine-page PDF was rendered and every page visually inspected for clipping, o
 
 The five-sheet workbook passed **2,058 numerical comparisons** across six presets and six independently calculated edited cases, plus **169 invalid-input and scenario-selector cases**. Its **435 formulas** were exported and reimported with matching Base EVs. Evidence is in [workbook-checks.json](verification/workbook-checks.json). Formula consistency and invalid-input rejection are different checks; neither is replaced by a PASS label driven only by an arithmetic identity. Recalculation used the artifact authoring runtime; a native Microsoft Excel calculation was not performed. Sensitivity and reverse DCF remain in the application, rather than an approximate worksheet solver.
 
+Read-only inspection confirms every saved formula cache, 19 source URLs and native chart bindings. The exporter omits separate chart point caches; the chart's worksheet references and rendered values were checked, but its display in native Excel was not. The [XML record](verification/workbook-xml.json) states this limit explicitly. Source URLs are readable text, avoiding unsupported hyperlink-formula caches.
+
 ## Deployment policy
 
 GitHub Actions runs financial/API/release checks, independent Python parity and the static staging build. Vercel runs the model/API/release test suite before building its public output. The runtime needs no secrets or paid data services. Production verification additionally requests the public page, health route, submitted valuation, errors and downloads; the deployed commit and outcome are recorded in the release notes.
+
+## Published deployment
+
+The initial production deployment of application commit `22249b2481474c8823778cc7b35d7b834858761a` reached **READY** at [frontier-ai-valuation-lab.vercel.app](https://frontier-ai-valuation-lab.vercel.app/). Its [GitHub check run](https://github.com/ult666666/frontier-ai-valuation-lab/actions/runs/39148130450) completed successfully.
+
+Anonymous HTTP checks passed for the page, model metadata, health route, HTML report and both downloads. The production API returned the independent fixture's expected EV and rejected negative capital turns with HTTP 400. Downloaded XLSX and PDF bytes matched the reviewed files; deployed JavaScript, presets and research JSON matched their source hashes. See [production-http.json](verification/production-http.json).
+
+The production browser smoke passed edited-scenario/server agreement, JSON provenance, workbook download, source navigation, the report and both desktop/mobile layouts, with no functional console or CSP errors. The temporary browser required an execution-proxy certificate override; the ordinary system TLS client independently validated the connection. This bounded test condition is preserved in [production-browser.json](verification/production-browser.json).
+
+The existing portfolio's [deployment check](https://github.com/ult666666/ult666666.github.io/actions/runs/39152343444) also completed successfully, and the public homepage and new fintech case study returned HTTP 200. Closing documentation updates do not alter the reviewed application or workbook bytes.

@@ -1,0 +1,62 @@
+{
+  "url": "https://frontier-ai-valuation-lab.vercel.app",
+  "commit": "22249b2481474c8823778cc7b35d7b834858761a",
+  "status": "passed",
+  "checks": [
+    {
+      "route": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 21008
+    },
+    {
+      "route": "/api/health",
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 67,
+      "body": {
+        "status": "ok",
+        "modelVersion": "3.0.0",
+        "valuationDate": "2026-10-18"
+      }
+    },
+    {
+      "route": "/api/valuation",
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 8562
+    },
+    {
+      "route": "/report.html",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 30960
+    },
+    {
+      "route": "/downloads/Frontier_AI_Valuation_Model.xlsx",
+      "status": 200,
+      "contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "bytes": 42636,
+      "sha256": "0a692f43f8459ffb6a162f065c10912a5ca23738d55104b272f74dbecdf73438"
+    },
+    {
+      "route": "/downloads/Frontier_AI_Valuation_Review.pdf",
+      "status": 200,
+      "contentType": "application/pdf",
+      "bytes": 97927,
+      "sha256": "08c94a33ea36870ca05ba437077bcec9d308ad87b90a4a7e3b80806d16edec36"
+    },
+    {
+      "test": "fixture",
+      "status": 200,
+      "ev": 200.31471864537804,
+      "error": null
+    },
+    {
+      "test": "invalid-turns",
+      "status": 400,
+      "ev": null,
+      "error": "Sales / invested capital must be between 0.05 and 100."
+    }
+  ]
+}

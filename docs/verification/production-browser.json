@@ -1,0 +1,90 @@
+{
+  "url": "https://frontier-ai-valuation-lab.vercel.app",
+  "checkedAt": "2026-10-18T18:05:20.154Z",
+  "expectedCommit": "22249b2481474c8823778cc7b35d7b834858761a",
+  "deploymentId": "dpl_7niSyM9pc4SKURSc5d1CLETLv9wR",
+  "anonymous": true,
+  "transportValidation": {
+    "systemCurlHttpStatus": 200,
+    "systemCurlSslVerifyResult": 0,
+    "initialChromiumError": "ERR_CERT_AUTHORITY_INVALID",
+    "functionalContextsIgnoreHTTPSErrors": true,
+    "browserSecurityDetails": {
+      "issuer": "openai.com",
+      "protocol": "TLS 1.3",
+      "subjectName": "frontier-ai-valuation-lab.vercel.app",
+      "validFrom": 1792173727,
+      "validTo": 1809367327
+    }
+  },
+  "checks": [
+    {
+      "name": "Anonymous production app loads and calculates",
+      "status": "passed",
+      "httpStatus": 200,
+      "baseEnterpriseValue": 367.7712947995601,
+      "modelVersion": "Model v3.0.0 · Browser ready"
+    },
+    {
+      "name": "Desktop layout fits viewport",
+      "status": "passed",
+      "width": 1440
+    },
+    {
+      "name": "Production assumption control recalculates",
+      "status": "passed",
+      "earlyGrowth": 0.46,
+      "editedEnterpriseValue": 377.65870857047884
+    },
+    {
+      "name": "Real production API verifies the edited scenario",
+      "status": "passed",
+      "httpStatus": 200,
+      "modelVersion": "3.0.0",
+      "valuationDate": "2026-10-18",
+      "statusText": "Server verified · Current operating model matches v3.0.0"
+    },
+    {
+      "name": "Current scenario JSON downloads with provenance",
+      "status": "passed",
+      "filename": "frontier-ai-anthropic-base-edited-2026-10-18.json",
+      "researchAsOf": "2026-10-18",
+      "sourceCount": 19
+    },
+    {
+      "name": "Published workbook download is an XLSX archive",
+      "status": "passed",
+      "filename": "Frontier_AI_Valuation_Model.xlsx",
+      "bytes": 42636
+    },
+    {
+      "name": "Source navigation shows the evidence register",
+      "status": "passed",
+      "sourceCount": 19
+    },
+    {
+      "name": "Published research report opens",
+      "status": "passed",
+      "httpStatus": 200,
+      "title": "Research & Audit Review · Frontier AI Valuation Lab",
+      "heading": "A valuation should be inspectable."
+    },
+    {
+      "name": "Mobile model and source views have no horizontal page overflow",
+      "status": "passed",
+      "width": 390
+    },
+    {
+      "name": "No console, runtime, request or CSP errors during the functional smoke",
+      "status": "passed"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "cspViolations": [],
+  "blockers": [],
+  "browserVersion": "133.0.6943.0",
+  "cspHeader": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+  "status": "passed"
+}

@@ -131,7 +131,8 @@
   "limitations": [
     "Recalculation and renders use Artifact Tool; native Microsoft Excel is not available in this runtime.",
     "Advanced sensitivity and reverse DCF are provided by the live app; this workbook includes no approximate solver.",
-    "Current capital-structure data are unknown, so no automatic equity bridge or per-share value is supplied."
+    "Current capital-structure data are unknown, so no automatic equity bridge or per-share value is supplied.",
+    "Native chart range references and colors are correct. The exporter omits separate chart point caches; the source worksheet values and rendered chart were verified. Native Excel chart display was not tested."
   ],
   "exported": "public/downloads/Frontier_AI_Valuation_Model.xlsx",
   "reopenedEV": {
@@ -153,5 +154,45 @@
     "source-inputs",
     "source-register-1",
     "source-register-2"
-  ]
+  ],
+  "visualReview": {
+    "status": "passed",
+    "scope": "All five sheets, 12 default views and 2 invalid-input views inspected. Four source-related views revised and re-inspected to remove unsupported hyperlink formula cache messages."
+  },
+  "savedXlsxInspection": {
+    "status": "passed",
+    "workbook": "Frontier_AI_Valuation_Model.xlsx",
+    "sheets": [
+      "Summary",
+      "Assumptions",
+      "Anthropic",
+      "OpenAI",
+      "Sources"
+    ],
+    "formula_count": 435,
+    "cached_formulas": 435,
+    "source_urls": 19,
+    "chart_series_references": [
+      "'Summary'!$E$38:$E$48",
+      "'Summary'!$F$38:$F$48"
+    ],
+    "chart_source_points_per_series": 11,
+    "chart_cached_points": [
+      0,
+      0
+    ],
+    "chart_line_colors": [
+      "B3654C",
+      "247D73"
+    ],
+    "selector_validation": "Native list 1,2,3",
+    "date": "2026-10-18",
+    "base_cached_ev": {
+      "Anthropic": 367.7712947995601,
+      "OpenAI": 258.86259028034846
+    },
+    "unsupported_formula_messages": 0,
+    "native_excel_recalculation": false,
+    "scope": "Read-only openpyxl extraction and XLSX ZIP/XML inspection; all worksheet formula caches, selector, date, source URLs, native chart bindings and colors checked."
+  }
 }

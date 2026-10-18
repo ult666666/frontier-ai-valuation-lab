@@ -8,6 +8,8 @@ A full stack fintech research application by **Charles Dai**, Carnegie Mellon Un
 
 **[Open the live demo](https://frontier-ai-valuation-lab.vercel.app)** · **[Read the review](https://frontier-ai-valuation-lab.vercel.app/report.html)** · **[Download the Excel model](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Model.xlsx)** · **[Portfolio](https://ult666666.github.io/)**
 
+[PDF review](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Review.pdf) · [Version 3 release and source archive](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v3.0.0) · [Verification record](docs/VERIFICATION.md)
+
 ![Interactive valuation workstation](docs/demo-desktop.png)
 
 ## The problem
