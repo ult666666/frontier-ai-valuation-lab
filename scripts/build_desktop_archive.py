@@ -9,12 +9,14 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-FOLDER = "Value_Horizon_V3_4_2026-10-19"
-OUTPUT = ROOT / "public/downloads/Frontier_AI_Value_Horizon_Package.zip"
+FOLDER = "Financing_Lens_V3_5_2026-10-19"
+OUTPUT = ROOT / "public/downloads/Frontier_AI_Financing_Lens_Package.zip"
 
 
 def main():
-    with tempfile.TemporaryDirectory(prefix="frontier-horizon-package-") as temporary:
+    if OUTPUT.exists():
+        raise FileExistsError(f"Refusing to overwrite an existing package: {OUTPUT}")
+    with tempfile.TemporaryDirectory(prefix="frontier-financing-package-") as temporary:
         destination = Path(temporary) / FOLDER
         created = subprocess.run(
             [sys.executable, str(ROOT / "scripts/deliver_desktop.py"),
@@ -24,7 +26,7 @@ def main():
         expected = {FOLDER + "/" + path.relative_to(destination).as_posix(): path.read_bytes()
                     for path in members}
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-        with zipfile.ZipFile(OUTPUT, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+        with zipfile.ZipFile(OUTPUT, "x", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
             for name, content in expected.items():
                 info = zipfile.ZipInfo(name, date_time=(2026, 10, 19, 0, 0, 0))
                 info.compress_type = zipfile.ZIP_DEFLATED

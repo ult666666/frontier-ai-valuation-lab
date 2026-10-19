@@ -1,8 +1,66 @@
 # Release verification
 
-This record separates numerical agreement, application behavior, print review and deployment consistency. A passing check establishes the behavior it exercises; it does not establish the completeness of private-company information or the accuracy of a forecast. The current **v3.4 local verification** appears first. The v3.3 and v3.2 sections below are historical records with their original scope; their test totals and deployment history are not current v3.4 results.
+The current **v3.5 local verification** appears first. Earlier sections retain their original dates, source bytes and scope. Numerical agreement, browser behavior, printable-artifact review and deployment observations are separate forms of evidence; none establishes private-company forecasts as facts. Post-publication evidence is attached to the [v3.5 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v3.5.0) when publication completes.
 
-## Version 3.4 local verification
+## Version 3.5 local verification
+
+Application **3.5.0** adds Financing Lens within the existing Model: a hypothetical equity bridge, a separately entered primary-round price, ownership dilution, complete analysis transport and a shared browser/API result. It retains financial engine **3.0.0**, the **18 October 2026** valuation date and research cutoff **2026-10-18T09:22:26-07:00**. The financial engine, presets, company research register, original workbook and original financial-review PDF match the v3.4 bytes. The [local release record](verification/release-3.5-local.json) binds the implementation, checks and supplied artifacts to their SHA-256 hashes.
+
+| Verification layer | Result | Evidence |
+| --- | ---: | --- |
+| Node financial, API, snapshot, presentation and release tests | **227 passed; 0 failed** | [Local gates and hashes](verification/release-3.5-local.json) |
+| Financing Lens browser workflow | **92 assertions; 0 page errors** | [Financing browser](verification/financing-browser-3.5.json) |
+| Connected research journey and Model regression | **94 + 57 assertions; 0 page errors** | [Journey](verification/journey-browser-3.5.json), [Workbench](verification/workbench-browser-3.5.json) |
+| Independent Python financing calculation | **19 valid cases; 31 invalid/boundary cases; 3,591 numerical and 596 structural comparisons** | [Financing reference](verification/financing-reference-3.5.json) |
+| Local HTTP assets and API consistency | **82 of 82 requests passed** | [HTTP receipt](verification/http-local-3.5.json) |
+| Scoped second-agent presentation review | **Three findings closed** | [Review scope and reproductions](verification/independent-review-3.5.json) |
+| Current printable examples | **Financing: 2 pages; Horizon: 2; Thesis: 3; Research: 4** | [Print review and PDF hashes](verification/release-3.5-local.json) |
+| Versioned portable archive | **36 members; 35 manifest-listed files** | [Archive](verification/desktop-archive-3.5.json), [package checks](verification/desktop-verification-3.5.json) |
+
+### Financial contract and independent arithmetic
+
+The [Financing Lens method](FINANCING_LENS.md) distinguishes fixed-forecast operating EV, hypothetical modeled equity, entered round price and participating ownership. An explicit cash/debt/other-claims bridge is optional; an absent bridge stays absent. The independently entered round never replaces the operating model’s value. All primary proceeds remain cash, fees are zero, and economic rights are equal within the ownership pool. Secondary transfers, conversions, option-pool increases, preferences, debt repayment and future rounds are outside this simplified contract.
+
+The independent reference uses **100 pre-round shares**, calculates the implied issue price and new shares, and derives ownership from that share ledger. It uses Python’s **80-digit Decimal arithmetic** and the separate Python FCFF implementation. It compares the complete output structure, retained-cash and equity identities, signed model-price gaps, all six presets, tiny-scale ratios, large permitted round amounts, zero-primary issuance and invalid boundaries. The maximum absolute difference in this bounded fixture set was approximately **1.0516 × 10⁻¹²**; the [receipt](verification/financing-reference-3.5.json) records the tolerances and source hashes. This verifies the declared calculation, not company forecasts or investment returns.
+
+The worked example explicitly assumes a **$250B pre-money quote**, **$25B primary capital** and a **10% non-participating holder**. It gives a **$275B post-money price**, **9.09% new-investor ownership**, and **9.09% tracked ownership after issuance**. The quoted holder mark remains $25B at the assumed issue price. With assumed cash of $20B and debt of $5B, modeled equity moves from approximately $382.77B to $407.77B, while operating EV stays approximately $367.77B. The inputs are hypothetical and are not reconstructed company balances or transaction terms. [Exact worked inputs and result](../public/downloads/Frontier_AI_Financing_Lens.json).
+
+### Browser behavior, transport and reviewed fixes
+
+The three freshly run browser suites total **243 assertions**: 92 Financing, 94 connected-journey and 57 Model regression checks. This total excludes older releases’ browser runs. The two compatibility suites preserve contextual evidence, exact Thesis/Model return state, bridge-aware Casebook saves, existing exports and consistent navigation.
+
+The source-bound Financing browser suite covers the worked example, pre/post quote interpretation, complete custom operating assumptions, explicit bridge on/off, signed nonpositive equity, invalid-input clearing, exact link reload, JSON and script-free HTML exports. Full-result API checks detect mismatches outside headline metrics and prevent an old response from marking a changed analysis as verified. API failure preserves a valid browser calculation. Responsive checks cover **320, 390, 768 and 1440px**, keyboard focus, and a no-JavaScript fallback. The run used local HTTP without a certificate override. [Named checks](verification/financing-browser-3.5.json).
+
+Three presentation findings were closed: the brief now distinguishes a numerical-range percentage limit from nonpositive equity; large finite ratios format as percentages without overflowing during display scaling; and copying modeled equity into a round price first validates the complete proposed round against the same precision policy. Five focused presentation regressions and the real-browser precision-copy reproduction verify those changes. The reviewer authored the financing core and separately reviewed the root-authored presentation; the independent Python reference and browser suite were authored by a different agent. This is a scoped AI-assisted engineering review, not an external audit. [Review record](verification/independent-review-3.5.json).
+
+The narrowest responsive check also found an existing two-column Model export-action grid wider than a 320px viewport. A narrow-breakpoint single-column layout resolves that overflow. The six navigation destinations retain their meanings. Financing-specific links and exports preserve the full operating case, bridge and round; existing scenario, Horizon, Thesis and Casebook formats retain their existing contracts.
+
+### Printable artifacts, preserved originals and desktop package
+
+All **eleven pages** across the four current worked PDFs were rendered to PNG and visually inspected. The supplied Financing example is two pages and contains the assumed terms, ownership, equity reconciliation, all thirteen exact operating assumptions, source links and a live reopening link. The other three examples are regenerated with application 3.5.0 metadata. Their financial inputs retain their prior values. The original reviewed five-sheet workbook and nine-page financial-review PDF retain their original bytes; no new native Excel recalculation claim is made. [Artifact hashes and print scope](verification/release-3.5-local.json).
+
+The [new portable package](../public/downloads/Frontier_AI_Financing_Lens_Package.zip) contains **35 manifest-listed files plus the manifest**. It includes the new Financing HTML/PDF/JSON, actual interface preview and method, alongside the existing research outputs, workbook, evidence and shortcuts. The versioned destination is `Financing_Lens_V3_5_2026-10-19`. The builder refuses an existing destination; verification checks exact membership, hashes, opening links, shortcuts and the Financing/Horizon snapshot metadata. Prior release ZIPs and handoffs remain separate. [Package checks](verification/desktop-verification-3.5.json).
+
+Local archive verification is separate from native desktop delivery. The published release receipt records any completed native copy and its preservation checks; it does not infer one from an archive or an available device. Browser/server agreement likewise verifies deployment consistency because they intentionally share the production calculation. The independent Python calculation supplies the separate arithmetic comparison.
+
+### HTTP consistency and repeatable release gates
+
+The bounded local HTTP probe passed **67 exact asset/root-alias checks**, **one health check**, **five complete Financing API responses** and **nine exact rejection responses**, totaling **82 requests**. It includes all 66 files in the public directory, the financing downloads and archive, pre/post-money interpretations, absent bridge, nonpositive residual, invalid precision, content type and request-size handling. Asset membership and source hashes remained unchanged during the run. This was local HTTP; the verifier keeps ordinary certificate verification enabled when used with HTTPS. It uses the local handler for full-response comparison and therefore establishes consistency, separately from independent arithmetic. [HTTP receipt](verification/http-local-3.5.json).
+
+```sh
+npm test
+npm run build
+python3 -B tests/reference_parity.py
+python3 -B scripts/check_thesis_reference.py --output /tmp/thesis-reference.json
+python3 -B scripts/check_horizon_reference.py --output /tmp/horizon-reference.json
+python3 -B scripts/check_financing_reference.py --output /tmp/financing-reference.json
+```
+
+GitHub Actions runs all six gates. The local release receipt lists which checks were freshly run and their exact outputs; earlier release counts are not added to the current totals. Hosted CI, deployment identity, public HTTP and native delivery are recorded after publication and should be evaluated against the exact published commit.
+
+## Version 3.4 historical local verification
+
+The following section is retained from application **3.4.0**. Its use of “current” and its local publication/native-delivery status describe that historical collection point. The completed v3.4 publication evidence is available in the [v3.4 release assets](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v3.4.0).
 
 Application **3.4.0** passed the local checks collected on **19 October 2026**. Value Horizon adds a finite-continuation lens, strict exact snapshots, standalone outputs and a shared browser/API calculation. Financial engine **3.0.0**, the **18 October 2026** valuation date and the frozen research cutoff **2026-10-18T09:22:26-07:00** remain unchanged. The engine, presets, research register, original workbook and original financial-review PDF match their reviewed v3.3 bytes. The [release record](verification/release-3.4-local.json) binds the current implementation and evidence to file-content SHA-256 hashes.
 

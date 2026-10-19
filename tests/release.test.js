@@ -6,6 +6,8 @@ import path from 'node:path';
 import {MODEL_VERSION, VALUATION_DATE} from '../public/lib/model.js';
 import {APP_VERSION} from '../public/lib/release.js';
 import {createHorizonBrief,createHorizonExport} from '../public/lib/horizon-brief.js';
+import {createFinancingBrief,createFinancingExport} from '../public/lib/financing-brief.js';
+import {decodeFinancing} from '../public/lib/financing-share.js';
 
 const publicRoot=path.resolve(fileURLToPath(new URL('../public/',import.meta.url)));
 
@@ -70,4 +72,19 @@ test('research and release snapshots identify the current model and calendar dat
     const ids=[company.financing.sourceId,...company.operatingEvidence.map(e=>e.sourceId)].filter(Boolean);
     for(const id of ids)assert.ok(research.sources.some(s=>s.id===id),`Missing evidence reference ${id}`);
   }
+});
+
+test('the published Financing Lens downloads preserve and reproduce the exact hypothetical round',async()=>{
+  const presets=JSON.parse(await readFile(path.join(publicRoot,'data/presets.json'),'utf8'));
+  const snapshot={case:{company:'Anthropic',scenario:'Base',assumptions:presets.Anthropic.Base,bridge:{cash:20,debt:5,otherClaims:0}},round:{basis:'pre',quote:250,primaryCapital:25,holderStake:.1}};
+  const json=JSON.parse(await readFile(path.join(publicRoot,'downloads/Frontier_AI_Financing_Lens.json'),'utf8'));
+  const html=await readFile(path.join(publicRoot,'downloads/Frontier_AI_Financing_Lens.html'),'utf8');
+  const pdf=await readFile(path.join(publicRoot,'downloads/Frontier_AI_Financing_Lens.pdf'));
+  assert.deepEqual(json,createFinancingExport(snapshot));assert.equal(html,createFinancingBrief(snapshot));
+  assert.deepEqual(decodeFinancing(new URL(json.shareUrl).hash.slice('#financing='.length)),snapshot);
+  assert.equal(json.appVersion,APP_VERSION);assert.equal(json.modelVersion,MODEL_VERSION);
+  assert.equal(json.result.pricing.postMoney,275);assert.equal(json.result.pricing.holderValueBefore,json.result.pricing.holderValueAfter);
+  assert.equal(json.result.comparison.operatingEvBefore,json.result.comparison.operatingEvAfter);
+  assert.ok(!/<script\b|\son\w+=/i.test(html));
+  assert.equal(pdf.subarray(0,5).toString(),'%PDF-');assert.ok(pdf.length>10000);
 });

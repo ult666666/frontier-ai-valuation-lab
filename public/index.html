@@ -23,6 +23,7 @@
   <title>Frontier AI Valuation Lab · Charles Dai</title>
   <link rel="stylesheet" href="./shell.css">
   <link rel="stylesheet" href="./evidence-context.css">
+  <link rel="stylesheet" href="./financing.css">
   <script type="module" src="./shell.js"></script>
   <script type="module" src="./app.js"></script>
 </head>
@@ -139,6 +140,7 @@
             <div class="results-heading"><div class="eyebrow" id="active-model-label">Anthropic / Base</div><span class="assumption-tag">Illustrative forecast</span></div>
             <h3 class="sr-only" id="valuation-heading">Enterprise valuation</h3>
             <div id="valuation-summary" class="valuation-summary"><div class="result-placeholder">Your modeled enterprise value will appear here.</div></div>
+            <a class="financing-jump" href="#financing">Explore equity and ownership ↓</a>
             <div id="model-warnings" class="model-warnings" hidden></div>
             <div class="verification-row">
               <p id="api-status" class="api-status" role="status"><span class="status-dot" aria-hidden="true"></span>Calculated in your browser · Server check available</p>
@@ -171,10 +173,13 @@
             <p class="small-note" id="reverse-note">Search range: 0–200% early growth. A solved path is a conditional scenario; it is not a likelihood or an investment recommendation. A financing price is not an EV target without an explicit bridge.</p>
           </section>
 
-          <section class="bridge-section" aria-labelledby="bridge-heading">
-            <details id="bridge-details"><summary><span id="bridge-heading">Optional hypothetical equity bridge</span><span class="summary-hint">Add adjustments</span></summary>
-              <div class="bridge-body"><p class="section-description">Translate enterprise value using your cash, debt and other claims assumptions. Zeroes are editable placeholders, not disclosed balances.</p><label class="checkbox-label"><input id="bridge-enabled" type="checkbox"> Enable hypothetical equity calculation</label><div class="bridge-inputs"><div><label for="bridge-cash">Cash <span>USD bn</span></label><input id="bridge-cash" type="number" min="0" step="any" value="0" inputmode="decimal" disabled></div><div><label for="bridge-debt">Debt <span>USD bn</span></label><input id="bridge-debt" type="number" min="0" step="any" value="0" inputmode="decimal" disabled></div><div><label for="bridge-claims">Other claims <span>USD bn</span></label><input id="bridge-claims" type="number" min="0" step="any" value="0" inputmode="decimal" disabled></div></div><div id="bridge-output" class="bridge-output" role="status">Enable the bridge to apply your assumptions.</div><p class="small-note">Equity value = enterprise value + cash − debt − other claims. This simplified bridge does not model share classes, dilution or preferences.</p></div>
+          <section class="bridge-section financing-section" id="financing" aria-labelledby="financing-heading" tabindex="-1">
+            <div class="financing-heading-row"><div><span class="eyebrow">Financing Lens / Hypothetical inputs</span><h3 id="financing-heading">From value <em>to ownership.</em></h3></div><button id="financing-example" type="button" class="button button-outline">Load worked example ↗</button></div>
+            <p class="financing-heading-note">Translate operating value into hypothetical equity, then explore a primary funding round. The worked example loads Anthropic Base with explicitly assumed cash, debt and round terms.</p>
+            <details id="bridge-details"><summary><span id="bridge-heading">01 / Optional hypothetical equity bridge</span><span class="summary-hint">Add adjustments</span></summary>
+              <div class="bridge-body"><p class="section-description">Use pre-round cash excluded from operating cash flows, current debt, and other claims outside the participating equity pool. Zeroes are editable placeholders, not disclosed balances.</p><label class="checkbox-label"><input id="bridge-enabled" type="checkbox"> Enable hypothetical equity calculation</label><div class="bridge-inputs"><div><label for="bridge-cash">Pre-round cash <span>USD bn · excludes new capital</span></label><input id="bridge-cash" type="number" min="0" step="any" value="0" inputmode="decimal" disabled></div><div><label for="bridge-debt">Current debt <span>USD bn</span></label><input id="bridge-debt" type="number" min="0" step="any" value="0" inputmode="decimal" disabled></div><div><label for="bridge-claims">Other claims <span>USD bn · outside ownership pool</span></label><input id="bridge-claims" type="number" min="0" step="any" value="0" inputmode="decimal" disabled></div></div><div id="bridge-output" class="bridge-output" role="status">Enable the bridge to apply your assumptions.</div><p class="small-note">Equity value = enterprise value + cash − debt − other claims. Do not deduct claims that are already included in the participating equity pool. The separate round below assumes equal economic rights.</p></div>
             </details>
+            <div id="financing-lens"><p class="small-note">Financing Lens explores pre-money and post-money round prices, primary capital and ownership. Enable JavaScript for interactive calculations, or <a href="./downloads/Frontier_AI_Financing_Lens.html">read the complete hypothetical financing brief</a>.</p></div>
           </section>
 
           <div class="export-bar"><div><strong>Take the model with you.</strong><p>Exports use your current valid assumptions.</p></div><div class="export-actions"><button type="button" class="button button-outline" id="export-json" disabled>Scenario JSON <span aria-hidden="true">↓</span></button><button type="button" class="button button-outline" id="export-csv" disabled>Forecast CSV <span aria-hidden="true">↓</span></button></div></div>

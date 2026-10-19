@@ -1,0 +1,15 @@
+{
+  "status": "verified",
+  "appVersion": "3.5.0",
+  "file": "public/downloads/Frontier_AI_Financing_Lens_Package.zip",
+  "folder": "Financing_Lens_V3_5_2026-10-19",
+  "members": 36,
+  "manifestListedFiles": 35,
+  "sha256": "8a98e0d40d97b942b7c8a0d9356b9740da88a26f3ab19578bb969d3e08539a58",
+  "bytes": 1189767,
+  "nativeDesktopDelivery": false,
+  "verifiedAtUtc": "2026-10-19T20:27:48.079645+00:00",
+  "builderSourceSha256": "5c7ea8e6c335d27236484068fe6c9295060755e179e1950038c63d97219f31de",
+  "deliverySourceSha256": "d46561cf311c3abc402e2a27fa48f0fe472d0a3173bd38c1557ebbbb237989f4",
+  "earlierHorizonZipSha256": "40f15a73b220d75651abc8529ace281a337e32c6c6fe114d4f2e18926bba3995"
+}

@@ -10,3 +10,4 @@
 .scenario-notice { margin: 0 0 20px; padding: 15px 18px; border: 1px solid #88afa0; border-left: 3px solid #3e806e; background: #e9f2ed; font-size: 12px; line-height: 1.7; }
 .scenario-notice.is-error { border-color: #c89282; border-left-color: #ab614c; background: #f8ebe5; }
 @media (max-width: 560px) { .export-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; } .export-actions .button { width: 100%; padding: 10px 8px; } }
+@media (max-width: 360px) { .export-actions { grid-template-columns: minmax(0, 1fr); } .export-actions .button { min-width: 0; white-space: normal; } }

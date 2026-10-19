@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "kind": "frontier-value-horizon",
-  "appVersion": "3.4.0",
+  "appVersion": "3.5.0",
   "modelVersion": "3.0.0",
   "valuationDate": "2026-10-18",
   "researchCutoff": "2026-10-18T09:22:26-07:00",

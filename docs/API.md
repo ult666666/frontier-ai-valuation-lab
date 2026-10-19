@@ -1,10 +1,10 @@
 # API contract
 
-The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **3.4.0** adds the Value Horizon `horizon` action alongside the existing eight financial actions. No model-provider key is needed.
+The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **3.5.0** adds the Financing Lens `financing` action alongside the existing nine financial actions. Application **3.4.0** introduced the Value Horizon `horizon` action; all earlier actions remain available. No model-provider key is needed.
 
 ## GET /api/health
 
-Returns `status`, `appVersion`, `modelVersion` and `valuationDate`. This is service health, not a statement that financial evidence is complete. Application release `3.4.0` retains financial engine `3.0.0` and valuation date `2026-10-18`.
+Returns `status`, `appVersion`, `modelVersion` and `valuationDate`. This is service health, not a statement that financial evidence is complete. Application release `3.5.0` retains financial engine `3.0.0` and valuation date `2026-10-18`.
 
 ## GET /api/valuation
 
@@ -25,6 +25,7 @@ Use `Content-Type: application/json`. Amounts are USD billions and model percent
 | `attribute` | `reference`, `alternative` | Both complete projections and exact grouped attribution of alternative EV minus reference EV |
 | `landscape` | `assumptions`, `rates`, `margins`, positive numeric `target` | EV matrix indexed by margin row and WACC column, invalid-point reasons, and a required-margin frontier |
 | `horizon` | `assumptions`, integer `years` from 0–100; optional positive numeric or `null` `target` | Complete baseline, 101 finite-continuation points, retained/excluded terminal PV, capture milestones and bounded whole-year target requirement |
+| `financing` | `assumptions`, explicit `bridge` object or `null`, complete `round` | Full baseline, primary-round pricing and ownership, optional signed equity reconciliation and round-implied operating EV |
 
 Success responses are `{appVersion, modelVersion, valuationDate, result}`. `appVersion` is an additive release identifier; the model/date/result fields retain their existing meanings. Validation failures are HTTP 400 with `{error}`. Unsupported media returns 415, more than 16 KiB returns 413, unsupported methods return 405, and unknown routes return 404. Each original `sensitivity` axis contains 1–9 finite numbers. Each `landscape` axis contains 2–21 finite, strictly increasing numbers.
 
@@ -381,6 +382,103 @@ curl -X POST http://127.0.0.1:4321/api/valuation \
 Under these frozen Anthropic Base assumptions, retaining ten terminal years through 2046 gives about **$248.4558B operating EV**, versus **$367.7713B** under perpetual continuation. The $250B target first clears with **11** continuation years, through **2047**. Neither result is a financing equity price or a probability.
 
 See [Value Horizon methodology, numerical limits and portable outputs](VALUE_HORIZON.md). The API receives only assumptions and the two lens parameters. Company labels, optional hypothetical bridges and original research metadata travel in the separate share/export format and do not affect horizon operating EV.
+
+## Financing Lens analytics
+
+Send `{action: 'financing', assumptions, bridge, round}` with exactly those four top-level fields. `assumptions` contains all thirteen existing model inputs. Supply `bridge: null` when no hypothetical cash/debt/claims bridge is available. Omitting `bridge` from an HTTP request is an error; an explicit null is not treated as three zero balances.
+
+The shared [`public/lib/financing.js`](../public/lib/financing.js) exports `financingLens(assumptions, {bridge, round})`, `FINANCING_VERSION = '1.0.0'`, and `FINANCING_MAX_AMOUNT = 1e12`. Direct JavaScript calls may omit `bridge`, which has the same meaning as `null`. Assumptions, options, bridge and round must use exact own enumerable data fields on plain or null-prototype records. Accessors, inherited fields, symbols, missing required fields, numeric strings and nonfinite numbers are rejected without invoking property getters.
+
+### Financing inputs
+
+| Field | Meaning | Domain |
+| --- | --- | --- |
+| `bridge.cash` | Hypothetical pre-round unrestricted cash excluded from operating FCFF and excluding this round's proceeds | Finite, $0B–$10,000B |
+| `bridge.debt` | Current debt value, consistently classified | Finite, $0B–$10,000B |
+| `bridge.otherClaims` | Other uncovered claims outside the participating equity pool | Finite, $0B–$10,000B |
+| `round.basis` | Interpretation of the entered equity quote | `pre` or `post` |
+| `round.quote` | Hypothetical equity price under the selected basis | Positive, finite, at most `1e12` USD billions |
+| `round.primaryCapital` | New primary cash paid to the company and retained | Finite, from 0 through `1e12` USD billions |
+| `round.holderStake` | Tracked holder's pre-round ownership | Decimal fraction from 0 through 1 |
+
+Both non-null bridge and round objects require all and only their listed fields. A post-money quote must exceed primary capital. A positive pre-money remainder too close to the declared numeric-resolution boundary returns HTTP 400 with a precision explanation. Zero investment is valid. Because the quote and capital limits apply separately, a pre-money quote plus capital can produce post-money equity up to `2e12` USD billions.
+
+### Financing result
+
+```js
+{
+  version: '1.0.0',
+  assumptions: { /* detached exact thirteen-field snapshot */ },
+  baseline: { /* full unchanged project() result */ },
+  round: {basis: 'pre', quote: 150, primaryCapital: 30, holderStake: 0.1},
+  pricing: {
+    preMoney, postMoney, primaryCapital,
+    existingOwnership, newOwnership,
+    holderBefore, holderAfter, otherExistingAfter,
+    holderDilution, relativeDilution,
+    holderValueBefore, holderValueAfter
+  },
+  bridge: { /* full bridgeEquity() result */ }, // or null
+  comparison: {
+    modelPreMoneyEquity, modelPostMoneyEquity,
+    cashBefore, cashAfter,
+    operatingEvBefore, operatingEvAfter,
+    roundImpliedOperatingEv, priceGap, priceGapPercent
+  }, // or null when no bridge is supplied
+  method: {
+    basis: 'simple-primary-equity-round',
+    operatingValue: 'perpetual-fcff',
+    proceeds: 'retained-as-cash',
+    fees: 0,
+    rights: 'equal-participating',
+    bridgeStatus: 'hypothetical' // or 'not-supplied'
+  },
+  warnings: []
+}
+```
+
+Let `V = baseline.ev`, `C = bridge.cash`, `D = bridge.debt`, `S = bridge.otherClaims`, `Q = pricing.preMoney`, and `R = round.primaryCapital`. The output uses the full perpetual FCFF baseline; it does not silently substitute a finite Horizon value.
+
+```text
+Pre basis:  Q = quote;      postMoney = quote + R
+Post basis: Q = quote − R;  postMoney = quote
+
+newOwnership      = R / postMoney
+existingOwnership = Q / postMoney
+holderAfter       = holderStake × existingOwnership
+otherExistingAfter = (1 − holderStake) × existingOwnership
+holderDilution    = holderStake × newOwnership
+relativeDilution  = newOwnership
+
+modelPreMoneyEquity  = V + C − D − S
+modelPostMoneyEquity = modelPreMoneyEquity + R
+cashBefore = C; cashAfter = C + R
+operatingEvBefore = operatingEvAfter = V
+roundImpliedOperatingEv = Q − C + D + S
+priceGap = Q − modelPreMoneyEquity
+```
+
+All ownership and gap ratios are decimal fractions. `holderDilution × 100` gives the tracked holder's absolute percentage-point decrease. `relativeDilution × 100` gives proportional dilution of existing stakes, a cohort measure even when the tracked holder owns zero. The holder's quoted paper value before and after uses the same `holderStake × Q` expression. It is an immediate mark at the hypothetical issue price, not a model-derived shareholder value or an investment return.
+
+When a bridge is supplied, `priceGapPercent = priceGap / modelPreMoneyEquity` only if modeled pre-money equity is positive and the quotient is finite. Otherwise that field is `null`, with a warning distinguishing a nonpositive residual from a numeric-range limit. Signed dollar values remain available. These unavailable ratios are successful analytical HTTP 200 outcomes. An absent bridge makes both `bridge` and `comparison` null while preserving round pricing, ownership and the full operating baseline.
+
+The post-close identity `(Q + R) − (C + R) + D + S = Q − C + D + S` explains why retained primary capital does not itself increase operating EV. The pre-money expression is canonical, avoiding unnecessary post-close cancellation. The two ownership fractions are divided directly, and holder dilution is computed by multiplication instead of subtracting nearly equal percentages.
+
+For post-money input with positive capital, the supported-resolution guard rejects `Q <= 32 × Number.EPSILON × max(quote, primaryCapital)`. This conservative policy limits sensitivity to rounding in the two entered amounts; it is not a formal exact-arithmetic error bound. A positive input that underflows its directly calculated ownership fraction to zero is also rejected. A zero raise does not trigger the subtraction guard.
+
+Example request:
+
+```sh
+curl -X POST http://127.0.0.1:4321/api/valuation \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"financing","assumptions":{"rev2026":100,"g1":0.04,"g2":0.04,"g3":0.04,"m27":0.2,"m30":0.2,"m36":0.2,"turns":2.5,"wacc":0.1,"tg":0.03,"roic":0.2,"stub":-3,"tax":0.25},"bridge":{"cash":20,"debt":5,"otherClaims":3},"round":{"basis":"pre","quote":150,"primaryCapital":30,"holderStake":0.1}}'
+```
+
+This hypothetical round is $150B pre-money and $180B post-money. New investors own one sixth of the post-round pool; a holder starting at 10% ends at one twelfth, approximately 8.3333%. The round-implied operating EV is $138B both before and after the raise. The separate model-equity result comes from the submitted operating forecast and bridge.
+
+The round assumes equal participating economic rights, retained primary cash and zero fees. It excludes secondary sales, SAFE or note conversions, option-pool expansion, preference waterfalls, debt repayment and future rounds. Deductions must exclude the participating equity pool and costs already modeled in FCFF. The current cumulative economic deficit is not deducted again or used to recommend a raise.
+
+The API carries no company label, account record or saved Casebook entry. Complete company/scenario labels, all operating inputs, the optional bridge and round terms travel in the separate financing share/JSON/HTML format. Existing Model and Casebook formats continue to store operating assumptions and bridge adjustments; they do not silently acquire round terms. See [Financing Lens methodology and interpretation limits](FINANCING_LENS.md).
 
 ## Interpretation
 

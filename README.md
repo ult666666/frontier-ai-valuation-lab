@@ -6,6 +6,8 @@
 
 A full stack fintech research workspace by **Charles Dai**, Carnegie Mellon University. **Value Horizon** makes the dependence on distant cash flows visible: keep an operating forecast fixed, choose how many years after 2036 to retain, and inspect the value remaining with zero residual after the cutoff. Compare Anthropic and OpenAI, explain an operating thesis in Thesis Lab, and preserve its rationale and dated evidence in the Research Casebook.
 
+**Financing Lens** extends the Model from operating value to hypothetical equity, round pricing and ownership. Enter a pre-money or post-money quote, trace primary capital into cash, and see how issuance changes a tracked holder’s percentage. The negotiated price and modeled value remain separate.
+
 A deterministic JSON API, independently calculated Python reference, editable Excel model and source register make the arithmetic inspectable. Research and implementation were developed with AI assistance; the calculations can be reproduced from this repository.
 
 **[Open Value Horizon](https://frontier-ai-valuation-lab.vercel.app/horizon.html)** · **[Company comparison and Model](https://frontier-ai-valuation-lab.vercel.app/)** · **[Thesis Lab](https://frontier-ai-valuation-lab.vercel.app/thesis.html)** · **[Research Casebook](https://frontier-ai-valuation-lab.vercel.app/casebook.html)** · **[Evidence](https://frontier-ai-valuation-lab.vercel.app/index.html#sources)** · **[Fintech portfolio](https://ult666666.github.io/fintech.html)**
@@ -14,7 +16,7 @@ A deterministic JSON API, independently calculated Python reference, editable Ex
 
 [Worked research brief](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Research_Brief.pdf) · [Importable example casebook](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Research_Casebook.json) · [Excel model](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Model.xlsx) · [Financial review](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Review.pdf) · [Release history](https://github.com/ult666666/frontier-ai-valuation-lab/releases)
 
-[Portable desktop package · ZIP](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Value_Horizon_Package.zip) contains the complete worked briefs, original reviewed workbook, evidence snapshots and an opening guide. Extract it and open `START_HERE.html`.
+[Portable desktop package · ZIP](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Financing_Lens_Package.zip) contains the complete worked briefs, original reviewed workbook, evidence snapshots and an opening guide. Extract it and open `START_HERE.html`.
 
 ![The working Value Horizon app shows a finite continuation curve, selected operating EV and a separate perpetual reference](docs/demo-horizon.png)
 
@@ -26,6 +28,20 @@ Move the horizon, switch company or preset, and ask how much continuation a targ
 
 Choose **Verify through the API** to compare the complete browser calculation with the deployed server. Copy the exact Horizon link or download its recalculated HTML/JSON analysis. **Open complete model** carries all thirteen operating assumptions and any hypothetical bridge; the bridge does not affect Horizon operating EV. Horizon outputs preserve the chosen years and target separately from Casebook JSON.
 
+## From value to ownership
+
+[Open the hypothetical Financing Lens example](https://frontier-ai-valuation-lab.vercel.app/index.html#financing-example) inside the existing Model. Its assumed **$250B pre-money quote + $25B primary capital = $275B post-money price**. New investors own **9.09%**; a non-participating holder with **10%** before the round retains **9.09%**, a **0.91 percentage-point** reduction. The modeled operating EV remains approximately **$367.77B**. Assumed cash of $20B and debt of $5B produce **$382.77B modeled equity before**, increasing to **$407.77B** after the retained primary proceeds. These balances and round terms are explicitly hypothetical.
+
+Toggle the quote basis, change the terms, or enter an explicit equity bridge. The interface reconciles price, value, cash and ownership with signed adjustments. Financing links, JSON and script-free briefs preserve all thirteen operating assumptions, the bridge and the exact round; existing Model and Casebook outputs keep their existing operating-case scope. The API checks the full analysis.
+
+[Financing brief · PDF](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Financing_Lens.pdf) · [Standalone HTML](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Financing_Lens.html) · [Complete financing JSON](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Financing_Lens.json) · [Financing methodology and limits](docs/FINANCING_LENS.md)
+
+<details><summary>See the working Financing Lens</summary>
+
+![Actual Financing Lens: hypothetical primary round, ownership dilution and operating-value reconciliation](docs/demo-financing.png)
+
+</details>
+
 ## Continue the research journey
 
 1. **Compare.** In the Overview, follow revenue, cash flow and value after 2036. Apply a common stress to both companies, then choose **Explain this change** to open the exact baseline and stressed case in Thesis Lab.
@@ -36,7 +52,7 @@ Choose **Verify through the API** to compare the complete browser calculation wi
 
 The downloadable example casebook contains three **clearly labeled illustrative analyses**, including a $500B target requirement. Import it from the Casebook to inspect a worked argument. It does not create sample entries in your browser automatically.
 
-Application **3.4.0** adds Value Horizon, its shared browser/API calculation and standalone research outputs. Navigation has six consistent destinations: **Overview, Model, Thesis Lab, Value Horizon, Casebook and Evidence**. The Research Casebook, contextual evidence and exact comparison handoffs remain available. Financial engine **3.0.0**, the six published presets, the reviewed Excel/PDF and the **18 October 2026** research cutoff remain the quantitative baseline. Browser storage is local to the current origin and profile; Casebook JSON provides portability for saved research across devices.
+Application **3.5.0** adds Financing Lens inside the Model, with a shared browser/API calculation and complete financing links and briefs. Value Horizon and its standalone research outputs remain available. Navigation has six consistent destinations: **Overview, Model, Thesis Lab, Value Horizon, Casebook and Evidence**. The Research Casebook, contextual evidence and exact comparison handoffs remain available. Financial engine **3.0.0**, the six published presets, the reviewed Excel/PDF and the **18 October 2026** research cutoff remain the quantitative baseline. Browser storage is local to the current origin and profile; Casebook JSON provides portability for saved research across devices.
 
 See the [Research Workspace guide](docs/RESEARCH_WORKSPACE.md), [Value Horizon methodology](docs/VALUE_HORIZON.md), [contextual evidence method](docs/EVIDENCE_CONTEXT.md), [Thesis Lab methodology](docs/THESIS_LAB.md) and [desktop handoff guide](docs/DESKTOP_GUIDE.md). Earlier releases remain available in the repository's release history.
 
@@ -48,6 +64,7 @@ The application reports **illustrative operating enterprise value**. Private fin
 
 ## Explore the project
 
+- **Financing Lens:** reconcile operating EV to hypothetical equity, distinguish pre-money and post-money round quotes, visualize primary issuance and holder dilution, and preserve the exact analysis with dedicated links, JSON and briefs. [Scope and source-backed method](docs/FINANCING_LENS.md).
 - **Value Horizon:** hold the explicit forecast fixed and retain 0–100 annual continuation cash flows after 2036, with zero residual after the chosen cutoff. Inspect retained and excluded PV, terminal-value capture milestones and the whole-year requirement for a target operating EV.
 - **Research Casebook:** capture complete single cases or comparisons with detached plain-text notes, known source references and exact reopening links. Preview JSON imports, preserve conflicting records, compare saved cases and undo deletion.
 - **Contextual evidence:** inspect the current input alongside related dated records and modeling limits; all thirteen forecast inputs retain their assumption status.
@@ -97,6 +114,8 @@ The static `dist/` build also works on GitHub Pages or another static host. Brow
 
 | Component | Responsibility |
 | --- | --- |
+| `public/financing.js` / `financing.css` | Financing interface within the Model, price reconciliation, ownership graphics, exact exports and complete-result API verification |
+| `public/lib/financing*.js` | Strict primary-round calculation, bounded snapshots, robust number formatting and standalone financing briefs |
 | `public/horizon.html` / `horizon.js` / `horizon.css` | Finite continuation curve, complete value reconciliation, capture milestones, target requirements, exact handoffs and full-result API verification |
 | `public/lib/horizon.js` / `horizon-share.js` / `horizon-brief.js` | Pure finite-continuation calculation, strict exact snapshots and recalculated standalone HTML/JSON outputs |
 | `public/casebook.html` / `casebook.js` / `casebook.css` | Complete saved research, notes, source selection, strict import preview, JSON/brief export and calculation verification |
@@ -118,6 +137,7 @@ The static `dist/` build also works on GitHub Pages or another static host. Brow
 | `data/` | Versioned presets, evidence records and fact provenance |
 | `scripts/reference_model.py` | Independent Python forward calculation |
 | `scripts/check_thesis_reference.py` | Independent permutation attribution and tax-segment frontier verification, with evidence tied to source hashes |
+| `scripts/check_financing_reference.py` | Independent 100-share issuance calculation with 80-digit Decimal checks and a separate Python FCFF engine |
 | `scripts/check_horizon_reference.py` | Independent annual continuation summation and whole-year requirement checks, with evidence tied to source hashes |
 | `scripts/build_horizon_example.mjs` | Recalculated worked Horizon HTML/JSON, with optional PDF and preview rendering |
 | `scripts/deliver_desktop.py` | A separate versioned desktop package, local opening guide and verified SHA-256 manifest |
@@ -142,6 +162,8 @@ This fixture produces approximately **$200.3147B EV**. Amounts are USD billions;
 For Thesis Lab calculations, send **`attribute`** with complete `reference` and `alternative` assumption objects, or **`landscape`** with `assumptions`, `rates`, `margins` and a positive `target`. Responses include the full comparison or landscape contract used by the browser.
 
 For Value Horizon, send **`horizon`** with complete `assumptions`, integer `years` from 0 through 100, and an optional positive operating-EV `target` (or `null`). The response includes the unchanged baseline, selected finite value, every whole-year curve point, capture milestones and target requirement. A target requirement may lie beyond the visible chart; bounded and unresolved outcomes are explicit. See [the Horizon API contract](docs/API.md).
+
+For Financing Lens, send **`financing`** with all thirteen `assumptions`, an explicit `bridge` object or `null`, and `round: {basis, quote, primaryCapital, holderStake}`. The response includes the baseline, primary-round ownership, hypothetical equity reconciliation when supplied, and explicit method/warning metadata. Amounts are USD billions and holder stakes are fractions; the quote basis is `pre` or `post`. See [the complete API contract](docs/API.md).
 
 The endpoint also retains **compare**, **stress** and **drivers**. Paired stress changes both selected cases using explicit percentage-point or percentage inputs. Invalid transformed assumptions are rejected; no value is silently clipped. Driver effects use named, different shock sizes and do not claim a probability distribution or causal attribution.
 

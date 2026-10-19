@@ -1,0 +1,300 @@
+{
+  "kind": "frontier-financing-lens",
+  "schema": 1,
+  "appVersion": "3.5.0",
+  "financingVersion": "1.0.0",
+  "modelVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "units": "USD billions; ownership and percentage gaps are decimal fractions",
+  "snapshot": {
+    "case": {
+      "company": "Anthropic",
+      "scenario": "Base",
+      "assumptions": {
+        "rev2026": 53.26,
+        "g1": 0.45,
+        "g2": 0.24,
+        "g3": 0.12,
+        "m27": -0.02,
+        "m30": 0.18,
+        "m36": 0.22,
+        "turns": 2.5,
+        "wacc": 0.125,
+        "tg": 0.03,
+        "roic": 0.2,
+        "stub": -3,
+        "tax": 0.25
+      },
+      "bridge": {
+        "cash": 20,
+        "debt": 5,
+        "otherClaims": 0
+      }
+    },
+    "round": {
+      "basis": "pre",
+      "quote": 250,
+      "primaryCapital": 25,
+      "holderStake": 0.1
+    }
+  },
+  "result": {
+    "version": "1.0.0",
+    "assumptions": {
+      "rev2026": 53.26,
+      "g1": 0.45,
+      "g2": 0.24,
+      "g3": 0.12,
+      "m27": -0.02,
+      "m30": 0.18,
+      "m36": 0.22,
+      "turns": 2.5,
+      "wacc": 0.125,
+      "tg": 0.03,
+      "roic": 0.2,
+      "stub": -3,
+      "tax": 0.25
+    },
+    "baseline": {
+      "rows": [
+        {
+          "year": 2027,
+          "revenue": 77.22699999999999,
+          "growth": 0.45,
+          "margin": -0.02,
+          "ebit": -1.5445399999999998,
+          "tax": 0,
+          "nopat": -1.5445399999999998,
+          "reinvestment": 9.586799999999997,
+          "fcf": -11.131339999999996,
+          "t": 1.2019164955509924,
+          "df": 0.8679984296768486,
+          "pv": -9.661985640199088,
+          "cumulative": -14.131339999999996
+        },
+        {
+          "year": 2028,
+          "revenue": 111.97914999999998,
+          "growth": 0.45,
+          "margin": 0.04666666666666666,
+          "ebit": 5.225693666666665,
+          "tax": 1.3064234166666662,
+          "nopat": 3.9192702499999985,
+          "reinvestment": 13.900859999999994,
+          "fcf": -9.981589749999996,
+          "t": 2.2039698836413417,
+          "df": 0.7713675785985523,
+          "pv": -7.699474716021626,
+          "cumulative": -24.112929749999992
+        },
+        {
+          "year": 2029,
+          "revenue": 162.36976749999997,
+          "growth": 0.45,
+          "margin": 0.11333333333333333,
+          "ebit": 18.40190698333333,
+          "tax": 4.600476745833332,
+          "nopat": 13.801430237499996,
+          "reinvestment": 20.156246999999997,
+          "fcf": -6.3548167625000005,
+          "t": 3.2032854209445585,
+          "df": 0.6857153487017029,
+          "pv": -4.357595392233114,
+          "cumulative": -30.467746512499993
+        },
+        {
+          "year": 2030,
+          "revenue": 235.43616287499995,
+          "growth": 0.45,
+          "margin": 0.18,
+          "ebit": 42.37850931749999,
+          "tax": 10.594627329374998,
+          "nopat": 31.783881988124993,
+          "reinvestment": 29.226558149999995,
+          "fcf": 2.557323838124997,
+          "t": 4.202600958247776,
+          "df": 0.6095738951063822,
+          "pv": 1.5588778530542577,
+          "cumulative": -27.910422674374995
+        },
+        {
+          "year": 2031,
+          "revenue": 291.94084196499995,
+          "growth": 0.24,
+          "margin": 0.18666666666666665,
+          "ebit": 54.49562383346665,
+          "tax": 13.623905958366663,
+          "nopat": 40.87171787509999,
+          "reinvestment": 22.601871636,
+          "fcf": 18.26984623909999,
+          "t": 5.201916495550993,
+          "df": 0.5418871464649248,
+          "pv": 9.90019484485883,
+          "cumulative": -9.640576435275005
+        },
+        {
+          "year": 2032,
+          "revenue": 362.00664403659994,
+          "growth": 0.24,
+          "margin": 0.19333333333333333,
+          "ebit": 69.98795118040933,
+          "tax": 17.49698779510233,
+          "nopat": 52.490963385307,
+          "reinvestment": 28.026320828639996,
+          "fcf": 24.464642556667002,
+          "t": 6.203969883641341,
+          "df": 0.4815609818533258,
+          "pv": 11.781217290279221,
+          "cumulative": 14.824066121391997
+        },
+        {
+          "year": 2033,
+          "revenue": 448.88823860538395,
+          "growth": 0.24,
+          "margin": 0.2,
+          "ebit": 89.77764772107679,
+          "tax": 22.444411930269197,
+          "nopat": 67.33323579080759,
+          "reinvestment": 34.7526378275136,
+          "fcf": 32.58059796329399,
+          "t": 7.2032854209445585,
+          "df": 0.42808871639722224,
+          "pv": 13.947386361560477,
+          "cumulative": 47.40466408468599
+        },
+        {
+          "year": 2034,
+          "revenue": 502.7548272380301,
+          "growth": 0.12,
+          "margin": 0.20666666666666667,
+          "ebit": 103.90266429585955,
+          "tax": 25.975666073964888,
+          "nopat": 77.92699822189466,
+          "reinvestment": 21.546635453058457,
+          "fcf": 56.38036276883621,
+          "t": 8.202600958247775,
+          "df": 0.3805539817643258,
+          "pv": 21.455771544997766,
+          "cumulative": 103.7850268535222
+        },
+        {
+          "year": 2035,
+          "revenue": 563.0854065065937,
+          "growth": 0.12,
+          "margin": 0.21333333333333332,
+          "ebit": 120.12488672140665,
+          "tax": 30.031221680351663,
+          "nopat": 90.09366504105499,
+          "reinvestment": 24.132231707425444,
+          "fcf": 65.96143333362954,
+          "t": 9.201916495550993,
+          "df": 0.3382974778113598,
+          "pv": 22.314586529589032,
+          "cumulative": 169.74646018715174
+        },
+        {
+          "year": 2036,
+          "revenue": 630.655655287385,
+          "growth": 0.12,
+          "margin": 0.22,
+          "ebit": 138.7442441632247,
+          "tax": 34.68606104080617,
+          "nopat": 104.05818312241851,
+          "reinvestment": 27.028099512316523,
+          "fcf": 77.030083610102,
+          "t": 10.203969883641342,
+          "df": 0.3006361502318583,
+          "pv": 23.15802778857923,
+          "cumulative": 246.77654379725374
+        }
+      ],
+      "stub_t": 0.2026009582477755,
+      "pv_stub": -2.9292585393991506,
+      "pv_explicit": 79.46774792506584,
+      "terminal_revenue": 649.5753249460066,
+      "terminal_nopat": 107.17992861609108,
+      "terminal_reinvestment_rate": 0.15,
+      "terminal_fcf": 91.10293932367742,
+      "tv": 958.9783086702886,
+      "pvtv": 288.30354687449426,
+      "ev": 367.7712947995601,
+      "tv_share": 0.7839207435469461,
+      "peak_funding_need": 30.467746512499993,
+      "terminal_t": 10.203969883641342,
+      "cagr": 0.2803806826697528,
+      "terminal_fcf_change": 0.18269298245614074,
+      "implied_incremental_roic": 0.41250000000000003,
+      "warnings": [
+        "More than 75% of enterprise value comes from the terminal value.",
+        "Terminal ROIC differs from the incremental return implied by the final explicit margin and capital turns."
+      ]
+    },
+    "round": {
+      "basis": "pre",
+      "quote": 250,
+      "primaryCapital": 25,
+      "holderStake": 0.1
+    },
+    "pricing": {
+      "preMoney": 250,
+      "postMoney": 275,
+      "primaryCapital": 25,
+      "existingOwnership": 0.9090909090909091,
+      "newOwnership": 0.09090909090909091,
+      "holderBefore": 0.1,
+      "holderAfter": 0.09090909090909091,
+      "otherExistingAfter": 0.8181818181818181,
+      "holderDilution": 0.009090909090909092,
+      "relativeDilution": 0.09090909090909091,
+      "holderValueBefore": 25,
+      "holderValueAfter": 25
+    },
+    "bridge": {
+      "ev": 367.7712947995601,
+      "cash": 20,
+      "debt": 5,
+      "otherClaims": 0,
+      "adjustment": 15,
+      "equityValue": 382.7712947995601,
+      "status": "hypothetical"
+    },
+    "comparison": {
+      "modelPreMoneyEquity": 382.7712947995601,
+      "modelPostMoneyEquity": 407.7712947995601,
+      "cashBefore": 20,
+      "cashAfter": 45,
+      "operatingEvBefore": 367.7712947995601,
+      "operatingEvAfter": 367.7712947995601,
+      "roundImpliedOperatingEv": 235,
+      "priceGap": -132.7712947995601,
+      "priceGapPercent": -0.3468684736902395
+    },
+    "method": {
+      "basis": "simple-primary-equity-round",
+      "operatingValue": "perpetual-fcff",
+      "proceeds": "retained-as-cash",
+      "fees": 0,
+      "rights": "equal-participating",
+      "bridgeStatus": "hypothetical"
+    },
+    "warnings": []
+  },
+  "shareUrl": "https://frontier-ai-valuation-lab.vercel.app/index.html#financing=eyJzY2hlbWEiOjEsImZpbmFuY2luZyI6IjEuMC4wIiwibW9kZWwiOiIzLjAuMCIsImRhdGUiOiIyMDI2LTEwLTE4IiwiY2FzZSI6ImV5SnpZMmhsYldFaU9qRXNJbTF2WkdWc0lqb2lNeTR3TGpBaUxDSmtZWFJsSWpvaU1qQXlOaTB4TUMweE9DSXNJbU52YlhCaGJua2lPaUpCYm5Sb2NtOXdhV01pTENKelkyVnVZWEpwYnlJNklrSmhjMlVpTENKcGJuQjFkSE1pT2xzMU15NHlOaXd3TGpRMUxEQXVNalFzTUM0eE1pd3RNQzR3TWl3d0xqRTRMREF1TWpJc01pNDFMREF1TVRJMUxEQXVNRE1zTUM0eUxDMHpMREF1TWpWZExDSmljbWxrWjJVaU9uc2lZMkZ6YUNJNk1qQXNJbVJsWW5RaU9qVXNJbTkwYUdWeVEyeGhhVzF6SWpvd2ZYMCIsInJvdW5kIjp7ImJhc2lzIjoicHJlIiwicXVvdGUiOjI1MCwicHJpbWFyeUNhcGl0YWwiOjI1LCJob2xkZXJTdGFrZSI6MC4xfX0",
+  "methodSources": [
+    {
+      "publisher": "NYU Stern / Aswath Damodaran",
+      "title": "Current claims and the bridge to equity",
+      "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/valquestions/debttosubtract.htm",
+      "use": "Current debt and uncovered claims must be treated consistently with operating valuation.",
+      "reviewedOn": "2026-10-19"
+    },
+    {
+      "publisher": "Y Combinator / Geoff Ralston",
+      "title": "A Guide to Seed Fundraising — Equity",
+      "url": "https://www.ycombinator.com/blog/how-to-raise-a-seed-round",
+      "use": "A simple priced round adds primary investment to pre-money value and issues new ownership.",
+      "reviewedOn": "2026-10-19"
+    }
+  ],
+  "limits": "Hypothetical inputs; no disclosed company balance sheet or reconstructed cap table. One primary priced round with equal participating economic rights, retained cash and zero fees. No secondary sales, option-pool expansion, SAFE or note conversion, preference waterfall, debt repayment or future rounds. Other claims exclude the participating equity pool. The operating forecast remains fixed."
+}

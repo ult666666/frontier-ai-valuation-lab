@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "appVersion": "3.5.0",
+  "modelVersion": "3.0.0",
+  "financingVersion": "1.0.0",
+  "valuationDate": "2026-10-18",
+  "reviewedAtUtc": "2026-10-19T20:25:01.166970+00:00",
+  "status": "closed_within_review_scope",
+  "reviewType": "AI-assisted engineering and financial-interpretation review of the root-authored Financing Lens UI, sharing and brief by a separate agent",
+  "independence": "The reviewing agent authored the financing calculation module and its initial API integration. Its review of the separately authored presentation and transport is a second-agent review; this is not an independent audit of the entire financing engine. A different agent authored the referenced Python share-ledger comparison and browser suite.",
+  "scope": [
+    "Separation of entered round price from modeled equity and preservation of signed residuals",
+    "Retained-primary-cash reconciliation without changing operating EV or double-counting future deficits",
+    "Full thirteen-assumption, explicit-bridge and four-round-field transport; dedicated export versus legacy scenario/Casebook boundaries",
+    "Invalid-state clearing, availability of percentage comparisons and precision-limited modeled-price copies",
+    "Signed small-value formatting, extremely large finite percentage formatting and correct brief warning reasons"
+  ],
+  "limitations": [
+    "This is an AI-assisted scoped engineering review, not an external financial audit, professional assurance opinion or certification of the full application.",
+    "The review does not establish any private company balance, capital structure, investor right, financing price or forecast as factual.",
+    "The separately authored reference checks the declared simplified primary issuance model; it does not evaluate investment merit.",
+    "This receipt covers the listed local source bytes and cited local verification artifacts. Production availability, deployment identity, native desktop delivery and PDF layout review are outside its scope."
+  ],
+  "findings": [
+    {
+      "id": "FIN-01",
+      "status": "closed",
+      "severity": "low",
+      "title": "Portable brief gave a nonpositive-equity reason for an overflowing ratio with positive equity",
+      "files": [
+        "public/lib/financing-brief.js"
+      ],
+      "reproduction": "Use a zero-FCFF subnormal fixture with cash=Number.MIN_VALUE, no debt or other claims, pre-money quote 150, primary capital 30 and holder fraction 0.1. The modeled equity residual is positive 5e-324, but its price-gap ratio exceeds finite numeric range. The original brief incorrectly called the equity nonpositive and omitted the numeric-range warning.",
+      "resolution": "The brief selects the reason from the actual signed equity residual and carries the calculation warnings into its method section.",
+      "verification": "The dedicated presentation regression checks the exact numerical-range table label and warning while rejecting nonpositive-equity text. Separate zero/negative cases retain the appropriate nonpositive explanation."
+    },
+    {
+      "id": "FIN-02",
+      "status": "closed",
+      "severity": "low",
+      "title": "A finite ratio became unavailable when presentation multiplied it by 100",
+      "files": [
+        "public/lib/financing-format.js",
+        "public/lib/financing-brief.js",
+        "public/financing.js"
+      ],
+      "reproduction": "Use the same zero-FCFF fixture with cash 1e-306. Its priceGapPercent is finite 1.5e308; multiplying that fraction by 100 overflows the JavaScript number range, previously yielding an unavailable percentage in the UI and brief.",
+      "resolution": "The shared formatter scales the exponent directly for finite ratios whose percentage conversion would overflow. Small positive and negative currency amounts also use scientific notation rather than appearing as zero.",
+      "verification": "Focused regressions verify positive/negative 1.500e+310 percent formatting, percentage points, tiny signed currency, the brief row and exact companion JSON ratio."
+    },
+    {
+      "id": "FIN-03",
+      "status": "closed",
+      "severity": "medium",
+      "title": "Copying modeled equity could replace a valid large post-money round with a precision-limited input",
+      "files": [
+        "public/financing.js"
+      ],
+      "reproduction": {
+        "case": "Anthropic Base",
+        "bridge": {
+          "cash": 0,
+          "debt": 367.77029479956013,
+          "otherClaims": 0
+        },
+        "round": {
+          "basis": "post",
+          "quote": 1000000000000.0,
+          "primaryCapital": 999999999000,
+          "holderStake": 0.1
+        },
+        "observedBoundary": "The current pre-money price 1000 is valid. Copying the small positive modeled equity residual into this post-money quote produces a candidate below the subtraction precision boundary."
+      },
+      "resolution": "The internal modeledRound helper runs the complete proposed round through financingLens. Both the button availability and its click handler use that validated candidate.",
+      "verification": "The reviewer inspected both call sites. The separately authored final Chromium suite confirms the original pre-money price 1000, a disabled modeled-equity copy action and an unchanged exact shared snapshot, with zero page errors."
+    }
+  ],
+  "presentationRegressionEvidence": {
+    "command": "node --test --test-isolation=none tests/financing-presentation.test.js",
+    "status": "pass",
+    "tests": 5,
+    "failed": 0,
+    "sourceSha256": "986eff6e1a8fad544645fa9b410f6506c8067d03009c467535307a40efe3d510"
+  },
+  "integrationEvidence": {
+    "path": "docs/verification/financing-browser-3.5.json",
+    "sha256": "9d7e28d6097d5726c2924ab6e2f3e13c6d1189e1654741b5991cc105349e776f",
+    "status": "pass",
+    "checks": 92,
+    "browserErrors": [],
+    "browserCertificateOverride": false,
+    "origin": "Final local Chromium run by the separate publication-preflight agent; receipt inspected and listed-source hashes cross-checked by this reviewer.",
+    "relevantChecks": [
+      "Share preserves all thirteen assumptions, the full bridge, and the exact round",
+      "JSON retains the exact complete snapshot",
+      "A negative modeled equity residual stays negative",
+      "A nonpositive modeled residual has no price-gap percentage",
+      "A valid large round retains its explicit pre-money price",
+      "A modeled-equity copy below the subtraction precision boundary is disabled",
+      "The disabled precision-limited copy leaves the original valid case intact"
+    ]
+  },
+  "separateReferenceEvidence": {
+    "path": "docs/verification/financing-reference-3.5.json",
+    "sha256": "031736a6da0fe32ef222b2f5dd7a308066364aae15ee65dbb9b6e2aaccee06fc",
+    "status": "passed",
+    "validScenarios": 19,
+    "invalidScenarios": 31,
+    "numericComparisons": 3591,
+    "structuralComparisons": 596,
+    "maxAbsoluteError": 1.0516032489249483e-12,
+    "origin": "Separately authored 80-digit Decimal share-issuance ledger and Python forward-model reference; inspected as supporting evidence, not represented as this reviewer's independent reimplementation."
+  },
+  "reviewedSourceSha256": {
+    "public/financing.js": "a9c1fc0cd844da80c95a358509cd675cd9aaaec3a22772188ee5ab1c05793788",
+    "public/lib/financing-share.js": "2668b05157922f1265c724d189c1145b711f4de97f87cb6adf9aef674c14e820",
+    "public/lib/financing-brief.js": "248c23e8fe66a1f8ad9f01d64f8e2b4d93b51b9a42afb80d6a3230b8bb750c6e",
+    "public/lib/financing-format.js": "8b14818b59819f5b1eb506318422cbbe8731a8fed174864111e7cfad862ac302",
+    "public/app.js": "7c43d9397299517a20a6766202d789831715d218ca82cbd52e84ebea7c7a5d9e",
+    "public/financing.css": "05f6f5d3131ebda0edc3b2c2689df13baf08987c88e77ba84661b1194700ff13",
+    "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/release.js": "5dc4eb20271345d9f013cda0f56c0365f443fd9e47ce3e4b7fd5f756048ebf5e",
+    "lib/http.js": "7a25714df93c8b625a9edab2f547085416994c11156ada767f308901958fe42d",
+    "tests/financing-presentation.test.js": "986eff6e1a8fad544645fa9b410f6506c8067d03009c467535307a40efe3d510"
+  },
+  "unresolvedFindings": []
+}
