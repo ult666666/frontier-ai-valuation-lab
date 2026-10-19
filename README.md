@@ -1,16 +1,24 @@
 # Frontier AI Valuation Lab
 
-**Anthropic and OpenAI, examined through cash flows, capital requirements and explicit assumptions.**
+**How much future is in the price? Explore two AI businesses through cash flows, capital requirements and explicit assumptions.**
 
 [![Model and API checks](https://github.com/ult666666/frontier-ai-valuation-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/ult666666/frontier-ai-valuation-lab/actions/workflows/ci.yml)
 
-A full stack fintech research application by **Charles Dai**, Carnegie Mellon University. It combines an interactive valuation workstation, a deterministic JSON API, an independently calculated Python reference, an editable Excel model, and a dated source register. Research and implementation were developed with AI assistance and checked through reproducible calculations and tests.
+A full stack fintech research application by **Charles Dai**, Carnegie Mellon University. A guided visual comparison leads into paired stress tests, a complete valuation workstation, shareable scenarios and a downloadable brief. The deterministic JSON API, independently calculated Python reference, editable Excel model and dated source register make the financial reasoning inspectable. Research and implementation were developed with AI assistance and checked through reproducible calculations and tests.
 
 **[Open the live demo](https://frontier-ai-valuation-lab.vercel.app)** · **[Read the review](https://frontier-ai-valuation-lab.vercel.app/report.html)** · **[Download the Excel model](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Model.xlsx)** · **[Portfolio](https://ult666666.github.io/)**
 
-[PDF review](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Review.pdf) · [Version 3 release and source archive](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v3.0.0) · [Verification record](docs/VERIFICATION.md)
+[PDF review](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Review.pdf) · [3.1 experience release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v3.1.0) · [Verification record](docs/VERIFICATION.md)
 
-![Interactive valuation workstation](docs/demo-desktop.png)
+![Guided comparison of modeled Anthropic and OpenAI revenue on the same scale](docs/demo-experience.png)
+
+## Try it in one minute
+
+1. Open **Cash-flow test**, then **Value after 2036**. The same two scenarios tell a different story once revenue becomes cash flow and cash flow becomes present value.
+2. In **Stress the thesis**, raise the cost of capital by **2 percentage points**. Under the Base assumptions, modeled EV moves from $367.8B to $265.3B for Anthropic and from $258.9B to $172.0B for OpenAI. Operating cash flows stay fixed.
+3. Choose **Open this case in model**, inspect the annual reconciliation, then **Share this case** or download a **Scenario brief**.
+
+Application **3.1.0** adds the experience and analytics layer. Financial engine **3.0.0**, the six published presets, the Excel/PDF review snapshot, and the **18 October 2026** research cutoff remain unchanged. This is a dated research model, not a live market feed.
 
 ## The problem
 
@@ -20,10 +28,13 @@ The application reports **illustrative operating enterprise value**. Private fin
 
 ## Explore the project
 
+- **Guided comparison:** switch between modeled revenue, annual FCFF and signed value contributions; move the year slider and compare both businesses on one scale.
+- **Paired stress tests:** change early growth, terminal margin, cost of capital and capital efficiency for both companies. View the result against the selected Bear/Base/Bull baseline and verify the complete calculation on the server.
 - **Scenario workbench:** change growth, operating margins, capital efficiency, discount rate and terminal returns; inspect the full 2027–2036 forecast and remaining-2026 cash flow.
 - **Valuation diagnostics:** inspect terminal-value concentration, cumulative operating deficit, a WACC/growth sensitivity grid, and the capital-return transition.
 - **Reverse DCF:** solve for the early growth needed to reach a target EV. The solver finds multiple admissible solutions and tangent roots rather than assuming growth always raises value.
 - **Auditable outputs:** export the current assumptions and forecast, save a scenario in the browser, and verify calculations through the server API.
+- **Portable scenarios:** copy a versioned URL that restores the exact assumptions and optional hypothetical bridge. A script-free HTML brief includes the current forecast, reconciliation, diagnostics, sources and reopening link; it can be printed to PDF.
 - **Financial evidence:** distinguish company disclosures, reported figures, analyst assumptions and accounting limitations at the point of use.
 - **Editable workbook:** one scenario selector feeds both company forecasts; invalid assumptions suppress the affected output.
 
@@ -52,7 +63,10 @@ The static `dist/` build also works on GitHub Pages or another static host. Brow
 | Component | Responsibility |
 | --- | --- |
 | `public/lib/model.js` | Pure FCFF engine, validation, sensitivities, accounting invariance and quartic reverse solver |
+| `public/lib/analytics.js` | Shared paired comparisons, bounded stress transforms, milestones and individual driver effects |
+| `public/experience.js` | Guided chart chapters, paired cases, stress controls and complete-result API verification |
 | `public/app.js` | Browser controls, charts, local scenarios, exports and API verification |
+| `public/lib/share.js` / `briefing.js` | Validated fragment links and standalone, recalculated scenario documents |
 | `lib/http.js` | Bounded JSON requests and one Web-standard API handler |
 | `api/index.js` | Vercel entry point for `/api/health` and `/api/valuation` |
 | `server.js` | Local Node server using the same API handler and an allowlisted public directory |
@@ -75,6 +89,8 @@ curl -X POST http://127.0.0.1:4321/api/valuation \
 ```
 
 This fixture produces approximately **$200.3147B EV**. Amounts are USD billions; rates are decimals. Requests are limited to 16 KiB and sensitivity axes to nine values each. See [the API contract](docs/API.md).
+
+The same endpoint also accepts **compare**, **stress** and **drivers**. Paired stress changes both selected cases using explicit percentage-point or percentage inputs. Invalid transformed assumptions are rejected; no value is silently clipped. Driver effects use named, different shock sizes and do not claim a probability distribution or causal attribution.
 
 ## What the review corrected
 

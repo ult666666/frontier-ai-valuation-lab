@@ -10,7 +10,7 @@ async function post(payload){return fetch(base+'/api/valuation',{method:'POST',h
 
 test('health identifies the deployed model without a private configuration leak',async()=>{
   const response=await fetch(base+'/api/health'); assert.equal(response.status,200);
-  assert.deepEqual(await response.json(),{status:'ok',modelVersion:'3.0.0',valuationDate:'2026-10-18'});
+  assert.deepEqual(await response.json(),{status:'ok',appVersion:'3.1.0',modelVersion:'3.0.0',valuationDate:'2026-10-18'});
 });
 test('real HTTP calculation agrees with the independent forecast fixture',async()=>{
   const response=await post({action:'value',assumptions});assert.equal(response.status,200);

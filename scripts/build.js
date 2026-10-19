@@ -2,8 +2,11 @@ import {readFile,writeFile,mkdir,readdir,copyFile,rm,lstat} from 'node:fs/promis
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {project,reverseGrowth,MODEL_VERSION,VALUATION_DATE} from '../public/lib/model.js';
+import {APP_VERSION} from '../public/lib/release.js';
 
 const ROOT=fileURLToPath(new URL('../',import.meta.url));
+const packageInfo=JSON.parse(await readFile(path.join(ROOT,'package.json'),'utf8'));
+if(packageInfo.version!==APP_VERSION) throw new Error('Application and package versions must agree.');
 const presets=JSON.parse(await readFile(path.join(ROOT,'data/presets.json'),'utf8'));
 const research=JSON.parse(await readFile(path.join(ROOT,'data/research.json'),'utf8'));
 if(research.asOf!==VALUATION_DATE||research.modelVersion!==MODEL_VERSION) throw new Error('Research and model versions must agree.');
@@ -27,5 +30,5 @@ async function stage(relative=''){
   }
 }
 await stage();
-console.log(`Built ${MODEL_VERSION} for ${VALUATION_DATE}; six scenario projections verified.`);
+console.log(`Built application ${APP_VERSION}, financial engine ${MODEL_VERSION} for ${VALUATION_DATE}; six scenario projections verified.`);
 for(const [company,scenarios] of Object.entries(cases))console.log(company,Object.entries(scenarios).map(([name,r])=>`${name} EV $${r.ev.toFixed(1)}B`).join(' | '));

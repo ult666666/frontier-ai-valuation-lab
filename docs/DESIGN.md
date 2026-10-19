@@ -1,5 +1,7 @@
 # Frontier AI Valuation Lab: product and model design
 
+The original design below describes the reviewed financial foundation. [Application 3.1 experience design](EXPERIENCE_UPDATE.md) documents the subsequent guided comparison, paired stress tests, exact scenario links and standalone briefing.
+
 ## Purpose
 
 Charles Dai requested a final review of his Anthropic/OpenAI valuation model, a more professional presentation, and a completed public GitHub project that strengthens the fintech section of his portfolio. The primary audience is a recruiter or technical/finance reviewer who wants to inspect the analysis, try the model, and run the code. The user expressly authorized autonomous execution and publication without questions.

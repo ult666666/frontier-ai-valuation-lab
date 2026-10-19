@@ -4,13 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#f3f1ea">
+  <meta name="theme-color" content="#0d1929">
   <meta name="description" content="An interactive, source-backed enterprise valuation model for Anthropic and OpenAI. Explore cash flows, sensitivity, reverse DCF and the assumptions behind frontier AI valuations. A fintech research project by Charles Dai.">
   <meta property="og:title" content="Frontier AI Valuation Lab — Charles Dai">
   <meta property="og:description" content="Explore what the cash flows must support. An inspectable financial model for Anthropic and OpenAI, with a shared browser and server engine.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://frontier-ai-valuation-lab.vercel.app/">
+  <meta property="og:image" content="https://frontier-ai-valuation-lab.vercel.app/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="How much future is in the price? Anthropic and OpenAI's illustrative Base cases show 78.4% and 99.9% of enterprise value in cash flows after 2036.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="author" content="Charles Dai">
+  <link rel="canonical" href="https://frontier-ai-valuation-lab.vercel.app/">
   <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./experience.css">
   <title>Frontier AI Valuation Lab · Charles Dai</title>
   <script type="module" src="./app.js"></script>
 </head>
@@ -30,23 +39,48 @@
     </div>
   </header>
 
-  <main class="page-shell">
-    <section class="hero" aria-labelledby="hero-title">
-      <div>
-        <div class="eyebrow"><span class="small-rule"></span> Independent research <span class="eyebrow-separator">/</span> Fintech 01</div>
-        <h1 id="hero-title">The price of<br><em>frontier intelligence.</em></h1>
-        <p class="hero-description">Two companies reshaping AI. One transparent framework for the cash flows behind their valuations.</p>
+  <main>
+    <section class="research-theater" id="research-story" aria-labelledby="hero-title">
+      <div class="experience-shell">
+        <div class="theater-kicker"><span><span class="theater-index">01</span> An independent research experiment</span><span>Finance <span aria-hidden="true">×</span> technology</span></div>
+        <div class="theater-intro">
+          <h1 id="hero-title">How much future<br><em>is in the price?</em></h1>
+          <div class="theater-intro-note"><p>Two frontier AI companies.<br>Ten years of cash flows.<br>One question worth taking apart.</p><a href="#stress-lab" class="theater-link">Put the thesis to the test <span aria-hidden="true">↘</span></a></div>
+        </div>
+
+        <div class="comparison-theater" id="comparison-theater" aria-busy="true">
+          <div class="theater-toolbar"><div class="theater-company-key" aria-label="Chart legend"><span><i class="theater-key anthropic-key" aria-hidden="true"></i>Anthropic</span><span><i class="theater-key openai-key" aria-hidden="true"></i>OpenAI</span></div><div class="theater-case-group"><span class="theater-control-label" id="exp-scenario-label">Paired scenario</span><div class="theater-case-switch" role="group" aria-labelledby="exp-scenario-label"><button type="button" data-exp-scenario="Bear" aria-pressed="false" disabled>Bear</button><button type="button" data-exp-scenario="Base" class="is-active" aria-pressed="true" disabled>Base</button><button type="button" data-exp-scenario="Bull" aria-pressed="false" disabled>Bull</button></div></div></div>
+          <div class="story-chapters" role="tablist" aria-label="Explore the valuation story"><button type="button" id="exp-tab-revenue" class="story-chapter is-active" role="tab" aria-selected="true" aria-controls="exp-story-panel" tabindex="0" data-exp-chapter="revenue" disabled><span class="chapter-number">01</span><span>Revenue race</span><span class="chapter-arrow" aria-hidden="true">↗</span></button><button type="button" id="exp-tab-fcf" class="story-chapter" role="tab" aria-selected="false" aria-controls="exp-story-panel" tabindex="-1" data-exp-chapter="fcf" disabled><span class="chapter-number">02</span><span>Cash-flow test</span><span class="chapter-arrow" aria-hidden="true">↗</span></button><button type="button" id="exp-tab-value" class="story-chapter" role="tab" aria-selected="false" aria-controls="exp-story-panel" tabindex="-1" data-exp-chapter="value" disabled><span class="chapter-number">03</span><span>Value after 2036</span><span class="chapter-arrow" aria-hidden="true">↗</span></button></div>
+          <div class="story-panel" id="exp-story-panel" role="tabpanel" aria-labelledby="exp-tab-revenue">
+            <div class="story-heading"><div><h2 id="exp-story-title">Growth is the beginning.</h2><p id="exp-story-description">Follow both revenue paths on the same scale.</p></div><span class="theater-units" id="exp-chart-units">Annual revenue · USD bn</span></div>
+            <div class="story-plot-grid"><div class="story-chart-wrap"><div id="exp-chart" class="story-chart" role="region" aria-label="Paired annual revenue forecast"><div class="experience-loading">Loading the research model<span aria-hidden="true">…</span></div></div></div><aside class="story-readout" id="exp-readout" aria-label="Selected forecast values"><div class="experience-loading">Preparing the comparison…</div></aside></div>
+            <div class="year-scrubber" id="exp-year-controls"><div class="year-scrubber-label"><label for="exp-year">Explore a year</label><output id="exp-year-output" for="exp-year">2036</output></div><div class="year-track"><input id="exp-year" type="range" min="2027" max="2036" step="1" value="2036" aria-describedby="exp-year-help" disabled><div class="year-range-labels" aria-hidden="true"><span>2027</span><span>2030</span><span>2033</span><span>2036</span></div></div><span id="exp-year-help" class="year-help">Drag to explore <span aria-hidden="true">↔</span></span></div>
+            <p class="value-composition-note" id="exp-value-note" hidden>Each bar shows a discounted contribution to enterprise value. Negative cash flows remain to the left of zero.</p>
+            <div class="theater-bottom"><p id="exp-story-context">Illustrative base cases · Valuation date 18 Oct 2026</p><details class="story-data"><summary>Inspect the chart data <span aria-hidden="true">+</span></summary><div id="exp-data-table" class="story-data-scroll" tabindex="0" role="region" aria-label="Comparison chart data"></div></details></div>
+          </div>
+        </div>
+        <div class="theater-caption"><p>Growth is an assumption. Value is what the cash flows can support.</p><a href="#workspace" class="theater-link">Explore the complete model <span aria-hidden="true">↓</span></a></div>
+        <div id="experience-error" class="experience-error" role="alert" hidden></div>
       </div>
-      <aside class="research-note" aria-label="Research context">
-        <div class="eyebrow">Research snapshot <span class="note-index">01 / 02</span></div>
-        <p class="note-heading">What must the<br>cash flows support?</p>
-        <p>Change the growth, margin and capital assumptions. Trace each result from revenue to enterprise value.</p>
-        <div class="note-meta"><span>Valuation date</span><strong>18 Oct 2026</strong><span>Reporting units</span><strong>USD billions</strong></div>
-      </aside>
     </section>
 
+    <div class="page-shell">
+      <section class="stress-lab" id="stress-lab" aria-labelledby="stress-heading">
+        <div class="experience-section-heading"><div><div class="eyebrow"><span class="section-index">02</span> Stress the thesis</div><h2 id="stress-heading">Change one belief.<br><em>Watch both values move.</em></h2></div><p>Adjust the same four drivers for both companies. See the enterprise value consequences immediately, then take either case into the full model.</p></div>
+        <div class="stress-layout">
+          <div class="stress-control-panel"><div class="stress-panel-top"><span id="exp-stress-case">Relative to the Base cases</span><button type="button" id="exp-reset-stress" disabled>Reset changes <span aria-hidden="true">↺</span></button></div><div class="stress-controls">
+            <div class="stress-control"><div class="stress-control-title"><label for="exp-growth">Early revenue growth</label><output id="exp-growth-output" for="exp-growth">0 pp</output></div><p id="exp-growth-help">Annual growth, 2027–2030</p><input id="exp-growth" type="range" min="-20" max="20" step="1" value="0" data-exp-shock="growthPp" aria-describedby="exp-growth-help" disabled><div class="stress-range-labels" aria-hidden="true"><span>−20 pp</span><span>+20 pp</span></div></div>
+            <div class="stress-control"><div class="stress-control-title"><label for="exp-margin">2036 operating margin</label><output id="exp-margin-output" for="exp-margin">0 pp</output></div><p id="exp-margin-help">Final EBIT margin; earlier anchors stay fixed</p><input id="exp-margin" type="range" min="-10" max="10" step="1" value="0" data-exp-shock="marginPp" aria-describedby="exp-margin-help" disabled><div class="stress-range-labels" aria-hidden="true"><span>−10 pp</span><span>+10 pp</span></div></div>
+            <div class="stress-control"><div class="stress-control-title"><label for="exp-wacc">Cost of capital</label><output id="exp-wacc-output" for="exp-wacc">0 pp</output></div><p id="exp-wacc-help">Discount rate applied to future cash flows</p><input id="exp-wacc" type="range" min="-5" max="5" step="0.5" value="0" data-exp-shock="waccPp" aria-describedby="exp-wacc-help" disabled><div class="stress-range-labels" aria-hidden="true"><span>−5 pp</span><span>+5 pp</span></div></div>
+            <div class="stress-control"><div class="stress-control-title"><label for="exp-capital">Capital efficiency</label><output id="exp-capital-output" for="exp-capital">0%</output></div><p id="exp-capital-help">Sales / invested capital; higher uses less capital</p><input id="exp-capital" type="range" min="-50" max="50" step="5" value="0" data-exp-shock="capitalEfficiencyPct" aria-describedby="exp-capital-help" disabled><div class="stress-range-labels" aria-hidden="true"><span>−50%</span><span>+50%</span></div></div>
+          </div><p class="stress-control-note">pp = percentage points. Each change is relative to the selected scenario. The comparison above keeps the original scenario.</p></div>
+          <div class="stress-result-panel"><div class="stress-result-heading"><h3>What changes in the valuation?</h3><span>Enterprise value · USD bn</span></div><div id="exp-stress-results" class="stress-results"><div class="experience-loading">Loading paired values…</div></div><div id="exp-stress-error" class="stress-error" role="alert" hidden></div><div class="stress-verification"><p id="exp-server-status" role="status">Calculated in your browser</p><button type="button" id="exp-verify-stress" disabled>Verify both on server <span aria-hidden="true">↗</span></button></div><p class="stress-results-note">Conditional scenarios; no probabilities assigned. Enterprise value excludes a cash, debt and other claims bridge.</p></div>
+        </div>
+        <p class="sr-only" id="exp-stress-announcement" role="status"></p>
+      </section>
+
     <section class="comparison-section" aria-labelledby="comparison-title">
-      <div class="section-kicker"><h2 id="comparison-title">The starting cases</h2><span>Illustrative base assumptions · Enterprise value</span></div>
+      <div class="section-kicker"><h2 id="comparison-title">The reference cases</h2><span>Original base assumptions · Enterprise value</span></div>
       <div class="company-comparison" id="company-comparison" aria-live="polite"><div class="loading-placeholder">Loading research and model assumptions…</div></div>
       <p class="comparison-footnote"><span class="info-dot" aria-hidden="true">i</span> Enterprise value measures the operating business. Completed financing prices and valuation expectations are separate equity references.</p>
     </section>
@@ -165,7 +199,8 @@
       </div><aside class="methodology-aside"><div class="audit-note"><div class="eyebrow">Inspect the work</div><h3>An open research process.</h3><p>The repository includes the model, API, independent reference calculations, tests and an audit record. The workbook provides a formula-based view of the same assumptions.</p><a class="button button-dark" href="./report.html">Read the research & audit report <span aria-hidden="true">↗</span></a><a class="text-button" href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">Explore source & tests <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div><div class="limits-note"><h3>Read the limits with the result</h3><ul><li>All forecasts are illustrative assumptions, not management guidance unless explicitly attributed.</li><li>Peak cumulative FCFF deficit is a simplified operating funding indicator. Opening liquidity, intrayear timing and contractual payments are unknown.</li><li>Terminal cash flow can differ sharply from the last explicit year because reinvestment changes basis.</li><li>A revenue accounting change requires corresponding adjustments to margins and capital efficiency; rescaling revenue alone changes the economics.</li><li>The reverse DCF holds every assumption except early growth fixed and does not estimate a probability.</li></ul></div><div class="runtime-note"><span class="status-dot" aria-hidden="true"></span><div><strong>One shared engine</strong><p>The browser and Node API use the same pure JavaScript model. Server verification compares the current scenario’s numerical outputs. Static deployments can calculate locally without an API.</p></div></div></aside></div>
     </section>
 
-    <section class="closing-note" aria-label="Project purpose"><div><span class="eyebrow">Finance meets engineering</span><h2>A valuation should be inspectable.</h2></div><p>Built by <a href="https://ult666666.github.io/">Charles Dai</a> to connect financial research, reproducible modeling and full stack development.</p><a class="circle-link" href="https://github.com/ult666666/frontier-ai-valuation-lab" aria-label="Explore the project on GitHub">↗</a></section>
+    <section class="project-craft" aria-labelledby="craft-heading"><div class="craft-intro"><div><div class="eyebrow"><span class="section-index">03</span> Behind the work</div><h2 id="craft-heading">Built for the question<br><em>after the number.</em></h2></div><p>A project by <a href="https://ult666666.github.io/">Charles Dai</a>, connecting financial judgment, source discipline and full stack engineering.</p></div><div class="craft-grid"><article><span class="craft-index">I.</span><h3>Financial judgment</h3><p>Growth pays for the capital it needs. Terminal returns must earn their place. Enterprise value stays distinct from an equity financing price.</p><a href="./report.html">Read the research <span aria-hidden="true">↗</span></a></article><article><span class="craft-index">II.</span><h3>Reproducible by design</h3><p>One deterministic model powers the browser and the API. Independent reference calculations and automated checks make the numbers inspectable.</p><a href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">Inspect the code & tests <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></article><article><span class="craft-index">III.</span><h3>Evidence with boundaries</h3><p>Company disclosures, reported information and analyst assumptions retain their own labels. Each source carries a date, a purpose and a limitation.</p><a href="./report.html#section-6">Trace the evidence <span aria-hidden="true">↗</span></a></article></div><div class="craft-signoff"><span class="craft-monogram" aria-hidden="true">CD.</span><div><strong>Charles Dai</strong><span>Financial research. Working software.</span></div><a href="https://ult666666.github.io/">Explore the portfolio <span aria-hidden="true">↗</span></a></div></section>
+    </div>
   </main>
   <footer class="site-footer"><div><span>Frontier AI Valuation Lab</span><span>Independent educational research · No investment recommendation</span><span>USD billions / 18 Oct 2026</span></div></footer>
   <noscript><div class="noscript-notice">Enable JavaScript to use the interactive valuation model. You can also <a href="./report.html">read the research report</a> or <a href="./downloads/Frontier_AI_Valuation_Model.xlsx">download the workbook</a>.</div></noscript>

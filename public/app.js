@@ -2,6 +2,10 @@ import {
   MODEL_VERSION, VALUATION_DATE, project, validate, reverseGrowth,
   sensitivity, bridgeEquity,
 } from './lib/model.js';
+import {APP_VERSION} from './lib/release.js';
+import {decodeScenario,scenarioUrl} from './lib/share.js';
+import {createBriefing} from './lib/briefing.js';
+import {initExperience} from './experience.js';
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
@@ -10,6 +14,8 @@ const companies = ['Anthropic', 'OpenAI'];
 const cases = ['Bear', 'Base', 'Bull'];
 const storageKey = 'frontier-ai-valuation-lab:scenarios:v1';
 const numberFormatters = new Map();
+// Loaded links and presets retain their exact IEEE-754 inputs until a field is edited.
+const loadedInputValues = new Map();
 const fields = [
   { key: 'rev2026', label: '2026 model revenue', unit: 'bn', group: 'Revenue & growth', help: 'Illustrative full-year 2026 revenue, in USD billions. This is not a reported full-year actual.' },
   { key: 'g1', label: '2027–2030 growth', unit: '%', group: 'Revenue & growth', help: 'Annual revenue growth for each year from 2027 through 2030.' },
@@ -35,7 +41,7 @@ const state = {
   assumptions: null, result: null, custom: false, savedName: '',
   metric: 'revenue', revision: 0, ready: false, saved: [],
   apiPending: false, apiController: null, apiEverRequested: false,
-  apiUnavailable: false, reverseSolved: false,
+  apiUnavailable: false, reverseSolved: false, shareRevision: 0,
 };
 
 function number(value, digits = 1) {
@@ -100,6 +106,7 @@ function createFields() {
 function updateButtons() {
   const valid = Boolean(state.result && state.assumptions);
   for (const id of ['export-json', 'export-csv', 'save-scenario']) $(`#${id}`).disabled = !valid;
+  for (const id of ['share-scenario','export-briefing']) if ($(`#${id}`)) $(`#${id}`).disabled = !valid || ($('#bridge-enabled').checked && !validBridgeInputs());
   if ($('#bridge-enabled').checked && !validBridgeInputs()) $('#export-json').disabled = true;
   $('#verify-server').disabled = !valid || state.apiPending;
   const target = readNumber($('#reverse-target'));
@@ -194,7 +201,10 @@ function recalculate() {
     input.removeAttribute('aria-invalid');
     const value = readNumber(input);
     if (value === null) invalid.push(field);
-    else assumptions[field.key] = field.unit === '%' ? value / 100 : value;
+    else {
+      const loaded = loadedInputValues.get(field.key);
+      assumptions[field.key] = loaded && input.value === loaded.display ? loaded.value : field.unit === '%' ? value / 100 : value;
+    }
   }
   state.custom = invalid.length > 0 || fingerprint(assumptions) !== fingerprint(state.presets[state.company][state.scenario]);
   updateSelectionLabels();
@@ -224,13 +234,17 @@ function populateAssumptions(assumptions) {
   for (const field of fields) {
     const input = $(`#input-${field.key}`);
     const displayValue = field.unit === '%' ? assumptions[field.key] * 100 : assumptions[field.key];
-    input.value = String(Number(displayValue.toPrecision(14)));
+    const short = Number(displayValue.toPrecision(14));
+    // Prefer a clean percentage only when that display maps back to the exact input.
+    input.value = String(field.unit === '%' && short / 100 === assumptions[field.key] ? short : displayValue);
+    loadedInputValues.set(field.key,{display:input.value,value:assumptions[field.key]});
     input.disabled = false;
   }
 }
 
 function loadPreset(company = state.company, scenario = state.scenario) {
   if (!state.ready || !companies.includes(company) || !cases.includes(scenario)) return;
+  clearSharedLocation();
   state.company = company;
   state.scenario = scenario;
   state.savedName = '';
@@ -514,6 +528,7 @@ function loadSavedScenario() {
   if (!item) return;
   try {
     validate(item.assumptions);
+    clearSharedLocation();
     state.company = item.company;
     state.scenario = item.scenario;
     state.savedName = item.name;
@@ -544,7 +559,7 @@ function exportJson() {
   if (!state.result || !state.assumptions) return;
   if ($('#bridge-enabled').checked && !validBridgeInputs()) return;
   const payload = {
-    project: 'Frontier AI Valuation Lab', modelVersion: MODEL_VERSION,
+    project: 'Frontier AI Valuation Lab', appVersion: APP_VERSION, modelVersion: MODEL_VERSION,
     valuationDate: VALUATION_DATE, units: 'USD billions; rates are decimals',
     company: state.company, scenario: state.scenario, edited: state.custom,
     savedScenarioName: state.savedName || null,
@@ -578,6 +593,96 @@ function exportCsv() {
   const rows = r.rows.map(row => [...meta, 'explicit_forecast', row.year, row.revenue, row.growth, row.margin, row.ebit, row.tax, row.nopat, row.reinvestment, row.fcf, row.t, row.df, row.pv, row.cumulative, r.ev]);
   const csv = [header, stub, ...rows].map(row => row.map(csvCell).join(',')).join('\r\n');
   download(`\uFEFF${csv}\r\n`, exportFilename('csv'), 'text/csv;charset=utf-8');
+}
+
+function clearSharedLocation() {
+  state.shareRevision += 1;
+  if (location.hash.startsWith('#scenario=')) history.replaceState(null, '', location.pathname + location.search);
+  if ($('#scenario-notice')) $('#scenario-notice').hidden = true;
+  if ($('#share-link-area')) $('#share-link-area').hidden = true;
+  if ($('#portable-status')) $('#portable-status').textContent = '';
+}
+
+function currentPortableScenario() {
+  if (!state.assumptions || !state.result) throw new Error('Complete the model assumptions first.');
+  let bridge = null;
+  if ($('#bridge-enabled').checked) {
+    if (!validBridgeInputs()) throw new Error('Complete the hypothetical equity inputs first.');
+    bridge = {cash:readNumber($('#bridge-cash')),debt:readNumber($('#bridge-debt')),otherClaims:readNumber($('#bridge-claims'))};
+  }
+  return {company:state.company,scenario:state.scenario,assumptions:{...state.assumptions},bridge};
+}
+
+function openWorkbench({company,scenario='Base',assumptions,bridge=null}) {
+  if (!state.ready || !companies.includes(company) || !cases.includes(scenario)) return;
+  // Reject nonfinite projections before changing the visitor's current workbench.
+  project(assumptions);
+  if (bridge !== null) bridgeEquity(0,bridge);
+  clearSharedLocation();
+  state.company = company;
+  state.scenario = scenario;
+  state.savedName = '';
+  $('#bridge-enabled').checked = bridge !== null;
+  for (const [id,key] of [['bridge-cash','cash'],['bridge-debt','debt'],['bridge-claims','otherClaims']]) $(`#${id}`).value = String(bridge?.[key] ?? 0);
+  populateAssumptions(assumptions);
+  recalculate();
+  selectTab('model');
+  $('#workspace').scrollIntoView({block:'start'});
+  $('#workspace').focus({preventScroll:true});
+}
+
+function restoreSharedScenario(hash = location.hash) {
+  if (!hash.startsWith('#scenario=')) return;
+  try {
+    const shared = decodeScenario(hash.slice('#scenario='.length));
+    openWorkbench(shared);
+    history.replaceState(null,'',location.pathname + location.search + hash);
+    $('#scenario-notice').className = 'scenario-notice';
+    $('#scenario-notice').textContent = `Shared ${shared.company} scenario loaded and recalculated. The comparison story above uses its own selected presets; this workbench contains the shared assumptions.`;
+  } catch (error) {
+    $('#scenario-notice').className = 'scenario-notice is-error';
+    $('#scenario-notice').textContent = `This scenario link could not be loaded: ${error.message} The workbench retains its current case.`;
+    selectTab('model');
+    $('#workspace').scrollIntoView({block:'start'});
+  }
+  $('#scenario-notice').hidden = false;
+}
+
+async function copyScenario(supplied) {
+  const revision = ++state.shareRevision;
+  try {
+    const draft = supplied?.assumptions ? {...supplied,bridge:supplied.bridge ?? null} : currentPortableScenario();
+    const url = scenarioUrl(location.href,draft);
+    $('#share-url').value = url;
+    $('#share-link-area').hidden = false;
+    let copied = false;
+    try { if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(url); copied = true; } } catch { /* The visible, selectable link remains usable. */ }
+    if (revision !== state.shareRevision) return url;
+    $('#portable-status').textContent = copied ? 'Scenario link copied. Opening it restores and recalculates these assumptions.' : 'Your scenario link is ready below. Select and copy it to share these assumptions.';
+    if (!copied) { $('#share-url').focus(); $('#share-url').select(); }
+    return url;
+  } catch (error) { $('#portable-status').textContent = `Could not create the link: ${error.message}`; return null; }
+}
+
+function exportBriefing() {
+  try {
+    const scenario = currentPortableScenario();
+    const html = createBriefing({...scenario,research:state.research,shareUrl:scenarioUrl(location.href,scenario),edited:state.custom});
+    download(html,exportFilename('html').replace('.html','-brief.html'),'text/html;charset=utf-8');
+    $('#portable-status').textContent = 'Scenario brief downloaded. Open the HTML file to review it or use your browser’s Print → Save as PDF.';
+  } catch (error) { $('#portable-status').textContent = `Could not export this brief: ${error.message}`; }
+}
+
+function installPortableActions() {
+  const stylesheet = document.createElement('link');
+  stylesheet.rel = 'stylesheet';
+  stylesheet.href = new URL('./portable.css',import.meta.url).href;
+  document.head.append(stylesheet);
+  $('.export-actions').insertAdjacentHTML('beforeend','<button type="button" class="button button-outline" id="share-scenario" disabled>Share this case <span aria-hidden="true">↗</span></button><button type="button" class="button button-dark" id="export-briefing" disabled>Scenario brief <span aria-hidden="true">↓</span></button>');
+  $('.export-bar').insertAdjacentHTML('afterend','<div class="portable-tools"><p id="portable-status" role="status"></p><div id="share-link-area" hidden><label for="share-url">Shareable scenario link</label><textarea id="share-url" rows="3" readonly spellcheck="false"></textarea><p>Contains the selected company, model version, assumptions and any enabled hypothetical equity bridge. It restores the workbench; no saved account or server record is needed.</p></div></div>');
+  $('#workspace').insertAdjacentHTML('afterend','<p id="scenario-notice" class="scenario-notice" role="status" hidden></p>');
+  $('#share-scenario').addEventListener('click',() => copyScenario());
+  $('#export-briefing').addEventListener('click',exportBriefing);
 }
 
 function renderEvidence() {
@@ -619,6 +724,7 @@ function bindEvents() {
   $('#assumptions-form').addEventListener('submit', event => event.preventDefault());
   $('#assumptions-form').addEventListener('input', event => {
     if (!event.target.matches('[data-key]')) return;
+    clearSharedLocation();
     state.savedName = '';
     recalculate();
   });
@@ -664,13 +770,19 @@ function bindEvents() {
     setReversePrompt(target === null ? 'Enter an enterprise value to explore a required growth path.' : 'Target changed. Solve to calculate a current required growth path.');
     updateButtons();
   });
-  $('#bridge-enabled').addEventListener('change', () => { renderBridge(); updateButtons(); });
-  for (const id of ['bridge-cash', 'bridge-debt', 'bridge-claims']) $(`#${id}`).addEventListener('input', () => { renderBridge(); updateButtons(); });
+  $('#bridge-enabled').addEventListener('change', () => { clearSharedLocation(); renderBridge(); updateButtons(); });
+  for (const id of ['bridge-cash', 'bridge-debt', 'bridge-claims']) $(`#${id}`).addEventListener('input', () => { clearSharedLocation(); renderBridge(); updateButtons(); });
   $('#save-scenario').addEventListener('click', saveScenario);
   $('#load-scenario').addEventListener('click', loadSavedScenario);
   $('#saved-scenarios').addEventListener('change', updateButtons);
   $('#export-json').addEventListener('click', exportJson);
   $('#export-csv').addEventListener('click', exportCsv);
+  window.addEventListener('hashchange', () => {
+    if (!state.ready) return;
+    if (location.hash.startsWith('#scenario=')) restoreSharedScenario();
+    else if (location.hash === '#sources') selectTab('sources');
+    else if (location.hash === '#methodology') selectTab('methodology');
+  });
 }
 
 async function fetchJson(relativePath) {
@@ -681,6 +793,7 @@ async function fetchJson(relativePath) {
 
 async function initialize() {
   createFields();
+  installPortableActions();
   bindEvents();
   try {
     const [presets, research] = await Promise.all([fetchJson('./data/presets.json'), fetchJson('./data/research.json')]);
@@ -695,8 +808,12 @@ async function initialize() {
     renderEvidence();
     state.saved = readSavedScenarios();
     renderSavedScenarios();
+    // A visitor may follow a newer fragment while the research files are loading.
+    const requestedHash = location.hash;
     loadPreset();
-    if (location.hash === '#sources') selectTab('sources');
+    initExperience({presets,research,onOpenModel:openWorkbench,onShare:copyScenario});
+    if (requestedHash.startsWith('#scenario=')) restoreSharedScenario(requestedHash);
+    else if (location.hash === '#sources') selectTab('sources');
     else if (location.hash === '#methodology') selectTab('methodology');
   } catch (error) {
     state.ready = false;

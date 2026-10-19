@@ -1,0 +1,12 @@
+.export-bar { flex-wrap: wrap; gap: 18px; }
+.export-actions { flex-wrap: wrap; }
+.portable-tools { margin: 10px 0 24px; }
+.portable-tools > p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.portable-tools > p:empty { display: none; }
+#share-link-area { margin-top: 14px; padding: 18px; border: 1px solid var(--line); background: var(--surface); }
+#share-link-area label { display: block; font-size: 12px; font-weight: 650; margin-bottom: 8px; }
+#share-link-area textarea { width: 100%; min-height: 100px; resize: vertical; border: 1px solid var(--line); padding: 12px; font: 11px/1.6 ui-monospace, monospace; color: var(--ink); background: #f5f5ed; border-radius: 3px; overflow-wrap: anywhere; }
+#share-link-area p { font-size: 11px; color: var(--muted); margin: 9px 0 0; }
+.scenario-notice { margin: 0 0 20px; padding: 15px 18px; border: 1px solid #88afa0; border-left: 3px solid #3e806e; background: #e9f2ed; font-size: 12px; line-height: 1.7; }
+.scenario-notice.is-error { border-color: #c89282; border-left-color: #ab614c; background: #f8ebe5; }
+@media (max-width: 560px) { .export-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; } .export-actions .button { width: 100%; padding: 10px 8px; } }
