@@ -33,5 +33,7 @@ jobs:
         run: python3 -B tests/reference_parity.py
       - name: Independent attribution and target-frontier checks
         run: python3 -B scripts/check_thesis_reference.py --output /tmp/thesis-reference.json
+      - name: Independent Value Horizon and precision-boundary checks
+        run: python3 -B scripts/check_horizon_reference.py --output /tmp/horizon-reference.json
       - name: Build public application snapshot
         run: npm run build

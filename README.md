@@ -1,20 +1,32 @@
 # Frontier AI Valuation Lab
 
-**Follow the value. Keep the reasoning.**
+**How much future is in the value?**
 
 [![Model and API checks](https://github.com/ult666666/frontier-ai-valuation-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/ult666666/frontier-ai-valuation-lab/actions/workflows/ci.yml)
 
-A full stack fintech research workspace by **Charles Dai**, Carnegie Mellon University. Compare Anthropic and OpenAI, test an operating thesis, explain the valuation change, and keep the exact analysis with its rationale and dated evidence. The **Research Casebook** brings the model, Thesis Lab and source context into one continuous workflow.
+A full stack fintech research workspace by **Charles Dai**, Carnegie Mellon University. **Value Horizon** makes the dependence on distant cash flows visible: keep an operating forecast fixed, choose how many years after 2036 to retain, and inspect the value remaining with zero residual after the cutoff. Compare Anthropic and OpenAI, explain an operating thesis in Thesis Lab, and preserve its rationale and dated evidence in the Research Casebook.
 
 A deterministic JSON API, independently calculated Python reference, editable Excel model and source register make the arithmetic inspectable. Research and implementation were developed with AI assistance; the calculations can be reproduced from this repository.
 
-**[Open the workspace](https://frontier-ai-valuation-lab.vercel.app/)** · **[Thesis Lab](https://frontier-ai-valuation-lab.vercel.app/thesis.html)** · **[Research Casebook](https://frontier-ai-valuation-lab.vercel.app/casebook.html)** · **[Evidence](https://frontier-ai-valuation-lab.vercel.app/index.html#sources)** · **[Portfolio](https://ult666666.github.io/)**
+**[Open Value Horizon](https://frontier-ai-valuation-lab.vercel.app/horizon.html)** · **[Company comparison and Model](https://frontier-ai-valuation-lab.vercel.app/)** · **[Thesis Lab](https://frontier-ai-valuation-lab.vercel.app/thesis.html)** · **[Research Casebook](https://frontier-ai-valuation-lab.vercel.app/casebook.html)** · **[Evidence](https://frontier-ai-valuation-lab.vercel.app/index.html#sources)** · **[Fintech portfolio](https://ult666666.github.io/fintech.html)**
 
-[Worked research brief](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Research_Brief.pdf) · [Importable example casebook](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Research_Casebook.json) · [Excel model](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Model.xlsx) · [Financial review](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Review.pdf) · [3.3 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v3.3.0) · [Verification](docs/VERIFICATION.md)
+[Value Horizon brief · PDF](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Value_Horizon.pdf) · [Standalone HTML](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Value_Horizon.html) · [Exact Horizon analysis · JSON](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Value_Horizon.json) · [Horizon methodology](docs/VALUE_HORIZON.md) · [Verification](docs/VERIFICATION.md)
 
-![Research Casebook connects exact valuation snapshots with their rationale and evidence](docs/demo-casebook.png)
+[Worked research brief](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Research_Brief.pdf) · [Importable example casebook](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Research_Casebook.json) · [Excel model](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Model.xlsx) · [Financial review](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Review.pdf) · [Release history](https://github.com/ult666666/frontier-ai-valuation-lab/releases)
 
-## Try the complete research journey
+[Portable desktop package · ZIP](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Value_Horizon_Package.zip) contains the complete worked briefs, original reviewed workbook, evidence snapshots and an opening guide. Extract it and open `START_HERE.html`.
+
+![The working Value Horizon app shows a finite continuation curve, selected operating EV and a separate perpetual reference](docs/demo-horizon.png)
+
+## Start with one question
+
+Open Value Horizon with **Anthropic · Base** and retain **10 years after 2036**. The unchanged perpetual model is approximately **$367.8B**; retaining cash flows through **2046**, with none afterward, gives approximately **$248.5B**. The reconciliation separates the complete explicit forecast, retained continuation and excluded later value. These are conditional model outputs, in USD billions; see the [worked calculation and annual timing convention](docs/VALUE_HORIZON.md#worked-frozen-model-comparison).
+
+Move the horizon, switch company or preset, and ask how much continuation a target operating EV requires. The $250B default target is illustrative. The page distinguishes a finite whole-year requirement, a target reached by the explicit forecast, perpetuity, an unreachable target, and bounded or numerically unresolved results. It displays the perpetual reference separately throughout.
+
+Choose **Verify through the API** to compare the complete browser calculation with the deployed server. Copy the exact Horizon link or download its recalculated HTML/JSON analysis. **Open complete model** carries all thirteen operating assumptions and any hypothetical bridge; the bridge does not affect Horizon operating EV. Horizon outputs preserve the chosen years and target separately from Casebook JSON.
+
+## Continue the research journey
 
 1. **Compare.** In the Overview, follow revenue, cash flow and value after 2036. Apply a common stress to both companies, then choose **Explain this change** to open the exact baseline and stressed case in Thesis Lab.
 2. **Explain.** Read the signed allocation of the EV change across six assumption groups. Every attribution uses all **64 group combinations**, equivalent to averaging **720 orders of change**. Inspect the two complete sets of assumptions and their evidence.
@@ -24,9 +36,9 @@ A deterministic JSON API, independently calculated Python reference, editable Ex
 
 The downloadable example casebook contains three **clearly labeled illustrative analyses**, including a $500B target requirement. Import it from the Casebook to inspect a worked argument. It does not create sample entries in your browser automatically.
 
-Application **3.3.0** adds the Research Casebook, contextual evidence and complete workflow handoffs. Financial engine **3.0.0**, the six published presets, the reviewed Excel/PDF and the **18 October 2026** research cutoff remain the quantitative baseline. This is a dated research model. Browser storage is local to the current origin and profile; JSON export provides portability across devices.
+Application **3.4.0** adds Value Horizon, its shared browser/API calculation and standalone research outputs. Navigation has six consistent destinations: **Overview, Model, Thesis Lab, Value Horizon, Casebook and Evidence**. The Research Casebook, contextual evidence and exact comparison handoffs remain available. Financial engine **3.0.0**, the six published presets, the reviewed Excel/PDF and the **18 October 2026** research cutoff remain the quantitative baseline. Browser storage is local to the current origin and profile; Casebook JSON provides portability for saved research across devices.
 
-See the [Research Workspace guide](docs/RESEARCH_WORKSPACE.md), [contextual evidence method](docs/EVIDENCE_CONTEXT.md) and [Thesis Lab methodology](docs/THESIS_LAB.md). Earlier releases remain available in the repository's release history.
+See the [Research Workspace guide](docs/RESEARCH_WORKSPACE.md), [Value Horizon methodology](docs/VALUE_HORIZON.md), [contextual evidence method](docs/EVIDENCE_CONTEXT.md), [Thesis Lab methodology](docs/THESIS_LAB.md) and [desktop handoff guide](docs/DESKTOP_GUIDE.md). Earlier releases remain available in the repository's release history.
 
 ## The problem
 
@@ -36,6 +48,7 @@ The application reports **illustrative operating enterprise value**. Private fin
 
 ## Explore the project
 
+- **Value Horizon:** hold the explicit forecast fixed and retain 0–100 annual continuation cash flows after 2036, with zero residual after the chosen cutoff. Inspect retained and excluded PV, terminal-value capture milestones and the whole-year requirement for a target operating EV.
 - **Research Casebook:** capture complete single cases or comparisons with detached plain-text notes, known source references and exact reopening links. Preview JSON imports, preserve conflicting records, compare saved cases and undo deletion.
 - **Contextual evidence:** inspect the current input alongside related dated records and modeling limits; all thirteen forecast inputs retain their assumption status.
 - **Two-case attribution:** compare reference and alternative assumptions for the same company. Exact grouped Shapley contributions retain their signs and reconcile to the complete modeled EV change, subject to floating-point rounding.
@@ -65,15 +78,18 @@ npm test
 npm start
 ```
 
-Open `http://127.0.0.1:4321/thesis.html` for the Thesis Lab or `http://127.0.0.1:4321/casebook.html` for saved research. The Overview and Model are at `http://127.0.0.1:4321`. Use `PORT=8080 npm start` to choose a different port. Python 3.11+ is used for independent reference checks:
+Open `http://127.0.0.1:4321/horizon.html` for Value Horizon, `http://127.0.0.1:4321/thesis.html` for Thesis Lab, or `http://127.0.0.1:4321/casebook.html` for saved research. The Overview and Model are at `http://127.0.0.1:4321`. Use `PORT=8080 npm start` to choose a different port. Python 3.11+ is used for independent reference checks:
 
 ```sh
 python3 tests/reference_parity.py
 python3 scripts/check_thesis_reference.py --output /tmp/thesis-reference.json
+python3 -B scripts/check_horizon_reference.py --output /tmp/horizon-reference.json
 npm run build
 ```
 
 The thesis verifier uses Python's standard library and Node 24. It independently evaluates all 720 group orders, checks grid cells with the separate Python FCFF engine, and solves the margin frontier using its tax-threshold segments. Its [committed reference report](docs/verification/thesis-reference.json) records coverage, tolerances and hashes of the tested source. Omitting `--output` regenerates that report at `docs/verification/thesis-reference.json`.
+
+The Horizon verifier independently sums annual continuation cash flows from the separate Python FCFF engine and checks whole-year requirements. Its receipt records the tested cases, numerical tolerances and source hashes. The [Horizon methodology](docs/VALUE_HORIZON.md#verification) explains the reference calculation and its limits.
 
 The static `dist/` build also works on GitHub Pages or another static host. Browser calculations and exports remain available there; server verification requires the Node API and reports its availability explicitly.
 
@@ -81,11 +97,13 @@ The static `dist/` build also works on GitHub Pages or another static host. Brow
 
 | Component | Responsibility |
 | --- | --- |
+| `public/horizon.html` / `horizon.js` / `horizon.css` | Finite continuation curve, complete value reconciliation, capture milestones, target requirements, exact handoffs and full-result API verification |
+| `public/lib/horizon.js` / `horizon-share.js` / `horizon-brief.js` | Pure finite-continuation calculation, strict exact snapshots and recalculated standalone HTML/JSON outputs |
 | `public/casebook.html` / `casebook.js` / `casebook.css` | Complete saved research, notes, source selection, strict import preview, JSON/brief export and calculation verification |
 | `public/lib/casebook*.js` | Bounded snapshots, storage adapter, merge/migration rules and script-free research briefs |
 | `public/lib/journey.js` | Exact inspection/return context, shared analysis windows and solved-margin application |
 | `public/lib/evidence.js` / `evidence-context.js` | Deterministic evidence catalog and accessible contextual input inspection |
-| `public/shell.css` / `shell.js` | Consistent navigation across the Model, Thesis Lab and Casebook |
+| `public/shell.css` / `shell.js` | The same six destinations and current location across the research workspace |
 | `public/lib/model.js` | Pure FCFF engine, validation, sensitivities, accounting invariance and quartic reverse solver |
 | `public/lib/thesis.js` | Exact grouped EV attribution, direct WACC/margin landscape and bounded target-margin solver |
 | `public/thesis.html` / `thesis.js` / `thesis.css` | Two-case workspace, signed charts, point selection, presenter view and complete-result API verification |
@@ -100,6 +118,9 @@ The static `dist/` build also works on GitHub Pages or another static host. Brow
 | `data/` | Versioned presets, evidence records and fact provenance |
 | `scripts/reference_model.py` | Independent Python forward calculation |
 | `scripts/check_thesis_reference.py` | Independent permutation attribution and tax-segment frontier verification, with evidence tied to source hashes |
+| `scripts/check_horizon_reference.py` | Independent annual continuation summation and whole-year requirement checks, with evidence tied to source hashes |
+| `scripts/build_horizon_example.mjs` | Recalculated worked Horizon HTML/JSON, with optional PDF and preview rendering |
+| `scripts/deliver_desktop.py` | A separate versioned desktop package, local opening guide and verified SHA-256 manifest |
 | `scripts/build_workbook.mjs` | Formula workbook authoring and validation in the documented artifact runtime |
 | `tests/` | Financial regressions, real HTTP checks and cross-language parity |
 | `.github/workflows/ci.yml` | Repeatable model/API/reference verification and static build |
@@ -119,6 +140,8 @@ curl -X POST http://127.0.0.1:4321/api/valuation \
 This fixture produces approximately **$200.3147B EV**. Amounts are USD billions; rates are decimals. Requests are limited to 16 KiB. The original WACC/growth sensitivity accepts 1–9 values per axis; the new WACC/margin landscape accepts 2–21 strictly increasing values per axis. See [the API contract and complete examples](docs/API.md).
 
 For Thesis Lab calculations, send **`attribute`** with complete `reference` and `alternative` assumption objects, or **`landscape`** with `assumptions`, `rates`, `margins` and a positive `target`. Responses include the full comparison or landscape contract used by the browser.
+
+For Value Horizon, send **`horizon`** with complete `assumptions`, integer `years` from 0 through 100, and an optional positive operating-EV `target` (or `null`). The response includes the unchanged baseline, selected finite value, every whole-year curve point, capture milestones and target requirement. A target requirement may lie beyond the visible chart; bounded and unresolved outcomes are explicit. See [the Horizon API contract](docs/API.md).
 
 The endpoint also retains **compare**, **stress** and **drivers**. Paired stress changes both selected cases using explicit percentage-point or percentage inputs. Invalid transformed assumptions are rejected; no value is silently clipped. Driver effects use named, different shock sizes and do not claim a probability distribution or causal attribution.
 
@@ -144,6 +167,8 @@ The committed workbook remains editable in Excel. Regenerating its presentation 
 This is a research and engineering demonstration, not a verified security valuation or investment recommendation. Forecasts are illustrative. Audited current balance sheets, investor preference waterfalls, complete compute-payment schedules and comparable revenue accounting are unavailable. The discount rate, margins and terminal ROIC are assumptions. The model omits tax-loss carryforwards and uses aggregate net reinvestment rather than a full three-statement forecast. Peak cumulative economic FCFF deficit is not literal cash runway or a financing plan.
 
 Negative operating EV remains negative. A mathematically invalid or numerically unresolvable point is unavailable, rather than assigned a value floor. Group attribution depends on the chosen comparison and partition; neither a large contribution nor the share of displayed grid cells above a target measures likelihood, causal influence or investment upside to a financing equity value.
+
+Value Horizon assigns zero residual after a selected continuation cutoff. That boundary is an analytical assumption, not a company lifespan, survival probability, liquidation value, cash-runway estimate or investor return. The explicit forecast remains fixed through 2036, and the original perpetual baseline remains visible. The Horizon analysis format preserves its years and target; the current Casebook format captures scenarios and thesis comparisons.
 
 No brokerage connectivity, trade execution, personal financial records or paid model calls are present. The Casebook uses the visitor's local browser storage. Its JSON export carries notes and sources; calculation links carry only the numerical snapshot. Notes are not sent to the valuation API. Company names identify the subject of independent research and do not imply affiliation or endorsement.
 

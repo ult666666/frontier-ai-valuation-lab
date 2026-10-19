@@ -27,7 +27,7 @@ async function stage(relative=''){
     const name=path.join(relative,entry.name), source=path.join(ROOT,'public',name),target=path.join(OUT,name);
     if((await lstat(source)).isSymbolicLink())throw new Error('Public build cannot contain symbolic links.');
     if(entry.isDirectory()){await mkdir(target,{recursive:true});await stage(name);}
-    else {if(!/\.(html|css|js|json|svg|png|pdf|xlsx|csv|txt)$/.test(entry.name))throw new Error(`Unexpected public file: ${name}`);await copyFile(source,target);}
+    else {if(!/\.(html|css|js|json|svg|png|pdf|xlsx|csv|txt|zip)$/.test(entry.name))throw new Error(`Unexpected public file: ${name}`);await copyFile(source,target);}
   }
 }
 await stage();

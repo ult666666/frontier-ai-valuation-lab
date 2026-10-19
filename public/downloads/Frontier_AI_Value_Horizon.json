@@ -1,0 +1,1218 @@
+{
+  "schema": 1,
+  "kind": "frontier-value-horizon",
+  "appVersion": "3.4.0",
+  "modelVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "researchCutoff": "2026-10-18T09:22:26-07:00",
+  "horizonVersion": "1.0.0",
+  "snapshot": {
+    "case": {
+      "company": "Anthropic",
+      "scenario": "Base",
+      "assumptions": {
+        "rev2026": 53.26,
+        "g1": 0.45,
+        "g2": 0.24,
+        "g3": 0.12,
+        "m27": -0.02,
+        "m30": 0.18,
+        "m36": 0.22,
+        "turns": 2.5,
+        "wacc": 0.125,
+        "tg": 0.03,
+        "roic": 0.2,
+        "stub": -3,
+        "tax": 0.25
+      },
+      "bridge": null
+    },
+    "years": 10,
+    "target": 250
+  },
+  "token": "eyJzY2hlbWEiOjEsIm1vZGVsIjoiMy4wLjAiLCJkYXRlIjoiMjAyNi0xMC0xOCIsImNhc2UiOiJleUp6WTJobGJXRWlPakVzSW0xdlpHVnNJam9pTXk0d0xqQWlMQ0prWVhSbElqb2lNakF5TmkweE1DMHhPQ0lzSW1OdmJYQmhibmtpT2lKQmJuUm9jbTl3YVdNaUxDSnpZMlZ1WVhKcGJ5STZJa0poYzJVaUxDSnBibkIxZEhNaU9sczFNeTR5Tml3d0xqUTFMREF1TWpRc01DNHhNaXd0TUM0d01pd3dMakU0TERBdU1qSXNNaTQxTERBdU1USTFMREF1TURNc01DNHlMQzB6TERBdU1qVmRMQ0ppY21sa1oyVWlPbTUxYkd4OSIsInllYXJzIjoxMCwidGFyZ2V0IjoyNTB9",
+  "reopenUrl": "https://frontier-ai-valuation-lab.vercel.app/horizon.html#horizon=eyJzY2hlbWEiOjEsIm1vZGVsIjoiMy4wLjAiLCJkYXRlIjoiMjAyNi0xMC0xOCIsImNhc2UiOiJleUp6WTJobGJXRWlPakVzSW0xdlpHVnNJam9pTXk0d0xqQWlMQ0prWVhSbElqb2lNakF5TmkweE1DMHhPQ0lzSW1OdmJYQmhibmtpT2lKQmJuUm9jbTl3YVdNaUxDSnpZMlZ1WVhKcGJ5STZJa0poYzJVaUxDSnBibkIxZEhNaU9sczFNeTR5Tml3d0xqUTFMREF1TWpRc01DNHhNaXd0TUM0d01pd3dMakU0TERBdU1qSXNNaTQxTERBdU1USTFMREF1TURNc01DNHlMQzB6TERBdU1qVmRMQ0ppY21sa1oyVWlPbTUxYkd4OSIsInllYXJzIjoxMCwidGFyZ2V0IjoyNTB9",
+  "modelUrl": "https://frontier-ai-valuation-lab.vercel.app/index.html#scenario=eyJzY2hlbWEiOjEsIm1vZGVsIjoiMy4wLjAiLCJkYXRlIjoiMjAyNi0xMC0xOCIsImNvbXBhbnkiOiJBbnRocm9waWMiLCJzY2VuYXJpbyI6IkJhc2UiLCJpbnB1dHMiOls1My4yNiwwLjQ1LDAuMjQsMC4xMiwtMC4wMiwwLjE4LDAuMjIsMi41LDAuMTI1LDAuMDMsMC4yLC0zLDAuMjVdLCJicmlkZ2UiOm51bGx9",
+  "result": {
+    "version": "1.0.0",
+    "assumptions": {
+      "rev2026": 53.26,
+      "g1": 0.45,
+      "g2": 0.24,
+      "g3": 0.12,
+      "m27": -0.02,
+      "m30": 0.18,
+      "m36": 0.22,
+      "turns": 2.5,
+      "wacc": 0.125,
+      "tg": 0.03,
+      "roic": 0.2,
+      "stub": -3,
+      "tax": 0.25
+    },
+    "baseline": {
+      "rows": [
+        {
+          "year": 2027,
+          "revenue": 77.22699999999999,
+          "growth": 0.45,
+          "margin": -0.02,
+          "ebit": -1.5445399999999998,
+          "tax": 0,
+          "nopat": -1.5445399999999998,
+          "reinvestment": 9.586799999999997,
+          "fcf": -11.131339999999996,
+          "t": 1.2019164955509924,
+          "df": 0.8679984296768486,
+          "pv": -9.661985640199088,
+          "cumulative": -14.131339999999996
+        },
+        {
+          "year": 2028,
+          "revenue": 111.97914999999998,
+          "growth": 0.45,
+          "margin": 0.04666666666666666,
+          "ebit": 5.225693666666665,
+          "tax": 1.3064234166666662,
+          "nopat": 3.9192702499999985,
+          "reinvestment": 13.900859999999994,
+          "fcf": -9.981589749999996,
+          "t": 2.2039698836413417,
+          "df": 0.7713675785985523,
+          "pv": -7.699474716021626,
+          "cumulative": -24.112929749999992
+        },
+        {
+          "year": 2029,
+          "revenue": 162.36976749999997,
+          "growth": 0.45,
+          "margin": 0.11333333333333333,
+          "ebit": 18.40190698333333,
+          "tax": 4.600476745833332,
+          "nopat": 13.801430237499996,
+          "reinvestment": 20.156246999999997,
+          "fcf": -6.3548167625000005,
+          "t": 3.2032854209445585,
+          "df": 0.6857153487017029,
+          "pv": -4.357595392233114,
+          "cumulative": -30.467746512499993
+        },
+        {
+          "year": 2030,
+          "revenue": 235.43616287499995,
+          "growth": 0.45,
+          "margin": 0.18,
+          "ebit": 42.37850931749999,
+          "tax": 10.594627329374998,
+          "nopat": 31.783881988124993,
+          "reinvestment": 29.226558149999995,
+          "fcf": 2.557323838124997,
+          "t": 4.202600958247776,
+          "df": 0.6095738951063822,
+          "pv": 1.5588778530542577,
+          "cumulative": -27.910422674374995
+        },
+        {
+          "year": 2031,
+          "revenue": 291.94084196499995,
+          "growth": 0.24,
+          "margin": 0.18666666666666665,
+          "ebit": 54.49562383346665,
+          "tax": 13.623905958366663,
+          "nopat": 40.87171787509999,
+          "reinvestment": 22.601871636,
+          "fcf": 18.26984623909999,
+          "t": 5.201916495550993,
+          "df": 0.5418871464649248,
+          "pv": 9.90019484485883,
+          "cumulative": -9.640576435275005
+        },
+        {
+          "year": 2032,
+          "revenue": 362.00664403659994,
+          "growth": 0.24,
+          "margin": 0.19333333333333333,
+          "ebit": 69.98795118040933,
+          "tax": 17.49698779510233,
+          "nopat": 52.490963385307,
+          "reinvestment": 28.026320828639996,
+          "fcf": 24.464642556667002,
+          "t": 6.203969883641341,
+          "df": 0.4815609818533258,
+          "pv": 11.781217290279221,
+          "cumulative": 14.824066121391997
+        },
+        {
+          "year": 2033,
+          "revenue": 448.88823860538395,
+          "growth": 0.24,
+          "margin": 0.2,
+          "ebit": 89.77764772107679,
+          "tax": 22.444411930269197,
+          "nopat": 67.33323579080759,
+          "reinvestment": 34.7526378275136,
+          "fcf": 32.58059796329399,
+          "t": 7.2032854209445585,
+          "df": 0.42808871639722224,
+          "pv": 13.947386361560477,
+          "cumulative": 47.40466408468599
+        },
+        {
+          "year": 2034,
+          "revenue": 502.7548272380301,
+          "growth": 0.12,
+          "margin": 0.20666666666666667,
+          "ebit": 103.90266429585955,
+          "tax": 25.975666073964888,
+          "nopat": 77.92699822189466,
+          "reinvestment": 21.546635453058457,
+          "fcf": 56.38036276883621,
+          "t": 8.202600958247775,
+          "df": 0.3805539817643258,
+          "pv": 21.455771544997766,
+          "cumulative": 103.7850268535222
+        },
+        {
+          "year": 2035,
+          "revenue": 563.0854065065937,
+          "growth": 0.12,
+          "margin": 0.21333333333333332,
+          "ebit": 120.12488672140665,
+          "tax": 30.031221680351663,
+          "nopat": 90.09366504105499,
+          "reinvestment": 24.132231707425444,
+          "fcf": 65.96143333362954,
+          "t": 9.201916495550993,
+          "df": 0.3382974778113598,
+          "pv": 22.314586529589032,
+          "cumulative": 169.74646018715174
+        },
+        {
+          "year": 2036,
+          "revenue": 630.655655287385,
+          "growth": 0.12,
+          "margin": 0.22,
+          "ebit": 138.7442441632247,
+          "tax": 34.68606104080617,
+          "nopat": 104.05818312241851,
+          "reinvestment": 27.028099512316523,
+          "fcf": 77.030083610102,
+          "t": 10.203969883641342,
+          "df": 0.3006361502318583,
+          "pv": 23.15802778857923,
+          "cumulative": 246.77654379725374
+        }
+      ],
+      "stub_t": 0.2026009582477755,
+      "pv_stub": -2.9292585393991506,
+      "pv_explicit": 79.46774792506584,
+      "terminal_revenue": 649.5753249460066,
+      "terminal_nopat": 107.17992861609108,
+      "terminal_reinvestment_rate": 0.15,
+      "terminal_fcf": 91.10293932367742,
+      "tv": 958.9783086702886,
+      "pvtv": 288.30354687449426,
+      "ev": 367.7712947995601,
+      "tv_share": 0.7839207435469461,
+      "peak_funding_need": 30.467746512499993,
+      "terminal_t": 10.203969883641342,
+      "cagr": 0.2803806826697528,
+      "terminal_fcf_change": 0.18269298245614074,
+      "implied_incremental_roic": 0.41250000000000003,
+      "warnings": [
+        "More than 75% of enterprise value comes from the terminal value.",
+        "Terminal ROIC differs from the incremental return implied by the final explicit margin and capital turns."
+      ]
+    },
+    "years": 10,
+    "target": 250,
+    "maxYears": 100,
+    "solverMaxYears": 10000,
+    "selected": {
+      "years": 10,
+      "throughYear": 2046,
+      "ev": 248.4557556739665,
+      "retainedTerminalPv": 168.98800774890069,
+      "excludedTerminalPv": 119.31553912559359,
+      "terminalPvFraction": 0.5861461282072447,
+      "remainingTerminalFraction": 0.4138538717927554
+    },
+    "curve": [
+      {
+        "years": 0,
+        "throughYear": 2036,
+        "ev": 79.46774792506584,
+        "retainedTerminalPv": 0,
+        "excludedTerminalPv": 288.30354687449426,
+        "terminalPvFraction": 0,
+        "remainingTerminalFraction": 1
+      },
+      {
+        "years": 1,
+        "throughYear": 2037,
+        "ev": 103.81338077224535,
+        "retainedTerminalPv": 24.345632847179516,
+        "excludedTerminalPv": 263.95791402731476,
+        "terminalPvFraction": 0.08444444444444445,
+        "remainingTerminalFraction": 0.9155555555555556
+      },
+      {
+        "years": 2,
+        "throughYear": 2038,
+        "ev": 126.10316017899638,
+        "retainedTerminalPv": 46.63541225393054,
+        "excludedTerminalPv": 241.66813462056373,
+        "terminalPvFraction": 0.16175802469135803,
+        "remainingTerminalFraction": 0.838241975308642
+      },
+      {
+        "years": 3,
+        "throughYear": 2039,
+        "ev": 146.5106915469551,
+        "retainedTerminalPv": 67.04294362188925,
+        "excludedTerminalPv": 221.260603252605,
+        "terminalPvFraction": 0.23254290260631003,
+        "remainingTerminalFraction": 0.76745709739369
+      },
+      {
+        "years": 4,
+        "throughYear": 2040,
+        "ev": 165.19492026606395,
+        "retainedTerminalPv": 85.72717234099812,
+        "excludedTerminalPv": 202.57637453349614,
+        "terminalPvFraction": 0.29735039083066606,
+        "remainingTerminalFraction": 0.7026496091693339
+      },
+      {
+        "years": 5,
+        "throughYear": 2041,
+        "ev": 182.30136967111474,
+        "retainedTerminalPv": 102.8336217460489,
+        "excludedTerminalPv": 185.46992512844534,
+        "terminalPvFraction": 0.3566852467160765,
+        "remainingTerminalFraction": 0.6433147532839235
+      },
+      {
+        "years": 6,
+        "throughYear": 2042,
+        "ev": 197.963274459739,
+        "retainedTerminalPv": 118.49552653467317,
+        "excludedTerminalPv": 169.80802033982107,
+        "terminalPvFraction": 0.41100960366005224,
+        "remainingTerminalFraction": 0.5889903963399478
+      },
+      {
+        "years": 7,
+        "throughYear": 2043,
+        "ev": 212.30261839954613,
+        "retainedTerminalPv": 132.83487047448028,
+        "excludedTerminalPv": 155.46867640001398,
+        "terminalPvFraction": 0.4607465704620922,
+        "remainingTerminalFraction": 0.5392534295379078
+      },
+      {
+        "years": 8,
+        "throughYear": 2044,
+        "ev": 225.43108440665844,
+        "retainedTerminalPv": 145.9633364815926,
+        "excludedTerminalPv": 142.34021039290167,
+        "terminalPvFraction": 0.5062835267341823,
+        "remainingTerminalFraction": 0.49371647326581775
+      },
+      {
+        "years": 9,
+        "throughYear": 2045,
+        "ev": 237.45092439539235,
+        "retainedTerminalPv": 157.9831764703265,
+        "excludedTerminalPv": 130.32037040416776,
+        "terminalPvFraction": 0.5479751400321846,
+        "remainingTerminalFraction": 0.45202485996781533
+      },
+      {
+        "years": 10,
+        "throughYear": 2046,
+        "ev": 248.4557556739665,
+        "retainedTerminalPv": 168.98800774890069,
+        "excludedTerminalPv": 119.31553912559359,
+        "terminalPvFraction": 0.5861461282072447,
+        "remainingTerminalFraction": 0.4138538717927554
+      },
+      {
+        "years": 11,
+        "throughYear": 2047,
+        "ev": 258.53129008901664,
+        "retainedTerminalPv": 179.06354216395079,
+        "excludedTerminalPv": 109.24000471054347,
+        "terminalPvFraction": 0.6210937884919662,
+        "remainingTerminalFraction": 0.37890621150803383
+      },
+      {
+        "years": 12,
+        "throughYear": 2048,
+        "ev": 267.75600159790696,
+        "retainedTerminalPv": 188.28825367284114,
+        "excludedTerminalPv": 100.01529320165312,
+        "terminalPvFraction": 0.6530903130193113,
+        "remainingTerminalFraction": 0.34690968698068875
+      },
+      {
+        "years": 13,
+        "throughYear": 2049,
+        "ev": 276.2017374682688,
+        "retainedTerminalPv": 196.73398954320297,
+        "excludedTerminalPv": 91.5695573312913,
+        "terminalPvFraction": 0.6823849088087917,
+        "remainingTerminalFraction": 0.31761509119120834
+      },
+      {
+        "years": 14,
+        "throughYear": 2050,
+        "ev": 283.93427786513337,
+        "retainedTerminalPv": 204.46652994006755,
+        "excludedTerminalPv": 83.83701693442671,
+        "terminalPvFraction": 0.7092057387316048,
+        "remainingTerminalFraction": 0.29079426126839525
+      },
+      {
+        "years": 15,
+        "throughYear": 2051,
+        "ev": 291.0138481840405,
+        "retainedTerminalPv": 211.54610025897466,
+        "excludedTerminalPv": 76.75744661551957,
+        "terminalPvFraction": 0.733761698572047,
+        "remainingTerminalFraction": 0.26623830142795296
+      },
+      {
+        "years": 16,
+        "throughYear": 2052,
+        "ev": 297.4955881204622,
+        "retainedTerminalPv": 218.02784019539632,
+        "excludedTerminalPv": 70.27570667909791,
+        "terminalPvFraction": 0.756244044025963,
+        "remainingTerminalFraction": 0.24375595597403693
+      },
+      {
+        "years": 17,
+        "throughYear": 2053,
+        "ev": 303.42998112891934,
+        "retainedTerminalPv": 223.96223320385351,
+        "excludedTerminalPv": 64.34131367064076,
+        "terminalPvFraction": 0.7768278803082151,
+        "remainingTerminalFraction": 0.2231721196917849
+      },
+      {
+        "years": 18,
+        "throughYear": 2054,
+        "ev": 308.86324761666236,
+        "retainedTerminalPv": 229.3954996915965,
+        "excludedTerminalPv": 58.908047182897754,
+        "terminalPvFraction": 0.795673525971077,
+        "remainingTerminalFraction": 0.20432647402892307
+      },
+      {
+        "years": 19,
+        "throughYear": 2055,
+        "ev": 313.8377049343293,
+        "retainedTerminalPv": 234.36995700926343,
+        "excludedTerminalPv": 53.933589865230836,
+        "terminalPvFraction": 0.8129277615557415,
+        "remainingTerminalFraction": 0.18707223844425847
+      },
+      {
+        "years": 20,
+        "throughYear": 2056,
+        "ev": 318.3920969673932,
+        "retainedTerminalPv": 238.92434904232735,
+        "excludedTerminalPv": 49.3791978321669,
+        "terminalPvFraction": 0.8287249728021455,
+        "remainingTerminalFraction": 0.17127502719785442
+      },
+      {
+        "years": 21,
+        "throughYear": 2057,
+        "ev": 322.56189589544283,
+        "retainedTerminalPv": 243.094147970377,
+        "excludedTerminalPv": 45.20939890411725,
+        "terminalPvFraction": 0.8431881973210755,
+        "remainingTerminalFraction": 0.1568118026789245
+      },
+      {
+        "years": 22,
+        "throughYear": 2058,
+        "ev": 326.3795784695683,
+        "retainedTerminalPv": 246.91183054450246,
+        "excludedTerminalPv": 41.391716329991795,
+        "terminalPvFraction": 0.8564300828806292,
+        "remainingTerminalFraction": 0.14356991711937087
+      },
+      {
+        "years": 23,
+        "throughYear": 2059,
+        "ev": 329.8748789596565,
+        "retainedTerminalPv": 250.40713103459066,
+        "excludedTerminalPv": 37.89641583990361,
+        "terminalPvFraction": 0.8685537647707093,
+        "remainingTerminalFraction": 0.1314462352292907
+      },
+      {
+        "years": 24,
+        "throughYear": 2060,
+        "ev": 333.0750207416928,
+        "retainedTerminalPv": 253.607272816627,
+        "excludedTerminalPv": 34.69627405786729,
+        "terminalPvFraction": 0.8796536690789606,
+        "remainingTerminalFraction": 0.12034633092103944
+      },
+      {
+        "years": 25,
+        "throughYear": 2061,
+        "ev": 336.0049283288016,
+        "retainedTerminalPv": 256.53718040373576,
+        "excludedTerminalPv": 31.766366470758502,
+        "terminalPvFraction": 0.889816248134515,
+        "remainingTerminalFraction": 0.11018375186548501
+      },
+      {
+        "years": 26,
+        "throughYear": 2062,
+        "ev": 338.68742149744344,
+        "retainedTerminalPv": 259.2196735723776,
+        "excludedTerminalPv": 29.083873302116668,
+        "terminalPvFraction": 0.8991206538476004,
+        "remainingTerminalFraction": 0.10087934615239959
+      },
+      {
+        "years": 27,
+        "throughYear": 2063,
+        "ev": 341.1433930207333,
+        "retainedTerminalPv": 261.67564509566745,
+        "excludedTerminalPv": 26.627901778826818,
+        "terminalPvFraction": 0.9076393541893586,
+        "remainingTerminalFraction": 0.0923606458106414
+      },
+      {
+        "years": 28,
+        "throughYear": 2064,
+        "ev": 343.3919713931675,
+        "retainedTerminalPv": 263.9242234681017,
+        "excludedTerminalPv": 24.379323406392558,
+        "terminalPvFraction": 0.9154386976133683,
+        "remainingTerminalFraction": 0.0845613023866317
+      },
+      {
+        "years": 29,
+        "throughYear": 2065,
+        "ev": 345.4506698141518,
+        "retainedTerminalPv": 265.98292188908596,
+        "excludedTerminalPv": 22.320624985408294,
+        "terminalPvFraction": 0.9225794298149061,
+        "remainingTerminalFraction": 0.0774205701850939
+      },
+      {
+        "years": 30,
+        "throughYear": 2066,
+        "ev": 347.3355225906974,
+        "retainedTerminalPv": 267.86777466563154,
+        "excludedTerminalPv": 20.43577220886271,
+        "terminalPvFraction": 0.9291171668527585,
+        "remainingTerminalFraction": 0.07088283314724154
+      },
+      {
+        "years": 31,
+        "throughYear": 2067,
+        "ev": 349.06121002166805,
+        "retainedTerminalPv": 269.5934620966022,
+        "excludedTerminalPv": 18.710084777892074,
+        "terminalPvFraction": 0.9351028283185255,
+        "remainingTerminalFraction": 0.06489717168147446
+      },
+      {
+        "years": 32,
+        "throughYear": 2068,
+        "ev": 350.64117273624555,
+        "retainedTerminalPv": 271.1734248111797,
+        "excludedTerminalPv": 17.130122063314523,
+        "terminalPvFraction": 0.9405830339271833,
+        "remainingTerminalFraction": 0.05941696607281663
+      },
+      {
+        "years": 33,
+        "throughYear": 2069,
+        "ev": 352.0877163771477,
+        "retainedTerminalPv": 272.6199684520818,
+        "excludedTerminalPv": 15.683578422412412,
+        "terminalPvFraction": 0.9456004666177767,
+        "remainingTerminalFraction": 0.05439953338222323
+      },
+      {
+        "years": 34,
+        "throughYear": 2070,
+        "ev": 353.4121074439292,
+        "retainedTerminalPv": 273.94435951886334,
+        "excludedTerminalPv": 14.359187355630915,
+        "terminalPvFraction": 0.9501942049922756,
+        "remainingTerminalFraction": 0.04980579500772437
+      },
+      {
+        "years": 35,
+        "throughYear": 2071,
+        "ev": 354.62466104284914,
+        "retainedTerminalPv": 275.1569131177833,
+        "excludedTerminalPv": 13.146633756710973,
+        "terminalPvFraction": 0.9544000276818168,
+        "remainingTerminalFraction": 0.045599972318183205
+      },
+      {
+        "years": 36,
+        "throughYear": 2072,
+        "ev": 355.7348212267492,
+        "retainedTerminalPv": 276.26707330168335,
+        "excludedTerminalPv": 12.036473572810932,
+        "terminalPvFraction": 0.9582506920109078,
+        "remainingTerminalFraction": 0.04174930798909217
+      },
+      {
+        "years": 37,
+        "throughYear": 2073,
+        "ev": 356.75123455067546,
+        "retainedTerminalPv": 277.2834866256096,
+        "excludedTerminalPv": 11.020060248884677,
+        "terminalPvFraction": 0.9617761891299867,
+        "remainingTerminalFraction": 0.03822381087001328
+      },
+      {
+        "years": 38,
+        "throughYear": 2074,
+        "ev": 357.68181741613677,
+        "retainedTerminalPv": 278.2140694910709,
+        "excludedTerminalPv": 10.089477383423306,
+        "terminalPvFraction": 0.9650039776034545,
+        "remainingTerminalFraction": 0.0349960223965455
+      },
+      {
+        "years": 39,
+        "throughYear": 2075,
+        "ev": 358.53381772851475,
+        "retainedTerminalPv": 279.0660698034489,
+        "excludedTerminalPv": 9.237477071045335,
+        "terminalPvFraction": 0.9679591972724961,
+        "remainingTerminalFraction": 0.03204080272750387
+      },
+      {
+        "years": 40,
+        "throughYear": 2076,
+        "ev": 359.3138713478475,
+        "retainedTerminalPv": 279.84612342278166,
+        "excludedTerminalPv": 8.45742345171262,
+        "terminalPvFraction": 0.9706648650583742,
+        "remainingTerminalFraction": 0.029335134941625773
+      },
+      {
+        "years": 41,
+        "throughYear": 2077,
+        "ev": 360.0280537726588,
+        "retainedTerminalPv": 280.56030584759293,
+        "excludedTerminalPv": 7.743241026901331,
+        "terminalPvFraction": 0.9731420542312226,
+        "remainingTerminalFraction": 0.02685794576877737
+      },
+      {
+        "years": 42,
+        "throughYear": 2078,
+        "ev": 360.6819274593749,
+        "retainedTerminalPv": 281.21417953430904,
+        "excludedTerminalPv": 7.089367340185219,
+        "terminalPvFraction": 0.975410058540586,
+        "remainingTerminalFraction": 0.02458994145941395
+      },
+      {
+        "years": 43,
+        "throughYear": 2079,
+        "ev": 361.28058514587946,
+        "retainedTerminalPv": 281.8128372208136,
+        "excludedTerminalPv": 6.490709653680692,
+        "terminalPvFraction": 0.9774865424860477,
+        "remainingTerminalFraction": 0.022513457513952333
+      },
+      {
+        "years": 44,
+        "throughYear": 2080,
+        "ev": 361.8286895166347,
+        "retainedTerminalPv": 282.36094159156886,
+        "excludedTerminalPv": 5.942605282925431,
+        "terminalPvFraction": 0.979387678898337,
+        "remainingTerminalFraction": 0.020612321101663018
+      },
+      {
+        "years": 45,
+        "throughYear": 2081,
+        "ev": 362.3305095183039,
+        "retainedTerminalPv": 282.8627615932381,
+        "excludedTerminalPv": 5.440785281256174,
+        "terminalPvFraction": 0.9811282749024774,
+        "remainingTerminalFraction": 0.01887172509752259
+      },
+      {
+        "years": 46,
+        "throughYear": 2082,
+        "ev": 362.78995360872113,
+        "retainedTerminalPv": 283.3222056836553,
+        "excludedTerminalPv": 4.981341190838986,
+        "terminalPvFraction": 0.982721887244046,
+        "remainingTerminalFraction": 0.017278112755954016
+      },
+      {
+        "years": 47,
+        "throughYear": 2083,
+        "ev": 363.21060019816974,
+        "retainedTerminalPv": 283.7428522731039,
+        "excludedTerminalPv": 4.560694601390358,
+        "terminalPvFraction": 0.984180927876771,
+        "remainingTerminalFraction": 0.015819072123229
+      },
+      {
+        "years": 48,
+        "throughYear": 2084,
+        "ev": 363.59572552006495,
+        "retainedTerminalPv": 284.1279775949991,
+        "excludedTerminalPv": 4.175569279495173,
+        "terminalPvFraction": 0.9855167606338436,
+        "remainingTerminalFraction": 0.014483239366156333
+      },
+      {
+        "years": 49,
+        "throughYear": 2085,
+        "ev": 363.9483291481112,
+        "retainedTerminalPv": 284.48058122304536,
+        "excludedTerminalPv": 3.8229656514489143,
+        "terminalPvFraction": 0.9867397897358746,
+        "remainingTerminalFraction": 0.013260210264125355
+      },
+      {
+        "years": 50,
+        "throughYear": 2086,
+        "ev": 364.27115735867795,
+        "retainedTerminalPv": 284.8034094336121,
+        "excludedTerminalPv": 3.5001374408821175,
+        "terminalPvFraction": 0.9878595408248452,
+        "remainingTerminalFraction": 0.012140459175154772
+      },
+      {
+        "years": 51,
+        "throughYear": 2087,
+        "ev": 364.56672452035247,
+        "retainedTerminalPv": 285.0989765952866,
+        "excludedTerminalPv": 3.204570279207628,
+        "terminalPvFraction": 0.9888847351551916,
+        "remainingTerminalFraction": 0.01111526484480837
+      },
+      {
+        "years": 52,
+        "throughYear": 2088,
+        "ev": 364.83733267726336,
+        "retainedTerminalPv": 285.3695847521975,
+        "excludedTerminalPv": 2.9339621222967596,
+        "terminalPvFraction": 0.9898233575198644,
+        "remainingTerminalFraction": 0.010176642480135657
+      },
+      {
+        "years": 53,
+        "throughYear": 2089,
+        "ev": 365.0850894787017,
+        "retainedTerminalPv": 285.61734155363587,
+        "excludedTerminalPv": 2.6862053208583676,
+        "terminalPvFraction": 0.9906827184404091,
+        "remainingTerminalFraction": 0.00931728155959087
+      },
+      {
+        "years": 54,
+        "throughYear": 2090,
+        "ev": 365.3119245946853,
+        "retainedTerminalPv": 285.84417666961946,
+        "excludedTerminalPv": 2.459370204874772,
+        "terminalPvFraction": 0.9914695111054412,
+        "remainingTerminalFraction": 0.008530488894558753
+      },
+      {
+        "years": 55,
+        "throughYear": 2091,
+        "ev": 365.5196047453192,
+        "retainedTerminalPv": 286.05185682025336,
+        "excludedTerminalPv": 2.251690054240903,
+        "terminalPvFraction": 0.9921898635009818,
+        "remainingTerminalFraction": 0.007810136499018238
+      },
+      {
+        "years": 56,
+        "throughYear": 2092,
+        "ev": 365.7097474610107,
+        "retainedTerminalPv": 286.24199953594484,
+        "excludedTerminalPv": 2.0615473385494494,
+        "terminalPvFraction": 0.9928493861386767,
+        "remainingTerminalFraction": 0.007150613861323366
+      },
+      {
+        "years": 57,
+        "throughYear": 2093,
+        "ev": 365.8838336807104,
+        "retainedTerminalPv": 286.41608575564453,
+        "excludedTerminalPv": 1.8874611188497168,
+        "terminalPvFraction": 0.9934532157536329,
+        "remainingTerminalFraction": 0.006546784246367166
+      },
+      {
+        "years": 58,
+        "throughYear": 2094,
+        "ev": 366.04321928630213,
+        "retainedTerminalPv": 286.5754713612363,
+        "excludedTerminalPv": 1.728075513257963,
+        "terminalPvFraction": 0.994006055312215,
+        "remainingTerminalFraction": 0.0059939446877850504
+      },
+      {
+        "years": 59,
+        "throughYear": 2095,
+        "ev": 366.1891456629773,
+        "retainedTerminalPv": 286.72139773791145,
+        "excludedTerminalPv": 1.5821491365828466,
+        "terminalPvFraction": 0.9945122106414057,
+        "remainingTerminalFraction": 0.005487789358594314
+      },
+      {
+        "years": 60,
+        "throughYear": 2096,
+        "ev": 366.32274936784427,
+        "retainedTerminalPv": 286.8550014427784,
+        "excludedTerminalPv": 1.4485454317158508,
+        "terminalPvFraction": 0.9949756239650203,
+        "remainingTerminalFraction": 0.005024376034979684
+      },
+      {
+        "years": 61,
+        "throughYear": 2097,
+        "ev": 366.44507098207805,
+        "retainedTerminalPv": 286.9773230570122,
+        "excludedTerminalPv": 1.3262238174820682,
+        "terminalPvFraction": 0.9953999046079741,
+        "remainingTerminalFraction": 0.004600095392025845
+      },
+      {
+        "years": 62,
+        "throughYear": 2098,
+        "ev": 366.5570632155543,
+        "retainedTerminalPv": 287.08931529048846,
+        "excludedTerminalPv": 1.2142315840058038,
+        "terminalPvFraction": 0.9957883571077453,
+        "remainingTerminalFraction": 0.004211642892254771
+      },
+      {
+        "years": 63,
+        "throughYear": 2099,
+        "ev": 366.65959832709257,
+        "retainedTerminalPv": 287.1918504020267,
+        "excludedTerminalPv": 1.111696472467536,
+        "terminalPvFraction": 0.99614400695198,
+        "remainingTerminalFraction": 0.003855993048019924
+      },
+      {
+        "years": 64,
+        "throughYear": 2100,
+        "ev": 366.75347491810095,
+        "retainedTerminalPv": 287.2857269930351,
+        "excludedTerminalPv": 1.0178198814591666,
+        "terminalPvFraction": 0.9964696241427018,
+        "remainingTerminalFraction": 0.003530375857298242
+      },
+      {
+        "years": 65,
+        "throughYear": 2101,
+        "ev": 366.83942415253523,
+        "retainedTerminalPv": 287.3716762274694,
+        "excludedTerminalPv": 0.9318706470248371,
+        "terminalPvFraction": 0.9967677447706513,
+        "remainingTerminalFraction": 0.0032322552293486133
+      },
+      {
+        "years": 66,
+        "throughYear": 2102,
+        "ev": 366.9181154516174,
+        "retainedTerminalPv": 287.45036752655153,
+        "excludedTerminalPv": 0.85317934794274,
+        "terminalPvFraction": 0.9970406907677963,
+        "remainingTerminalFraction": 0.00295930923220362
+      },
+      {
+        "years": 67,
+        "throughYear": 2103,
+        "ev": 366.99016170766583,
+        "retainedTerminalPv": 287.5224137826,
+        "excludedTerminalPv": 0.7811330918942414,
+        "terminalPvFraction": 0.9972905879918491,
+        "remainingTerminalFraction": 0.002709412008150868
+      },
+      {
+        "years": 68,
+        "throughYear": 2104,
+        "ev": 367.05612405764805,
+        "retainedTerminalPv": 287.5883761325822,
+        "excludedTerminalPv": 0.7151707419120612,
+        "terminalPvFraction": 0.9975193827836485,
+        "remainingTerminalFraction": 0.002480617216351462
+      },
+      {
+        "years": 69,
+        "throughYear": 2105,
+        "ev": 367.11651625363174,
+        "retainedTerminalPv": 287.6487683285659,
+        "excludedTerminalPv": 0.654778545928376,
+        "terminalPvFraction": 0.9977288571263626,
+        "remainingTerminalFraction": 0.0022711428736373386
+      },
+      {
+        "years": 70,
+        "throughYear": 2106,
+        "ev": 367.1718086641768,
+        "retainedTerminalPv": 287.70406073911096,
+        "excludedTerminalPv": 0.5994861353833133,
+        "terminalPvFraction": 0.9979206425245809,
+        "remainingTerminalFraction": 0.0020793574754190748
+      },
+      {
+        "years": 71,
+        "throughYear": 2107,
+        "ev": 367.2224319378314,
+        "retainedTerminalPv": 287.75468401276555,
+        "excludedTerminalPv": 0.5488628617287225,
+        "terminalPvFraction": 0.9980962327113941,
+        "remainingTerminalFraction": 0.001903767288605909
+      },
+      {
+        "years": 72,
+        "throughYear": 2108,
+        "ev": 367.2687803572663,
+        "retainedTerminalPv": 287.80103243220043,
+        "excludedTerminalPv": 0.5025144422938522,
+        "terminalPvFraction": 0.998256995282432,
+        "remainingTerminalFraction": 0.0017430047175680753
+      },
+      {
+        "years": 73,
+        "throughYear": 2109,
+        "ev": 367.3112149101711,
+        "retainedTerminalPv": 287.84346698510524,
+        "excludedTerminalPv": 0.46007988938903815,
+        "terminalPvFraction": 0.998404182347471,
+        "remainingTerminalFraction": 0.0015958176525289938
+      },
+      {
+        "years": 74,
+        "throughYear": 2110,
+        "ev": 367.3500661008306,
+        "retainedTerminalPv": 287.88231817576474,
+        "excludedTerminalPv": 0.42122869872951946,
+        "terminalPvFraction": 0.9985389402825735,
+        "remainingTerminalFraction": 0.0014610597174265457
+      },
+      {
+        "years": 75,
+        "throughYear": 2111,
+        "ev": 367.3856365242789,
+        "retainedTerminalPv": 287.91788859921303,
+        "excludedTerminalPv": 0.385658275281249,
+        "terminalPvFraction": 0.9986623186587117,
+        "remainingTerminalFraction": 0.0013376813412883043
+      },
+      {
+        "years": 76,
+        "throughYear": 2112,
+        "ev": 367.41820322308035,
+        "retainedTerminalPv": 287.9504552980145,
+        "excludedTerminalPv": 0.35309157647972134,
+        "terminalPvFraction": 0.9987752784164204,
+        "remainingTerminalFraction": 0.0012247215835795144
+      },
+      {
+        "years": 77,
+        "throughYear": 2113,
+        "ev": 367.4480198450942,
+        "retainedTerminalPv": 287.9802719200284,
+        "excludedTerminalPv": 0.323274954465878,
+        "terminalPvFraction": 0.998878699350145,
+        "remainingTerminalFraction": 0.0011213006498550213
+      },
+      {
+        "years": 78,
+        "throughYear": 2114,
+        "ev": 367.4753186190269,
+        "retainedTerminalPv": 288.00757069396104,
+        "excludedTerminalPv": 0.2959761805332039,
+        "terminalPvFraction": 0.9989733869605771,
+        "remainingTerminalFraction": 0.0010266130394228196
+      },
+      {
+        "years": 79,
+        "throughYear": 2115,
+        "ev": 367.5003121631608,
+        "retainedTerminalPv": 288.03256423809495,
+        "excludedTerminalPv": 0.27098263639928893,
+        "terminalPvFraction": 0.9990600787283507,
+        "remainingTerminalFraction": 0.0009399212716493373
+      },
+      {
+        "years": 80,
+        "throughYear": 2116,
+        "ev": 367.52319514134564,
+        "retainedTerminalPv": 288.0554472162798,
+        "excludedTerminalPv": 0.24809965821446017,
+        "terminalPvFraction": 0.9991394498579566,
+        "remainingTerminalFraction": 0.0008605501420433934
+      },
+      {
+        "years": 81,
+        "throughYear": 2117,
+        "ev": 367.5441457791504,
+        "retainedTerminalPv": 288.0763978540846,
+        "excludedTerminalPv": 0.22714902040968354,
+        "terminalPvFraction": 0.9992121185366181,
+        "remainingTerminalFraction": 0.0007878814633819513
+      },
+      {
+        "years": 82,
+        "throughYear": 2118,
+        "ev": 367.563327251985,
+        "retainedTerminalPv": 288.09557932691916,
+        "excludedTerminalPv": 0.2079675475750879,
+        "terminalPvFraction": 0.9992786507490814,
+        "remainingTerminalFraction": 0.0007213492509185861
+      },
+      {
+        "years": 83,
+        "throughYear": 2119,
+        "ev": 367.58088895600247,
+        "retainedTerminalPv": 288.1131410309366,
+        "excludedTerminalPv": 0.19040584355763607,
+        "terminalPvFraction": 0.9993395646858256,
+        "remainingTerminalFraction": 0.0006604353141743501
+      },
+      {
+        "years": 84,
+        "throughYear": 2120,
+        "ev": 367.5969676716807,
+        "retainedTerminalPv": 288.12921974661487,
+        "excludedTerminalPv": 0.17432712787943574,
+        "terminalPvFraction": 0.9993953347790226,
+        "remainingTerminalFraction": 0.0006046652209774051
+      },
+      {
+        "years": 85,
+        "throughYear": 2121,
+        "ev": 367.61168862914604,
+        "retainedTerminalPv": 288.1439407040802,
+        "excludedTerminalPv": 0.15960617041406117,
+        "terminalPvFraction": 0.9994463953976829,
+        "remainingTerminalFraction": 0.0005536046023170909
+      },
+      {
+        "years": 86,
+        "throughYear": 2122,
+        "ev": 367.6251664835366,
+        "retainedTerminalPv": 288.15741855847074,
+        "excludedTerminalPv": 0.14612831602354048,
+        "terminalPvFraction": 0.9994931442307675,
+        "remainingTerminalFraction": 0.0005068557692325367
+      },
+      {
+        "years": 87,
+        "throughYear": 2123,
+        "ev": 367.6375062080008,
+        "retainedTerminalPv": 288.16975828293494,
+        "excludedTerminalPv": 0.13378859155933032,
+        "terminalPvFraction": 0.9995359453846138,
+        "remainingTerminalFraction": 0.0004640546153862333
+      },
+      {
+        "years": 88,
+        "throughYear": 2124,
+        "ev": 367.648803911288,
+        "retainedTerminalPv": 288.18105598622213,
+        "excludedTerminalPv": 0.122490888272098,
+        "terminalPvFraction": 0.9995751322188019,
+        "remainingTerminalFraction": 0.00042486778119806256
+      },
+      {
+        "years": 89,
+        "throughYear": 2125,
+        "ev": 367.65914758629765,
+        "retainedTerminalPv": 288.1913996612318,
+        "excludedTerminalPv": 0.11214721326245418,
+        "terminalPvFraction": 0.9996110099425476,
+        "remainingTerminalFraction": 0.0003889900574524484
+      },
+      {
+        "years": 90,
+        "throughYear": 2126,
+        "ev": 367.6686177954176,
+        "retainedTerminalPv": 288.20086987035177,
+        "excludedTerminalPv": 0.10267700414251361,
+        "terminalPvFraction": 0.9996438579918435,
+        "remainingTerminalFraction": 0.00035614200815646394
+      },
+      {
+        "years": 91,
+        "throughYear": 2127,
+        "ev": 367.6772882979896,
+        "retainedTerminalPv": 288.20954037292375,
+        "excludedTerminalPv": 0.09400650157047907,
+        "terminalPvFraction": 0.9996739322058656,
+        "remainingTerminalFraction": 0.0003260677941343623
+      },
+      {
+        "years": 92,
+        "throughYear": 2128,
+        "ev": 367.6852266247889,
+        "retainedTerminalPv": 288.2174786997231,
+        "excludedTerminalPv": 0.08606817477119427,
+        "terminalPvFraction": 0.9997014668195925,
+        "remainingTerminalFraction": 0.00029853318040746097
+      },
+      {
+        "years": 93,
+        "throughYear": 2129,
+        "ev": 367.6924946039918,
+        "retainedTerminalPv": 288.22474667892595,
+        "excludedTerminalPv": 0.07880019556829336,
+        "terminalPvFraction": 0.9997266762881603,
+        "remainingTerminalFraction": 0.0002733237118397196
+      },
+      {
+        "years": 94,
+        "throughYear": 2130,
+        "ev": 367.6991488427287,
+        "retainedTerminalPv": 288.2314009176628,
+        "excludedTerminalPv": 0.07214595683141521,
+        "terminalPvFraction": 0.9997497569571601,
+        "remainingTerminalFraction": 0.0002502430428399209
+      },
+      {
+        "years": 95,
+        "throughYear": 2131,
+        "ev": 367.70524116797225,
+        "retainedTerminalPv": 288.2374932429064,
+        "excludedTerminalPv": 0.06605363158787354,
+        "terminalPvFraction": 0.9997708885918888,
+        "remainingTerminalFraction": 0.0002291114081112167
+      },
+      {
+        "years": 96,
+        "throughYear": 2132,
+        "ev": 367.71081903019524,
+        "retainedTerminalPv": 288.2430711051294,
+        "excludedTerminalPv": 0.06047576936489752,
+        "terminalPvFraction": 0.9997902357774626,
+        "remainingTerminalFraction": 0.00020976422253738048
+      },
+      {
+        "years": 97,
+        "throughYear": 2133,
+        "ev": 367.71592587294157,
+        "retainedTerminalPv": 288.2481779478757,
+        "excludedTerminalPv": 0.055368926618528456,
+        "terminalPvFraction": 0.9998079492006992,
+        "remainingTerminalFraction": 0.00019205079930089078
+      },
+      {
+        "years": 98,
+        "throughYear": 2134,
+        "ev": 367.72060147118935,
+        "retainedTerminalPv": 288.2528535461235,
+        "excludedTerminalPv": 0.050693328370741565,
+        "terminalPvFraction": 0.9998241668237512,
+        "remainingTerminalFraction": 0.00017583317624881542
+      },
+      {
+        "years": 99,
+        "throughYear": 2135,
+        "ev": 367.7248822411407,
+        "retainedTerminalPv": 288.2571343160748,
+        "excludedTerminalPv": 0.04641255841943447,
+        "terminalPvFraction": 0.9998390149586344,
+        "remainingTerminalFraction": 0.000160985041365582
+      },
+      {
+        "years": 100,
+        "throughYear": 2136,
+        "ev": 367.72880152385164,
+        "retainedTerminalPv": 288.2610535987858,
+        "excludedTerminalPv": 0.042493275708460045,
+        "terminalPvFraction": 0.9998526092510164,
+        "remainingTerminalFraction": 0.00014739074898359968
+      }
+    ],
+    "capture": [
+      {
+        "fraction": 0.5,
+        "status": "finite",
+        "years": 8,
+        "throughYear": 2044,
+        "reason": null
+      },
+      {
+        "fraction": 0.75,
+        "status": "finite",
+        "years": 16,
+        "throughYear": 2052,
+        "reason": null
+      },
+      {
+        "fraction": 0.9,
+        "status": "finite",
+        "years": 27,
+        "throughYear": 2063,
+        "reason": null
+      },
+      {
+        "fraction": 0.95,
+        "status": "finite",
+        "years": 34,
+        "throughYear": 2070,
+        "reason": null
+      }
+    ],
+    "targetRequirement": {
+      "status": "finite",
+      "years": 11,
+      "throughYear": 2047,
+      "ev": 258.53129008901664,
+      "previousEv": 248.4557556739665,
+      "withinChart": true,
+      "reason": null
+    }
+  },
+  "methodology": {
+    "units": "USD billions",
+    "explicitEndYear": 2036,
+    "continuationStartYear": 2037,
+    "formula": "EV_N = explicit PV + terminal PV × (1 − ((1 + g) / (1 + WACC))^N)",
+    "cutoff": "Retain N annual terminal cash flows after 2036, with zero residual value after the selected cutoff.",
+    "timing": "The explicit forecast retains the engine’s actual-day discounting. The continuation lens uses equal annual periods under the existing Gordon-growth terminal convention.",
+    "target": "The target is operating enterprise value. Requirements are conditional whole-year calculations, bounded to 10,000 years; the visible chart ends at 100 years.",
+    "precision": "Targets and capture thresholds near numerical boundaries return precision_limit with null years. Target comparisons use retained PV or a compensated perpetual gap, with a conservative 32 × Number.EPSILON monetary component band; capture uses 32 × Number.EPSILON × max(1, abs(N × log(q))). Candidate/prior years and the search cap are checked. This is a numerical policy, not an economic confidence interval.",
+    "limits": "This is a deterministic stress lens, not a company lifespan, survival probability, investor return, financing equity price or liquidation model. The transported hypothetical bridge does not affect horizon EV.",
+    "references": [
+      {
+        "title": "Valuing Young, Start-up and Growth Companies",
+        "publisher": "Aswath Damodaran · NYU Stern",
+        "date": "May 2009",
+        "url": "https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/younggrowth.pdf",
+        "detail": "Printed pages 38–41 discuss finite continuation and a growing annuity with no salvage."
+      },
+      {
+        "title": "Free Cash Flow Valuation",
+        "publisher": "CFA Institute",
+        "date": "2026 curriculum",
+        "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/free-cash-flow-valuation",
+        "detail": "FCFF discounted at WACC, terminal value, and the distinction between operating and equity value."
+      }
+    ]
+  }
+}

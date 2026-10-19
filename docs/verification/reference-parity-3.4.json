@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "valid_cases": 36,
+  "invalid_cases": 73,
+  "valuation_date": "2026-10-18",
+  "fixture_ev": 200.31471864537804,
+  "relative_tolerance": 1e-10,
+  "absolute_tolerance_usd_b": 1e-08
+}

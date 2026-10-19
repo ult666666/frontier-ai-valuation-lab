@@ -1,8 +1,101 @@
 # Release verification
 
-This record separates numerical agreement, application behavior, print review and deployment consistency. A passing check establishes the behavior it exercises; it does not establish the completeness of private-company information or the accuracy of a forecast. The current v3.3 record appears first. The prior v3.2 record, including its older deployment history, is retained below with its original scope.
+This record separates numerical agreement, application behavior, print review and deployment consistency. A passing check establishes the behavior it exercises; it does not establish the completeness of private-company information or the accuracy of a forecast. The current **v3.4 local verification** appears first. The v3.3 and v3.2 sections below are historical records with their original scope; their test totals and deployment history are not current v3.4 results.
 
-## Version 3.3 local verification
+## Version 3.4 local verification
+
+Application **3.4.0** passed the local checks collected on **19 October 2026**. Value Horizon adds a finite-continuation lens, strict exact snapshots, standalone outputs and a shared browser/API calculation. Financial engine **3.0.0**, the **18 October 2026** valuation date and the frozen research cutoff **2026-10-18T09:22:26-07:00** remain unchanged. The engine, presets, research register, original workbook and original financial-review PDF match their reviewed v3.3 bytes. The [release record](verification/release-3.4-local.json) binds the current implementation and evidence to file-content SHA-256 hashes.
+
+These are **local** results. They do not assert a production deployment, a successful native desktop copy or native Microsoft Excel recalculation. Later publication and production verification require a separately dated record.
+
+| Verification layer | Current result | Evidence |
+| --- | ---: | --- |
+| Node financial, API, state, transport, brief and release tests | **198 passed; 0 failed** | [Named gates, logs and source hashes](verification/release-3.4-local.json) |
+| Static staging build | **Passed; six projections checked** | [Build record](verification/release-3.4-local.json) |
+| Four local Chromium suites | **384 assertions passed** | Suite reports below |
+| Local HTTP consistency probe | **73 of 73 requests passed** | [HTTP report](verification/http-local-3.4.json) |
+| Separate Python forward model | **36 valid and 73 invalid cases passed** | [Forward parity](verification/reference-parity-3.4.json) |
+| Separate Python attribution and target calculations | **1,002 numerical comparisons passed** | [Thesis reference](verification/thesis-reference-3.4.json) |
+| Separate Python Value Horizon reference | **39 ordinary scenarios; 165 total requests; 19,974 numerical comparisons; 8 Decimal boundary checks** | [Horizon reference](verification/horizon-reference-3.4.json) |
+| Scoped AI-assisted engineering review | **Three findings closed; none confirmed open in scope** | [Review record](verification/independent-review-3.4.json) |
+| Final printable examples | **Horizon: 2 pages; Thesis: 3 pages; Research: 4 pages** | [Print record and artifact hashes](verification/release-3.4-local.json) |
+| Versioned desktop archive | **30 members; 29 manifest-listed files verified** | [Archive receipt](verification/desktop-archive-3.4.json), [package verification](verification/desktop-verification-3.4.json) |
+
+### Value Horizon arithmetic and precision
+
+The [Horizon method](VALUE_HORIZON.md) retains the complete explicit forecast through 2036 and the first selected annual continuation cash flows. It assigns zero later cash flow and zero residual after the cutoff. The original perpetual operating EV remains a separate reference. Explicit cash flows retain the existing actual-day discounting; continuation retains the model's equal-annual-period terminal convention.
+
+The independent reference uses the separate Python FCFF engine, compensated term-by-term annual continuation sums and a linear whole-year search. The ordinary coverage comprises all six presets, nine named arithmetic/boundary cases and 24 seeded valid cases. The final run made **159 ordinary requests**; six additional precision fixtures bring the total to **165 requests**. It checked **3,939 curve points** and **19,974 numerical comparisons**, with absolute tolerance `1e-8` USD billions and relative tolerance `1e-10`. [Complete reference receipt](verification/horizon-reference-3.4.json).
+
+The report records the scale of its errors instead of presenting a single small-dollar maximum. Its largest absolute difference was **$1,536B** on a deliberately extreme near-singularity excluded tail of approximately **$4.14 × 10¹⁸B**. The maximum relative error, normalized by at least one, was approximately **2.01 × 10⁻¹⁴**. This synthetic stress case passed the declared relative tolerance; it is not a company valuation or a statement of dollar accuracy at every scale. Ordinary preset values remain unchanged. [Error magnitudes and their fixture context](verification/horizon-reference-3.4.json).
+
+Near a whole-year boundary, rounding a total EV can invent the first year reaching a target. The reviewed fixes compare retained PV with the remaining shortfall early in the curve, and the excluded tail with a compensated target gap near perpetuity. Conservative component-scaled guards return **`precision_limit`** when the year cannot be reliably reported at the implementation's floating-point precision. Capture thresholds and both sides of the 10,000-year search cap receive corresponding checks. This is a **conservative numerical policy, not a formal interval-arithmetic proof** or a claim that an exact-real-number solution does not exist.
+
+The **eight 100-digit Decimal boundary checks** use exact binary input rates and the existing rounded explicit/terminal PV components to isolate the Horizon calculation. They independently identify the two target regression years as **414** and **69**, and the rounded 75% capture regression as **4**. Production now returns the explicit precision state for those cases. The fixtures also cover both sides of the search cap and a target copied from a rounded curve point. They supplement the ordinary reference rather than validating company forecasts. [Decimal evidence](verification/horizon-reference-3.4.json) and [separate review recheck](verification/independent-review-3.4.json).
+
+The existing forward engine again passed **36 valid and 73 invalid cases**. The Thesis reference again passed **1,002 comparisons**, using full replacement-order enumeration and affine tax-segment roots. Browser/server agreement is a separate deployment-consistency check because production deliberately shares its engine; it is not the independent arithmetic reference. [Forward parity](verification/reference-parity-3.4.json), [Thesis reference](verification/thesis-reference-3.4.json).
+
+### Browser behavior, exact transport and integration
+
+The **384** current browser assertions are the sum of the four runs below. They are separate from the 198 Node tests and 73 HTTP requests. Earlier releases' larger or smaller browser totals remain historical; those assertions are not added to this total.
+
+| Current local suite | Passed assertions | Recorded checklist |
+| --- | ---: | --- |
+| Value Horizon | 148 | [Horizon browser](verification/horizon-browser-3.4.json) |
+| Connected research journey | 94 | [Journey](verification/journey-browser-3.4.json) |
+| Research Casebook | 85 | [Casebook](verification/casebook-browser-3.4.json) |
+| Workbench regression | 57 | [Workbench](verification/workbench-browser-3.4.json) |
+| **Total** | **384** | |
+
+Horizon coverage includes all company/preset choices, zero and 100-year cutoffs, target application, out-of-chart and search-bound outcomes, numerical precision states, negative and extreme valid values, invalid-input clearing, exact custom assumptions and hypothetical-bridge transport, script-free HTML and JSON exports, malformed-link preflight, contextual evidence and focus restoration. Responsive checks cover **320, 390, 768 and 1440px**. Full-result verification rejects a mismatch in an unselected curve point and prevents an old in-flight response from marking changed inputs as verified. An unavailable API leaves the current valid browser calculation available. [Horizon checklist](verification/horizon-browser-3.4.json).
+
+The integration runs retain the exact Model/Thesis return context, saved-research behavior and the same six navigation destinations: Overview, Model, Thesis Lab, Value Horizon, Casebook and Evidence. All four current suites recorded no uncaught browser runtime errors. The journey harness reuses a legacy-named local output directory; its copied v3.4 report includes the current six-navigation assertions. These automated Chromium runs and scoped visual reviews do not certify every browser, physical device, assistive technology or simultaneous-editing pattern. [Aggregate suite scope and harness hashes](verification/release-3.4-local.json).
+
+Horizon links preserve all thirteen operating inputs, optional bridge, years and target without writing display rounding back into the snapshot. The bridge is transported but excluded from operating EV. Horizon JSON remains a separate `frontier-value-horizon` analysis format; the Casebook continues to capture scenarios and thesis comparisons. Complete preflight validation happens before a shared snapshot replaces current work. [Method and transport contract](VALUE_HORIZON.md), [workspace guide](RESEARCH_WORKSPACE.md).
+
+### Findings closed in the scoped review
+
+The [independent review record](verification/independent-review-3.4.json) documents a separate AI-assisted engineering reviewer, concrete reproducers, numerical rechecks and reviewed source hashes. It is not an external financial audit or full-application certification.
+
+| Finding | Verified resolution |
+| --- | --- |
+| Target/capture rounding could overstate the first whole-year result | Stable retained/tail comparisons and conservative precision states suppress unsupported year claims; ordinary presets and a large-terminal-PV ordinary target remain resolvable. |
+| Hiding responsive line breaks joined adjacent words | Preserve separating whitespace; mobile headings and introductory sentences remain readable. |
+| An invalid horizon followed by a case change retained a prior caption | Clear the capture, period, reconciliation and assumption captions with the numeric result, and hide the target legend while invalid. |
+
+No additional confirmed finding remains open within that review scope. The separate Horizon print-layout correction is recorded with the printed artifacts below rather than counted as a fourth engineering-review finding.
+
+### Printed examples, archive and preserved financial artifacts
+
+The integration owner rendered and visually inspected every page of the final **two-page Horizon**, **three-page Thesis comparison** and **four-page Research brief**. The Horizon print layout was adjusted to remove a short overflow page while keeping the complete worked analysis. The reviewed examples have no clipping, overlap or orphan overflow pages. These counts describe the supplied examples; different user content can require more pages. [Print record and exact PDF hashes](verification/release-3.4-local.json).
+
+The [Value Horizon package ZIP](../public/downloads/Frontier_AI_Value_Horizon_Package.zip) was built and verified locally. Its **30 members** comprise **29 manifest-listed files plus `SHA256_manifest.json`**. The new Horizon HTML/PDF/JSON, preview, methodology, opening pages and shortcuts accompany the previous workbook and research downloads. Archive CRC and all listed file hashes passed. [Archive receipt](verification/desktop-archive-3.4.json).
+
+The desktop builder was also exercised in a temporary directory. It copied all old and new downloads exactly, refused an existing destination without changing it, retained an earlier handoff, and rejected deliberately altered bytes, a wrong shortcut with a matching hash and a broken local download link. Its `--verify` mode performs read-only package checks without a network request. **Direct delivery to the user's native desktop remains unconfirmed**: Remote Desktop Commander read-only probes did not complete. The verified archive and temporary package do not imply a native copy or launch. [Package verification](verification/desktop-verification-3.4.json), [desktop guide](DESKTOP_GUIDE.md).
+
+The original five-sheet workbook and nine-page financial-review PDF retain their reviewed bytes. Their earlier **2,058 numerical comparisons**, **169 invalid-input/selector cases** and **435 formulas** remain historical artifact-runtime evidence; they are not new v3.4 checks. No native Microsoft Excel recalculation or chart-display result is added. The financial engine, presets and company research register also retain their frozen hashes. [Preserved snapshot](verification/release-3.4-local.json), [historical workbook checks](verification/workbook-checks.json), [workbook XML limits](verification/workbook-xml.json).
+
+The company evidence remains the original 18 October snapshot: **21 facts**, **19 sources** and contextual mappings for **13 inputs per company**. Horizon method references were reviewed separately on 19 October. That method research does not refresh the company facts or establish the future growth, margin, WACC, returns or continuation period. Scenario labels and horizons carry no probability interpretation; operating EV remains distinct from financing equity value.
+
+### HTTP scope, source binding and repeatable gates
+
+The final local probe passed **57 asset requests**, **one health request**, **seven complete API-response comparisons** and **eight rejection checks**, totaling **73 requests**. It compared exact asset bytes and complete canonical JSON for attribution, landscape and five Horizon cases, including precision outcomes. All source hashes remained unchanged during the run and matched the collected working tree. The ordinary Node suite covers the other financial actions separately. This was local HTTP: the retained TLS-verification configuration flag does not establish that TLS was used. [HTTP receipt](verification/http-local-3.4.json).
+
+The principal repeatable gates are:
+
+```sh
+npm test
+npm run build
+python3 -B tests/reference_parity.py
+python3 -B scripts/check_thesis_reference.py --output /tmp/thesis-reference.json
+python3 -B scripts/check_horizon_reference.py --output /tmp/horizon-reference.json
+```
+
+GitHub Actions is configured to run the new independent Horizon/precision-boundary verifier alongside the existing numerical checks and build. Configuration is not a claim that a hosted run has completed. Optional browser harnesses and the HTTP verifier are identified in the [release record](verification/release-3.4-local.json), with their current source hashes. Copied report paths are repository-relative. Evidence collection does not represent another suite run, and the aggregate receipt excludes itself from its receipt-hash list.
+
+## Version 3.3 historical local verification
+
+The following section is retained from application **3.3.0**. References to “current” within it describe that historical release. Its counts, source hashes and scope are preserved separately from the v3.4 results above.
 
 Application **3.3.0** passed the local release checks recorded on **19 October 2026**. It retains financial engine **3.0.0**, the **18 October 2026** valuation date and the frozen research cutoff **2026-10-18T09:22:26-07:00**. The model, presets, research register, original workbook and original financial-review PDF match the reviewed v3.2 bytes. The [release record](verification/release-3.3-local.json) identifies the reviewed working-tree files and preserved artifacts with SHA-256 hashes; it is a local verification record rather than a production deployment claim.
 
@@ -92,7 +185,7 @@ The browser harness names and SHA-256 hashes are listed per suite in the [releas
 
 ## Version 3.2 historical verification
 
-The following retained record was prepared for application **3.2.0**. Its counts are the results of that release, and its version 3.0 deployment subsection is older deployment history. Current v3.3 counts and scope appear above; historical verification files have not been overwritten.
+The following retained record was prepared for application **3.2.0**. Its counts are the results of that release, and its version 3.0 deployment subsection is older deployment history. Current v3.4 verification and the historical v3.3 record appear above; historical verification files have not been overwritten.
 
 This record distinguishes calculation checks, application interaction and deployment checks. Application 3.2.0 uses the unchanged financial engine 3.0.0 and 18 October 2026 research snapshot. A passing test establishes its stated behavior, not the completeness of private-company information.
 

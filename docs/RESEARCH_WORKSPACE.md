@@ -1,6 +1,18 @@
 # Research Workspace
 
-Application 3.3 connects the existing valuation tools with a complete research record. The Model holds one editable operating forecast. Thesis Lab compares two complete cases of the same business. The Casebook captures either analysis with its rationale and chosen evidence. Navigation presents the same five destinations throughout: Overview, Model, Thesis Lab, Casebook and Evidence.
+Application 3.4.0 connects an operating forecast, a valuation question and the evidence behind a research argument. The Model holds one editable operating forecast. Thesis Lab compares two complete cases of the same business. Value Horizon asks how much of one case's value depends on cash flows after a chosen cutoff. The Casebook captures Model scenarios or Thesis Lab comparisons with their rationale and chosen evidence. Navigation presents the same six destinations throughout: **Overview, Model, Thesis Lab, Value Horizon, Casebook and Evidence**.
+
+## Begin with Value Horizon
+
+Open [Value Horizon](https://frontier-ai-valuation-lab.vercel.app/horizon.html) and ask **“How much future is in the value?”** The selected company and Bear/Base/Bull preset supply all thirteen operating assumptions. Choosing 0–100 whole years after 2036 changes only the continuation retained: the complete explicit forecast stays intact, and no cash flow or residual value is included after the selected cutoff.
+
+The page separates the finite operating EV, unchanged perpetual reference and excluded later PV. The reconciliation shows explicit forecast PV plus retained continuation PV. Capture milestones identify how many years retain a specified fraction of terminal PV; a separate target input asks when a positive operating EV is first reached. Neither describes the probability that the cash flows occur. Requirements beyond the visible chart, perpetuity, unreachable targets, bounded search and numerical precision limits are identified explicitly. See the [financial method and timing](VALUE_HORIZON.md).
+
+From the Model, **Open Value Horizon** opens the exact current operating case in a new tab, with an initial ten-year continuation and illustrative $250B target. A visible notice explains these starting settings. From Value Horizon, **Open complete model** retains the complete assumptions and hypothetical bridge. The bridge travels with the case but never enters Horizon operating EV. Horizon years and target belong to the Horizon analysis, separate from the Model's fixed 2036 explicit forecast.
+
+**Copy exact link** preserves the current case, continuation years and target. The standalone HTML brief and analysis JSON recalculate those inputs, include the complete curve and expose an exact reopening link. The downloadable worked example uses Anthropic Base, ten continuation years and the illustrative $250B target. Horizon JSON has its own `frontier-value-horizon` format; it is not an importable Casebook record. To preserve a Horizon analysis, keep its link or export. To write a saved argument about an operating case, open the case in the Model and save that scenario to Casebook.
+
+**Verify through the API** submits only the thirteen operating inputs, continuation years and target using the `horizon` action. Verification compares the full curve, selected value, capture milestones and target requirement, together with the application/model/date metadata. Editing inputs invalidates an earlier verification and cancels an in-flight request. Invalid inputs clear the analysis and disable exports until corrected. Server agreement is a deployment-consistency check; the [separate reference calculation](VALUE_HORIZON.md#verification) supplies independent arithmetic checks.
 
 ## A complete analysis, from question to record
 
@@ -31,6 +43,8 @@ Editing notes never rewrites a captured financial token. To explore a different 
 | Output | What it carries | How to use it |
 | --- | --- | --- |
 | Calculation link | Company, exact numerical assumptions, model/date, optional bridge; comparisons also include both cases, axes and target | Reopen the calculation without a saved account |
+| Horizon link / analysis JSON | Exact operating case, continuation years, optional target and model/date; JSON also includes recalculated results and methodology | Reopen with the Horizon link; inspect or archive the separate analysis JSON |
+| Value Horizon HTML / PDF | Recalculated curve, value reconciliation, target/capture outcomes, complete inputs, explicit forecast and reopening link | Read offline, share the worked example, or print the script-free HTML |
 | Casebook JSON | Complete captured calculations, titles, timestamps, notes and selected source IDs | Export all entries or one analysis; preview and merge on another browser/device |
 | Research brief HTML | Recalculated case context, complete inputs, analyst reasoning, selected source dates/limits and an exact reopening link | Read offline or print to PDF; contains no scripts |
 | Worked example PDF/JSON | Three labeled illustrative analyses in JSON, with one complete research brief | Inspect the workflow or import the examples explicitly |
@@ -61,9 +75,11 @@ Migration is explicit. The Casebook detects the earlier `frontier-ai-valuation-l
 
 ## Implementation and verification
 
-The implementation adds no production dependency. Pure modules handle the bounded casebook contract, browser persistence, evidence catalog, complete handoffs and standalone brief rendering. Ordinary ES modules and native HTML controls render the interface. The same Node/Vercel API continues to provide all eight financial actions.
+The implementation adds no production dependency. Pure modules handle the bounded casebook contract, browser persistence, evidence catalog, complete handoffs and standalone brief rendering. Value Horizon adds its own pure financial lens and strict snapshot/brief modules while retaining the original financial engine and sharing codecs. Ordinary ES modules and native HTML controls render the interface. The same Node/Vercel API adds the `horizon` action alongside the existing financial actions.
 
 New tests cover exact numerical preservation, conflicting IDs, malformed/oversized imports, unavailable storage, quota failures, explicit migration, escaped hostile text, full comparison return and exact target application. Real-browser checks exercise the connected workflow, source focus, contextual dialogs, keyboard operation, responsive layouts and API verification. The [verification record](VERIFICATION.md) states measured coverage and limits.
+
+Horizon checks cover annual continuation summation, signed and zero terminal values, exact snapshots and exports, whole-year boundaries and precision limits, complete API results, invalid inputs and stale verification. The independent Python verifier uses the separate FCFF engine and annual summation; high-precision boundary checks distinguish close floating-point cases. Run it with `python3 -B scripts/check_horizon_reference.py --output /tmp/horizon-reference.json`. Verification receipts identify the tested source and tolerances; company forecasts and source completeness remain outside an arithmetic check.
 
 ## Design references
 

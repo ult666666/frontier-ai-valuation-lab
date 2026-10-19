@@ -21,15 +21,22 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = (
     "index.html", "app.js", "styles.css", "experience.js", "experience.css",
     "thesis.html", "thesis.js", "thesis.css",
+    "horizon.html", "horizon.js", "horizon.css",
     "casebook.html", "casebook.js", "casebook.css", "shell.js", "shell.css",
     "evidence-context.js", "evidence-context.css", "report.html", "portable.css",
     "lib/thesis.js", "lib/thesis-share.js", "lib/thesis-brief.js",
+    "lib/horizon.js", "lib/horizon-share.js", "lib/horizon-brief.js",
     "lib/model.js", "lib/release.js", "lib/share.js", "lib/analytics.js",
     "lib/briefing.js", "lib/journey.js", "lib/casebook.js",
     "lib/casebook-store.js", "lib/casebook-brief.js", "lib/evidence.js",
     "data/presets.json", "data/research.json", "data/current-results.json",
     "data/evidence.json", "assets/mark.svg", "assets/social-preview.png",
     "assets/thesis-preview.png", "assets/casebook-preview.png",
+    "assets/horizon-preview.png",
+    "downloads/Frontier_AI_Value_Horizon.html",
+    "downloads/Frontier_AI_Value_Horizon.json",
+    "downloads/Frontier_AI_Value_Horizon.pdf",
+    "downloads/Frontier_AI_Value_Horizon_Package.zip",
     "downloads/Frontier_AI_Research_Casebook.json",
     "downloads/Frontier_AI_Research_Brief.html",
     "downloads/Frontier_AI_Research_Brief.pdf",
@@ -40,6 +47,7 @@ ASSETS = (
 NODE = r"""
 import {readFileSync} from 'node:fs';
 import {compareTheses,valuationLandscape} from './public/lib/thesis.js';
+import {valueHorizon} from './public/lib/horizon.js';
 import {MODEL_VERSION,VALUATION_DATE} from './public/lib/model.js';
 import {APP_VERSION} from './public/lib/release.js';
 if(process.versions.node.split('.')[0]!=='24') throw new Error('Node 24 required');
@@ -47,6 +55,7 @@ const meta={appVersion:APP_VERSION,modelVersion:MODEL_VERSION,valuationDate:VALU
 const requests=JSON.parse(readFileSync(0,'utf8'));
 const responses=requests.map(r=>({...meta,result:r.action==='attribute'
   ?compareTheses(r.reference,r.alternative)
+  :r.action==='horizon'?valueHorizon(r.assumptions,{years:r.years,target:r.target})
   :valuationLandscape(r.assumptions,{rates:r.rates,margins:r.margins,target:r.target})}));
 process.stdout.write(JSON.stringify({meta,responses,node:process.version}));
 """
@@ -118,12 +127,19 @@ def main():
         sources = ["public/" + p for p in ASSETS] + ["data/presets.json", "lib/http.js", "scripts/verify_thesis_http.py"]
         before = {p: digest((ROOT / p).read_bytes()) for p in sources}
         report["sourceHashes"] = before
-        cases = json.loads((ROOT / "data/presets.json").read_text())["Anthropic"]
+        presets = json.loads((ROOT / "data/presets.json").read_text())
+        cases = presets["Anthropic"]
         attribute = {"action": "attribute", "reference": cases["Base"], "alternative": cases["Bull"]}
         landscape = {"action": "landscape", "assumptions": cases["Bull"], "rates": [.025, .08, .12, .18],
                      "margins": [0, .1, .3, .6], "target": 1000}
+        horizon = {"action": "horizon", "assumptions": cases["Base"], "years": 10, "target": 250}
+        requests = [attribute, landscape, horizon,
+                    {**horizon, "assumptions": presets["OpenAI"]["Bear"], "years": 0, "target": None},
+                    {**horizon, "target": 367.77129479956005},
+                    {**horizon, "assumptions": {**cases["Base"], "wacc": .5874010519681995, "tg": 0}},
+                    {**horizon, "assumptions": {**cases["Base"], "wacc": .030000000000000006}, "target": 1e12}]
         node = subprocess.run(["node", "--input-type=module", "-e", NODE], cwd=ROOT,
-                              input=encoded([attribute, landscape]), capture_output=True, timeout=30)
+                              input=encoded(requests), capture_output=True, timeout=30)
         if node.returncode:
             raise RuntimeError("Local Node reference failed; exit " + str(node.returncode))
         expected = json.loads(node.stdout)
@@ -133,12 +149,16 @@ def main():
             verify("asset", path, "/" if path == "index.html" else "/" + path, expected=before["public/" + path])
         verify("asset", "explicit index route", "/index.html", expected=before["public/index.html"])
         verify("health", "release metadata", "/api/health", expected={"status": "ok", **expected["meta"]})
-        for body, response in zip((attribute, landscape), expected["responses"]):
-            verify("api", body["action"], "/api/valuation", expected=response, body=body)
+        for index, (body, response) in enumerate(zip(requests, expected["responses"])):
+            verify("api", f"{body['action']} case {index + 1}", "/api/valuation", expected=response, body=body)
         rejected = [("singular endpoint", {**attribute, "reference": {**cases["Base"], "wacc": cases["Base"]["tg"]}}),
                     ("zero target", {**landscape, "target": 0}),
                     ("attribute extra field", {**attribute, "unexpected": True}),
-                    ("landscape extra field", {**landscape, "unexpected": True})]
+                    ("landscape extra field", {**landscape, "unexpected": True}),
+                    ("horizon fractional years", {**horizon, "years": 2.5}),
+                    ("horizon years above chart bound", {**horizon, "years": 101}),
+                    ("horizon zero target", {**horizon, "target": 0}),
+                    ("horizon extra field", {**horizon, "bridge": {"cash": 1}})]
         for name, body in rejected:
             verify("rejection", name, "/api/valuation", expected_status=400, body=body)
         report["sourceBinding"] = {"unchangedDuringRun": before == {p: digest((ROOT / p).read_bytes()) for p in sources}}

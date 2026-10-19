@@ -1,0 +1,563 @@
+{
+  "schema": 1,
+  "appVersion": "3.4.0",
+  "modelVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "reviewedAtUtc": "2026-10-19T17:24:24.193842+00:00",
+  "status": "closed_within_review_scope",
+  "reviewType": "AI-assisted engineering review by a separate agent from the new Horizon implementation",
+  "scope": [
+    "Value Horizon arithmetic and date convention",
+    "Strict detached snapshots, URL transport and standalone output boundaries",
+    "New horizon API action and full-result verification invalidation",
+    "Negative/large finite results and selected responsive/invalid-input presentation states"
+  ],
+  "limitations": [
+    "This is an engineering review, not an external audit or a certification of the full existing application.",
+    "No company forecast, financing reference, probability or investment conclusion was independently validated by this review.",
+    "The high-precision boundary checks isolate Horizon arithmetic using exact binary inputs and the existing rounded explicit/terminal PV components; they do not replace the separate forward-model reference.",
+    "Browser/server agreement checks deployment consistency because production shares the same engine.",
+    "Publication, live network availability, desktop execution on the user device, and print-layout review are outside this receipt."
+  ],
+  "findings": [
+    {
+      "id": "HZN-01",
+      "status": "closed",
+      "severity": "medium",
+      "title": "First-whole-year claims at unresolved numerical boundaries",
+      "files": [
+        "public/lib/horizon.js"
+      ],
+      "reproduction": [
+        "Anthropic Base target 367.77129479956005 previously returned 407 years; exact-binary Decimal reference is 414.",
+        "Fast-discount fixture target 19.999341593234046 previously returned 68 years; exact-binary Decimal reference is 69.",
+        "75% capture with g=0 and WACC=0.5874010519681995 previously returned 3 years; exact-binary Decimal reference is 4."
+      ],
+      "resolution": "Stable retained/tail comparisons, compensated target gap and component-scaled uncertainty guards now return precision_limit with no invented year. Capture and search-cap boundaries are also guarded.",
+      "verification": "Reviewer independently reran the two target fixtures, the capture boundary, ordinary presets and an adjacent-rate ordinary target. The full Horizon browser receipt also covers visible precision states."
+    },
+    {
+      "id": "HZN-02",
+      "status": "closed",
+      "severity": "low",
+      "title": "Responsive line breaks joined adjacent words",
+      "files": [
+        "public/horizon.html",
+        "public/horizon.css"
+      ],
+      "reproduction": [
+        "At 390px and 768px, the method heading rendered “An explicit boundaryon continuation.”",
+        "At 390px, the introduction rendered “more.Choose”."
+      ],
+      "resolution": "Whitespace is retained around the responsive breaks.",
+      "verification": "Originally reproduced by the reviewer in Chromium at 390/768px; closure is covered by the final 148-check Horizon browser receipt and source review."
+    },
+    {
+      "id": "HZN-03",
+      "status": "closed",
+      "severity": "low",
+      "title": "Invalid selection retained an earlier case caption",
+      "files": [
+        "public/horizon.js"
+      ],
+      "reproduction": [
+        "Anthropic Base → invalid years 101 → Bull selected: the numeric result cleared but the capture caption still said Through 2063; valid Bull requires Through 2072."
+      ],
+      "resolution": "clearResults resets the capture, period, reconciliation and assumption captions and the target legend alongside the numeric output.",
+      "verification": "Originally reproduced by the reviewer; closure is covered by the final 148-check Horizon browser receipt and direct clearResults review."
+    }
+  ],
+  "independentNumericalRecheck": {
+    "edges": [
+      {
+        "name": "Anthropic Base near perpetuity",
+        "input": {
+          "rev2026": 53.26,
+          "g1": 0.45,
+          "g2": 0.24,
+          "g3": 0.12,
+          "m27": -0.02,
+          "m30": 0.18,
+          "m36": 0.22,
+          "turns": 2.5,
+          "wacc": 0.125,
+          "tg": 0.03,
+          "roic": 0.2,
+          "stub": -3,
+          "tax": 0.25
+        },
+        "target": 367.77129479956005,
+        "explicit": 79.46774792506584,
+        "terminal": 288.30354687449426,
+        "targetRequirement": {
+          "status": "precision_limit",
+          "years": null,
+          "throughYear": null,
+          "ev": null,
+          "previousEv": null,
+          "withinChart": null,
+          "reason": "The target is too close to a numerical valuation boundary to resolve the first whole year at the model’s floating-point precision."
+        },
+        "capture": [
+          {
+            "fraction": 0.5,
+            "status": "finite",
+            "years": 8,
+            "throughYear": 2044,
+            "reason": null
+          },
+          {
+            "fraction": 0.75,
+            "status": "finite",
+            "years": 16,
+            "throughYear": 2052,
+            "reason": null
+          },
+          {
+            "fraction": 0.9,
+            "status": "finite",
+            "years": 27,
+            "throughYear": 2063,
+            "reason": null
+          },
+          {
+            "fraction": 0.95,
+            "status": "finite",
+            "years": 34,
+            "throughYear": 2070,
+            "reason": null
+          }
+        ],
+        "decimalReferenceFirstYear": 414
+      },
+      {
+        "name": "Fast discount near perpetuity",
+        "input": {
+          "rev2026": 100,
+          "g1": 0.04,
+          "g2": 0.04,
+          "g3": 0.04,
+          "m27": 0.2,
+          "m30": 0.2,
+          "m36": 0.2,
+          "turns": 2.5,
+          "wacc": 0.6,
+          "tg": 0,
+          "roic": 0.2,
+          "stub": -3,
+          "tax": 0.25
+        },
+        "target": 19.999341593234046,
+        "explicit": 19.69354035050235,
+        "terminal": 0.30580124273169973,
+        "targetRequirement": {
+          "status": "precision_limit",
+          "years": null,
+          "throughYear": null,
+          "ev": null,
+          "previousEv": null,
+          "withinChart": null,
+          "reason": "The target is too close to a numerical valuation boundary to resolve the first whole year at the model’s floating-point precision."
+        },
+        "capture": [
+          {
+            "fraction": 0.5,
+            "status": "finite",
+            "years": 2,
+            "throughYear": 2038,
+            "reason": null
+          },
+          {
+            "fraction": 0.75,
+            "status": "finite",
+            "years": 3,
+            "throughYear": 2039,
+            "reason": null
+          },
+          {
+            "fraction": 0.9,
+            "status": "finite",
+            "years": 5,
+            "throughYear": 2041,
+            "reason": null
+          },
+          {
+            "fraction": 0.95,
+            "status": "finite",
+            "years": 7,
+            "throughYear": 2043,
+            "reason": null
+          }
+        ],
+        "decimalReferenceFirstYear": 69
+      },
+      {
+        "name": "75 percent capture boundary",
+        "input": {
+          "rev2026": 100,
+          "g1": 0.04,
+          "g2": 0.04,
+          "g3": 0.04,
+          "m27": 0.2,
+          "m30": 0.2,
+          "m36": 0.2,
+          "turns": 2.5,
+          "wacc": 0.5874010519681995,
+          "tg": 0,
+          "roic": 0.2,
+          "stub": -3,
+          "tax": 0.25
+        },
+        "target": null,
+        "explicit": 20.21618979487632,
+        "terminal": 0.33860179718249267,
+        "targetRequirement": null,
+        "capture": [
+          {
+            "fraction": 0.5,
+            "status": "finite",
+            "years": 2,
+            "throughYear": 2038,
+            "reason": null
+          },
+          {
+            "fraction": 0.75,
+            "status": "precision_limit",
+            "years": null,
+            "throughYear": null,
+            "reason": "The capture threshold is too close to a whole-year boundary to resolve its first year at the model’s floating-point precision."
+          },
+          {
+            "fraction": 0.9,
+            "status": "finite",
+            "years": 5,
+            "throughYear": 2041,
+            "reason": null
+          },
+          {
+            "fraction": 0.95,
+            "status": "finite",
+            "years": 7,
+            "throughYear": 2043,
+            "reason": null
+          }
+        ],
+        "decimalQ3MinusQuarter": "1.1019051475582050984593515720795212835245264388473615780962484817708919782159423272E-18",
+        "decimalReference75PercentFirstYear": 4
+      }
+    ],
+    "ordinary": [
+      {
+        "company": "Anthropic",
+        "scenario": "Bear",
+        "selectedEv": -20.38957348629177,
+        "perpetualEv": -13.161877608879355,
+        "targetRequirement": {
+          "status": "unreachable",
+          "years": null,
+          "throughYear": null,
+          "ev": null,
+          "previousEv": null,
+          "withinChart": null,
+          "reason": "The perpetual operating EV is below the target. Extending continuation alone cannot reach it."
+        },
+        "capture": [
+          {
+            "fraction": 0.5,
+            "status": "finite",
+            "years": 6,
+            "throughYear": 2042,
+            "reason": null
+          },
+          {
+            "fraction": 0.75,
+            "status": "finite",
+            "years": 12,
+            "throughYear": 2048,
+            "reason": null
+          },
+          {
+            "fraction": 0.9,
+            "status": "finite",
+            "years": 19,
+            "throughYear": 2055,
+            "reason": null
+          },
+          {
+            "fraction": 0.95,
+            "status": "finite",
+            "years": 25,
+            "throughYear": 2061,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "company": "Anthropic",
+        "scenario": "Base",
+        "selectedEv": 248.4557556739665,
+        "perpetualEv": 367.7712947995601,
+        "targetRequirement": {
+          "status": "finite",
+          "years": 11,
+          "throughYear": 2047,
+          "ev": 258.53129008901664,
+          "previousEv": 248.4557556739665,
+          "withinChart": true,
+          "reason": null
+        },
+        "capture": [
+          {
+            "fraction": 0.5,
+            "status": "finite",
+            "years": 8,
+            "throughYear": 2044,
+            "reason": null
+          },
+          {
+            "fraction": 0.75,
+            "status": "finite",
+            "years": 16,
+            "throughYear": 2052,
+            "reason": null
+          },
+          {
+            "fraction": 0.9,
+            "status": "finite",
+            "years": 27,
+            "throughYear": 2063,
+            "reason": null
+          },
+          {
+            "fraction": 0.95,
+            "status": "finite",
+            "years": 34,
+            "throughYear": 2070,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "company": "Anthropic",
+        "scenario": "Bull",
+        "selectedEv": 1131.5326514547373,
+        "perpetualEv": 1884.3087784008526,
+        "targetRequirement": {
+          "status": "explicit",
+          "years": 0,
+          "throughYear": 2036,
+          "ev": 435.9201047650232,
+          "previousEv": null,
+          "withinChart": true,
+          "reason": "The explicit forecast already reaches the target; no post-2036 cash flow is required."
+        },
+        "capture": [
+          {
+            "fraction": 0.5,
+            "status": "finite",
+            "years": 11,
+            "throughYear": 2047,
+            "reason": null
+          },
+          {
+            "fraction": 0.75,
+            "status": "finite",
+            "years": 22,
+            "throughYear": 2058,
+            "reason": null
+          },
+          {
+            "fraction": 0.9,
+            "status": "finite",
+            "years": 36,
+            "throughYear": 2072,
+            "reason": null
+          },
+          {
+            "fraction": 0.95,
+            "status": "finite",
+            "years": 46,
+            "throughYear": 2082,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "company": "OpenAI",
+        "scenario": "Bear",
+        "selectedEv": -74.2111345565817,
+        "perpetualEv": -68.49581061785656,
+        "targetRequirement": {
+          "status": "unreachable",
+          "years": null,
+          "throughYear": null,
+          "ev": null,
+          "previousEv": null,
+          "withinChart": null,
+          "reason": "The perpetual operating EV is below the target. Extending continuation alone cannot reach it."
+        },
+        "capture": [
+          {
+            "fraction": 0.5,
+            "status": "finite",
+            "years": 6,
+            "throughYear": 2042,
+            "reason": null
+          },
+          {
+            "fraction": 0.75,
+            "status": "finite",
+            "years": 12,
+            "throughYear": 2048,
+            "reason": null
+          },
+          {
+            "fraction": 0.9,
+            "status": "finite",
+            "years": 19,
+            "throughYear": 2055,
+            "reason": null
+          },
+          {
+            "fraction": 0.95,
+            "status": "finite",
+            "years": 25,
+            "throughYear": 2061,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "company": "OpenAI",
+        "scenario": "Base",
+        "selectedEv": 151.80417138088748,
+        "perpetualEv": 258.86259028034846,
+        "targetRequirement": {
+          "status": "finite",
+          "years": 39,
+          "throughYear": 2075,
+          "ev": 250.57406644603756,
+          "previousEv": 249.80959094675643,
+          "withinChart": true,
+          "reason": null
+        },
+        "capture": [
+          {
+            "fraction": 0.5,
+            "status": "finite",
+            "years": 8,
+            "throughYear": 2044,
+            "reason": null
+          },
+          {
+            "fraction": 0.75,
+            "status": "finite",
+            "years": 16,
+            "throughYear": 2052,
+            "reason": null
+          },
+          {
+            "fraction": 0.9,
+            "status": "finite",
+            "years": 27,
+            "throughYear": 2063,
+            "reason": null
+          },
+          {
+            "fraction": 0.95,
+            "status": "finite",
+            "years": 34,
+            "throughYear": 2070,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "company": "OpenAI",
+        "scenario": "Bull",
+        "selectedEv": 869.9725850579962,
+        "perpetualEv": 1505.6838953114666,
+        "targetRequirement": {
+          "status": "explicit",
+          "years": 0,
+          "throughYear": 2036,
+          "ev": 282.53530104257754,
+          "previousEv": null,
+          "withinChart": true,
+          "reason": "The explicit forecast already reaches the target; no post-2036 cash flow is required."
+        },
+        "capture": [
+          {
+            "fraction": 0.5,
+            "status": "finite",
+            "years": 11,
+            "throughYear": 2047,
+            "reason": null
+          },
+          {
+            "fraction": 0.75,
+            "status": "finite",
+            "years": 22,
+            "throughYear": 2058,
+            "reason": null
+          },
+          {
+            "fraction": 0.9,
+            "status": "finite",
+            "years": 36,
+            "throughYear": 2072,
+            "reason": null
+          },
+          {
+            "fraction": 0.95,
+            "status": "finite",
+            "years": 46,
+            "throughYear": 2082,
+            "reason": null
+          }
+        ]
+      }
+    ],
+    "adjacentRate": {
+      "targetRequirement": {
+        "status": "finite",
+        "years": 1,
+        "throughYear": 2037,
+        "ev": 252.6514888241011,
+        "previousEv": 187.23239708756822,
+        "withinChart": true,
+        "reason": null
+      },
+      "selectedEv": 841.423314452897
+    }
+  },
+  "integrationEvidence": {
+    "path": "docs/verification/horizon-browser-3.4.json",
+    "sha256": "115963c98e39419aabaac5a0acd5ce5b6c0f823231005f30f4e7ff4514b7ca66",
+    "status": "pass",
+    "checks": 148,
+    "relevantChecks": [
+      "The current horizon is the fourth consistent workspace destination",
+      "An unresolved adjacent floating-point target has an explicit precision state",
+      "An unresolved precision boundary never applies a claimed year",
+      "Invalid input clears the previous assumption caption",
+      "All workspace destinations remain visible at 320px",
+      "All workspace destinations remain visible at 390px",
+      "All workspace destinations remain visible at 768px",
+      "All workspace destinations remain visible at 1440px"
+    ],
+    "origin": "Final integration-owner Chromium run on 127.0.0.1:4326, collected and inspected by the separate reviewer."
+  },
+  "reviewedSourceSha256": {
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/horizon.js": "31e88f039b640a9627b1a5d78bc62c93dbd82d1cb50015b4606e2efb3923eec5",
+    "public/lib/horizon-share.js": "062d578cd93957ca7733e25ed04192a4fc195381d0ba38f837930c8418b234a8",
+    "public/lib/horizon-brief.js": "40a85b484a9b8c8b501d8669aff2d324a65aab10e3495f6d863c35df10d54a56",
+    "public/horizon.js": "f21624bc302cdef7321c193e934c25a03b9173946ab7bc14064750f966200478",
+    "public/horizon.html": "5be6cffdacd99d1045f6a8275854fa7c4d9f5c4e6e09f404d4063281a934ec1a",
+    "public/horizon.css": "e39dc76af2e51f7f095d630afccd0ed3e3446074b3a39255339bbf83678dd7c9",
+    "lib/http.js": "c730faff9ced8bee5e80cbc39b72dea373f202eea5fcd59465472c213a0b679e"
+  },
+  "additionalConfirmedFindings": [],
+  "evidenceRefreshedAtUtc": "2026-10-19T17:33:45.194477+00:00"
+}

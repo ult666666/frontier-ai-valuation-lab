@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#102333">
+  <meta name="description" content="How much future is in an AI valuation? Explore a finite cash-flow horizon for Anthropic and OpenAI, inspect the assumptions, and verify the complete result through a deterministic API.">
+  <meta property="og:title" content="How much future is in the value? · Frontier AI Value Horizon">
+  <meta property="og:description" content="Keep the forecast. Explore how many later cash-flow years support the value. An interactive fintech research demo by Charles Dai.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://frontier-ai-valuation-lab.vercel.app/horizon.html">
+  <meta property="og:image" content="https://frontier-ai-valuation-lab.vercel.app/assets/horizon-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Value Horizon: a finite continuation curve with the selected operating enterprise value and a perpetual reference.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="author" content="Charles Dai">
+  <link rel="canonical" href="https://frontier-ai-valuation-lab.vercel.app/horizon.html">
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./horizon.css">
+  <link rel="stylesheet" href="./shell.css">
+  <link rel="stylesheet" href="./evidence-context.css">
+  <script type="module" src="./shell.js"></script>
+  <script type="module" src="./horizon.js"></script>
+  <title>Value Horizon · Frontier AI Valuation Lab</title>
+</head>
+<body data-horizon-state="loading">
+  <a class="skip-link" href="#horizon-analysis">Skip to the horizon analysis</a>
+  <header class="app-header">
+    <div class="header-inner">
+      <a class="brand" href="./" aria-label="Frontier AI Valuation Lab home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V7h22M5 16h15M14 25V7" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="26" cy="25" r="3" fill="currentColor"/></svg><span>Frontier AI <span>Valuation Lab</span></span></a>
+      <div class="app-utilities"><a class="utility-author" href="https://ult666666.github.io/fintech.html">Charles Dai / Fintech <span aria-hidden="true">↗</span></a><a href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+    </div>
+    <nav class="app-nav" aria-label="Research workspace"><a href="./index.html#research-story">Overview</a><a href="./index.html#workspace">Model</a><a href="./thesis.html">Thesis Lab</a><a href="./horizon.html" aria-current="page">Value Horizon</a><a href="./casebook.html">Casebook</a><a href="./index.html#sources">Evidence</a></nav>
+  </header>
+  <main class="horizon-shell" id="horizon-analysis" tabindex="-1">
+    <section class="horizon-intro" aria-labelledby="horizon-title">
+      <div><p class="eyebrow"><span class="index-mark">F / 04</span> The time behind the thesis</p><h1 id="horizon-title">How much future<br>is in the <em>value?</em></h1></div>
+      <div class="intro-note"><p>A ten-year forecast can depend on decades more. <br>Choose how many later cash-flow years to retain<br class="wide-only"> and see what they contribute today.</p><p class="snapshot"><span class="status-dot" aria-hidden="true"></span>Model &amp; company research · 18 Oct 2026</p><a class="quiet-link" href="#horizon-method">See the method <span aria-hidden="true">↘</span></a></div>
+    </section>
+
+    <section class="case-toolbar" aria-label="Select the operating case">
+      <div class="company-selector" role="group" aria-label="Company"><button type="button" data-horizon-company="Anthropic" aria-pressed="true" disabled>Anthropic</button><button type="button" data-horizon-company="OpenAI" aria-pressed="false" disabled>OpenAI</button></div>
+      <div class="preset-control"><label for="horizon-preset">Operating case</label><select id="horizon-preset" disabled><option>Bear</option><option selected>Base</option><option>Bull</option></select></div>
+      <p id="horizon-case-status" class="case-status">Loading the dated model…</p>
+      <button id="horizon-reset" class="reset-preset" type="button" hidden>Use preset inputs</button>
+      <div class="unit-note"><span>Operating enterprise value</span><span>USD billions · present value</span></div>
+    </section>
+    <p id="horizon-notice" class="notice" role="status" hidden></p>
+    <div id="horizon-error" class="error-banner" role="alert" hidden></div>
+    <noscript><p class="error-banner">This interactive analysis needs JavaScript. Read the <a href="./downloads/Frontier_AI_Value_Horizon.html">worked horizon brief</a> or the <a href="./report.html">research report</a>.</p></noscript>
+
+    <section class="horizon-stage" aria-labelledby="horizon-chart-heading">
+      <div class="horizon-main">
+        <div class="stage-heading"><div><p class="eyebrow">01 / Set the cash-flow horizon</p><h2 id="horizon-chart-heading">A finite view of value.</h2></div><span class="stage-badge">Zero residual after cutoff</span></div>
+        <div class="valuation-readouts">
+          <div class="selected-valuation"><p id="selected-ev-label">Retain 10 years after 2036</p><strong id="horizon-ev" data-value="">—</strong><p id="selected-period">Cash flows through 2046</p></div>
+          <div class="reference-valuation"><p>Perpetual reference</p><strong id="horizon-perpetuity" data-value="">—</strong><p>All modeled continuation</p></div>
+          <div class="excluded-valuation"><p>Later value excluded</p><strong id="horizon-excluded" data-value="">—</strong><p id="excluded-period">Cash flows after 2046</p></div>
+        </div>
+        <div id="horizon-chart" class="horizon-chart" role="img" aria-label="Loading the enterprise value curve"><p class="chart-placeholder">Loading the valuation horizon…</p></div>
+        <div class="chart-legend"><span><i class="legend-line" aria-hidden="true"></i>Selected case at each horizon</span><span><i class="legend-dash" aria-hidden="true"></i>Perpetual reference</span><span id="target-legend"><i class="legend-target" aria-hidden="true"></i>Target EV</span></div>
+        <p id="chart-range-note" class="chart-note">The x-axis counts whole years after 2036. The perpetual reference is not a finite endpoint.</p>
+      </div>
+      <aside class="horizon-controls" aria-label="Horizon and target controls">
+        <div class="horizon-duration"><label for="horizon-years">Years after 2036</label><div class="years-input"><input id="horizon-years" type="number" min="0" max="100" step="1" value="10" inputmode="numeric" disabled><span>years</span></div><label class="sr-only" for="horizon-range">Choose whole continuation years after 2036</label><input id="horizon-range" type="range" min="0" max="100" step="1" value="10" disabled><div class="range-endpoints"><span>0 / explicit only</span><span>100 years</span></div><div class="horizon-shortcuts" role="group" aria-label="Common continuation horizons"><button type="button" data-horizon-years="0" disabled>0</button><button type="button" data-horizon-years="10" aria-pressed="true" disabled>10</button><button type="button" data-horizon-years="20" disabled>20</button><button type="button" data-horizon-years="30" disabled>30</button><button type="button" data-horizon-years="50" disabled>50</button><button type="button" data-horizon-years="100" disabled>100</button></div><p id="horizon-cutoff" class="cutoff-note">The 2026–2036 forecast stays intact.</p></div>
+        <div class="target-control"><p class="eyebrow">02 / Test a requirement</p><label for="horizon-target">Target operating EV <span>USD billions</span></label><div class="target-input"><span aria-hidden="true">$</span><input id="horizon-target" type="number" min="0" max="1000000000000" step="any" value="250" inputmode="decimal" aria-describedby="target-help" disabled><span aria-hidden="true">B</span></div><p id="target-help" class="control-help">Optional. Leave blank to hide the target.</p><div id="horizon-target-result" class="target-result" data-status="loading"><p>Calculating the required horizon…</p></div><button id="use-target-horizon" type="button" class="target-button" disabled>Use required horizon <span aria-hidden="true">↗</span></button><p class="control-help">A conditional operating-value requirement; financing equity values use a different basis.</p></div>
+      </aside>
+    </section>
+
+    <section class="value-reconciliation" aria-label="Reconcile the selected valuation">
+      <div><span class="component-label">Forecast through 2036</span><strong id="horizon-explicit" data-value="">—</strong><p>Present value, including the remaining-2026 cash flow.</p></div><span class="component-sign" aria-hidden="true">+</span><div><span id="retained-label" class="component-label">Continuation retained</span><strong id="horizon-retained" data-value="">—</strong><p id="retained-description">Present value from 2037 through the selected cutoff.</p></div><span class="component-sign" aria-hidden="true">=</span><div class="reconciled-total"><span class="component-label">Selected operating EV</span><strong id="horizon-reconciled" data-value="">—</strong><p id="reconcile-note">Recalculated from the complete operating case.</p></div>
+    </section>
+
+    <section class="horizon-review" aria-labelledby="review-title">
+      <div class="review-intro"><p class="eyebrow">03 / Put the result in context</p><h2 id="review-title">What must keep working?</h2><p id="horizon-interpretation">The contribution of distant cash flows depends on the selected operating economics, growth and discount rate.</p><a class="quiet-link" href="#horizon-assumptions">Inspect all 13 assumptions <span aria-hidden="true">↘</span></a></div>
+      <div class="review-cards"><article><span class="review-number">A</span><h3>How long is the tail?</h3><p id="capture-90" class="capture-callout">—</p><p id="capture-description">Years after 2036 needed to retain at least 90% of the modeled terminal present value.</p><div id="horizon-milestones" class="capture-milestones"></div></article><article><span class="review-number">B</span><h3>What supports the economics?</h3><p id="economics-summary">Terminal growth, operating margin and returns on capital are explicit assumptions.</p><div class="evidence-actions"><button type="button" data-evidence-key="m36" disabled>Margin evidence <span aria-hidden="true">↗</span></button><button type="button" data-evidence-key="roic" disabled>Capital returns <span aria-hidden="true">↗</span></button></div><p class="small-note">These sources provide context. They do not verify the selected forecast.</p></article></div>
+    </section>
+
+    <section class="research-handoff" aria-labelledby="handoff-title"><div><p class="eyebrow">04 / Make the analysis inspectable</p><h2 id="handoff-title">Take the argument with you.</h2><p>The complete case, selected horizon and target travel together. Nothing is saved automatically.</p></div><div class="handoff-actions"><a id="horizon-open-model" class="button primary-button" aria-disabled="true">Open complete model <span aria-hidden="true">↗</span></a><button id="horizon-share" class="button" type="button" disabled>Copy exact link <span aria-hidden="true">↗</span></button><button id="horizon-brief" class="button" type="button" disabled>Research brief <span aria-hidden="true">↓</span></button><button id="horizon-json" class="button" type="button" disabled>Analysis JSON <span aria-hidden="true">↓</span></button></div><p id="horizon-portable-status" class="portable-status" role="status"></p><div id="horizon-share-area" hidden><label for="horizon-share-url">Exact reopening link</label><textarea id="horizon-share-url" rows="3" readonly spellcheck="false"></textarea></div><p id="horizon-bridge-note" class="small-note" hidden>The carried hypothetical equity bridge is preserved in links and exports. This horizon calculation reports operating EV before that bridge.</p><div class="verification-strip"><div><strong>Check the complete calculation</strong><p id="horizon-api-status" role="status">Calculated in this browser. Server verification is available.</p></div><button id="horizon-verify" class="button" type="button" disabled>Verify through the API <span aria-hidden="true">↗</span></button></div></section>
+
+    <section class="horizon-method" id="horizon-method" aria-labelledby="method-title"><div><p class="eyebrow">The financial method</p><h2 id="method-title">An explicit boundary <br>on continuation.</h2><p>All amounts are present values at 18 October 2026. The original operating forecast and its remaining-2026 cash flow are unchanged.</p></div><div class="method-details"><p>After 2036, the model’s terminal cash flow grows at the selected perpetual growth rate and is discounted at WACC. This lens retains only the first <em>N</em> annual cash flows. It assigns <strong>zero cash flow and zero residual value after the cutoff</strong>.</p><div class="horizon-formula" aria-label="Finite enterprise value equals explicit forecast present value plus terminal present value multiplied by one minus the ratio of one plus growth to one plus WACC, raised to N.">EV<sub>N</sub> = PV<sub>forecast</sub> + PV<sub>terminal</sub> × [1 − ((1 + g) / (1 + WACC))<sup>N</sup>]</div><p>This is a conditional stress lens. A selected horizon is not a lifespan forecast, failure probability, security price or investment recommendation. The model uses its existing annual terminal convention; the perpetual reference remains separately visible.</p><p class="method-sources">Method: <a href="https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/younggrowth.pdf" target="_blank" rel="noopener noreferrer">Damodaran, <em>Valuing Young, Start-up and Growth Companies</em>, pp. 40–41</a>; <a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/free-cash-flow-valuation" target="_blank" rel="noopener noreferrer">CFA Institute, FCFF valuation</a>. <a href="https://github.com/ult666666/frontier-ai-valuation-lab/blob/main/docs/VALUE_HORIZON.md" target="_blank" rel="noopener noreferrer">Implementation, bounds and verification <span aria-hidden="true">↗</span></a>.</p></div></section>
+
+    <details id="horizon-assumptions" class="data-details"><summary>Complete operating assumptions and current horizon</summary><div class="table-wrap"><table><caption id="assumptions-caption">The selected case’s exact inputs. Evidence is context for each analyst or user assumption.</caption><thead><tr><th scope="col">Input</th><th scope="col">Current value</th><th scope="col">Context</th></tr></thead><tbody id="horizon-assumptions-body"></tbody></table></div><p id="horizon-snapshot-detail" class="small-note"></p></details>
+    <details class="data-details"><summary>Horizon values as a table</summary><div class="table-wrap"><table><caption>Whole continuation years after 2036. Values are USD billions; no residual is included after each cutoff.</caption><thead><tr><th scope="col">Years</th><th scope="col">Through</th><th scope="col">Operating EV</th><th scope="col">Continuation PV retained</th><th scope="col">Later PV excluded</th></tr></thead><tbody id="horizon-values-body"></tbody></table></div></details>
+    <footer class="horizon-footer"><p><strong>Charles Dai</strong> / Independent fintech research &amp; engineering</p><p id="horizon-version">Application 3.4.0 · Financial engine 3.0.0<br>Developed with AI assistance. Dated, illustrative analysis.</p><a href="https://ult666666.github.io/fintech.html">Explore the fintech portfolio <span aria-hidden="true">↗</span></a></footer>
+    <p id="horizon-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "generatedAt": "2026-10-19T17:22:16.556673+00:00",
+  "method": "Separate Python FCFF calculation; compensated term-by-term continuation sum; linear whole-year search; 100-digit Decimal.from_float precision-boundary recurrence.",
+  "scenarioCount": 39,
+  "requestCount": 165,
+  "ordinaryRequestCount": 159,
+  "curvePointCount": 3939,
+  "numericComparisons": 19974,
+  "captureRequirements": 156,
+  "targetRequirements": 159,
+  "absoluteTolerance": 1e-08,
+  "relativeTolerance": 1e-10,
+  "maxAbsoluteError": 1536.0,
+  "maxAbsoluteErrorCase": {
+    "label": "Adjacent WACC and growth.curve[83].excludedTerminalPv",
+    "actual": 4144096851120942000,
+    "expected": 4.1440968511209436e+18
+  },
+  "maxRelativeErrorNormalizedByAtLeastOne": 2.0062099329773607e-14,
+  "precisionBoundaryScenarios": 6,
+  "precisionBoundaryChecks": 8,
+  "precisionBoundaryMethod": "100-digit arithmetic on exact binary input rates and the returned frozen explicit/terminal PV components; repeated annual multiplication. This isolates the horizon boundary from financial-engine rounding and independently verifies regression years. precision_limit is a conservative output policy, not an assertion that no exact-real-number solution exists.",
+  "precisionBoundaryEvidence": [
+    {
+      "label": "Near-perpetuity Anthropic target",
+      "kind": "target",
+      "target": 367.77129479956005,
+      "fraction": null,
+      "reportedStatus": "precision_limit",
+      "firstWholeYear": 414,
+      "previousResidual": "-5.821871384087005708572433847198E-16",
+      "firstResidual": "3.067058525574764017298186238130E-15"
+    },
+    {
+      "label": "Near-perpetuity visible-chart target",
+      "kind": "target",
+      "target": 19.999341593234046,
+      "fraction": null,
+      "reportedStatus": "precision_limit",
+      "firstWholeYear": 69,
+      "previousResidual": "-1.032169373716409740618548289876E-15",
+      "firstResidual": "4.789949538602148743396379146908E-16"
+    },
+    {
+      "label": "Rounded 75-percent capture",
+      "kind": "capture",
+      "target": null,
+      "fraction": 0.75,
+      "reportedStatus": "precision_limit",
+      "firstWholeYear": 4,
+      "previousResidual": "-1.101905147558205098459351572080E-18",
+      "firstResidual": "9.250986876314085347855634715949E-2"
+    },
+    {
+      "label": "Just beyond the search cap",
+      "kind": "target",
+      "target": 160211.80740652094,
+      "fraction": null,
+      "reportedStatus": "precision_limit",
+      "firstWholeYear": 10001,
+      "previousResidual": "-3.356666042483680490709874668776E-11",
+      "firstResidual": "1.109321380079871657319638847912E+1"
+    },
+    {
+      "label": "Just beyond the search cap",
+      "kind": "capture",
+      "target": null,
+      "fraction": 0.5,
+      "reportedStatus": "precision_limit",
+      "firstWholeYear": 10001,
+      "previousResidual": "-9.580837475705999917196574023173E-17",
+      "firstResidual": "3.465615792311823208569191514794E-5"
+    },
+    {
+      "label": "Just within the search cap",
+      "kind": "target",
+      "target": 160211.80740652085,
+      "fraction": null,
+      "reportedStatus": "precision_limit",
+      "firstWholeYear": 10000,
+      "previousResidual": "-1.109398275045886271985843600610E+1",
+      "firstResidual": "9.811102663739380475580421997279E-12"
+    },
+    {
+      "label": "Just within the search cap",
+      "kind": "capture",
+      "target": null,
+      "fraction": 0.5,
+      "reportedStatus": "precision_limit",
+      "firstWholeYear": 10000,
+      "previousResidual": "-3.465856018824488993533888367538E-5",
+      "firstResidual": "3.970750323320047533393185616642E-17"
+    },
+    {
+      "label": "Target copied from a rounded curve point",
+      "kind": "target",
+      "target": 145.90725943195014,
+      "fraction": null,
+      "reportedStatus": "precision_limit",
+      "firstWholeYear": 10,
+      "previousResidual": "-3.697594315475679149238988654552E+0",
+      "firstResidual": "4.315274028656284902599530948342E-15"
+    }
+  ],
+  "scope": "All six presets, nine named arithmetic/boundary cases, 24 seeded valid cases and six additional Decimal precision fixtures. No source data, financial forecasts or probabilities are independently validated by this check.",
+  "sourceHashes": {
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/horizon.js": "31e88f039b640a9627b1a5d78bc62c93dbd82d1cb50015b4606e2efb3923eec5",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "scripts/reference_model.py": "8cbc2359afc02f0246e93e722febcb82df5f85e5014521249e8555825d3651d4",
+    "scripts/check_horizon_reference.py": "902e9bf7e74dcd97544d1d7ec68876761d7bf02d689d9af190957d9f06845935"
+  },
+  "failures": []
+}

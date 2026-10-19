@@ -1,10 +1,10 @@
 # API contract
 
-The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **3.2.0** adds the Thesis Lab's `attribute` and `landscape` actions. No model-provider key is needed.
+The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **3.4.0** adds the Value Horizon `horizon` action alongside the existing eight financial actions. No model-provider key is needed.
 
 ## GET /api/health
 
-Returns `status`, `appVersion`, `modelVersion` and `valuationDate`. This is service health, not a statement that financial evidence is complete. Application release `3.2.0` retains financial engine `3.0.0` and valuation date `2026-10-18`.
+Returns `status`, `appVersion`, `modelVersion` and `valuationDate`. This is service health, not a statement that financial evidence is complete. Application release `3.4.0` retains financial engine `3.0.0` and valuation date `2026-10-18`.
 
 ## GET /api/valuation
 
@@ -24,6 +24,7 @@ Use `Content-Type: application/json`. Amounts are USD billions and model percent
 | `drivers` | `assumptions` | Four independent, fixed-size assumption changes and their EV effects |
 | `attribute` | `reference`, `alternative` | Both complete projections and exact grouped attribution of alternative EV minus reference EV |
 | `landscape` | `assumptions`, `rates`, `margins`, positive numeric `target` | EV matrix indexed by margin row and WACC column, invalid-point reasons, and a required-margin frontier |
+| `horizon` | `assumptions`, integer `years` from 0–100; optional positive numeric or `null` `target` | Complete baseline, 101 finite-continuation points, retained/excluded terminal PV, capture milestones and bounded whole-year target requirement |
 
 Success responses are `{appVersion, modelVersion, valuationDate, result}`. `appVersion` is an additive release identifier; the model/date/result fields retain their existing meanings. Validation failures are HTTP 400 with `{error}`. Unsupported media returns 415, more than 16 KiB returns 413, unsupported methods return 405, and unknown routes return 404. Each original `sensitivity` axis contains 1–9 finite numbers. Each `landscape` axis contains 2–21 finite, strictly increasing numbers.
 
@@ -309,6 +310,77 @@ Send `{action: 'drivers', assumptions}` for one complete assumption set. `result
 Every impact starts from the same baseline and changes only its named input. Its fields are `{key, label, change or factor, assumptions, result, evDelta, evChangeRatio, reason}`. `assumptions` records the attempted transformed inputs. A valid point has a full projected `result` and `reason: null`; its change metrics follow the same units and nonpositive-baseline rule as paired stress. If the transformed point violates the model or numeric limits, `result`, `evDelta` and `evChangeRatio` are `null`, with a descriptive `reason`. An invalid baseline rejects the whole request with HTTP 400.
 
 These are separate scenario effects at explicitly different shock sizes. They are not comparable unit sensitivities, causal estimates, probabilities, or a ranking of economic importance. In particular, faster revenue growth can reduce EV when the growth reinvestment burden exceeds incremental operating returns.
+
+## Value Horizon analytics
+
+Send `{action: 'horizon', assumptions, years, target}`. `assumptions` contains exactly the same thirteen model fields documented above. `years` is a whole number from **0 through 100**, inclusive, counting annual terminal cash flows after 2036. An omitted `target` is normalized to `null`; a supplied non-null target must be positive, finite and at most `1e12` USD billions. All other request fields are rejected.
+
+The shared [`public/lib/horizon.js`](../public/lib/horizon.js) exports `valueHorizon(assumptions, {years, target: null})`, `HORIZON_VERSION = '1.0.0'`, `HORIZON_MAX_YEARS = 100`, and `HORIZON_SOLVER_MAX_YEARS = 10000`. Direct JavaScript calls reject inherited/accessor/non-enumerable fields, symbols, missing assumptions and unknown fields before evaluating the model.
+
+The complete response result is:
+
+```js
+{
+  version: '1.0.0',
+  assumptions: { /* exact detached 13-field snapshot */ },
+  baseline: { /* complete unchanged project() result */ },
+  years: 10,
+  target: 250, // or null
+  maxYears: 100,
+  solverMaxYears: 10000,
+  selected: HorizonPoint,
+  curve: HorizonPoint[], // every whole year from 0 through 100, ordered
+  capture: CaptureRequirement[], // fractions 0.5, 0.75, 0.9, 0.95
+  targetRequirement: TargetRequirement // or null when no target is set
+}
+```
+
+Each `HorizonPoint` contains:
+
+```js
+{
+  years: 10,
+  throughYear: 2046,
+  ev: number,
+  retainedTerminalPv: number,
+  excludedTerminalPv: number,
+  terminalPvFraction: number | null,
+  remainingTerminalFraction: number | null
+}
+```
+
+Let `E = baseline.pv_explicit`, `T = baseline.pvtv`, and `q = (1 + tg) / (1 + wacc)`. The calculation is `ev = E + T × (1 − q^years)`, with excluded tail PV `T × q^years`. The explicit forecast, including the stub once, is retained. The selected cutoff assumes **zero residual value** afterward. It does not truncate the explicit forecast, change operating assumptions, or assign salvage proceeds. Dollar outputs keep their signs. The two fractions use **terminal PV** as their denominator; they are `null` when the model's terminal PV is zero at numerical precision.
+
+`CaptureRequirement` is `{fraction, status, years, throughYear, reason}`. Its status is `finite`, `beyond_range`, `precision_limit`, or `unavailable`. A finite result is the first whole continuation year retaining at least the requested share of terminal PV, with the adjacent boundary outside the numerical guard described below. A requirement beyond **10,000 years** has null years; a numerically zero terminal PV is unavailable. `precision_limit` also has null `years` and `throughYear`, with a reason explaining that the whole-year threshold is too close to numerical precision to assign a year. This bound is separate from the 100-year chart limit.
+
+`TargetRequirement` is `{status, years, throughYear, ev, previousEv, withinChart, reason}`:
+
+| Status | Meaning |
+| --- | --- |
+| `explicit` | PV of the explicit forecast already reaches the target. `years` is 0, `throughYear` is 2036, `previousEv` is null, and `withinChart` is true. |
+| `finite` | First whole year whose continuation PV reaches the target, with the selected and preceding boundaries outside the numerical guard. The preceding EV is below the target. Requirements from 101–10,000 years have `withinChart: false`. |
+| `asymptotic` | Target equals the positive-terminal-PV perpetual baseline. It is not reported as a finite solution, even when a finite point rounds to the same EV. |
+| `unreachable` | Target exceeds perpetual EV, or no positive numerical terminal PV can bridge the explicit forecast's shortfall. |
+| `beyond_range` | Target is below perpetual EV but not reached within 10,000 continuation years. This does not mean that extending continuation can never reach it. |
+| `precision_limit` | The target is too close to the perpetual, selected/prior-year or search-cap boundary to resolve a first whole year reliably at the model's numerical precision. |
+
+For `asymptotic`, `unreachable`, `beyond_range` and `precision_limit`, all year/value/within-chart fields are null and `reason` explains the result. These are successful HTTP 200 analytical outcomes; invalid inputs still return HTTP 400. An exact submitted match to explicit PV retains `explicit`; an exact match to the positive-terminal-PV perpetual baseline retains `asymptotic`.
+
+The binary search compares retained terminal PV with `target − E` in the first half of terminal PV, or compares excluded tail PV with a compensated `E + T − target` gap nearer perpetuity. It does not infer an exact year from rounded total-EV equality. A conservative guard uses `32 × Number.EPSILON` times the relevant monetary component scale: `max(abs(E), abs(target), abs(retained PV))` for an early boundary, and `max(abs(E), abs(T), abs(target))` for a late or perpetual boundary. The monetary band has a floor of 32 smallest positive representable numbers so it cannot underflow to zero. Capture boundaries use a dimensionless band of `32 × Number.EPSILON × max(1, abs(N × log(q)))`. Both searches check the candidate/prior year, or the 10,000-year cap when no candidate qualifies.
+
+A target copied from a rounded curve point may therefore be `precision_limit`, even though a higher-precision calculation can assign an exact year. This policy also avoids a false `unreachable` classification just above rounded perpetual EV. It is a conservative numerical policy, not a formal exact-arithmetic error bound, an economic confidence interval or a forecast uncertainty estimate. Ordinary targets, including the $250B example below, remain finite when their boundaries are clearly separated.
+
+Example request:
+
+```sh
+curl -X POST http://127.0.0.1:4321/api/valuation \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"horizon","assumptions":{"rev2026":53.26,"g1":0.45,"g2":0.24,"g3":0.12,"m27":-0.02,"m30":0.18,"m36":0.22,"turns":2.5,"wacc":0.125,"tg":0.03,"roic":0.2,"stub":-3,"tax":0.25},"years":10,"target":250}'
+```
+
+Under these frozen Anthropic Base assumptions, retaining ten terminal years through 2046 gives about **$248.4558B operating EV**, versus **$367.7713B** under perpetual continuation. The $250B target first clears with **11** continuation years, through **2047**. Neither result is a financing equity price or a probability.
+
+See [Value Horizon methodology, numerical limits and portable outputs](VALUE_HORIZON.md). The API receives only assumptions and the two lens parameters. Company labels, optional hypothetical bridges and original research metadata travel in the separate share/export format and do not affect horizon operating EV.
 
 ## Interpretation
 

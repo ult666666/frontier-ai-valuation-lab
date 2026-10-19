@@ -111,7 +111,7 @@ function createFields() {
 function updateButtons() {
   const valid = Boolean(state.result && state.assumptions);
   for (const id of ['export-json', 'export-csv']) $(`#${id}`).disabled = !valid;
-  for (const id of ['share-scenario','export-briefing','open-thesis','return-comparison','save-scenario']) if ($(`#${id}`)) $(`#${id}`).disabled = !valid || ($('#bridge-enabled').checked && !validBridgeInputs()) || (id==='save-scenario'&&(!state.casebook||state.saving));
+  for (const id of ['share-scenario','export-briefing','open-thesis','open-horizon','return-comparison','save-scenario']) if ($(`#${id}`)) $(`#${id}`).disabled = !valid || ($('#bridge-enabled').checked && !validBridgeInputs()) || (id==='save-scenario'&&(!state.casebook||state.saving));
   if ($('#bridge-enabled').checked && !validBridgeInputs()) $('#export-json').disabled = true;
   $('#verify-server').disabled = !valid || state.apiPending;
   const target = readNumber($('#reverse-target'));
@@ -734,13 +734,17 @@ function installPortableActions() {
   stylesheet.rel = 'stylesheet';
   stylesheet.href = new URL('./portable.css',import.meta.url).href;
   document.head.append(stylesheet);
-  $('.export-actions').insertAdjacentHTML('beforeend','<button type="button" class="button button-outline" id="share-scenario" disabled>Share this case <span aria-hidden="true">↗</span></button><button type="button" class="button button-dark" id="export-briefing" disabled>Scenario brief <span aria-hidden="true">↓</span></button><button type="button" class="button button-outline" id="open-thesis" disabled>Compare in Thesis Lab <span aria-hidden="true">↗</span></button>');
+  $('.export-actions').insertAdjacentHTML('beforeend','<button type="button" class="button button-outline" id="share-scenario" disabled>Share this case <span aria-hidden="true">↗</span></button><button type="button" class="button button-dark" id="export-briefing" disabled>Scenario brief <span aria-hidden="true">↓</span></button><button type="button" class="button button-outline" id="open-thesis" disabled>Compare in Thesis Lab <span aria-hidden="true">↗</span></button><button type="button" class="button button-outline" id="open-horizon" disabled>Explore Value Horizon <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></button>');
   $('.export-bar').insertAdjacentHTML('afterend','<div class="portable-tools"><p id="portable-status" role="status"></p><div id="share-link-area" hidden><label for="share-url">Shareable scenario link</label><textarea id="share-url" rows="3" readonly spellcheck="false"></textarea><p>Contains the selected company, model version, assumptions and any enabled hypothetical equity bridge. It restores the workbench; no saved account or server record is needed.</p></div></div>');
   $('#workspace').insertAdjacentHTML('afterend','<p id="scenario-notice" class="scenario-notice" role="status" hidden></p>');
   $('#scenario-notice').insertAdjacentHTML('afterend','<aside id="inspection-context" class="inspection-context" aria-labelledby="inspection-title" hidden><div><strong id="inspection-title"></strong><p id="inspection-description"></p></div><button type="button" class="button button-dark" id="return-comparison">Return to this comparison <span aria-hidden="true">↗</span></button></aside>');
   $('#share-scenario').addEventListener('click',() => copyScenario());
   $('#export-briefing').addEventListener('click',exportBriefing);
   $('#open-thesis').addEventListener('click',openThesisLab);
+  $('#open-horizon').addEventListener('click',()=>{
+    try{window.open(scenarioUrl(new URL('./horizon.html',location.href).href,currentPortableScenario()),'_blank','noopener,noreferrer');}
+    catch(error){$('#portable-status').textContent=`The horizon could not open: ${error.message}`;}
+  });
   $('#return-comparison').addEventListener('click',openThesisLab);
 }
 

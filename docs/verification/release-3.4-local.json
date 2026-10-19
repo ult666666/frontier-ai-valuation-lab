@@ -1,0 +1,450 @@
+{
+  "applicationVersion": "3.4.0",
+  "modelVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "researchCutoff": "2026-10-18T09:22:26-07:00",
+  "status": "passed",
+  "recordedAtUtc": "2026-10-19T17:33:45.194477+00:00",
+  "scope": "Local release-candidate evidence collected from completed runs. No production deployment, native desktop delivery, native Excel recalculation or universal browser/accessibility certification is asserted.",
+  "sourceBinding": {
+    "baseCommit": "24f9372d36b500ecc6e38f35fbd07e6ae9019b76",
+    "kind": "Reviewed working-tree file-content SHA-256 snapshot",
+    "sourcePathsRelativeTo": "repository root",
+    "latestHttpSourceFiles": 59,
+    "currentFilesMatchLatestHttpSourceHashes": true,
+    "independentReferenceSourceHashesMatchCurrentFiles": true,
+    "collectionPolicy": "Completed run reports were inspected and copied. Evidence collection does not represent an additional suite run. Historical receipts are preserved."
+  },
+  "node": {
+    "command": "npm test",
+    "tests": 198,
+    "passed": 198,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "runtime": "v24.19.0",
+    "log": "qa-local/v3-4/node-tests-final.log",
+    "logSha256": "86a2e5d34d74862ca49814e3af1f37c824660acd0bf4b4f0890076d18b5b249b",
+    "scope": "Financial regressions, analytics, actual local HTTP API, strict transport, saved state, evidence, briefs, Horizon precision boundaries and release assets."
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "verifiedScenarioProjections": 6,
+    "evidenceFacts": 21,
+    "researchSources": 19,
+    "mappedInputsPerCompany": 13,
+    "log": "qa-local/v3-4/build-final.log",
+    "logSha256": "470979b5b4ab1a9355cc1626d74f8dac4461b9ab1829657bae6ef07363214f95"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "observedVersion": "138.0.7204.0",
+    "suites": [
+      {
+        "name": "Value Horizon",
+        "passed": 148,
+        "report": "horizon-browser-3.4.json",
+        "harness": "tests/horizon-browser.mjs",
+        "failed": 0,
+        "collectsBrowserErrors": true,
+        "harnessSha256": "1b5479b2ccc3a033b2d9ef6ad1632ae7dc9a16fd930d9b42a2e5f6763f187433"
+      },
+      {
+        "name": "Connected research journey",
+        "passed": 94,
+        "report": "journey-browser-3.4.json",
+        "harness": "tests/journey-browser.mjs",
+        "failed": 0,
+        "collectsBrowserErrors": true,
+        "harnessSha256": "50b9e8bf3a48e914d81c584b58697b0ced7510ec642080f625486968e94310df"
+      },
+      {
+        "name": "Research Casebook",
+        "passed": 85,
+        "report": "casebook-browser-3.4.json",
+        "harness": "tests/casebook-browser.mjs",
+        "failed": 0,
+        "collectsBrowserErrors": true,
+        "harnessSha256": "259e083008cf3538166b8c0ffd67d351b4e48e76667b19821d4419366f0886d7"
+      },
+      {
+        "name": "Workbench regression",
+        "passed": 57,
+        "report": "workbench-browser-3.4.json",
+        "harness": "tests/browser-smoke.mjs",
+        "failed": 0,
+        "collectsBrowserErrors": true,
+        "harnessSha256": "376442827d23c45563ec16d015adf7cffd21675fc739ea01e0a752b73d372938"
+      }
+    ],
+    "total": 384,
+    "failedAssertions": 0,
+    "reportedPageErrors": 0,
+    "horizonViewportWidths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "horizonCertificateOverride": false,
+    "coverage": "Exact Model/Horizon and research handoffs, all thirteen inputs, horizon/target controls, six-destination navigation, signed and extreme values, invalid-state clearing, precision limits, evidence, keyboard/focus, exports, full API mismatches and stale requests. Existing Casebook and workbench regression checks were rerun.",
+    "limits": "Four current local suites only. Prior release browser totals are historical and are not added here. The legacy-named qa-local/v3-3/journey directory is an output location reused by the current six-navigation harness."
+  },
+  "http": {
+    "report": "http-local-3.4.json",
+    "passed": 73,
+    "total": 73,
+    "assetRequests": 57,
+    "healthRequests": 1,
+    "completeApiResponses": 7,
+    "horizonResponses": 5,
+    "rejectionRequests": 8,
+    "apiActions": [
+      "attribute",
+      "landscape",
+      "horizon"
+    ],
+    "allNineFinancialActionsCoveredSeparatelyByNodeSuite": true,
+    "assetComparison": "Exact bytes",
+    "apiComparison": "Complete canonical JSON",
+    "sourceUnchangedDuringRun": true,
+    "tlsUsed": false,
+    "scope": "Local HTTP on 127.0.0.1:4326. The enabled TLS verification configuration is not a claim that TLS was used."
+  },
+  "independentPython": {
+    "runtime": "3.12.14",
+    "forward": {
+      "report": "reference-parity-3.4.json",
+      "validCases": 36,
+      "invalidCases": 73,
+      "fixtureEvUsdB": 200.31471864537804,
+      "relativeTolerance": 1e-10,
+      "absoluteToleranceUsdB": 1e-08
+    },
+    "thesis": {
+      "report": "thesis-reference-3.4.json",
+      "numericalComparisons": 1002,
+      "replacementOrders": 20160,
+      "marginalSteps": 120960,
+      "directGridCells": 390,
+      "frontierEntries": 80,
+      "method": "Separate Python FCFF; full order enumeration; affine tax-segment roots."
+    },
+    "horizon": {
+      "report": "horizon-reference-3.4.json",
+      "ordinaryScenarios": 39,
+      "ordinaryRequests": 159,
+      "totalRequestsIncludingPrecisionFixtures": 165,
+      "numericComparisons": 19974,
+      "curvePoints": 3939,
+      "precisionFixtureScenarios": 6,
+      "decimalBoundaryChecks": 8,
+      "method": "Separate Python FCFF calculation; compensated term-by-term continuation sum; linear whole-year search; 100-digit Decimal.from_float precision-boundary recurrence.",
+      "absoluteTolerance": 1e-08,
+      "relativeTolerance": 1e-10,
+      "maxAbsoluteError": 1536.0,
+      "maxAbsoluteErrorCase": {
+        "label": "Adjacent WACC and growth.curve[83].excludedTerminalPv",
+        "actual": 4144096851120942000,
+        "expected": 4.1440968511209436e+18
+      },
+      "maxRelativeErrorNormalizedByAtLeastOne": 2.0062099329773607e-14,
+      "precisionPolicy": "Conservative floating-point guard on target/capture boundaries and the search cap; not a formal interval-arithmetic proof or a claim that no exact-real-number solution exists."
+    },
+    "scope": "Arithmetic agreement for declared deterministic fixtures; no company forecast, source completeness, lifespan probability or investment return is validated."
+  },
+  "review": {
+    "report": "independent-review-3.4.json",
+    "closedFindings": 3,
+    "remainingConfirmedFindingsInScope": 0,
+    "assuranceLevel": "Scoped AI-assisted engineering review by a separate agent from the new Horizon implementation",
+    "findings": [
+      "Target and capture first-whole-year precision grouped together",
+      "Responsive line breaks joining words",
+      "Invalid-case captions retaining a prior result"
+    ],
+    "limitations": "Not an external audit or full-application certification."
+  },
+  "print": {
+    "paper": "A4",
+    "examples": [
+      {
+        "name": "Value Horizon",
+        "path": "public/downloads/Frontier_AI_Value_Horizon.pdf",
+        "pages": 2,
+        "sha256": "6ab072487cf8d006aaba1bc6a7c66aeae031b33654c9851b5baa3c8df75361ef",
+        "allPagesVisuallyReviewed": true
+      },
+      {
+        "name": "Thesis comparison",
+        "path": "public/downloads/Frontier_AI_Thesis_Comparison.pdf",
+        "pages": 3,
+        "sha256": "06a95b3dc8cef56d3613511be5516b3505dfaa0249364a61c7223103a3d7bd84",
+        "allPagesVisuallyReviewed": true
+      },
+      {
+        "name": "Research brief",
+        "path": "public/downloads/Frontier_AI_Research_Brief.pdf",
+        "pages": 4,
+        "sha256": "aac2d99d4a866c22693a01ea313ce75c74be51513765a085df6861dbeab041d5",
+        "allPagesVisuallyReviewed": true
+      }
+    ],
+    "reviewer": "Integration owner inspected every final example page. This collector verifies the identified bytes and records that scoped visual review.",
+    "result": "No clipping, overlap or short orphan overflow page in the reviewed examples; complete assumptions and forecasts remain present.",
+    "horizonPrintFinding": {
+      "status": "closed",
+      "resolution": "Adjusted the standalone Horizon print layout to keep the worked example on two purposeful pages.",
+      "scope": "A print-layout correction recorded separately from the three independent engineering findings."
+    },
+    "limits": "These page counts describe the supplied worked examples; custom content can require more pages."
+  },
+  "desktop": {
+    "builderReport": "desktop-verification-3.4.json",
+    "archiveReport": "desktop-archive-3.4.json",
+    "archive": "public/downloads/Frontier_AI_Value_Horizon_Package.zip",
+    "archiveSha256": "40f15a73b220d75651abc8529ace281a337e32c6c6fe114d4f2e18926bba3995",
+    "archiveBytes": 830904,
+    "archiveMembers": 30,
+    "manifestListedFiles": 29,
+    "manifestFileCount": 1,
+    "manifestHashesVerified": true,
+    "zipCrcVerified": true,
+    "preservation": "Separate versioned destination with exist_ok=False; prior downloads retained; creation and read-only verification exercised in a temporary directory.",
+    "nativeDesktopDelivery": "unconfirmed",
+    "nativeDesktopReason": "Remote Desktop Commander read-only probes did not complete; no native copy or launch is asserted.",
+    "scope": "Locally verified distributable archive and temporary package; not a confirmation of a user-device delivery."
+  },
+  "financialWorkbook": {
+    "unchangedFromReviewed3_3Bytes": true,
+    "historicalNumericalComparisons": 2058,
+    "historicalInvalidAndSelectorCases": 169,
+    "historicalFormulaCount": 435,
+    "historicalReports": [
+      "workbook-checks.json",
+      "workbook-xml.json"
+    ],
+    "nativeMicrosoftExcelRecalculated": false,
+    "nativeExcelChartDisplayVerified": false,
+    "scope": "Preserved workbook and original financial-review PDF; historical authoring-runtime checks are not counted as new v3.4 tests."
+  },
+  "datedResearch": {
+    "companySnapshot": "2026-10-18",
+    "cutoff": "2026-10-18T09:22:26-07:00",
+    "sources": 19,
+    "facts": 21,
+    "liveCompanyRefreshPerformed": false,
+    "methodReferencesReviewedSeparately": "2026-10-19",
+    "scope": "New Horizon methodology research does not refresh the frozen company evidence or convert operating assumptions to facts."
+  },
+  "ci": {
+    "configuration": ".github/workflows/ci.yml",
+    "configuredGates": [
+      "npm test",
+      "python3 -B tests/reference_parity.py",
+      "python3 -B scripts/check_thesis_reference.py --output /tmp/thesis-reference.json",
+      "python3 -B scripts/check_horizon_reference.py --output /tmp/horizon-reference.json",
+      "npm run build"
+    ],
+    "hostedRunClaimed": false
+  },
+  "production": {
+    "deploymentClaimed": false,
+    "verificationClaimed": false,
+    "scope": "Use a separately dated production receipt for any subsequent publication or live verification."
+  },
+  "preservedFinancialSnapshotSha256": {
+    "public/downloads/Frontier_AI_Valuation_Model.xlsx": "0a692f43f8459ffb6a162f065c10912a5ca23738d55104b272f74dbecdf73438",
+    "public/downloads/Frontier_AI_Valuation_Review.pdf": "08c94a33ea36870ca05ba437077bcec9d308ad87b90a4a7e3b80806d16edec36",
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "data/research.json": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65"
+  },
+  "sourceSha256": {
+    ".github/workflows/ci.yml": "b0cfad15596b5756ee44e9e763426ece77e97137218e9399c3294c0d5600b397",
+    "README.md": "7b578f1ded98cc01604aa98a7f781f061ea12b757ae15bebc289afa42f6f1ca9",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "docs/API.md": "cf80382c9d221bbdf53abf017aa7b3bb442b8c5ab123364aec0881c865865894",
+    "docs/DESKTOP_GUIDE.md": "05ee233004a15e70909bd126c1f6b65779a1dbbfcf796e7414dd3be305deffef",
+    "docs/RESEARCH_WORKSPACE.md": "86b2bfc26f4cab05c46117ebbce49412ce6721a387467e7d4511fa5db0315813",
+    "docs/VALUE_HORIZON.md": "be42ad79f1040265467ff4142c6fe08517cac52eac5b7997037f8ff748c1851f",
+    "lib/http.js": "c730faff9ced8bee5e80cbc39b72dea373f202eea5fcd59465472c213a0b679e",
+    "package.json": "292794177a813ac9d0f5bce7525e0725c7437f2d8d62333e5b01e87493d1e341",
+    "public/app.js": "a6ec091279a6f3600dcc6ae0094ade929e4701c5b4e94970ed79cdefba32943a",
+    "public/assets/casebook-preview.png": "420b9ad3294b9fe05a4e7843d59c95b1a0dcec0fca380cb796f555c5ef48bdfd",
+    "public/assets/horizon-preview.png": "a7670a8b00411fbce6c60ce90d4eb3593879082f84c2796d1c40f6f99cd57abe",
+    "public/assets/mark.svg": "bff0e1b076a36f122e36b8c9deb2b895450ff6662b303faec639753e911ce5ae",
+    "public/assets/social-preview.png": "3210bc40fcfdf75138485143315548397f061e2ed2f685f1bccbf050a369e153",
+    "public/assets/thesis-preview.png": "5b294918d7ee2181ae1e284592620a8a3e4d312f05bc6975bc7a0325eded91d0",
+    "public/casebook.css": "5f7df65a0fbb1074fe1728a19daa223336ceddc49ab4fd18edc86866ea7e8108",
+    "public/casebook.html": "f64b76087ba338ff0d58d8ea37a395fec2e06c7d6ceb7d905a526f7f8e26b273",
+    "public/casebook.js": "c5768115b218962d0fd04db27715779b5d0f3cccff0ff67f9c6f8c5dc3545c22",
+    "public/data/current-results.json": "10ebc4ec4bd8bfe4440dcb1ab303aa4df26b542e4e60ddf4c174f9e72c738fa7",
+    "public/data/evidence.json": "5b24b888cabdbddbb4e0af221933b14fcb6c6cd8143d4f08293afe84ecff0289",
+    "public/data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "public/data/research.json": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65",
+    "public/downloads/Frontier_AI_Research_Brief.html": "dde89ce6c347e77f453d4948d07e5a5c2613a6a3f0bda7617334194a72e95f97",
+    "public/downloads/Frontier_AI_Research_Brief.pdf": "aac2d99d4a866c22693a01ea313ce75c74be51513765a085df6861dbeab041d5",
+    "public/downloads/Frontier_AI_Research_Casebook.json": "d4f76abc483f72d2274e26400a246fee91ebccfb6f4d9bd2a5c9bb7582523ef3",
+    "public/downloads/Frontier_AI_Thesis_Comparison.html": "83294c80af9d837deea01d9d98b42a55ccd3367a14367b5da67b405a5ccb5c7f",
+    "public/downloads/Frontier_AI_Thesis_Comparison.pdf": "06a95b3dc8cef56d3613511be5516b3505dfaa0249364a61c7223103a3d7bd84",
+    "public/downloads/Frontier_AI_Valuation_Model.xlsx": "0a692f43f8459ffb6a162f065c10912a5ca23738d55104b272f74dbecdf73438",
+    "public/downloads/Frontier_AI_Valuation_Review.pdf": "08c94a33ea36870ca05ba437077bcec9d308ad87b90a4a7e3b80806d16edec36",
+    "public/downloads/Frontier_AI_Value_Horizon.html": "0d8c02cda7c769fc64458d182bafb6f6abc7964fb9b8ca17ebb729e17d95a9ea",
+    "public/downloads/Frontier_AI_Value_Horizon.json": "abfbf3ee05a696d947aeee3c029e22aa180e2dda27074147ae37ea0703fa4ebb",
+    "public/downloads/Frontier_AI_Value_Horizon.pdf": "6ab072487cf8d006aaba1bc6a7c66aeae031b33654c9851b5baa3c8df75361ef",
+    "public/downloads/Frontier_AI_Value_Horizon_Package.zip": "40f15a73b220d75651abc8529ace281a337e32c6c6fe114d4f2e18926bba3995",
+    "public/evidence-context.css": "3b8936b1535a6871777915d9e9ab23e10cca83b705c36d4e5fb83536f3c91d08",
+    "public/evidence-context.js": "389c134163de9f4e8907f42d89f31aa239f268b99aa3f3d93e31f0d9d8a01dc0",
+    "public/experience.css": "a44cc5260391159ce398650cbf17302078208f9d3ad8e7c6ecb7961bf101b610",
+    "public/experience.js": "c391d13f757e721e8d9d64ab16b6d6db36fccd6add7742808005641c0852dec4",
+    "public/horizon.css": "e39dc76af2e51f7f095d630afccd0ed3e3446074b3a39255339bbf83678dd7c9",
+    "public/horizon.html": "5be6cffdacd99d1045f6a8275854fa7c4d9f5c4e6e09f404d4063281a934ec1a",
+    "public/horizon.js": "f21624bc302cdef7321c193e934c25a03b9173946ab7bc14064750f966200478",
+    "public/index.html": "8cd02dc0f1d3c36c42f8530087154f1cd310cdf618cf6f8a441772996f9430d0",
+    "public/lib/analytics.js": "ef35d80f9ad805de540dd0d9fda943ba969913cb9b0e3742c9a2e0d2ea00b75f",
+    "public/lib/briefing.js": "428afb688cd2b589e9f03033989460db63777aee3bb75bacdf30d30a181fee2a",
+    "public/lib/casebook-brief.js": "49afda42f775b83e9419db4184e087981c2ca186c20588975cc2786bf0382aae",
+    "public/lib/casebook-store.js": "73beb3444dcb67f858f9c580e4e3c1e88bc246ee7e2af88d58a94119ad9d6819",
+    "public/lib/casebook.js": "89cf76f1cf4ffccb1d9eb3512a7c34308d16e02403a6a092983793a9aaec1f04",
+    "public/lib/evidence.js": "091c775ead94aed83c0195a9789e403bca75457453957371fb095080b8c16bb4",
+    "public/lib/horizon-brief.js": "40a85b484a9b8c8b501d8669aff2d324a65aab10e3495f6d863c35df10d54a56",
+    "public/lib/horizon-share.js": "062d578cd93957ca7733e25ed04192a4fc195381d0ba38f837930c8418b234a8",
+    "public/lib/horizon.js": "31e88f039b640a9627b1a5d78bc62c93dbd82d1cb50015b4606e2efb3923eec5",
+    "public/lib/journey.js": "442e60ec027b80cec25584afdab09a9783b3dabaa503c319cd8a7ebc4deb7dbe",
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/release.js": "9a6005a2b718265e538b077d01589754c4932e096da2552c6911b76eb3e1fdcc",
+    "public/lib/share.js": "658b1103278e1702a1f0616c9ff920f98d331b7dce552e0f97ce21bac9bc98ab",
+    "public/lib/thesis-brief.js": "0ea9dbc0c17cd2f6bde00e1991ff0aa678918807447f33bff08ea24a63085b6e",
+    "public/lib/thesis-share.js": "9c724b710c88747d252cd5e245867dc0e5287c40e2438db5d21db5ed8e577046",
+    "public/lib/thesis.js": "a2ad37f4d9d12d7556efea1adbdcddb0424b2599700b15000b0dbbccc6c245e3",
+    "public/portable.css": "aa2c9861b6c664a1f62cbb384f07f1bebe8191ed1611f39255918e85621b058d",
+    "public/report.html": "1ac8d7bf552060d5188c2a033020fb92c673b6fe6f90f4e7e1fec42d8c3cc335",
+    "public/shell.css": "37d2ae1c31521c82c94515655f07aad3d4aa36d74bd9ee0a3ef2e303dd2fc383",
+    "public/shell.js": "585f28fd1efea5a47f64a4dbf68f900f4d7fe5dd72ba0fca7e2f68f597b3f8b2",
+    "public/styles.css": "69cd753d8112fc438c9524d7972b927fce7417e26da6860a0adc3faecaef26b7",
+    "public/thesis.css": "5d76a1bcf935fc50381448df5a08e34727245f423f854e2cbc98812dec583607",
+    "public/thesis.html": "99f1f622dc232171204ec54d7a3b6238b69c64a6a586bb66ad46f64373ab091a",
+    "public/thesis.js": "61aed0f4ceddc44f35aae51733258bac523cb8363bdc44348304effd3e568634",
+    "scripts/build.js": "a40b81f46c89bc5b6a60884754c9e1cf1e999414b4ead1703b21448a579c5fb3",
+    "scripts/build_desktop_archive.py": "6f61a121d44984b887be8dfe4d70591a8c3e3b7d7d446979bdb236bad5b7c9dd",
+    "scripts/build_horizon_example.mjs": "19d82872e6651b32912058ccada42c0f48a2e287973491c8caa78b474edb3550",
+    "scripts/check_horizon_reference.py": "902e9bf7e74dcd97544d1d7ec68876761d7bf02d689d9af190957d9f06845935",
+    "scripts/check_thesis_reference.py": "fb39a663daba0339b50ecf610d14dc10fa808e54e086f5cccf731feadc4a790b",
+    "scripts/deliver_desktop.py": "24373fcd729dc826b4cfe180a939e578ca24ded799d92188a58707e596f40513",
+    "scripts/reference_model.py": "8cbc2359afc02f0246e93e722febcb82df5f85e5014521249e8555825d3651d4",
+    "scripts/verify_thesis_http.py": "2731b02580a48d90b24968c63a4977e1e44c0edac60e1340d0285cdb6455eca9",
+    "server.js": "501010c8c7c2dc94acf96244360f2dfeb3d0c6af051322dc1d5b9ea1b01924a0",
+    "tests/analytics-api.test.js": "80c340ca9a9171e80970d855ea195e772bf7135e67fd986809074c4dc36651b1",
+    "tests/analytics.test.js": "a129875814c40109bd18fc6a46d84d156a2f9fb641f1fcaff05ad9844cda9842",
+    "tests/api.test.js": "bd962d73dbba9a4f1beaeea64886d800527336572678b9be188178592fbf7df1",
+    "tests/briefing.test.js": "4c9c4ed18937ec6434a365248945e3f907bb1721d06d47aeed8d7959872260b5",
+    "tests/browser-smoke.mjs": "376442827d23c45563ec16d015adf7cffd21675fc739ea01e0a752b73d372938",
+    "tests/casebook-brief.test.js": "4568f83d2bbf2af806b8ba29b8bdf6be79e86ca11d0e4a01e3e066ab313a5e59",
+    "tests/casebook-browser.mjs": "259e083008cf3538166b8c0ffd67d351b4e48e76667b19821d4419366f0886d7",
+    "tests/casebook-store.test.js": "42dda32130e38b43af1fe5aaaf782eaf02bbcdc4da7f48213076e0b9655f5578",
+    "tests/casebook.test.js": "f33216e6471d562417b94b08cdce71087dba57fdbdde07d38158b98ea35f3517",
+    "tests/evidence.test.js": "b56506fb41e067d21efdfc421e3d7cb41b5f32335ae09c3e1a395c0175ff5e20",
+    "tests/horizon-api.test.js": "ea4d4ff8e3377d2684f3bbfd3080b619cc5f74f82c02f346346f89256e8ea0f4",
+    "tests/horizon-browser.mjs": "1b5479b2ccc3a033b2d9ef6ad1632ae7dc9a16fd930d9b42a2e5f6763f187433",
+    "tests/horizon.test.js": "0d14b5f04189ab262f3479b15f506f25c16187e8410e4a88ceda71186507f0b2",
+    "tests/journey-browser.mjs": "50b9e8bf3a48e914d81c584b58697b0ced7510ec642080f625486968e94310df",
+    "tests/journey.test.js": "ae7d51fa4fb1eca1bb51be6e789e60b0ba28f06e810104374487e8fbd3fdf762",
+    "tests/model.test.js": "581a2722cbcc8ce0958994b5d815e911cb1049d3d9fa30466fd27c1d43d68f5a",
+    "tests/reference_parity.py": "92debc6aad8917dcee877d08f2197924fd9f94cac8c0df697303579c9b06714c",
+    "tests/release.test.js": "cc1e59c771bc768edc0e2defd7f667f35ce58debe527b05b25ec082e65ae540c",
+    "tests/research-example.test.js": "2e3b9172f9fd5b708e96d923ae59564e099f8a7a2b955e1c27a567c39a52d47c",
+    "tests/share.test.js": "a9f233b824cf9595c316d0d60d67f91c829640c87c6a546951051411ddce00bd",
+    "tests/thesis-api.test.js": "bbe931f5bb9dc1507ec473b7e5bca9f5cf39a942a413d6f24afa508d8830d5ae",
+    "tests/thesis-brief.test.js": "34765b1ed732abecd3acf967e54a4a12a314a636c786bd4b25743a87f9477ff3",
+    "tests/thesis-share.test.js": "8ef86692b2cfae22f7ccc43fbb9dfbc36fd0548123f568acff175f750870f69f",
+    "tests/thesis.test.js": "d33b4c26ea9a4646607c9f4e8c60eaf4634e147845eb9e0010b9ca41ca7e2c35"
+  },
+  "evidenceCollection": [
+    {
+      "sourceReport": "qa-local/v3-4/browser-final/report.json",
+      "sourceReportSha256": "115963c98e39419aabaac5a0acd5ce5b6c0f823231005f30f4e7ff4514b7ca66",
+      "copiedReport": "docs/verification/horizon-browser-3.4.json",
+      "copiedReportSha256": "115963c98e39419aabaac5a0acd5ce5b6c0f823231005f30f4e7ff4514b7ca66",
+      "normalization": "Repository-root absolute path prefixes replaced with relative paths; no assertion values changed."
+    },
+    {
+      "sourceReport": "qa-local/v3-3/journey/report.json",
+      "sourceReportSha256": "220850e40f6f47eb6be6ffab659f7f62aa0653a5df7020ffaeae599dd23b6ac0",
+      "copiedReport": "docs/verification/journey-browser-3.4.json",
+      "copiedReportSha256": "220850e40f6f47eb6be6ffab659f7f62aa0653a5df7020ffaeae599dd23b6ac0",
+      "normalization": "Repository-root absolute path prefixes replaced with relative paths; no assertion values changed."
+    },
+    {
+      "sourceReport": "qa-local/v3-4/casebook/browser-checks.json",
+      "sourceReportSha256": "597da1c030a518e510ebf75ad1d2fd9ed3de5dcd39d2f0902e88cb8bbfed3432",
+      "copiedReport": "docs/verification/casebook-browser-3.4.json",
+      "copiedReportSha256": "4db84f718473a93dd4fd1f4cc790c3e3ca1dac82eca4e8bac3ad3b65236b4565",
+      "normalization": "Repository-root absolute path prefixes replaced with relative paths; no assertion values changed."
+    },
+    {
+      "sourceReport": "qa-local/frontend-checks.json",
+      "sourceReportSha256": "03c824bdd31aaad43b9e11c0ae347f8c364ed7bcb4c1b23658c5b991f391b383",
+      "copiedReport": "docs/verification/workbench-browser-3.4.json",
+      "copiedReportSha256": "29df2b25f4e0c8b02ebadda93edb37e08730e8a76b09d92473a9b92e5cfd3cd7",
+      "normalization": "Repository-root absolute path prefixes replaced with relative paths; no assertion values changed."
+    },
+    {
+      "sourceReport": "qa-local/v3-4/http-local-final.json",
+      "sourceReportSha256": "65e3d7152959ec04d23cde136baa07be06368a2e6edbf2bcda0a5dcaa5b62cf3",
+      "copiedReport": "docs/verification/http-local-3.4.json",
+      "copiedReportSha256": "65e3d7152959ec04d23cde136baa07be06368a2e6edbf2bcda0a5dcaa5b62cf3",
+      "normalization": "Repository-root absolute path prefixes replaced with relative paths; no assertion values changed."
+    },
+    {
+      "sourceReport": "qa-local/v3-4/horizon-reference-final.json",
+      "sourceReportSha256": "8a8dd2ee2127e6c0cc135ddcd16025d14077f30c08b244553ec0cd5168c18f58",
+      "copiedReport": "docs/verification/horizon-reference-3.4.json",
+      "copiedReportSha256": "8a8dd2ee2127e6c0cc135ddcd16025d14077f30c08b244553ec0cd5168c18f58",
+      "normalization": "Repository-root absolute path prefixes replaced with relative paths; no assertion values changed."
+    },
+    {
+      "sourceReport": "qa-local/v3-4/thesis-reference-final.json",
+      "sourceReportSha256": "5df4f918b771ff5aa8bb725e80ef17e8f64dc6004864ed9206f631879e697272",
+      "copiedReport": "docs/verification/thesis-reference-3.4.json",
+      "copiedReportSha256": "5df4f918b771ff5aa8bb725e80ef17e8f64dc6004864ed9206f631879e697272",
+      "normalization": "Repository-root absolute path prefixes replaced with relative paths; no assertion values changed."
+    },
+    {
+      "sourceReport": "qa-local/v3-4/reference-parity-final.json",
+      "sourceReportSha256": "1fc2ed9415be1e476e89617716feb7122d0c3905d600afb6c1981f03c7251ddd",
+      "copiedReport": "docs/verification/reference-parity-3.4.json",
+      "copiedReportSha256": "1fc2ed9415be1e476e89617716feb7122d0c3905d600afb6c1981f03c7251ddd",
+      "normalization": "Repository-root absolute path prefixes replaced with relative paths; no assertion values changed."
+    },
+    {
+      "sourceReport": "qa-local/v3-4/desktop-verification.json",
+      "sourceReportSha256": "2e77444aec0d29ec5c48497f452db036a74dbe4846ed8e9e6aecdc1a48087396",
+      "copiedReport": "docs/verification/desktop-verification-3.4.json",
+      "copiedReportSha256": "2e77444aec0d29ec5c48497f452db036a74dbe4846ed8e9e6aecdc1a48087396",
+      "normalization": "Repository-root absolute path prefixes replaced with relative paths; no assertion values changed."
+    },
+    {
+      "sourceReport": "qa-local/v3-4/desktop-archive.json",
+      "sourceReportSha256": "ccb195428955a520f1f87ea89f24d0c4d7b1be3455151d83bf7e81424b0a03c5",
+      "copiedReport": "docs/verification/desktop-archive-3.4.json",
+      "copiedReportSha256": "3d2e42a9531a9b915775e30926e331a28d0caff356a6a316c321a743570a1c98",
+      "normalization": "Repository-root absolute path prefixes replaced with relative paths; no assertion values changed."
+    }
+  ],
+  "verificationRecordSha256": {
+    "casebook-browser-3.4.json": "4db84f718473a93dd4fd1f4cc790c3e3ca1dac82eca4e8bac3ad3b65236b4565",
+    "desktop-archive-3.4.json": "3d2e42a9531a9b915775e30926e331a28d0caff356a6a316c321a743570a1c98",
+    "desktop-verification-3.4.json": "2e77444aec0d29ec5c48497f452db036a74dbe4846ed8e9e6aecdc1a48087396",
+    "horizon-browser-3.4.json": "115963c98e39419aabaac5a0acd5ce5b6c0f823231005f30f4e7ff4514b7ca66",
+    "horizon-reference-3.4.json": "8a8dd2ee2127e6c0cc135ddcd16025d14077f30c08b244553ec0cd5168c18f58",
+    "http-local-3.4.json": "65e3d7152959ec04d23cde136baa07be06368a2e6edbf2bcda0a5dcaa5b62cf3",
+    "independent-review-3.4.json": "c77be49c230b503960249cfca2e8616d1e40257ea63896c49353acfd1ba2c52a",
+    "journey-browser-3.4.json": "220850e40f6f47eb6be6ffab659f7f62aa0653a5df7020ffaeae599dd23b6ac0",
+    "reference-parity-3.4.json": "1fc2ed9415be1e476e89617716feb7122d0c3905d600afb6c1981f03c7251ddd",
+    "thesis-reference-3.4.json": "5df4f918b771ff5aa8bb725e80ef17e8f64dc6004864ed9206f631879e697272",
+    "workbench-browser-3.4.json": "29df2b25f4e0c8b02ebadda93edb37e08730e8a76b09d92473a9b92e5cfd3cd7"
+  }
+}

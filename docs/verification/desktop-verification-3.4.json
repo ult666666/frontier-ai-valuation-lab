@@ -1,0 +1,22 @@
+{
+  "status": "pass",
+  "destination": "/tmp/frontier-desktop-v34-review-sea6yeug/Value_Horizon_V3_4_2026-10-19",
+  "checks": [
+    "New versioned handoff creates and verifies successfully",
+    "Read-only CLI verification succeeds",
+    "Every old and new download is an exact source-byte copy",
+    "Existing destination is refused without changing any package byte",
+    "Changed artifact bytes fail manifest verification",
+    "Wrong shortcut is rejected even with a matching file hash",
+    "Missing local download is rejected even with matching opening-page hashes",
+    "Restored package verifies again",
+    "Earlier handoff bytes remain unchanged"
+  ],
+  "networkRequests": false,
+  "sourceSha256": "24373fcd729dc826b4cfe180a939e578ca24ded799d92188a58707e596f40513",
+  "manifestListedFiles": 29,
+  "manifestFile": "SHA256_manifest.json",
+  "totalFilesIncludingManifest": 30,
+  "verifiedAtUtc": "2026-10-19T17:24:24.196618+00:00",
+  "scope": "Temporary local package verification; no live deployment or user-device desktop claim."
+}

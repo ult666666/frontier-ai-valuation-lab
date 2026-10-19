@@ -1,2 +1,2 @@
 // Product presentation version; the audited financial engine has its own version.
-export const APP_VERSION = '3.3.0';
+export const APP_VERSION = '3.4.0';
