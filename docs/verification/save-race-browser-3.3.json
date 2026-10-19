@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "checks": 16,
+  "details": [
+    "A pending comparison save cannot be submitted twice",
+    "A delayed comparison save retains both exact captured cases, bridges and axes",
+    "The later visible target edit remains in the workbench",
+    "The comparison status identifies the earlier save and unsaved current edits",
+    "The earlier saved comparison link opens the actual returned entry",
+    "The changed comparison can be saved after the prior operation completes",
+    "A pending scenario save cannot be submitted twice",
+    "A delayed scenario save retains all exact captured inputs and bridge balances",
+    "A bridge-only edit remains visible after the prior snapshot saves",
+    "A bridge-only edit receives an honest earlier-save status",
+    "The earlier scenario link opens the actual returned entry",
+    "The edited bridge can be saved after the prior operation completes",
+    "Copying an unchanged comparison while saving retains the exact snapshot",
+    "Copying an unchanged calculation does not falsely mark it as unsaved",
+    "An unchanged calculation receives the normal current-save confirmation",
+    "Pending-save journeys produce no uncaught browser errors"
+  ],
+  "browserErrors": [],
+  "applicationVersion": "3.3.0",
+  "modelVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "verificationScope": "Local Chromium release-candidate check; assertion counts are not counts of distinct users or browsers.",
+  "checkCount": 16,
+  "sourceReport": "qa-local/v3-3/save-race/report.json",
+  "sourceReportSha256": "907de93d0e99ef17eb26d66f77c36a4bc7faffc51cd3074442a8e923eb7cae1c",
+  "artifactPathsRelativeTo": "repository root",
+  "localQaArtifactsIncluded": false,
+  "harness": "tests/save-race-browser.mjs"
+}

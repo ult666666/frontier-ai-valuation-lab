@@ -17,6 +17,7 @@ const reverse={};for(const company of Object.keys(presets))reverse[company]=reve
 await mkdir(path.join(ROOT,'public/data'),{recursive:true});
 for(const name of ['presets.json','research.json'])await copyFile(path.join(ROOT,'data',name),path.join(ROOT,'public/data',name));
 await writeFile(path.join(ROOT,'public/data/current-results.json'),JSON.stringify({modelVersion:MODEL_VERSION,valuationDate:VALUATION_DATE,cases,reverse},null,2)+'\n');
+await import('./build_evidence.js');
 const OUT=path.join(ROOT,'dist');
 // dist is an ignored generated build directory, never a source or user path.
 await rm(OUT,{recursive:true,force:true});await mkdir(OUT,{recursive:true});

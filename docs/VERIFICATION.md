@@ -1,8 +1,102 @@
 # Release verification
 
+This record separates numerical agreement, application behavior, print review and deployment consistency. A passing check establishes the behavior it exercises; it does not establish the completeness of private-company information or the accuracy of a forecast. The current v3.3 record appears first. The prior v3.2 record, including its older deployment history, is retained below with its original scope.
+
+## Version 3.3 local verification
+
+Application **3.3.0** passed the local release checks recorded on **19 October 2026**. It retains financial engine **3.0.0**, the **18 October 2026** valuation date and the frozen research cutoff **2026-10-18T09:22:26-07:00**. The model, presets, research register, original workbook and original financial-review PDF match the reviewed v3.2 bytes. The [release record](verification/release-3.3-local.json) identifies the reviewed working-tree files and preserved artifacts with SHA-256 hashes; it is a local verification record rather than a production deployment claim.
+
+| Verification layer | Current result | Evidence |
+| --- | ---: | --- |
+| Node model, analytics, API, state, evidence, brief and release tests | **172 passed; 0 failed** | [Named gates and source hashes](verification/release-3.3-local.json) |
+| Static staging build | **Passed; six projections checked** | [Build record](verification/release-3.3-local.json) |
+| Nine local Chromium suites | **527 assertions passed** | Suite reports below |
+| Local HTTP consistency probe | **53 of 53 passed** | [HTTP report](verification/http-local-3.3.json) |
+| Separate Python forward model | **36 valid and 73 invalid cases passed** | [Forward parity](verification/reference-parity-3.3.json) |
+| Separate Python attribution and target calculations | **1,002 numerical comparisons passed** | [Thesis reference](verification/thesis-reference-3.3.json) |
+| Scoped engineering review | **Six findings closed; none confirmed open in scope** | [Review record](verification/independent-review-3.3.json) |
+| Printable examples | **Three-page Thesis PDF; four-page Research PDF** | [Thesis comparison](../public/downloads/Frontier_AI_Thesis_Comparison.pdf), [Research brief](../public/downloads/Frontier_AI_Research_Brief.pdf) |
+
+### Research workflow and persistence
+
+The new checks exercise the full compare → explain → inspect → record journey. Inspecting either side of a comparison carries the other case, both separate bridge settings, the target and the exact axes. Returning replaces only the inspected side after validation. An exact solved target margin is applied at full precision. Saved-scenario restoration resets an unrelated bridge, and an enabled incomplete bridge prevents saving or reopening. [Journey report](verification/journey-browser-3.3.json).
+
+Casebook coverage includes strict schema and snapshot validation, all 13 exact inputs, both complete comparison cases, immutable calculation tokens during metadata edits, known source IDs, bounded plain-text notes, malformed and oversized imports, duplicate skipping, ID-conflict preservation, capacity handling and explicit legacy migration. Corrupt or blocked storage does not become an empty successful save. Quota failures preserve prior data; valid unsaved notes can still be exported, including when another view removed the original entry. JSON and script-free brief exports preserve those notes without submitting them to the calculation API. [Casebook report](verification/casebook-browser-3.3.json) and [review record](verification/independent-review-3.3.json).
+
+Real held Web Locks exposed and now test delayed saves. A target or bridge-only edit made while storage is pending remains visible, while the stored token retains the earlier captured values. The completion message explicitly identifies later edits as unsaved. Copying an unchanged calculation during the same wait still receives the normal current-save message. Storage writers reread the saved book before mutation; Web Locks serialize cooperating writers where available. The fallback serializes writers within one document and makes no cross-tab transaction or version-history promise. [Pending-save report](verification/save-race-browser-3.3.json).
+
+### Independent numerical checks
+
+The separate Python forward engine again passed **36 valid and 73 invalid cases**, comparing every annual field and terminal output at relative tolerance `1e-10` and absolute tolerance `1e-8` USD billions. Its independent constant-growth fixture gives **$200.31471864537804B EV**. This is a current rerun of the preserved financial engine. [Forward parity report](verification/reference-parity-3.3.json).
+
+The current Python Thesis reference checks use full replacement-order enumeration and affine margin segments across tax thresholds, independent of the production weighted-subset attribution and bisection solver. The run covers 18 ordered preset pairs, 10 edited pairs, two correctly unavailable overflowing-hybrid pairs, **20,160 replacement orders**, **120,960 marginal steps**, 390 direct grid cells and 80 target-frontier entries. All **1,002 numerical comparisons** passed. Maximum absolute differences were `1.82e-12` USD billions for EV, `4.55e-13` USD billions for a group contribution, and `6.66e-16` for recovered margin. The report records exact tolerances, deterministic fixture hashes and the loaded source hashes. These numerical checks do not establish scenario probabilities or forecast credibility. [Thesis reference report](verification/thesis-reference-3.3.json).
+
+### Browser interaction and visual coverage
+
+The **527** total is the sum of assertions in the following nine local Chromium runs; it is separate from the **172** Node tests and **53** HTTP probe requests.
+
+| Suite | Passed assertions | Recorded checklist |
+| --- | ---: | --- |
+| Workbench regression | 57 | [Workbench](verification/workbench-browser-3.3.json) |
+| Thesis Lab | 79 | [Thesis](verification/thesis-browser-3.3.json) |
+| Workbench / Thesis entry and return | 14 | [Entry and return](verification/thesis-entry-browser-3.3.json) |
+| Guided comparison and stress experience | 75 | [Experience](verification/experience-browser-3.3.json) |
+| Scenario sharing and standalone briefing | 75 | [Portability](verification/portability-browser-3.3.json) |
+| Connected research journey | 94 | [Journey](verification/journey-browser-3.3.json) |
+| Research Casebook | 85 | [Casebook](verification/casebook-browser-3.3.json) |
+| Contextual evidence component | 32 | [Evidence](verification/evidence-browser-3.3.json) |
+| Pending-save continuity | 16 | [Save races](verification/save-race-browser-3.3.json) |
+| **Total** | **527** | |
+
+The combined coverage includes 360, 390, 768 and 1440px layouts; 200% zoom in the suites that explicitly exercise it; reduced motion; native dialog focus and Escape; actual source destinations; exact URL and JSON restoration; negative and invalid states; complete API-response mismatch detection; stale-request cancellation; and storage/import failure handling. Actual desktop and mobile captures were visually inspected. Eight suites collect browser runtime errors and recorded none. The focused 32-assertion evidence component harness records assertions without a separate `pageerror` collector; its integrated journeys have their own error collection. [Aggregate scope](verification/release-3.3-local.json).
+
+These are automated Chromium and scoped visual checks. They do not certify every browser, physical mobile device, assistive technology or simultaneous editing pattern. Artifact paths in the copied JSON reports are repository-relative; ignored `qa-local` screenshots and intermediate downloads describe local run outputs rather than additional release downloads. The checked-in optional harnesses can target a running local app or another permitted host through `FRONTIER_BASE_URL`; optional Playwright/browser paths are development configuration, not application runtime dependencies. [Suite commands and hashes](verification/release-3.3-local.json).
+
+### Findings closed during the v3.3 review
+
+The [review record](verification/independent-review-3.3.json) documents scoped AI-assisted engineering peer review, read-only cross-component inspection and focused reproducers. It is not an external financial audit or a claim that every possible defect was found.
+
+| Finding | Verified resolution |
+| --- | --- |
+| Source-date qualifiers disappeared or became unavailable | Preserve complete publication, update and retrieval labels; compare all 19 Casebook source labels with the frozen register. |
+| Published Base arithmetic could be read as describing every selected case | Identify the published Base context explicitly and display the actual reference and alternative inputs separately. |
+| Explicit evidence Close could bubble into the opener handler | Restrict delegated opening to the trigger button; verify Close, Escape and restored focus. |
+| Pending save could show a current-save success after a later edit | Compare the captured calculation with the current draft after persistence and identify unsaved current edits. |
+| A remapped legacy record could be duplicated after notes changed | Recognize its immutable token and creation time; repeating migration preserves both records and causes no extra write. |
+| Research PDF produced two short overflow pages | Tighten print spacing with unchanged type sizes, retaining complete notes and source records on four purposeful pages. |
+
+No confirmed finding remains open in this reviewed scope. The finding record identifies the relevant implementation, regression evidence and reviewed file hashes. [Review evidence](verification/independent-review-3.3.json).
+
+### Printed examples, workbook and research limits
+
+Every page of the refreshed **three-page Thesis comparison** and **four-page Research brief** was rendered and visually inspected. The reviewed examples have no clipping, overlap or orphan overflow pages. The Research brief retains the full argument, exact inputs, annual cash-flow path, complete target context, source dates and limitations, and the exact calculation reopening link. Longer user notes or more selected sources can legitimately produce additional pages. [Print record](verification/release-3.3-local.json).
+
+The original nine-page financial-review PDF and five-sheet workbook retain their reviewed bytes. Their historical verification is still explicitly historical: **2,058 numerical comparisons**, **169 invalid-input/scenario-selector cases**, and **435 formulas** were checked in the artifact authoring runtime. No native Microsoft Excel recalculation or native Excel chart-display result was added by v3.3. Desktop package contents and launch links are separate delivery checks and do not establish native Excel behavior. [Preserved hashes](verification/release-3.3-local.json), [workbook checks](verification/workbook-checks.json) and [workbook XML limits](verification/workbook-xml.json).
+
+The evidence adapter joins **21 frozen facts** to **19 sources** and maps context to **13 inputs per company**. Observation periods, publication dates, update/retrieval qualifiers and source limitations remain distinct. This release did not perform a live company-data refresh. Annualized pace is not a full-year actual, reported commitments are not a payment schedule, selected growth and margin inputs remain assumptions, and a financing equity value is a different basis from operating EV. [Evidence contract](EVIDENCE_CONTEXT.md) and [dated release record](verification/release-3.3-local.json).
+
+### Local HTTP scope and repeatable gates
+
+The current local probe passed **46 asset requests**, **one health request**, **two complete API-response comparisons** (`attribute` and `landscape`) and **four rejection checks**, totaling **53**. It compared exact asset bytes and complete canonical JSON results. All eight API actions are covered separately in the ordinary Node/HTTP suite. The source hashes matched the working-tree files when these records were collected. The local probe used HTTP, so its retained TLS configuration flag is not evidence of a TLS connection. Use separately dated production records for production results. [HTTP report](verification/http-local-3.3.json).
+
+The main repeatable local gates are:
+
+```sh
+npm test
+npm run build
+python3 -B tests/reference_parity.py
+python3 -B scripts/check_thesis_reference.py --output qa-local/thesis-reference-rerun.json
+```
+
+The browser harness names and SHA-256 hashes are listed per suite in the [release record](verification/release-3.3-local.json). The evidence component's focused local review harness is identified as a local review aid; the committed evidence module tests and connected-journey harness supply repeatable repository checks. Casebook notes use browser storage and portable files; they do not create a paid service or persisted server backend.
+
+## Version 3.2 historical verification
+
+The following retained record was prepared for application **3.2.0**. Its counts are the results of that release, and its version 3.0 deployment subsection is older deployment history. Current v3.3 counts and scope appear above; historical verification files have not been overwritten.
+
 This record distinguishes calculation checks, application interaction and deployment checks. Application 3.2.0 uses the unchanged financial engine 3.0.0 and 18 October 2026 research snapshot. A passing test establishes its stated behavior, not the completeness of private-company information.
 
-## Financial model and HTTP API
+### Financial model and HTTP API
 
 `npm test` passed **119 tests** across financial regressions, shared analytics, real HTTP API actions, share encoding, standalone brief fidelity and release-asset checks. The original financial checks cover actual-date discounting, reinvestment, tax losses, negative continuation EV, accounting invariance, hypothetical equity bridges, invalid inputs, multiple reverse solutions and tangent roots. API tests exercise actual local HTTP requests, malformed payloads, the body-size limit, method/path boundaries and all eight server actions.
 
@@ -14,7 +108,7 @@ The independent constant-growth fixture returns **$200.31471864537804B EV**. It 
 
 An optional numerical exercise, `node scripts/check_reverse_stress.mjs`, recovered **11,203 supported positive forward targets** from 20,000 deterministic sampled scenarios. It found no missed known roots within `1e-6` early growth. See [reverse-stress.json](verification/reverse-stress.json). The core solver regression fixtures run in ordinary CI; the large exercise is supplementary evidence.
 
-## Thesis Lab calculation and independent review
+### Thesis Lab calculation and independent review
 
 The new Node tests cover all 36 ordered pairs of the six presets, all 64 attribution combinations, an independent 720-order oracle, swapped and identical cases, isolated groups, equal EVs with offsetting contributions, negative EV and nonfinite endpoint/hybrid failures. Landscape checks cover direct model values, matrix orientation, invalid cells, axis bounds, tax kinks, exact endpoints, out-of-window targets and very small numerical scales. Comparison links preserve exact inputs, bridges and axes; script-free brief tests verify current forecasts, reconciliation, safe links and finite extreme percentage display.
 
@@ -36,7 +130,7 @@ Monetary comparison tolerances are absolute `1e-8` USD billions plus relative `2
 
 The [independent review record](verification/thesis-review.json) documents four resolved defects: extreme percentage display, comparison validation before import mutation, mobile axis-label alignment, and stale screen-reader announcements after invalid input. The reviewer verified the two final UI fixes with focused Chromium reproducers. No confirmed finding remains open in that reviewed scope.
 
-## Browser interaction and layout
+### Browser interaction and layout
 
 Thesis Lab passed **78 Chromium checks**, recorded in [thesis-browser.json](verification/thesis-browser.json). Coverage includes complete two-case payloads, precise import and sharing, full annual-row API mismatch detection, stale requests, negative/invalid states, editable windows, target and point application, keyboard selection, presenter mode, reduced motion and 360/390/768/1440px layouts. A 200% zoom check found no horizontal page overflow. The optional harness is `node tests/thesis-browser.mjs`.
 
@@ -70,7 +164,7 @@ node tests/browser-smoke.mjs
 
 `FRONTIER_BASE_URL` can point to a deployment. `FRONTIER_PLAYWRIGHT_MODULE` can identify a separately installed Playwright package; `FRONTIER_CHROMIUM_EXECUTABLE` can select an available test browser. The harness writes ignored QA outputs and refreshes the README demo screenshot. It uses synthetic local scenario names and never needs account credentials.
 
-## Report and workbook
+### Report and workbook
 
 The application 3.2 release preserves the exact reviewed workbook and nine-page PDF bytes. Their earlier authoring verification remains applicable; they were not regenerated for this presentation update.
 
@@ -80,11 +174,11 @@ The five-sheet workbook passed **2,058 numerical comparisons** across six preset
 
 Read-only inspection confirms every saved formula cache, 19 source URLs and native chart bindings. The exporter omits separate chart point caches; the chart's worksheet references and rendered values were checked, but its display in native Excel was not. The [XML record](verification/workbook-xml.json) states this limit explicitly. Source URLs are readable text, avoiding unsupported hyperlink-formula caches.
 
-## Deployment policy
+### Deployment policy
 
 GitHub Actions runs financial/API/release checks, independent Python forward-model parity, independent attribution/frontier checks, and the static staging build. Vercel runs the model/API/release test suite before building its public output. The runtime needs no secrets or paid data services. `scripts/verify_thesis_http.py` checks actual HTTP routes, complete submitted API results, errors and reviewed asset hashes with ordinary TLS verification. Production verification additionally requests the public page, health route, submitted valuation, errors and downloads; the deployed commit and outcome are recorded in the release notes.
 
-## Version 3.0 published deployment record
+### Version 3.0 published deployment record
 
 The initial production deployment of application commit `22249b2481474c8823778cc7b35d7b834858761a` reached **READY** at [frontier-ai-valuation-lab.vercel.app](https://frontier-ai-valuation-lab.vercel.app/). Its [GitHub check run](https://github.com/ult666666/frontier-ai-valuation-lab/actions/runs/39148130450) completed successfully.
 

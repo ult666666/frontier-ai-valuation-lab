@@ -1,3 +1,5 @@
+import {defaultLandscape} from './lib/journey.js';
+import {thesisUrl} from './lib/thesis-share.js';
 import { MODEL_VERSION, VALUATION_DATE } from './lib/model.js';
 import { comparePair, stressPair } from './lib/analytics.js';
 
@@ -255,7 +257,7 @@ export function initExperience({ presets, research, onOpenModel }) {
         const changed = Math.abs(evDelta) > 1e-9;
         const direction = evDelta > 0 ? ' is-positive' : evDelta < 0 ? ' is-negative' : '';
         const deltaText = changed ? `${evDelta > 0 ? '+' : '−'}$${fmt(Math.abs(evDelta))}bn${evChangeRatio === null ? '' : ` (${evChangeRatio > 0 ? '+' : ''}${ratio(evChangeRatio)})`}` : 'No change from baseline';
-        return `<article class="stress-company${company === 'OpenAI' ? ' is-openai' : ''}"><h4 class="stress-company-name">${company}</h4><strong class="stress-ev" data-exp-stress-ev="${company}" data-exp-value="${stressed.ev}" title="${money(stressed.ev)}">${moneyHtml(stressed.ev)}</strong><span class="stress-delta${direction}" data-exp-delta="${company}">${deltaText}</span><p class="stress-baseline"><span>${state.scenario} baseline</span><strong>${money(baseline.ev)}</strong></p><button type="button" data-exp-open="${company}">Open this case in model <span aria-hidden="true">→</span></button></article>`;
+        return `<article class="stress-company${company === 'OpenAI' ? ' is-openai' : ''}"><h4 class="stress-company-name">${company}</h4><strong class="stress-ev" data-exp-stress-ev="${company}" data-exp-value="${stressed.ev}" title="${money(stressed.ev)}">${moneyHtml(stressed.ev)}</strong><span class="stress-delta${direction}" data-exp-delta="${company}">${deltaText}</span><p class="stress-baseline"><span>${state.scenario} baseline</span><strong>${money(baseline.ev)}</strong></p><div class="stress-actions"><button type="button" data-exp-explain="${company}">Explain this change <span aria-hidden="true">↗</span></button><button type="button" data-exp-open="${company}">Inspect forecast <span aria-hidden="true">→</span></button></div></article>`;
       }).join('');
       $('#exp-stress-announcement').textContent = `${state.scenario} stressed enterprise values. ${COMPANIES.map(company => `${company}: ${money(state.stress.stressed.companies[company].result.ev)}`).join('. ')}.`;
     } catch (error) {
@@ -363,6 +365,12 @@ export function initExperience({ presets, research, onOpenModel }) {
       renderStress();
     });
     $('#exp-stress-results').addEventListener('click', event => {
+      const explain=event.target.closest('[data-exp-explain]');
+      if(explain&&state.stress&&COMPANIES.includes(explain.dataset.expExplain)){
+        const company=explain.dataset.expExplain,assumptions={...state.stress.stressed.companies[company].assumptions};
+        const draft={company,reference:{scenario:state.scenario,assumptions:{...state.pair[company]},bridge:null},alternative:{scenario:state.scenario,assumptions,bridge:null},landscape:defaultLandscape(assumptions)};
+        location.assign(thesisUrl(new URL('./thesis.html',location.href).href,draft));return;
+      }
       const button = event.target.closest('[data-exp-open]');
       if (!button || !state.stress || !COMPANIES.includes(button.dataset.expOpen)) return;
       const company = button.dataset.expOpen;

@@ -21,23 +21,26 @@
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./experience.css">
   <title>Frontier AI Valuation Lab · Charles Dai</title>
+  <link rel="stylesheet" href="./shell.css">
+  <link rel="stylesheet" href="./evidence-context.css">
+  <script type="module" src="./shell.js"></script>
   <script type="module" src="./app.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#workspace">Skip to valuation model</a>
-  <header class="site-header">
+  <header class="site-header app-header">
     <div class="header-inner">
       <a class="brand" href="./" aria-label="Frontier AI Valuation Lab home">
         <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V7h22M5 16h15M14 25V7" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="26" cy="25" r="3" fill="currentColor"/></svg>
         <span>Frontier AI <span class="brand-light">Valuation Lab</span></span>
       </a>
-      <nav class="header-links" aria-label="Project links">
-        <a href="https://ult666666.github.io/">Charles Dai <span aria-hidden="true">↗</span></a>
-        <a href="./thesis.html">Thesis Lab <span aria-hidden="true">↗</span></a>
+      <div class="app-utilities">
+        <a class="utility-author" href="https://ult666666.github.io/">Charles Dai <span aria-hidden="true">↗</span></a>
         <a href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-        <a class="button button-dark button-small" href="./downloads/Frontier_AI_Valuation_Model.xlsx" download>Model workbook <span aria-hidden="true">↓</span></a>
-      </nav>
+        <a class="button button-dark button-small utility-workbook" href="./downloads/Frontier_AI_Valuation_Model.xlsx" download>Model workbook <span aria-hidden="true">↓</span></a>
+      </div>
     </div>
+      <nav class="app-nav" aria-label="Research workspace"><a href="./index.html#research-story">Overview</a><a href="./index.html#workspace">Model</a><a href="./thesis.html">Thesis Lab</a><a href="./casebook.html">Casebook</a><a href="./index.html#sources">Evidence</a></nav>
   </header>
 
   <main>
@@ -119,15 +122,15 @@
           <div id="input-errors" class="input-errors" role="alert" hidden></div>
           <div class="assumption-actions"><button type="button" class="button button-outline" id="reset-scenario" disabled>Reset current case <span aria-hidden="true">↺</span></button></div>
           <details class="local-scenarios">
-            <summary>Save & load a local scenario</summary>
-            <p>Saved in this browser. Download JSON to keep a portable copy.</p>
-            <label for="save-name">Scenario name</label>
-            <input id="save-name" type="text" maxlength="70" placeholder="My growth case" autocomplete="off">
-            <button type="button" id="save-scenario" class="button button-dark" disabled>Save current scenario</button>
+            <summary>Save & load from Casebook</summary>
+            <p>Your saved cases are shared with the Research Casebook in this browser.</p>
+            <label for="save-name">Case title</label>
+            <input id="save-name" type="text" maxlength="100" placeholder="My growth case" autocomplete="off">
+            <button type="button" id="save-scenario" class="button button-dark" disabled>Save to Casebook</button>
             <label for="saved-scenarios">Saved scenarios</label>
             <select id="saved-scenarios"><option value="">No saved scenarios</option></select>
             <button type="button" id="load-scenario" class="button button-outline" disabled>Load selected scenario</button>
-            <p class="local-status" id="local-status" role="status"></p>
+            <p class="local-status" id="local-status" role="status"></p><a class="casebook-inline-link" href="./casebook.html">Open Research Casebook <span aria-hidden="true">→</span></a><p class="casebook-save-note">Exact inputs and any enabled equity bridge are saved in this browser. Add your rationale and sources in the Casebook.</p>
           </details>
         </aside>
 
@@ -200,7 +203,7 @@
       </div><aside class="methodology-aside"><div class="audit-note"><div class="eyebrow">Inspect the work</div><h3>An open research process.</h3><p>The repository includes the model, API, independent reference calculations, tests and an audit record. The workbook provides a formula-based view of the same assumptions.</p><a class="button button-dark" href="./report.html">Read the research & audit report <span aria-hidden="true">↗</span></a><a class="text-button" href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">Explore source & tests <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div><div class="limits-note"><h3>Read the limits with the result</h3><ul><li>All forecasts are illustrative assumptions, not management guidance unless explicitly attributed.</li><li>Peak cumulative FCFF deficit is a simplified operating funding indicator. Opening liquidity, intrayear timing and contractual payments are unknown.</li><li>Terminal cash flow can differ sharply from the last explicit year because reinvestment changes basis.</li><li>A revenue accounting change requires corresponding adjustments to margins and capital efficiency; rescaling revenue alone changes the economics.</li><li>The reverse DCF holds every assumption except early growth fixed and does not estimate a probability.</li></ul></div><div class="runtime-note"><span class="status-dot" aria-hidden="true"></span><div><strong>One shared engine</strong><p>The browser and Node API use the same pure JavaScript model. Server verification compares the current scenario’s numerical outputs. Static deployments can calculate locally without an API.</p></div></div></aside></div>
     </section>
 
-    <section class="project-craft" aria-labelledby="craft-heading"><div class="craft-intro"><div><div class="eyebrow"><span class="section-index">03</span> Behind the work</div><h2 id="craft-heading">Built for the question<br><em>after the number.</em></h2></div><p>A project by <a href="https://ult666666.github.io/">Charles Dai</a>, connecting financial judgment, source discipline and full stack engineering.</p></div><div class="craft-grid"><article><span class="craft-index">I.</span><h3>Financial judgment</h3><p>Growth pays for the capital it needs. Terminal returns must earn their place. Enterprise value stays distinct from an equity financing price.</p><a href="./report.html">Read the research <span aria-hidden="true">↗</span></a></article><article><span class="craft-index">II.</span><h3>Reproducible by design</h3><p>One deterministic model powers the browser and the API. Independent reference calculations and automated checks make the numbers inspectable.</p><a href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">Inspect the code & tests <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></article><article><span class="craft-index">III.</span><h3>Evidence with boundaries</h3><p>Company disclosures, reported information and analyst assumptions retain their own labels. Each source carries a date, a purpose and a limitation.</p><a href="./report.html#section-6">Trace the evidence <span aria-hidden="true">↗</span></a></article></div><div class="craft-signoff"><span class="craft-monogram" aria-hidden="true">CD.</span><div><strong>Charles Dai</strong><span>Financial research. Working software.</span></div><a href="https://ult666666.github.io/">Explore the portfolio <span aria-hidden="true">↗</span></a></div></section>
+    <section class="project-craft" aria-labelledby="craft-heading"><div class="craft-intro"><div><div class="eyebrow"><span class="section-index">03</span> Behind the work</div><h2 id="craft-heading">Built for the question<br><em>after the number.</em></h2></div><p>A project by <a class="utility-author" href="https://ult666666.github.io/">Charles Dai</a>, connecting financial judgment, source discipline and full stack engineering.</p></div><div class="craft-grid"><article><span class="craft-index">I.</span><h3>Financial judgment</h3><p>Growth pays for the capital it needs. Terminal returns must earn their place. Enterprise value stays distinct from an equity financing price.</p><a href="./report.html">Read the research <span aria-hidden="true">↗</span></a></article><article><span class="craft-index">II.</span><h3>Reproducible by design</h3><p>One deterministic model powers the browser and the API. Independent reference calculations and automated checks make the numbers inspectable.</p><a href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">Inspect the code & tests <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></article><article><span class="craft-index">III.</span><h3>Evidence with boundaries</h3><p>Company disclosures, reported information and analyst assumptions retain their own labels. Each source carries a date, a purpose and a limitation.</p><a href="./report.html#section-6">Trace the evidence <span aria-hidden="true">↗</span></a></article></div><div class="craft-signoff"><span class="craft-monogram" aria-hidden="true">CD.</span><div><strong>Charles Dai</strong><span>Financial research. Working software.</span></div><a class="utility-author" href="https://ult666666.github.io/">Explore the portfolio <span aria-hidden="true">↗</span></a></div></section>
     </div>
   </main>
   <footer class="site-footer"><div><span>Frontier AI Valuation Lab</span><span>Independent educational research · No investment recommendation</span><span>USD billions / 18 Oct 2026</span></div></footer>

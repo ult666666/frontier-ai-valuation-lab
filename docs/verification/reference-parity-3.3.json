@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "valid_cases": 36,
+  "invalid_cases": 73,
+  "valuation_date": "2026-10-18",
+  "fixture_ev": 200.31471864537804,
+  "relative_tolerance": 1e-10,
+  "absolute_tolerance_usd_b": 1e-08,
+  "applicationVersion": "3.3.0",
+  "modelVersion": "3.0.0",
+  "command": "python3 -B tests/reference_parity.py",
+  "sourceReport": "qa-local/v3-3/reference-parity.txt",
+  "sourceReportSha256": "1fc2ed9415be1e476e89617716feb7122d0c3905d600afb6c1981f03c7251ddd",
+  "sourceSha256": {
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "scripts/reference_model.py": "8cbc2359afc02f0246e93e722febcb82df5f85e5014521249e8555825d3651d4",
+    "tests/reference_parity.py": "92debc6aad8917dcee877d08f2197924fd9f94cac8c0df697303579c9b06714c"
+  },
+  "scope": "Current local comparison with the separate Python forward model; deterministic parity does not establish forecast accuracy."
+}

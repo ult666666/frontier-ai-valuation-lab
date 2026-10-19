@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#102333">
+  <meta name="description" content="Keep the reasoning behind an AI valuation. Save exact cases and comparisons, record your assumptions, attach dated evidence, and take a complete research brief with you.">
+  <meta name="author" content="Charles Dai">
+  <meta property="og:title" content="Research Casebook · Frontier AI Valuation Lab">
+  <meta property="og:description" content="Keep the reasoning. Exact AI valuation cases, dated evidence and complete research briefs in one workspace.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://frontier-ai-valuation-lab.vercel.app/casebook.html">
+  <meta property="og:image" content="https://frontier-ai-valuation-lab.vercel.app/assets/casebook-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://frontier-ai-valuation-lab.vercel.app/casebook.html">
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./casebook.css">
+  <link rel="stylesheet" href="./shell.css">
+  <script type="module" src="./shell.js"></script>
+  <script type="module" src="./casebook.js"></script>
+  <title>Casebook · Frontier AI Valuation Lab</title>
+</head>
+<body data-casebook-state="loading">
+  <a class="skip-link" href="#casebook-main">Skip to your casebook</a>
+  <header class="app-header">
+    <div class="header-inner">
+      <a class="brand" href="./index.html#research-story" aria-label="Frontier AI Valuation Lab home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V7h22M5 16h15M14 25V7" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="26" cy="25" r="3" fill="currentColor"/></svg><span>Frontier AI <span class="brand-light">Valuation Lab</span></span></a>
+      <div class="app-utilities"><a href="https://ult666666.github.io/">Charles Dai <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <nav class="app-nav" aria-label="Research workspace"><a href="./index.html#research-story">Overview</a><a href="./index.html#workspace">Model</a><a href="./thesis.html">Thesis Lab</a><a href="./casebook.html" aria-current="page">Casebook</a><a href="./index.html#sources">Evidence</a></nav>
+  </header>
+  <main id="casebook-main" class="casebook-shell" tabindex="-1">
+    <section class="book-intro" aria-labelledby="casebook-title">
+      <div><div class="eyebrow"><span class="index-mark">F / 03</span> Your research casebook</div><h1 id="casebook-title">Keep the <em>reasoning.</em></h1></div>
+      <div class="intro-note"><p>A value is a result.<br>The assumptions make it an argument.</p><span class="snapshot-date"><span aria-hidden="true"></span>Research snapshot · 18 Oct 2026</span></div>
+    </section>
+
+    <section class="book-topbar" aria-label="Casebook actions">
+      <div class="book-tally"><strong id="casebook-count">—</strong><span>saved analyses<span id="casebook-capacity">Up to 24 cases & comparisons</span></span></div>
+      <div class="book-actions"><button id="import-open" class="button button-outline" type="button" disabled>Import JSON <span aria-hidden="true">↑</span></button><button id="export-all" class="button button-dark" type="button" disabled>Export casebook <span aria-hidden="true">↓</span></button></div>
+    </section>
+    <p class="storage-note">Saved in this browser. Export JSON to keep a portable copy of your calculations, notes and source references.</p>
+    <div id="storage-error" class="notice is-error" role="alert" hidden></div>
+    <div id="casebook-status" class="notice status-notice" role="status" hidden></div>
+    <div id="legacy-notice" class="legacy-notice" hidden><div><strong>Earlier saved scenarios found.</strong><p>Review and import valid earlier saves. Their hypothetical equity bridge will be off because the earlier format did not save one.</p></div><button id="migration-open" class="text-button" type="button">Review earlier saves <span aria-hidden="true">↗</span></button></div>
+    <div id="undo-notice" class="undo-notice" role="status" hidden><p id="undo-message"></p><button id="undo-delete" class="text-button" type="button">Undo delete <span aria-hidden="true">↶</span></button></div>
+
+    <div id="casebook-loading" class="book-loading" role="status">Opening your casebook<span aria-hidden="true">…</span></div>
+    <section id="casebook-empty" class="book-empty" aria-labelledby="empty-title" hidden>
+      <div class="empty-copy"><div class="eyebrow">The next question belongs here</div><h2 id="empty-title">Start with a calculation.<br><em>Give it a point of view.</em></h2><p>Save a case from the valuation model or a comparison from Thesis Lab. Then record what you believe, what needs to hold, and what would change your mind.</p><div class="empty-actions"><a class="button button-dark" href="./thesis.html">Start a comparison <span aria-hidden="true">↗</span></a><a class="text-button" href="./index.html#workspace">Open the valuation model <span aria-hidden="true">↗</span></a></div><p class="casebook-example-note">Worked examples: <a href="./downloads/Frontier_AI_Research_Brief.pdf" target="_blank" rel="noopener noreferrer">Read an illustrative research brief<span class="sr-only"> (opens in a new tab)</span></a> · <a href="./downloads/Frontier_AI_Research_Casebook.json" download>Download the example casebook</a>. Import the JSON explicitly to explore three labeled examples.</p></div>
+      <div class="empty-process" aria-label="What a saved analysis contains"><div><span>01</span><h3>The calculation</h3><p>Exact assumptions and the case they produce.</p></div><div><span>02</span><h3>The reasoning</h3><p>Your rationale, critical assumption and review trigger.</p></div><div><span>03</span><h3>The evidence</h3><p>Dated source references with their stated limits.</p></div></div>
+    </section>
+
+    <div id="casebook-layout" class="casebook-layout" hidden>
+      <aside class="collection-panel" aria-labelledby="collection-title">
+        <div class="collection-heading"><h2 id="collection-title">Your analyses</h2><span id="filtered-count" class="small-label"></span></div>
+        <div class="collection-filters"><div class="search-field"><label for="casebook-search">Find an analysis</label><input id="casebook-search" type="search" placeholder="Search titles, notes, company…" autocomplete="off"></div><div class="filter-pair"><div><label for="company-filter">Company</label><select id="company-filter"><option value="all">Both companies</option><option value="Anthropic">Anthropic</option><option value="OpenAI">OpenAI</option></select></div><div><label for="kind-filter">Analysis</label><select id="kind-filter"><option value="all">All analyses</option><option value="scenario">Single cases</option><option value="thesis">Comparisons</option></select></div></div></div>
+        <div id="entry-list" class="entry-list" aria-label="Saved analyses"></div>
+        <div id="filter-empty" class="filter-empty" hidden><p>No saved analyses match these filters.</p><button id="clear-filters" type="button" class="text-button">Clear filters <span aria-hidden="true">↺</span></button></div>
+        <div class="compare-panel"><div class="eyebrow">Another point of view</div><h3>Compare two saved cases.</h3><p>Choose two single cases for the same company. Your first choice becomes the reference.</p><div id="compare-selection" class="compare-selection" role="status">No cases selected.</div><button id="compare-saved" class="button button-outline" type="button" disabled>Open comparison <span aria-hidden="true">↗</span></button><button id="clear-comparison" class="text-button clear-comparison" type="button" hidden>Clear selection</button></div>
+      </aside>
+
+      <section id="entry-detail" class="entry-detail" aria-labelledby="detail-title" hidden>
+        <div class="detail-heading"><div><div class="detail-kicker"><span id="detail-company"></span><span id="detail-kind"></span></div><h2 id="detail-title" tabindex="-1"></h2><p id="detail-dates" class="detail-dates"></p></div><span class="saved-mark" aria-label="Saved calculation"><svg viewBox="0 0 32 36" aria-hidden="true"><path d="M6 2h20v31L16 27 6 33Z" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="m11 13 3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span></div>
+        <div id="entry-snapshot" class="entry-snapshot" aria-label="Recalculated saved valuation"></div>
+        <p class="snapshot-note">The saved calculation stays fixed while you edit the notes. Reopen it to explore different assumptions.</p>
+        <div class="snapshot-actions"><a id="entry-reopen" class="button button-dark">Reopen calculation <span aria-hidden="true">↗</span></a><button id="copy-calculation" class="text-button" type="button">Copy calculation link <span aria-hidden="true">↗</span></button></div>
+        <div id="calculation-link-area" class="calculation-link-area" hidden><label for="calculation-link">Exact calculation link</label><textarea id="calculation-link" rows="3" readonly spellcheck="false"></textarea><p>This link carries the calculation. Export casebook JSON or a research brief to include your notes and selected sources.</p></div>
+        <div class="verification-line"><p id="entry-verification" role="status">Recalculated in your browser</p><button id="verify-entry" class="text-button" type="button">Verify calculation <span aria-hidden="true">↗</span></button></div>
+
+        <form id="entry-notes-form" class="entry-notes-form" novalidate>
+          <div class="notes-heading"><div><div class="eyebrow">The argument behind the number</div><h3>Make the belief explicit.</h3></div><span id="notes-state" class="notes-state" role="status">Saved</span></div>
+          <div id="notes-error" class="notice is-error" role="alert" hidden></div>
+          <div id="external-change" class="notice" role="status" hidden>This analysis changed in another view. Your unsaved notes are still here. Saving will replace its current notes. <button id="reload-entry" class="text-button" type="button">Load the saved version</button></div>
+          <div class="note-field title-field"><div class="field-title"><label for="entry-title">Analysis title</label><output id="title-count" for="entry-title">0 / 100</output></div><input id="entry-title" type="text" maxlength="100" required autocomplete="off" aria-describedby="title-help"><p id="title-help">A name you will recognize when you return.</p></div>
+          <div class="note-field"><div class="field-title"><label for="note-rationale">Why this case?</label><output id="rationale-count" for="note-rationale">0 / 1,200</output></div><textarea id="note-rationale" rows="4" maxlength="1200" placeholder="Describe the belief you are testing and why this comparison matters." aria-describedby="rationale-help"></textarea><p id="rationale-help">Your interpretation of the saved assumptions.</p></div>
+          <div class="note-field"><div class="field-title"><label for="note-key-assumption">What needs to hold?</label><output id="key-assumption-count" for="note-key-assumption">0 / 600</output></div><textarea id="note-key-assumption" rows="3" maxlength="600" placeholder="Name the operating or valuation assumption your argument depends on."></textarea></div>
+          <div class="note-field"><div class="field-title"><label for="note-review-trigger">What would change your mind?</label><output id="review-trigger-count" for="note-review-trigger">0 / 1,000</output></div><textarea id="note-review-trigger" rows="3" maxlength="1000" placeholder="Record the observation or evidence that would make you revisit this case."></textarea></div>
+          <details class="source-picker"><summary><span>Attach dated evidence</span><span id="selected-source-count">0 selected</span></summary><p class="source-picker-note">Select related sources from the research snapshot. A source supplies context; it does not certify your forecast assumptions.</p><div id="source-choices" class="source-choices"></div></details>
+          <div class="notes-save-row"><button id="save-notes" class="button button-dark" type="submit" disabled>Save notes <span aria-hidden="true">✓</span></button><button id="discard-notes" class="text-button" type="button" hidden>Discard edits</button><p>Save here, or continue to another analysis to save your notes.</p></div>
+        </form>
+
+        <div class="detail-footer"><div class="entry-export-actions"><button id="export-entry" class="button button-outline" type="button">Export this analysis <span aria-hidden="true">↓</span></button><button id="export-brief" class="button button-outline" type="button">Research brief <span aria-hidden="true">↓</span></button></div><button id="delete-entry" class="delete-button" type="button">Delete saved analysis</button></div>
+      </section>
+      <div id="detail-empty" class="detail-empty" hidden><span class="index-mark">F / 03</span><h2>Choose an analysis<br>to inspect its reasoning.</h2><p>Your saved calculations and research notes appear here.</p></div>
+    </div>
+    <noscript><div class="notice">The Casebook needs JavaScript to read and manage your saved analyses. You can still <a href="./report.html">read the research report</a> or <a href="./downloads/Frontier_AI_Valuation_Model.xlsx">download the workbook</a>.</div></noscript>
+  </main>
+
+  <dialog id="import-dialog" class="import-dialog" aria-labelledby="import-title"><div class="dialog-heading"><div><div class="eyebrow">Bring the complete argument</div><h2 id="import-title">Import a casebook.</h2></div><button id="import-close" class="icon-button" type="button" aria-label="Close import">×</button></div><p id="import-intro">Choose an exported casebook JSON file. Review its contents before adding anything to your saved analyses.</p><div id="import-file-field" class="import-file-field"><label for="import-file">Casebook JSON · up to 512 KiB</label><input id="import-file" type="file" accept=".json,application/json"></div><div id="import-error" class="notice is-error" role="alert" hidden></div><div id="import-preview" class="import-preview" hidden><h3 id="import-summary"></h3><p id="import-detail"></p><ul id="import-entries"></ul><div id="migration-invalid" class="migration-invalid" hidden><h3>Earlier records that cannot be imported</h3><ul id="migration-invalid-list"></ul><p>These records remain untouched in their original browser storage.</p></div></div><div class="dialog-actions"><button id="import-cancel" type="button" class="button button-outline">Cancel</button><button id="import-merge" type="button" class="button button-dark" disabled>Merge into casebook <span aria-hidden="true">→</span></button></div><p class="dialog-note">Existing analyses are preserved. Exact duplicates are skipped, and different versions are kept separately. A failed import leaves the saved casebook unchanged.</p></dialog>
+
+  <footer class="book-footer"><div><a href="./index.html#research-story">Frontier AI Valuation Lab</a><span>Independent financial research · Charles Dai</span></div><p id="casebook-version">Financial engine 3.0.0 · Research snapshot 18 Oct 2026</p><a href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">Source & methodology <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
+</body>
+</html>

@@ -103,6 +103,7 @@ try {
   await page.locator('.local-scenarios summary').click();
   await page.locator('#save-name').fill('QA growth case <safe>');
   await page.locator('#save-scenario').click();
+  await page.waitForFunction(()=>document.querySelector('#saved-scenarios').value!=='',null,{timeout:15000});
   const selectedSave = await page.locator('#saved-scenarios').inputValue();
   check('Local save creates a named record', Boolean(selectedSave), true);
   await reset();

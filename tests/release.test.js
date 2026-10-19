@@ -9,7 +9,7 @@ import {APP_VERSION} from '../public/lib/release.js';
 const publicRoot=path.resolve(fileURLToPath(new URL('../public/',import.meta.url)));
 
 test('published HTML links resolve to actual public assets',async()=>{
-  for(const name of ['index.html','report.html','thesis.html']){
+  for(const name of ['index.html','report.html','thesis.html','casebook.html']){
     const text=await readFile(path.join(publicRoot,name),'utf8');
     for(const match of text.matchAll(/(?:href|src)="([^"]+)"/g)){
       const ref=match[1];

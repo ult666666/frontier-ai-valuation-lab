@@ -6,13 +6,17 @@ import {APP_VERSION} from './lib/release.js';
 import {decodeScenario,scenarioUrl} from './lib/share.js';
 import {createBriefing} from './lib/briefing.js';
 import {initExperience} from './experience.js';
+import {decodeInspection,returnFromInspection} from './lib/journey.js';
+import {thesisUrl} from './lib/thesis-share.js';
+import {createScenarioEntry,decodeEntry,summarizeEntry} from './lib/casebook.js';
+import {createCasebookStore} from './lib/casebook-store.js';
+import {createEvidenceContext} from './evidence-context.js';
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 const companies = ['Anthropic', 'OpenAI'];
 const cases = ['Bear', 'Base', 'Bull'];
-const storageKey = 'frontier-ai-valuation-lab:scenarios:v1';
 const numberFormatters = new Map();
 // Loaded links and presets retain their exact IEEE-754 inputs until a field is edited.
 const loadedInputValues = new Map();
@@ -42,6 +46,7 @@ const state = {
   metric: 'revenue', revision: 0, ready: false, saved: [],
   apiPending: false, apiController: null, apiEverRequested: false,
   apiUnavailable: false, reverseSolved: false, shareRevision: 0,
+  inspection: null, casebook: null, saving: false, evidenceContext: null,
 };
 
 function number(value, digits = 1) {
@@ -100,13 +105,13 @@ function fingerprint(assumptions) {
 
 function createFields() {
   const groups = [...new Set(fields.map(field => field.group))];
-  $('#assumption-fields').innerHTML = groups.map(group => `<fieldset class="assumption-group"><legend>${escapeHtml(group)}</legend><div class="assumption-field-grid">${fields.filter(field => field.group === group).map(field => `<div class="assumption-field${field.wide ? ' is-wide' : ''}"><label for="input-${field.key}">${escapeHtml(field.label)}</label><div class="input-wrap"><input id="input-${field.key}" name="${field.key}" type="number" step="any" inputmode="decimal" data-key="${field.key}" aria-describedby="help-${field.key}" disabled><span class="input-unit" aria-hidden="true">${field.unit}</span></div><span id="help-${field.key}" class="sr-only">${escapeHtml(field.help)} Input unit: ${field.unit === '%' ? 'percent, enter 12.5 for 12.5 percent' : field.unit === 'bn' ? 'USD billions' : 'times'}.</span></div>`).join('')}</div><p class="group-hint">${escapeHtml(groupHints[group])}</p></fieldset>`).join('');
+  $('#assumption-fields').innerHTML = groups.map(group => `<fieldset class="assumption-group"><legend>${escapeHtml(group)}</legend><div class="assumption-field-grid">${fields.filter(field => field.group === group).map(field => `<div class="assumption-field${field.wide ? ' is-wide' : ''}"><label for="input-${field.key}">${escapeHtml(field.label)}</label><button type="button" class="evidence-context-trigger" data-evidence-key="${field.key}" aria-label="Evidence for ${escapeHtml(field.label)}" aria-haspopup="dialog" disabled>Evidence <span aria-hidden="true">↗</span></button><div class="input-wrap"><input id="input-${field.key}" name="${field.key}" type="number" step="any" inputmode="decimal" data-key="${field.key}" aria-describedby="help-${field.key}" disabled><span class="input-unit" aria-hidden="true">${field.unit}</span></div><span id="help-${field.key}" class="sr-only">${escapeHtml(field.help)} Input unit: ${field.unit === '%' ? 'percent, enter 12.5 for 12.5 percent' : field.unit === 'bn' ? 'USD billions' : 'times'}.</span></div>`).join('')}</div><p class="group-hint">${escapeHtml(groupHints[group])}</p></fieldset>`).join('');
 }
 
 function updateButtons() {
   const valid = Boolean(state.result && state.assumptions);
-  for (const id of ['export-json', 'export-csv', 'save-scenario']) $(`#${id}`).disabled = !valid;
-  for (const id of ['share-scenario','export-briefing','open-thesis']) if ($(`#${id}`)) $(`#${id}`).disabled = !valid || ($('#bridge-enabled').checked && !validBridgeInputs());
+  for (const id of ['export-json', 'export-csv']) $(`#${id}`).disabled = !valid;
+  for (const id of ['share-scenario','export-briefing','open-thesis','return-comparison','save-scenario']) if ($(`#${id}`)) $(`#${id}`).disabled = !valid || ($('#bridge-enabled').checked && !validBridgeInputs()) || (id==='save-scenario'&&(!state.casebook||state.saving));
   if ($('#bridge-enabled').checked && !validBridgeInputs()) $('#export-json').disabled = true;
   $('#verify-server').disabled = !valid || state.apiPending;
   const target = readNumber($('#reverse-target'));
@@ -245,11 +250,13 @@ function populateAssumptions(assumptions) {
 function loadPreset(company = state.company, scenario = state.scenario) {
   if (!state.ready || !companies.includes(company) || !cases.includes(scenario)) return;
   clearSharedLocation();
+  if(company!==state.company)state.inspection=null;
   state.company = company;
   state.scenario = scenario;
   state.savedName = '';
   populateAssumptions(state.presets[company][scenario]);
   recalculate();
+  renderInspectionContext();
 }
 
 function renderComparisons() {
@@ -490,52 +497,48 @@ async function verifyServer() {
   }
 }
 
-function readSavedScenarios() {
-  try {
-    const raw = localStorage.getItem(storageKey);
-    if (!raw) return [];
-    const payload = JSON.parse(raw);
-    if (!payload || payload.version !== 1 || !Array.isArray(payload.scenarios)) throw new Error('Saved scenario format is not recognized.');
-    return payload.scenarios.filter(item => item && typeof item.id === 'string' && typeof item.name === 'string' && companies.includes(item.company) && cases.includes(item.scenario) && item.assumptions && typeof item.assumptions === 'object');
-  } catch {
-    $('#local-status').textContent = 'Saved scenarios could not be read. JSON exports remain available.';
-    return [];
-  }
-}
-
-function renderSavedScenarios(selectedId = '') {
+function renderSavedScenarios(selectedId = $('#saved-scenarios').value) {
   const select = $('#saved-scenarios');
-  select.innerHTML = state.saved.length ? `<option value="">Select a saved scenario</option>${state.saved.map(item => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.company)} · ${escapeHtml(item.name)}</option>`).join('')}` : '<option value="">No saved scenarios</option>';
+  select.innerHTML = state.saved.length ? `<option value="">Select a saved case</option>${state.saved.map(item => `<option value="${escapeHtml(item.id)}">${escapeHtml(summarizeEntry(item).company)} · ${escapeHtml(item.title)}</option>`).join('')}` : '<option value="">No saved cases</option>';
   if (state.saved.some(item => item.id === selectedId)) select.value = selectedId;
   updateButtons();
 }
 
-function saveScenario() {
-  if (!state.result || !state.assumptions) return;
-  const name = $('#save-name').value.trim() || `${state.company} ${state.scenario}${state.custom ? ' edited' : ''}`;
-  const item = { id: typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`, name, company: state.company, scenario: state.scenario, assumptions: { ...state.assumptions }, modelVersion: MODEL_VERSION, savedAt: new Date().toISOString() };
-  const updated = [item, ...state.saved];
+async function initializeCasebook() {
   try {
-    localStorage.setItem(storageKey, JSON.stringify({ version: 1, scenarios: updated }));
-    state.saved = updated;
-    renderSavedScenarios(item.id);
-    $('#local-status').textContent = `Saved “${name}” in this browser.`;
-  } catch { $('#local-status').textContent = 'This browser could not save the scenario. Download JSON to keep a copy.'; }
+    state.casebook = createCasebookStore({research:state.research});
+    state.casebook.subscribe(({book,error})=>{
+      if(error){$('#local-status').textContent=error.message;return;}
+      state.saved=book.entries.filter(entry=>entry.kind==='scenario');renderSavedScenarios();
+    });
+    const book = await state.casebook.read();
+    state.saved = book.entries.filter(entry=>entry.kind==='scenario');renderSavedScenarios();
+  } catch(error) { $('#local-status').textContent = `Saved research could not be read: ${error.message} Calculation exports remain available.`; }
+}
+
+async function saveScenario() {
+  if(!state.casebook||state.saving)return;
+  const title = $('#save-name').value.trim() || `${state.company} ${state.scenario}${state.custom ? ' edited' : ''}`;
+  try {
+    const snapshot=currentPortableScenario(),captured=JSON.stringify(snapshot);
+    const item = createScenarioEntry(snapshot,{title},state.research);
+    state.saving=true;updateButtons();
+    $('#local-status').textContent='Saving the captured case…';
+    const {book,entry}=await state.casebook.add(item);
+    state.saved=book.entries.filter(value=>value.kind==='scenario');renderSavedScenarios(entry.id);
+    let unchanged=false;try{unchanged=JSON.stringify(currentPortableScenario())===captured;}catch{/* The current draft may have become invalid while storage was pending. */}
+    $('#local-status').textContent=unchanged?`Saved “${title}” with its complete inputs and equity-bridge setting in this browser.`:`Saved the earlier case “${title}”. Your current edits are not saved.`;
+    $('.local-scenarios .casebook-inline-link').href=`./casebook.html#entry=${encodeURIComponent(entry.id)}`;
+  } catch(error) { $('#local-status').textContent=`Could not save this case: ${error.message} Your current model is retained.`; }
+  finally {state.saving=false;updateButtons();}
 }
 
 function loadSavedScenario() {
-  const item = state.saved.find(entry => entry.id === $('#saved-scenarios').value);
-  if (!item) return;
+  const item=state.saved.find(entry=>entry.id===$('#saved-scenarios').value);if(!item)return;
   try {
-    validate(item.assumptions);
-    clearSharedLocation();
-    state.company = item.company;
-    state.scenario = item.scenario;
-    state.savedName = item.name;
-    populateAssumptions(item.assumptions);
-    recalculate();
-    $('#local-status').textContent = `Loaded “${item.name}” and recalculated with model v${MODEL_VERSION}.`;
-  } catch (error) { $('#local-status').textContent = `This saved scenario is invalid: ${error.message}`; }
+    openWorkbench(decodeEntry(item));state.savedName=item.title;updateSelectionLabels();
+    $('#local-status').textContent=`Loaded “${item.title}” with its exact inputs and equity-bridge setting, then recalculated with model v${MODEL_VERSION}.`;
+  } catch(error) {$('#local-status').textContent=`This saved case could not be loaded: ${error.message}`;}
 }
 
 function download(content, filename, mime) {
@@ -597,7 +600,7 @@ function exportCsv() {
 
 function clearSharedLocation() {
   state.shareRevision += 1;
-  if (location.hash.startsWith('#scenario=')) history.replaceState(null, '', location.pathname + location.search);
+  if (location.hash.startsWith('#scenario=') || location.hash.startsWith('#inspect=')) history.replaceState(null, '', location.pathname + location.search);
   if ($('#scenario-notice')) $('#scenario-notice').hidden = true;
   if ($('#share-link-area')) $('#share-link-area').hidden = true;
   if ($('#portable-status')) $('#portable-status').textContent = '';
@@ -613,12 +616,13 @@ function currentPortableScenario() {
   return {company:state.company,scenario:state.scenario,assumptions:{...state.assumptions},bridge};
 }
 
-function openWorkbench({company,scenario='Base',assumptions,bridge=null}) {
+function openWorkbench({company,scenario='Base',assumptions,bridge=null},{inspection=null}={}) {
   if (!state.ready || !companies.includes(company) || !cases.includes(scenario)) return;
   // Reject nonfinite projections before changing the visitor's current workbench.
   project(assumptions);
   if (bridge !== null) bridgeEquity(0,bridge);
   clearSharedLocation();
+  state.inspection=inspection;
   state.company = company;
   state.scenario = scenario;
   state.savedName = '';
@@ -626,6 +630,7 @@ function openWorkbench({company,scenario='Base',assumptions,bridge=null}) {
   for (const [id,key] of [['bridge-cash','cash'],['bridge-debt','debt'],['bridge-claims','otherClaims']]) $(`#${id}`).value = String(bridge?.[key] ?? 0);
   populateAssumptions(assumptions);
   recalculate();
+  renderInspectionContext();
   selectTab('model');
   $('#workspace').scrollIntoView({block:'start'});
   $('#workspace').focus({preventScroll:true});
@@ -646,6 +651,49 @@ function restoreSharedScenario(hash = location.hash) {
     $('#workspace').scrollIntoView({block:'start'});
   }
   $('#scenario-notice').hidden = false;
+}
+
+function renderInspectionContext(){
+  const context=$('#inspection-context');if(!context)return;
+  context.hidden=!state.inspection;
+  $('#open-thesis').innerHTML=state.inspection?'Return to this comparison <span aria-hidden="true">↗</span>':'Compare in Thesis Lab <span aria-hidden="true">↗</span>';
+  if(state.inspection){
+    const {draft,side}=state.inspection;
+    $('#inspection-title').textContent=`Inspecting the ${side} · ${draft.company} ${draft.reference.scenario} → ${draft.alternative.scenario}`;
+    $('#inspection-description').textContent='Edit this forecast, then return to update this side of the comparison. The other case, separate equity adjustments, target and exact analysis window travel with it.';
+  }
+  updateButtons();
+}
+
+function focusSection(element){
+  if(!element)return;if(!element.hasAttribute('tabindex'))element.setAttribute('tabindex','-1');
+  element.scrollIntoView({block:'start',behavior:'instant'});element.focus({preventScroll:true});
+}
+
+function restoreWorkspaceRoute(hash=location.hash){
+  if(hash.startsWith('#scenario=')){restoreSharedScenario(hash);return;}
+  if(hash.startsWith('#inspect=')){
+    try{
+      const inspection=decodeInspection(hash);
+      openWorkbench(inspection.scenario,{inspection});
+      history.replaceState(null,'',location.pathname+location.search+hash);
+    }catch(error){$('#scenario-notice').className='scenario-notice is-error';$('#scenario-notice').textContent=`This comparison could not be inspected: ${error.message} The current case is retained.`;$('#scenario-notice').hidden=false;selectTab('model');focusSection($('#workspace'));}
+    return;
+  }
+  if(hash==='#sources'||/^#source-S\d{2}$/.test(hash)){
+    selectTab('sources');focusSection(hash==='#sources'?$('#panel-sources'):document.getElementById(hash.slice(1))||$('#panel-sources'));
+  }else if(hash==='#methodology'){selectTab('methodology');focusSection($('#panel-methodology'));}
+  else if(hash==='#workspace'){selectTab('model');focusSection($('#workspace'));}
+  else if(hash==='#research-story'){focusSection($('#research-story'));window.dispatchEvent(new CustomEvent('workspace:context',{detail:{section:'Overview'}}));}
+}
+
+async function initializeEvidenceContext(){
+  try{
+    const catalog=await fetchJson('./data/evidence.json');state.evidenceContext=createEvidenceContext({research:state.research,catalog});
+    $$('button[data-evidence-key]').forEach(button=>{button.disabled=false;button.title='Inspect related evidence and modeling limits';});
+  }catch{
+    $$('button[data-evidence-key]').forEach(button=>{button.disabled=true;button.title='Contextual evidence could not load. The complete source register remains available in Evidence.';});
+  }
 }
 
 async function copyScenario(supplied) {
@@ -675,7 +723,8 @@ function exportBriefing() {
 
 function openThesisLab() {
   try {
-    const destination = scenarioUrl(new URL('./thesis.html',location.href).href,currentPortableScenario());
+    const current=currentPortableScenario();
+    const destination = state.inspection ? thesisUrl(new URL('./thesis.html',location.href).href,returnFromInspection(state.inspection,current)) : scenarioUrl(new URL('./thesis.html',location.href).href,current);
     location.assign(destination);
   } catch (error) { $('#portable-status').textContent = `Could not open the comparison: ${error.message}`; }
 }
@@ -688,9 +737,11 @@ function installPortableActions() {
   $('.export-actions').insertAdjacentHTML('beforeend','<button type="button" class="button button-outline" id="share-scenario" disabled>Share this case <span aria-hidden="true">↗</span></button><button type="button" class="button button-dark" id="export-briefing" disabled>Scenario brief <span aria-hidden="true">↓</span></button><button type="button" class="button button-outline" id="open-thesis" disabled>Compare in Thesis Lab <span aria-hidden="true">↗</span></button>');
   $('.export-bar').insertAdjacentHTML('afterend','<div class="portable-tools"><p id="portable-status" role="status"></p><div id="share-link-area" hidden><label for="share-url">Shareable scenario link</label><textarea id="share-url" rows="3" readonly spellcheck="false"></textarea><p>Contains the selected company, model version, assumptions and any enabled hypothetical equity bridge. It restores the workbench; no saved account or server record is needed.</p></div></div>');
   $('#workspace').insertAdjacentHTML('afterend','<p id="scenario-notice" class="scenario-notice" role="status" hidden></p>');
+  $('#scenario-notice').insertAdjacentHTML('afterend','<aside id="inspection-context" class="inspection-context" aria-labelledby="inspection-title" hidden><div><strong id="inspection-title"></strong><p id="inspection-description"></p></div><button type="button" class="button button-dark" id="return-comparison">Return to this comparison <span aria-hidden="true">↗</span></button></aside>');
   $('#share-scenario').addEventListener('click',() => copyScenario());
   $('#export-briefing').addEventListener('click',exportBriefing);
   $('#open-thesis').addEventListener('click',openThesisLab);
+  $('#return-comparison').addEventListener('click',openThesisLab);
 }
 
 function renderEvidence() {
@@ -726,6 +777,7 @@ function selectTab(name, moveFocus = false) {
     $(`#panel-${button.dataset.tab}`).hidden = !active;
   }
   if (moveFocus) $(`#tab-${name}`).focus();
+  window.dispatchEvent(new CustomEvent('workspace:context',{detail:{section:name==='sources'?'Evidence':'Model'}}));
 }
 
 function bindEvents() {
@@ -737,6 +789,10 @@ function bindEvents() {
     recalculate();
   });
   document.addEventListener('click', event => {
+    const evidenceButton=event.target.closest('button[data-evidence-key]');
+    if(evidenceButton&&state.evidenceContext){
+      try{state.evidenceContext.open({company:state.company,key:evidenceButton.dataset.evidenceKey,cases:state.assumptions?[{label:`${state.scenario}${state.custom?' · edited':''}`,assumptions:{...state.assumptions}}]:[]});}catch(error){$('#local-status').textContent=`Evidence could not open: ${error.message}`;}
+    }
     const companyButton = event.target.closest('button[data-company]');
     if (companyButton) {
       loadPreset(companyButton.dataset.company, companyButton.dataset.openModel ? 'Base' : state.scenario);
@@ -753,10 +809,7 @@ function bindEvents() {
     const sourceAnchor = event.target.closest('a[data-source]');
     if (sourceAnchor) {
       event.preventDefault();
-      selectTab('sources');
-      const target = document.getElementById(`source-${sourceAnchor.dataset.source}`);
-      target?.scrollIntoView({ block: 'start' });
-      target?.focus({ preventScroll: true });
+      const hash=`#source-${sourceAnchor.dataset.source}`;history.replaceState(null,'',location.pathname+location.search+hash);restoreWorkspaceRoute(hash);
     }
   });
   $('.tabs').addEventListener('keydown', event => {
@@ -787,10 +840,9 @@ function bindEvents() {
   $('#export-csv').addEventListener('click', exportCsv);
   window.addEventListener('hashchange', () => {
     if (!state.ready) return;
-    if (location.hash.startsWith('#scenario=')) restoreSharedScenario();
-    else if (location.hash === '#sources') selectTab('sources');
-    else if (location.hash === '#methodology') selectTab('methodology');
+    restoreWorkspaceRoute(location.hash);
   });
+  window.addEventListener('workspace:navigate',event=>{if(state.ready)restoreWorkspaceRoute(event.detail?.hash);});
 }
 
 async function fetchJson(relativePath) {
@@ -814,15 +866,13 @@ async function initialize() {
     $('#model-version').textContent = `Model v${MODEL_VERSION} · Browser ready`;
     renderComparisons();
     renderEvidence();
-    state.saved = readSavedScenarios();
-    renderSavedScenarios();
+    initializeCasebook();
+    initializeEvidenceContext();
     // A visitor may follow a newer fragment while the research files are loading.
     const requestedHash = location.hash;
     loadPreset();
     initExperience({presets,research,onOpenModel:openWorkbench,onShare:copyScenario});
-    if (requestedHash.startsWith('#scenario=')) restoreSharedScenario(requestedHash);
-    else if (location.hash === '#sources') selectTab('sources');
-    else if (location.hash === '#methodology') selectTab('methodology');
+    restoreWorkspaceRoute(requestedHash);
   } catch (error) {
     state.ready = false;
     $('#load-error').hidden = false;

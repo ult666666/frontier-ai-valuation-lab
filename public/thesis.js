@@ -1,9 +1,13 @@
 import {project,MODEL_VERSION,VALUATION_DATE} from './lib/model.js';
 import {APP_VERSION} from './lib/release.js';
 import {compareTheses,valuationLandscape,THESIS_VERSION} from './lib/thesis.js';
-import {decodeScenario,scenarioUrl} from './lib/share.js';
+import {decodeScenario} from './lib/share.js';
 import {normalizeThesis,decodeThesis,thesisUrl} from './lib/thesis-share.js';
 import {createThesisBrief} from './lib/thesis-brief.js';
+import {defaultLandscape,inspectionUrl,applyRequiredMargin} from './lib/journey.js';
+import {createThesisEntry} from './lib/casebook.js';
+import {createCasebookStore} from './lib/casebook-store.js';
+import {createEvidenceContext} from './evidence-context.js';
 
 const $=(selector,scope=document)=>scope.querySelector(selector);
 const $$=(selector,scope=document)=>[...scope.querySelectorAll(selector)];
@@ -26,7 +30,7 @@ const FIELDS=[
 ];
 const FIELD_MAP=new Map(FIELDS.map(field=>[field.key,field]));
 const WINDOW_FIELDS=[['window-wacc-min','rates','min'],['window-wacc-max','rates','max'],['window-margin-min','margins','min'],['window-margin-max','margins','max']];
-const state={ready:false,presets:null,research:null,company:'Anthropic',cases:null,draft:null,comparison:null,landscape:null,revision:0,shareRevision:0,controller:null,verificationTimer:null,everVerified:false,presenter:false,selectedRate:0,selectedMargin:0,axes:{},windowValues:new Map(),inputValues:{reference:new Map(),alternative:new Map()},announcementTimer:null};
+const state={ready:false,presets:null,research:null,company:'Anthropic',cases:null,draft:null,comparison:null,landscape:null,revision:0,shareRevision:0,controller:null,verificationTimer:null,everVerified:false,presenter:false,selectedRate:0,selectedMargin:0,axes:{},windowValues:new Map(),inputValues:{reference:new Map(),alternative:new Map()},announcementTimer:null,casebook:null,saving:false,evidenceContext:null};
 const formatters=new Map();
 function number(value,digits=1){
   if(typeof value!=='number'||!Number.isFinite(value))return '—';
@@ -40,23 +44,19 @@ function scaledPercentage(value,digits=2){const [coefficient,exponent]=value.toE
 function percent(value,digits=1){if(typeof value!=='number'||!Number.isFinite(value))return '—';return `${Number.isFinite(value*100)?number(value*100,digits):scaledPercentage(value)}%`;}
 function fieldValue(key,value){const field=FIELD_MAP.get(key);return field.unit==='%'?percent(value,3):field.unit==='bn'?money(value,3):`${number(value,3)}×`;}
 function shortDate(value){const date=new Date(`${String(value).slice(0,10)}T00:00:00Z`);return Number.isFinite(date.getTime())?new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}).format(date):String(value);}
+function sourceDate(value){return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?shortDate(value):String(value??'Date not specified');}
 function safeUrl(value){try{const url=new URL(value);return ['https:','http:'].includes(url.protocol)?url.href:null;}catch{return null;}}
 function displayInput(value,isPercent){const display=isPercent?value*100:value;if(!Number.isFinite(display)&&isPercent)return scaledPercentage(value,16).replace('−','-');const short=Number(display.toPrecision(14));return String(isPercent&&short/100===value?short:display);}
 function numericInput(input){const raw=input.value.trim();if(!raw||!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(raw))return null;const value=Number(raw);return Number.isFinite(value)?value:null;}
 function evenlySpaced(lower,upper){if(!Number.isFinite(upper-lower)||!(upper>lower))throw new Error('Each window must have a finite upper bound greater than its lower bound.');return Array.from({length:13},(_,i)=>i===12?upper:lower+(upper-lower)*i/12);}
 function nearest(values,value){return values.reduce((closest,item,index)=>Math.abs(item-value)<Math.abs(values[closest]-value)?index:closest,0);}
 function baseCase(company,scenario){return {scenario,assumptions:{...state.presets[company][scenario]},bridge:null};}
-function defaultLandscape(p){
-  const rateBounds=p.wacc>=.075&&p.wacc<=.195?[.075,.195]:[Math.max(0,p.wacc-.06),Math.min(.6,p.wacc+.06)];
-  const marginBounds=p.m36>=.06&&p.m36<=.42?[.06,.42]:[Math.max(0,p.m36-.18),Math.min(1,p.m36+.18)];
-  return {rates:evenlySpaced(...rateBounds),margins:evenlySpaced(...marginBounds),target:500};
-}
 
 function buildEditors(){
   let previous='';
   $('#thesis-input-fields').innerHTML=FIELDS.map(field=>{
     const heading=previous!==field.group?`<tr class="input-row-group"><th colspan="3" scope="colgroup">${escape(field.group)}</th></tr>`:'';previous=field.group;
-    return `${heading}<tr data-input-row="${field.key}"><th scope="row"><details class="field-definition"><summary><span>${escape(field.label)}</span><span aria-hidden="true">i</span></summary><p id="field-help-${field.key}">${escape(field.help)} <span class="field-limit">${escape(field.limit)}</span> Input unit: ${field.unit==='%'?'percent; enter 12.5 for 12.5 percent':field.unit==='bn'?'USD billions':'times'}.</p></details></th>${SIDES.map(side=>`<td><label class="sr-only" for="${side}-${field.key}">${side==='reference'?'Reference':'Alternative'} ${escape(field.label)} (${field.unit==='%'?'percent':field.unit==='bn'?'USD billions':'times'})</label><div class="input-wrap"><input id="${side}-${field.key}" type="text" inputmode="decimal" data-thesis-input="${side}:${field.key}" aria-describedby="field-help-${field.key}" autocomplete="off" spellcheck="false" disabled><span class="input-unit" aria-hidden="true">${field.unit}</span></div></td>`).join('')}</tr>`;
+    return `${heading}<tr data-input-row="${field.key}"><th scope="row"><details class="field-definition"><summary><span>${escape(field.label)}</span><span aria-hidden="true">i</span></summary><p id="field-help-${field.key}">${escape(field.help)} <span class="field-limit">${escape(field.limit)}</span> Input unit: ${field.unit==='%'?'percent; enter 12.5 for 12.5 percent':field.unit==='bn'?'USD billions':'times'}.</p></details><button type="button" class="evidence-context-trigger" data-evidence-key="${field.key}" aria-label="Evidence for ${escape(field.label)}" aria-haspopup="dialog" disabled>Evidence <span aria-hidden="true">↗</span></button></th>${SIDES.map(side=>`<td><label class="sr-only" for="${side}-${field.key}">${side==='reference'?'Reference':'Alternative'} ${escape(field.label)} (${field.unit==='%'?'percent':field.unit==='bn'?'USD billions':'times'})</label><div class="input-wrap"><input id="${side}-${field.key}" type="text" inputmode="decimal" data-thesis-input="${side}:${field.key}" aria-describedby="field-help-${field.key}" autocomplete="off" spellcheck="false" disabled><span class="input-unit" aria-hidden="true">${field.unit}</span></div></td>`).join('')}</tr>`;
   }).join('');
 }
 function populateCase(side,item){
@@ -116,9 +116,10 @@ function invalidate(preserveLocation=false){
 }
 function setButtons(valid){
   for(const id of ['thesis-share','thesis-brief','swap-cases'])$(`#${id}`).disabled=!valid;
+  $('#thesis-save').disabled=!valid||!state.casebook||state.saving;
   $('#thesis-verify').disabled=!valid||Boolean(state.controller);
   $('#landscape-rate-select').disabled=!valid;$('#landscape-margin-select').disabled=!valid;
-  if(!valid){$('#use-landscape-point').disabled=true;for(const side of SIDES){$(`#${side}-open`).removeAttribute('href');$(`#${side}-open`).setAttribute('aria-disabled','true');}}
+  if(!valid){$('#use-landscape-point').disabled=true;$('#use-required-margin').disabled=true;for(const side of SIDES){$(`#${side}-open`).removeAttribute('href');$(`#${side}-open`).setAttribute('aria-disabled','true');}}
 }
 function invalidDraft(message){
   state.draft=null;state.comparison=null;state.landscape=null;document.body.dataset.thesisState='invalid';$('#thesis-error').textContent=message;$('#thesis-error').hidden=false;
@@ -151,7 +152,7 @@ function renderCases(){
     const item=draft[side],edited=FIELDS.some(field=>item.assumptions[field.key]!==state.presets[state.company][item.scenario][field.key]),status=$(`#${side}-case-status`),value=$(`#${side}-ev`);
     status.textContent=edited?'Edited assumptions':'Preset assumptions';status.classList.toggle('is-edited',edited);$(`#${side}-presenter-label`).textContent=`${item.scenario}${edited?' · edited':''}`;
     value.dataset.value=String(comparison[side].result.ev);value.innerHTML=moneyHtml(comparison[side].result.ev);value.classList.toggle('is-negative',comparison[side].result.ev<0);value.classList.toggle('is-large',Math.abs(comparison[side].result.ev)>=1000);value.classList.toggle('is-very-large',Math.abs(comparison[side].result.ev)>=10000);value.classList.toggle('is-huge',Math.abs(comparison[side].result.ev)>=100000);value.classList.toggle('is-extreme',Math.abs(comparison[side].result.ev)>=1e7);
-    $(`#${side}-open`).href=scenarioUrl(new URL('./index.html',location.href).href,{company:state.company,...item});$(`#${side}-open`).removeAttribute('aria-disabled');$(`#${side}-bridge-note`).hidden=item.bridge===null;
+    $(`#${side}-open`).href=inspectionUrl(new URL('./index.html',location.href).href,draft,side);$(`#${side}-open`).removeAttribute('aria-disabled');$(`#${side}-bridge-note`).hidden=item.bridge===null;
   }
   $$('[data-case-company]').forEach(element=>element.textContent=state.company);$('#presenter-company').textContent=state.company;
   const delta=$('#thesis-delta');delta.dataset.value=String(comparison.evDelta);delta.innerHTML=moneyHtml(comparison.evDelta,true);delta.classList.toggle('is-negative',comparison.evDelta<0);delta.classList.toggle('is-extreme',Math.abs(comparison.evDelta)>=1e7);
@@ -248,6 +249,7 @@ function renderSelectedPoint(){
   point.innerHTML=`<span>Modeled enterprise value</span><strong>${value===null?'Unavailable':moneyHtml(value)}</strong><p>${percent(rate,3)} WACC · ${percent(margin,3)} EBIT margin${value===null?`<br>${escape(reason)}`:''}</p>`;
   $('#use-landscape-point').disabled=value===null||!state.draft;
   $('#frontier-readout').innerHTML=`<span>At ${percent(rate,2)} cost of capital</span><p>${frontierDescription(l.frontier[state.selectedRate])}</p>`;
+  $('#use-required-margin').disabled=!state.draft||l.frontier[state.selectedRate].status!=='solved';
   $$('#landscape-table td[data-rate-index]').forEach(cell=>cell.classList.toggle('is-selected',Number(cell.dataset.rateIndex)===state.selectedRate&&Number(cell.dataset.marginIndex)===state.selectedMargin));
 }
 function renderLandscapeTables(){
@@ -265,10 +267,40 @@ function useSelectedPoint(){
   $('#thesis-portable-status').textContent='The selected WACC and 2036 margin are now the alternative case. Its other eleven assumptions are unchanged.';
 }
 
+function useRequiredMargin(){
+  if(!state.draft||!state.landscape)return;
+  try{
+    const draft=applyRequiredMargin(state.draft,state.selectedRate);
+    applyDraft(draft,{notice:'The exact required margin and selected cost of capital now form the alternative case. The full solver precision is retained.'});
+    $('#thesis-portable-status').textContent=`Alternative recalculated to ${money(state.comparison.alternative.result.ev,6)} against the ${money(draft.landscape.target,6)} target. Save this comparison to record the requirement and your rationale.`;
+  }catch(error){$('#thesis-portable-status').textContent=`The target requirement could not be applied: ${error.message} The current comparison is retained.`;}
+}
+
+async function saveComparison(){
+  if(!state.draft||!state.casebook||state.saving)return;
+  try{
+    const captured=JSON.stringify(state.draft);
+    const entry=createThesisEntry(state.draft,{title:`${state.company} · ${state.draft.reference.scenario} to ${state.draft.alternative.scenario}`},state.research);
+    state.saving=true;setButtons(true);
+    $('#thesis-portable-status').textContent='Saving the captured comparison…';
+    const saved=await state.casebook.add(entry);
+    $('#thesis-portable-status').textContent=state.draft&&JSON.stringify(state.draft)===captured?'Saved both complete cases, their equity-bridge settings, the exact analysis window and target in this browser. Open the Research Casebook to add your reasoning and source references.':'Saved the earlier comparison. Your current edits are not saved. Open the Research Casebook to inspect the captured analysis.';
+    $('.review-actions .casebook-inline-link').href=`./casebook.html#entry=${encodeURIComponent(saved.entry.id)}`;
+  }catch(error){$('#thesis-portable-status').textContent=`This comparison could not be saved: ${error.message} The current analysis is retained.`;}
+  finally{state.saving=false;setButtons(Boolean(state.draft));}
+}
+
+async function initializeEvidenceContext(){
+  try{
+    const catalog=await fetchJson('./data/evidence.json');state.evidenceContext=createEvidenceContext({research:state.research,catalog});
+    $$('button[data-evidence-key]').forEach(button=>{button.disabled=false;button.title='Inspect related evidence and modeling limits';});
+  }catch{$$('button[data-evidence-key]').forEach(button=>{button.disabled=true;button.title='Contextual evidence could not load. The source register remains available in Evidence.';});}
+}
+
 function renderEvidence(){
   const entry=state.research.companies[state.company],evidence=entry.operatingEvidence||[],modelStart=evidence.find(item=>item.status==='Analyst assumption'),ids=new Set([...evidence.map(item=>item.sourceId),entry.financing?.sourceId,'S19'].filter(Boolean));
   const sources=state.research.sources.filter(source=>ids.has(source.id));
-  $('#thesis-evidence').innerHTML=`<article class="evidence-item"><span class="source-type">${escape(state.company)} · Model inputs</span><h3>The selected forecasts remain assumptions.</h3><p>${escape(modelStart?.note||'Forward growth, operating margins, capital efficiency and discount rates are illustrative model assumptions.')} Edited cases reflect the values entered here.</p></article>${sources.map(source=>{const url=safeUrl(source.url);return `<article class="evidence-item"><span class="source-type">${escape(source.type)} · ${escape(source.id)}</span><h3>${url?`<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(source.title)} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>`:escape(source.title)}</h3><p>${escape(source.limit)}</p><p class="source-meta">${escape(source.publisher)} · ${escape(shortDate(source.date))}</p></article>`;}).join('')}`;
+  $('#thesis-evidence').innerHTML=`<article class="evidence-item"><span class="source-type">${escape(state.company)} · Model inputs</span><h3>Evidence behind the published Base case.</h3><p>${escape(modelStart?.note||'Forward growth, operating margins, capital efficiency and discount rates are illustrative model assumptions.')} This describes the published Base context. The reference and alternative inputs above show their own selected assumptions.</p></article>${sources.map(source=>{const url=safeUrl(source.url);return `<article class="evidence-item"><span class="source-type">${escape(source.type)} · ${escape(source.id)}</span><h3>${url?`<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(source.title)} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>`:escape(source.title)}</h3><p>${escape(source.limit)}</p><p class="source-meta">${escape(source.publisher)} · ${escape(sourceDate(source.date))}</p></article>`;}).join('')}`;
 }
 function applyDraft(draft,{preserveLocation=false,notice=''}={}){
   const checked=normalizeThesis(draft);
@@ -352,6 +384,8 @@ function bindEvents(){
   $('#landscape-margin-select').addEventListener('change',()=>selectPoint(state.selectedRate,Number($('#landscape-margin-select').value)));
   $('#landscape-chart').addEventListener('click',event=>{const cell=event.target.closest('[data-landscape-cell]');if(cell){const [margin,rate]=cell.dataset.landscapeCell.split(':').map(Number);selectPoint(rate,margin);}});
   $('#use-landscape-point').addEventListener('click',useSelectedPoint);$('#thesis-share').addEventListener('click',shareComparison);$('#thesis-brief').addEventListener('click',exportBrief);$('#thesis-verify').addEventListener('click',verifyAnalyses);$('#presenter-toggle').addEventListener('click',()=>togglePresenter());
+  $('#use-required-margin').addEventListener('click',useRequiredMargin);$('#thesis-save').addEventListener('click',saveComparison);
+  $('#thesis-assumptions-form').addEventListener('click',event=>{const button=event.target.closest('button[data-evidence-key]');if(button&&state.evidenceContext){try{state.evidenceContext.open({company:state.company,key:button.dataset.evidenceKey,cases:state.draft?SIDES.map(side=>({label:side==='reference'?'Reference':'Alternative',assumptions:{...state.draft[side].assumptions}})):[]});}catch(error){$('#thesis-portable-status').textContent=`Evidence could not open: ${error.message}`;}}});
   window.addEventListener('keydown',event=>{if(event.key==='Escape'&&state.presenter){togglePresenter(false);$('#presenter-toggle').focus();}});
   window.addEventListener('hashchange',()=>{if(state.ready)restoreHash();});
   let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(state.draft){renderWaterfall();renderHeatmap();}},70);});
@@ -364,6 +398,7 @@ async function initialize(){
     for(const company of COMPANIES)for(const scenario of SCENARIOS)project(presets?.[company]?.[scenario]);
     if(!research||!Array.isArray(research.sources)||research.modelVersion!==MODEL_VERSION||research.asOf!==VALUATION_DATE||COMPANIES.some(company=>!research.companies?.[company]))throw new Error('Research metadata and the financial model must identify the same companies, model version and date.');
     state.presets=presets;state.research=research;state.ready=true;
+    state.casebook=createCasebookStore({research});initializeEvidenceContext();
     for(const id of ['thesis-company','reference-preset','alternative-preset'])$(`#${id}`).disabled=false;
     $('#thesis-date').textContent=`Research snapshot · ${shortDate(VALUATION_DATE)}`;$('#thesis-version').innerHTML=`Application ${escape(APP_VERSION)} · Financial engine ${escape(MODEL_VERSION)} · Thesis analytics ${escape(THESIS_VERSION)}<br>Research snapshot · ${escape(shortDate(VALUATION_DATE))}`;
     // Read the latest fragment after data loading, so a newer incoming link wins.

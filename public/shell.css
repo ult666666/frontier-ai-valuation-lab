@@ -1,0 +1,27 @@
+/* One navigation system across the research workspace. */
+.app-header{background:#102333;color:#e8eee8;border-bottom:1px solid #34474f}
+.app-header .header-inner{max-width:1456px;margin:auto;padding:19px 48px 13px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.app-header .brand{display:flex;align-items:center;gap:13px;color:#f0f0e7;text-decoration:none;font-family:var(--sans);font-size:16px;font-weight:650;white-space:nowrap;letter-spacing:-.3px}
+.app-header .brand>span>span{color:#b9c7c7;font-weight:400}
+.app-header .brand svg{width:31px;height:31px;flex:0 0 31px;color:#b5d9c8}
+.app-utilities{display:flex;align-items:center;justify-content:flex-end;gap:23px;font-size:11px;line-height:1.5}
+.app-utilities a{color:#c4d0cb;text-decoration:none}.app-utilities a:hover{color:white}
+.app-utilities .button{min-height:34px;padding:7px 13px;background:#bfdaca;color:#102333;border:1px solid #bfdaca;border-radius:2px;font-size:11px}
+.app-header .app-nav{max-width:1360px;margin:0 auto;display:flex;align-items:stretch;justify-content:flex-start;gap:32px;min-height:43px;padding:0;font-size:12px}
+.app-header .app-nav>a{display:inline-flex;align-items:center;justify-content:center;min-height:43px;position:relative;color:#b9c7c7;text-decoration:none;white-space:nowrap;padding:0 1px;border-bottom:2px solid transparent;line-height:1.4}
+.app-header .app-nav>a:hover{color:#fff}.app-header .app-nav>a[aria-current]{color:#e9f2e8;border-bottom-color:#b5d9c8}
+.app-header a:focus-visible,.app-header button:focus-visible{outline:3px solid #b5d9c8;outline-offset:3px}
+.inspection-context{display:flex;align-items:center;justify-content:space-between;gap:22px;background:#e7eee4;border:1px solid #bccdbb;border-left:3px solid #39705b;padding:16px 19px;margin:18px 0 22px;font-size:12px}
+.inspection-context strong{display:block;font-weight:650;margin-bottom:5px}.inspection-context p{color:#4c6258;max-width:740px}
+.inspection-context .button{flex-shrink:0;white-space:normal;max-width:250px;font-size:12px}
+.casebook-inline-link{display:inline-flex;align-items:center;gap:7px;font-size:12px;margin-top:12px;color:#326753;text-decoration:none}.casebook-inline-link:hover{text-decoration:underline}
+.casebook-save-note{font-size:11px;line-height:1.7;color:#67716a;margin:7px 0 0}
+.frontier-action{margin-top:14px;width:100%;padding:10px 12px;color:#d4e9db;background:transparent;border:1px solid #66877a;border-radius:2px;text-align:left;font-size:11px;line-height:1.5}
+.frontier-action:hover:enabled{background:#25483f}.frontier-action:focus-visible{outline-color:#b5d9c8}
+.stress-company .stress-actions{display:flex;flex-wrap:wrap;gap:9px 18px;margin-top:10px}.stress-company .stress-actions button{margin:0;min-height:36px}.stress-company .stress-actions button[data-exp-explain]{color:#dfc89c}
+.app-header #presenter-toggle{font:inherit;display:flex;align-items:center;gap:8px;border:1px solid #658174;background:transparent;color:#d3e4d9;padding:7px 12px;border-radius:2px;cursor:pointer}
+@media(min-width:1456px){.app-header .app-nav{max-width:1360px}}
+@media(max-width:1455px){.app-header .app-nav{margin-left:48px;margin-right:48px}}
+@media(max-width:900px){.app-header .header-inner{padding:17px 28px 10px}.app-header .app-nav{margin-left:28px;margin-right:28px;gap:25px}.app-utilities{gap:15px}.app-utilities .utility-workbook{display:none}.inspection-context{align-items:flex-start;flex-direction:column;gap:13px}}
+@media(max-width:540px){.app-header .header-inner{padding:16px 18px 8px;gap:12px;align-items:center}.app-header .brand{font-size:12px;gap:9px;letter-spacing:-.2px}.app-header .brand svg{width:25px;height:25px;flex-basis:25px}.app-utilities{font-size:10px;gap:11px}.app-utilities .utility-author{display:none}.app-header .app-nav{margin:0 18px;gap:0;justify-content:space-between;font-size:11px;min-height:44px}.app-header .app-nav>a{min-height:44px;padding:0 2px}.app-header #presenter-toggle{font-size:10px;padding:7px 8px}.app-header #presenter-toggle .presenter-icon{display:none}.inspection-context{padding:14px 13px;font-size:11px}.inspection-context .button{font-size:11px}.frontier-action{font-size:11px}.casebook-inline-link{font-size:11px}.stress-company .stress-actions{gap:5px 12px}}
+@media print{.app-header,.inspection-context,.casebook-inline-link{display:none!important}}

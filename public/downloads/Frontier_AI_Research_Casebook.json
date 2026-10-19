@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "modelVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "researchCutoff": "2026-10-18T09:22:26-07:00",
+  "entries": [
+    {
+      "id": "example-anthropic-required-margin",
+      "kind": "thesis",
+      "title": "Example · Anthropic at a $500bn EV",
+      "createdAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "token": "eyJzY2hlbWEiOjEsIm1vZGVsIjoiMy4wLjAiLCJkYXRlIjoiMjAyNi0xMC0xOCIsInJlZmVyZW5jZSI6ImV5SnpZMmhsYldFaU9qRXNJbTF2WkdWc0lqb2lNeTR3TGpBaUxDSmtZWFJsSWpvaU1qQXlOaTB4TUMweE9DSXNJbU52YlhCaGJua2lPaUpCYm5Sb2NtOXdhV01pTENKelkyVnVZWEpwYnlJNklrSmhjMlVpTENKcGJuQjFkSE1pT2xzMU15NHlOaXd3TGpRMUxEQXVNalFzTUM0eE1pd3RNQzR3TWl3d0xqRTRMREF1TWpJc01pNDFMREF1TVRJMUxEQXVNRE1zTUM0eUxDMHpMREF1TWpWZExDSmljbWxrWjJVaU9tNTFiR3g5IiwiYWx0ZXJuYXRpdmUiOiJleUp6WTJobGJXRWlPakVzSW0xdlpHVnNJam9pTXk0d0xqQWlMQ0prWVhSbElqb2lNakF5TmkweE1DMHhPQ0lzSW1OdmJYQmhibmtpT2lKQmJuUm9jbTl3YVdNaUxDSnpZMlZ1WVhKcGJ5STZJa0oxYkd3aUxDSnBibkIxZEhNaU9sczFOaTQyTWl3d0xqWTFMREF1TXl3d0xqRTFMREF1TURVc01DNHlOU3d3TGpBM01URTRORGd4TmpFd09USXlOakl5TERNdU5Td3dMakV3TlN3d0xqQXpOU3d3TGpJMUxDMHhMREF1TWpWZExDSmljbWxrWjJVaU9tNTFiR3g5IiwibGFuZHNjYXBlIjp7InJhdGVzIjpbMC4wNzUsMC4wOSwwLjEwNSwwLjEyLDAuMTM1LDAuMTUsMC4xNjUsMC4xOCwwLjE5NV0sIm1hcmdpbnMiOlswLjA2LDAuMDksMC4xMiwwLjE1MDAwMDAwMDAwMDAwMDAyLDAuMTgsMC4yMSwwLjI0MDAwMDAwMDAwMDAwMDAyLDAuMjcsMC4zLDAuMzI5OTk5OTk5OTk5OTk5OTYsMC4zNiwwLjM5LDAuNDJdLCJ0YXJnZXQiOjUwMH19",
+      "notes": {
+        "rationale": "Illustrative research example: explore the 2036 EBIT margin required to support a $500bn operating enterprise value while retaining the Bull revenue and capital assumptions. Compare the solved alternative against the original Base case. This is a conditional model requirement, not a financing price or a forecast of what will happen.",
+        "keyAssumption": "The selected 10.5% WACC, Bull growth path and capital efficiency must hold. The solved margin retains full numerical precision. Source S19 supports the terminal reinvestment relationship; it does not establish the chosen WACC, perpetual growth or ROIC.",
+        "reviewTrigger": "Revisit the case when dated operating disclosures change the revenue bridge, evidence clarifies gross versus net revenue, or capital commitments can be translated into a defensible payment and reinvestment schedule. Recalculate the complete case before updating the argument."
+      },
+      "sourceIds": [
+        "S01",
+        "S09",
+        "S13",
+        "S18",
+        "S19"
+      ]
+    },
+    {
+      "id": "example-openai-base",
+      "kind": "scenario",
+      "title": "Example · OpenAI operating baseline",
+      "createdAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "token": "eyJzY2hlbWEiOjEsIm1vZGVsIjoiMy4wLjAiLCJkYXRlIjoiMjAyNi0xMC0xOCIsImNvbXBhbnkiOiJPcGVuQUkiLCJzY2VuYXJpbyI6IkJhc2UiLCJpbnB1dHMiOlszNSwwLjUsMC4yNiwwLjEyLC0wLjIsMC4xMiwwLjI1LDIsMC4xMjUsMC4wMywwLjIsLTgsMC4yNV0sImJyaWRnZSI6bnVsbH0",
+      "notes": {
+        "rationale": "Illustrative baseline for inspecting OpenAI operating economics. Keep actual-period revenue, annualized run-rate and the illustrative full-year forecast distinct. The result is operating enterprise value; no current cash, debt or investor preference waterfall is assumed.",
+        "keyAssumption": "The Base growth path, margin progression and reinvestment assumptions are selected inputs. Reported cash-flow forecasts and commercial arrangements provide context without verifying those numerical assumptions.",
+        "reviewTrigger": "Review when new dated revenue or cost disclosures become comparable, commercial terms are clarified, or a complete capital-payment schedule supports a different reinvestment estimate."
+      },
+      "sourceIds": [
+        "S02",
+        "S05",
+        "S08",
+        "S10",
+        "S15",
+        "S19"
+      ]
+    },
+    {
+      "id": "example-openai-higher-wacc",
+      "kind": "scenario",
+      "title": "Example · OpenAI with WACC +2 pp",
+      "createdAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "token": "eyJzY2hlbWEiOjEsIm1vZGVsIjoiMy4wLjAiLCJkYXRlIjoiMjAyNi0xMC0xOCIsImNvbXBhbnkiOiJPcGVuQUkiLCJzY2VuYXJpbyI6IkJhc2UiLCJpbnB1dHMiOlszNSwwLjUsMC4yNiwwLjEyLC0wLjIsMC4xMiwwLjI1LDIsMC4xNDUsMC4wMywwLjIsLTgsMC4yNV0sImJyaWRnZSI6bnVsbH0",
+      "notes": {
+        "rationale": "Illustrative discount-rate experiment. Increase the Base cost of capital by two percentage points and retain its other twelve operating assumptions. Compare this saved case with the OpenAI operating baseline to isolate that conditional valuation change.",
+        "keyAssumption": "A higher required return discounts the same cash flows more heavily. The two-percentage-point increment is a chosen test, not a measured market-implied cost of capital or a probability estimate.",
+        "reviewTrigger": "Reconsider the discount-rate range if business-risk evidence, capital structure information or a documented valuation framework changes. An equity financing headline alone does not identify operating WACC."
+      },
+      "sourceIds": [
+        "S02",
+        "S15",
+        "S19"
+      ]
+    }
+  ]
+}

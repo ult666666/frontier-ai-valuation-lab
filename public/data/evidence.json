@@ -1,0 +1,1233 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "researchCutoff": "2026-10-18T09:22:26-07:00",
+  "currency": "USD billions",
+  "companies": {
+    "Anthropic": {
+      "inputs": {
+        "rev2026": {
+          "key": "rev2026",
+          "label": "2026 model revenue",
+          "unit": "bn",
+          "definition": "Illustrative full-year revenue in USD billions. Actual-period revenue and annualized pace remain separate observations.",
+          "limit": "Above $0B and no more than $10,000B.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-revenue-observations",
+            "anthropic-revenue-bridge"
+          ]
+        },
+        "g1": {
+          "key": "g1",
+          "label": "2027–2030 annual growth",
+          "unit": "%",
+          "definition": "Revenue growth applied in each of the four years from 2027 through 2030.",
+          "limit": "0% to 200%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-revenue-observations"
+          ]
+        },
+        "g2": {
+          "key": "g2",
+          "label": "2031–2033 annual growth",
+          "unit": "%",
+          "definition": "Revenue growth applied in each of the three years from 2031 through 2033.",
+          "limit": "0% to 200%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-revenue-observations"
+          ]
+        },
+        "g3": {
+          "key": "g3",
+          "label": "2034–2036 annual growth",
+          "unit": "%",
+          "definition": "Revenue growth applied in the final three forecast years, before the terminal period begins.",
+          "limit": "0% to 200%; no lower than perpetual growth.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-revenue-observations",
+            "anthropic-continuation-method"
+          ]
+        },
+        "m27": {
+          "key": "m27",
+          "label": "2027 EBIT margin",
+          "unit": "%",
+          "definition": "Operating profit as a share of revenue. Annual margins interpolate between the 2027, 2030 and 2036 anchors.",
+          "limit": "−100% to 100%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-operating-margins"
+          ]
+        },
+        "m30": {
+          "key": "m30",
+          "label": "2030 EBIT margin",
+          "unit": "%",
+          "definition": "The middle operating-margin anchor. Tax applies only when EBIT is positive.",
+          "limit": "−100% to 100%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-operating-margins"
+          ]
+        },
+        "m36": {
+          "key": "m36",
+          "label": "2036 EBIT margin",
+          "unit": "%",
+          "definition": "The final explicit and terminal EBIT margin. Changing this also changes the interpolated margin path for 2031–2036.",
+          "limit": "Above 0% and no more than 100%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-operating-margins"
+          ]
+        },
+        "turns": {
+          "key": "turns",
+          "label": "Sales / invested capital",
+          "unit": "×",
+          "definition": "Incremental revenue divided by net reinvestment. Reinvestment includes net capital expenditure and working capital.",
+          "limit": "0.05× to 100×.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-capital-requirements"
+          ]
+        },
+        "wacc": {
+          "key": "wacc",
+          "label": "Cost of capital",
+          "unit": "%",
+          "definition": "The weighted average cost of capital discounts the remaining-2026 cash flow, all explicit forecast cash flows and terminal value.",
+          "limit": "Above perpetual growth and no more than 60%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-financing-boundary",
+            "anthropic-continuation-method"
+          ]
+        },
+        "tg": {
+          "key": "tg",
+          "label": "Perpetual growth",
+          "unit": "%",
+          "definition": "Annual growth after 2036. The terminal reinvestment rate equals perpetual growth divided by terminal ROIC.",
+          "limit": "At least 0%; below both WACC and terminal ROIC, and no higher than 2034–2036 growth.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-continuation-method"
+          ]
+        },
+        "roic": {
+          "key": "roic",
+          "label": "Terminal ROIC",
+          "unit": "%",
+          "definition": "Return on invested capital in the terminal period. It determines the reinvestment needed to support perpetual growth.",
+          "limit": "Above perpetual growth and no more than 100%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-capital-requirements",
+            "anthropic-continuation-method"
+          ]
+        },
+        "stub": {
+          "key": "stub",
+          "label": "Remaining-2026 FCFF",
+          "unit": "bn",
+          "definition": "Free cash flow to the firm from 18 October through 31 December 2026. Negative values are outflows; this cash flow is included once.",
+          "limit": "−$10,000B to $10,000B.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-stub-boundary"
+          ]
+        },
+        "tax": {
+          "key": "tax",
+          "label": "Tax on positive EBIT",
+          "unit": "%",
+          "definition": "Tax on positive operating profit. The model provides no loss benefit or tax-loss carryforward.",
+          "limit": "0% to below 100%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "anthropic-tax-boundary"
+          ]
+        }
+      }
+    },
+    "OpenAI": {
+      "inputs": {
+        "rev2026": {
+          "key": "rev2026",
+          "label": "2026 model revenue",
+          "unit": "bn",
+          "definition": "Illustrative full-year revenue in USD billions. Actual-period revenue and annualized pace remain separate observations.",
+          "limit": "Above $0B and no more than $10,000B.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-revenue-observations",
+            "openai-revenue-assumption"
+          ]
+        },
+        "g1": {
+          "key": "g1",
+          "label": "2027–2030 annual growth",
+          "unit": "%",
+          "definition": "Revenue growth applied in each of the four years from 2027 through 2030.",
+          "limit": "0% to 200%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-revenue-observations",
+            "openai-capital-requirements"
+          ]
+        },
+        "g2": {
+          "key": "g2",
+          "label": "2031–2033 annual growth",
+          "unit": "%",
+          "definition": "Revenue growth applied in each of the three years from 2031 through 2033.",
+          "limit": "0% to 200%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-revenue-observations",
+            "openai-capital-requirements"
+          ]
+        },
+        "g3": {
+          "key": "g3",
+          "label": "2034–2036 annual growth",
+          "unit": "%",
+          "definition": "Revenue growth applied in the final three forecast years, before the terminal period begins.",
+          "limit": "0% to 200%; no lower than perpetual growth.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-revenue-observations",
+            "openai-capital-requirements",
+            "openai-continuation-method"
+          ]
+        },
+        "m27": {
+          "key": "m27",
+          "label": "2027 EBIT margin",
+          "unit": "%",
+          "definition": "Operating profit as a share of revenue. Annual margins interpolate between the 2027, 2030 and 2036 anchors.",
+          "limit": "−100% to 100%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-operating-margins"
+          ]
+        },
+        "m30": {
+          "key": "m30",
+          "label": "2030 EBIT margin",
+          "unit": "%",
+          "definition": "The middle operating-margin anchor. Tax applies only when EBIT is positive.",
+          "limit": "−100% to 100%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-operating-margins"
+          ]
+        },
+        "m36": {
+          "key": "m36",
+          "label": "2036 EBIT margin",
+          "unit": "%",
+          "definition": "The final explicit and terminal EBIT margin. Changing this also changes the interpolated margin path for 2031–2036.",
+          "limit": "Above 0% and no more than 100%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-operating-margins"
+          ]
+        },
+        "turns": {
+          "key": "turns",
+          "label": "Sales / invested capital",
+          "unit": "×",
+          "definition": "Incremental revenue divided by net reinvestment. Reinvestment includes net capital expenditure and working capital.",
+          "limit": "0.05× to 100×.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-capital-requirements"
+          ]
+        },
+        "wacc": {
+          "key": "wacc",
+          "label": "Cost of capital",
+          "unit": "%",
+          "definition": "The weighted average cost of capital discounts the remaining-2026 cash flow, all explicit forecast cash flows and terminal value.",
+          "limit": "Above perpetual growth and no more than 60%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-financing-boundary",
+            "openai-continuation-method"
+          ]
+        },
+        "tg": {
+          "key": "tg",
+          "label": "Perpetual growth",
+          "unit": "%",
+          "definition": "Annual growth after 2036. The terminal reinvestment rate equals perpetual growth divided by terminal ROIC.",
+          "limit": "At least 0%; below both WACC and terminal ROIC, and no higher than 2034–2036 growth.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-continuation-method"
+          ]
+        },
+        "roic": {
+          "key": "roic",
+          "label": "Terminal ROIC",
+          "unit": "%",
+          "definition": "Return on invested capital in the terminal period. It determines the reinvestment needed to support perpetual growth.",
+          "limit": "Above perpetual growth and no more than 100%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-capital-requirements",
+            "openai-continuation-method"
+          ]
+        },
+        "stub": {
+          "key": "stub",
+          "label": "Remaining-2026 FCFF",
+          "unit": "bn",
+          "definition": "Free cash flow to the firm from 18 October through 31 December 2026. Negative values are outflows; this cash flow is included once.",
+          "limit": "−$10,000B to $10,000B.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-stub-boundary"
+          ]
+        },
+        "tax": {
+          "key": "tax",
+          "label": "Tax on positive EBIT",
+          "unit": "%",
+          "definition": "Tax on positive operating profit. The model provides no loss benefit or tax-loss carryforward.",
+          "limit": "0% to below 100%.",
+          "status": "Analyst or user assumption",
+          "contextIds": [
+            "openai-tax-boundary"
+          ]
+        }
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "publisher": "Anthropic",
+      "date": "2026-05-28",
+      "title": "Series H financing",
+      "url": "https://www.anthropic.com/news/series-h",
+      "type": "Company disclosure",
+      "use": "Completed Series H financing. Company-announced revenue run-rate.",
+      "limit": "Primary company announcement; unaudited operating run-rate claim.",
+      "companies": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "S02",
+      "publisher": "OpenAI",
+      "date": "2026-03-31",
+      "title": "Latest funding round close",
+      "url": "https://openai.com/index/accelerating-the-next-phase-ai/",
+      "type": "Company disclosure",
+      "use": "Closed funding round. Company-announced monthly revenue.",
+      "limit": "Primary company announcement; committed capital is not a current cash balance.",
+      "companies": [
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "S03",
+      "publisher": "Reuters citing Bloomberg",
+      "date": "2026-09-29",
+      "title": "OpenAI proposed financing",
+      "url": "https://www.reuters.com/legal/transactional/openai-targets-30-billion-funding-14-trillion-valuation-bloomberg-news-reports-2026-09-29/",
+      "type": "Reported evidence",
+      "use": "Proposed financing target.",
+      "limit": "Reported early-stage talks, no closed financing; company did not comment.",
+      "companies": [
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "S04",
+      "publisher": "Reuters",
+      "date": "2026-10-15T21:00:00Z",
+      "title": "Anthropic investor-day update",
+      "url": "https://www.reuters.com/business/finance/investors-temper-anthropic-ipo-valuation-expectations-over-revenue-growth-2026-10-15/",
+      "type": "Reported evidence",
+      "use": "Investor IPO valuation expectations. Quarterly revenue and adjusted profitability.",
+      "limit": "Multiple unnamed people with knowledge of investor-day disclosures; company did not respond.",
+      "companies": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "S05",
+      "publisher": "Reuters via Investing.com",
+      "date": "2026-10-08T21:12:29Z",
+      "title": "OpenAI September revenue correction",
+      "url": "https://www.investing.com/news/stock-market-news/openais-annualized-revenue-20-billion-less-than-previously-signaled-ft-reports-4939854",
+      "type": "Reported evidence",
+      "use": "September revenue run-rate. Quarterly revenue.",
+      "limit": "Reuters source familiar with company communications; first reported by FT; company did not comment.",
+      "companies": [
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "S06",
+      "publisher": "Reuters",
+      "date": "2026-08-17T21:36:00Z",
+      "title": "Anthropic July run-rate",
+      "url": "https://www.reuters.com/technology/anthropic-revenue-run-rate-tops-65-billion-source-says-2026-08-17/",
+      "type": "Reported evidence",
+      "use": "Latest directly retrieved reported monthly run-rate.",
+      "limit": "One person familiar with investor update; not a public financial statement.",
+      "companies": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "S07",
+      "publisher": "Reuters",
+      "date": "2026-09-28T23:17:00Z",
+      "title": "Anthropic confidential prospectus financials",
+      "url": "https://www.reuters.com/business/finance/anthropics-ipo-prospectus-shows-sweeping-ai-vision-surging-costs-2026-09-28/",
+      "type": "Reported evidence",
+      "use": "Reported FY2025 financials.",
+      "limit": "Reporter reviewed confidential prospectus; underlying statements not reviewed here.",
+      "companies": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "S08",
+      "publisher": "Ars Technica",
+      "date": "2026-06-16T16:18:07Z",
+      "title": "OpenAI leaked financial statements",
+      "url": "https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/",
+      "type": "Reported evidence",
+      "use": "Reported FY2025 financials.",
+      "limit": "Reports leaked statements obtained by Ed Zitron and separately reviewed by FT; described as audited; underlying statements not reviewed here.",
+      "companies": [
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "S09",
+      "publisher": "Reuters",
+      "date": "2026-09-29T20:53:00Z",
+      "title": "Anthropic partner accounting and concentration",
+      "url": "https://www.reuters.com/world/anthropic-ipo-prospectus-lays-bare-deep-dependence-big-tech-partners-2026-09-29/",
+      "type": "Reported evidence",
+      "use": "2025 cloud channel revenue and fees.",
+      "limit": "Confidential prospectus reviewed by Reuters plus its fee analysis.",
+      "companies": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "S10",
+      "publisher": "OpenAI (also Microsoft)",
+      "date": "2026-04-27",
+      "title": "Amended Microsoft commercial agreement",
+      "url": "https://openai.com/index/next-phase-of-microsoft-partnership/",
+      "type": "Company disclosure",
+      "use": "Microsoft amended commercial terms.",
+      "limit": "Primary bilateral contract summary; royalty percentage and total cap not specified.",
+      "companies": [
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "S11",
+      "publisher": "Amazon",
+      "date": "2026-04-20",
+      "title": "Expanded Anthropic collaboration",
+      "url": "https://www.aboutamazon.com/news/company-news/amazon-invests-additional-5-billion-anthropic-ai",
+      "type": "Company disclosure",
+      "use": "Amazon investment and compute agreement.",
+      "limit": "Primary investor/supplier announcement; future investment conditional on commercial milestones.",
+      "companies": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "S12",
+      "publisher": "OpenAI",
+      "date": "2026-02-27",
+      "title": "Amazon strategic partnership",
+      "url": "https://openai.com/index/amazon-partnership/",
+      "type": "Company disclosure",
+      "use": "Amazon investment and compute agreement.",
+      "limit": "Primary announcement; future investment installment conditional.",
+      "companies": [
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "S13",
+      "publisher": "Reuters",
+      "date": "2026-09-29T10:08:00Z",
+      "title": "Anthropic infrastructure commitments",
+      "url": "https://www.reuters.com/business/anthropics-518-billion-ai-buildout-hinges-largely-deals-that-cannot-be-canceled-2026-09-29/",
+      "type": "Reported evidence",
+      "use": "Infrastructure obligations in confidential prospectus.",
+      "limit": "Reporter reviewed confidential prospectus; debt and lease accounting notes unavailable.",
+      "companies": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "S14",
+      "publisher": "Reuters citing FT",
+      "date": "2026-10-17T00:57:00Z",
+      "title": "Anthropic chip-financing offer",
+      "url": "https://www.reuters.com/business/anthropic-offers-blackstone-double-digit-yield-chip-financing-deal-ft-reports-2026-10-17/",
+      "type": "Reported evidence",
+      "use": "Chip financing offered to Blackstone.",
+      "limit": "Reported offer; Reuters explicitly could not independently verify.",
+      "companies": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "S15",
+      "publisher": "Financial Times",
+      "date": "2026-09-18T22:33:32Z",
+      "title": "OpenAI funding-needs forecast",
+      "url": "https://www.ft.com/content/6011d061-eee3-4193-b3b7-8ee4155f538c",
+      "type": "Reported evidence",
+      "use": "Reported company cash-flow forecast.",
+      "limit": "FT report of a company presentation, available through a search extract; the full article required a subscription. Treat forecast amounts as attributed reporting, not realized outcomes.",
+      "companies": [
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "S16",
+      "publisher": "OpenAI",
+      "date": "Undated live page; structure announced 2025-10-28",
+      "title": "OpenAI corporate structure",
+      "url": "https://openai.com/our-structure/",
+      "type": "Company disclosure",
+      "use": "Recapitalization equity and control.",
+      "limit": "Primary, but stated ownership percentages are at 2025 recapitalization close.",
+      "companies": [
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "S17",
+      "publisher": "Anthropic",
+      "date": "2023-09-19; subsequently updated",
+      "title": "Long-Term Benefit Trust",
+      "url": "https://www.anthropic.com/news/the-long-term-benefit-trust",
+      "type": "Company disclosure",
+      "use": "Public benefit corporation and Trust governance.",
+      "limit": "Primary governance description; not a full current cap table.",
+      "companies": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "S18",
+      "publisher": "Reuters",
+      "date": "2026-10-14; updated 2026-10-15",
+      "title": "Anthropic Q3 investor-day revenue",
+      "url": "https://www.reuters.com/business/finance/anthropics-q3-revenue-surges-45-nearly-17-billion-2026-10-14/",
+      "type": "Reported evidence",
+      "use": "Q1 $4.7B, Q2 $11.6B and Q3 $16.8B underpin the illustrative full-year revenue bridge.",
+      "limit": "Based on investor-day reporting; underlying statements and an adjusted-profit reconciliation were not reviewed.",
+      "companies": [
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "S19",
+      "publisher": "Aswath Damodaran / NYU Stern",
+      "date": "Undated; retrieved 2026-10-18",
+      "title": "Stable growth and reinvestment",
+      "url": "https://pages.stern.nyu.edu/adamodar/New_Home_Page/valquestions/a11.htm",
+      "type": "Academic methodology",
+      "use": "Terminal reinvestment rate equals perpetual growth divided by return on capital.",
+      "limit": "Supports a valuation relationship, not a company-specific discount rate, return on capital or growth assumption.",
+      "companies": [
+        "Anthropic",
+        "OpenAI"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "A_FIN",
+      "company": "Anthropic",
+      "metric": "Completed Series H financing",
+      "value": {
+        "post_money_equity_valuation": 965,
+        "round_size": 65,
+        "already_committed_hyperscaler_included": 15,
+        "amazon_included": 5
+      },
+      "unit": "USD billion",
+      "observationLabel": "2026-05-28",
+      "evidenceStatus": "company_disclosed",
+      "sourceIds": [
+        "S01"
+      ],
+      "modelImplication": "Use $965B as dated completed post-money equity benchmark. Do not re-add $15B prior commitments or the included $5B Amazon investment."
+    },
+    {
+      "id": "O_FIN",
+      "company": "OpenAI",
+      "metric": "Closed funding round",
+      "value": {
+        "post_money_equity_valuation": 852,
+        "committed_capital": 122,
+        "undrawn_revolver_at_close": 4.7
+      },
+      "unit": "USD billion",
+      "observationLabel": "2026-03-31",
+      "evidenceStatus": "company_disclosed",
+      "sourceIds": [
+        "S02"
+      ],
+      "modelImplication": "Use $852B completed post-money equity benchmark. $122B is committed capital; $4.7B facility was undrawn at close and is not debt outstanding."
+    },
+    {
+      "id": "O_ASK",
+      "company": "OpenAI",
+      "metric": "Proposed financing target",
+      "value": {
+        "pre_money_equity_valuation": 1400,
+        "minimum_proposed_raise": 30
+      },
+      "unit": "USD billion",
+      "observationLabel": "2026-09-29",
+      "evidenceStatus": "reported_proposed_financing",
+      "sourceIds": [
+        "S03"
+      ],
+      "modelImplication": "Keep separate from completed rounds. Mechanical post-money would be at least $1,430B if unchanged terms close; this is arithmetic, not a reported completed valuation."
+    },
+    {
+      "id": "A_IPO",
+      "company": "Anthropic",
+      "metric": "Investor IPO valuation expectations",
+      "value": {
+        "some_investors_discussing": 1500,
+        "prior_expectation": 2000
+      },
+      "unit": "USD billion",
+      "observationLabel": "2026-10-14 investor day",
+      "evidenceStatus": "reported_investor_expectation",
+      "sourceIds": [
+        "S04"
+      ],
+      "modelImplication": "Scenario reference only. Neither amount replaces the completed $965B financing benchmark."
+    },
+    {
+      "id": "A_RR_PRIMARY",
+      "company": "Anthropic",
+      "metric": "Company-announced revenue run-rate",
+      "value": {
+        "greater_than": 47
+      },
+      "unit": "USD billion/year annualized",
+      "observationLabel": "Earlier in 2026-05, day unspecified",
+      "evidenceStatus": "company_disclosed_run_rate",
+      "sourceIds": [
+        "S01"
+      ],
+      "modelImplication": "Historical pace metric. Do not enter as FY2026 actual revenue."
+    },
+    {
+      "id": "O_MONTH_PRIMARY",
+      "company": "OpenAI",
+      "metric": "Company-announced monthly revenue",
+      "value": 2,
+      "unit": "USD billion/month",
+      "observationLabel": "2026-03-31 announcement; current month unspecified",
+      "evidenceStatus": "company_disclosed_monthly_pace",
+      "sourceIds": [
+        "S02"
+      ],
+      "modelImplication": "A $24B annualized equivalent is derived arithmetic, not FY2026 revenue."
+    },
+    {
+      "id": "A_RR_JUL",
+      "company": "Anthropic",
+      "metric": "Latest directly retrieved reported monthly run-rate",
+      "value": {
+        "greater_than": 65
+      },
+      "unit": "USD billion/year annualized",
+      "observationLabel": "2026-07-31",
+      "evidenceStatus": "reported_run_rate",
+      "sourceIds": [
+        "S06"
+      ],
+      "modelImplication": "Label July observation separately from August publication. Later Q3 actual-period reporting is more recent evidence."
+    },
+    {
+      "id": "O_RR_SEP",
+      "company": "OpenAI",
+      "metric": "September revenue run-rate",
+      "value": {
+        "approximately_below": 50
+      },
+      "unit": "USD billion/year annualized",
+      "observationLabel": "2026-09",
+      "evidenceStatus": "reported_run_rate",
+      "sourceIds": [
+        "S05"
+      ],
+      "modelImplication": "Supersedes earlier near-$70B comparison claim. This is a metric-basis correction, not proof revenue declined."
+    },
+    {
+      "id": "A_Q3",
+      "company": "Anthropic",
+      "metric": "Quarterly revenue and adjusted profitability",
+      "value": {
+        "q3_revenue": 16.8,
+        "q2_revenue_latest_comparator": 11.6,
+        "qoq_growth_pct": 45,
+        "adjusted_profitable": true
+      },
+      "unit": "USD billion except percent/boolean",
+      "observationLabel": "Quarter ended 2026-09-30",
+      "evidenceStatus": "reported_actual_period",
+      "sourceIds": [
+        "S04"
+      ],
+      "modelImplication": "Use $11.6B Q2 when using this latest report; earlier Reuters used $11.5B. Adjusted profitability is not GAAP EBIT or free cash flow."
+    },
+    {
+      "id": "O_Q2",
+      "company": "OpenAI",
+      "metric": "Quarterly revenue",
+      "value": 6.7,
+      "unit": "USD billion",
+      "observationLabel": "Quarter ended 2026-06-30",
+      "evidenceStatus": "reported_actual_period",
+      "sourceIds": [
+        "S05"
+      ],
+      "modelImplication": "Do not align this older quarter with Anthropic Q3 as a same-period comparison."
+    },
+    {
+      "id": "A_FY2025",
+      "company": "Anthropic",
+      "metric": "Reported FY2025 financials",
+      "value": {
+        "revenue_approx": 4.6,
+        "operating_loss": 8.06,
+        "net_loss_approx": 42,
+        "financing_remeasurement_charge_approx": 34,
+        "compute_and_infrastructure_expense": 7.33,
+        "cash_and_short_term_investments": 20.28
+      },
+      "unit": "USD billion",
+      "observationLabel": "FY ended / balance at 2025-12-31",
+      "evidenceStatus": "reported_historical_financials",
+      "sourceIds": [
+        "S07"
+      ],
+      "modelImplication": "Net loss is not cash burn; financing remeasurement dominates. December liquidity cannot be used as an October cash balance."
+    },
+    {
+      "id": "O_FY2025",
+      "company": "OpenAI",
+      "metric": "Reported FY2025 financials",
+      "value": {
+        "revenue": 13.07,
+        "cost_of_revenue": 7.5,
+        "research_and_development": 19.18,
+        "operating_loss": 20.92
+      },
+      "unit": "USD billion",
+      "observationLabel": "FY ended 2025-12-31",
+      "evidenceStatus": "reported_historical_financials",
+      "sourceIds": [
+        "S08"
+      ],
+      "modelImplication": "Keep annual realized revenue separate from exit run-rate. Training/R&D and serving costs must both be covered in modeled operating cash flows."
+    },
+    {
+      "id": "A_CHANNEL",
+      "company": "Anthropic",
+      "metric": "2025 cloud channel revenue and fees",
+      "value": {
+        "cloud_sales": 2.16,
+        "cloud_share_of_revenue_pct": 47,
+        "distribution_fees": 0.351,
+        "largest_two_customer_share_pct": 24
+      },
+      "unit": "USD billion except percentages",
+      "observationLabel": "FY ended 2025-12-31",
+      "evidenceStatus": "reported_historical_financials_and_reuters_analysis",
+      "sourceIds": [
+        "S09"
+      ],
+      "modelImplication": "Fees are reported in sales/marketing/partnerships expense. The ~16% fee applies to channel sales, not all revenue. Gross margin and revenue multiples need common definitions."
+    },
+    {
+      "id": "O_MS_UPDATE",
+      "company": "OpenAI",
+      "metric": "Microsoft amended commercial terms",
+      "value": {
+        "microsoft_to_openai_revenue_share": "ended",
+        "openai_to_microsoft_revenue_share": "continues through 2030 at same percentage, total cap",
+        "ip_license": "non-exclusive through 2032"
+      },
+      "unit": "Contract terms",
+      "observationLabel": "2026-04-27",
+      "evidenceStatus": "company_disclosed",
+      "sourceIds": [
+        "S10"
+      ],
+      "modelImplication": "Do not carry old reciprocal royalties or exclusivity into forecast. Percentage and cap are not disclosed in this primary summary."
+    },
+    {
+      "id": "A_AWS",
+      "company": "Anthropic",
+      "metric": "Amazon investment and compute agreement",
+      "value": {
+        "aws_purchase_commitment_greater_than": 100,
+        "term_years": 10,
+        "amazon_initial_investment": 5,
+        "amazon_conditional_future_investment_up_to": 20
+      },
+      "unit": "USD billion except years",
+      "observationLabel": "2026-04-20",
+      "evidenceStatus": "company_disclosed",
+      "sourceIds": [
+        "S11"
+      ],
+      "modelImplication": "Separate equity financing inflow from operating/capacity spending. Initial $5B is included in Series H, not incremental to it."
+    },
+    {
+      "id": "O_AWS",
+      "company": "OpenAI",
+      "metric": "Amazon investment and compute agreement",
+      "value": {
+        "existing_compute_agreement": 38,
+        "additional_compute_commitment": 100,
+        "additional_term_years": 8,
+        "amazon_initial_investment": 15,
+        "amazon_conditional_investment": 35
+      },
+      "unit": "USD billion except years",
+      "observationLabel": "2026-02-27",
+      "evidenceStatus": "company_disclosed",
+      "sourceIds": [
+        "S12"
+      ],
+      "modelImplication": "No assumption all announced investments are current cash. Do not classify $138B aggregate nominal service commitments as borrowing."
+    },
+    {
+      "id": "A_COMPUTE",
+      "company": "Anthropic",
+      "metric": "Infrastructure obligations in confidential prospectus",
+      "value": {
+        "total_at_least": 518,
+        "noncancelable_or_minimum_payment_share_approx_pct": 80,
+        "google_service_minimum": 111.1,
+        "amazon_service_minimum": 110,
+        "microsoft_service_minimum": 31.4,
+        "broadcom_equipment_lease_obligations": 161.2,
+        "xai_capacity_spend_up_to": 84.5,
+        "amd_capacity_expected_greater_than": 20
+      },
+      "unit": "USD billion except percentage",
+      "observationLabel": "Confidential prospectus reviewed 2026-09-29; mainly 7–10-year commitments",
+      "evidenceStatus": "reported_commitments",
+      "sourceIds": [
+        "S13"
+      ],
+      "modelImplication": "Mixed service floors, leases and cancelable capacity. Do not subtract $518B from EV as debt; schedule relevant costs and avoid double counting existing forecast expense."
+    },
+    {
+      "id": "A_BLACKSTONE",
+      "company": "Anthropic",
+      "metric": "Chip financing offered to Blackstone",
+      "value": {
+        "proposed_financing": 9,
+        "yield_greater_than_pct": 10,
+        "lease_term_years": 5
+      },
+      "unit": "USD billion except percentage/years",
+      "observationLabel": "2026-10-16 report",
+      "evidenceStatus": "reported_proposal_unverified_by_reuters",
+      "sourceIds": [
+        "S14"
+      ],
+      "modelImplication": "Debt is described as backed by Anthropic leases; borrower/recourse/closing unknown. No addition to direct corporate debt without documentation."
+    },
+    {
+      "id": "O_FCF_FORECAST",
+      "company": "OpenAI",
+      "metric": "Reported company cash-flow forecast",
+      "value": {
+        "cumulative_negative_fcf_2026_2030": 278,
+        "forecast_revenue_2026": 36,
+        "forecast_revenue_2030": 350,
+        "forecast_compute_spend_through_2030": 856
+      },
+      "unit": "USD billion",
+      "observationLabel": "Company presentation reported 2026-09-18",
+      "evidenceStatus": "reported_management_forecast",
+      "sourceIds": [
+        "S15"
+      ],
+      "modelImplication": "Use as a funding-needs stress case, not cash burn already incurred or disclosed guidance. $350B is a reported 2030 projection."
+    },
+    {
+      "id": "O_GOVERNANCE",
+      "company": "OpenAI",
+      "metric": "Recapitalization equity and control",
+      "value": {
+        "foundation_pct": 26,
+        "microsoft_approx_pct": 27,
+        "employees_and_other_investors_pct": 47,
+        "foundation_warrant": "Additional equity if share price exceeds tenfold threshold after 15 years",
+        "control": "Foundation appoints Group directors"
+      },
+      "unit": "Percent/contract terms",
+      "observationLabel": "At recapitalization close 2025-10-28",
+      "evidenceStatus": "company_disclosed_historical_capital_structure",
+      "sourceIds": [
+        "S16"
+      ],
+      "modelImplication": "Do not carry historical percentages into October 2026 cap table unchanged; subsequent issuance and warrant matter to per-share value."
+    },
+    {
+      "id": "A_GOVERNANCE",
+      "company": "Anthropic",
+      "metric": "Public benefit corporation and Trust governance",
+      "value": {
+        "structure": "Delaware PBC",
+        "trust_stock": "Class T",
+        "rights": "Trust elects/removes directors, phased toward majority under milestones"
+      },
+      "unit": "Governance terms",
+      "observationLabel": "Structure described 2023-09-19; live page includes later updates",
+      "evidenceStatus": "company_disclosed",
+      "sourceIds": [
+        "S17"
+      ],
+      "modelImplication": "Governance rights do not identify economic ownership percentages. Fully diluted share count, preferred rights and current net debt remain unverified."
+    }
+  ],
+  "contexts": [
+    {
+      "id": "anthropic-revenue-observations",
+      "company": "Anthropic",
+      "inputKeys": [
+        "rev2026",
+        "g1",
+        "g2",
+        "g3"
+      ],
+      "relationship": "context",
+      "title": "Revenue periods and annualized pace",
+      "summary": "The snapshot records company-announced and reported annualized revenue alongside reported quarterly revenue. Each observation retains its own measurement period and accounting context.",
+      "limitation": "Annualized pace is not full-year revenue. The observations do not establish any of the future annual growth rates in the selected case.",
+      "factIds": [
+        "A_RR_PRIMARY",
+        "A_RR_JUL",
+        "A_Q3"
+      ],
+      "sourceIds": [
+        "S01",
+        "S04",
+        "S06"
+      ]
+    },
+    {
+      "id": "anthropic-revenue-bridge",
+      "company": "Anthropic",
+      "inputKeys": [
+        "rev2026"
+      ],
+      "relationship": "arithmetic_component",
+      "title": "The published Base revenue construction",
+      "summary": "The frozen Base construction combines reported Q1–Q3 revenue of $33.1B with illustrative Q4 revenue of $20.16B, giving $53.26B. This explains the published Base input; the current case value is shown separately above.",
+      "limitation": "S18 supplies the reported quarterly components, not the Q4 assumption or a reported full-year actual. An edited or different preset value remains an analyst or user assumption.",
+      "factIds": [],
+      "sourceIds": [
+        "S18"
+      ]
+    },
+    {
+      "id": "anthropic-operating-margins",
+      "company": "Anthropic",
+      "inputKeys": [
+        "m27",
+        "m30",
+        "m36"
+      ],
+      "relationship": "context",
+      "title": "Operating costs and partner accounting",
+      "summary": "Reported historical financials and cloud-channel fees provide context for the costs that future operating margins must cover. The investor-day report also describes adjusted profitability.",
+      "limitation": "Adjusted profitability is not disclosed GAAP EBIT or free cash flow. The channel fee analysis applies to channel sales, and none of these observations establishes the selected future EBIT margins.",
+      "factIds": [
+        "A_FY2025",
+        "A_CHANNEL",
+        "A_Q3"
+      ],
+      "sourceIds": [
+        "S04",
+        "S07",
+        "S09"
+      ]
+    },
+    {
+      "id": "anthropic-capital-requirements",
+      "company": "Anthropic",
+      "inputKeys": [
+        "turns",
+        "roic"
+      ],
+      "relationship": "context",
+      "title": "Compute capacity and capital requirements",
+      "summary": "The snapshot separates an announced investment and compute agreement, reported infrastructure obligations, and a reported chip-financing proposal. These commitments help frame questions about the capital needed for growth.",
+      "limitation": "Nominal service commitments, leases and proposed financing do not directly determine sales-to-capital turns or terminal ROIC. Payment schedules and accounting treatment remain incomplete; avoid counting costs already captured in forecast expenses or reinvestment twice.",
+      "factIds": [
+        "A_AWS",
+        "A_COMPUTE",
+        "A_BLACKSTONE"
+      ],
+      "sourceIds": [
+        "S11",
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "id": "anthropic-financing-boundary",
+      "company": "Anthropic",
+      "inputKeys": [
+        "wacc"
+      ],
+      "relationship": "boundary",
+      "title": "Financing references and investor rights",
+      "summary": "The completed financing, reported IPO expectations and published Trust structure describe different aspects of financing and control. They are dated context for an independent valuation.",
+      "limitation": "An equity valuation headline or governance right does not establish WACC. Current net cash, security preferences and a complete economic ownership bridge remain unavailable; the selected discount rate is an assumption.",
+      "factIds": [
+        "A_FIN",
+        "A_IPO",
+        "A_GOVERNANCE"
+      ],
+      "sourceIds": [
+        "S01",
+        "S04",
+        "S17"
+      ]
+    },
+    {
+      "id": "anthropic-stub-boundary",
+      "company": "Anthropic",
+      "inputKeys": [
+        "stub"
+      ],
+      "relationship": "boundary",
+      "title": "A remaining-period cash-flow assumption",
+      "summary": "The model values the remaining portion of 2026 through a separate cash-flow input. Historical financials and multi-year infrastructure obligations help identify why current cash-flow information would matter.",
+      "limitation": "Neither historical net loss nor nominal multi-year commitments establish FCFF from 18 October through 31 December 2026. The selected stub is illustrative and is included once in the model.",
+      "factIds": [
+        "A_FY2025",
+        "A_COMPUTE"
+      ],
+      "sourceIds": [
+        "S07",
+        "S13"
+      ]
+    },
+    {
+      "id": "anthropic-continuation-method",
+      "company": "Anthropic",
+      "inputKeys": [
+        "g3",
+        "wacc",
+        "tg",
+        "roic"
+      ],
+      "relationship": "method",
+      "title": "Growth requires terminal reinvestment",
+      "summary": "The terminal reinvestment rate is perpetual growth divided by terminal ROIC. The model uses this relationship when converting terminal operating profit into cash flow and discounting the continuation value.",
+      "limitation": "The methodology source supports a relationship, not an Anthropic-specific growth rate, cost of capital or return on capital. The transition from explicit growth and reinvestment into the terminal period remains a modeling choice.",
+      "factIds": [],
+      "sourceIds": [
+        "S19"
+      ]
+    },
+    {
+      "id": "anthropic-tax-boundary",
+      "company": "Anthropic",
+      "inputKeys": [
+        "tax"
+      ],
+      "relationship": "boundary",
+      "title": "An explicit simplified tax policy",
+      "summary": "The selected rate applies only to positive EBIT. The model provides no tax benefit for losses and does not carry tax losses forward.",
+      "limitation": "The research snapshot does not establish Anthropic's future cash tax rate or usable tax-loss balances. The default 25% and any edited rate are analyst or user assumptions.",
+      "factIds": [],
+      "sourceIds": []
+    },
+    {
+      "id": "openai-revenue-observations",
+      "company": "OpenAI",
+      "inputKeys": [
+        "rev2026",
+        "g1",
+        "g2",
+        "g3"
+      ],
+      "relationship": "context",
+      "title": "Revenue observations and accounting basis",
+      "summary": "The snapshot records company-announced monthly pace, reported September annualized revenue and reported Q2 revenue. These are different measures and measurement periods.",
+      "limitation": "The September comparison is a metric-basis correction, not proof of a revenue decline. Monthly or annualized pace does not establish full-year revenue or future growth; accounting changes also require consistent margin and capital treatment.",
+      "factIds": [
+        "O_MONTH_PRIMARY",
+        "O_RR_SEP",
+        "O_Q2"
+      ],
+      "sourceIds": [
+        "S02",
+        "S05"
+      ]
+    },
+    {
+      "id": "openai-revenue-assumption",
+      "company": "OpenAI",
+      "inputKeys": [
+        "rev2026"
+      ],
+      "relationship": "boundary",
+      "title": "The published full-year revenue input",
+      "summary": "The frozen Base case retains the illustrative $35B full-year revenue input from the earlier model. The current selected case may use a different value.",
+      "limitation": "The retained input is not a verified company forecast or reported FY2026 actual. Related reporting is context and does not convert this input into a company disclosure.",
+      "factIds": [],
+      "sourceIds": []
+    },
+    {
+      "id": "openai-operating-margins",
+      "company": "OpenAI",
+      "inputKeys": [
+        "m27",
+        "m30",
+        "m36"
+      ],
+      "relationship": "context",
+      "title": "Operating costs and commercial terms",
+      "summary": "Reported historical financials identify serving and research costs. The April 2026 Microsoft agreement summary updates the commercial context that a future margin path must reflect.",
+      "limitation": "The primary agreement does not specify the royalty percentage or total cap. Historical operating losses and contract terms do not establish the selected future EBIT margins.",
+      "factIds": [
+        "O_FY2025",
+        "O_MS_UPDATE"
+      ],
+      "sourceIds": [
+        "S08",
+        "S10"
+      ]
+    },
+    {
+      "id": "openai-capital-requirements",
+      "company": "OpenAI",
+      "inputKeys": [
+        "turns",
+        "roic",
+        "g1",
+        "g2",
+        "g3"
+      ],
+      "relationship": "context",
+      "title": "Capacity commitments and reported forecasts",
+      "summary": "An announced investment and compute agreement and a reported management presentation describe future capacity and funding needs. The presentation is attributed reporting of a forecast, with partial source access in this snapshot.",
+      "limitation": "Committed capital is not necessarily current cash; compute service commitments are not automatically debt. The reported revenue and funding projections do not validate capital turns, future growth or terminal ROIC in the selected case.",
+      "factIds": [
+        "O_AWS",
+        "O_FCF_FORECAST"
+      ],
+      "sourceIds": [
+        "S12",
+        "S15"
+      ]
+    },
+    {
+      "id": "openai-financing-boundary",
+      "company": "OpenAI",
+      "inputKeys": [
+        "wacc"
+      ],
+      "relationship": "boundary",
+      "title": "Financing terms and historical ownership",
+      "summary": "The completed funding round, proposed financing target and historical recapitalization structure describe separate financing and governance observations.",
+      "limitation": "Post-money and proposed pre-money equity references are not operating enterprise value or a disclosed discount rate. Historical ownership percentages and conditional capital do not provide a verified current equity bridge.",
+      "factIds": [
+        "O_FIN",
+        "O_ASK",
+        "O_GOVERNANCE"
+      ],
+      "sourceIds": [
+        "S02",
+        "S03",
+        "S16"
+      ]
+    },
+    {
+      "id": "openai-stub-boundary",
+      "company": "OpenAI",
+      "inputKeys": [
+        "stub"
+      ],
+      "relationship": "boundary",
+      "title": "A remaining-period cash-flow assumption",
+      "summary": "The model includes a separate remaining-2026 FCFF input. Historical financial reporting and the reported management cash-flow forecast provide broader funding context.",
+      "limitation": "Annual historical operating losses and cumulative multi-year forecast outflows do not establish cash flow for 18 October through 31 December 2026. No current-period cash-flow schedule is reconstructed from these figures.",
+      "factIds": [
+        "O_FY2025",
+        "O_FCF_FORECAST"
+      ],
+      "sourceIds": [
+        "S08",
+        "S15"
+      ]
+    },
+    {
+      "id": "openai-continuation-method",
+      "company": "OpenAI",
+      "inputKeys": [
+        "g3",
+        "wacc",
+        "tg",
+        "roic"
+      ],
+      "relationship": "method",
+      "title": "Growth requires terminal reinvestment",
+      "summary": "The terminal reinvestment rate is perpetual growth divided by terminal ROIC. The model uses this relationship when converting terminal operating profit into cash flow and discounting the continuation value.",
+      "limitation": "The methodology source supports a relationship, not an OpenAI-specific growth rate, cost of capital or return on capital. The transition from explicit growth and reinvestment into the terminal period remains a modeling choice.",
+      "factIds": [],
+      "sourceIds": [
+        "S19"
+      ]
+    },
+    {
+      "id": "openai-tax-boundary",
+      "company": "OpenAI",
+      "inputKeys": [
+        "tax"
+      ],
+      "relationship": "boundary",
+      "title": "An explicit simplified tax policy",
+      "summary": "The selected rate applies only to positive EBIT. The model provides no tax benefit for losses and does not carry tax losses forward.",
+      "limitation": "The research snapshot does not establish OpenAI's future cash tax rate or usable tax-loss balances. The default 25% and any edited rate are analyst or user assumptions.",
+      "factIds": [],
+      "sourceIds": []
+    }
+  ]
+}

@@ -10,6 +10,8 @@ const require=createRequire(`${root}/package.json`);
 const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||`${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
 const {project,MODEL_VERSION,VALUATION_DATE}=await import(pathToFileURL(`${root}/public/lib/model.js`).href);
 const {scenarioUrl,decodeScenario}=await import(pathToFileURL(`${root}/public/lib/share.js`).href);
+const {decodeInspection}=await import(pathToFileURL(`${root}/public/lib/journey.js`).href);
+const {APP_VERSION}=await import(pathToFileURL(`${root}/public/lib/release.js`).href);
 const presets=JSON.parse(await readFile(`${root}/public/data/presets.json`,'utf8'));
 const base=process.env.FRONTIER_BASE_URL||'http://127.0.0.1:4322/';
 const url=new URL('./thesis.html',base).href;
@@ -26,7 +28,7 @@ const page=await context.newPage();
 page.on('pageerror',error=>browserErrors.push(error.message));
 const attr=(selector,key='data-value')=>page.locator(selector).getAttribute(key).then(Number);
 const percentKeys=new Set(['g1','g2','g3','m27','m30','m36','tax','wacc','tg','roic']);
-const wrapped=result=>({appVersion:'3.2.0',modelVersion:MODEL_VERSION,valuationDate:VALUATION_DATE,result});
+const wrapped=result=>({appVersion:APP_VERSION,modelVersion:MODEL_VERSION,valuationDate:VALUATION_DATE,result});
 let report;
 try{
   const response=await page.goto(url,{waitUntil:'networkidle'});
@@ -105,7 +107,8 @@ try{
   check('Custom assumptions are explicitly labeled',(await page.locator('#alternative-case-status').innerText()).includes('Edited'));
   const workbench=new URL(await page.locator('#alternative-open').getAttribute('href'));
   check('Open-in-model targets the original page',workbench.pathname.endsWith('/index.html'));
-  check('Open-in-model carries the full exact case and bridge',decodeScenario(workbench.hash.slice('#scenario='.length)),portable);
+  check('Open-in-model carries the full exact case and bridge',decodeInspection(workbench.hash).scenario,portable);
+  check('Open-in-model preserves the complete surrounding comparison',decodeInspection(workbench.hash).draft,current.draft);
   const reopened=await context.newPage();
   await reopened.goto(workbench.href,{waitUntil:'networkidle'});
   await reopened.locator('[data-result-ev]').waitFor();

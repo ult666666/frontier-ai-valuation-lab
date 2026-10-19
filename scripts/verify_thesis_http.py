@@ -19,9 +19,20 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = (
-    "index.html", "thesis.html", "thesis.js", "thesis.css", "lib/thesis.js",
-    "lib/thesis-share.js", "lib/thesis-brief.js", "lib/model.js", "lib/release.js",
-    "data/presets.json", "data/research.json", "assets/thesis-preview.png",
+    "index.html", "app.js", "styles.css", "experience.js", "experience.css",
+    "thesis.html", "thesis.js", "thesis.css",
+    "casebook.html", "casebook.js", "casebook.css", "shell.js", "shell.css",
+    "evidence-context.js", "evidence-context.css", "report.html", "portable.css",
+    "lib/thesis.js", "lib/thesis-share.js", "lib/thesis-brief.js",
+    "lib/model.js", "lib/release.js", "lib/share.js", "lib/analytics.js",
+    "lib/briefing.js", "lib/journey.js", "lib/casebook.js",
+    "lib/casebook-store.js", "lib/casebook-brief.js", "lib/evidence.js",
+    "data/presets.json", "data/research.json", "data/current-results.json",
+    "data/evidence.json", "assets/mark.svg", "assets/social-preview.png",
+    "assets/thesis-preview.png", "assets/casebook-preview.png",
+    "downloads/Frontier_AI_Research_Casebook.json",
+    "downloads/Frontier_AI_Research_Brief.html",
+    "downloads/Frontier_AI_Research_Brief.pdf",
     "downloads/Frontier_AI_Thesis_Comparison.pdf",
     "downloads/Frontier_AI_Thesis_Comparison.html",
     "downloads/Frontier_AI_Valuation_Model.xlsx", "downloads/Frontier_AI_Valuation_Review.pdf",
@@ -120,6 +131,7 @@ def main():
         report["release"] = expected["meta"]
         for path in ASSETS:
             verify("asset", path, "/" if path == "index.html" else "/" + path, expected=before["public/" + path])
+        verify("asset", "explicit index route", "/index.html", expected=before["public/index.html"])
         verify("health", "release metadata", "/api/health", expected={"status": "ok", **expected["meta"]})
         for body, response in zip((attribute, landscape), expected["responses"]):
             verify("api", body["action"], "/api/valuation", expected=response, body=body)

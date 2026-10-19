@@ -174,7 +174,7 @@ try {
   ]) {
     const sample = await freshShared(sharedUrl);
     await action(sample.page);
-    check(`A ${name} clears the stale shared URL`, new URL(sample.page.url()).hash, '');
+    check(`A ${name} clears the stale shared URL`, await sample.page.evaluate(()=>location.hash), '');
     check(`A ${name} clears the old restoration notice`, await sample.page.locator('#scenario-notice').isHidden());
     await sample.context.close();
   }
@@ -183,6 +183,7 @@ try {
   await page.locator('#input-g1').fill('54');
   await page.locator('#save-name').fill('Portable QA saved case');
   await page.locator('#save-scenario').click();
+  await page.waitForFunction(()=>document.querySelector('#saved-scenarios').value!=='',null,{timeout:15000});
   const savedId = await page.locator('#saved-scenarios').inputValue();
   await restore(page, sharedUrl);
   await openDetails(page, '.local-scenarios');

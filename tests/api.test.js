@@ -1,6 +1,7 @@
 import test, {before,after} from 'node:test';
 import assert from 'node:assert/strict';
 import { createAppServer } from '../server.js';
+import {APP_VERSION} from '../public/lib/release.js';
 
 const assumptions={rev2026:100,g1:.04,g2:.04,g3:.04,m27:.2,m30:.2,m36:.2,turns:2.5,wacc:.1,tg:.03,roic:.2,stub:-3,tax:.25};
 let server,base;
@@ -10,7 +11,7 @@ async function post(payload){return fetch(base+'/api/valuation',{method:'POST',h
 
 test('health identifies the deployed model without a private configuration leak',async()=>{
   const response=await fetch(base+'/api/health'); assert.equal(response.status,200);
-  assert.deepEqual(await response.json(),{status:'ok',appVersion:'3.2.0',modelVersion:'3.0.0',valuationDate:'2026-10-18'});
+  assert.deepEqual(await response.json(),{status:'ok',appVersion:APP_VERSION,modelVersion:'3.0.0',valuationDate:'2026-10-18'});
 });
 test('real HTTP calculation agrees with the independent forecast fixture',async()=>{
   const response=await post({action:'value',assumptions});assert.equal(response.status,200);
