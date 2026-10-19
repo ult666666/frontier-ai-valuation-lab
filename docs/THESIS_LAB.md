@@ -2,7 +2,7 @@
 
 ## Purpose and scope
 
-Charles Dai requested a further substantial advance to the published fintech portfolio project. The selected addition is a separate `/thesis.html` analysis workspace. A viewer compares two cases for one company, inspects the complete change in operating enterprise value, explores a two-input valuation landscape, and takes an exact comparison away as a link or presentation brief. Existing instructions authorize autonomous implementation, verification, publication and desktop delivery without further questions.
+Thesis Lab is a dedicated `/thesis.html` analysis workspace for the Frontier AI Valuation Lab. A viewer compares two cases for one company, inspects the complete change in operating enterprise value, explores a two-input valuation landscape, and takes an exact comparison away as a link or presentation brief.
 
 Application 3.2.0 uses the existing financial engine 3.0.0 and the 18 October 2026 research snapshot. The existing model, six presets, research register, workbook and PDF remain the quantitative baseline. This update changes analytical and presentation capabilities, not the dated financial-data snapshot. Node 24, browser ES modules and ordinary HTML/CSS/SVG remain the runtime; no new production dependencies, accounts or paid services are required.
 

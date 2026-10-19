@@ -2,7 +2,7 @@
 
 ## Intended outcome
 
-Charles Dai requested a further upgrade to make the published fintech project more memorable to portfolio viewers. The release gives a first-time reviewer a clear question, an immediate interaction and a path into the full financial model. Existing authorization covers implementation, GitHub publication and the portfolio update without another approval round.
+Application 3.1 gives a first-time reviewer a clear question, an immediate interaction and a path into the full financial model. Its guided comparison makes the analytical decisions easier to explore and present.
 
 The selected design uses actual modeled quantities as its visual focus: a dark comparison introduction, three guided chapters, signed value contributions and a paired stress section. It preserves ordinary scrolling, direct controls and the detailed modeling workbench. The experience introduces no probability distribution, live feed or unsupported investment-performance claim.
 

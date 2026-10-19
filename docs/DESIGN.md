@@ -4,11 +4,11 @@ The original design below describes the reviewed financial foundation. [Applicat
 
 ## Purpose
 
-Charles Dai requested a final review of his Anthropic/OpenAI valuation model, a more professional presentation, and a completed public GitHub project that strengthens the fintech section of his portfolio. The primary audience is a recruiter or technical/finance reviewer who wants to inspect the analysis, try the model, and run the code. The user expressly authorized autonomous execution and publication without questions.
+Frontier AI Valuation Lab develops an Anthropic/OpenAI valuation model into an inspectable fintech portfolio project. The primary audience is a recruiter or technical/finance reviewer who wants to inspect the analysis, try the model, and run the code.
 
 ## Selected approach
 
-A focused full stack research application with a dependency-free JavaScript valuation engine, a responsive browser interface, a Node.js JSON API, an independent Python reference, a formula workbook and research documentation. GitHub owns source and history. Vercel will serve the public application and API, subject to the connected account's deployment capabilities. A GitHub Pages compatible static build provides an independently usable browser demo. No financial account integration or paid data feed is needed.
+A focused full stack research application with a dependency-free JavaScript valuation engine, a responsive browser interface, a Node.js JSON API, an independent Python reference, a formula workbook and research documentation. GitHub owns source and history. Vercel serves the public application and API. A GitHub Pages compatible static build provides an independently usable browser demo. No financial account integration or paid data feed is needed.
 
 A document-only upload would obscure the engineering. A large framework and database would add maintenance without improving a deterministic public model. The selected architecture makes the analytical and technical decisions inspectable and reproducible.
 

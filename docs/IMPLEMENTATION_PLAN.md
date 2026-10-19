@@ -10,7 +10,7 @@
 
 ## Global constraints
 
-USD billions; valuation date 2026-10-18; preserve source artifacts; no credentials or private financial information; all projections explicitly illustrative; no backend persistence or paid data dependency; no claims of verified equity value without a validated bridge. The user's instruction authorizes autonomous implementation and publication without approval pauses.
+USD billions; valuation date 2026-10-18; preserve source artifacts; no credentials or private financial information; all projections explicitly illustrative; no backend persistence or paid data dependency; no claims of verified equity value without a validated bridge.
 
 ## Review focus
 
@@ -36,4 +36,4 @@ USD billions; valuation date 2026-10-18; preserve source artifacts; no credentia
 
 - 2026-10-18: final app gate passed 22 Node/model/API/release tests, 36 valid + 73 invalid independent Python cases, and 57 browser checks. The rebuilt workbook passed 2,058 numerical comparisons and 169 input/selector rejection cases.
 
-- 2026-10-18: public GitHub repository and Vercel production demo are live. Production HTTP/browser checks passed, the existing portfolio Pages deployment succeeded, GitHub profile was updated, and the final desktop handoff was verified on the online MacBook Air with all original hashes preserved.
+- 2026-10-18: public GitHub repository and Vercel production demo are live. Production HTTP/browser checks passed, the existing portfolio Pages deployment succeeded, GitHub profile was updated, and the final deliverables were verified with all original hashes preserved.
