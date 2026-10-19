@@ -1,0 +1,385 @@
+{
+  "schema": 1,
+  "status": "locally-verified",
+  "appVersion": "3.6.0",
+  "modelVersion": "3.0.0",
+  "financingVersion": "1.0.0",
+  "ownershipVersion": "1.0.0",
+  "valuationDate": "2026-10-18",
+  "researchCutoff": "2026-10-18T09:22:26-07:00",
+  "recordedAtUtc": "2026-10-19T21:16:35.019157+00:00",
+  "baseCommit": "c94ddc538c8615ef5e19a7b752fd0aff8e2dc9da",
+  "scope": "Current local implementation, independently checked ownership arithmetic, browser workflows, complete HTTP responses, printable outputs and portable package. Publication and native delivery are recorded separately.",
+  "gates": {
+    "node": {
+      "command": "npm test",
+      "passed": 248,
+      "failed": 0,
+      "logSha256": "beebc2c36eb7c672008f12b1de0c1da915bbd66698d62576be0f3c2c2db4897b"
+    },
+    "build": {
+      "command": "npm run build",
+      "status": "passed",
+      "publicFiles": 69,
+      "allStagedBytesMatch": true,
+      "logSha256": "420e4cf50804ebf38be29e6466b08e69c999885919064a75d21a68e7c2831f23"
+    },
+    "browser": {
+      "ownership-browser": {
+        "assertions": 77,
+        "browserErrors": 0,
+        "receipt": "docs/verification/ownership-browser-3.6.json",
+        "receiptSha256": "42cd3978832228fd23d051beeeb0f426807ac8c9271bc0644b498a2cdee0e947"
+      },
+      "financing-browser": {
+        "assertions": 92,
+        "browserErrors": 0,
+        "receipt": "docs/verification/financing-browser-3.6.json",
+        "receiptSha256": "03f43b0288afa25c8c0f675ac44d0e076aab4acb0b9036b814b07aae0b930ded"
+      },
+      "journey-browser": {
+        "assertions": 94,
+        "browserErrors": 0,
+        "receipt": "docs/verification/journey-browser-3.6.json",
+        "receiptSha256": "220850e40f6f47eb6be6ffab659f7f62aa0653a5df7020ffaeae599dd23b6ac0"
+      },
+      "workbench-browser": {
+        "assertions": 57,
+        "browserErrors": 0,
+        "receipt": "docs/verification/workbench-browser-3.6.json",
+        "receiptSha256": "03c824bdd31aaad43b9e11c0ae347f8c364ed7bcb4c1b23658c5b991f391b383"
+      }
+    },
+    "totalBrowserAssertions": 320,
+    "http": {
+      "counts": {
+        "asset": 70,
+        "health": 1,
+        "api": 12,
+        "rejection": 15,
+        "httpRequests": 98,
+        "passed": 98
+      },
+      "receiptSha256": "730ef811be5cf3b68745cf6c102cfad713c6bd14e9d7aed94962c268c536a7f4"
+    },
+    "independentOwnership": {
+      "validScenarios": 25,
+      "invalidJsonScenarios": 23,
+      "javascriptOnlyRejections": 8,
+      "numericComparisons": 2514,
+      "structuralComparisons": 10418,
+      "receiptSha256": "beb8b64270e8a06ad5ef9ea62abd4c34b520de895a2665f2c574c5439e03d47e"
+    }
+  },
+  "review": {
+    "status": "closed_within_review_scope",
+    "unresolvedFindings": [],
+    "receiptSha256": "a2012822f9f6bf9f6d70bee2d90fe248c743555ad6a34d9d5d2dff3b3395a40e"
+  },
+  "pdfs": {
+    "public/downloads/Frontier_AI_Financing_Lens.pdf": {
+      "pages": 3,
+      "bytes": 159701,
+      "sha256": "734c2733723b35116983ec73192b87787a1b3b2051d04dbcbb6334e868d83b70"
+    },
+    "public/downloads/Frontier_AI_Value_Horizon.pdf": {
+      "pages": 2,
+      "bytes": 112781,
+      "sha256": "627c9470516758f6fa9441c4baef5436208828eb6fe830a8a5dac1eb5541195f"
+    },
+    "public/downloads/Frontier_AI_Thesis_Comparison.pdf": {
+      "pages": 3,
+      "bytes": 145179,
+      "sha256": "438b03c02fdf08565a796f0a0c271dfc3d11e6372385f51cce9c6a3b609a7424"
+    },
+    "public/downloads/Frontier_AI_Research_Brief.pdf": {
+      "pages": 4,
+      "bytes": 168356,
+      "sha256": "903e3c4f3a2e675fe705349128b565de3b1667bd1a65e72505276cd0842cbdd5"
+    }
+  },
+  "archive": {
+    "file": "public/downloads/Frontier_AI_Ownership_Frontier_Package.zip",
+    "folder": "Ownership_Frontier_V3_6_2026-10-19",
+    "members": 39,
+    "manifestListedFiles": 38,
+    "sha256": "60b1ff1907ab893f43b7e9c894bb74cd16d8da95fe3a3b6956438f92c7e28410",
+    "bytes": 1433585
+  },
+  "preservedFiles": {
+    "public/lib/model.js": {
+      "bytes": 9610,
+      "sha256": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180"
+    },
+    "public/lib/financing.js": {
+      "bytes": 5863,
+      "sha256": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f"
+    },
+    "data/presets.json": {
+      "bytes": 1658,
+      "sha256": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca"
+    },
+    "data/research.json": {
+      "bytes": 12626,
+      "sha256": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65"
+    },
+    "public/downloads/Frontier_AI_Valuation_Model.xlsx": {
+      "bytes": 42636,
+      "sha256": "0a692f43f8459ffb6a162f065c10912a5ca23738d55104b272f74dbecdf73438"
+    },
+    "public/downloads/Frontier_AI_Valuation_Review.pdf": {
+      "bytes": 97927,
+      "sha256": "08c94a33ea36870ca05ba437077bcec9d308ad87b90a4a7e3b80806d16edec36"
+    },
+    "public/downloads/Frontier_AI_Financing_Lens_Package.zip": {
+      "bytes": 1189767,
+      "sha256": "8a98e0d40d97b942b7c8a0d9356b9740da88a26f3ab19578bb969d3e08539a58"
+    },
+    "public/downloads/Frontier_AI_Value_Horizon_Package.zip": {
+      "bytes": 830904,
+      "sha256": "40f15a73b220d75651abc8529ace281a337e32c6c6fe114d4f2e18926bba3995"
+    },
+    "docs/demo-desktop.png": {
+      "bytes": 169186,
+      "sha256": "2d0edccdf74f3469ed233bc06a5958912720cbd9897a5fe8525ecfaa2e58addf"
+    },
+    "docs/demo-financing.png": {
+      "bytes": 242301,
+      "sha256": "6582c4ada18498f9ca82ead1a199c8d845894e17d21fac428db63107a71b3b71"
+    }
+  },
+  "sourceFiles": {
+    ".github/workflows/ci.yml": {
+      "bytes": 1558,
+      "sha256": "1f49bb5d8815f0546e175ad321cd8d5769f4a6daf16a988e226d5e81314e5b23"
+    },
+    "README.md": {
+      "bytes": 26810,
+      "sha256": "b755c40a278f957853235658fc7af848f9ff8f804a35478307e0576a18d66307"
+    },
+    "api/index.js": {
+      "bytes": 84,
+      "sha256": "fd092b0f01a486b02bab7138deefd407693d1153e09062cdaa4066622c338fc4"
+    },
+    "data/presets.json": {
+      "bytes": 1658,
+      "sha256": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca"
+    },
+    "data/research.json": {
+      "bytes": 12626,
+      "sha256": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65"
+    },
+    "docs/API.md": {
+      "bytes": 41006,
+      "sha256": "7755a36ff6f7912c21ce618f4417a790f7bd0b6e72e4166315f2f3890a569b9a"
+    },
+    "docs/DESKTOP_GUIDE.md": {
+      "bytes": 20200,
+      "sha256": "408cdfa0f836373c067c96b9fd3f476cba109cceb2925832bbf6265d24270a22"
+    },
+    "docs/FINANCING_LENS.md": {
+      "bytes": 13338,
+      "sha256": "f3a42fc2c0417f21962338761954ee7dd6c2ba36b12d008066d81599a72ceb5e"
+    },
+    "docs/OWNERSHIP_FRONTIER.md": {
+      "bytes": 13829,
+      "sha256": "ec5529a2470e5a8d467634dfc7c0acdf3299d803195dcdfb8d50d4d1e783eabd"
+    },
+    "docs/VERIFICATION.md": {
+      "bytes": 56874,
+      "sha256": "9063106726fceeed380200e22927c8422c2c580558ab79dfa639f914c8282294"
+    },
+    "docs/demo-ownership.png": {
+      "bytes": 202278,
+      "sha256": "6c5fec5f5e9b8c1aaa8d340407f3159581b6189773672893b9fbe5edec091105"
+    },
+    "docs/verification/desktop-archive-3.6.json": {
+      "bytes": 10658,
+      "sha256": "cf6ed4c3ba8747e41573db2a7e907519ca57a2a0fae98257783f5e6843f152b3"
+    },
+    "docs/verification/desktop-verification-3.6.json": {
+      "bytes": 12941,
+      "sha256": "87f0b75fea9e8136878a980978363cfd84446d1170329ee82afdb1f5843114ab"
+    },
+    "docs/verification/financing-browser-3.6.json": {
+      "bytes": 8069,
+      "sha256": "03f43b0288afa25c8c0f675ac44d0e076aab4acb0b9036b814b07aae0b930ded"
+    },
+    "docs/verification/http-local-3.6.json": {
+      "bytes": 78242,
+      "sha256": "730ef811be5cf3b68745cf6c102cfad713c6bd14e9d7aed94962c268c536a7f4"
+    },
+    "docs/verification/independent-review-3.6.json": {
+      "bytes": 18452,
+      "sha256": "a2012822f9f6bf9f6d70bee2d90fe248c743555ad6a34d9d5d2dff3b3395a40e"
+    },
+    "docs/verification/journey-browser-3.6.json": {
+      "bytes": 5040,
+      "sha256": "220850e40f6f47eb6be6ffab659f7f62aa0653a5df7020ffaeae599dd23b6ac0"
+    },
+    "docs/verification/ownership-browser-3.6.json": {
+      "bytes": 7402,
+      "sha256": "42cd3978832228fd23d051beeeb0f426807ac8c9271bc0644b498a2cdee0e947"
+    },
+    "docs/verification/ownership-reference-3.6.json": {
+      "bytes": 21954,
+      "sha256": "beb8b64270e8a06ad5ef9ea62abd4c34b520de895a2665f2c574c5439e03d47e"
+    },
+    "docs/verification/workbench-browser-3.6.json": {
+      "bytes": 2798,
+      "sha256": "03c824bdd31aaad43b9e11c0ae347f8c364ed7bcb4c1b23658c5b991f391b383"
+    },
+    "lib/http.js": {
+      "bytes": 5705,
+      "sha256": "2c5cfc4d4ef386a799ab574cd1c689d44320402f535167ebdcf4eeee19b42fbb"
+    },
+    "package.json": {
+      "bytes": 736,
+      "sha256": "fa02485b503f6c4ffe0031ae047b487ea357ede25b89ea6916faad2744f6da5f"
+    },
+    "public/app.js": {
+      "bytes": 62001,
+      "sha256": "02461630761ae5588d860032db682a68e4ec273eeaf1757e53c79284449c4e21"
+    },
+    "public/downloads/Frontier_AI_Financing_Lens.html": {
+      "bytes": 20978,
+      "sha256": "fb9127f2852f6ff68602118d18efcb081ac8657db2455f2f203e5a346aef9d2e"
+    },
+    "public/downloads/Frontier_AI_Financing_Lens.json": {
+      "bytes": 20427,
+      "sha256": "bb706eb462b40a7df1e46e849f9513cd9c455e3740b88b70228ef2adcefb2701"
+    },
+    "public/downloads/Frontier_AI_Financing_Lens.pdf": {
+      "bytes": 159701,
+      "sha256": "734c2733723b35116983ec73192b87787a1b3b2051d04dbcbb6334e868d83b70"
+    },
+    "public/downloads/Frontier_AI_Ownership_Frontier_Package.zip": {
+      "bytes": 1433585,
+      "sha256": "60b1ff1907ab893f43b7e9c894bb74cd16d8da95fe3a3b6956438f92c7e28410"
+    },
+    "public/downloads/Frontier_AI_Research_Brief.html": {
+      "bytes": 26416,
+      "sha256": "78933209253fcf5d09af98ff811d2175dc9e0bfa855939fc4362d12fa84a4e42"
+    },
+    "public/downloads/Frontier_AI_Research_Brief.pdf": {
+      "bytes": 168356,
+      "sha256": "903e3c4f3a2e675fe705349128b565de3b1667bd1a65e72505276cd0842cbdd5"
+    },
+    "public/downloads/Frontier_AI_Thesis_Comparison.html": {
+      "bytes": 24563,
+      "sha256": "83d0e15f2452a6f3e499bb7ce0d60eeacf64dd5f09eabafe85381f9cb14124e6"
+    },
+    "public/downloads/Frontier_AI_Thesis_Comparison.pdf": {
+      "bytes": 145179,
+      "sha256": "438b03c02fdf08565a796f0a0c271dfc3d11e6372385f51cce9c6a3b609a7424"
+    },
+    "public/downloads/Frontier_AI_Value_Horizon.html": {
+      "bytes": 17196,
+      "sha256": "990a76fb22e813258ca2d3726bea5716387ec39b80cbe22912b39bc616bffb0e"
+    },
+    "public/downloads/Frontier_AI_Value_Horizon.json": {
+      "bytes": 42387,
+      "sha256": "50355a55a3c8c74676740ba4023e83a636ae07bac7f1183f2375081260da83ed"
+    },
+    "public/downloads/Frontier_AI_Value_Horizon.pdf": {
+      "bytes": 112781,
+      "sha256": "627c9470516758f6fa9441c4baef5436208828eb6fe830a8a5dac1eb5541195f"
+    },
+    "public/financing.css": {
+      "bytes": 15699,
+      "sha256": "5727d40d139011c27669e73bb8f057e3b0eed2c0d138be683f977bfdfe4774b6"
+    },
+    "public/financing.js": {
+      "bytes": 28986,
+      "sha256": "7840df26d977fbdb7df382dcca5dfed032861b04fb1d8be582b13fbecedc5321"
+    },
+    "public/index.html": {
+      "bytes": 32973,
+      "sha256": "b2cc300be3f0a3da5f81c87e96ffe632ff7084326994b79fd9951a945825b2de"
+    },
+    "public/lib/financing-brief.js": {
+      "bytes": 18369,
+      "sha256": "c90edbf24e172062c52226eef0bfd09d9adc325f991c9a3f5a7d7ef376336211"
+    },
+    "public/lib/financing-share.js": {
+      "bytes": 4477,
+      "sha256": "3359e1d7f4e2b61ef0c6a1df85760ed036d070f338b0512b7068510cadfcf5d7"
+    },
+    "public/lib/financing.js": {
+      "bytes": 5863,
+      "sha256": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f"
+    },
+    "public/lib/model.js": {
+      "bytes": 9610,
+      "sha256": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180"
+    },
+    "public/lib/ownership-chart.js": {
+      "bytes": 5256,
+      "sha256": "9662a49031c9012f4560e053e5244f79d19c49f63131a2577ac21e6b645f2813"
+    },
+    "public/lib/ownership.js": {
+      "bytes": 9618,
+      "sha256": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7"
+    },
+    "public/lib/release.js": {
+      "bytes": 119,
+      "sha256": "732106638a8e8969d4d0b8e4ce6ee38a0f4b34aea25a6208cb0fd16cf8b0fe90"
+    },
+    "scripts/build_desktop_archive.py": {
+      "bytes": 3125,
+      "sha256": "eaa31b3fb738327608ec648cce857f529c39a831f22077c29406cef9be863c89"
+    },
+    "scripts/build_financing_example.mjs": {
+      "bytes": 1836,
+      "sha256": "2631ca8ada5f61c731e63b2fbe87c6354e1b5565caefb55d4ec4e453608e2b67"
+    },
+    "scripts/check_ownership_reference.py": {
+      "bytes": 25342,
+      "sha256": "5e4cfc29e9d660d2c2e62bfc308c6e0f709ed619f5dbc309ade5a72d13e5597d"
+    },
+    "scripts/deliver_desktop.py": {
+      "bytes": 42022,
+      "sha256": "d41a2467725dddbd5eb8483bcdb964d5cce21af4b1c76a4d16d35ce485047518"
+    },
+    "scripts/verify_financing_http.py": {
+      "bytes": 17352,
+      "sha256": "4578fb2caec52e32c65efa1bc71ed8d47dcfbcb954f66b04ed47b5ac2270e669"
+    },
+    "server.js": {
+      "bytes": 2942,
+      "sha256": "501010c8c7c2dc94acf96244360f2dfeb3d0c6af051322dc1d5b9ea1b01924a0"
+    },
+    "tests/browser-smoke.mjs": {
+      "bytes": 17095,
+      "sha256": "376442827d23c45563ec16d015adf7cffd21675fc739ea01e0a752b73d372938"
+    },
+    "tests/financing-browser.mjs": {
+      "bytes": 20611,
+      "sha256": "3a419d58acb2413d81bab2f797575f8a71c4de4926d4f7002da0233559fea6df"
+    },
+    "tests/journey-browser.mjs": {
+      "bytes": 14243,
+      "sha256": "50b9e8bf3a48e914d81c584b58697b0ced7510ec642080f625486968e94310df"
+    },
+    "tests/ownership-browser.mjs": {
+      "bytes": 18868,
+      "sha256": "a015dfa4b1082e9f723e36d209a630ce452cdbccc215eef652645d9e870aab8b"
+    },
+    "tests/ownership.test.js": {
+      "bytes": 15580,
+      "sha256": "f2c5a02b71b74e12e64ea5e5d2eb103ab515081f733cfc5a1d27cecf29d9cd27"
+    },
+    "tests/release.test.js": {
+      "bytes": 6146,
+      "sha256": "10938195935568067ec7a7fb6e8e977de55e5ece231036e373e90ca0e8ef4455"
+    }
+  },
+  "sourceBindingNote": "Hash-bound source and artifact record made before the release commit. This record excludes its own hash. CI and publication bind the completed commit separately.",
+  "limitations": [
+    "Illustrative operating forecasts and hypothetical financing terms; no refreshed company financial evidence.",
+    "An ownership limit does not establish capital needs, financing feasibility or investment returns.",
+    "No reconstructed cap table, SAFE/convertible conversion, option-pool expansion, preference waterfall or future rounds.",
+    "Local browser checks used HTTP; strict browser HTTPS trust is a separate deployment observation.",
+    "No new native Excel recalculation is asserted."
+  ]
+}

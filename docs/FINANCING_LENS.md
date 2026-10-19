@@ -166,3 +166,7 @@ Reviewed **19 October 2026**:
 3. Geoff Ralston, Y Combinator, [A Guide to Seed Fundraising](https://www.ycombinator.com/blog/how-to-raise-a-seed-round), 7 January 2016, Equity section. Derives ownership from a priced primary round and identifies option pools, preferences and other contractual terms that the simple example omits. This source supports stable financing arithmetic; its historical fundraising benchmarks are not used as current market data.
 
 The identities and restrictions above are this project's explicit implementation contract. They do not establish either company's real financing terms, balance sheet, shareholder rights or investment merit.
+
+## Ownership Frontier in application 3.6
+
+The same financing case can include an optional retained-stake constraint. See [Ownership Frontier](OWNERSHIP_FRONTIER.md) for the fixed-pre-money and fixed-post-money derivations, supported floor range, graph domain, numerical boundary policy, and backward-compatible API/link formats. The financing engine described above remains version 1.0.0. The current complete worked example includes a 90% retained-starting-stake floor.

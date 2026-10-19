@@ -10,14 +10,14 @@ import {pathToFileURL} from 'node:url';
 const root=resolve(process.env.FRONTIER_PROJECT_ROOT||process.cwd());
 const require=createRequire(`${root}/package.json`);
 const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||`${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
-const {financingLens}=await import(pathToFileURL(`${root}/public/lib/financing.js`).href);
+const {financingAnalysis}=await import(pathToFileURL(`${root}/public/lib/ownership.js`).href);
 const {financingUrl,decodeFinancing}=await import(pathToFileURL(`${root}/public/lib/financing-share.js`).href);
 const {scenarioUrl}=await import(pathToFileURL(`${root}/public/lib/share.js`).href);
 const {APP_VERSION}=await import(pathToFileURL(`${root}/public/lib/release.js`).href);
 const {MODEL_VERSION,VALUATION_DATE}=await import(pathToFileURL(`${root}/public/lib/model.js`).href);
 const presets=JSON.parse(await readFile(`${root}/data/presets.json`,'utf8'));
-const base=process.env.FRONTIER_BASE_URL||'http://127.0.0.1:4335/';
-const output=resolve(process.env.FRONTIER_FINANCING_QA_DIR||`${root}/qa-local/v3-5/financing-browser`);
+const base=process.env.FRONTIER_BASE_URL||'http://127.0.0.1:4336/';
+const output=resolve(process.env.FRONTIER_FINANCING_QA_DIR||`${root}/qa-local/v3-6/financing-browser`);
 await mkdir(output,{recursive:true});
 const checks=[],errors=[],requests=[];
 const check=(label,actual,expected=true)=>{assert.deepEqual(actual,expected,label);checks.push(label);};
@@ -34,8 +34,8 @@ const metric=name=>page.locator(`[data-financing-metric="${name}"]`);
 const value=async name=>{const raw=await metric(name).getAttribute('data-value');return raw===null?null:Number(raw);};
 const share=async()=>{await page.locator('#financing-share').click();await page.locator('#financing-share-area:not([hidden])').waitFor();return page.locator('#financing-share-url').inputValue();};
 const snapshot=async()=>decodeFinancing(new URL(await share()).hash.slice('#financing='.length));
-const example={case:{company:'Anthropic',scenario:'Base',assumptions:presets.Anthropic.Base,bridge:{cash:20,debt:5,otherClaims:0}},round:{basis:'pre',quote:250,primaryCapital:25,holderStake:.1}};
-const compute=item=>financingLens(item.case.assumptions,{bridge:item.case.bridge,round:item.round});
+const example={case:{company:'Anthropic',scenario:'Base',assumptions:presets.Anthropic.Base,bridge:{cash:20,debt:5,otherClaims:0}},round:{basis:'pre',quote:250,primaryCapital:25,holderStake:.1},ownership:{retentionFloor:.9}};
+const compute=item=>financingAnalysis(item.case.assumptions,{bridge:item.case.bridge,round:item.round,ownership:item.ownership});
 const wrapped=result=>({appVersion:APP_VERSION,modelVersion:MODEL_VERSION,valuationDate:VALUATION_DATE,result});
 const noOldMetrics=()=>page.locator('[data-financing-metric]').evaluateAll(elements=>elements.every(element=>!element.hasAttribute('data-value')&&element.textContent.trim()==='—'));
 const outputButtons='#financing-verify,#financing-share,#financing-json,#financing-brief';
@@ -106,7 +106,7 @@ try{
     rev2026:87.123456789,g1:.4123456789,g2:.2345678912,g3:.0987654321,
     m27:-.2345678912,m30:.1234567891,m36:.2987654321,turns:3.456789123,
     wacc:.1434567891,tg:.0234567891,roic:.2234567891,stub:-4.56789123,tax:.1934567891,
-  },bridge:{cash:12.345678901234,debt:3.25,otherClaims:1.125}},round:{basis:'post',quote:333.123456789,primaryCapital:17.987654321,holderStake:.1234567891234567}};
+  },bridge:{cash:12.345678901234,debt:3.25,otherClaims:1.125}},round:{basis:'post',quote:333.123456789,primaryCapital:17.987654321,holderStake:.1234567891234567},ownership:{retentionFloor:.9}};
   await page.goto(financingUrl(new URL('index.html',base).href,custom),{waitUntil:'networkidle'});await ready();
   const exactLink=await share();
   check('Share preserves all thirteen assumptions, the full bridge, and the exact round',decodeFinancing(new URL(exactLink).hash.slice('#financing='.length)),custom);
@@ -127,10 +127,10 @@ try{
 
   await page.locator('#financing-verify').click();await page.locator('#financing-api-status[data-tone="ok"]').waitFor();
   check('The real calculation API verifies the complete financing analysis',await page.locator('#financing-api-status').getAttribute('data-tone'),'ok');
-  check('The API request contains only the exact declared financial inputs',requests.at(-1),{action:'financing',assumptions:custom.case.assumptions,bridge:custom.case.bridge,round:custom.round});
+  check('The API request contains only the exact declared financial inputs',requests.at(-1),{action:'financing',assumptions:custom.case.assumptions,bridge:custom.case.bridge,round:custom.round,ownership:custom.ownership});
   await page.route('**/api/valuation',async route=>{
     const body=route.request().postDataJSON();if(body.action!=='financing')return route.continue();
-    const result=financingLens(body.assumptions,{bridge:body.bridge,round:body.round});result.pricing.otherExistingAfter+=.01;
+    const result=financingAnalysis(body.assumptions,{bridge:body.bridge,round:body.round,ownership:body.ownership});result.pricing.otherExistingAfter+=.01;
     await route.fulfill({json:wrapped(result)});
   });
   await page.locator('#financing-verify').click();await page.locator('#financing-api-status[data-tone="error"]').waitFor();
@@ -139,7 +139,7 @@ try{
   let releaseResponse;const pending=new Promise(resolve=>{releaseResponse=resolve;});
   await page.route('**/api/valuation',async route=>{
     const body=route.request().postDataJSON();if(body.action!=='financing')return route.continue();
-    await pending;try{await route.fulfill({json:wrapped(financingLens(body.assumptions,{bridge:body.bridge,round:body.round}))});}catch{/* A changed request is deliberately aborted. */}
+    await pending;try{await route.fulfill({json:wrapped(financingAnalysis(body.assumptions,{bridge:body.bridge,round:body.round,ownership:body.ownership}))});}catch{/* A changed request is deliberately aborted. */}
   });
   await page.locator('#financing-verify').click();await page.locator('#financing-api-status[data-tone="pending"]').waitFor();
   await page.locator('#financing-capital').fill('30');releaseResponse();
@@ -158,7 +158,7 @@ try{
   check('A nonpositive modeled residual has no price-gap percentage',await value('priceGapPercent'),null);
   check('A negative residual cannot be copied as a priced financing quote',await page.locator('#financing-use-model').isDisabled());
   check('Negative residual copy explains limited-liability interpretation',await page.locator('#financing').innerText().then(text=>/limited.liability/i.test(text)));
-  const unresolvedCopy={case:{...example.case,bridge:{cash:0,debt:367.77029479956013,otherClaims:0}},round:{basis:'post',quote:1e12,primaryCapital:999999999000,holderStake:.1}};
+  const unresolvedCopy={case:{...example.case,bridge:{cash:0,debt:367.77029479956013,otherClaims:0}},round:{basis:'post',quote:1e12,primaryCapital:999999999000,holderStake:.1},ownership:{retentionFloor:.9}};
   await page.goto(financingUrl(new URL('index.html',base).href,unresolvedCopy),{waitUntil:'networkidle'});await ready();
   near('A valid large round retains its explicit pre-money price',await value('preMoney'),1000);
   check('A modeled-equity copy below the subtraction precision boundary is disabled',await page.locator('#financing-use-model').isDisabled());
@@ -192,7 +192,7 @@ try{
   check('No uncaught functional browser errors occurred',errors,[]);
 }catch(error){failed=error.stack||String(error);try{await page.screenshot({path:`${output}/failure.png`,fullPage:true,animations:'disabled'});}catch{/* A failed initial navigation may not provide a page. */}}
 finally{
-  const sources=['tests/financing-browser.mjs','public/lib/model.js','public/lib/release.js','public/lib/financing.js','public/lib/financing-share.js','public/lib/financing-brief.js','public/lib/financing-format.js','public/financing.js','public/financing.css','public/styles.css','public/shell.css','public/portable.css','public/index.html','public/app.js','lib/http.js','data/presets.json'];
+  const sources=['tests/financing-browser.mjs','public/lib/model.js','public/lib/release.js','public/lib/financing.js','public/lib/ownership.js','public/lib/ownership-chart.js','public/lib/financing-share.js','public/lib/financing-brief.js','public/lib/financing-format.js','public/financing.js','public/financing.css','public/styles.css','public/shell.css','public/portable.css','public/index.html','public/app.js','lib/http.js','data/presets.json'];
   const sourceHashes=Object.fromEntries(await Promise.all(sources.map(async path=>[path,createHash('sha256').update(await readFile(`${root}/${path}`)).digest('hex')])));
   const report={schema:1,status:failed?'fail':'pass',testedAtUtc:new Date().toISOString(),baseUrl:base,appVersion:APP_VERSION,modelVersion:MODEL_VERSION,valuationDate:VALUATION_DATE,checks:checks.length,passed:checks,browserErrors:errors,browserCertificateOverride:override,sourceHashes,error:failed};
   await writeFile(`${output}/report.json`,JSON.stringify(report,null,2)+'\n');await browser.close();

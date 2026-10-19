@@ -35,6 +35,8 @@ jobs:
         run: python3 -B scripts/check_thesis_reference.py --output /tmp/thesis-reference.json
       - name: Independent Value Horizon and precision-boundary checks
         run: python3 -B scripts/check_horizon_reference.py --output /tmp/horizon-reference.json
+      - name: Independent ownership frontier reference checks
+        run: python3 -B scripts/check_ownership_reference.py --output /tmp/ownership-reference.json
       - name: Independent financing shares and equity-reconciliation checks
         run: python3 -B scripts/check_financing_reference.py --output /tmp/financing-reference.json
       - name: Build public application snapshot

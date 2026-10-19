@@ -603,7 +603,7 @@ function exportCsv() {
 
 function clearSharedLocation() {
   state.shareRevision += 1;
-  if (location.hash.startsWith('#scenario=') || location.hash.startsWith('#inspect=') || location.hash.startsWith('#financing')) history.replaceState(null, '', location.pathname + location.search);
+  if (location.hash.startsWith('#scenario=') || location.hash.startsWith('#inspect=') || location.hash.startsWith('#financing') || location.hash==='#ownership-example') history.replaceState(null, '', location.pathname + location.search);
   if ($('#scenario-notice')) $('#scenario-notice').hidden = true;
   if ($('#share-link-area')) $('#share-link-area').hidden = true;
   if ($('#portable-status')) $('#portable-status').textContent = '';
@@ -674,11 +674,11 @@ function focusSection(element){
 }
 
 function restoreWorkspaceRoute(hash=location.hash){
-  if(hash==='#financing'||hash==='#financing-example'||hash.startsWith('#financing=')){
+  if(hash==='#financing'||hash==='#financing-example'||hash==='#ownership-example'||hash.startsWith('#financing=')){
     try{
-      if(hash==='#financing-example')state.financing.example();
+      if(hash==='#financing-example'||hash==='#ownership-example')state.financing.example();
       else if(hash.startsWith('#financing='))state.financing.restore(decodeFinancing(hash.slice('#financing='.length)));
-      selectTab('model');state.financing.open();
+      selectTab('model');if(hash==='#ownership-example')state.financing.openOwnership();else state.financing.open();
       history.replaceState(null,'',location.pathname+location.search+hash);
     }catch(error){selectTab('model');state.financing.open();$('#financing-status').textContent=`This financing link could not be loaded: ${error.message} The current case is retained.`;}
     return;

@@ -16,7 +16,7 @@ A deterministic JSON API, independently calculated Python reference, editable Ex
 
 [Worked research brief](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Research_Brief.pdf) · [Importable example casebook](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Research_Casebook.json) · [Excel model](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Model.xlsx) · [Financial review](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Valuation_Review.pdf) · [Release history](https://github.com/ult666666/frontier-ai-valuation-lab/releases)
 
-[Portable desktop package · ZIP](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Financing_Lens_Package.zip) contains the complete worked briefs, original reviewed workbook, evidence snapshots and an opening guide. Extract it and open `START_HERE.html`.
+[Portable desktop package · ZIP](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Ownership_Frontier_Package.zip) contains the complete worked briefs, original reviewed workbook, evidence snapshots and an opening guide. Extract it and open `START_HERE.html`.
 
 ![The working Value Horizon app shows a finite continuation curve, selected operating EV and a separate perpetual reference](docs/demo-horizon.png)
 
@@ -34,11 +34,19 @@ Choose **Verify through the API** to compare the complete browser calculation wi
 
 Toggle the quote basis, change the terms, or enter an explicit equity bridge. The interface reconciles price, value, cash and ownership with signed adjustments. Financing links, JSON and script-free briefs preserve all thirteen operating assumptions, the bridge and the exact round; existing Model and Casebook outputs keep their existing operating-case scope. The API checks the full analysis.
 
+### Set an ownership constraint
+
+[Open the Ownership Frontier example](https://frontier-ai-valuation-lab.vercel.app/index.html#ownership-example). A **90% minimum retained share of starting ownership** means a holder starting at 10% keeps at least 9% of the company. At the entered **$250B pre-money** quote, the analytical capital limit is **$27.78B**; the current **$25B** round leaves **$2.78B** within that limit. At the same **$250B post-money** quote, the limit becomes **$25B**. The post-money price stays fixed while the implied pre-money price changes.
+
+The chart connects that constraint to the existing round, without changing the forecast. Native keyboard controls, exact financing links, full JSON and a script-free brief preserve the selected floor. An optional API field adds the frontier while earlier request and link formats remain supported. The input range and numerical-resolution limits are stated separately from the analytical limit. This is a hypothetical ownership condition; it does not determine funding needs, ability to raise or investment returns.
+
+[Ownership method and precision contract](docs/OWNERSHIP_FRONTIER.md) · [Download the complete Ownership Frontier package](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Ownership_Frontier_Package.zip)
+
 [Financing brief · PDF](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Financing_Lens.pdf) · [Standalone HTML](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Financing_Lens.html) · [Complete financing JSON](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Financing_Lens.json) · [Financing methodology and limits](docs/FINANCING_LENS.md)
 
 <details><summary>See the working Financing Lens</summary>
 
-![Actual Financing Lens: hypothetical primary round, ownership dilution and operating-value reconciliation](docs/demo-financing.png)
+![Actual Ownership Frontier: fixed quote, retained-stake control, capital limit and current round](docs/demo-ownership.png)
 
 </details>
 
@@ -52,7 +60,7 @@ Toggle the quote basis, change the terms, or enter an explicit equity bridge. Th
 
 The downloadable example casebook contains three **clearly labeled illustrative analyses**, including a $500B target requirement. Import it from the Casebook to inspect a worked argument. It does not create sample entries in your browser automatically.
 
-Application **3.5.0** adds Financing Lens inside the Model, with a shared browser/API calculation and complete financing links and briefs. Value Horizon and its standalone research outputs remain available. Navigation has six consistent destinations: **Overview, Model, Thesis Lab, Value Horizon, Casebook and Evidence**. The Research Casebook, contextual evidence and exact comparison handoffs remain available. Financial engine **3.0.0**, the six published presets, the reviewed Excel/PDF and the **18 October 2026** research cutoff remain the quantitative baseline. Browser storage is local to the current origin and profile; Casebook JSON provides portability for saved research across devices.
+Application **3.6.0** adds Ownership Frontier inside the Financing Lens: a retained-stake constraint, a bounded capital curve, exact state sharing and complete browser/API verification. The same Model still connects a hypothetical round to operating value, cash and ownership. Value Horizon and its standalone research outputs remain available. Navigation has six consistent destinations: **Overview, Model, Thesis Lab, Value Horizon, Casebook and Evidence**. The Research Casebook, contextual evidence and exact comparison handoffs remain available. Financial engine **3.0.0**, the six published presets, the reviewed Excel/PDF and the **18 October 2026** research cutoff remain the quantitative baseline. Browser storage is local to the current origin and profile; Casebook JSON provides portability for saved research across devices.
 
 See the [Research Workspace guide](docs/RESEARCH_WORKSPACE.md), [Value Horizon methodology](docs/VALUE_HORIZON.md), [contextual evidence method](docs/EVIDENCE_CONTEXT.md), [Thesis Lab methodology](docs/THESIS_LAB.md) and [desktop handoff guide](docs/DESKTOP_GUIDE.md). Earlier releases remain available in the repository's release history.
 
@@ -115,6 +123,7 @@ The static `dist/` build also works on GitHub Pages or another static host. Brow
 | Component | Responsibility |
 | --- | --- |
 | `public/financing.js` / `financing.css` | Financing interface within the Model, price reconciliation, ownership graphics, exact exports and complete-result API verification |
+| `public/lib/ownership.js` / `ownership-chart.js` | Optional retained-stake constraint, analytical capital ceiling, bounded exact curve and accessible SVG |
 | `public/lib/financing*.js` | Strict primary-round calculation, bounded snapshots, robust number formatting and standalone financing briefs |
 | `public/horizon.html` / `horizon.js` / `horizon.css` | Finite continuation curve, complete value reconciliation, capture milestones, target requirements, exact handoffs and full-result API verification |
 | `public/lib/horizon.js` / `horizon-share.js` / `horizon-brief.js` | Pure finite-continuation calculation, strict exact snapshots and recalculated standalone HTML/JSON outputs |
@@ -163,7 +172,7 @@ For Thesis Lab calculations, send **`attribute`** with complete `reference` and 
 
 For Value Horizon, send **`horizon`** with complete `assumptions`, integer `years` from 0 through 100, and an optional positive operating-EV `target` (or `null`). The response includes the unchanged baseline, selected finite value, every whole-year curve point, capture milestones and target requirement. A target requirement may lie beyond the visible chart; bounded and unresolved outcomes are explicit. See [the Horizon API contract](docs/API.md).
 
-For Financing Lens, send **`financing`** with all thirteen `assumptions`, an explicit `bridge` object or `null`, and `round: {basis, quote, primaryCapital, holderStake}`. The response includes the baseline, primary-round ownership, hypothetical equity reconciliation when supplied, and explicit method/warning metadata. Amounts are USD billions and holder stakes are fractions; the quote basis is `pre` or `post`. See [the complete API contract](docs/API.md).
+For Financing Lens, send **`financing`** with all thirteen `assumptions`, an explicit `bridge` object or `null`, and `round: {basis, quote, primaryCapital, holderStake}`. The response includes the baseline, primary-round ownership, hypothetical equity reconciliation when supplied, and explicit method/warning metadata. Include optional `ownership: {retentionFloor}` to preserve a chosen minimum retained share of each starting stake. Legacy requests omit it and retain their original result shape. Amounts are USD billions and holder stakes are fractions; the quote basis is `pre` or `post`. See [the complete API contract](docs/API.md).
 
 The endpoint also retains **compare**, **stress** and **drivers**. Paired stress changes both selected cases using explicit percentage-point or percentage inputs. Invalid transformed assumptions are rejected; no value is silently clipped. Driver effects use named, different shock sizes and do not claim a probability distribution or causal attribution.
 

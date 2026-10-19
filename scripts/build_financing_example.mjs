@@ -5,7 +5,7 @@ import {createFinancingExport,createFinancingBrief} from '../public/lib/financin
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const presets=JSON.parse(await readFile(path.join(root,'data/presets.json'),'utf8'));
-const snapshot={case:{company:'Anthropic',scenario:'Base',assumptions:presets.Anthropic.Base,bridge:{cash:20,debt:5,otherClaims:0}},round:{basis:'pre',quote:250,primaryCapital:25,holderStake:.1}};
+const snapshot={case:{company:'Anthropic',scenario:'Base',assumptions:presets.Anthropic.Base,bridge:{cash:20,debt:5,otherClaims:0}},round:{basis:'pre',quote:250,primaryCapital:25,holderStake:.1},ownership:{retentionFloor:.9}};
 const dir=path.join(root,'public/downloads'),name='Frontier_AI_Financing_Lens';
 await mkdir(dir,{recursive:true});
 await writeFile(path.join(dir,`${name}.json`),JSON.stringify(createFinancingExport(snapshot),null,2)+'\n');

@@ -76,7 +76,7 @@ test('research and release snapshots identify the current model and calendar dat
 
 test('the published Financing Lens downloads preserve and reproduce the exact hypothetical round',async()=>{
   const presets=JSON.parse(await readFile(path.join(publicRoot,'data/presets.json'),'utf8'));
-  const snapshot={case:{company:'Anthropic',scenario:'Base',assumptions:presets.Anthropic.Base,bridge:{cash:20,debt:5,otherClaims:0}},round:{basis:'pre',quote:250,primaryCapital:25,holderStake:.1}};
+  const snapshot={case:{company:'Anthropic',scenario:'Base',assumptions:presets.Anthropic.Base,bridge:{cash:20,debt:5,otherClaims:0}},round:{basis:'pre',quote:250,primaryCapital:25,holderStake:.1},ownership:{retentionFloor:.9}};
   const json=JSON.parse(await readFile(path.join(publicRoot,'downloads/Frontier_AI_Financing_Lens.json'),'utf8'));
   const html=await readFile(path.join(publicRoot,'downloads/Frontier_AI_Financing_Lens.html'),'utf8');
   const pdf=await readFile(path.join(publicRoot,'downloads/Frontier_AI_Financing_Lens.pdf'));

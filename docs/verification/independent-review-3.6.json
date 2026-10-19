@@ -1,0 +1,322 @@
+{
+  "schema": 1,
+  "appVersion": "3.6.0",
+  "modelVersion": "3.0.0",
+  "financingVersion": "1.0.0",
+  "ownershipVersion": "1.0.0",
+  "valuationDate": "2026-10-18",
+  "reviewedAtUtc": "2026-10-19T21:13:50.919287+00:00",
+  "status": "closed_within_review_scope",
+  "reviewType": "AI-assisted scoped numerical, browser-integration and rendered-document review by an agent separate from the ownership core and product authors.",
+  "independence": "The reviewer authored the separate Python share-ledger reference and focused ownership browser harness. The reviewer did not author ownership.js, the application UI, the API integration or the PDF builders. The browser suite checks integration against the production calculation; numerical independence is supplied by the separately implemented Python Decimal share ledger. This is a scoped AI-assisted review, not an external audit.",
+  "scope": [
+    "The fixed-quote ownership constraint and its retained-stake interpretation, separately derived from 100 existing shares.",
+    "Strict input boundaries, ceiling-resolution states, capital input caps, chart monotonicity and exact preservation of the absent-ownership legacy result.",
+    "Exact ownership-floor transport through links, reloads, JSON and HTML; legacy link restoration; real local API whole-result verification and stale-request invalidation.",
+    "Responsive presentation at 320, 390, 768 and 1440 pixels, native keyboard control, invalid-state clearing and accessible chart descriptions.",
+    "Visual inspection of all 12 supplied rendered pages across the four current worked PDFs, with independently extracted PDF text and reopening-link checks."
+  ],
+  "findings": [],
+  "observations": [
+    "No unresolved numerical mismatch or visual layout defect was found within the stated scope.",
+    "The 100% floor strictly rejects positive primary issuance even when retained ownership rounds to one. Ordinary boundary comparisons follow the separately documented numerical band.",
+    "An input cap does not overwrite the analytical ceiling, and positive unresolvable ceilings remain unavailable instead of becoming zero-capital economic claims.",
+    "The browser integration preserved the exact fractional floor alongside all model, bridge and round inputs and rejected an intentionally altered non-headline ownership chart value.",
+    "All four current PDFs display application 3.6.0, retain model 3.0.0 and the 2026-10-18 financial snapshot, and contain no 3.5.0 application label.",
+    "The new Financing PDF page presents the retained starting-stake constraint and hypothetical capital ceiling together; both PDF reopening links match the full companion JSON snapshot."
+  ],
+  "independentReferenceEvidence": {
+    "path": "docs/verification/ownership-reference-3.6.json",
+    "sha256": "beb8b64270e8a06ad5ef9ea62abd4c34b520de895a2665f2c574c5439e03d47e",
+    "status": "passed",
+    "validScenarios": 25,
+    "invalidScenarios": 23,
+    "javascriptOnlyRejections": 8,
+    "numericComparisons": 2514,
+    "structuralComparisons": 10418,
+    "maxAbsoluteError": 3.552713678800501e-15,
+    "maxRelativeError": 1.1191048088221606e-15,
+    "method": "Independent 100-digit Decimal.from_float share issuance ledger starting with 100 existing shares; inverse ceiling derived by pricing the maximum new share count at the requested floor.",
+    "comparisonPolicy": "At-floor uses 32 IEEE-754 epsilon times max(retained fraction, floor); a 100% floor permits exactly zero primary capital, so any positive issuance breaches it even when retained ownership rounds to one.",
+    "allListedSourceHashesMatchCurrent": true
+  },
+  "integrationEvidence": {
+    "path": "docs/verification/ownership-browser-3.6.json",
+    "sha256": "42cd3978832228fd23d051beeeb0f426807ac8c9271bc0644b498a2cdee0e947",
+    "status": "pass",
+    "checks": 77,
+    "browserErrors": [],
+    "baseUrl": "http://127.0.0.1:4336/",
+    "browserCertificateOverride": false,
+    "allListedSourceHashesMatchCurrent": true,
+    "tlsScope": "This successful run used local HTTP. It makes no statement about production HTTPS or browser TLS trust."
+  },
+  "pdfReview": {
+    "status": "reviewed_no_defect_observed",
+    "pdfCount": 4,
+    "pagesVisuallyInspected": 12,
+    "reviewMethod": "The reviewer opened every supplied PNG page separately and inspected chart labels, text, table alignment, clipping, overlaps, headers, footers and scope notes. PDF text, page counts, URI annotations and financial/version labels were extracted separately with pypdf.",
+    "files": [
+      {
+        "path": "public/downloads/Frontier_AI_Financing_Lens.pdf",
+        "bytes": 159701,
+        "sha256": "734c2733723b35116983ec73192b87787a1b3b2051d04dbcbb6334e868d83b70",
+        "companionHtmlPath": "public/downloads/Frontier_AI_Financing_Lens.html",
+        "companionHtmlSha256": "fb9127f2852f6ff68602118d18efcb081ac8657db2455f2f203e5a346aef9d2e",
+        "pageCount": 3,
+        "textMetadataChecks": {
+          "applicationVersionPresent": true,
+          "priorApplicationVersionAbsent": true,
+          "modelVersionPresent": true,
+          "valuationSnapshotPresent": true,
+          "noReplacementCharacters": true
+        },
+        "uriAnnotationCount": 5,
+        "pages": [
+          {
+            "page": 1,
+            "renderedPath": "qa-local/v3-6/pdf-review/Financing_Lens-1.png",
+            "renderedSha256": "de995d8b18b4468988359a69019cacc13a73fd69a46f5e7265fafa70d2c2b45a",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "Application 3.6.0 and model 3.0.0 are visible. The 250 pre-money plus 25 primary equals 275 post-money example, ownership table, reconciliation boundary and scope text are legible with no clipping or overlap."
+          },
+          {
+            "page": 2,
+            "renderedPath": "qa-local/v3-6/pdf-review/Financing_Lens-2.png",
+            "renderedSha256": "4c498494287566ca598e4af1a8a022d1818d5cdce174c6c9cc783a795a068832",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "The signed price-versus-model comparison and all thirteen exact assumptions fit their columns. Method source links and the financial-snapshot boundary remain visible. The footer identifies 3.6.0."
+          },
+          {
+            "page": 3,
+            "renderedPath": "qa-local/v3-6/pdf-review/Financing_Lens-3.png",
+            "renderedSha256": "37c2e60de88a5eff02ae378373559c10d5c7b30b6fc34956e2131b2a91e5a9f0",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "The new ownership page shows the $27.78B rounded ceiling, 90.91% retained stake, 90% selected floor and $2.78B headroom. Axes, current-circle marker, threshold, capital-limit square, legend and formula are legible. The application version and frozen snapshot appear in the footer."
+          }
+        ]
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Value_Horizon.pdf",
+        "bytes": 112781,
+        "sha256": "627c9470516758f6fa9441c4baef5436208828eb6fe830a8a5dac1eb5541195f",
+        "companionHtmlPath": "public/downloads/Frontier_AI_Value_Horizon.html",
+        "companionHtmlSha256": "990a76fb22e813258ca2d3726bea5716387ec39b80cbe22912b39bc616bffb0e",
+        "pageCount": 2,
+        "textMetadataChecks": {
+          "applicationVersionPresent": true,
+          "priorApplicationVersionAbsent": true,
+          "modelVersionPresent": true,
+          "valuationSnapshotPresent": true,
+          "noReplacementCharacters": true
+        },
+        "uriAnnotationCount": 5,
+        "pages": [
+          {
+            "page": 1,
+            "renderedPath": "qa-local/v3-6/pdf-review/Value_Horizon-1.png",
+            "renderedSha256": "6af5fdffb10560f7f7b554496ad3670dd3ddeb004ee2f6a37b66c6153650808d",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "The finite horizon curve, selected cutoff, perpetual reference, target requirement and signed valuation reconciliation are legible. The page describes the conditional zero-residual cutoff without implying an operating cessation date."
+          },
+          {
+            "page": 2,
+            "renderedPath": "qa-local/v3-6/pdf-review/Value_Horizon-2.png",
+            "renderedSha256": "37da2a6e0ffdde931ecf88fe896285adf75232f9ecce443e2987e3bc9e847056",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "Exact assumptions, horizon checkpoints, forecast rows, method references and reproduction links fit without overlap. The scope text lists application 3.6.0 and model 3.0.0; the footer retains the 2026-10-18 snapshot."
+          }
+        ]
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Thesis_Comparison.pdf",
+        "bytes": 145179,
+        "sha256": "438b03c02fdf08565a796f0a0c271dfc3d11e6372385f51cce9c6a3b609a7424",
+        "companionHtmlPath": "public/downloads/Frontier_AI_Thesis_Comparison.html",
+        "companionHtmlSha256": "83d0e15f2452a6f3e499bb7ce0d60eeacf64dd5f09eabafe85381f9cb14124e6",
+        "pageCount": 3,
+        "textMetadataChecks": {
+          "applicationVersionPresent": true,
+          "priorApplicationVersionAbsent": true,
+          "modelVersionPresent": true,
+          "valuationSnapshotPresent": true,
+          "noReplacementCharacters": true
+        },
+        "uriAnnotationCount": 10,
+        "pages": [
+          {
+            "page": 1,
+            "renderedPath": "qa-local/v3-6/pdf-review/Thesis_Comparison-1.png",
+            "renderedSha256": "794a542082e4581125c61aa307d46ffd4b9219ca9d3875f42a0b4cb4b6c17061",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "The two operating enterprise values, signed gap, grouped attribution chart and reconciliation table are legible. The attribution text distinguishes deterministic marginal allocations from causal or probability claims."
+          },
+          {
+            "page": 2,
+            "renderedPath": "qa-local/v3-6/pdf-review/Thesis_Comparison-2.png",
+            "renderedSha256": "d4b6b266e6083aa398fad13018b6b5d786032d8747866a585842121302a76c99",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "All thirteen assumptions and both annual cash-flow paths are legible. Remaining 2026 cash flow, tax treatment and the limit on treating cumulative deficits as funding needs remain visible."
+          },
+          {
+            "page": 3,
+            "renderedPath": "qa-local/v3-6/pdf-review/Thesis_Comparison-3.png",
+            "renderedSha256": "1ca7f5fcdee1cde3df79a3d98fa5fe5a479040181891ccfd911c6c43ffa2bbb3",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "The required-margin table keeps below-window results explicit, and the evidence sources, limitations and reopening links fit. The footer distinguishes financial engine 3.0.0, thesis method 1.0.0, application 3.6.0 and the valuation date."
+          }
+        ]
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Research_Brief.pdf",
+        "bytes": 168356,
+        "sha256": "903e3c4f3a2e675fe705349128b565de3b1667bd1a65e72505276cd0842cbdd5",
+        "companionHtmlPath": "public/downloads/Frontier_AI_Research_Brief.html",
+        "companionHtmlSha256": "78933209253fcf5d09af98ff811d2175dc9e0bfa855939fc4362d12fa84a4e42",
+        "pageCount": 4,
+        "textMetadataChecks": {
+          "applicationVersionPresent": true,
+          "priorApplicationVersionAbsent": true,
+          "modelVersionPresent": true,
+          "valuationSnapshotPresent": true,
+          "noReplacementCharacters": true
+        },
+        "uriAnnotationCount": 8,
+        "pages": [
+          {
+            "page": 1,
+            "renderedPath": "qa-local/v3-6/pdf-review/Research_Brief-1.png",
+            "renderedSha256": "fdaf8092968679b7064d7801cb83fdae7c5e364806969327361bbccfe0dbea18",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "The illustrative $500B EV target, analyst rationale, key assumptions and review trigger are legible. The captured-notes and absence-of-saved-server-verification statements remain explicit."
+          },
+          {
+            "page": 2,
+            "renderedPath": "qa-local/v3-6/pdf-review/Research_Brief-2.png",
+            "renderedSha256": "529fd5388af43d517b2f53b8f6be1c4119d5f62c9dc370ced956dc2d313a0820",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "Displayed assumptions and exact stored numbers, including the solved alternative margin, fit their rows. Both cash-flow paths and the scope qualifications at the bottom remain legible."
+          },
+          {
+            "page": 3,
+            "renderedPath": "qa-local/v3-6/pdf-review/Research_Brief-3.png",
+            "renderedSha256": "096c82a653208166bd27432e36671ae64f5a6f4d30270ce56c75b90bd72b3b77",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "The signed allocation table, unrounded reconciliation residual, exact axes and required-margin results are legible. Below-window results are labeled without extrapolation."
+          },
+          {
+            "page": 4,
+            "renderedPath": "qa-local/v3-6/pdf-review/Research_Brief-4.png",
+            "renderedSha256": "b0f3c7d9e48fd5eeeda7e142ef07826b94baf05744a12be97ce2e4a826b2d0c0",
+            "pixels": [
+              744,
+              1053
+            ],
+            "visualStatus": "reviewed_no_defect_observed",
+            "observation": "The separate financing context, source dates, evidence classes, limitations and exact-calculation link are readable. The footer identifies application 3.6.0, financial engine 3.0.0, thesis method 1.0.0 and the frozen valuation date."
+          }
+        ]
+      }
+    ],
+    "financingCompanionJson": {
+      "path": "public/downloads/Frontier_AI_Financing_Lens.json",
+      "sha256": "bb706eb462b40a7df1e46e849f9513cd9c455e3740b88b70228ef2adcefb2701"
+    },
+    "financingPdfReopeningLinks": [
+      {
+        "page": 2,
+        "origin": "frontier-ai-valuation-lab.vercel.app",
+        "schema": 2,
+        "ownershipVersion": "1.0.0",
+        "exactSnapshotMatchesCompanion": true,
+        "allThirteenAssumptionsMatch": true,
+        "bridgeMatches": true,
+        "roundMatches": true,
+        "ownershipFloorMatches": true
+      },
+      {
+        "page": 3,
+        "origin": "frontier-ai-valuation-lab.vercel.app",
+        "schema": 2,
+        "ownershipVersion": "1.0.0",
+        "exactSnapshotMatchesCompanion": true,
+        "allThirteenAssumptionsMatch": true,
+        "bridgeMatches": true,
+        "roundMatches": true,
+        "ownershipFloorMatches": true
+      }
+    ]
+  },
+  "verifiedSourceSha256": {
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+    "public/lib/ownership.js": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "scripts/check_ownership_reference.py": "5e4cfc29e9d660d2c2e62bfc308c6e0f709ed619f5dbc309ade5a72d13e5597d",
+    "tests/ownership-browser.mjs": "a015dfa4b1082e9f723e36d209a630ce452cdbccc215eef652645d9e870aab8b",
+    "public/lib/release.js": "732106638a8e8969d4d0b8e4ce6ee38a0f4b34aea25a6208cb0fd16cf8b0fe90",
+    "public/lib/ownership-chart.js": "9662a49031c9012f4560e053e5244f79d19c49f63131a2577ac21e6b645f2813",
+    "public/lib/financing-share.js": "3359e1d7f4e2b61ef0c6a1df85760ed036d070f338b0512b7068510cadfcf5d7",
+    "public/lib/financing-brief.js": "c90edbf24e172062c52226eef0bfd09d9adc325f991c9a3f5a7d7ef376336211",
+    "public/lib/financing-format.js": "8b14818b59819f5b1eb506318422cbbe8731a8fed174864111e7cfad862ac302",
+    "public/financing.js": "7840df26d977fbdb7df382dcca5dfed032861b04fb1d8be582b13fbecedc5321",
+    "public/financing.css": "5727d40d139011c27669e73bb8f057e3b0eed2c0d138be683f977bfdfe4774b6",
+    "public/styles.css": "69cd753d8112fc438c9524d7972b927fce7417e26da6860a0adc3faecaef26b7",
+    "public/shell.css": "37d2ae1c31521c82c94515655f07aad3d4aa36d74bd9ee0a3ef2e303dd2fc383",
+    "public/portable.css": "936df47ea6b34a6cd756748888d89f0ba43f138b25076ad59d8ded35009ab2a8",
+    "public/index.html": "b2cc300be3f0a3da5f81c87e96ffe632ff7084326994b79fd9951a945825b2de",
+    "public/app.js": "02461630761ae5588d860032db682a68e4ec273eeaf1757e53c79284449c4e21",
+    "lib/http.js": "2c5cfc4d4ef386a799ab574cd1c689d44320402f535167ebdcf4eeee19b42fbb"
+  },
+  "limitations": [
+    "This is an AI-assisted scoped engineering and document review, not professional assurance, an external financial audit or certification of the entire application.",
+    "The numerical tests verify the simplified priced-primary-round model and specified comparison convention. They do not establish company balances, cap tables, negotiated rights, actual financing capacity, capital requirements, forecasts or investment merit.",
+    "The browser verification is a local HTTP workflow. Production identity, remote deployment availability, production HTTPS and TLS behavior, release publication and native desktop delivery are outside this receipt.",
+    "The twelve inspected page images were rendered by the parent agent. This reviewer independently inspected their visual content and extracted metadata and links from the corresponding PDFs; no separate print-driver or native PDF-application test was performed."
+  ],
+  "unresolvedFindings": []
+}

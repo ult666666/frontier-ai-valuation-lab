@@ -41,12 +41,13 @@ MIME = {
 REQUIRED = (
     "index.html", "app.js", "financing.js", "financing.css", "portable.css",
     "lib/financing.js", "lib/financing-share.js", "lib/financing-brief.js",
-    "lib/financing-format.js", "lib/model.js", "lib/release.js",
+    "lib/financing-format.js", "lib/ownership.js", "lib/ownership-chart.js", "lib/model.js", "lib/release.js",
     "data/presets.json", "data/research.json",
     "downloads/Frontier_AI_Financing_Lens.html",
     "downloads/Frontier_AI_Financing_Lens.json",
     "downloads/Frontier_AI_Financing_Lens.pdf",
     "downloads/Frontier_AI_Financing_Lens_Package.zip",
+    "downloads/Frontier_AI_Ownership_Frontier_Package.zip",
 )
 NODE = r"""
 import {readFileSync} from 'node:fs';
@@ -54,6 +55,7 @@ import {handleRequest} from './lib/http.js';
 import {APP_VERSION} from './public/lib/release.js';
 import {MODEL_VERSION,VALUATION_DATE} from './public/lib/model.js';
 import {FINANCING_VERSION} from './public/lib/financing.js';
+import {OWNERSHIP_VERSION} from './public/lib/ownership.js';
 if(process.versions.node.split('.')[0]!=='24')throw new Error('Node 24 is required.');
 const cases=JSON.parse(readFileSync(0,'utf8')),responses=[];
 for(const item of cases){
@@ -66,7 +68,7 @@ for(const item of cases){
   responses.push({status:response.status,body:await response.json()});
 }
 process.stdout.write(JSON.stringify({node:process.version,meta:{appVersion:APP_VERSION,
-  modelVersion:MODEL_VERSION,valuationDate:VALUATION_DATE,financingVersion:FINANCING_VERSION},responses}));
+  modelVersion:MODEL_VERSION,valuationDate:VALUATION_DATE,financingVersion:FINANCING_VERSION,ownershipVersion:OWNERSHIP_VERSION},responses}));
 """
 
 
@@ -121,6 +123,16 @@ def api_cases():
             **standard, "bridge": dict(cash=0, debt=367.77029479956013, otherClaims=0),
             "round": dict(basis="post", quote=1e12, primaryCapital=999999999000, holderStake=.1)}),
     ]
+    ownership = {**standard, "ownership": {"retentionFloor": .9}}
+    valid += [
+        item("Ownership frontier at fixed pre-money quote", ownership),
+        item("Ownership frontier at fixed post-money quote", {**ownership, "round": {**standard["round"], "basis": "post"}}),
+        item("Valid round below selected retention floor", {**ownership, "ownership": {"retentionFloor": .95}}),
+        item("A100% floor with zero capital", {**ownership, "ownership": {"retentionFloor": 1}, "round": {**standard["round"], "primaryCapital": 0}}),
+        item("A100% floor with a positive sub-display raise", {**ownership, "ownership": {"retentionFloor": 1}, "round": {**standard["round"], "primaryCapital": 1e-18}}),
+        item("Analytical ceiling beyond supported input cap", {**ownership, "ownership": {"retentionFloor": .01}, "round": {**standard["round"], "quote": 1e12, "primaryCapital": 1e12}}),
+        item("Positive ceiling below numerical resolution", {**ownership, "round": {**standard["round"], "quote": 5e-324, "primaryCapital": 0}}),
+    ]
     no_bridge = copy.deepcopy(standard)
     del no_bridge["bridge"]
     invalid = [
@@ -133,6 +145,14 @@ def api_cases():
         item("Wrong request content type", standard, 415, contentType="text/plain"),
         item("Malformed JSON request", None, 400, rawBody="{malformed"),
         item("Request above the declared 16 KiB limit", None, 413, rawBody=json.dumps({"padding": "x" * 17000})),
+    ]
+    invalid += [
+        item("Null ownership is not omission", {**standard, "ownership": None}, 400),
+        item("Below supported ownership floor", {**standard, "ownership": {"retentionFloor": 0}}, 400),
+        item("Above supported ownership floor", {**standard, "ownership": {"retentionFloor": 1.01}}, 400),
+        item("String ownership floor", {**standard, "ownership": {"retentionFloor": ".9"}}, 400),
+        item("Missing ownership floor", {**standard, "ownership": {}}, 400),
+        item("Extra ownership field", {**standard, "ownership": {"retentionFloor": .9, "guaranteed": True}}, 400),
     ]
     health = dict(name="Exact release metadata", path="/api/health", method="GET", expectedStatus=200)
     return [health] + valid + invalid
@@ -185,12 +205,12 @@ def main():
     base = args.base_url.rstrip("/")
     started = time.monotonic()
     checks = []
-    report = dict(schema=1, purpose="financing-deployment-consistency", baseUrl=base,
+    report = dict(schema=1, purpose="financing-and-ownership-deployment-consistency", baseUrl=base,
                   testedAtUtc=datetime.now(timezone.utc).isoformat(), checks=checks,
                   tlsVerification=True, tlsUsed=origin.scheme == "https",
                   transport="System curl with configuration files disabled; no redirects; certificate verification remains enabled.",
                   comparison="Every current public asset is compared byte-for-byte and by MIME; API responses are compared as complete canonical JSON against the current local Web-standard handler.",
-                  mathematicalIndependence="This verifies deployed/local consistency. Separate Python share-ledger and FCFF independence is recorded in financing-reference-3.5.json.",
+                  mathematicalIndependence="This verifies deployed/local consistency. Independent Python share-ledger, FCFF and ownership constraint verification is recorded separately in this release numerical-reference receipts.",
                   bounds=dict(maxAssets=MAX_ASSETS, maxResponseBytes=MAX_RESPONSE_BYTES,
                               maxTotalAssetBytes=MAX_TOTAL_ASSET_BYTES, deadlineSeconds=args.deadline_seconds))
     try:

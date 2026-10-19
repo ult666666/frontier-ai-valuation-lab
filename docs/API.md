@@ -1,10 +1,10 @@
 # API contract
 
-The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **3.5.0** adds the Financing Lens `financing` action alongside the existing nine financial actions. Application **3.4.0** introduced the Value Horizon `horizon` action; all earlier actions remain available. No model-provider key is needed.
+The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **3.6.0** adds an optional Ownership Frontier constraint to the existing `financing` action. Application **3.5.0** introduced that action, and **3.4.0** introduced the Value Horizon `horizon` action; all earlier actions remain available. No model-provider key is needed.
 
 ## GET /api/health
 
-Returns `status`, `appVersion`, `modelVersion` and `valuationDate`. This is service health, not a statement that financial evidence is complete. Application release `3.5.0` retains financial engine `3.0.0` and valuation date `2026-10-18`.
+Returns `status`, `appVersion`, `modelVersion` and `valuationDate`. This is service health, not a statement that financial evidence is complete. Application release `3.6.0` retains financial engine `3.0.0` and valuation date `2026-10-18`.
 
 ## GET /api/valuation
 
@@ -25,7 +25,7 @@ Use `Content-Type: application/json`. Amounts are USD billions and model percent
 | `attribute` | `reference`, `alternative` | Both complete projections and exact grouped attribution of alternative EV minus reference EV |
 | `landscape` | `assumptions`, `rates`, `margins`, positive numeric `target` | EV matrix indexed by margin row and WACC column, invalid-point reasons, and a required-margin frontier |
 | `horizon` | `assumptions`, integer `years` from 0–100; optional positive numeric or `null` `target` | Complete baseline, 101 finite-continuation points, retained/excluded terminal PV, capture milestones and bounded whole-year target requirement |
-| `financing` | `assumptions`, explicit `bridge` object or `null`, complete `round` | Full baseline, primary-round pricing and ownership, optional signed equity reconciliation and round-implied operating EV |
+| `financing` | `assumptions`, explicit `bridge` object or `null`, complete `round`; optional `ownership: {retentionFloor}` | Full baseline, primary-round pricing and ownership, optional signed equity reconciliation, round-implied operating EV and an optional capital-versus-ownership frontier |
 
 Success responses are `{appVersion, modelVersion, valuationDate, result}`. `appVersion` is an additive release identifier; the model/date/result fields retain their existing meanings. Validation failures are HTTP 400 with `{error}`. Unsupported media returns 415, more than 16 KiB returns 413, unsupported methods return 405, and unknown routes return 404. Each original `sensitivity` axis contains 1–9 finite numbers. Each `landscape` axis contains 2–21 finite, strictly increasing numbers.
 
@@ -385,7 +385,7 @@ See [Value Horizon methodology, numerical limits and portable outputs](VALUE_HOR
 
 ## Financing Lens analytics
 
-Send `{action: 'financing', assumptions, bridge, round}` with exactly those four top-level fields. `assumptions` contains all thirteen existing model inputs. Supply `bridge: null` when no hypothetical cash/debt/claims bridge is available. Omitting `bridge` from an HTTP request is an error; an explicit null is not treated as three zero balances.
+Send `{action: 'financing', assumptions, bridge, round}` with those four required top-level fields; an optional `ownership` constraint is documented below. All other top-level fields are rejected. `assumptions` contains all thirteen existing model inputs. Supply `bridge: null` when no hypothetical cash/debt/claims bridge is available. Omitting `bridge` from an HTTP request is an error; an explicit null is not treated as three zero balances.
 
 The shared [`public/lib/financing.js`](../public/lib/financing.js) exports `financingLens(assumptions, {bridge, round})`, `FINANCING_VERSION = '1.0.0'`, and `FINANCING_MAX_AMOUNT = 1e12`. Direct JavaScript calls may omit `bridge`, which has the same meaning as `null`. Assumptions, options, bridge and round must use exact own enumerable data fields on plain or null-prototype records. Accessors, inherited fields, symbols, missing required fields, numeric strings and nonfinite numbers are rejected without invoking property getters.
 
@@ -479,6 +479,44 @@ This hypothetical round is $150B pre-money and $180B post-money. New investors o
 The round assumes equal participating economic rights, retained primary cash and zero fees. It excludes secondary sales, SAFE or note conversions, option-pool expansion, preference waterfalls, debt repayment and future rounds. Deductions must exclude the participating equity pool and costs already modeled in FCFF. The current cumulative economic deficit is not deducted again or used to recommend a raise.
 
 The API carries no company label, account record or saved Casebook entry. Complete company/scenario labels, all operating inputs, the optional bridge and round terms travel in the separate financing share/JSON/HTML format. Existing Model and Casebook formats continue to store operating assumptions and bridge adjustments; they do not silently acquire round terms. See [Financing Lens methodology and interpretation limits](FINANCING_LENS.md).
+
+### Optional ownership constraint
+
+Application 3.6.0 accepts `ownership: {retentionFloor}` as an optional field on the same `financing` request. The constraint requires exactly one own numeric field, with `0.01 <= retentionFloor <= 1`. It is a fraction of each starting ownership stake: `0.9` requires a holder starting at 10% to retain at least 9% of the company. Supplied `null`, missing or unknown nested fields, strings and nonfinite numbers are rejected.
+
+Without `ownership`, the response `result` is exactly the legacy Financing Lens result. With a valid constraint, the result retains every legacy field and adds:
+
+```js
+ownership: {
+  version: '1.0.0',
+  constraint: {retentionFloor},
+  current: {
+    primaryCapital, retainedFraction, holderAfter, holderFloor,
+    status, // above-floor | at-floor | below-floor
+    capitalHeadroom, capitalExcess
+  },
+  ceiling: {
+    analyticalCapital, supportedCapital,
+    status // resolved | input-cap-limited | below-resolution | unresolved
+  },
+  graph: {
+    status, // ready | unavailable
+    capitalMax, points: [{primaryCapital, retainedFraction, holderAfter}],
+    ceilingInDomain, currentInDomain
+  },
+  method, warnings
+}
+```
+
+For a fixed pre-money quote `Q`, retention is `Q / (Q + R)` and the analytical capital ceiling is `Q × (1 − f) / f`. For a fixed post-money quote `P`, retention is `(P − R) / P` and the ceiling is `P × (1 − f)`. Post-money mode holds that quote fixed while the implied pre-money price changes with capital. The floor is independent of the tracked holder's starting percentage and the operating valuation.
+
+`at-floor` means the retained fraction matches the selected floor within the documented `32 × Number.EPSILON` relative comparison band. A 100% floor is an explicit exception: any positive raise is `below-floor` even if division rounds retention to 1. At the numerical boundary, headroom and excess are zero. An unavailable analytical ceiling makes those amounts `null`; an unrepresentable positive holder floor is also `null` rather than a false zero stake.
+
+`analyticalCapital` retains the full mathematical ceiling when it exceeds the supported capital input cap; `supportedCapital` is capped at `1e12` USD billions and status is `input-cap-limited`. A positive ceiling that cannot be resolved is `null`, with a resolution status and warning. These are successful analytical HTTP 200 outcomes for an otherwise valid round. They must not be interpreted as recommended or available financing.
+
+The graph includes at most 51 bounded round-arithmetic points and never reruns FCFF for each point. Its domain focuses on the current raise and chosen floor; its fallback scale is a display choice. An unresolvable graph uses `status: 'unavailable'`, `capitalMax: null`, empty points, and false inclusion flags.
+
+[`public/lib/ownership.js`](../public/lib/ownership.js) exports `OWNERSHIP_VERSION`, `ownershipFrontier(round, constraint)` and `financingAnalysis(assumptions, {bridge, round, ownership?})`. The full [Ownership Frontier method](OWNERSHIP_FRONTIER.md) specifies the formulas, numerical policy, exact metadata, graph domain and backward-compatible schema 1/schema 2 share envelopes. The optional constraint retains the request's existing media, body-size and no-store protections.
 
 ## Interpretation
 

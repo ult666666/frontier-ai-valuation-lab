@@ -1,8 +1,42 @@
 # Release verification
 
-The current **v3.5 local verification** appears first. Earlier sections retain their original dates, source bytes and scope. Numerical agreement, browser behavior, printable-artifact review and deployment observations are separate forms of evidence; none establishes private-company forecasts as facts. Post-publication evidence is attached to the [v3.5 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v3.5.0) when publication completes.
+The current **v3.6 local verification** appears first. Earlier records retain their dates and scope. Numerical agreement, browser behavior, printable-artifact review and deployment checks are separate evidence. The [v3.6 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v3.6.0) carries the subsequent publication record.
 
-## Version 3.5 local verification
+## Version 3.6 local verification
+
+Application **3.6.0** adds Ownership Frontier within Financing Lens. Its one optional retained-starting-stake constraint is preserved by the complete financing API, schema-two links, JSON and standalone brief. The financial engine remains **3.0.0**, financing engine **1.0.0**, ownership method **1.0.0**, and valuation snapshot **18 October 2026**. The original workbook, reviewed financial PDF, operating engine, round engine, presets, research register and earlier ZIPs remain byte identical. The [local release record](verification/release-3.6-local.json) binds the current implementation and artifacts by hash.
+
+| Verification layer | Result | Evidence |
+| --- | --- | --- |
+| Node financial, API, transport, presentation and release tests | **248 passed; 0 failed** | [Release gates](verification/release-3.6-local.json) |
+| Ownership browser workflow | **77 assertions; 0 page errors** | [Ownership browser](verification/ownership-browser-3.6.json) |
+| Existing Financing, research journey and Model workflow | **92 + 94 + 57 assertions; 0 page errors** | [Financing](verification/financing-browser-3.6.json), [Journey](verification/journey-browser-3.6.json), [Workbench](verification/workbench-browser-3.6.json) |
+| Independent 100-share Decimal reference | **25 valid; 23 invalid JSON; 8 JavaScript-only rejections; 2,514 numerical and 10,418 structural comparisons** | [Numerical reference](verification/ownership-reference-3.6.json) |
+| Local HTTP assets and complete responses | **98 requests passed** | [HTTP receipt](verification/http-local-3.6.json) |
+| Printable outputs | **12 pages visually reviewed: Financing 3, Horizon 2, Thesis 3, Research 4** | [Independent review](verification/independent-review-3.6.json) |
+| Versioned desktop archive | **39 members; 38 manifest-listed files** | [Archive](verification/desktop-archive-3.6.json), [Package verification](verification/desktop-verification-3.6.json) |
+
+### Contract, precision and compatibility
+
+The [ownership method](OWNERSHIP_FRONTIER.md) derives the capital limit from the maximum new share count consistent with retaining a chosen fraction of each starting stake. A fixed pre-money quote and a fixed post-money quote are distinct curves; increasing capital at fixed post-money lowers implied pre-money value. The selected 1–100% floor is a supported product input range, not a market convention or fundraising recommendation. The tracked holder can own zero without making the cohort constraint undefined.
+
+An explicit comparison band handles a rounded threshold, with a strict exception for a 100% floor: any positive issuance breaches that floor. A positive ceiling below numerical resolution is not reported as a zero economic limit. Analytical ceilings beyond the capital input cap remain separately identified. The focused chart includes current and ceiling points when within its supported range, never samples a zero-pre-money post-money endpoint, and labels its truncated vertical axis.
+
+The original financing calculation and schema-one payload are unchanged when the constraint is absent. The new UI defaults legacy links to a visible 90% floor while preserving every original case and round value. The schema-two payload validates its separate ownership version and exact fraction. Full-result API comparison checks the entire curve and metadata, and an edit invalidates completed or pending verification. An unmet constraint remains a valid analysis; invalid inputs clear stale results and disable exports.
+
+### Visual, print and review scope
+
+Native controls, keyboard range adjustment, complete text results and accessible SVG descriptions were checked at 320, 390, 768 and 1440 pixels. The real 975 × 612 landscape panel capture is used by the portfolio. The updated Financing brief has a third page for the exact ownership floor, curve, capital limit, basis interpretation, formula and reopening link. All four worked PDFs retain their dated financial assumptions and identify the current application version.
+
+A separate agent authored the independent share-ledger reference and browser harness and reviewed all twelve rendered PDF pages. Its source-bound [review record](verification/independent-review-3.6.json) discloses that role and reports no unresolved findings within its scope. This is an AI-assisted engineering review, not an external financial or accessibility audit.
+
+### Release gates and scope
+
+The HTTP check compares **all 69 public files plus the root alias**, exact health metadata, **12 complete valid API responses**, and **15 exact rejection responses**. It includes legacy calls, both quote bases, unmet and 100% floors, input-cap and resolution boundaries, and malformed constraints. Source bytes and asset membership remained unchanged during the run. Local checks use loopback HTTP without a certificate override; the same verifier uses ordinary system certificate verification for subsequent HTTPS deployment checks.
+
+`npm test`, the independent Python checks and `npm run build` remain required CI gates. The added ownership reference is included in CI. The build verified all six unchanged projections and staged all 69 public assets byte for byte. Native desktop delivery, GitHub publication and hosted browser/HTTPS observations are recorded separately after publishing; this local record does not claim those steps completed.
+
+## Version 3.5 historical local verification
 
 Application **3.5.0** adds Financing Lens within the existing Model: a hypothetical equity bridge, a separately entered primary-round price, ownership dilution, complete analysis transport and a shared browser/API result. It retains financial engine **3.0.0**, the **18 October 2026** valuation date and research cutoff **2026-10-18T09:22:26-07:00**. The financial engine, presets, company research register, original workbook and original financial-review PDF match the v3.4 bytes. The [local release record](verification/release-3.5-local.json) binds the implementation, checks and supplied artifacts to their SHA-256 hashes.
 

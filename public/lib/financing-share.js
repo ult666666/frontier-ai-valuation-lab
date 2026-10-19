@@ -1,6 +1,7 @@
 import {MODEL_VERSION,VALUATION_DATE} from './model.js';
 import {encodeScenario,decodeScenario} from './share.js';
-import {financingLens,FINANCING_VERSION} from './financing.js';
+import {FINANCING_VERSION} from './financing.js';
+import {financingAnalysis,OWNERSHIP_VERSION} from './ownership.js';
 
 const LIMIT=8192;
 const INPUT_KEYS=['rev2026','g1','g2','g3','m27','m30','m36','turns','wacc','tg','roic','stub','tax'];
@@ -19,19 +20,25 @@ function record(value,keys,label){
 
 /** An exact financing snapshot wraps the existing model case without changing it. */
 export function normalizeFinancing(snapshot){
-  const input=record(snapshot,['case','round'],'Financing Lens');
+  const hasOwnership=snapshot!==null&&typeof snapshot==='object'&&Object.hasOwn(snapshot,'ownership');
+  const input=record(snapshot,hasOwnership?['case','round','ownership']:['case','round'],'Financing Lens');
   const item=record(input.case,['company','scenario','assumptions','bridge'],'Model case');
   item.assumptions=record(item.assumptions,INPUT_KEYS,'Assumptions');
   if(item.bridge!==null)item.bridge=record(item.bridge,['cash','debt','otherClaims'],'Hypothetical bridge');
   const checked=decodeScenario(encodeScenario(item));
   const round=record(input.round,['basis','quote','primaryCapital','holderStake'],'Round terms');
-  const result=financingLens(checked.assumptions,{bridge:checked.bridge,round});
-  return {case:checked,round:{...result.round}};
+  const options={bridge:checked.bridge,round};
+  if(hasOwnership)options.ownership=input.ownership;
+  const result=financingAnalysis(checked.assumptions,options);
+  const normalized={case:checked,round:{...result.round}};
+  if(hasOwnership)normalized.ownership={...result.ownership.constraint};
+  return normalized;
 }
 
 export function encodeFinancing(snapshot){
   const item=normalizeFinancing(snapshot);
   const payload={schema:1,financing:FINANCING_VERSION,model:MODEL_VERSION,date:VALUATION_DATE,case:encodeScenario(item.case),round:item.round};
+  if(Object.hasOwn(item,'ownership')){payload.schema=2;payload.ownership=item.ownership;payload.ownershipVersion=OWNERSHIP_VERSION;}
   const token=btoa(JSON.stringify(payload)).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
   if(token.length>LIMIT)throw new Error('This financing analysis exceeds the share-link limit.');
   return token;
@@ -41,10 +48,15 @@ export function decodeFinancing(token){
   if(typeof token!=='string'||token.length<1||token.length>LIMIT||!/^[A-Za-z0-9_-]+$/.test(token))throw new Error('This financing link is incomplete or malformed.');
   let parsed;
   try{parsed=JSON.parse(atob(token.replaceAll('-','+').replaceAll('_','/')));}catch{throw new Error('This financing link does not contain readable analysis data.');}
-  const payload=record(parsed,['schema','financing','model','date','case','round'],'Shared financing');
-  if(payload.schema!==1||payload.financing!==FINANCING_VERSION)throw new Error('This financing link uses an unsupported calculation or sharing format.');
+  const schema=parsed!==null&&typeof parsed==='object'?Object.getOwnPropertyDescriptor(parsed,'schema')?.value:undefined;
+  const fields=['schema','financing','model','date','case','round'];
+  if(schema===2)fields.push('ownership','ownershipVersion');
+  const payload=record(parsed,fields,'Shared financing');
+  if(![1,2].includes(payload.schema)||payload.financing!==FINANCING_VERSION||(payload.schema===2&&payload.ownershipVersion!==OWNERSHIP_VERSION))throw new Error('This financing link uses an unsupported calculation or sharing format.');
   if(payload.model!==MODEL_VERSION||payload.date!==VALUATION_DATE)throw new Error('This financing link belongs to a different financial model or research date. Use its matching release to reproduce it.');
-  return normalizeFinancing({case:decodeScenario(payload.case),round:payload.round});
+  const snapshot={case:decodeScenario(payload.case),round:payload.round};
+  if(payload.schema===2)snapshot.ownership=payload.ownership;
+  return normalizeFinancing(snapshot);
 }
 
 export function financingUrl(base,snapshot){

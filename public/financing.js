@@ -1,6 +1,8 @@
 import {APP_VERSION} from './lib/release.js';
 import {MODEL_VERSION,VALUATION_DATE} from './lib/model.js';
 import {financingLens,FINANCING_MAX_AMOUNT} from './lib/financing.js';
+import {financingAnalysis} from './lib/ownership.js';
+import {ownershipChart,OWNERSHIP_CHART_CSS} from './lib/ownership-chart.js';
 import {normalizeFinancing,financingUrl} from './lib/financing-share.js';
 import {createFinancingExport,createFinancingBrief} from './lib/financing-brief.js';
 import {financingNumber as number,financingMoney as money,financingPercent as percent,financingPercentagePoints as pp} from './lib/financing-format.js';
@@ -42,19 +44,36 @@ export function createFinancingLens({getCase,onOpenCase,getPresets,onTermsEdited
       <div class="financing-holder-card"><span class="eyebrow">The tracked position</span><div class="financing-holder-change">${metric('holderBefore','Before')}<span aria-hidden="true">→</span>${metric('holderAfter','After')}</div><p><strong data-financing-metric="holderDilution">—</strong> ownership reduction</p><p class="financing-muted">New investors own <strong data-financing-metric="newOwnership">—</strong> of the post-round pool.</p></div>
     </div>
     <p id="financing-holder-note" class="financing-note"></p>
+    <section id="ownership-frontier" class="ownership-frontier" tabindex="-1" aria-labelledby="ownership-heading">
+      <style>${OWNERSHIP_CHART_CSS}</style>
+      <div class="ownership-heading"><div><span class="eyebrow">Ownership frontier / A constraint you control</span><h4 id="ownership-heading">How much capital fits <br>your ownership limit?</h4></div><span class="financing-assumption-label">Hypothetical scenario</span></div>
+      <p id="ownership-context" class="ownership-context"></p>
+      <div class="ownership-layout">
+        <div class="ownership-visual"><div id="ownership-chart" class="ownership-chart"></div><div class="ownership-legend"><span><i class="ownership-current-key"></i>Current round</span><span><i class="ownership-floor-key"></i>Chosen minimum</span><span><i class="ownership-limit-key"></i>Capital limit</span></div><p id="ownership-basis-note" class="ownership-basis-note"></p></div>
+        <div class="ownership-controls"><label for="ownership-floor">Minimum share of starting stake retained <span>%</span></label><input id="ownership-floor" type="number" min="1" max="100" step="any" inputmode="decimal" value="90" aria-describedby="ownership-floor-meaning"><input id="ownership-floor-range" type="range" min="1" max="100" step="1" value="90" aria-label="Adjust the minimum share of starting stake retained" aria-describedby="ownership-floor-meaning"><p id="ownership-floor-meaning" class="ownership-floor-meaning"></p>
+          ${metric('ownershipCeiling','Maximum primary capital at this quote','ownership-ceiling')}
+          <p id="ownership-status" class="ownership-status" role="status"></p>
+          <div id="ownership-headroom-row" class="ownership-small-metric">${metric('ownershipHeadroom','Additional capital within your limit')}</div>
+          <div id="ownership-excess-row" class="ownership-small-metric" hidden>${metric('ownershipExcess','Capital above your limit')}</div>
+          <div class="ownership-small-metric">${metric('ownershipRetained','Starting stake retained in current round')}</div>
+        </div>
+      </div>
+      <p id="ownership-range-note" class="ownership-range-note" hidden></p>
+      <p class="ownership-scope-note">The entered quote and its basis stay fixed. This ownership constraint does not establish funding needs or the ability to raise capital.</p>
+    </section>
     <div class="financing-model-panel"><div class="financing-part-heading"><div><span class="eyebrow">04 / Reconcile to the model</span><h4>Keep price and value visible.</h4></div></div><p id="financing-bridge-prompt" class="financing-description">Enable the hypothetical equity bridge above to compare the round price with modeled equity. Undisclosed balances have not been treated as zero.</p><div id="financing-model-comparison" hidden><div id="financing-bridge-chart" class="financing-bridge-chart" role="group" aria-label="Operating enterprise value to hypothetical equity reconciliation"></div><div class="financing-comparison-grid">${metric('modelPreMoneyEquity','Modeled equity · before')}${metric('modelPostMoneyEquity','Modeled equity · after')}${metric('priceGap','Round pre-money − modeled equity')}${metric('priceGapPercent','Gap / modeled equity before')}</div><details class="financing-reconciliation"><summary>Why operating value stays the same</summary><table><tbody><tr><th scope="row">Operating EV before</th><td data-financing-metric="operatingEvBefore">—</td></tr><tr><th scope="row">Operating EV after retained proceeds</th><td data-financing-metric="operatingEvAfter">—</td></tr><tr><th scope="row">Operating EV implied by round price</th><td data-financing-metric="roundImpliedOperatingEv">—</td></tr><tr><th scope="row">Cash before / after</th><td id="financing-cash-line">—</td></tr></tbody></table><p>Operating EV = equity − cash + debt + other claims. Primary capital increases cash and equity by the same amount, so it cancels in this reconciliation. The financing quote remains independent of the fixed FCFF forecast.</p></details></div></div>
     <div class="financing-insight"><strong>Primary capital changes cash and ownership.</strong><p id="financing-insight-text">With a fixed operating forecast and retained proceeds, raising cash does not by itself increase operating enterprise value.</p></div>
     <div id="financing-warnings" class="financing-warnings" hidden></div>
     <div class="financing-actions"><button id="financing-verify" type="button" class="button button-dark" disabled>Verify through the API ↗</button><button id="financing-share" type="button" class="button button-outline" disabled>Copy financing link ↗</button><button id="financing-json" type="button" class="button button-outline" disabled>Financing JSON ↓</button><button id="financing-brief" type="button" class="button button-outline" disabled>Financing brief ↓</button></div>
     <p id="financing-api-status" class="financing-api-status" data-tone="idle" role="status">Browser calculation · API check available</p><p id="financing-status" class="financing-status" role="status"></p>
     <div id="financing-share-area" class="financing-share-area" hidden><label for="financing-share-url">Exact financing case link</label><textarea id="financing-share-url" rows="3" readonly spellcheck="false"></textarea></div>
-    <p class="financing-note">The financing link, JSON and brief preserve the complete operating case, bridge and round. The Model’s separate scenario exports and Casebook saves contain operating assumptions and bridge adjustments only.</p>
+    <p class="financing-note">The financing link, JSON and brief preserve the complete operating case, bridge, round and ownership floor. The Model’s separate scenario exports and Casebook saves contain operating assumptions and bridge adjustments only.</p>
     <details class="financing-scope"><summary>Method, sources &amp; scope</summary><p>One hypothetical primary priced round with equal participating economic rights, retained cash and zero fees. This is not either company’s reconstructed capitalization table. It excludes secondary transactions, SAFE or note conversions, option-pool increases, liquidation preferences, debt repayment and future rounds. Other claims are outside the equity ownership pool; do not subtract and count the same claim twice.</p><p>The forecast already includes its operating deficits. They are not subtracted again or converted into a recommended raise. A nonpositive modeled residual remains signed and does not represent a negative share price.</p><p><a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/valquestions/debttosubtract.htm" target="_blank" rel="noopener noreferrer">NYU Stern · Current claims and equity ↗</a> · <a href="https://www.ycombinator.com/blog/how-to-raise-a-seed-round" target="_blank" rel="noopener noreferrer">Y Combinator · Priced equity rounds ↗</a> · <a href="https://github.com/ult666666/frontier-ai-valuation-lab/blob/main/docs/FINANCING_LENS.md" target="_blank" rel="noopener noreferrer">Complete method ↗</a></p><p>Financial snapshot: ${VALUATION_DATE}. Financing method references reviewed 19 October 2026. All financing amounts are user assumptions.</p></details>
   </div>`;
   const $=selector=>root.querySelector(selector);
   const allMetrics=()=>[...root.querySelectorAll('[data-financing-metric]')];
   const buttons=['verify','share','json','brief'].map(name=>$(`#financing-${name}`));
-  let active=null,lastKey='',revision=0,controller=null,pending=false,stakeExact={display:'10',value:.1};
+  let active=null,lastKey='',revision=0,controller=null,pending=false,stakeExact={display:'10',value:.1},floorExact={display:'90',value:.9};
   function setMetric(name,value,format=money){for(const node of root.querySelectorAll(`[data-financing-metric="${name}"]`)){node.textContent=format(value);if(finite(value)){node.dataset.value=String(value);node.title=String(value);}else{delete node.dataset.value;node.removeAttribute('title');}}}
   function apiStatus(text,tone='idle'){$('#financing-api-status').textContent=text;$('#financing-api-status').dataset.tone=tone;}
   function invalidate(){revision++;controller?.abort();controller=null;pending=false;$('#financing-share-area').hidden=true;$('#financing-share-url').value='';apiStatus('Browser calculation · API check available');}
@@ -76,6 +95,28 @@ export function createFinancingLens({getCase,onOpenCase,getPresets,onTermsEdited
     return result;
   }
   function fillRound(round){$('#financing-basis').value=round.basis;$('#financing-quote').value=String(round.quote);$('#financing-capital').value=String(round.primaryCapital);const display=String(round.holderStake*100);$('#financing-stake').value=display;stakeExact={display,value:round.holderStake};}
+  function readOwnership(){
+    const input=$('#ownership-floor'),raw=input.value.trim(),value=raw===''||input.validity.badInput?NaN:Number(raw),bad=!finite(value)||value<1||value>100;
+    input.setAttribute('aria-invalid',String(bad));
+    if(bad)throw new Error('Enter a minimum retained starting stake from 1% through 100%. Blank values are not zero.');
+    $('#ownership-floor-range').value=String(value);
+    return {retentionFloor:raw===floorExact.display?floorExact.value:value/100};
+  }
+  function fillOwnership(ownership={retentionFloor:.9}){const display=String(ownership.retentionFloor*100);$('#ownership-floor').value=display;$('#ownership-floor-range').value=display;floorExact={display,value:ownership.retentionFloor};}
+  function renderFrontier(r){
+    const f=r.ownership,c=f.current,limit=f.ceiling,round=r.round;
+    $('#ownership-context').textContent=`${money(round.quote)} ${round.basis==='pre'?'pre-money':'post-money'} quote · ${money(round.primaryCapital)} current primary capital · ${percent(round.holderStake)} starting holder stake`;
+    $('#ownership-chart').innerHTML=ownershipChart(f,round);
+    $('#ownership-floor-meaning').textContent=`${percent(f.constraint.retentionFloor)} retained means a ${percent(round.holderStake)} starting stake stays at or above ${percent(c.holderFloor)} of the company.`;
+    setMetric('ownershipCeiling',limit.analyticalCapital);setMetric('ownershipRetained',c.retainedFraction,percent);setMetric('ownershipHeadroom',c.capitalHeadroom);setMetric('ownershipExcess',c.capitalExcess);
+    const exceeded=c.status==='below-floor',unresolved=limit.analyticalCapital===null;
+    $('#ownership-status').dataset.state=c.status;
+    $('#ownership-status').textContent=exceeded?'Current round exceeds your limit':c.status==='at-floor'?'Current round is at your limit':'Current round is within your limit';
+    $('#ownership-headroom-row').hidden=exceeded||unresolved;$('#ownership-excess-row').hidden=!exceeded;
+    $('#ownership-basis-note').textContent=round.basis==='pre'?'The pre-money price stays fixed as primary capital changes.':'The post-money price stays fixed; more primary capital leaves a lower pre-money price.';
+    const notes=[...f.warnings];
+    $('#ownership-range-note').textContent=notes.join(' ');$('#ownership-range-note').hidden=!notes.length;
+  }
   function drawOwnership(p){
     const bar=(name,holder,other,incoming)=>`<div class="financing-bar-caption"><span>${name}</span><span>Tracked holder ${escape(percent(holder))}</span></div><div class="financing-ownership-bar" role="img" aria-label="${name}: tracked holder ${escape(percent(holder))}, other existing holders ${escape(percent(other))}, new investors ${escape(percent(incoming))}"><span class="financing-holder-color" style="width:${holder*100}%"></span><span class="financing-existing-color" style="width:${other*100}%"></span><span class="financing-new-color" style="width:${incoming*100}%"></span></div>`;
     $('#financing-ownership-chart').innerHTML=bar('Before',p.holderBefore,1-p.holderBefore,0)+bar('After',p.holderAfter,p.otherExistingAfter,p.newOwnership);
@@ -96,6 +137,7 @@ export function createFinancingLens({getCase,onOpenCase,getPresets,onTermsEdited
     $('#financing-price-bar').innerHTML=`<span style="width:${p.existingOwnership*100}%"></span><span style="width:${p.newOwnership*100}%"></span>`;
     $('#financing-price-bar').setAttribute('aria-label',`Pre-money price ${money(p.preMoney)} plus primary capital ${money(p.primaryCapital)} equals post-money price ${money(p.postMoney)}.`);
     drawOwnership(p);
+    renderFrontier(r);
     $('#financing-holder-note').textContent=`At the assumed issue price, the tracked holder’s quoted stake is ${money(p.holderValueBefore)} before and after this round. Percentage dilution is not itself an investment return or a loss of that immediate quoted mark.`;
     $('#financing-model-comparison').hidden=!c;$('#financing-bridge-prompt').hidden=Boolean(c);
     for(const name of ['modelPreMoneyEquity','modelPostMoneyEquity','operatingEvBefore','operatingEvAfter','roundImpliedOperatingEv','priceGap'])setMetric(name,c?.[name]);
@@ -111,22 +153,25 @@ export function createFinancingLens({getCase,onOpenCase,getPresets,onTermsEdited
     for(const node of allMetrics()){node.textContent='—';delete node.dataset.value;node.removeAttribute('title');}
     $('#financing-error').textContent=message;$('#financing-error').hidden=false;$('#financing-status').textContent='Correct the inputs to calculate and export a complete financing case.';
     $('#financing-context').textContent='Complete the analysis inputs';$('#financing-price-bar').replaceChildren();$('#financing-price-bar').setAttribute('aria-label','Round price visualization unavailable');
-    for(const id of ['financing-ownership-chart','financing-bridge-chart'])$(`#${id}`).replaceChildren();
+    for(const id of ['financing-ownership-chart','financing-bridge-chart','ownership-chart'])$(`#${id}`).replaceChildren();
+    for(const id of ['ownership-context','ownership-floor-meaning','ownership-basis-note','ownership-range-note'])$(`#${id}`).textContent='';
+    $('#ownership-status').textContent='Complete the analysis inputs to inspect the ownership limit.';$('#ownership-status').dataset.state='unavailable';$('#ownership-range-note').hidden=true;
     $('#financing-model-comparison').hidden=true;$('#financing-bridge-prompt').hidden=false;$('#financing-holder-note').textContent='';$('#financing-cash-line').textContent='—';$('#financing-warnings').textContent='';$('#financing-warnings').hidden=true;
     $('#financing-insight-text').textContent='With a fixed operating forecast and retained proceeds, primary capital changes cash and ownership. Complete the inputs to inspect this scenario.';apiStatus('Complete the analysis inputs before API verification.');
   }
   function refresh({message}={}){
     try{
-      const snapshot=normalizeFinancing({case:getCase(),round:readRound()}),key=JSON.stringify(snapshot);
+      const snapshot=normalizeFinancing({case:getCase(),round:readRound(),ownership:readOwnership()}),key=JSON.stringify(snapshot);
       if(key===lastKey){if(message)$('#financing-status').textContent=message;return;}
       const previousCase=active?JSON.stringify(active.snapshot.case):null;invalidate();
-      active={snapshot,result:financingLens(snapshot.case.assumptions,{bridge:snapshot.case.bridge,round:snapshot.round})};lastKey=key;render();
+      active={snapshot,result:financingAnalysis(snapshot.case.assumptions,{bridge:snapshot.case.bridge,round:snapshot.round,ownership:snapshot.ownership})};lastKey=key;render();
       $('#financing-status').textContent=message||(previousCase&&previousCase!==JSON.stringify(snapshot.case)?'Operating case updated. Your hypothetical round terms are carried forward and recalculated.':'Hypothetical round calculated. Its complete inputs travel in the financing link and exports.');
     }catch(error){clear(error.message);}
   }
   function open(){document.getElementById('financing').scrollIntoView({block:'start',behavior:'instant'});document.getElementById('financing').focus({preventScroll:true});}
+  function openOwnership(){const panel=$('#ownership-frontier');panel.scrollIntoView({block:'start',behavior:'instant'});panel.focus({preventScroll:true});}
   function restore(snapshot,{message='Shared financing case restored and recalculated from its exact inputs.'}={}){
-    const checked=normalizeFinancing(snapshot);fillRound(checked.round);onOpenCase(checked.case);document.getElementById('bridge-details').open=checked.case.bridge!==null;refresh({message});open();
+    const checked=normalizeFinancing(snapshot);fillRound(checked.round);fillOwnership(checked.ownership);onOpenCase(checked.case);document.getElementById('bridge-details').open=checked.case.bridge!==null;refresh({message});open();
   }
   function example(){const presets=getPresets();if(!presets)return;restore({case:{company:'Anthropic',scenario:'Base',assumptions:{...presets.Anthropic.Base},bridge:{cash:20,debt:5,otherClaims:0}},round:{...DEFAULT_ROUND}},{message:'Hypothetical worked example loaded: Anthropic Base with assumed cash, debt and financing terms. These are not disclosed company balances or transaction terms.'});}
   async function verify(){
@@ -134,7 +179,7 @@ export function createFinancingLens({getCase,onOpenCase,getPresets,onTermsEdited
     controller?.abort();const requestController=new AbortController();controller=requestController;pending=true;setButtons(true);apiStatus('Checking the complete financing analysis through the API…','pending');
     const timer=setTimeout(()=>requestController.abort(),12000);
     try{
-      const response=await fetch(new URL('./api/valuation',import.meta.url),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'financing',assumptions:snapshot.case.assumptions,bridge:snapshot.case.bridge,round:snapshot.round}),signal:requestController.signal});
+      const response=await fetch(new URL('./api/valuation',import.meta.url),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'financing',assumptions:snapshot.case.assumptions,bridge:snapshot.case.bridge,round:snapshot.round,ownership:snapshot.ownership}),signal:requestController.signal});
       if(!response.ok)throw new Error(`Server verification unavailable (HTTP ${response.status}).`);
       const body=await response.json();if(start!==revision)return;
       if(body.appVersion!==APP_VERSION||body.modelVersion!==MODEL_VERSION||body.valuationDate!==VALUATION_DATE||!sameResult(expected,body.result))throw new Error('The server response did not match the complete financing analysis.');
@@ -143,14 +188,16 @@ export function createFinancingLens({getCase,onOpenCase,getPresets,onTermsEdited
     finally{clearTimeout(timer);if(start===revision){pending=false;controller=null;setButtons(Boolean(active));}}
   }
   function download(content,name,mime){const url=URL.createObjectURL(new Blob([content],{type:mime})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-  async function share(){if(!active)return;const start=revision,url=financingUrl(location.href,active.snapshot);$('#financing-share-url').value=url;$('#financing-share-area').hidden=false;let copied=false;try{await navigator.clipboard.writeText(url);copied=true;}catch{}if(start!==revision)return;$('#financing-status').textContent=copied?'Exact financing link copied. All model, bridge and round inputs are included.':'Your exact financing link is ready below. Select and copy it to share.';if(!copied){$('#financing-share-url').focus();$('#financing-share-url').select();}}
+  async function share(){if(!active)return;const start=revision,url=financingUrl(location.href,active.snapshot);$('#financing-share-url').value=url;$('#financing-share-area').hidden=false;let copied=false;try{await navigator.clipboard.writeText(url);copied=true;}catch{}if(start!==revision)return;$('#financing-status').textContent=copied?'Exact financing link copied. All model, bridge, round and ownership-floor inputs are included.':'Your exact financing link is ready below. Select and copy it to share.';if(!copied){$('#financing-share-url').focus();$('#financing-share-url').select();}}
   $('#financing-form').addEventListener('submit',event=>event.preventDefault());
   $('#financing-form').addEventListener('input',()=>{onTermsEdited();refresh();});
+  $('#ownership-floor').addEventListener('input',()=>{onTermsEdited();refresh();});
+  $('#ownership-floor-range').addEventListener('input',event=>{fillOwnership({retentionFloor:Number(event.target.value)/100});onTermsEdited();refresh();});
   $('#financing-basis').addEventListener('change',()=>{onTermsEdited();refresh();});
   document.getElementById('financing-example').addEventListener('click',example);
   $('#financing-use-model').addEventListener('click',()=>{const round=modeledRound();if(!round)return;onTermsEdited();$('#financing-quote').value=String(round.quote);refresh({message:'Modeled equity copied once into the round price. You can edit the round quote independently; later model changes do not silently reset it.'});});
   $('#financing-verify').addEventListener('click',verify);$('#financing-share').addEventListener('click',share);
   $('#financing-json').addEventListener('click',()=>{if(!active)return;download(JSON.stringify(createFinancingExport(active.snapshot,{baseUrl:location.href}),null,2)+'\n','Frontier_AI_Financing_Lens.json','application/json;charset=utf-8');$('#financing-status').textContent='Complete financing JSON downloaded, including the exact inputs, recalculated results and reopening link.';});
   $('#financing-brief').addEventListener('click',()=>{if(!active)return;download(createFinancingBrief(active.snapshot,{baseUrl:location.href}),'Frontier_AI_Financing_Lens.html','text/html;charset=utf-8');$('#financing-status').textContent='Standalone financing brief downloaded. Open it to review, or print it to PDF.';});
-  return {refresh,restore,example,open};
+  return {refresh,restore,example,open,openOwnership};
 }
