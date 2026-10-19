@@ -7,6 +7,7 @@ import { pathToFileURL } from 'node:url';
 
 const root = resolve(process.env.FRONTIER_PROJECT_ROOT || process.cwd());
 const { project, MODEL_VERSION, VALUATION_DATE } = await import(pathToFileURL(`${root}/public/lib/model.js`).href);
+const { APP_VERSION } = await import(pathToFileURL(`${root}/public/lib/release.js`).href);
 const { comparePair, stressPair } = await import(pathToFileURL(`${root}/public/lib/analytics.js`).href);
 const require = createRequire(`${root}/package.json`);
 const { chromium } = require(process.env.FRONTIER_PLAYWRIGHT_MODULE || `${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
@@ -26,7 +27,7 @@ const page = await context.newPage();
 page.on('pageerror', error => browserErrors.push(error.message));
 const numberAttr = async (selector, attribute = 'data-exp-value') => Number(await page.locator(selector).getAttribute(attribute));
 const setRange = (id, value) => page.locator(`#${id}`).fill(String(value));
-const wrapped = result => ({ appVersion: '3.1.0', modelVersion: MODEL_VERSION, valuationDate: VALUATION_DATE, result });
+const wrapped = result => ({ appVersion: APP_VERSION, modelVersion: MODEL_VERSION, valuationDate: VALUATION_DATE, result });
 
 try {
   await page.goto(baseUrl, { waitUntil: 'networkidle' });

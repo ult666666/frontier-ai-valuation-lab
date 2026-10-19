@@ -1,0 +1,66 @@
+{
+  "applicationVersion": "3.2.0",
+  "modelVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "status": "passed",
+  "verifiedAtUtc": "2026-10-19T02:50:37.779861+00:00",
+  "scope": "Local release validation. Production deployment evidence is attached to the v3.2.0 GitHub release.",
+  "node": {
+    "tests": 119,
+    "failed": 0,
+    "realHttp": true,
+    "command": "npm test"
+  },
+  "build": {
+    "passed": true,
+    "command": "npm run build"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "calculator": 57,
+    "guidedExperience": 75,
+    "scenarioPortability": 75,
+    "thesisLab": 78,
+    "entryAndReturn": 14,
+    "total": 299,
+    "pageErrors": 0,
+    "viewportWidths": [
+      360,
+      390,
+      768,
+      1440
+    ],
+    "thesisZoomPercent": 200,
+    "limits": "Local browser checks, not certification of every browser or assistive technology."
+  },
+  "independentPython": {
+    "forwardValidCases": 36,
+    "forwardInvalidCases": 73,
+    "thesisNumericalChecks": 1002,
+    "attributionComparisonPairs": 28,
+    "overflowHybridPairs": 2,
+    "directGridCells": 390,
+    "frontierEntries": 80,
+    "report": "thesis-reference.json"
+  },
+  "print": {
+    "comparisonExamplePages": 3,
+    "paper": "A4",
+    "visualReview": "All three pages reviewed: no clipping or overlap."
+  },
+  "portfolio": {
+    "tests": 13,
+    "caseStudiesReproduced": 4,
+    "focusedVisualWidths": [
+      390,
+      768,
+      1440
+    ]
+  },
+  "preservedFinancialSnapshotSha256": {
+    "public/downloads/Frontier_AI_Valuation_Model.xlsx": "0a692f43f8459ffb6a162f065c10912a5ca23738d55104b272f74dbecdf73438",
+    "public/downloads/Frontier_AI_Valuation_Review.pdf": "08c94a33ea36870ca05ba437077bcec9d308ad87b90a4a7e3b80806d16edec36",
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "applicationVersion": "3.2.0",
+  "modelVersion": "3.0.0",
+  "reviewedAtUtc": "2026-10-19T02:48:28.022626+00:00",
+  "status": "passed",
+  "scope": "Independent read-only reviews of portable state, generated briefs, API integration and Thesis Lab UI; numerical verification is recorded separately.",
+  "findings": [
+    {
+      "severity": "P2",
+      "issue": "A finite relative ratio or axis could overflow during percent formatting.",
+      "resolution": "Shift the scientific exponent when percent scaling would overflow. Two numerical regression tests and focused independent review passed."
+    },
+    {
+      "severity": "P2",
+      "issue": "Individually valid endpoints could have an overflowing comparison ratio during URL import.",
+      "resolution": "Preflight both comparison and landscape before changing existing UI state. A browser regression confirms prior valid cases survive rejection."
+    },
+    {
+      "severity": "P2",
+      "issue": "Mobile waterfall extrema labels were placed at padded domain edges.",
+      "resolution": "Place labels at the actual extrema coordinates. Focused Chromium check confirms exact endpoint and label alignment."
+    },
+    {
+      "severity": "P2",
+      "issue": "A delayed screen-reader announcement could describe a valid result after an invalid edit.",
+      "resolution": "Cancel and version pending announcements; announce analysis paused. Rapid edit regression and focused independent verification passed."
+    }
+  ],
+  "openConfirmedFindings": [],
+  "sourceSha256": {
+    "public/thesis.html": "248e130e4fcf2315d5c168909b4c53206f8cc146f04645d68a39f4611584257b",
+    "public/thesis.css": "5d76a1bcf935fc50381448df5a08e34727245f423f854e2cbc98812dec583607",
+    "public/thesis.js": "d06aec92ed5333ec0851321bac8a94c4ad2e5885c95db0f481fcdcdb9b8feb6d",
+    "public/lib/thesis.js": "a2ad37f4d9d12d7556efea1adbdcddb0424b2599700b15000b0dbbccc6c245e3",
+    "public/lib/thesis-share.js": "9c724b710c88747d252cd5e245867dc0e5287c40e2438db5d21db5ed8e577046",
+    "public/lib/thesis-brief.js": "0ea9dbc0c17cd2f6bde00e1991ff0aa678918807447f33bff08ea24a63085b6e",
+    "lib/http.js": "10b6b7e0b47cf0a626a83b8b621b96e363f9ec27cbbcb7f6fc59bf4dbf999a1b",
+    "public/app.js": "3e1eeb6eb732e06ee12a77323594acfefb0eda5dff364be0fff72a93b161982c"
+  }
+}

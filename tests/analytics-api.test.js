@@ -1,6 +1,7 @@
 import test, {describe,before,after} from 'node:test';
 import assert from 'node:assert/strict';
 import {createAppServer} from '../server.js';
+import {APP_VERSION} from '../public/lib/release.js';
 
 const fixture={rev2026:100,g1:.04,g2:.04,g3:.04,m27:.2,m30:.2,m36:.2,turns:2.5,wacc:.1,tg:.03,roic:.2,stub:-3,tax:.25};
 const assumptionsByCompany={Anthropic:{...fixture},OpenAI:{...fixture,rev2026:50,stub:-1.5}};
@@ -24,7 +25,7 @@ describe('analytics over the real HTTP route',()=>{
     assert.equal(response.headers.get('cache-control'),'no-store');
     assert.equal(response.headers.get('x-content-type-options'),'nosniff');
     const body=await response.json();
-    assert.equal(body.appVersion,'3.1.0');
+    assert.equal(body.appVersion,APP_VERSION);
     assert.equal(body.modelVersion,'3.0.0');
     assert.equal(body.valuationDate,'2026-10-18');
     return body.result;

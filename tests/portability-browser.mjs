@@ -10,6 +10,7 @@ const root = resolve(process.env.FRONTIER_PROJECT_ROOT || process.cwd());
 const require = createRequire(`${root}/package.json`);
 const { chromium } = require(process.env.FRONTIER_PLAYWRIGHT_MODULE || `${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
 const { project, bridgeEquity, MODEL_VERSION, VALUATION_DATE } = await import(pathToFileURL(`${root}/public/lib/model.js`).href);
+const { APP_VERSION } = await import(pathToFileURL(`${root}/public/lib/release.js`).href);
 const { decodeScenario, scenarioUrl } = await import(pathToFileURL(`${root}/public/lib/share.js`).href);
 const presets = JSON.parse(await readFile(`${root}/public/data/presets.json`, 'utf8'));
 const baseUrl = process.env.FRONTIER_BASE_URL || 'http://127.0.0.1:4321/';
@@ -139,7 +140,7 @@ try {
   check('Brief download has a descriptive HTML filename', /openai.*base.*edited.*-brief\.html$/.test(briefDownload.suggestedFilename()));
   check('Standalone briefing contains no executable script', !/<script\b|\son\w+\s*=/i.test(html));
   check('Standalone briefing contains the current EV', html.includes(money(project(edited).ev)));
-  check('Standalone briefing distinguishes application and model versions', html.includes('Financial engine 3.0.0 · Application 3.1.0'));
+  check('Standalone briefing distinguishes application and model versions', html.includes(`Financial engine ${MODEL_VERSION} · Application ${APP_VERSION}`));
   check('Standalone briefing includes the current hypothetical equity calculation', html.includes(money(bridgeEquity(project(edited).ev, bridge).equityValue)));
   const briefPage = track(await context.newPage());
   await briefPage.goto(pathToFileURL(briefPath).href, { waitUntil: 'load' });

@@ -1,10 +1,10 @@
 # Release verification
 
-This record distinguishes calculation checks, application interaction and deployment checks. Application 3.1.0 uses the unchanged financial engine 3.0.0 and 18 October 2026 research snapshot. A passing test establishes its stated behavior, not the completeness of private-company information.
+This record distinguishes calculation checks, application interaction and deployment checks. Application 3.2.0 uses the unchanged financial engine 3.0.0 and 18 October 2026 research snapshot. A passing test establishes its stated behavior, not the completeness of private-company information.
 
 ## Financial model and HTTP API
 
-`npm test` passed **63 tests** across financial regressions, shared analytics, real HTTP API actions, share encoding, standalone brief fidelity and release-asset checks. The original financial checks cover actual-date discounting, reinvestment, tax losses, negative continuation EV, accounting invariance, hypothetical equity bridges, invalid inputs, multiple reverse solutions and tangent roots. API tests exercise actual local HTTP requests, malformed payloads, the body-size limit, method/path boundaries and all six server actions.
+`npm test` passed **119 tests** across financial regressions, shared analytics, real HTTP API actions, share encoding, standalone brief fidelity and release-asset checks. The original financial checks cover actual-date discounting, reinvestment, tax losses, negative continuation EV, accounting invariance, hypothetical equity bridges, invalid inputs, multiple reverse solutions and tangent roots. API tests exercise actual local HTTP requests, malformed payloads, the body-size limit, method/path boundaries and all eight server actions.
 
 The new analytics tests distinguish first positive annual FCFF, sustained positive annual FCFF and cumulative recovery. They check signed composition, immutable paired transforms, explicit shock units and bounds, input rejection without clipping, independent fixture constants, invalid numeric ranges and undefined relative changes for nonpositive base EV. Share tests preserve all 13 full-precision inputs and the hypothetical bridge, reject incompatible model dates/versions and validate the full projection before restoration. Brief tests check current calculations, signed values, source escaping, safe URLs and script-free standalone output.
 
@@ -14,13 +14,41 @@ The independent constant-growth fixture returns **$200.31471864537804B EV**. It 
 
 An optional numerical exercise, `node scripts/check_reverse_stress.mjs`, recovered **11,203 supported positive forward targets** from 20,000 deterministic sampled scenarios. It found no missed known roots within `1e-6` early growth. See [reverse-stress.json](verification/reverse-stress.json). The core solver regression fixtures run in ordinary CI; the large exercise is supplementary evidence.
 
+## Thesis Lab calculation and independent review
+
+The new Node tests cover all 36 ordered pairs of the six presets, all 64 attribution combinations, an independent 720-order oracle, swapped and identical cases, isolated groups, equal EVs with offsetting contributions, negative EV and nonfinite endpoint/hybrid failures. Landscape checks cover direct model values, matrix orientation, invalid cells, axis bounds, tax kinks, exact endpoints, out-of-window targets and very small numerical scales. Comparison links preserve exact inputs, bridges and axes; script-free brief tests verify current forecasts, reconciliation, safe links and finite extreme percentage display.
+
+`python3 -B scripts/check_thesis_reference.py --output /tmp/thesis-reference.json` passed independently against the separate Python FCFF engine. Python enumerates permutations instead of JavaScript's weighted subsets, and solves affine margin segments across tax thresholds instead of using the production bisection routine. The [reference report](verification/thesis-reference.json) binds the tested source files and deterministic fixtures to SHA-256 hashes.
+
+| Independent coverage | Observed result |
+| --- | ---: |
+| Ordered preset comparisons / edited comparisons | 18 / 10 |
+| Finite endpoints with overflowing hybrids | 2, correctly unavailable |
+| Replacement orders / marginal steps | 20,160 / 120,960 |
+| Direct grid cells | 390: 341 valid, 49 invalid |
+| Target-frontier entries | 80: 37 solved, 25 above range, 5 below range, 13 invalid |
+| Numerical comparisons | 1,002, all passed |
+| Maximum EV difference | 1.82 × 10⁻¹² USD billions |
+| Maximum group-contribution difference | 4.55 × 10⁻¹³ USD billions |
+| Maximum recovered margin difference | 6.66 × 10⁻¹⁶ |
+
+Monetary comparison tolerances are absolute `1e-8` USD billions plus relative `2e-11`; recovered margins use absolute `2e-9`. Independent target revaluation uses absolute `1e-6` USD billions plus relative `2e-9`. Passing these deterministic cases does not establish forecast accuracy or scenario probabilities.
+
+The [independent review record](verification/thesis-review.json) documents four resolved defects: extreme percentage display, comparison validation before import mutation, mobile axis-label alignment, and stale screen-reader announcements after invalid input. The reviewer verified the two final UI fixes with focused Chromium reproducers. No confirmed finding remains open in that reviewed scope.
+
 ## Browser interaction and layout
 
-The application 3.1 guided comparison and stress experience passed **75 Chromium checks**, with no runtime errors and no horizontal page overflow at **360, 390, 768 and 1440 pixels**. The [experience checklist](verification/experience-browser.json) covers exact model points, signed FCFF geometry, value-component reconciliation, terminal shares above 100%, nonpositive EV, native year keyboard input, chapter keyboard navigation, all four shocks, server agreement, complete-result mismatch detection, stale-response cancellation, unavailable API fallback and exact stressed-case handoff. Reduced-motion behavior was tested. Actual desktop/tablet/mobile screenshots were inspected; a separate reviewer found and prompted a contrast improvement in the nonterminal bars.
+Thesis Lab passed **78 Chromium checks**, recorded in [thesis-browser.json](verification/thesis-browser.json). Coverage includes complete two-case payloads, precise import and sharing, full annual-row API mismatch detection, stale requests, negative/invalid states, editable windows, target and point application, keyboard selection, presenter mode, reduced motion and 360/390/768/1440px layouts. A 200% zoom check found no horizontal page overflow. The optional harness is `node tests/thesis-browser.mjs`.
+
+The separate [entry-and-return smoke](verification/thesis-entry-browser.json) passed **14 checks** using the actual new workbench button. A high-precision custom OpenAI case and hypothetical bridge survive the full workbench → Thesis Lab → shared comparison → downloaded brief → original workbench journey. It verifies both full analyses on the real API. Run `node tests/thesis-entry-browser.mjs`; this also accepts `FRONTIER_QA_OUTPUT` and can target a deployment. Browser certificate verification is enabled by default; any explicit testing override is recorded.
+
+The three existing browser harnesses below were rerun for this release: **207 checks passed**. Together with the new two harnesses, the release has **299 browser checks**. These are local Chromium results, not a claim about every browser or assistive technology. Actual desktop, mobile, presenter and portfolio captures were visually inspected. The comparison example PDF prints to **three A4 pages**; every page was reviewed for clipping, overlap and readable tables. The supplied [PDF](../public/downloads/Frontier_AI_Thesis_Comparison.pdf) and [standalone HTML](../public/downloads/Frontier_AI_Thesis_Comparison.html) describe their own exact sample window and carry the current application version.
+
+The guided comparison and stress experience was rechecked with application 3.2 and passed **75 Chromium checks**, with no runtime errors and no horizontal page overflow at **360, 390, 768 and 1440 pixels**. The [experience checklist](verification/experience-browser.json) covers exact model points, signed FCFF geometry, value-component reconciliation, terminal shares above 100%, nonpositive EV, native year keyboard input, chapter keyboard navigation, all four shocks, server agreement, complete-result mismatch detection, stale-response cancellation, unavailable API fallback and exact stressed-case handoff. Reduced-motion behavior was tested. Actual desktop/tablet/mobile screenshots were inspected; a separate reviewer found and prompted a contrast improvement in the nonterminal bars.
 
 Run the optional new experience harness against the started app with `node tests/experience-browser.mjs`. It accepts the same Playwright/browser environment options as the original harness.
 
-The separate sharing and briefing harness passed **75 checks** with no runtime errors. The [portability checklist](verification/portability-browser.json) records exact 13-input restoration in a fresh context, bridge preservation, high-precision and near-singular but finite values, invalid-projection rejection before mutation, newer URL fragments during asynchronous loading, stale clipboard feedback cancellation, manual-copy fallback and responsive layouts. Its standalone custom OpenAI brief printed to three A4 pages; all three rendered pages were inspected without clipping. Run `node tests/portability-browser.mjs` with the same optional browser configuration. These browser checks are separate from the 63 ordinary Node/HTTP tests.
+The separate sharing and briefing harness passed **75 checks** with no runtime errors. The [portability checklist](verification/portability-browser.json) records exact 13-input restoration in a fresh context, bridge preservation, high-precision and near-singular but finite values, invalid-projection rejection before mutation, newer URL fragments during asynchronous loading, stale clipboard feedback cancellation, manual-copy fallback and responsive layouts. Its standalone custom OpenAI brief printed to three A4 pages; all three rendered pages were inspected without clipping. Run `node tests/portability-browser.mjs` with the same optional browser configuration. These browser checks are separate from the 119 ordinary Node/HTTP tests.
 
 The original calculator regression was rerun after integration: **57 checks passed** in Chromium, with no browser runtime exceptions. The recorded checklist is [browser-checks.json](verification/browser-checks.json). The checks include:
 
@@ -44,7 +72,7 @@ node tests/browser-smoke.mjs
 
 ## Report and workbook
 
-The application 3.1 release preserves the exact reviewed workbook and PDF bytes. Their earlier authoring verification remains applicable; they were not regenerated for this presentation update.
+The application 3.2 release preserves the exact reviewed workbook and nine-page PDF bytes. Their earlier authoring verification remains applicable; they were not regenerated for this presentation update.
 
 The nine-page PDF was rendered and every page visually inspected for clipping, overlap, missing glyphs and table readability. The HTML and PDF share one content builder and consume the same dated model result snapshot. The report exposes source links, assumptions, cash-flow reconciliation, terminal diagnostics and review findings.
 
@@ -54,7 +82,7 @@ Read-only inspection confirms every saved formula cache, 19 source URLs and nati
 
 ## Deployment policy
 
-GitHub Actions runs financial/API/release checks, independent Python parity and the static staging build. Vercel runs the model/API/release test suite before building its public output. The runtime needs no secrets or paid data services. Production verification additionally requests the public page, health route, submitted valuation, errors and downloads; the deployed commit and outcome are recorded in the release notes.
+GitHub Actions runs financial/API/release checks, independent Python forward-model parity, independent attribution/frontier checks, and the static staging build. Vercel runs the model/API/release test suite before building its public output. The runtime needs no secrets or paid data services. `scripts/verify_thesis_http.py` checks actual HTTP routes, complete submitted API results, errors and reviewed asset hashes with ordinary TLS verification. Production verification additionally requests the public page, health route, submitted valuation, errors and downloads; the deployed commit and outcome are recorded in the release notes.
 
 ## Version 3.0 published deployment record
 

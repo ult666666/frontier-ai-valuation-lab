@@ -1,0 +1,71 @@
+// Optional real-browser smoke for the full workbench → Thesis Lab → workbench journey.
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {readFile,mkdir,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {project,MODEL_VERSION} from '../public/lib/model.js';
+import {APP_VERSION} from '../public/lib/release.js';
+import {scenarioUrl,decodeScenario} from '../public/lib/share.js';
+import {decodeThesis} from '../public/lib/thesis-share.js';
+
+const root=resolve(process.env.FRONTIER_PROJECT_ROOT||process.cwd());
+const require=createRequire(`${root}/package.json`);
+const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||`${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
+const presets=JSON.parse(await readFile(`${root}/data/presets.json`,'utf8'));
+const base=process.env.FRONTIER_BASE_URL||'http://127.0.0.1:4322/';
+const qa=resolve(process.env.FRONTIER_QA_OUTPUT||`${root}/qa-local/thesis-entry`);
+const ignoreHTTPSErrors=process.env.FRONTIER_BROWSER_IGNORE_TLS==='1';
+const executablePath=process.env.FRONTIER_CHROMIUM_EXECUTABLE||undefined;
+const browser=await chromium.launch({headless:true,executablePath,args:executablePath?['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']:[]});
+const context=await browser.newContext({viewport:{width:1440,height:1100},acceptDownloads:true,reducedMotion:'reduce',ignoreHTTPSErrors});
+const page=await context.newPage(),checks=[],browserErrors=[];
+page.on('pageerror',error=>browserErrors.push(error.message));
+const check=(name,actual,expected=true)=>{assert.deepEqual(actual,expected,name);checks.push(name);};
+const custom={company:'OpenAI',scenario:'Base',assumptions:{...presets.OpenAI.Base,rev2026:36.125,g1:.5737533333333333,wacc:.1375,m36:.265},bridge:{cash:10.25,debt:2.5,otherClaims:.75}};
+let failure;
+await mkdir(qa,{recursive:true});
+try{
+  await page.goto(scenarioUrl(base,custom),{waitUntil:'networkidle'});
+  await page.locator('#open-thesis:not([disabled])').waitFor();
+  check('Original workbench loads the exact custom EV',Number(await page.locator('[data-result-ev]').getAttribute('data-result-ev')),project(custom.assumptions).ev);
+  await page.locator('#bridge-details > summary').click();
+  await page.locator('#bridge-cash').fill('');
+  check('Incomplete enabled bridge disables Thesis Lab entry',await page.locator('#open-thesis').isDisabled());
+  await page.locator('#bridge-cash').fill('10.25');
+  await page.locator('#open-thesis').click();
+  await page.waitForURL(url=>url.pathname.endsWith('/thesis.html'));
+  await page.locator('[data-thesis-state="ready"]').waitFor();
+  check('Entry navigation carries all exact assumptions and bridge',decodeScenario(new URL(page.url()).hash.slice('#scenario='.length)),custom);
+  check('Alternative EV survives the real entry action exactly',Number(await page.locator('#alternative-ev').getAttribute('data-value')),project(custom.assumptions).ev);
+  check('Reference is the originating preset',Number(await page.locator('#reference-ev').getAttribute('data-value')),project(presets.OpenAI.Base).ev);
+  await page.locator('#thesis-share').click();
+  await page.locator('#thesis-share-area:not([hidden])').waitFor();
+  const pairLink=await page.locator('#thesis-share-url').inputValue();
+  const pair=decodeThesis(new URL(pairLink).hash.slice('#thesis='.length));
+  check('Shared alternative retains all 13 exact numbers and bridge',pair.alternative,{scenario:custom.scenario,assumptions:custom.assumptions,bridge:custom.bridge});
+  check('Shared reference retains its exact preset and separate bridge',pair.reference,{scenario:'Base',assumptions:presets.OpenAI.Base,bridge:null});
+  await page.locator('#thesis-verify').click();
+  await page.waitForFunction(()=>document.querySelector('#thesis-api-status').textContent.startsWith('Verified on server'),{},{timeout:20000});
+  checks.push('Real API verifies both complete imported-case analyses');
+  const pending=page.waitForEvent('download');await page.locator('#thesis-brief').click();
+  const download=await pending;await download.saveAs(`${qa}/comparison.html`);
+  const brief=await readFile(`${qa}/comparison.html`,'utf8');
+  check('Downloaded comparison contains the exact current alternative EV',brief.includes(`data-alternative-ev="${project(custom.assumptions).ev}"`));
+  check('Downloaded comparison is script-free',!/<script\b|\son\w+=/i.test(brief));
+  await page.locator('#alternative-open').click();
+  await page.waitForURL(url=>url.pathname.endsWith('/index.html'));
+  await page.locator('#share-scenario:not([disabled])').waitFor();
+  await page.locator('#share-scenario').click();
+  await page.locator('#share-link-area:not([hidden])').waitFor();
+  const returned=decodeScenario(new URL(await page.locator('#share-url').inputValue()).hash.slice('#scenario='.length));
+  check('Actual return and resharing preserve the complete original case',returned,custom);
+  check('Returned hypothetical bridge is enabled',await page.locator('#bridge-enabled').isChecked());
+  check('Returned workbench EV is unchanged',Number(await page.locator('[data-result-ev]').getAttribute('data-result-ev')),project(custom.assumptions).ev);
+  check('No browser runtime errors occurred',browserErrors,[]);
+}catch(error){failure=error;}
+finally{
+  await writeFile(`${qa}/browser-checks.json`,JSON.stringify({status:failure?'failed':'passed',applicationVersion:APP_VERSION,modelVersion:MODEL_VERSION,testedAtUtc:new Date().toISOString(),baseUrl:base,browserVersion:browser.version(),browserTlsVerification:!ignoreHTTPSErrors,passed:checks.length,checks,browserErrors,error:failure?.message??null},null,2)+'\n');
+  await browser.close();
+}
+if(failure)throw failure;
+console.log(JSON.stringify({status:'passed',checks:checks.length,applicationVersion:APP_VERSION,browserErrors},null,2));

@@ -1,8 +1,8 @@
 {
   "name": "frontier-ai-valuation-lab",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "private": true,
-  "description": "An interactive Anthropic and OpenAI valuation story with paired stress tests, shareable scenarios and a deterministic API.",
+  "description": "A full stack valuation research demo with exact thesis attribution, target-value landscapes, portable comparisons and a deterministic API.",
   "type": "module",
   "engines": { "node": ">=24 <25" },
   "scripts": {

@@ -1,10 +1,10 @@
 # API contract
 
-The public service is stateless. Both deployment and local development use `lib/http.js`. No model-provider key is needed.
+The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **3.2.0** adds the Thesis Lab's `attribute` and `landscape` actions. No model-provider key is needed.
 
 ## GET /api/health
 
-Returns `status`, `appVersion`, `modelVersion` and `valuationDate`. This is service health, not a statement that financial evidence is complete. Application release `3.1.0` retains audited financial model `3.0.0` and valuation date `2026-10-18`.
+Returns `status`, `appVersion`, `modelVersion` and `valuationDate`. This is service health, not a statement that financial evidence is complete. Application release `3.2.0` retains financial engine `3.0.0` and valuation date `2026-10-18`.
 
 ## GET /api/valuation
 
@@ -22,14 +22,184 @@ Use `Content-Type: application/json`. Amounts are USD billions and model percent
 | `compare` | `assumptionsByCompany` | Both company projections, signed value components, and annual/cumulative FCFF milestones |
 | `stress` | `assumptionsByCompany`; optional complete `shocks` object | Baseline and jointly stressed comparisons, with signed EV changes |
 | `drivers` | `assumptions` | Four independent, fixed-size assumption changes and their EV effects |
+| `attribute` | `reference`, `alternative` | Both complete projections and exact grouped attribution of alternative EV minus reference EV |
+| `landscape` | `assumptions`, `rates`, `margins`, positive numeric `target` | EV matrix indexed by margin row and WACC column, invalid-point reasons, and a required-margin frontier |
 
-Success responses are `{appVersion, modelVersion, valuationDate, result}`. `appVersion` is an additive release identifier; the model/date/result fields retain their existing meanings. Validation failures are HTTP 400 with `{error}`. Unsupported media returns 415, more than 16 KiB returns 413, unsupported methods return 405, and unknown routes return 404. Each sensitivity axis contains 1–9 finite numbers.
+Success responses are `{appVersion, modelVersion, valuationDate, result}`. `appVersion` is an additive release identifier; the model/date/result fields retain their existing meanings. Validation failures are HTTP 400 with `{error}`. Unsupported media returns 415, more than 16 KiB returns 413, unsupported methods return 405, and unknown routes return 404. Each original `sensitivity` axis contains 1–9 finite numbers. Each `landscape` axis contains 2–21 finite, strictly increasing numbers.
 
 All supplied model inputs must be finite numeric values. Strings, booleans, missing fields and unexpected assumption names are rejected. No result is serialized with Infinity or NaN. POST responses use `Cache-Control: no-store`; requests are not persisted by application code. Hosting access logs remain subject to the hosting provider's normal operation.
 
-## Shared analytics
+## Thesis Lab analytics
 
-The browser and server import the same dependency-free `public/lib/analytics.js`, which exports `ANALYTICS_VERSION = '1.0.0'`, `comparePair`, `stressPair`, and `driverImpacts`. These functions call the unchanged `project` financial engine. They copy supplied assumptions and never change caller-owned objects. The new analytics actions reject unrecognized top-level request fields as well as unexpected nested fields.
+The browser and server share [`public/lib/thesis.js`](../public/lib/thesis.js), which exports `THESIS_VERSION = '1.0.0'`, the frozen `THESIS_GROUPS`, `compareTheses(reference, alternative)` and `valuationLandscape(assumptions, {rates, margins, target})`. These functions call the unchanged financial engine. They retain detached copies of submitted assumptions and do not mutate caller-owned objects.
+
+Every assumption object contains exactly these 13 fields:
+
+```text
+rev2026, g1, g2, g3, m27, m30, m36, turns, wacc, tg, roic, stub, tax
+```
+
+All model bounds apply, including `0 <= tg < wacc <= 0.60`, `tg < roic <= 1`, `g3 >= tg`, and a positive `m36`. Both new actions reject unknown top-level fields. Direct JavaScript calls also reject inherited, non-enumerable or accessor fields, symbol keys and non-plain records. Own enumerable data properties on ordinary or null-prototype objects satisfy the record contract.
+
+See the [Thesis Lab specification](THESIS_LAB.md) for the visitor flow and method, and the [independent reference report](verification/thesis-reference.json) for the separate Python/permutation verification and hashes of its tested sources. Reproduce that report with:
+
+```sh
+python3 scripts/check_thesis_reference.py --output /tmp/thesis-reference.json
+```
+
+### `attribute`: explain the difference between two cases
+
+Send `{action: 'attribute', reference, alternative}`. `reference` and `alternative` are complete **assumption objects**, not the scenario/bridge envelopes used by share links. The request contains no company or preset-label field; callers supply the two cases they intend to compare. The Thesis Lab interface associates both with the same company.
+
+This complete request compares the published Anthropic Base and Bull assumptions:
+
+```json
+{
+  "action": "attribute",
+  "reference": {
+    "rev2026": 53.26, "g1": 0.45, "g2": 0.24, "g3": 0.12,
+    "m27": -0.02, "m30": 0.18, "m36": 0.22, "turns": 2.5,
+    "wacc": 0.125, "tg": 0.03, "roic": 0.20, "stub": -3, "tax": 0.25
+  },
+  "alternative": {
+    "rev2026": 56.62, "g1": 0.65, "g2": 0.30, "g3": 0.15,
+    "m27": 0.05, "m30": 0.25, "m36": 0.30, "turns": 3.5,
+    "wacc": 0.105, "tg": 0.035, "roic": 0.25, "stub": -1, "tax": 0.25
+  }
+}
+```
+
+Inside the common response envelope, `result` has this shape. `Projection` denotes the complete [`project()` result](../public/lib/model.js), including all ten annual rows, stub PV, terminal calculation, signed EV, funding-deficit measure and warnings; it is not an EV-only summary.
+
+```text
+{
+  version: "1.0.0",
+  reference: { assumptions, result: Projection },
+  alternative: { assumptions, result: Projection },
+  evDelta: number,
+  evChangeRatio: number | null,
+  changedInputs: [{ key, reference, alternative, delta }],
+  attribution: {
+    status: "ok" | "unavailable",
+    method: "exact-grouped-shapley",
+    groupCount: 6,
+    coalitions: 64,
+    orderings: 720,
+    groups: [{ key, label, keys, contribution }],
+    sum: number | null,
+    residual: number | null,
+    reason: string | null
+  }
+}
+```
+
+`evDelta` is `alternative.result.ev - reference.result.ev`, in USD billions. `evChangeRatio` is `evDelta / reference.result.ev` when reference EV is positive, and `null` otherwise. Negative EV and signed dollar differences remain available. An invalid endpoint or nonfinite projection, EV difference or ratio rejects the request with HTTP 400.
+
+`changedInputs` contains only changed fields, in model-input order. Each `delta` is alternative minus reference in the input's native units. For example, a WACC change of `0.02` means two percentage points; it is not returned as `2`.
+
+#### Fixed groups and reconciliation
+
+The six groups are returned in this order:
+
+| Key | Label | Input keys |
+| --- | --- | --- |
+| `growth` | Revenue scale & growth | `rev2026`, `g1`, `g2` |
+| `margins` | Operating margins | `m27`, `m30`, `m36` |
+| `capital` | Capital efficiency | `turns` |
+| `continuation` | Long-run economics | `g3`, `wacc`, `tg`, `roic` |
+| `tax` | Tax rate | `tax` |
+| `stub` | Remaining-2026 cash flow | `stub` |
+
+The continuation inputs move together because the model requires terminal growth below WACC and terminal ROIC and no higher than late forecast growth. This preserves the linked constraints when combining ordinary valid endpoint assumptions.
+
+For each subset of groups, use that subset's alternative inputs and the remaining reference inputs. The method evaluates all **64 combinations**, including the two endpoints. Each group's marginal EV change receives weight `k! (5-k)! / 6!`, where `k` is the number of other groups already changed. This is equivalent to averaging its contribution across all **720 group replacement orders**. It is complete enumeration without sampling; results remain subject to floating-point arithmetic.
+
+When attribution is available, `status` is `"ok"`, `groups` contains six signed contributions, and `reason` is `null`:
+
+```text
+sum = sum of group.contribution
+residual = evDelta - sum
+reference.result.ev + sum + residual = alternative.result.ev
+```
+
+The residual is reported as calculated. It is not inserted into a group or used to normalize the bars. An unchanged group contributes zero. Reversing the two cases negates the group contributions, subject to rounding. Different inputs can have equal endpoint EVs while their nonzero group contributions offset.
+
+Finite endpoints can still produce an overflowing combined case. If a hybrid or the attribution arithmetic cannot produce finite results, the response retains the endpoint projections and change metrics but returns `status: "unavailable"`, `groups: []`, `sum: null`, `residual: null` and an explanatory `reason`. The HTTP response remains 200. Failed combinations are not skipped, clipped or assigned zero. The `coalitions` and `orderings` fields describe the fixed method even when calculation stops because it is unavailable.
+
+This is a **conditional allocation of a modeled difference**. Its counterfactual combinations are hypothetical model evaluations, not observed business outcomes. The selected reference, alternative and grouping determine the result; changing the partition can change the allocation. Contributions do not establish causality, probability, global importance or investor returns. Hypothetical cash, debt and other claims are outside this operating-EV attribution.
+
+### `landscape`: value WACC/margin combinations and solve a target
+
+Send `{action: 'landscape', assumptions, rates, margins, target}`. The submitted `assumptions` must itself be a complete, valid, numerically representable case, even when its current WACC or margin is outside the supplied axes.
+
+| Field | Contract |
+| --- | --- |
+| `rates` | Array of 2–21 finite, strictly increasing WACC fractions; no duplicates |
+| `margins` | Array of 2–21 finite, strictly increasing 2036 EBIT-margin fractions; no duplicates |
+| `target` | Finite operating EV with `0 < target <= 1e12`, in USD billions |
+
+Each cell evaluates `project({...assumptions, wacc: rate, m36: margin})`. The other eleven inputs remain fixed. Changing `m36` also changes the interpolated 2031–2036 margins and the terminal margin; WACC discounts every modeled cash flow, including the stub. No input is clipped or otherwise adjusted.
+
+Axis values may describe combinations outside the model's domain. Their cells become unavailable rather than causing an otherwise valid request to fail. Invalid axis structure, an invalid active case or an invalid target rejects the request with HTTP 400.
+
+This request holds the Anthropic Bull case's other inputs fixed:
+
+```json
+{
+  "action": "landscape",
+  "assumptions": {
+    "rev2026": 56.62, "g1": 0.65, "g2": 0.30, "g3": 0.15,
+    "m27": 0.05, "m30": 0.25, "m36": 0.30, "turns": 3.5,
+    "wacc": 0.105, "tg": 0.035, "roic": 0.25, "stub": -1, "tax": 0.25
+  },
+  "rates": [0.08, 0.10, 0.125, 0.16],
+  "margins": [0.05, 0.15, 0.25, 0.35, 0.50],
+  "target": 1000
+}
+```
+
+The result shape is:
+
+```text
+{
+  version: "1.0.0",
+  assumptions,
+  rates,
+  margins,
+  target,
+  values: (number | null)[][],
+  invalidReasons: (string | null)[][],
+  validCount: number,
+  minEv: number | null,
+  maxEv: number | null,
+  frontier: [{ wacc, status, margin, ev, residual, reason }]
+}
+```
+
+**Rows are margins; columns are WACC.** Thus `values[i][j]` uses `margins[i]` and `rates[j]`. This differs from the original `sensitivity` action, whose rows are WACC and columns are perpetual growth. `invalidReasons` has the same dimensions as `values`.
+
+A valid cell contains its signed EV and a `null` reason. A model-invalid or numerically overflowing cell contains `null` EV and a reason string. Negative or zero EV is valid and must not be conflated with `null`. `validCount` counts available cells. `minEv` and `maxEv` are extrema of those sampled cells, retaining negative values; both are `null` when no cell is available.
+
+#### Required-margin frontier
+
+`frontier` contains one entry per rate, in the supplied order. The first and last supplied margins bound the search. For this model with all other inputs fixed, EV increases with positive `m36`; the tax rule makes the response piecewise linear. The solver uses at most 80 bisection iterations and returns an exact supplied endpoint when its EV already equals the target.
+
+| `status` | Meaning | Numeric output fields |
+| --- | --- | --- |
+| `solved` | A margin in the supplied range reaches the target within numerical precision | Numeric `margin`, `ev`, `residual`; `reason: null` |
+| `below_range` | Target EV is below EV at the lowest supplied margin | `margin`, `ev`, `residual` are `null`; explanatory `reason` |
+| `above_range` | Target EV exceeds EV at the highest supplied margin | `margin`, `ev`, `residual` are `null`; explanatory `reason` |
+| `invalid` | A bounding/interior calculation is invalid, overflows, or the target cannot be resolved numerically | `margin`, `ev`, `residual` are `null`; explanatory `reason` |
+
+Each entry also supplies its numeric `wacc`. For a solved point, `ev` is the forward-model value at the returned margin and `residual = ev - target`. The final residual must be within `max(Number.MIN_VALUE, abs(target) * 1e-10)`. A very small positive target can be mathematically bracketed yet unresolvable after floating-point cancellation; it returns `invalid`, not a false solution.
+
+No solution is extrapolated outside the supplied margin range. An invalid bounding margin makes that rate's frontier entry unavailable even if some interior grid cells are valid. Clients should leave gaps through unavailable entries and treat connecting lines between solved rates as visual guides.
+
+The map is deterministic and conditional on the supplied assumptions. Grid counts are not scenario probabilities, sampled extrema are not global optima, and the frontier is not a financing equity price or a recommendation. In particular, a reference case with different fixed assumptions must not be plotted as though it belongs to this surface.
+
+## Shared paired analytics
+
+The application retains the 3.1 paired analytics. Browser and server import the same dependency-free `public/lib/analytics.js`, which exports `ANALYTICS_VERSION = '1.0.0'`, `comparePair`, `stressPair`, and `driverImpacts`. These functions call the unchanged `project` financial engine. They copy supplied assumptions and never change caller-owned objects. The `compare`, `stress` and `drivers` actions reject unrecognized top-level request fields as well as unexpected nested fields.
 
 ### Paired input
 
