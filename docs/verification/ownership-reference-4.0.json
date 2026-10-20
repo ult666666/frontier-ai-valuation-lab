@@ -1,0 +1,601 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "generatedAt": "2026-10-20T01:45:48.464991+00:00",
+  "ownershipVersion": "1.0.0",
+  "method": "Independent 100-digit Decimal.from_float share issuance ledger starting with 100 existing shares; inverse ceiling derived by pricing the maximum new share count at the requested floor.",
+  "comparisonPolicy": "At-floor uses 32 IEEE-754 epsilon times max(retained fraction, floor); a 100% floor permits exactly zero primary capital, so any positive issuance breaches it even when retained ownership rounds to one.",
+  "validScenarios": 25,
+  "invalidScenarios": 23,
+  "javascriptOnlyRejections": 8,
+  "numericComparisons": 2514,
+  "structuralComparisons": 10418,
+  "numericFieldPaths": [
+    "ceiling.analyticalCapital",
+    "ceiling.supportedCapital",
+    "constraint.retentionFloor",
+    "current.capitalExcess",
+    "current.capitalHeadroom",
+    "current.holderAfter",
+    "current.holderFloor",
+    "current.primaryCapital",
+    "current.retainedFraction",
+    "graph.points[0].holderAfter",
+    "graph.points[0].retainedFraction",
+    "graph.points[10].holderAfter",
+    "graph.points[10].retainedFraction",
+    "graph.points[11].holderAfter",
+    "graph.points[11].retainedFraction",
+    "graph.points[12].holderAfter",
+    "graph.points[12].retainedFraction",
+    "graph.points[13].holderAfter",
+    "graph.points[13].retainedFraction",
+    "graph.points[14].holderAfter",
+    "graph.points[14].retainedFraction",
+    "graph.points[15].holderAfter",
+    "graph.points[15].retainedFraction",
+    "graph.points[16].holderAfter",
+    "graph.points[16].retainedFraction",
+    "graph.points[17].holderAfter",
+    "graph.points[17].retainedFraction",
+    "graph.points[18].holderAfter",
+    "graph.points[18].retainedFraction",
+    "graph.points[19].holderAfter",
+    "graph.points[19].retainedFraction",
+    "graph.points[1].holderAfter",
+    "graph.points[1].retainedFraction",
+    "graph.points[20].holderAfter",
+    "graph.points[20].retainedFraction",
+    "graph.points[21].holderAfter",
+    "graph.points[21].retainedFraction",
+    "graph.points[22].holderAfter",
+    "graph.points[22].retainedFraction",
+    "graph.points[23].holderAfter",
+    "graph.points[23].retainedFraction",
+    "graph.points[24].holderAfter",
+    "graph.points[24].retainedFraction",
+    "graph.points[25].holderAfter",
+    "graph.points[25].retainedFraction",
+    "graph.points[26].holderAfter",
+    "graph.points[26].retainedFraction",
+    "graph.points[27].holderAfter",
+    "graph.points[27].retainedFraction",
+    "graph.points[28].holderAfter",
+    "graph.points[28].retainedFraction",
+    "graph.points[29].holderAfter",
+    "graph.points[29].retainedFraction",
+    "graph.points[2].holderAfter",
+    "graph.points[2].retainedFraction",
+    "graph.points[30].holderAfter",
+    "graph.points[30].retainedFraction",
+    "graph.points[31].holderAfter",
+    "graph.points[31].retainedFraction",
+    "graph.points[32].holderAfter",
+    "graph.points[32].retainedFraction",
+    "graph.points[33].holderAfter",
+    "graph.points[33].retainedFraction",
+    "graph.points[34].holderAfter",
+    "graph.points[34].retainedFraction",
+    "graph.points[35].holderAfter",
+    "graph.points[35].retainedFraction",
+    "graph.points[36].holderAfter",
+    "graph.points[36].retainedFraction",
+    "graph.points[37].holderAfter",
+    "graph.points[37].retainedFraction",
+    "graph.points[38].holderAfter",
+    "graph.points[38].retainedFraction",
+    "graph.points[39].holderAfter",
+    "graph.points[39].retainedFraction",
+    "graph.points[3].holderAfter",
+    "graph.points[3].retainedFraction",
+    "graph.points[40].holderAfter",
+    "graph.points[40].retainedFraction",
+    "graph.points[41].holderAfter",
+    "graph.points[41].retainedFraction",
+    "graph.points[42].holderAfter",
+    "graph.points[42].retainedFraction",
+    "graph.points[43].holderAfter",
+    "graph.points[43].retainedFraction",
+    "graph.points[44].holderAfter",
+    "graph.points[44].retainedFraction",
+    "graph.points[45].holderAfter",
+    "graph.points[45].retainedFraction",
+    "graph.points[46].holderAfter",
+    "graph.points[46].retainedFraction",
+    "graph.points[47].holderAfter",
+    "graph.points[47].retainedFraction",
+    "graph.points[48].holderAfter",
+    "graph.points[48].retainedFraction",
+    "graph.points[49].holderAfter",
+    "graph.points[49].retainedFraction",
+    "graph.points[4].holderAfter",
+    "graph.points[4].retainedFraction",
+    "graph.points[50].holderAfter",
+    "graph.points[50].retainedFraction",
+    "graph.points[5].holderAfter",
+    "graph.points[5].retainedFraction",
+    "graph.points[6].holderAfter",
+    "graph.points[6].retainedFraction",
+    "graph.points[7].holderAfter",
+    "graph.points[7].retainedFraction",
+    "graph.points[8].holderAfter",
+    "graph.points[8].retainedFraction",
+    "graph.points[9].holderAfter",
+    "graph.points[9].retainedFraction"
+  ],
+  "relativeTolerance": 3e-12,
+  "ownershipAbsoluteTolerance": 5e-16,
+  "maxAbsoluteError": 3.552713678800501e-15,
+  "maxAbsoluteErrorField": "Anthropic Bear.ceiling.analyticalCapital",
+  "maxRelativeError": 1.1191048088221606e-15,
+  "economicReconciliations": [
+    {
+      "label": "Anthropic Bear",
+      "basis": "pre",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Anthropic Base",
+      "basis": "pre",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Anthropic Bull",
+      "basis": "pre",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "OpenAI Bear",
+      "basis": "post",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "24.99999999999999444888487687421729788184165954589843749999999999999999999999999999999999999999999992",
+      "status": "at-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "OpenAI Base",
+      "basis": "post",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "24.99999999999999444888487687421729788184165954589843749999999999999999999999999999999999999999999992",
+      "status": "at-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "OpenAI Bull",
+      "basis": "post",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "24.99999999999999444888487687421729788184165954589843749999999999999999999999999999999999999999999992",
+      "status": "at-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Fixed post-money hand case",
+      "basis": "post",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "24.99999999999999444888487687421729788184165954589843749999999999999999999999999999999999999999999992",
+      "status": "at-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Fixed pre-money 80 percent hand case",
+      "basis": "pre",
+      "retentionFloor": 0.8,
+      "referenceEconomicCeiling": "62.49999999999998265276524023193001884572737969880568988226944855370382324203101500038486137805687775",
+      "status": "at-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Fixed post-money 80 percent hand case",
+      "basis": "post",
+      "retentionFloor": 0.8,
+      "referenceEconomicCeiling": "49.99999999999998889776975374843459576368331909179687500000000000000000000000000000000000000000000006",
+      "status": "at-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "No bridge is needed for retention",
+      "basis": "pre",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "A different model bridge leaves the frontier unchanged",
+      "basis": "pre",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "No tracked holder",
+      "basis": "pre",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "All existing equity is tracked",
+      "basis": "pre",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Zero issuance at 100 percent floor",
+      "basis": "pre",
+      "retentionFloor": 1,
+      "referenceEconomicCeiling": "0.0",
+      "status": "at-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 49,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Positive issuance breaches 100 percent floor",
+      "basis": "pre",
+      "retentionFloor": 1,
+      "referenceEconomicCeiling": "0.0",
+      "status": "below-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Rounded retention of one cannot hide dilution",
+      "basis": "pre",
+      "retentionFloor": 1,
+      "referenceEconomicCeiling": "0",
+      "status": "below-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Minimum supported floor",
+      "basis": "pre",
+      "retentionFloor": 0.01,
+      "referenceEconomicCeiling": "24749.99999999999947958295720695788250977859276062942644097851301121321813309181907286866675624680532",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Economic ceiling exceeds capital input limit",
+      "basis": "pre",
+      "retentionFloor": 0.01,
+      "referenceEconomicCeiling": "98999999999999.99791833182882783153003911437104251770576391405204485287253236727629147466702498722128",
+      "status": "above-floor",
+      "ceilingStatus": "input-cap-limited",
+      "graphStatus": "ready",
+      "graphPoints": 49,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Post-money quotation at input limit",
+      "basis": "post",
+      "retentionFloor": 0.01,
+      "referenceEconomicCeiling": "989999999999.9999997918331828827831486705690622329711914062500000000000000000000000000000000000000000",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 51,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "An entered round exceeds the selected floor",
+      "basis": "pre",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+      "status": "below-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Fractional quote, capital, holder and floor",
+      "basis": "pre",
+      "retentionFloor": 0.8123456789123455,
+      "referenceEconomicCeiling": "28.51889355482438526654689879566605345759221972525282061125480049351049626736864951582385915383093202",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 51,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Small representable positive financing",
+      "basis": "pre",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "1.111111111111110817093371894003932104275964877856440995940698469634080911826544762682111944400709369E-201",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 50,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Economic ceiling below number resolution",
+      "basis": "pre",
+      "retentionFloor": 0.9,
+      "referenceEconomicCeiling": "5.489618287124960247583960194214512610014695607792197104487307721776202553587822499145091333373688307E-325",
+      "status": "above-floor",
+      "ceilingStatus": "below-resolution",
+      "graphStatus": "unavailable",
+      "graphPoints": 0,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Positive ceiling cannot resolve the chosen floor",
+      "basis": "pre",
+      "retentionFloor": 0.6,
+      "referenceEconomicCeiling": "3.293770972274977265912156224260449371862394887287612404440873366960078841821058692788679633184232743E-324",
+      "status": "above-floor",
+      "ceilingStatus": "unresolved",
+      "graphStatus": "unavailable",
+      "graphPoints": 0,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    },
+    {
+      "label": "Tracked floor below number resolution",
+      "basis": "pre",
+      "retentionFloor": 0.01,
+      "referenceEconomicCeiling": "24749.99999999999947958295720695788250977859276062942644097851301121321813309181907286866675624680532",
+      "status": "above-floor",
+      "ceilingStatus": "resolved",
+      "graphStatus": "ready",
+      "graphPoints": 49,
+      "legacyExact": true,
+      "inputsUnchanged": true
+    }
+  ],
+  "rejectionEvidence": [
+    {
+      "label": "Floor below zero",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Zero retention floor",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Floor below the supported minimum",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Floor above one",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Percent supplied instead of a fraction",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Text retention floor",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Boolean retention floor",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Null retention floor",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Array retention floor",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Null ownership options",
+      "rejected": true,
+      "message": "Ownership constraint must be a plain object."
+    },
+    {
+      "label": "Array ownership options",
+      "rejected": true,
+      "message": "Ownership constraint must be a plain object."
+    },
+    {
+      "label": "Text ownership options",
+      "rejected": true,
+      "message": "Ownership constraint must be a plain object."
+    },
+    {
+      "label": "Empty ownership options",
+      "rejected": true,
+      "message": "Ownership constraint has missing or unsupported fields."
+    },
+    {
+      "label": "Unsupported ownership field",
+      "rejected": true,
+      "message": "Ownership constraint has missing or unsupported fields."
+    },
+    {
+      "label": "Negative primary capital",
+      "rejected": true,
+      "message": "Primary capital must be finite and between $0B and $1,000,000,000,000B."
+    },
+    {
+      "label": "Primary capital exceeds support cap",
+      "rejected": true,
+      "message": "Primary capital must be finite and between $0B and $1,000,000,000,000B."
+    },
+    {
+      "label": "Zero quotation",
+      "rejected": true,
+      "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+    },
+    {
+      "label": "Quotation exceeds support cap",
+      "rejected": true,
+      "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+    },
+    {
+      "label": "Unsupported quotation basis",
+      "rejected": true,
+      "message": "Round basis must be pre or post."
+    },
+    {
+      "label": "Holder fraction exceeds one",
+      "rejected": true,
+      "message": "The tracked holder stake must be a decimal fraction from 0 to 1."
+    },
+    {
+      "label": "Post-money quote equals proceeds",
+      "rejected": true,
+      "message": "Post-money equity value must exceed new primary capital so pre-money equity value remains positive."
+    },
+    {
+      "label": "Post-money subtraction exceeds supported precision",
+      "rejected": true,
+      "message": "The remaining pre-money value is too small relative to post-money value and capital to resolve at the supported numeric precision."
+    },
+    {
+      "label": "Positive incoming fraction underflows",
+      "rejected": true,
+      "message": "The ownership fractions exceed the supported numeric precision."
+    }
+  ],
+  "javascriptOnlyEvidence": [
+    {
+      "label": "NaN floor",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Infinite floor",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Negative infinite floor",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+    },
+    {
+      "label": "Inherited ownership field",
+      "rejected": true,
+      "message": "Ownership constraint must be a plain object."
+    },
+    {
+      "label": "Non-enumerable ownership field",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be an enumerable data property."
+    },
+    {
+      "label": "Getter ownership field",
+      "rejected": true,
+      "message": "Ownership constraint.retentionFloor must be an enumerable data property."
+    },
+    {
+      "label": "Symbol ownership field",
+      "rejected": true,
+      "message": "Ownership constraint has missing or unsupported fields."
+    },
+    {
+      "label": "Unknown analysis option",
+      "rejected": true,
+      "message": "Financing options has missing or unsupported fields."
+    }
+  ],
+  "scope": "All six operating presets plus fixed pre/post quotation hand cases, ownership endpoints, an input-cap-limited ceiling, a below-resolution positive ceiling, strict invalid inputs, and all returned chart coordinates. This verifies a simplified primary priced round, not company balances, cap tables, capital requirements, optimal financing or investment merit.",
+  "sourceHashes": {
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+    "public/lib/ownership.js": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "scripts/check_ownership_reference.py": "5e4cfc29e9d660d2c2e62bfc308c6e0f709ed619f5dbc309ade5a72d13e5597d"
+  },
+  "failures": []
+}

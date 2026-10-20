@@ -38,3 +38,9 @@ The cutoff is **18 October 2026, 09:22:26 America/Los_Angeles (16:22:26 UTC)**. 
 ## Attribution
 
 Charles Dai's independent portfolio project, developed with AI-assisted research, implementation and review. It demonstrates financial reasoning and software construction; it does not imply employment by, an engagement for, or endorsement from Anthropic, OpenAI or any investor. Source links are provided for inspection; third-party publications are not republished.
+
+## Capital Strategy Studio method extension
+
+Application 4.0.0 adds capital method 1.0.0 without changing the company research snapshot, six presets or original reviewed workbook/PDF. Its worked plans, capital objective, retained-stake floor, common bridge and analyst choice are explicitly hypothetical. New method research informs how to frame objectives, compare explicit alternatives, test scenario-dependent results and document judgment; it does not verify company operating assumptions.
+
+Primary method sources: [RAND's Robust Decision Making tool](https://www.rand.org/pubs/tools/TL320/tool/robust-decision-making.html), [Damodaran's Probabilistic Approaches](https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/probabilistic.pdf) and [HM Treasury's Green Book2026](https://www.gov.uk/government/publications/the-green-book--2/the-green-book-2026). RAND's caution on probabilistic interpretation of scenario counts is retained. This project implements a bounded finite comparison and does not claim a full RDM or probabilistic risk model. Public-sector appraisal conventions are not used to price private equity rounds.

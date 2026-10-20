@@ -1,0 +1,3732 @@
+{
+  "atUtc": "2026-10-20T01:45:49.797289+00:00",
+  "references": [
+    {
+      "name": "model",
+      "command": [
+        "python3",
+        "-B",
+        "tests/reference_parity.py"
+      ],
+      "exitCode": 0,
+      "logSha256": "1fc2ed9415be1e476e89617716feb7122d0c3905d600afb6c1981f03c7251ddd"
+    },
+    {
+      "name": "thesis",
+      "command": [
+        "python3",
+        "-B",
+        "scripts/check_thesis_reference.py",
+        "--output",
+        "qa-local/v4-0/references-final/thesis.json"
+      ],
+      "exitCode": 0,
+      "logSha256": "005063c2a347c2e114fec868fb65a0cc374adb6e84ca1e6b53cea25e9f9485bb"
+    },
+    {
+      "name": "horizon",
+      "command": [
+        "python3",
+        "-B",
+        "scripts/check_horizon_reference.py",
+        "--output",
+        "qa-local/v4-0/references-final/horizon.json"
+      ],
+      "exitCode": 0,
+      "logSha256": "49d55fe50e8546ff6cc4db1a53e40e17e342baecfbef886cf2058eaeb693d34f"
+    },
+    {
+      "name": "ownership",
+      "command": [
+        "python3",
+        "-B",
+        "scripts/check_ownership_reference.py",
+        "--output",
+        "qa-local/v4-0/references-final/ownership.json"
+      ],
+      "exitCode": 0,
+      "logSha256": "3428b51f88953551f7b131b8f3131cec17e984771d3b7ecf99c3f8e865bd2da3"
+    },
+    {
+      "name": "financing",
+      "command": [
+        "python3",
+        "-B",
+        "scripts/check_financing_reference.py",
+        "--output",
+        "qa-local/v4-0/references-final/financing.json"
+      ],
+      "exitCode": 0,
+      "logSha256": "757e95724e8d1b095c9e9f2b5fccc74ba0b1296ff8fdb66b09641cadb2a9f9fd"
+    },
+    {
+      "name": "capital",
+      "command": [
+        "python3",
+        "-B",
+        "scripts/check_capital_reference.py",
+        "--output",
+        "qa-local/v4-0/references-final/capital.json"
+      ],
+      "exitCode": 0,
+      "logSha256": "5019ed8eec47317274dbd80ae6a67538997cb1244125dd762b4c692c2566eb5f"
+    }
+  ],
+  "sourceFiles": {
+    "api/index.js": "fd092b0f01a486b02bab7138deefd407693d1153e09062cdaa4066622c338fc4",
+    "lib/http.js": "917591c4154a8451b45ec4a1e2e1e76548da9c514aa6d62bef3bc8b208c97d47",
+    "package.json": "8605800583a7e2b9f554a42b336e0128e2d0c659290bd7db36ab77dfa45d5767",
+    "public/app.js": "02461630761ae5588d860032db682a68e4ec273eeaf1757e53c79284449c4e21",
+    "public/assets/casebook-preview.png": "420b9ad3294b9fe05a4e7843d59c95b1a0dcec0fca380cb796f555c5ef48bdfd",
+    "public/assets/horizon-preview.png": "a7670a8b00411fbce6c60ce90d4eb3593879082f84c2796d1c40f6f99cd57abe",
+    "public/assets/mark.svg": "bff0e1b076a36f122e36b8c9deb2b895450ff6662b303faec639753e911ce5ae",
+    "public/assets/social-preview.png": "3210bc40fcfdf75138485143315548397f061e2ed2f685f1bccbf050a369e153",
+    "public/assets/thesis-preview.png": "5b294918d7ee2181ae1e284592620a8a3e4d312f05bc6975bc7a0325eded91d0",
+    "public/capital.css": "79e4ac905dbccdcf2b9e8bb8432f16af072ac0f2ae10498ef54919b882e8bf1a",
+    "public/capital.html": "489d4bb2125d174f14ec232892ec7431148a4ab9243017a3e2bd9359418a72a2",
+    "public/capital.js": "e714904d2bf301e30fc97101354b2b8fafe9fb02544a694425ba55d381e12009",
+    "public/casebook.css": "5f7df65a0fbb1074fe1728a19daa223336ceddc49ab4fd18edc86866ea7e8108",
+    "public/casebook.html": "d23d19d1e8028d260e60bdc5a0ac1d82e48313f6094ca77ee5e084f8b241f065",
+    "public/casebook.js": "c5768115b218962d0fd04db27715779b5d0f3cccff0ff67f9c6f8c5dc3545c22",
+    "public/data/current-results.json": "10ebc4ec4bd8bfe4440dcb1ab303aa4df26b542e4e60ddf4c174f9e72c738fa7",
+    "public/data/evidence.json": "5b24b888cabdbddbb4e0af221933b14fcb6c6cd8143d4f08293afe84ecff0289",
+    "public/data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "public/data/research.json": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65",
+    "public/downloads/Frontier_AI_Capital_Decision.html": "f747151a109fe425bf73f2cc9bf81a85fc2150df5bf3e7d2ebfff928c57d5552",
+    "public/downloads/Frontier_AI_Capital_Decision.json": "4d26443bd387a7dda0b8796f4977bb234c0697f0828755644a821aec5c608684",
+    "public/downloads/Frontier_AI_Capital_Decision.pdf": "2249a7176594ed3d2ae1b9e6a6406d14ddfbf37ec9b27573f4bc9b08bc1bc8e5",
+    "public/downloads/Frontier_AI_Capital_Strategy_Package.zip": "df82c7d6b3000bc26e7fa4c17dba4a7b853f6ff1719acdfd8dedf218725c9195",
+    "public/downloads/Frontier_AI_Financing_Lens.html": "932562c240b5babe863688d2c76ac253577a2f0c222645710f1e5bd558793b06",
+    "public/downloads/Frontier_AI_Financing_Lens.json": "e3945962a17f2bb1ffc35e8a77b9d7ff5bc9723a59c14e3559577527fe791e46",
+    "public/downloads/Frontier_AI_Financing_Lens.pdf": "f1c5ee4ef9bfcfdc40a952fa953b916e60e8a87a024b16311b63778b193ddbca",
+    "public/downloads/Frontier_AI_Financing_Lens_Package.zip": "8a98e0d40d97b942b7c8a0d9356b9740da88a26f3ab19578bb969d3e08539a58",
+    "public/downloads/Frontier_AI_Ownership_Frontier_Package.zip": "60b1ff1907ab893f43b7e9c894bb74cd16d8da95fe3a3b6956438f92c7e28410",
+    "public/downloads/Frontier_AI_Research_Brief.html": "4ee767f4327202ee3afae91d7160c631942563bf32ff2d2e659606f47fcb54c8",
+    "public/downloads/Frontier_AI_Research_Brief.pdf": "f0f91aa739ef15d9fa68ab19979f1aad26b571757a489ffd85f4598a7bf39883",
+    "public/downloads/Frontier_AI_Research_Casebook.json": "d4f76abc483f72d2274e26400a246fee91ebccfb6f4d9bd2a5c9bb7582523ef3",
+    "public/downloads/Frontier_AI_Thesis_Comparison.html": "f38acf98e55b83600e620179769b58603a9520b8703a413d2ef0f8df99efeaed",
+    "public/downloads/Frontier_AI_Thesis_Comparison.pdf": "1c7cf311365b1111a7a4540b5093112c62dc6f39d472fdfe2b882112beedce26",
+    "public/downloads/Frontier_AI_Valuation_Model.xlsx": "0a692f43f8459ffb6a162f065c10912a5ca23738d55104b272f74dbecdf73438",
+    "public/downloads/Frontier_AI_Valuation_Review.pdf": "08c94a33ea36870ca05ba437077bcec9d308ad87b90a4a7e3b80806d16edec36",
+    "public/downloads/Frontier_AI_Value_Horizon.html": "79d1b7e6d26adbf5d4b213a1e5d03e6a70a8303c3dfc5e7b918b2ef83dc0360c",
+    "public/downloads/Frontier_AI_Value_Horizon.json": "7a60e38a05c7e86abfaf31afe30eceaacc2f23ad059fde718cd20c2e261117ed",
+    "public/downloads/Frontier_AI_Value_Horizon.pdf": "9e13c0faf0c50bf232a311b6697faee00c6f547405b965ae42eed186d485c2d3",
+    "public/downloads/Frontier_AI_Value_Horizon_Package.zip": "40f15a73b220d75651abc8529ace281a337e32c6c6fe114d4f2e18926bba3995",
+    "public/evidence-context.css": "3b8936b1535a6871777915d9e9ab23e10cca83b705c36d4e5fb83536f3c91d08",
+    "public/evidence-context.js": "389c134163de9f4e8907f42d89f31aa239f268b99aa3f3d93e31f0d9d8a01dc0",
+    "public/experience.css": "a44cc5260391159ce398650cbf17302078208f9d3ad8e7c6ecb7961bf101b610",
+    "public/experience.js": "c391d13f757e721e8d9d64ab16b6d6db36fccd6add7742808005641c0852dec4",
+    "public/financing.css": "5727d40d139011c27669e73bb8f057e3b0eed2c0d138be683f977bfdfe4774b6",
+    "public/financing.js": "7840df26d977fbdb7df382dcca5dfed032861b04fb1d8be582b13fbecedc5321",
+    "public/horizon.css": "e39dc76af2e51f7f095d630afccd0ed3e3446074b3a39255339bbf83678dd7c9",
+    "public/horizon.html": "e353523c56d4e385b85fa9cae00e313ff59b452dda03ea9a0ad3078fe68254cd",
+    "public/horizon.js": "f21624bc302cdef7321c193e934c25a03b9173946ab7bc14064750f966200478",
+    "public/index.html": "86bd5d1d93e5816715dffb3fead06057450542cd1281ad09ab328e9b837dd4c5",
+    "public/lib/analytics.js": "ef35d80f9ad805de540dd0d9fda943ba969913cb9b0e3742c9a2e0d2ea00b75f",
+    "public/lib/briefing.js": "428afb688cd2b589e9f03033989460db63777aee3bb75bacdf30d30a181fee2a",
+    "public/lib/capital-brief.js": "a49176acf1d2752365cca33b624aa4683061fe1a3873a11b7fc352e8d7c4d590",
+    "public/lib/capital-chart.js": "9a27e26d2ce6fc61a8d17a61d0d3696418dadbec68794483c7390878c0b523fb",
+    "public/lib/capital-example.js": "5082804eceaaae470fb4e1f205ef9b7402f21c997d5ce995b497ad7b487cf916",
+    "public/lib/capital-record.js": "d194fd1c8ca756428f64dd3411c527060a76efa1a56b56b5685947fa654f45ac",
+    "public/lib/capital-share.js": "c857667b233397345303791d4e9added14fb8153c21d7f27811bde9221a010a7",
+    "public/lib/capital-strategy.js": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842",
+    "public/lib/casebook-brief.js": "49afda42f775b83e9419db4184e087981c2ca186c20588975cc2786bf0382aae",
+    "public/lib/casebook-store.js": "73beb3444dcb67f858f9c580e4e3c1e88bc246ee7e2af88d58a94119ad9d6819",
+    "public/lib/casebook.js": "89cf76f1cf4ffccb1d9eb3512a7c34308d16e02403a6a092983793a9aaec1f04",
+    "public/lib/evidence.js": "091c775ead94aed83c0195a9789e403bca75457453957371fb095080b8c16bb4",
+    "public/lib/financing-brief.js": "c90edbf24e172062c52226eef0bfd09d9adc325f991c9a3f5a7d7ef376336211",
+    "public/lib/financing-format.js": "8b14818b59819f5b1eb506318422cbbe8731a8fed174864111e7cfad862ac302",
+    "public/lib/financing-share.js": "3359e1d7f4e2b61ef0c6a1df85760ed036d070f338b0512b7068510cadfcf5d7",
+    "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+    "public/lib/horizon-brief.js": "40a85b484a9b8c8b501d8669aff2d324a65aab10e3495f6d863c35df10d54a56",
+    "public/lib/horizon-share.js": "062d578cd93957ca7733e25ed04192a4fc195381d0ba38f837930c8418b234a8",
+    "public/lib/horizon.js": "31e88f039b640a9627b1a5d78bc62c93dbd82d1cb50015b4606e2efb3923eec5",
+    "public/lib/journey.js": "442e60ec027b80cec25584afdab09a9783b3dabaa503c319cd8a7ebc4deb7dbe",
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/ownership-chart.js": "9662a49031c9012f4560e053e5244f79d19c49f63131a2577ac21e6b645f2813",
+    "public/lib/ownership.js": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7",
+    "public/lib/release.js": "ca5c5d7e2169ab76b4a0d2ca3af7c08d2b37bd467d1038d3c0912ef3ee87862a",
+    "public/lib/share.js": "658b1103278e1702a1f0616c9ff920f98d331b7dce552e0f97ce21bac9bc98ab",
+    "public/lib/thesis-brief.js": "0ea9dbc0c17cd2f6bde00e1991ff0aa678918807447f33bff08ea24a63085b6e",
+    "public/lib/thesis-share.js": "9c724b710c88747d252cd5e245867dc0e5287c40e2438db5d21db5ed8e577046",
+    "public/lib/thesis.js": "a2ad37f4d9d12d7556efea1adbdcddb0424b2599700b15000b0dbbccc6c245e3",
+    "public/portable.css": "936df47ea6b34a6cd756748888d89f0ba43f138b25076ad59d8ded35009ab2a8",
+    "public/report.html": "1ac8d7bf552060d5188c2a033020fb92c673b6fe6f90f4e7e1fec42d8c3cc335",
+    "public/shell.css": "37d2ae1c31521c82c94515655f07aad3d4aa36d74bd9ee0a3ef2e303dd2fc383",
+    "public/shell.js": "267ef0b5f4de0682bcd14d317ac156e922611f7c95ddad0c561070cd9e8b5db1",
+    "public/styles.css": "69cd753d8112fc438c9524d7972b927fce7417e26da6860a0adc3faecaef26b7",
+    "public/thesis.css": "5d76a1bcf935fc50381448df5a08e34727245f423f854e2cbc98812dec583607",
+    "public/thesis.html": "b8eea25bfd3beb948c5238433f300ae168133c1f7fe594781e8f003e9f5c14ab",
+    "public/thesis.js": "61aed0f4ceddc44f35aae51733258bac523cb8363bdc44348304effd3e568634",
+    "scripts/check_capital_reference.py": "d6255cab209ee0bba5c45a87f5b24e31c7561be981ef6aa737b6ed5887ea012b",
+    "scripts/check_financing_reference.py": "f70f3e7975b5ce568fd674f7d234cdfd631191037d686dcfcaae65b044865663",
+    "scripts/check_horizon_reference.py": "902e9bf7e74dcd97544d1d7ec68876761d7bf02d689d9af190957d9f06845935",
+    "scripts/check_ownership_reference.py": "5e4cfc29e9d660d2c2e62bfc308c6e0f709ed619f5dbc309ade5a72d13e5597d",
+    "scripts/check_thesis_reference.py": "fb39a663daba0339b50ecf610d14dc10fa808e54e086f5cccf731feadc4a790b",
+    "scripts/deliver_desktop.py": "31695c563a391924ce8a5bf121ea67f9c52f88ac5626718e5145ab12ed93f3f0",
+    "server.js": "501010c8c7c2dc94acf96244360f2dfeb3d0c6af051322dc1d5b9ea1b01924a0",
+    "tests/reference_parity.py": "92debc6aad8917dcee877d08f2197924fd9f94cac8c0df697303579c9b06714c"
+  },
+  "sourcesUnchanged": true,
+  "reports": {
+    "model": {
+      "file": "model-reference-4.0.json",
+      "sha256": "1fc2ed9415be1e476e89617716feb7122d0c3905d600afb6c1981f03c7251ddd",
+      "record": {
+        "status": "passed",
+        "valid_cases": 36,
+        "invalid_cases": 73,
+        "valuation_date": "2026-10-18",
+        "fixture_ev": 200.31471864537804,
+        "relative_tolerance": 1e-10,
+        "absolute_tolerance_usd_b": 1e-08
+      }
+    },
+    "thesis": {
+      "file": "thesis-reference-4.0.json",
+      "sha256": "cb0fb9e923ff107b7b86f92cf974442c84bea4cf0381bf2020219638bb833c09",
+      "record": {
+        "status": "pass",
+        "version": "1.0.0",
+        "testedAtUtc": "2026-10-20T01:45:47Z",
+        "runtime": {
+          "python": "3.12.14",
+          "node": "v24.19.0"
+        },
+        "command": "python scripts/check_thesis_reference.py",
+        "sourceHashes": {
+          "public/lib/thesis.js": "a2ad37f4d9d12d7556efea1adbdcddb0424b2599700b15000b0dbbccc6c245e3",
+          "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+          "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+          "scripts/reference_model.py": "8cbc2359afc02f0246e93e722febcb82df5f85e5014521249e8555825d3651d4",
+          "scripts/check_thesis_reference.py": "fb39a663daba0339b50ecf610d14dc10fa808e54e086f5cccf731feadc4a790b"
+        },
+        "sourceBinding": {
+          "pythonFilesUnchangedDuringVerification": true,
+          "nodeLoadedExpectedSources": true,
+          "nodeFilesUnchangedDuringVerification": true,
+          "pythonReferenceMatchesLoadedSource": true
+        },
+        "fixtureSha256": "99375b02f3d63887069cdb3313fd40b5bf4db68ceba4bc393e3a9ff70e09350b",
+        "fixtureGeneration": "Deterministic build_fixtures() in scripts/check_thesis_reference.py",
+        "source": "scripts/reference_model.py + full permutation enumeration + affine tax-segment roots",
+        "tolerances": {
+          "evAbsoluteUSD_B": 1e-08,
+          "evRelative": 2e-11,
+          "marginAbsolute": 2e-09,
+          "frontierTargetAbsoluteUSD_B": 1e-06,
+          "frontierTargetRelative": 2e-09
+        },
+        "counts": {
+          "presetOrderedPairs": 18,
+          "editedPairs": 10,
+          "overflowHybridPairs": 2,
+          "landscapes": 22,
+          "rejectedInputs": 5
+        },
+        "metrics": {
+          "maxEvAbsoluteError": 1.8189894035458565e-12,
+          "maxContributionAbsoluteError": 4.547473508864641e-13,
+          "maxContributionScaledError": 1.4210854715202004e-14,
+          "maxMarginAbsoluteError": 6.661338147750939e-16,
+          "maxFrontierEvResidual": 4.547473508864641e-13,
+          "permutations": 20160,
+          "marginalSteps": 120960,
+          "directGridCells": 390,
+          "validGridCells": 341,
+          "invalidGridCells": 49,
+          "frontierEntries": 80,
+          "numericChecks": 1002,
+          "frontierStatuses": {
+            "invalid": 13,
+            "solved": 37,
+            "above_range": 25,
+            "below_range": 5
+          },
+          "independentProjectionEvaluations": 1514
+        },
+        "interactionFixture": {
+          "oneAtATimeSum": -2414.3569866797798,
+          "actualDelta": 15249.702636377671,
+          "oneAtATimeReconciliationGap": -17664.059623057452,
+          "strongestTwoGroupInteractionAtReference": {
+            "groups": [
+              "growth",
+              "capital"
+            ],
+            "mixedDifference": 1962.9285406187787
+          }
+        },
+        "comparisonSummary": [
+          {
+            "name": "Anthropic/Bear->Bear",
+            "status": "ok",
+            "referenceEV": -13.161877608879369,
+            "alternativeEV": -13.161877608879369,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 0.0,
+              "capital": 0.0,
+              "continuation": 0.0,
+              "tax": 0.0,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "Anthropic/Bear->Base",
+            "status": "ok",
+            "referenceEV": -13.161877608879369,
+            "alternativeEV": 367.7712947995601,
+            "contributions": {
+              "growth": 82.87487491336721,
+              "margins": 150.64985810738722,
+              "capital": 46.88219413647129,
+              "continuation": 97.60604962572957,
+              "tax": 0.0,
+              "stub": 2.9201956254841956
+            }
+          },
+          {
+            "name": "Anthropic/Bear->Bull",
+            "status": "ok",
+            "referenceEV": -13.161877608879369,
+            "alternativeEV": 1884.3087784008526,
+            "contributions": {
+              "growth": 597.1815776961498,
+              "margins": 608.7535488470651,
+              "capital": 138.3686245524381,
+              "continuation": 548.2910248173383,
+              "tax": 0.0,
+              "stub": 4.875880096740614
+            }
+          },
+          {
+            "name": "Anthropic/Base->Bear",
+            "status": "ok",
+            "referenceEV": 367.7712947995601,
+            "alternativeEV": -13.161877608879369,
+            "contributions": {
+              "growth": -82.87487491336721,
+              "margins": -150.64985810738722,
+              "capital": -46.88219413647129,
+              "continuation": -97.60604962572957,
+              "tax": 0.0,
+              "stub": -2.9201956254841956
+            }
+          },
+          {
+            "name": "Anthropic/Base->Base",
+            "status": "ok",
+            "referenceEV": 367.7712947995601,
+            "alternativeEV": 367.7712947995601,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 0.0,
+              "capital": 0.0,
+              "continuation": 0.0,
+              "tax": 0.0,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "Anthropic/Base->Bull",
+            "status": "ok",
+            "referenceEV": 367.7712947995601,
+            "alternativeEV": 1884.3087784008526,
+            "contributions": {
+              "growth": 639.5144167897298,
+              "margins": 363.3997739786622,
+              "capital": 56.59207776142885,
+              "continuation": 455.0748210901654,
+              "tax": 0.0,
+              "stub": 1.9563939813062043
+            }
+          },
+          {
+            "name": "Anthropic/Bull->Bear",
+            "status": "ok",
+            "referenceEV": 1884.3087784008526,
+            "alternativeEV": -13.161877608879369,
+            "contributions": {
+              "growth": -597.1815776961498,
+              "margins": -608.7535488470651,
+              "capital": -138.3686245524381,
+              "continuation": -548.2910248173383,
+              "tax": 0.0,
+              "stub": -4.875880096740614
+            }
+          },
+          {
+            "name": "Anthropic/Bull->Base",
+            "status": "ok",
+            "referenceEV": 1884.3087784008526,
+            "alternativeEV": 367.7712947995601,
+            "contributions": {
+              "growth": -639.5144167897298,
+              "margins": -363.3997739786622,
+              "capital": -56.59207776142885,
+              "continuation": -455.0748210901654,
+              "tax": 0.0,
+              "stub": -1.9563939813062043
+            }
+          },
+          {
+            "name": "Anthropic/Bull->Bull",
+            "status": "ok",
+            "referenceEV": 1884.3087784008526,
+            "alternativeEV": 1884.3087784008526,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 0.0,
+              "capital": 0.0,
+              "continuation": 0.0,
+              "tax": 0.0,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "OpenAI/Bear->Bear",
+            "status": "ok",
+            "referenceEV": -68.49581061785655,
+            "alternativeEV": -68.49581061785655,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 0.0,
+              "capital": 0.0,
+              "continuation": 0.0,
+              "tax": 0.0,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "OpenAI/Bear->Base",
+            "status": "ok",
+            "referenceEV": -68.49581061785655,
+            "alternativeEV": 258.86259028034846,
+            "contributions": {
+              "growth": 37.92650426294829,
+              "margins": 164.17783157921275,
+              "capital": 42.51457142467892,
+              "continuation": 75.92570383856857,
+              "tax": 0.0,
+              "stub": 6.8137897927964595
+            }
+          },
+          {
+            "name": "OpenAI/Bear->Bull",
+            "status": "ok",
+            "referenceEV": -68.49581061785655,
+            "alternativeEV": 1505.6838953114666,
+            "contributions": {
+              "growth": 415.7293854029284,
+              "margins": 574.9498578220137,
+              "capital": 135.1929044474984,
+              "continuation": 437.5806220440534,
+              "tax": 0.0,
+              "stub": 10.726936212829308
+            }
+          },
+          {
+            "name": "OpenAI/Base->Bear",
+            "status": "ok",
+            "referenceEV": 258.86259028034846,
+            "alternativeEV": -68.49581061785655,
+            "contributions": {
+              "growth": -37.92650426294829,
+              "margins": -164.17783157921275,
+              "capital": -42.51457142467892,
+              "continuation": -75.92570383856857,
+              "tax": 0.0,
+              "stub": -6.8137897927964595
+            }
+          },
+          {
+            "name": "OpenAI/Base->Base",
+            "status": "ok",
+            "referenceEV": 258.86259028034846,
+            "alternativeEV": 258.86259028034846,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 0.0,
+              "capital": 0.0,
+              "continuation": 0.0,
+              "tax": 0.0,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "OpenAI/Base->Bull",
+            "status": "ok",
+            "referenceEV": 258.86259028034846,
+            "alternativeEV": 1505.6838953114666,
+            "contributions": {
+              "growth": 512.3504434965996,
+              "margins": 279.6786975519838,
+              "capital": 65.58736035623531,
+              "continuation": 385.292015663687,
+              "tax": 0.0,
+              "stub": 3.9127879626124202
+            }
+          },
+          {
+            "name": "OpenAI/Bull->Bear",
+            "status": "ok",
+            "referenceEV": 1505.6838953114666,
+            "alternativeEV": -68.49581061785655,
+            "contributions": {
+              "growth": -415.7293854029284,
+              "margins": -574.9498578220137,
+              "capital": -135.1929044474984,
+              "continuation": -437.5806220440534,
+              "tax": 0.0,
+              "stub": -10.726936212829308
+            }
+          },
+          {
+            "name": "OpenAI/Bull->Base",
+            "status": "ok",
+            "referenceEV": 1505.6838953114666,
+            "alternativeEV": 258.86259028034846,
+            "contributions": {
+              "growth": -512.3504434965996,
+              "margins": -279.6786975519838,
+              "capital": -65.58736035623531,
+              "continuation": -385.292015663687,
+              "tax": 0.0,
+              "stub": -3.9127879626124202
+            }
+          },
+          {
+            "name": "OpenAI/Bull->Bull",
+            "status": "ok",
+            "referenceEV": 1505.6838953114666,
+            "alternativeEV": 1505.6838953114666,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 0.0,
+              "capital": 0.0,
+              "continuation": 0.0,
+              "tax": 0.0,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "edits/all_six_interactions",
+            "status": "ok",
+            "referenceEV": -268.18194242849444,
+            "alternativeEV": 14981.520693949176,
+            "contributions": {
+              "growth": 2867.6346564470396,
+              "margins": 5198.751460678372,
+              "capital": 1838.7392661612218,
+              "continuation": 3812.1871413252516,
+              "tax": 1496.2864149562097,
+              "stub": 36.103696809576554
+            }
+          },
+          {
+            "name": "edits/all_six_interactions_reverse",
+            "status": "ok",
+            "referenceEV": 14981.520693949176,
+            "alternativeEV": -268.18194242849444,
+            "contributions": {
+              "growth": -2867.6346564470396,
+              "margins": -5198.751460678372,
+              "capital": -1838.7392661612218,
+              "continuation": -3812.1871413252516,
+              "tax": -1496.2864149562097,
+              "stub": -36.103696809576554
+            }
+          },
+          {
+            "name": "edits/negative_reference",
+            "status": "ok",
+            "referenceEV": -5306.017503979147,
+            "alternativeEV": 367.7712947995601,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 0.0,
+              "capital": 5673.788798778707,
+              "continuation": 0.0,
+              "tax": 0.0,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "edits/negative_alternative",
+            "status": "ok",
+            "referenceEV": 367.7712947995601,
+            "alternativeEV": -5306.017503979147,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 0.0,
+              "capital": -5673.788798778707,
+              "continuation": 0.0,
+              "tax": 0.0,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "edits/stub_only",
+            "status": "ok",
+            "referenceEV": 367.7712947995601,
+            "alternativeEV": 370.5800077211389,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 0.0,
+              "capital": 0.0,
+              "continuation": 0.0,
+              "tax": 0.0,
+              "stub": 2.808712921578774
+            }
+          },
+          {
+            "name": "edits/tax_kink_transition",
+            "status": "ok",
+            "referenceEV": -68.49581061785655,
+            "alternativeEV": -74.79303041560848,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 4.665256505237011,
+              "capital": 0.0,
+              "continuation": 0.0,
+              "tax": -10.962476302988946,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "edits/coupled_long_run",
+            "status": "ok",
+            "referenceEV": 2399.979585973548,
+            "alternativeEV": 569.7486491408106,
+            "contributions": {
+              "growth": 0.0,
+              "margins": 0.0,
+              "capital": 0.0,
+              "continuation": -1830.2309368327376,
+              "tax": 0.0,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "edits/high_precision",
+            "status": "ok",
+            "referenceEV": 367.7712947995601,
+            "alternativeEV": 367.77286380589453,
+            "contributions": {
+              "growth": 0.000129403670409071,
+              "margins": 0.0022256854020952233,
+              "capital": 0.0,
+              "continuation": -0.0007859622479031714,
+              "tax": 0.0,
+              "stub": -1.204901802035844e-07
+            }
+          },
+          {
+            "name": "edits/accounting_relabel",
+            "status": "ok",
+            "referenceEV": 367.7712947995601,
+            "alternativeEV": 367.7712947995601,
+            "contributions": {
+              "growth": -389.2355810059072,
+              "margins": 510.81676955116524,
+              "capital": -121.58118854525799,
+              "continuation": 0.0,
+              "tax": 0.0,
+              "stub": 0.0
+            }
+          },
+          {
+            "name": "edits/zero_ev_reference",
+            "status": "ok",
+            "referenceEV": 0.0,
+            "alternativeEV": 367.7712947995601,
+            "contributions": {
+              "growth": 177.85244465057394,
+              "margins": 257.5844502440543,
+              "capital": 0.0,
+              "continuation": -9.037810957551269,
+              "tax": -55.69184690468434,
+              "stub": -2.9359422328325917
+            }
+          },
+          {
+            "name": "extreme/overflow_hybrid",
+            "status": "unavailable",
+            "overflowingHybrids": 16
+          },
+          {
+            "name": "extreme/overflow_hybrid_reverse",
+            "status": "unavailable",
+            "overflowingHybrids": 16
+          }
+        ],
+        "landscapeSummary": [
+          {
+            "name": "grid/Anthropic/Bear",
+            "target": 158.2312059749498,
+            "validCells": 30,
+            "frontierStatuses": [
+              "invalid",
+              "solved",
+              "solved",
+              "solved",
+              "above_range",
+              "above_range"
+            ]
+          },
+          {
+            "name": "grid/Anthropic/Base",
+            "target": 1077.318590513741,
+            "validCells": 36,
+            "frontierStatuses": [
+              "invalid",
+              "solved",
+              "solved",
+              "solved",
+              "above_range",
+              "above_range",
+              "above_range"
+            ]
+          },
+          {
+            "name": "grid/Anthropic/Bull",
+            "target": 3781.4315859361386,
+            "validCells": 36,
+            "frontierStatuses": [
+              "invalid",
+              "solved",
+              "solved",
+              "solved",
+              "above_range",
+              "above_range",
+              "above_range"
+            ]
+          },
+          {
+            "name": "grid/OpenAI/Bear",
+            "target": 67.0847631365632,
+            "validCells": 30,
+            "frontierStatuses": [
+              "invalid",
+              "solved",
+              "solved",
+              "solved",
+              "above_range",
+              "above_range"
+            ]
+          },
+          {
+            "name": "grid/OpenAI/Base",
+            "target": 776.0380862484224,
+            "validCells": 36,
+            "frontierStatuses": [
+              "invalid",
+              "solved",
+              "solved",
+              "solved",
+              "above_range",
+              "above_range",
+              "above_range"
+            ]
+          },
+          {
+            "name": "grid/OpenAI/Bull",
+            "target": 2911.2375728473407,
+            "validCells": 36,
+            "frontierStatuses": [
+              "invalid",
+              "solved",
+              "solved",
+              "solved",
+              "above_range",
+              "above_range",
+              "above_range"
+            ]
+          },
+          {
+            "name": "frontier/tax_kink/0.1250000000",
+            "target": 872.4716819572778,
+            "validCells": 15,
+            "frontierStatuses": [
+              "solved",
+              "solved",
+              "solved"
+            ]
+          },
+          {
+            "name": "frontier/tax_kink/0.2500000000",
+            "target": 915.2759612170566,
+            "validCells": 15,
+            "frontierStatuses": [
+              "solved",
+              "solved",
+              "solved"
+            ]
+          },
+          {
+            "name": "frontier/tax_kink/0.5000000000",
+            "target": 998.3679632744085,
+            "validCells": 15,
+            "frontierStatuses": [
+              "solved",
+              "solved",
+              "above_range"
+            ]
+          },
+          {
+            "name": "frontier/tax_kink/0.2499999900",
+            "target": 915.2759577927143,
+            "validCells": 15,
+            "frontierStatuses": [
+              "solved",
+              "solved",
+              "solved"
+            ]
+          },
+          {
+            "name": "frontier/tax_kink/0.2500000100",
+            "target": 915.2759645407367,
+            "validCells": 15,
+            "frontierStatuses": [
+              "solved",
+              "solved",
+              "solved"
+            ]
+          },
+          {
+            "name": "frontier/lower_exact",
+            "target": 831.1337972608709,
+            "validCells": 6,
+            "frontierStatuses": [
+              "solved",
+              "below_range"
+            ]
+          },
+          {
+            "name": "frontier/upper_exact",
+            "target": 1144.6119291458365,
+            "validCells": 6,
+            "frontierStatuses": [
+              "solved",
+              "above_range"
+            ]
+          },
+          {
+            "name": "frontier/below_lower",
+            "target": 831.1336972608709,
+            "validCells": 6,
+            "frontierStatuses": [
+              "below_range",
+              "below_range"
+            ]
+          },
+          {
+            "name": "frontier/above_upper",
+            "target": 1144.6120291458365,
+            "validCells": 6,
+            "frontierStatuses": [
+              "above_range",
+              "above_range"
+            ]
+          },
+          {
+            "name": "frontier/near_lower",
+            "target": 831.1337976293745,
+            "validCells": 6,
+            "frontierStatuses": [
+              "solved",
+              "below_range"
+            ]
+          },
+          {
+            "name": "frontier/near_upper",
+            "target": 1160.8612583621198,
+            "validCells": 6,
+            "frontierStatuses": [
+              "solved",
+              "above_range"
+            ]
+          },
+          {
+            "name": "domain/nonpositive_values",
+            "target": 1,
+            "validCells": 9,
+            "frontierStatuses": [
+              "above_range",
+              "above_range",
+              "above_range"
+            ]
+          },
+          {
+            "name": "domain/zero_margin_and_invalid_rate",
+            "target": 1000,
+            "validCells": 2,
+            "frontierStatuses": [
+              "invalid",
+              "invalid",
+              "invalid"
+            ]
+          },
+          {
+            "name": "domain/near_discount_pole",
+            "target": 1000000000000,
+            "validCells": 6,
+            "frontierStatuses": [
+              "invalid",
+              "below_range",
+              "above_range"
+            ]
+          },
+          {
+            "name": "domain/overflow_column",
+            "target": 1000,
+            "validCells": 3,
+            "frontierStatuses": [
+              "invalid",
+              "solved"
+            ]
+          },
+          {
+            "name": "precision/tiny_target_at_normal_scale_ev_cancellation",
+            "target": 1e-300,
+            "validCells": 6,
+            "frontierStatuses": [
+              "invalid",
+              "invalid"
+            ]
+          }
+        ],
+        "failures": [],
+        "elapsedSeconds": 0.5602856639961828
+      }
+    },
+    "horizon": {
+      "file": "horizon-reference-4.0.json",
+      "sha256": "49d55fe50e8546ff6cc4db1a53e40e17e342baecfbef886cf2058eaeb693d34f",
+      "record": {
+        "schema": 1,
+        "status": "passed",
+        "generatedAt": "2026-10-20T01:45:48.153606+00:00",
+        "method": "Separate Python FCFF calculation; compensated term-by-term continuation sum; linear whole-year search; 100-digit Decimal.from_float precision-boundary recurrence.",
+        "scenarioCount": 39,
+        "requestCount": 165,
+        "ordinaryRequestCount": 159,
+        "curvePointCount": 3939,
+        "numericComparisons": 19974,
+        "captureRequirements": 156,
+        "targetRequirements": 159,
+        "absoluteTolerance": 1e-08,
+        "relativeTolerance": 1e-10,
+        "maxAbsoluteError": 1536.0,
+        "maxAbsoluteErrorCase": {
+          "label": "Adjacent WACC and growth.curve[83].excludedTerminalPv",
+          "actual": 4144096851120942000,
+          "expected": 4.1440968511209436e+18
+        },
+        "maxRelativeErrorNormalizedByAtLeastOne": 2.0062099329773607e-14,
+        "precisionBoundaryScenarios": 6,
+        "precisionBoundaryChecks": 8,
+        "precisionBoundaryMethod": "100-digit arithmetic on exact binary input rates and the returned frozen explicit/terminal PV components; repeated annual multiplication. This isolates the horizon boundary from financial-engine rounding and independently verifies regression years. precision_limit is a conservative output policy, not an assertion that no exact-real-number solution exists.",
+        "precisionBoundaryEvidence": [
+          {
+            "label": "Near-perpetuity Anthropic target",
+            "kind": "target",
+            "target": 367.77129479956005,
+            "fraction": null,
+            "reportedStatus": "precision_limit",
+            "firstWholeYear": 414,
+            "previousResidual": "-5.821871384087005708572433847198E-16",
+            "firstResidual": "3.067058525574764017298186238130E-15"
+          },
+          {
+            "label": "Near-perpetuity visible-chart target",
+            "kind": "target",
+            "target": 19.999341593234046,
+            "fraction": null,
+            "reportedStatus": "precision_limit",
+            "firstWholeYear": 69,
+            "previousResidual": "-1.032169373716409740618548289876E-15",
+            "firstResidual": "4.789949538602148743396379146908E-16"
+          },
+          {
+            "label": "Rounded 75-percent capture",
+            "kind": "capture",
+            "target": null,
+            "fraction": 0.75,
+            "reportedStatus": "precision_limit",
+            "firstWholeYear": 4,
+            "previousResidual": "-1.101905147558205098459351572080E-18",
+            "firstResidual": "9.250986876314085347855634715949E-2"
+          },
+          {
+            "label": "Just beyond the search cap",
+            "kind": "target",
+            "target": 160211.80740652094,
+            "fraction": null,
+            "reportedStatus": "precision_limit",
+            "firstWholeYear": 10001,
+            "previousResidual": "-3.356666042483680490709874668776E-11",
+            "firstResidual": "1.109321380079871657319638847912E+1"
+          },
+          {
+            "label": "Just beyond the search cap",
+            "kind": "capture",
+            "target": null,
+            "fraction": 0.5,
+            "reportedStatus": "precision_limit",
+            "firstWholeYear": 10001,
+            "previousResidual": "-9.580837475705999917196574023173E-17",
+            "firstResidual": "3.465615792311823208569191514794E-5"
+          },
+          {
+            "label": "Just within the search cap",
+            "kind": "target",
+            "target": 160211.80740652085,
+            "fraction": null,
+            "reportedStatus": "precision_limit",
+            "firstWholeYear": 10000,
+            "previousResidual": "-1.109398275045886271985843600610E+1",
+            "firstResidual": "9.811102663739380475580421997279E-12"
+          },
+          {
+            "label": "Just within the search cap",
+            "kind": "capture",
+            "target": null,
+            "fraction": 0.5,
+            "reportedStatus": "precision_limit",
+            "firstWholeYear": 10000,
+            "previousResidual": "-3.465856018824488993533888367538E-5",
+            "firstResidual": "3.970750323320047533393185616642E-17"
+          },
+          {
+            "label": "Target copied from a rounded curve point",
+            "kind": "target",
+            "target": 145.90725943195014,
+            "fraction": null,
+            "reportedStatus": "precision_limit",
+            "firstWholeYear": 10,
+            "previousResidual": "-3.697594315475679149238988654552E+0",
+            "firstResidual": "4.315274028656284902599530948342E-15"
+          }
+        ],
+        "scope": "All six presets, nine named arithmetic/boundary cases, 24 seeded valid cases and six additional Decimal precision fixtures. No source data, financial forecasts or probabilities are independently validated by this check.",
+        "sourceHashes": {
+          "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+          "public/lib/horizon.js": "31e88f039b640a9627b1a5d78bc62c93dbd82d1cb50015b4606e2efb3923eec5",
+          "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+          "scripts/reference_model.py": "8cbc2359afc02f0246e93e722febcb82df5f85e5014521249e8555825d3651d4",
+          "scripts/check_horizon_reference.py": "902e9bf7e74dcd97544d1d7ec68876761d7bf02d689d9af190957d9f06845935"
+        },
+        "failures": []
+      }
+    },
+    "ownership": {
+      "file": "ownership-reference-4.0.json",
+      "sha256": "3428b51f88953551f7b131b8f3131cec17e984771d3b7ecf99c3f8e865bd2da3",
+      "record": {
+        "schema": 1,
+        "status": "passed",
+        "generatedAt": "2026-10-20T01:45:48.464991+00:00",
+        "ownershipVersion": "1.0.0",
+        "method": "Independent 100-digit Decimal.from_float share issuance ledger starting with 100 existing shares; inverse ceiling derived by pricing the maximum new share count at the requested floor.",
+        "comparisonPolicy": "At-floor uses 32 IEEE-754 epsilon times max(retained fraction, floor); a 100% floor permits exactly zero primary capital, so any positive issuance breaches it even when retained ownership rounds to one.",
+        "validScenarios": 25,
+        "invalidScenarios": 23,
+        "javascriptOnlyRejections": 8,
+        "numericComparisons": 2514,
+        "structuralComparisons": 10418,
+        "numericFieldPaths": [
+          "ceiling.analyticalCapital",
+          "ceiling.supportedCapital",
+          "constraint.retentionFloor",
+          "current.capitalExcess",
+          "current.capitalHeadroom",
+          "current.holderAfter",
+          "current.holderFloor",
+          "current.primaryCapital",
+          "current.retainedFraction",
+          "graph.points[0].holderAfter",
+          "graph.points[0].retainedFraction",
+          "graph.points[10].holderAfter",
+          "graph.points[10].retainedFraction",
+          "graph.points[11].holderAfter",
+          "graph.points[11].retainedFraction",
+          "graph.points[12].holderAfter",
+          "graph.points[12].retainedFraction",
+          "graph.points[13].holderAfter",
+          "graph.points[13].retainedFraction",
+          "graph.points[14].holderAfter",
+          "graph.points[14].retainedFraction",
+          "graph.points[15].holderAfter",
+          "graph.points[15].retainedFraction",
+          "graph.points[16].holderAfter",
+          "graph.points[16].retainedFraction",
+          "graph.points[17].holderAfter",
+          "graph.points[17].retainedFraction",
+          "graph.points[18].holderAfter",
+          "graph.points[18].retainedFraction",
+          "graph.points[19].holderAfter",
+          "graph.points[19].retainedFraction",
+          "graph.points[1].holderAfter",
+          "graph.points[1].retainedFraction",
+          "graph.points[20].holderAfter",
+          "graph.points[20].retainedFraction",
+          "graph.points[21].holderAfter",
+          "graph.points[21].retainedFraction",
+          "graph.points[22].holderAfter",
+          "graph.points[22].retainedFraction",
+          "graph.points[23].holderAfter",
+          "graph.points[23].retainedFraction",
+          "graph.points[24].holderAfter",
+          "graph.points[24].retainedFraction",
+          "graph.points[25].holderAfter",
+          "graph.points[25].retainedFraction",
+          "graph.points[26].holderAfter",
+          "graph.points[26].retainedFraction",
+          "graph.points[27].holderAfter",
+          "graph.points[27].retainedFraction",
+          "graph.points[28].holderAfter",
+          "graph.points[28].retainedFraction",
+          "graph.points[29].holderAfter",
+          "graph.points[29].retainedFraction",
+          "graph.points[2].holderAfter",
+          "graph.points[2].retainedFraction",
+          "graph.points[30].holderAfter",
+          "graph.points[30].retainedFraction",
+          "graph.points[31].holderAfter",
+          "graph.points[31].retainedFraction",
+          "graph.points[32].holderAfter",
+          "graph.points[32].retainedFraction",
+          "graph.points[33].holderAfter",
+          "graph.points[33].retainedFraction",
+          "graph.points[34].holderAfter",
+          "graph.points[34].retainedFraction",
+          "graph.points[35].holderAfter",
+          "graph.points[35].retainedFraction",
+          "graph.points[36].holderAfter",
+          "graph.points[36].retainedFraction",
+          "graph.points[37].holderAfter",
+          "graph.points[37].retainedFraction",
+          "graph.points[38].holderAfter",
+          "graph.points[38].retainedFraction",
+          "graph.points[39].holderAfter",
+          "graph.points[39].retainedFraction",
+          "graph.points[3].holderAfter",
+          "graph.points[3].retainedFraction",
+          "graph.points[40].holderAfter",
+          "graph.points[40].retainedFraction",
+          "graph.points[41].holderAfter",
+          "graph.points[41].retainedFraction",
+          "graph.points[42].holderAfter",
+          "graph.points[42].retainedFraction",
+          "graph.points[43].holderAfter",
+          "graph.points[43].retainedFraction",
+          "graph.points[44].holderAfter",
+          "graph.points[44].retainedFraction",
+          "graph.points[45].holderAfter",
+          "graph.points[45].retainedFraction",
+          "graph.points[46].holderAfter",
+          "graph.points[46].retainedFraction",
+          "graph.points[47].holderAfter",
+          "graph.points[47].retainedFraction",
+          "graph.points[48].holderAfter",
+          "graph.points[48].retainedFraction",
+          "graph.points[49].holderAfter",
+          "graph.points[49].retainedFraction",
+          "graph.points[4].holderAfter",
+          "graph.points[4].retainedFraction",
+          "graph.points[50].holderAfter",
+          "graph.points[50].retainedFraction",
+          "graph.points[5].holderAfter",
+          "graph.points[5].retainedFraction",
+          "graph.points[6].holderAfter",
+          "graph.points[6].retainedFraction",
+          "graph.points[7].holderAfter",
+          "graph.points[7].retainedFraction",
+          "graph.points[8].holderAfter",
+          "graph.points[8].retainedFraction",
+          "graph.points[9].holderAfter",
+          "graph.points[9].retainedFraction"
+        ],
+        "relativeTolerance": 3e-12,
+        "ownershipAbsoluteTolerance": 5e-16,
+        "maxAbsoluteError": 3.552713678800501e-15,
+        "maxAbsoluteErrorField": "Anthropic Bear.ceiling.analyticalCapital",
+        "maxRelativeError": 1.1191048088221606e-15,
+        "economicReconciliations": [
+          {
+            "label": "Anthropic Bear",
+            "basis": "pre",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Anthropic Base",
+            "basis": "pre",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Anthropic Bull",
+            "basis": "pre",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "OpenAI Bear",
+            "basis": "post",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "24.99999999999999444888487687421729788184165954589843749999999999999999999999999999999999999999999992",
+            "status": "at-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "OpenAI Base",
+            "basis": "post",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "24.99999999999999444888487687421729788184165954589843749999999999999999999999999999999999999999999992",
+            "status": "at-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "OpenAI Bull",
+            "basis": "post",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "24.99999999999999444888487687421729788184165954589843749999999999999999999999999999999999999999999992",
+            "status": "at-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Fixed post-money hand case",
+            "basis": "post",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "24.99999999999999444888487687421729788184165954589843749999999999999999999999999999999999999999999992",
+            "status": "at-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Fixed pre-money 80 percent hand case",
+            "basis": "pre",
+            "retentionFloor": 0.8,
+            "referenceEconomicCeiling": "62.49999999999998265276524023193001884572737969880568988226944855370382324203101500038486137805687775",
+            "status": "at-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Fixed post-money 80 percent hand case",
+            "basis": "post",
+            "retentionFloor": 0.8,
+            "referenceEconomicCeiling": "49.99999999999998889776975374843459576368331909179687500000000000000000000000000000000000000000000006",
+            "status": "at-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "No bridge is needed for retention",
+            "basis": "pre",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "A different model bridge leaves the frontier unchanged",
+            "basis": "pre",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "No tracked holder",
+            "basis": "pre",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "All existing equity is tracked",
+            "basis": "pre",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Zero issuance at 100 percent floor",
+            "basis": "pre",
+            "retentionFloor": 1,
+            "referenceEconomicCeiling": "0.0",
+            "status": "at-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 49,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Positive issuance breaches 100 percent floor",
+            "basis": "pre",
+            "retentionFloor": 1,
+            "referenceEconomicCeiling": "0.0",
+            "status": "below-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Rounded retention of one cannot hide dilution",
+            "basis": "pre",
+            "retentionFloor": 1,
+            "referenceEconomicCeiling": "0",
+            "status": "below-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Minimum supported floor",
+            "basis": "pre",
+            "retentionFloor": 0.01,
+            "referenceEconomicCeiling": "24749.99999999999947958295720695788250977859276062942644097851301121321813309181907286866675624680532",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Economic ceiling exceeds capital input limit",
+            "basis": "pre",
+            "retentionFloor": 0.01,
+            "referenceEconomicCeiling": "98999999999999.99791833182882783153003911437104251770576391405204485287253236727629147466702498722128",
+            "status": "above-floor",
+            "ceilingStatus": "input-cap-limited",
+            "graphStatus": "ready",
+            "graphPoints": 49,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Post-money quotation at input limit",
+            "basis": "post",
+            "retentionFloor": 0.01,
+            "referenceEconomicCeiling": "989999999999.9999997918331828827831486705690622329711914062500000000000000000000000000000000000000000",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 51,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "An entered round exceeds the selected floor",
+            "basis": "pre",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "27.77777777777777092454923070891041337883941615144053267530309172921722896298697588529698908519173625",
+            "status": "below-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Fractional quote, capital, holder and floor",
+            "basis": "pre",
+            "retentionFloor": 0.8123456789123455,
+            "referenceEconomicCeiling": "28.51889355482438526654689879566605345759221972525282061125480049351049626736864951582385915383093202",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 51,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Small representable positive financing",
+            "basis": "pre",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "1.111111111111110817093371894003932104275964877856440995940698469634080911826544762682111944400709369E-201",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 50,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Economic ceiling below number resolution",
+            "basis": "pre",
+            "retentionFloor": 0.9,
+            "referenceEconomicCeiling": "5.489618287124960247583960194214512610014695607792197104487307721776202553587822499145091333373688307E-325",
+            "status": "above-floor",
+            "ceilingStatus": "below-resolution",
+            "graphStatus": "unavailable",
+            "graphPoints": 0,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Positive ceiling cannot resolve the chosen floor",
+            "basis": "pre",
+            "retentionFloor": 0.6,
+            "referenceEconomicCeiling": "3.293770972274977265912156224260449371862394887287612404440873366960078841821058692788679633184232743E-324",
+            "status": "above-floor",
+            "ceilingStatus": "unresolved",
+            "graphStatus": "unavailable",
+            "graphPoints": 0,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          },
+          {
+            "label": "Tracked floor below number resolution",
+            "basis": "pre",
+            "retentionFloor": 0.01,
+            "referenceEconomicCeiling": "24749.99999999999947958295720695788250977859276062942644097851301121321813309181907286866675624680532",
+            "status": "above-floor",
+            "ceilingStatus": "resolved",
+            "graphStatus": "ready",
+            "graphPoints": 49,
+            "legacyExact": true,
+            "inputsUnchanged": true
+          }
+        ],
+        "rejectionEvidence": [
+          {
+            "label": "Floor below zero",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Zero retention floor",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Floor below the supported minimum",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Floor above one",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Percent supplied instead of a fraction",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Text retention floor",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Boolean retention floor",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Null retention floor",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Array retention floor",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Null ownership options",
+            "rejected": true,
+            "message": "Ownership constraint must be a plain object."
+          },
+          {
+            "label": "Array ownership options",
+            "rejected": true,
+            "message": "Ownership constraint must be a plain object."
+          },
+          {
+            "label": "Text ownership options",
+            "rejected": true,
+            "message": "Ownership constraint must be a plain object."
+          },
+          {
+            "label": "Empty ownership options",
+            "rejected": true,
+            "message": "Ownership constraint has missing or unsupported fields."
+          },
+          {
+            "label": "Unsupported ownership field",
+            "rejected": true,
+            "message": "Ownership constraint has missing or unsupported fields."
+          },
+          {
+            "label": "Negative primary capital",
+            "rejected": true,
+            "message": "Primary capital must be finite and between $0B and $1,000,000,000,000B."
+          },
+          {
+            "label": "Primary capital exceeds support cap",
+            "rejected": true,
+            "message": "Primary capital must be finite and between $0B and $1,000,000,000,000B."
+          },
+          {
+            "label": "Zero quotation",
+            "rejected": true,
+            "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+          },
+          {
+            "label": "Quotation exceeds support cap",
+            "rejected": true,
+            "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+          },
+          {
+            "label": "Unsupported quotation basis",
+            "rejected": true,
+            "message": "Round basis must be pre or post."
+          },
+          {
+            "label": "Holder fraction exceeds one",
+            "rejected": true,
+            "message": "The tracked holder stake must be a decimal fraction from 0 to 1."
+          },
+          {
+            "label": "Post-money quote equals proceeds",
+            "rejected": true,
+            "message": "Post-money equity value must exceed new primary capital so pre-money equity value remains positive."
+          },
+          {
+            "label": "Post-money subtraction exceeds supported precision",
+            "rejected": true,
+            "message": "The remaining pre-money value is too small relative to post-money value and capital to resolve at the supported numeric precision."
+          },
+          {
+            "label": "Positive incoming fraction underflows",
+            "rejected": true,
+            "message": "The ownership fractions exceed the supported numeric precision."
+          }
+        ],
+        "javascriptOnlyEvidence": [
+          {
+            "label": "NaN floor",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Infinite floor",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Negative infinite floor",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be a finite fraction from 0.01 to 1."
+          },
+          {
+            "label": "Inherited ownership field",
+            "rejected": true,
+            "message": "Ownership constraint must be a plain object."
+          },
+          {
+            "label": "Non-enumerable ownership field",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be an enumerable data property."
+          },
+          {
+            "label": "Getter ownership field",
+            "rejected": true,
+            "message": "Ownership constraint.retentionFloor must be an enumerable data property."
+          },
+          {
+            "label": "Symbol ownership field",
+            "rejected": true,
+            "message": "Ownership constraint has missing or unsupported fields."
+          },
+          {
+            "label": "Unknown analysis option",
+            "rejected": true,
+            "message": "Financing options has missing or unsupported fields."
+          }
+        ],
+        "scope": "All six operating presets plus fixed pre/post quotation hand cases, ownership endpoints, an input-cap-limited ceiling, a below-resolution positive ceiling, strict invalid inputs, and all returned chart coordinates. This verifies a simplified primary priced round, not company balances, cap tables, capital requirements, optimal financing or investment merit.",
+        "sourceHashes": {
+          "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+          "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+          "public/lib/ownership.js": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7",
+          "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+          "scripts/check_ownership_reference.py": "5e4cfc29e9d660d2c2e62bfc308c6e0f709ed619f5dbc309ade5a72d13e5597d"
+        },
+        "failures": []
+      }
+    },
+    "financing": {
+      "file": "financing-reference-4.0.json",
+      "sha256": "757e95724e8d1b095c9e9f2b5fccc74ba0b1296ff8fdb66b09641cadb2a9f9fd",
+      "record": {
+        "schema": 1,
+        "status": "passed",
+        "generatedAt": "2026-10-20T01:45:48.597153+00:00",
+        "financingVersion": "1.0.0",
+        "method": "Independent Python FCFF plus an 80-digit Decimal.from_float share issuance ledger with 100 pre-round shares; post-round cash/claims reconciliation and unchanged-price holder marks.",
+        "validScenarios": 19,
+        "invalidScenarios": 31,
+        "numericComparisons": 3591,
+        "structuralComparisons": 596,
+        "numericFieldPaths": [
+          "assumptions.g1",
+          "assumptions.g2",
+          "assumptions.g3",
+          "assumptions.m27",
+          "assumptions.m30",
+          "assumptions.m36",
+          "assumptions.rev2026",
+          "assumptions.roic",
+          "assumptions.stub",
+          "assumptions.tax",
+          "assumptions.tg",
+          "assumptions.turns",
+          "assumptions.wacc",
+          "baseline.cagr",
+          "baseline.ev",
+          "baseline.implied_incremental_roic",
+          "baseline.peak_funding_need",
+          "baseline.pv_explicit",
+          "baseline.pv_stub",
+          "baseline.pvtv",
+          "baseline.rows[0].cumulative",
+          "baseline.rows[0].df",
+          "baseline.rows[0].ebit",
+          "baseline.rows[0].fcf",
+          "baseline.rows[0].growth",
+          "baseline.rows[0].margin",
+          "baseline.rows[0].nopat",
+          "baseline.rows[0].pv",
+          "baseline.rows[0].reinvestment",
+          "baseline.rows[0].revenue",
+          "baseline.rows[0].t",
+          "baseline.rows[0].tax",
+          "baseline.rows[0].year",
+          "baseline.rows[1].cumulative",
+          "baseline.rows[1].df",
+          "baseline.rows[1].ebit",
+          "baseline.rows[1].fcf",
+          "baseline.rows[1].growth",
+          "baseline.rows[1].margin",
+          "baseline.rows[1].nopat",
+          "baseline.rows[1].pv",
+          "baseline.rows[1].reinvestment",
+          "baseline.rows[1].revenue",
+          "baseline.rows[1].t",
+          "baseline.rows[1].tax",
+          "baseline.rows[1].year",
+          "baseline.rows[2].cumulative",
+          "baseline.rows[2].df",
+          "baseline.rows[2].ebit",
+          "baseline.rows[2].fcf",
+          "baseline.rows[2].growth",
+          "baseline.rows[2].margin",
+          "baseline.rows[2].nopat",
+          "baseline.rows[2].pv",
+          "baseline.rows[2].reinvestment",
+          "baseline.rows[2].revenue",
+          "baseline.rows[2].t",
+          "baseline.rows[2].tax",
+          "baseline.rows[2].year",
+          "baseline.rows[3].cumulative",
+          "baseline.rows[3].df",
+          "baseline.rows[3].ebit",
+          "baseline.rows[3].fcf",
+          "baseline.rows[3].growth",
+          "baseline.rows[3].margin",
+          "baseline.rows[3].nopat",
+          "baseline.rows[3].pv",
+          "baseline.rows[3].reinvestment",
+          "baseline.rows[3].revenue",
+          "baseline.rows[3].t",
+          "baseline.rows[3].tax",
+          "baseline.rows[3].year",
+          "baseline.rows[4].cumulative",
+          "baseline.rows[4].df",
+          "baseline.rows[4].ebit",
+          "baseline.rows[4].fcf",
+          "baseline.rows[4].growth",
+          "baseline.rows[4].margin",
+          "baseline.rows[4].nopat",
+          "baseline.rows[4].pv",
+          "baseline.rows[4].reinvestment",
+          "baseline.rows[4].revenue",
+          "baseline.rows[4].t",
+          "baseline.rows[4].tax",
+          "baseline.rows[4].year",
+          "baseline.rows[5].cumulative",
+          "baseline.rows[5].df",
+          "baseline.rows[5].ebit",
+          "baseline.rows[5].fcf",
+          "baseline.rows[5].growth",
+          "baseline.rows[5].margin",
+          "baseline.rows[5].nopat",
+          "baseline.rows[5].pv",
+          "baseline.rows[5].reinvestment",
+          "baseline.rows[5].revenue",
+          "baseline.rows[5].t",
+          "baseline.rows[5].tax",
+          "baseline.rows[5].year",
+          "baseline.rows[6].cumulative",
+          "baseline.rows[6].df",
+          "baseline.rows[6].ebit",
+          "baseline.rows[6].fcf",
+          "baseline.rows[6].growth",
+          "baseline.rows[6].margin",
+          "baseline.rows[6].nopat",
+          "baseline.rows[6].pv",
+          "baseline.rows[6].reinvestment",
+          "baseline.rows[6].revenue",
+          "baseline.rows[6].t",
+          "baseline.rows[6].tax",
+          "baseline.rows[6].year",
+          "baseline.rows[7].cumulative",
+          "baseline.rows[7].df",
+          "baseline.rows[7].ebit",
+          "baseline.rows[7].fcf",
+          "baseline.rows[7].growth",
+          "baseline.rows[7].margin",
+          "baseline.rows[7].nopat",
+          "baseline.rows[7].pv",
+          "baseline.rows[7].reinvestment",
+          "baseline.rows[7].revenue",
+          "baseline.rows[7].t",
+          "baseline.rows[7].tax",
+          "baseline.rows[7].year",
+          "baseline.rows[8].cumulative",
+          "baseline.rows[8].df",
+          "baseline.rows[8].ebit",
+          "baseline.rows[8].fcf",
+          "baseline.rows[8].growth",
+          "baseline.rows[8].margin",
+          "baseline.rows[8].nopat",
+          "baseline.rows[8].pv",
+          "baseline.rows[8].reinvestment",
+          "baseline.rows[8].revenue",
+          "baseline.rows[8].t",
+          "baseline.rows[8].tax",
+          "baseline.rows[8].year",
+          "baseline.rows[9].cumulative",
+          "baseline.rows[9].df",
+          "baseline.rows[9].ebit",
+          "baseline.rows[9].fcf",
+          "baseline.rows[9].growth",
+          "baseline.rows[9].margin",
+          "baseline.rows[9].nopat",
+          "baseline.rows[9].pv",
+          "baseline.rows[9].reinvestment",
+          "baseline.rows[9].revenue",
+          "baseline.rows[9].t",
+          "baseline.rows[9].tax",
+          "baseline.rows[9].year",
+          "baseline.stub_t",
+          "baseline.terminal_fcf",
+          "baseline.terminal_fcf_change",
+          "baseline.terminal_nopat",
+          "baseline.terminal_reinvestment_rate",
+          "baseline.terminal_revenue",
+          "baseline.terminal_t",
+          "baseline.tv",
+          "baseline.tv_share",
+          "bridge.adjustment",
+          "bridge.cash",
+          "bridge.debt",
+          "bridge.equityValue",
+          "bridge.ev",
+          "bridge.otherClaims",
+          "comparison.cashAfter",
+          "comparison.cashBefore",
+          "comparison.modelPostMoneyEquity",
+          "comparison.modelPreMoneyEquity",
+          "comparison.operatingEvAfter",
+          "comparison.operatingEvBefore",
+          "comparison.priceGap",
+          "comparison.priceGapPercent",
+          "comparison.roundImpliedOperatingEv",
+          "method.fees",
+          "pricing.existingOwnership",
+          "pricing.holderAfter",
+          "pricing.holderBefore",
+          "pricing.holderDilution",
+          "pricing.holderValueAfter",
+          "pricing.holderValueBefore",
+          "pricing.newOwnership",
+          "pricing.otherExistingAfter",
+          "pricing.postMoney",
+          "pricing.preMoney",
+          "pricing.primaryCapital",
+          "pricing.relativeDilution",
+          "round.holderStake",
+          "round.primaryCapital",
+          "round.quote"
+        ],
+        "relativeTolerance": 2e-10,
+        "modelAbsoluteTolerance": 1e-08,
+        "ownershipAbsoluteTolerance": 2e-16,
+        "maxAbsoluteError": 1.0516032489249483e-12,
+        "maxAbsoluteErrorField": "Anthropic Bear.comparison.priceGapPercent",
+        "maxRelativeErrorNormalizedByAtLeastOne": 1.0112206613753362e-14,
+        "economicReconciliations": [
+          {
+            "label": "Anthropic Bear",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Anthropic Base",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Anthropic Bull",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "OpenAI Bear",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "OpenAI Base",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "OpenAI Bull",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "No balance-sheet bridge",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": null
+          },
+          {
+            "label": "Equivalent post-money quotation",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Zero primary capital, pre-money",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Zero primary capital, post-money",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "No pre-round holding",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Sole pre-round holder",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Fractional proceeds and holding",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Small nonzero new ownership",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Small nonzero existing ownership",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Nonpositive model equity is retained",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Negative implied operating value",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "Maximum stated amounts",
+            "ownershipSum": 1.0,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          },
+          {
+            "label": "All thirteen edited operating inputs",
+            "ownershipSum": 1.0000000000000002,
+            "holderMarkPreserved": true,
+            "operatingEvUnchanged": true
+          }
+        ],
+        "rejectionEvidence": [
+          {
+            "label": "Unknown price basis",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Round basis must be pre or post."
+          },
+          {
+            "label": "Zero quote",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+          },
+          {
+            "label": "Negative quote",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+          },
+          {
+            "label": "Quote above limit",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+          },
+          {
+            "label": "Text quote",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+          },
+          {
+            "label": "Boolean quote",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+          },
+          {
+            "label": "Null quote",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+          },
+          {
+            "label": "Negative capital",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Primary capital must be finite and between $0B and $1,000,000,000,000B."
+          },
+          {
+            "label": "Capital above limit",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Primary capital must be finite and between $0B and $1,000,000,000,000B."
+          },
+          {
+            "label": "Text capital",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Primary capital must be finite and between $0B and $1,000,000,000,000B."
+          },
+          {
+            "label": "Stake below zero",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "The tracked holder stake must be a decimal fraction from 0 to 1."
+          },
+          {
+            "label": "Stake above one",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "The tracked holder stake must be a decimal fraction from 0 to 1."
+          },
+          {
+            "label": "Percent supplied as fraction",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "The tracked holder stake must be a decimal fraction from 0 to 1."
+          },
+          {
+            "label": "Boolean stake",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "The tracked holder stake must be a decimal fraction from 0 to 1."
+          },
+          {
+            "label": "Unknown round field",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Round has missing or unsupported fields."
+          },
+          {
+            "label": "Negative cash",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "cash must be between $0B and $10,000B."
+          },
+          {
+            "label": "Cash above bridge domain",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "cash must be between $0B and $10,000B."
+          },
+          {
+            "label": "Text debt",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "debt must be between $0B and $10,000B."
+          },
+          {
+            "label": "Boolean claims",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "otherClaims must be between $0B and $10,000B."
+          },
+          {
+            "label": "Unknown balance-sheet field",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Hypothetical bridge has missing or unsupported fields."
+          },
+          {
+            "label": "Post-money equals proceeds",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Post-money equity value must exceed new primary capital so pre-money equity value remains positive."
+          },
+          {
+            "label": "Post-money below proceeds",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Post-money equity value must exceed new primary capital so pre-money equity value remains positive."
+          },
+          {
+            "label": "Unresolved post-money subtraction",
+            "rejected": true,
+            "precisionRequired": true,
+            "message": "The remaining pre-money value is too small relative to post-money value and capital to resolve at the supported numeric precision."
+          },
+          {
+            "label": "New ownership underflows",
+            "rejected": true,
+            "precisionRequired": true,
+            "message": "The ownership fractions exceed the supported numeric precision."
+          },
+          {
+            "label": "Existing ownership underflows",
+            "rejected": true,
+            "precisionRequired": true,
+            "message": "The ownership fractions exceed the supported numeric precision."
+          },
+          {
+            "label": "Missing holder fraction",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Round has missing or unsupported fields."
+          },
+          {
+            "label": "Missing bridge claim input",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Hypothetical bridge has missing or unsupported fields."
+          },
+          {
+            "label": "Array supplied as a bridge",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Hypothetical bridge must be a plain object."
+          },
+          {
+            "label": "Missing explicit round object",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Round must be a plain object."
+          },
+          {
+            "label": "Invalid terminal discount boundary",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Require 0 \u2264 terminal growth < WACC \u2264 60%."
+          },
+          {
+            "label": "Unknown model assumption",
+            "rejected": true,
+            "precisionRequired": false,
+            "message": "Assumptions has missing or unsupported fields."
+          }
+        ],
+        "scope": "All six operating presets plus 13 ownership, price-basis, cash-bridge and precision cases. This checks the declared simplified primary-round calculation, not private company balances, security rights, a transaction price, financial forecasts or investment merit.",
+        "sourceHashes": {
+          "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+          "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+          "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+          "scripts/reference_model.py": "8cbc2359afc02f0246e93e722febcb82df5f85e5014521249e8555825d3651d4",
+          "scripts/check_financing_reference.py": "f70f3e7975b5ce568fd674f7d234cdfd631191037d686dcfcaae65b044865663"
+        },
+        "failures": []
+      }
+    },
+    "capital": {
+      "file": "capital-reference-4.0.json",
+      "sha256": "460eff21a9e85494190d0635de034c7f038c637eabb10a81bbf2a78f97facd14",
+      "record": {
+        "schema": 1,
+        "status": "passed",
+        "generatedAt": "2026-10-20T01:45:49.749540+00:00",
+        "capitalVersion": "1.0.0",
+        "method": "Independent 100-digit Decimal.from_float explicit FCFF and direct annual finite-continuation sum; Fraction.from_float 100-existing-share issuance ledger; exhaustive listed-scenario comparisons; inverse price bound derived from allowable new share count.",
+        "crossoverPrecision": "Exact binary entered quote and raise terms, before pre+raise or post-raise rounding; Fraction roots round once to binary64. Unresolved slope/forward-reconciliation policy is checked separately.",
+        "comparisonPolicy": "32 binary64 epsilons relative; positive issuance always fails a 100% retention floor. Regrets within the allocation comparison band normalize to zero. Scenario counts are not probabilities.",
+        "tolerance": {
+          "relative": 3e-12,
+          "minimumUlps": 8,
+          "moneyCancellationUlps": 128,
+          "moneyScale": "Maximum absolute DCF component sum, bridge component or primary capital in each snapshot.",
+          "exactRoundedCrossover": true
+        },
+        "validFixtures": 74,
+        "invalidFixtures": 38,
+        "javascriptOnlyRejections": 11,
+        "numericComparisons": 16635,
+        "structuralComparisons": 134357,
+        "exactCrossoverComparisons": 510,
+        "maxAbsoluteError": 4096.0,
+        "maxAbsoluteErrorField": "analytical interval beyond pre input cap.matrix[0].modelPostMoneyEquity",
+        "maxRelativeError": 2.156717319427848e-12,
+        "maxRelativeErrorField": "OpenAI finite 5.matrix[7].regret",
+        "maxAbsoluteErrorContext": {
+          "actual": 19421442601285935000,
+          "reference": 1.942144260128594e+19,
+          "relativeError": 2.109009142157542e-16,
+          "componentScale": 1.9421442501285937e+19,
+          "units": "USD billions or the named field unit"
+        },
+        "maxRelativeErrorContext": {
+          "actual": 0.05271290618259172,
+          "reference": 0.05271290618270541,
+          "absoluteError": 1.1368683772161603e-13,
+          "componentScale": 1578.191750118888,
+          "units": "USD billions or the named field unit"
+        },
+        "cases": [
+          {
+            "name": "Anthropic worked decision",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 8.591070252494973
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "Anthropic Bear alone",
+            "scenarios": 1,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "Anthropic Base alone",
+            "scenarios": 1,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "Anthropic Bull alone",
+            "scenarios": 1,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "Anthropic finite 0",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "Anthropic finite 1",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "Anthropic finite 5",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 2.9868184270818574
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "Anthropic finite 17",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 8.632317361612088
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "Anthropic finite 100",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 8.591071682907277
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "OpenAI worked decision",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 9.341869886266707
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "OpenAI Bear alone",
+            "scenarios": 1,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "OpenAI Base alone",
+            "scenarios": 1,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "OpenAI Bull alone",
+            "scenarios": 1,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "OpenAI finite 0",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "OpenAI finite 1",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "OpenAI finite 5",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0.05271290618259172
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "OpenAI finite 17",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 6.56186538049883
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "OpenAI finite 100",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 9.341871017369876
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "one eligible at90pct",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "no eligible plans",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "larger only",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "coverage independent",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 8.591070252494973
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "zero tracked holder",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 8.591070252494973
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "whole cohort tracked",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 8.591070252494973
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "minimum policy floors",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b",
+              "c"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "c"
+              ],
+              "worstRegret": 12.516123593656317
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "bridge missing",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "unavailable",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "unavailable",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "negative residuals preserved",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "tied offers",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "duplicate"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a",
+                "duplicate"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 2
+          },
+          {
+            "name": "parallel more cash",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 2
+          },
+          {
+            "name": "unresolved nearby slopes",
+            "scenarios": 3,
+            "plans": 2,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a",
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 0
+          },
+          {
+            "name": "resolved nearly parallel",
+            "scenarios": 3,
+            "plans": 2,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 1
+          },
+          {
+            "name": "entered-term addition rounding",
+            "scenarios": 3,
+            "plans": 2,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 1
+          },
+          {
+            "name": "fractional entered terms",
+            "scenarios": 3,
+            "plans": 2,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 0.002209914602834262
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 1
+          },
+          {
+            "name": "binary quarters pre",
+            "scenarios": 3,
+            "plans": 2,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 8.788399989612735
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 1
+          },
+          {
+            "name": "binary quarters post",
+            "scenarios": 3,
+            "plans": 2,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 8.788399989612735
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 1
+          },
+          {
+            "name": "zero crossover residual",
+            "scenarios": 3,
+            "plans": 2,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 1
+          },
+          {
+            "name": "zero common allocation",
+            "scenarios": 3,
+            "plans": 2,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 1
+          },
+          {
+            "name": "subnormal half tie",
+            "scenarios": 3,
+            "plans": 2,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "b"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "unavailable",
+            "finiteCrossovers": 1
+          },
+          {
+            "name": "hand envelope compatible",
+            "scenarios": 1,
+            "plans": 1,
+            "eligiblePlanIds": [
+              "a"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 0
+          },
+          {
+            "name": "hand envelope conflicting",
+            "scenarios": 1,
+            "plans": 1,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 0
+          },
+          {
+            "name": "100pct retention capital0",
+            "scenarios": 3,
+            "plans": 1,
+            "eligiblePlanIds": [
+              "a"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 0
+          },
+          {
+            "name": "100pct retention capital1e-10",
+            "scenarios": 3,
+            "plans": 1,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 0
+          },
+          {
+            "name": "analytical interval beyond pre input cap",
+            "scenarios": 1,
+            "plans": 1,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 0
+          },
+          {
+            "name": "analytical interval beyond post input cap",
+            "scenarios": 1,
+            "plans": 1,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 0
+          },
+          {
+            "name": "subnormal quote coverage ratio overflow",
+            "scenarios": 1,
+            "plans": 1,
+            "eligiblePlanIds": [
+              "a"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 0
+          },
+          {
+            "name": "positive inverse below resolution",
+            "scenarios": 1,
+            "plans": 1,
+            "eligiblePlanIds": [
+              "a"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "unavailable",
+            "finiteCrossovers": 0
+          },
+          {
+            "name": "holder below resolution retains cohort",
+            "scenarios": 1,
+            "plans": 1,
+            "eligiblePlanIds": [
+              "a"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 0
+          },
+          {
+            "name": "maximum nine by six mixed continuation",
+            "scenarios": 9,
+            "plans": 6,
+            "eligiblePlanIds": [
+              "a",
+              "b",
+              "extra-0",
+              "extra-1"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a",
+                "extra-0"
+              ],
+              "worstRegret": 8.591070252494973
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 12
+          },
+          {
+            "name": "well-formed Unicode labels",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 8.591070252494973
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "documented whitespace label behavior",
+            "scenarios": 3,
+            "plans": 3,
+            "eligiblePlanIds": [
+              "a",
+              "b"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "a"
+              ],
+              "worstRegret": 8.591070252494973
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 3
+          },
+          {
+            "name": "deterministic lattice 00",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-0",
+              "p-1",
+              "p-2",
+              "p-3"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-0"
+              ],
+              "worstRegret": 7.518585935278332
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 01",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-2",
+              "p-3"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-2"
+              ],
+              "worstRegret": 3.830156142185686
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 02",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-3"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-3"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 03",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 04",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 05",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 06",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-0",
+              "p-1",
+              "p-2",
+              "p-3"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-0"
+              ],
+              "worstRegret": 32.886064413496314
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 07",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-1",
+              "p-2",
+              "p-3"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-1"
+              ],
+              "worstRegret": 18.622288944981797
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 08",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-2",
+              "p-3"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-2"
+              ],
+              "worstRegret": 9.167596577403268
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 09",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-2"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-2"
+              ],
+              "worstRegret": 0
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 10",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 11",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 12",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-1",
+              "p-2",
+              "p-3"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-1"
+              ],
+              "worstRegret": 30.74886312457174
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 13",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-1",
+              "p-2",
+              "p-3"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-2"
+              ],
+              "worstRegret": 24.102868804628088
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 14",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-1",
+              "p-2"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-1"
+              ],
+              "worstRegret": 13.71087499914449
+            },
+            "envelopeStatus": "available",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 15",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-0",
+              "p-1"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-0"
+              ],
+              "worstRegret": 18.970444001556842
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 16",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 17",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 18",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-1",
+              "p-2",
+              "p-3"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-2"
+              ],
+              "worstRegret": 37.04962900893497
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 19",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-1",
+              "p-2",
+              "p-3"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-2"
+              ],
+              "worstRegret": 25.02070069472188
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 20",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-0",
+              "p-1",
+              "p-2"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-1"
+              ],
+              "worstRegret": 47.708536546478854
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 21",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [
+              "p-0",
+              "p-1"
+            ],
+            "minimax": {
+              "status": "available",
+              "planIds": [
+                "p-0"
+              ],
+              "worstRegret": 23.38141764094591
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 22",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          },
+          {
+            "name": "deterministic lattice 23",
+            "scenarios": 3,
+            "plans": 4,
+            "eligiblePlanIds": [],
+            "minimax": {
+              "status": "no-eligible-plans",
+              "planIds": [],
+              "worstRegret": null
+            },
+            "envelopeStatus": "no-positive-price",
+            "finiteCrossovers": 6
+          }
+        ],
+        "invalidEvidence": [
+          {
+            "name": "capitalTarget invalid -1",
+            "rejected": true,
+            "message": "Capital objective must be finite and between 0 and 1000000000000."
+          },
+          {
+            "name": "capitalTarget invalid 1000000000001.0",
+            "rejected": true,
+            "message": "Capital objective must be finite and between 0 and 1000000000000."
+          },
+          {
+            "name": "capitalTarget invalid None",
+            "rejected": true,
+            "message": "Capital objective must be finite and between 0 and 1000000000000."
+          },
+          {
+            "name": "capitalTarget invalid 25",
+            "rejected": true,
+            "message": "Capital objective must be finite and between 0 and 1000000000000."
+          },
+          {
+            "name": "capitalTarget invalid True",
+            "rejected": true,
+            "message": "Capital objective must be finite and between 0 and 1000000000000."
+          },
+          {
+            "name": "retentionFloor invalid 0",
+            "rejected": true,
+            "message": "Retained-stake floor must be finite and between 0.01 and 1."
+          },
+          {
+            "name": "retentionFloor invalid 0.009",
+            "rejected": true,
+            "message": "Retained-stake floor must be finite and between 0.01 and 1."
+          },
+          {
+            "name": "retentionFloor invalid 1.01",
+            "rejected": true,
+            "message": "Retained-stake floor must be finite and between 0.01 and 1."
+          },
+          {
+            "name": "modelCoverageFloor invalid 0.09",
+            "rejected": true,
+            "message": "Model-value coverage floor must be finite and between 0.1 and 10."
+          },
+          {
+            "name": "modelCoverageFloor invalid 10.1",
+            "rejected": true,
+            "message": "Model-value coverage floor must be finite and between 0.1 and 10."
+          },
+          {
+            "name": "holderStake invalid -0.1",
+            "rejected": true,
+            "message": "Tracked holder stake must be finite and between 0 and 1."
+          },
+          {
+            "name": "holderStake invalid 1.1",
+            "rejected": true,
+            "message": "Tracked holder stake must be finite and between 0 and 1."
+          },
+          {
+            "name": "missing company",
+            "rejected": true,
+            "message": "Capital snapshot has missing or unsupported fields."
+          },
+          {
+            "name": "missing scenarios",
+            "rejected": true,
+            "message": "Capital snapshot has missing or unsupported fields."
+          },
+          {
+            "name": "missing plans",
+            "rejected": true,
+            "message": "Capital snapshot has missing or unsupported fields."
+          },
+          {
+            "name": "missing policy",
+            "rejected": true,
+            "message": "Capital snapshot has missing or unsupported fields."
+          },
+          {
+            "name": "missing bridge",
+            "rejected": true,
+            "message": "Capital snapshot has missing or unsupported fields."
+          },
+          {
+            "name": "invalid continuation -1",
+            "rejected": true,
+            "message": "Scenario bear continuation years must be null or a whole number from 0 to 100."
+          },
+          {
+            "name": "invalid continuation 0.5",
+            "rejected": true,
+            "message": "Scenario bear continuation years must be null or a whole number from 0 to 100."
+          },
+          {
+            "name": "invalid continuation 101",
+            "rejected": true,
+            "message": "Scenario bear continuation years must be null or a whole number from 0 to 100."
+          },
+          {
+            "name": "invalid continuation 10",
+            "rejected": true,
+            "message": "Scenario bear continuation years must be null or a whole number from 0 to 100."
+          },
+          {
+            "name": "invalid middle case never dropped",
+            "rejected": true,
+            "message": "2034\u20132036 growth cannot be below terminal growth."
+          },
+          {
+            "name": "zero post pre-money",
+            "rejected": true,
+            "message": "Post-money equity value must exceed new primary capital so pre-money equity value remains positive."
+          },
+          {
+            "name": "unsupported post residual precision",
+            "rejected": true,
+            "message": "The remaining pre-money value is too small relative to post-money value and capital to resolve at the supported numeric precision."
+          },
+          {
+            "name": "extra snapshot field",
+            "rejected": true,
+            "message": "Capital snapshot has missing or unsupported fields."
+          },
+          {
+            "name": "extra bridge field",
+            "rejected": true,
+            "message": "Hypothetical bridge has missing or unsupported fields."
+          },
+          {
+            "name": "bad company",
+            "rejected": true,
+            "message": "Company must be Anthropic or OpenAI."
+          },
+          {
+            "name": "duplicate plan",
+            "rejected": true,
+            "message": "Plan identifiers must be unique."
+          },
+          {
+            "name": "duplicate scenario",
+            "rejected": true,
+            "message": "Scenario identifiers must be unique."
+          },
+          {
+            "name": "control label",
+            "rejected": true,
+            "message": "Plan 1 label must contain 1\u201360 Unicode code points without control characters."
+          },
+          {
+            "name": "too many unicode points",
+            "rejected": true,
+            "message": "Plan 1 label must contain 1\u201360 Unicode code points without control characters."
+          },
+          {
+            "name": "scenarios lone surrogate U+D800",
+            "rejected": true,
+            "message": "Scenario 1 label must contain well-formed Unicode text."
+          },
+          {
+            "name": "scenarios lone surrogate U+DC00",
+            "rejected": true,
+            "message": "Scenario 1 label must contain well-formed Unicode text."
+          },
+          {
+            "name": "plans lone surrogate U+D800",
+            "rejected": true,
+            "message": "Plan 1 label must contain well-formed Unicode text."
+          },
+          {
+            "name": "plans lone surrogate U+DC00",
+            "rejected": true,
+            "message": "Plan 1 label must contain well-formed Unicode text."
+          },
+          {
+            "name": "unsupported bridge amount",
+            "rejected": true,
+            "message": "cash must be between $0B and $10,000B."
+          },
+          {
+            "name": "empty scenarios",
+            "rejected": true,
+            "message": "Scenarios must contain 1\u20139 items."
+          },
+          {
+            "name": "empty plans",
+            "rejected": true,
+            "message": "Plans must contain 1\u20136 items."
+          }
+        ],
+        "javascriptOnlyEvidence": [
+          {
+            "name": "NaN policy",
+            "rejected": true,
+            "message": "Capital objective must be finite and between 0 and 1000000000000."
+          },
+          {
+            "name": "Infinity quote",
+            "rejected": true,
+            "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+          },
+          {
+            "name": "negative Infinity bridge",
+            "rejected": true,
+            "message": "cash must be between $0B and $10,000B."
+          },
+          {
+            "name": "policy getter",
+            "rejected": true,
+            "message": "Policy.capitalTarget must be an enumerable own data property."
+          },
+          {
+            "name": "scenario array getter",
+            "rejected": true,
+            "message": "Scenarios must contain enumerable own data elements, without holes or accessors."
+          },
+          {
+            "name": "inherited fields",
+            "rejected": true,
+            "message": "Policy must be a plain object."
+          },
+          {
+            "name": "nonenumerable field",
+            "rejected": true,
+            "message": "Policy.capitalTarget must be an enumerable own data property."
+          },
+          {
+            "name": "symbol snapshot",
+            "rejected": true,
+            "message": "Capital snapshot has missing or unsupported fields."
+          },
+          {
+            "name": "array hole",
+            "rejected": true,
+            "message": "Plans must be a dense array with no custom properties."
+          },
+          {
+            "name": "array custom string",
+            "rejected": true,
+            "message": "Scenarios must be a dense array with no custom properties."
+          },
+          {
+            "name": "array custom symbol",
+            "rejected": true,
+            "message": "Plans must be a dense array with no custom properties."
+          }
+        ],
+        "sourceHashes": {
+          "public/lib/capital-strategy.js": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842",
+          "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+          "public/lib/horizon.js": "31e88f039b640a9627b1a5d78bc62c93dbd82d1cb50015b4606e2efb3923eec5",
+          "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+          "public/lib/ownership.js": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7",
+          "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+          "data/research.json": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65",
+          "tests/capital-strategy.test.js": "34c72dea9f36150afba5ccb6ce8485ef69fd650b44dda9127114ea85b117e343",
+          "scripts/check_capital_reference.py": "d6255cab209ee0bba5c45a87f5b24e31c7561be981ef6aa737b6ed5887ea012b",
+          "docs/CAPITAL_STRATEGY.md": "52d2f3d114b4b5da85b7c6cc5caec8ac6792ecbda065be3a046efc1079c378c7"
+        },
+        "scope": "Algorithmic and arithmetic independence for this simplified conditional finite scenario comparison; not an external audit, probability calibration, company balance confirmation, financing commitment, funding requirement or investment recommendation.",
+        "failures": []
+      }
+    }
+  }
+}

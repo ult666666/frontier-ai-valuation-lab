@@ -1,0 +1,1572 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "generatedAt": "2026-10-20T01:45:49.749540+00:00",
+  "capitalVersion": "1.0.0",
+  "method": "Independent 100-digit Decimal.from_float explicit FCFF and direct annual finite-continuation sum; Fraction.from_float 100-existing-share issuance ledger; exhaustive listed-scenario comparisons; inverse price bound derived from allowable new share count.",
+  "crossoverPrecision": "Exact binary entered quote and raise terms, before pre+raise or post-raise rounding; Fraction roots round once to binary64. Unresolved slope/forward-reconciliation policy is checked separately.",
+  "comparisonPolicy": "32 binary64 epsilons relative; positive issuance always fails a 100% retention floor. Regrets within the allocation comparison band normalize to zero. Scenario counts are not probabilities.",
+  "tolerance": {
+    "relative": 3e-12,
+    "minimumUlps": 8,
+    "moneyCancellationUlps": 128,
+    "moneyScale": "Maximum absolute DCF component sum, bridge component or primary capital in each snapshot.",
+    "exactRoundedCrossover": true
+  },
+  "validFixtures": 74,
+  "invalidFixtures": 38,
+  "javascriptOnlyRejections": 11,
+  "numericComparisons": 16635,
+  "structuralComparisons": 134357,
+  "exactCrossoverComparisons": 510,
+  "maxAbsoluteError": 4096.0,
+  "maxAbsoluteErrorField": "analytical interval beyond pre input cap.matrix[0].modelPostMoneyEquity",
+  "maxRelativeError": 2.156717319427848e-12,
+  "maxRelativeErrorField": "OpenAI finite 5.matrix[7].regret",
+  "maxAbsoluteErrorContext": {
+    "actual": 19421442601285935000,
+    "reference": 1.942144260128594e+19,
+    "relativeError": 2.109009142157542e-16,
+    "componentScale": 1.9421442501285937e+19,
+    "units": "USD billions or the named field unit"
+  },
+  "maxRelativeErrorContext": {
+    "actual": 0.05271290618259172,
+    "reference": 0.05271290618270541,
+    "absoluteError": 1.1368683772161603e-13,
+    "componentScale": 1578.191750118888,
+    "units": "USD billions or the named field unit"
+  },
+  "cases": [
+    {
+      "name": "Anthropic worked decision",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.591070252494973
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "Anthropic Bear alone",
+      "scenarios": 1,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "Anthropic Base alone",
+      "scenarios": 1,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "Anthropic Bull alone",
+      "scenarios": 1,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "Anthropic finite 0",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "Anthropic finite 1",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "Anthropic finite 5",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 2.9868184270818574
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "Anthropic finite 17",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.632317361612088
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "Anthropic finite 100",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.591071682907277
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "OpenAI worked decision",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 9.341869886266707
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "OpenAI Bear alone",
+      "scenarios": 1,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "OpenAI Base alone",
+      "scenarios": 1,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "OpenAI Bull alone",
+      "scenarios": 1,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "OpenAI finite 0",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "OpenAI finite 1",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "OpenAI finite 5",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0.05271290618259172
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "OpenAI finite 17",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 6.56186538049883
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "OpenAI finite 100",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 9.341871017369876
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "one eligible at90pct",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "no eligible plans",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "larger only",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "coverage independent",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.591070252494973
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "zero tracked holder",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.591070252494973
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "whole cohort tracked",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.591070252494973
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "minimum policy floors",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b",
+        "c"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "c"
+        ],
+        "worstRegret": 12.516123593656317
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "bridge missing",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "unavailable",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "unavailable",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "negative residuals preserved",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "tied offers",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "duplicate"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a",
+          "duplicate"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 2
+    },
+    {
+      "name": "parallel more cash",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 2
+    },
+    {
+      "name": "unresolved nearby slopes",
+      "scenarios": 3,
+      "plans": 2,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a",
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 0
+    },
+    {
+      "name": "resolved nearly parallel",
+      "scenarios": 3,
+      "plans": 2,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 1
+    },
+    {
+      "name": "entered-term addition rounding",
+      "scenarios": 3,
+      "plans": 2,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 1
+    },
+    {
+      "name": "fractional entered terms",
+      "scenarios": 3,
+      "plans": 2,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 0.002209914602834262
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 1
+    },
+    {
+      "name": "binary quarters pre",
+      "scenarios": 3,
+      "plans": 2,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.788399989612735
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 1
+    },
+    {
+      "name": "binary quarters post",
+      "scenarios": 3,
+      "plans": 2,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.788399989612735
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 1
+    },
+    {
+      "name": "zero crossover residual",
+      "scenarios": 3,
+      "plans": 2,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 1
+    },
+    {
+      "name": "zero common allocation",
+      "scenarios": 3,
+      "plans": 2,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 1
+    },
+    {
+      "name": "subnormal half tie",
+      "scenarios": 3,
+      "plans": 2,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "b"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "unavailable",
+      "finiteCrossovers": 1
+    },
+    {
+      "name": "hand envelope compatible",
+      "scenarios": 1,
+      "plans": 1,
+      "eligiblePlanIds": [
+        "a"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 0
+    },
+    {
+      "name": "hand envelope conflicting",
+      "scenarios": 1,
+      "plans": 1,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 0
+    },
+    {
+      "name": "100pct retention capital0",
+      "scenarios": 3,
+      "plans": 1,
+      "eligiblePlanIds": [
+        "a"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 0
+    },
+    {
+      "name": "100pct retention capital1e-10",
+      "scenarios": 3,
+      "plans": 1,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 0
+    },
+    {
+      "name": "analytical interval beyond pre input cap",
+      "scenarios": 1,
+      "plans": 1,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 0
+    },
+    {
+      "name": "analytical interval beyond post input cap",
+      "scenarios": 1,
+      "plans": 1,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 0
+    },
+    {
+      "name": "subnormal quote coverage ratio overflow",
+      "scenarios": 1,
+      "plans": 1,
+      "eligiblePlanIds": [
+        "a"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 0
+    },
+    {
+      "name": "positive inverse below resolution",
+      "scenarios": 1,
+      "plans": 1,
+      "eligiblePlanIds": [
+        "a"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "unavailable",
+      "finiteCrossovers": 0
+    },
+    {
+      "name": "holder below resolution retains cohort",
+      "scenarios": 1,
+      "plans": 1,
+      "eligiblePlanIds": [
+        "a"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 0
+    },
+    {
+      "name": "maximum nine by six mixed continuation",
+      "scenarios": 9,
+      "plans": 6,
+      "eligiblePlanIds": [
+        "a",
+        "b",
+        "extra-0",
+        "extra-1"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a",
+          "extra-0"
+        ],
+        "worstRegret": 8.591070252494973
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 12
+    },
+    {
+      "name": "well-formed Unicode labels",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.591070252494973
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "documented whitespace label behavior",
+      "scenarios": 3,
+      "plans": 3,
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.591070252494973
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 3
+    },
+    {
+      "name": "deterministic lattice 00",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-0",
+        "p-1",
+        "p-2",
+        "p-3"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-0"
+        ],
+        "worstRegret": 7.518585935278332
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 01",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-2",
+        "p-3"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-2"
+        ],
+        "worstRegret": 3.830156142185686
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 02",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-3"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-3"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 03",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 04",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 05",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 06",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-0",
+        "p-1",
+        "p-2",
+        "p-3"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-0"
+        ],
+        "worstRegret": 32.886064413496314
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 07",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-1",
+        "p-2",
+        "p-3"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-1"
+        ],
+        "worstRegret": 18.622288944981797
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 08",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-2",
+        "p-3"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-2"
+        ],
+        "worstRegret": 9.167596577403268
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 09",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-2"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-2"
+        ],
+        "worstRegret": 0
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 10",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 11",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 12",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-1",
+        "p-2",
+        "p-3"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-1"
+        ],
+        "worstRegret": 30.74886312457174
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 13",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-1",
+        "p-2",
+        "p-3"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-2"
+        ],
+        "worstRegret": 24.102868804628088
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 14",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-1",
+        "p-2"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-1"
+        ],
+        "worstRegret": 13.71087499914449
+      },
+      "envelopeStatus": "available",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 15",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-0",
+        "p-1"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-0"
+        ],
+        "worstRegret": 18.970444001556842
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 16",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 17",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 18",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-1",
+        "p-2",
+        "p-3"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-2"
+        ],
+        "worstRegret": 37.04962900893497
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 19",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-1",
+        "p-2",
+        "p-3"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-2"
+        ],
+        "worstRegret": 25.02070069472188
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 20",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-0",
+        "p-1",
+        "p-2"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-1"
+        ],
+        "worstRegret": 47.708536546478854
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 21",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [
+        "p-0",
+        "p-1"
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "p-0"
+        ],
+        "worstRegret": 23.38141764094591
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 22",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    },
+    {
+      "name": "deterministic lattice 23",
+      "scenarios": 3,
+      "plans": 4,
+      "eligiblePlanIds": [],
+      "minimax": {
+        "status": "no-eligible-plans",
+        "planIds": [],
+        "worstRegret": null
+      },
+      "envelopeStatus": "no-positive-price",
+      "finiteCrossovers": 6
+    }
+  ],
+  "invalidEvidence": [
+    {
+      "name": "capitalTarget invalid -1",
+      "rejected": true,
+      "message": "Capital objective must be finite and between 0 and 1000000000000."
+    },
+    {
+      "name": "capitalTarget invalid 1000000000001.0",
+      "rejected": true,
+      "message": "Capital objective must be finite and between 0 and 1000000000000."
+    },
+    {
+      "name": "capitalTarget invalid None",
+      "rejected": true,
+      "message": "Capital objective must be finite and between 0 and 1000000000000."
+    },
+    {
+      "name": "capitalTarget invalid 25",
+      "rejected": true,
+      "message": "Capital objective must be finite and between 0 and 1000000000000."
+    },
+    {
+      "name": "capitalTarget invalid True",
+      "rejected": true,
+      "message": "Capital objective must be finite and between 0 and 1000000000000."
+    },
+    {
+      "name": "retentionFloor invalid 0",
+      "rejected": true,
+      "message": "Retained-stake floor must be finite and between 0.01 and 1."
+    },
+    {
+      "name": "retentionFloor invalid 0.009",
+      "rejected": true,
+      "message": "Retained-stake floor must be finite and between 0.01 and 1."
+    },
+    {
+      "name": "retentionFloor invalid 1.01",
+      "rejected": true,
+      "message": "Retained-stake floor must be finite and between 0.01 and 1."
+    },
+    {
+      "name": "modelCoverageFloor invalid 0.09",
+      "rejected": true,
+      "message": "Model-value coverage floor must be finite and between 0.1 and 10."
+    },
+    {
+      "name": "modelCoverageFloor invalid 10.1",
+      "rejected": true,
+      "message": "Model-value coverage floor must be finite and between 0.1 and 10."
+    },
+    {
+      "name": "holderStake invalid -0.1",
+      "rejected": true,
+      "message": "Tracked holder stake must be finite and between 0 and 1."
+    },
+    {
+      "name": "holderStake invalid 1.1",
+      "rejected": true,
+      "message": "Tracked holder stake must be finite and between 0 and 1."
+    },
+    {
+      "name": "missing company",
+      "rejected": true,
+      "message": "Capital snapshot has missing or unsupported fields."
+    },
+    {
+      "name": "missing scenarios",
+      "rejected": true,
+      "message": "Capital snapshot has missing or unsupported fields."
+    },
+    {
+      "name": "missing plans",
+      "rejected": true,
+      "message": "Capital snapshot has missing or unsupported fields."
+    },
+    {
+      "name": "missing policy",
+      "rejected": true,
+      "message": "Capital snapshot has missing or unsupported fields."
+    },
+    {
+      "name": "missing bridge",
+      "rejected": true,
+      "message": "Capital snapshot has missing or unsupported fields."
+    },
+    {
+      "name": "invalid continuation -1",
+      "rejected": true,
+      "message": "Scenario bear continuation years must be null or a whole number from 0 to 100."
+    },
+    {
+      "name": "invalid continuation 0.5",
+      "rejected": true,
+      "message": "Scenario bear continuation years must be null or a whole number from 0 to 100."
+    },
+    {
+      "name": "invalid continuation 101",
+      "rejected": true,
+      "message": "Scenario bear continuation years must be null or a whole number from 0 to 100."
+    },
+    {
+      "name": "invalid continuation 10",
+      "rejected": true,
+      "message": "Scenario bear continuation years must be null or a whole number from 0 to 100."
+    },
+    {
+      "name": "invalid middle case never dropped",
+      "rejected": true,
+      "message": "2034\u20132036 growth cannot be below terminal growth."
+    },
+    {
+      "name": "zero post pre-money",
+      "rejected": true,
+      "message": "Post-money equity value must exceed new primary capital so pre-money equity value remains positive."
+    },
+    {
+      "name": "unsupported post residual precision",
+      "rejected": true,
+      "message": "The remaining pre-money value is too small relative to post-money value and capital to resolve at the supported numeric precision."
+    },
+    {
+      "name": "extra snapshot field",
+      "rejected": true,
+      "message": "Capital snapshot has missing or unsupported fields."
+    },
+    {
+      "name": "extra bridge field",
+      "rejected": true,
+      "message": "Hypothetical bridge has missing or unsupported fields."
+    },
+    {
+      "name": "bad company",
+      "rejected": true,
+      "message": "Company must be Anthropic or OpenAI."
+    },
+    {
+      "name": "duplicate plan",
+      "rejected": true,
+      "message": "Plan identifiers must be unique."
+    },
+    {
+      "name": "duplicate scenario",
+      "rejected": true,
+      "message": "Scenario identifiers must be unique."
+    },
+    {
+      "name": "control label",
+      "rejected": true,
+      "message": "Plan 1 label must contain 1\u201360 Unicode code points without control characters."
+    },
+    {
+      "name": "too many unicode points",
+      "rejected": true,
+      "message": "Plan 1 label must contain 1\u201360 Unicode code points without control characters."
+    },
+    {
+      "name": "scenarios lone surrogate U+D800",
+      "rejected": true,
+      "message": "Scenario 1 label must contain well-formed Unicode text."
+    },
+    {
+      "name": "scenarios lone surrogate U+DC00",
+      "rejected": true,
+      "message": "Scenario 1 label must contain well-formed Unicode text."
+    },
+    {
+      "name": "plans lone surrogate U+D800",
+      "rejected": true,
+      "message": "Plan 1 label must contain well-formed Unicode text."
+    },
+    {
+      "name": "plans lone surrogate U+DC00",
+      "rejected": true,
+      "message": "Plan 1 label must contain well-formed Unicode text."
+    },
+    {
+      "name": "unsupported bridge amount",
+      "rejected": true,
+      "message": "cash must be between $0B and $10,000B."
+    },
+    {
+      "name": "empty scenarios",
+      "rejected": true,
+      "message": "Scenarios must contain 1\u20139 items."
+    },
+    {
+      "name": "empty plans",
+      "rejected": true,
+      "message": "Plans must contain 1\u20136 items."
+    }
+  ],
+  "javascriptOnlyEvidence": [
+    {
+      "name": "NaN policy",
+      "rejected": true,
+      "message": "Capital objective must be finite and between 0 and 1000000000000."
+    },
+    {
+      "name": "Infinity quote",
+      "rejected": true,
+      "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+    },
+    {
+      "name": "negative Infinity bridge",
+      "rejected": true,
+      "message": "cash must be between $0B and $10,000B."
+    },
+    {
+      "name": "policy getter",
+      "rejected": true,
+      "message": "Policy.capitalTarget must be an enumerable own data property."
+    },
+    {
+      "name": "scenario array getter",
+      "rejected": true,
+      "message": "Scenarios must contain enumerable own data elements, without holes or accessors."
+    },
+    {
+      "name": "inherited fields",
+      "rejected": true,
+      "message": "Policy must be a plain object."
+    },
+    {
+      "name": "nonenumerable field",
+      "rejected": true,
+      "message": "Policy.capitalTarget must be an enumerable own data property."
+    },
+    {
+      "name": "symbol snapshot",
+      "rejected": true,
+      "message": "Capital snapshot has missing or unsupported fields."
+    },
+    {
+      "name": "array hole",
+      "rejected": true,
+      "message": "Plans must be a dense array with no custom properties."
+    },
+    {
+      "name": "array custom string",
+      "rejected": true,
+      "message": "Scenarios must be a dense array with no custom properties."
+    },
+    {
+      "name": "array custom symbol",
+      "rejected": true,
+      "message": "Plans must be a dense array with no custom properties."
+    }
+  ],
+  "sourceHashes": {
+    "public/lib/capital-strategy.js": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842",
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/horizon.js": "31e88f039b640a9627b1a5d78bc62c93dbd82d1cb50015b4606e2efb3923eec5",
+    "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+    "public/lib/ownership.js": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "data/research.json": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65",
+    "tests/capital-strategy.test.js": "34c72dea9f36150afba5ccb6ce8485ef69fd650b44dda9127114ea85b117e343",
+    "scripts/check_capital_reference.py": "d6255cab209ee0bba5c45a87f5b24e31c7561be981ef6aa737b6ed5887ea012b",
+    "docs/CAPITAL_STRATEGY.md": "52d2f3d114b4b5da85b7c6cc5caec8ac6792ecbda065be3a046efc1079c378c7"
+  },
+  "scope": "Algorithmic and arithmetic independence for this simplified conditional finite scenario comparison; not an external audit, probability calibration, company balance confirmation, financing commitment, funding requirement or investment recommendation.",
+  "failures": []
+}

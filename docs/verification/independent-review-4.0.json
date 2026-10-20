@@ -1,0 +1,304 @@
+{
+  "schema": 1,
+  "kind": "scoped-independent-release-review",
+  "reviewedAtUtc": "2026-10-20T01:41:38.876953Z",
+  "status": "no-unresolved-material-findings",
+  "applicationVersion": "4.0.0",
+  "capitalVersion": "1.0.0",
+  "modelVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "reviewerRole": "Separate AI-assisted release reviewer who did not author the reviewed application, portfolio or packaging changes.",
+  "scope": "Root API integration, release and documentation consistency, portfolio preservation, package source inventory, public metadata and source-bound evidence. Financial-core correctness and full desktop execution have separate reviewers or receipts.",
+  "closedFindings": [
+    {
+      "id": "R1",
+      "severity": "Important",
+      "file": "README.md",
+      "repository": "application",
+      "finding": "The Node-only prerequisite omitted Python required by the default package tests.",
+      "resolution": "The local-run section now states Python 3.11+ is required for the complete suite."
+    },
+    {
+      "id": "R2",
+      "severity": "Minor",
+      "file": "README.md",
+      "repository": "portfolio",
+      "finding": "The current introduction and illustration description still described the 3.6 presentation.",
+      "resolution": "The current scope leads with Capital Studio 4.0 and labels older releases and receipts historically."
+    },
+    {
+      "id": "R3",
+      "severity": "Important",
+      "file": "docs/DESKTOP_GUIDE.md",
+      "repository": "application",
+      "finding": "The copied desktop README omitted the complete test suite Python prerequisite.",
+      "resolution": "The prerequisite appears explicitly before the npm test command and is included in the final package source."
+    },
+    {
+      "id": "R4",
+      "severity": "Minor",
+      "file": "docs/CAPITAL_STRATEGY_DESIGN.md",
+      "repository": "application",
+      "finding": "The planned public design contained private session timing and operational authorization details.",
+      "resolution": "The design now states product intent without those details; the implementation checklist is outside public docs and ignored by git."
+    }
+  ],
+  "checks": {
+    "capitalApi": {
+      "execution": "Direct invocation of the shared Web-standard handler; no socket or hosted request",
+      "workedStatus": 200,
+      "appVersion": "4.0.0",
+      "modelVersion": "3.0.0",
+      "valuationDate": "2026-10-18",
+      "completeWorkedAnalysisMatches": true,
+      "matrixCells": 9,
+      "cacheControl": "no-store",
+      "contentTypeProtection": "nosniff",
+      "unsupportedEnvelopeStatus": 400,
+      "unsupportedMediaStatus": 415,
+      "oversizeStatus": 413
+    },
+    "briefPrecisionScope": "The brief distinguishes floating-point DCF/allocation outputs from exact entered-term share-ledger coefficients and once-rounded switching results; source inspection agrees.",
+    "applicationBaseline": {
+      "commit": "099bc47578d48f342dbf5947a1b4dcb7a1029f18",
+      "checkedFiles": [
+        "public/lib/model.js",
+        "public/lib/financing.js",
+        "public/lib/ownership.js",
+        "data/presets.json",
+        "data/research.json",
+        "public/downloads/Frontier_AI_Valuation_Model.xlsx",
+        "public/downloads/Frontier_AI_Valuation_Review.pdf",
+        "public/downloads/Frontier_AI_Ownership_Frontier_Package.zip",
+        "public/downloads/Frontier_AI_Financing_Lens_Package.zip",
+        "public/downloads/Frontier_AI_Value_Horizon_Package.zip"
+      ],
+      "allBytesUnchanged": true
+    },
+    "portfolioPreservation": {
+      "commit": "f6ca6f4db24d9370c9be709be18c1e35a0d752f9",
+      "unchangedFiles": [
+        "script.js",
+        "styles.css",
+        "tests/navigation_resilience.cjs",
+        "scripts/build_site.py",
+        ".github/workflows/portfolio.yml",
+        "SECURITY.md",
+        "docs/PUBLICATION_BOUNDARY.md",
+        "projects/lineageguard.html",
+        "projects/motionx.html",
+        "projects/trading-research.html"
+      ],
+      "navigationResilienceInvocationRetained": true,
+      "allowlistFiles": 26,
+      "newCapture": "assets/frontier-ai-capital-4-0.png",
+      "captureDimensions": [
+        1440,
+        1381
+      ],
+      "captureMatchesApp": true
+    },
+    "package": {
+      "file": "public/downloads/Frontier_AI_Capital_Strategy_Package.zip",
+      "sha256": "df82c7d6b3000bc26e7fa4c17dba4a7b853f6ff1719acdfd8dedf218725c9195",
+      "bytes": 1868606,
+      "archiveMembers": 47,
+      "manifestListedFiles": 46,
+      "allSourceFilesExist": true,
+      "manifestAndArchivePathsRelative": true,
+      "manifestContainsNoWorkstationPaths": true,
+      "executionScope": "Inspected the rebuilt ZIP and compared every member with the superseded unpublished archive. Only the copied walkthrough and its manifest record changed. Actual extraction/create/verify/tamper execution is recorded by the parent separately.",
+      "rebuildComparison": {
+        "supersededUnpublishedArchive": "qa-local/v4-0/superseded-before-walkthrough-fix/Frontier_AI_Capital_Strategy_Package.zip",
+        "supersededSha256": "13b18772a20981319f63d258d060afb012c00a8772c5a78921df1126cac5731d",
+        "changedMembers": [
+          "Capital_Strategy_V4_0_2026-10-19/Capital_Strategy_Walkthrough.md",
+          "Capital_Strategy_V4_0_2026-10-19/SHA256_manifest.json"
+        ],
+        "changedManifestFileRecords": [
+          "Capital_Strategy_Walkthrough.md"
+        ],
+        "otherManifestListedFilesByteIdentical": 45,
+        "copiedWalkthroughMatchesSource": true
+      },
+      "executionReceipt": {
+        "path": "qa-local/v4-0/desktop-archive.json",
+        "sha256": "92e97b45635f0bc44faac884aa78186c2022f64b675a2e103b71404a01ccea9b"
+      }
+    },
+    "publicMetadata": {
+      "workedPdfs": [
+        {
+          "file": "public/downloads/Frontier_AI_Capital_Decision.pdf",
+          "pages": 7,
+          "personalAuthorField": false,
+          "embeddedJavaScript": false,
+          "workstationPathLinks": 0
+        },
+        {
+          "file": "public/downloads/Frontier_AI_Financing_Lens.pdf",
+          "pages": 3,
+          "personalAuthorField": false,
+          "embeddedJavaScript": false,
+          "workstationPathLinks": 0
+        },
+        {
+          "file": "public/downloads/Frontier_AI_Value_Horizon.pdf",
+          "pages": 2,
+          "personalAuthorField": false,
+          "embeddedJavaScript": false,
+          "workstationPathLinks": 0
+        },
+        {
+          "file": "public/downloads/Frontier_AI_Research_Brief.pdf",
+          "pages": 4,
+          "personalAuthorField": false,
+          "embeddedJavaScript": false,
+          "workstationPathLinks": 0
+        },
+        {
+          "file": "public/downloads/Frontier_AI_Thesis_Comparison.pdf",
+          "pages": 3,
+          "personalAuthorField": false,
+          "embeddedJavaScript": false,
+          "workstationPathLinks": 0
+        }
+      ],
+      "pngFilesChecked": 6,
+      "pngTextOrExifChunks": 0,
+      "manifestIncludesDestinationPath": false,
+      "notes": "Worked PDF metadata contains product titles and standard Chromium/Skia creator data and timestamps. The unchanged original financial review retains the public project author."
+    },
+    "pdfEvidence": {
+      "aggregateReceipt": "qa-local/v4-0/pdf-rendering.json",
+      "aggregateReceiptSha256": "f6f868da92f634083dc24ad68fa7cdc3573f2a2c5729d094a07b56ff65e4d9ed",
+      "allFiveHtmlPdfHashesMatch": true,
+      "recordedVisuallyReviewedPages": 19,
+      "artifactHashes": {
+        "Frontier_AI_Capital_Decision": {
+          "htmlSha256": "f747151a109fe425bf73f2cc9bf81a85fc2150df5bf3e7d2ebfff928c57d5552",
+          "pdfSha256": "2249a7176594ed3d2ae1b9e6a6406d14ddfbf37ec9b27573f4bc9b08bc1bc8e5"
+        },
+        "Frontier_AI_Financing_Lens": {
+          "htmlSha256": "932562c240b5babe863688d2c76ac253577a2f0c222645710f1e5bd558793b06",
+          "pdfSha256": "f1c5ee4ef9bfcfdc40a952fa953b916e60e8a87a024b16311b63778b193ddbca"
+        },
+        "Frontier_AI_Value_Horizon": {
+          "htmlSha256": "79d1b7e6d26adbf5d4b213a1e5d03e6a70a8303c3dfc5e7b918b2ef83dc0360c",
+          "pdfSha256": "9e13c0faf0c50bf232a311b6697faee00c6f547405b965ae42eed186d485c2d3"
+        },
+        "Frontier_AI_Research_Brief": {
+          "htmlSha256": "4ee767f4327202ee3afae91d7160c631942563bf32ff2d2e659606f47fcb54c8",
+          "pdfSha256": "f0f91aa739ef15d9fa68ab19979f1aad26b571757a489ffd85f4598a7bf39883"
+        },
+        "Frontier_AI_Thesis_Comparison": {
+          "htmlSha256": "f38acf98e55b83600e620179769b58603a9520b8703a413d2ef0f8df99efeaed",
+          "pdfSha256": "1c7cf311365b1111a7a4540b5093112c62dc6f39d472fdfe2b882112beedce26"
+        }
+      },
+      "scope": "Verified metadata and recorded artifact hashes; did not claim a separate visual inspection of all pages."
+    },
+    "visitorCorrections": {
+      "receipt": "qa-local/v4-0/visitor-review.json",
+      "receiptSha256": "50434004ff89993f4700b6acc1d7d2de0c00cd924b471202ce623e1dd09e2245",
+      "resolutionConfirmed": true,
+      "corrections": [
+        "The generator and generated Frontier case restore the 25B capital objective and 88% floor before comparing scenario rankings.",
+        "Walkthrough section 6 names Verify complete analysis, matching the implemented control."
+      ],
+      "scope": "Exact text comparisons reproduced the previously bound hashes after reversing these instructions; no broader product change or browser rerun is asserted."
+    },
+    "verificationDocumentation": {
+      "file": "docs/VERIFICATION.md",
+      "status": "consistent-with-inspected-local-receipts",
+      "nodePassed": 314,
+      "browserSuitesPassed": 11,
+      "documentedBrowserAssertions": 842,
+      "referenceGatesPassed": 6,
+      "stagedAssets": 82,
+      "httpRequestsPassed": 144,
+      "recordedPackageChecks": 7,
+      "evidenceHashes": {
+        "qa-local/v4-0/node-final.json": "85dbaea28e028c067de9dd600a60c8ee36b7a75e91690aaec20b1690192cd8d3",
+        "qa-local/v4-0/browser-final.json": "de4ef0733b6fabe5c5a47add12535dbda9bd70e64aa6fd6c80a7fb6713933baf",
+        "qa-local/v4-0/references-final/gates.json": "1e10382a08741f7861efc24ac5bde16888147d60854d0cca755e51aee43e21d4",
+        "qa-local/v4-0/references-final/capital.json": "460eff21a9e85494190d0635de034c7f038c637eabb10a81bbf2a78f97facd14",
+        "qa-local/v4-0/build-final.json": "9d1622c2b27c7005ce9744412d93821af7e781355f9efbb37bd413fd765a2b88",
+        "qa-local/v4-0/capital-http-local.json": "e332d349280c45db6d4d02f7cddc0999a97e08a15f603eca4835dd6aeb669e14",
+        "qa-local/v4-0/desktop-archive.json": "92e97b45635f0bc44faac884aa78186c2022f64b675a2e103b71404a01ccea9b",
+        "qa-local/v4-0/desktop-verification.json": "fea9a24317391ecfcec762b692b051ea84ac6ce44b48aa9596f7dd1461099f0c",
+        "qa-local/v4-0/capital-performance-local.json": "9871be8cd2b96ff1cbb15e11861afbbe696f831a30f5f037904996f7cbc3b1d7"
+      },
+      "scope": "Read the v4 local verification entry and checked its key counts and boundaries against existing local receipts. No test suite was rerun. Public receipt copies and subsequent hosted/native observations are published separately.",
+      "boundedWorkloadObservation": {
+        "acceptedFixtures": 4,
+        "warmupCallsPerFixture": 10,
+        "measuredCallsPerFixture": 40,
+        "largestRecordedResponseBytes": 71442,
+        "scope": "Reviewed the final documentation against the saved source-bound in-process handler observations and matching local harness/fixture hashes. The performance measurement was not rerun by this reviewer. No network latency, deployed cold-start, concurrency or global worst-case claim is made."
+      }
+    }
+  },
+  "sourceHashes": {
+    "application": {
+      "README.md": "e5398f22d1dc9d5de4a2dc6503becb5a5be58832d174d28407782e771d715770",
+      "api/index.js": "fd092b0f01a486b02bab7138deefd407693d1153e09062cdaa4066622c338fc4",
+      "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+      "data/research.json": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65",
+      "docs/API.md": "a53447b8edbac152821c0ad71bdaf591657388c39d43bb2e921461b81ece9300",
+      "docs/ARCHITECTURE.md": "0ad27ae84758b25d3e48e973417322f35a469e51a069626c772b241569294db8",
+      "docs/CAPITAL_STRATEGY.md": "52d2f3d114b4b5da85b7c6cc5caec8ac6792ecbda065be3a046efc1079c378c7",
+      "docs/CAPITAL_STRATEGY_DESIGN.md": "7886e6856fd54042d92427d39d0d77952c73918e15e7c484c66ed4b5a3ac9a5a",
+      "docs/DEMO_WALKTHROUGH.md": "b8a4b88d3ffcafb5e4133276105f6bed3462c38379f8efa50b4e4509afc22991",
+      "docs/DESKTOP_GUIDE.md": "c6a286ee4389c750d7fa391ca0b0bd93679082e74850e00496e484dab819b929",
+      "docs/demo-capital.png": "58d46330442f6226f84c1773cbc30546bdb691711acd8cbffd4c9355f5728772",
+      "lib/http.js": "917591c4154a8451b45ec4a1e2e1e76548da9c514aa6d62bef3bc8b208c97d47",
+      "package.json": "8605800583a7e2b9f554a42b336e0128e2d0c659290bd7db36ab77dfa45d5767",
+      "public/capital.html": "489d4bb2125d174f14ec232892ec7431148a4ab9243017a3e2bd9359418a72a2",
+      "public/capital.js": "e714904d2bf301e30fc97101354b2b8fafe9fb02544a694425ba55d381e12009",
+      "public/downloads/Frontier_AI_Capital_Decision.json": "4d26443bd387a7dda0b8796f4977bb234c0697f0828755644a821aec5c608684",
+      "public/downloads/Frontier_AI_Financing_Lens_Package.zip": "8a98e0d40d97b942b7c8a0d9356b9740da88a26f3ab19578bb969d3e08539a58",
+      "public/downloads/Frontier_AI_Ownership_Frontier_Package.zip": "60b1ff1907ab893f43b7e9c894bb74cd16d8da95fe3a3b6956438f92c7e28410",
+      "public/downloads/Frontier_AI_Valuation_Model.xlsx": "0a692f43f8459ffb6a162f065c10912a5ca23738d55104b272f74dbecdf73438",
+      "public/downloads/Frontier_AI_Valuation_Review.pdf": "08c94a33ea36870ca05ba437077bcec9d308ad87b90a4a7e3b80806d16edec36",
+      "public/downloads/Frontier_AI_Value_Horizon_Package.zip": "40f15a73b220d75651abc8529ace281a337e32c6c6fe114d4f2e18926bba3995",
+      "public/lib/capital-brief.js": "a49176acf1d2752365cca33b624aa4683061fe1a3873a11b7fc352e8d7c4d590",
+      "public/lib/capital-strategy.js": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842",
+      "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+      "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+      "public/lib/ownership.js": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7",
+      "public/lib/release.js": "ca5c5d7e2169ab76b4a0d2ca3af7c08d2b37bd467d1038d3c0912ef3ee87862a",
+      "scripts/build_desktop_archive.py": "df14c9d30154577f6268dc1a51917ed95c0b68c970bbbea1cbce4834b1810ad4",
+      "scripts/deliver_desktop.py": "31695c563a391924ce8a5bf121ea67f9c52f88ac5626718e5145ab12ed93f3f0",
+      "docs/VERIFICATION.md": "0c256924d18731e41acae453ee0ee4fa4905cd36a68e754c3559017f6ccd1de3"
+    },
+    "portfolio": {
+      ".github/workflows/portfolio.yml": "79256d8e6f44cac51d7dfbbd902859a348c4f64985095f71d9461a7796d8ecd2",
+      "README.md": "f80b0561f94b40bc95a9b804ea4c22542f2e9d181f973a1b3cdaec43a909e8f5",
+      "SECURITY.md": "a2b5e8fcf74566ef54b760f005a0c892c443e9a7aa156be72c86785e7c4d168f",
+      "assets/frontier-ai-capital-4-0.png": "58d46330442f6226f84c1773cbc30546bdb691711acd8cbffd4c9355f5728772",
+      "docs/PUBLICATION_BOUNDARY.md": "2e0b65be5bfc4d1d5e4d4ebdb5f7448c4807fe65d348f5d3be0bbba2cf3c4c85",
+      "fintech.css": "b558773a00be3156f7fcd345b9e3c3015be6f64948b1fe47e5faabe27581fbc4",
+      "fintech.html": "c0ac9fb800cb616cb18f07aa9f74f199c68703b527165db40e75f7eaaae548a6",
+      "index.html": "048a4549bfee652a6b81ca9fe6915ec2ae5090c9338737761516b8ee00346212",
+      "projects/frontier-ai-valuation-lab.html": "338102d421a58234673ab3cd6d44092cc4792acc4f7c61e3ea7473266235813c",
+      "projects/lineageguard.html": "1354c9ba4230a5977164119d7d4781cdc2ec447ecffa8b503297f682fe495ca1",
+      "projects/motionx.html": "69d4a7038fea8449ef16bd0f82c6b0f984ca36de51f097154f70aca9cb1cd7b6",
+      "projects/trading-research.html": "b40abfe60065ad9399a624a48102a69ac3726325a13241a61f378ef0c40ef082",
+      "public-files.json": "65aeccbe69bc49c704f080e95f7273ec118fcd251f9285af7db321fc28a31c36",
+      "script.js": "cc40cafad07f1b29015f9f71daa3c7e87190921a1c6c620f2e7e30192d682507",
+      "scripts/build_cases.py": "b88d0415c2c03624072832f948e6a601f55b6fdc8279de20d2774030333a4cf9",
+      "scripts/build_site.py": "7bf0d2a0cb54f84697450e08bd7f70b82acfb1273488c2143ea5947f7bf0c2ad",
+      "styles.css": "f10c2b367fa62a51500d0ab7c198b608004af154a41e150a1c11f3547e5cd4ce",
+      "tests/browser_smoke.cjs": "ce58da34f98d21447eec2a5b8ed4ffb81ba39a564b2002dfb6c3b905102d6edc",
+      "tests/navigation_resilience.cjs": "e166b1fc9c5f8abe40c8bb960e0075343193e0742865d955eca081fc23877cd2"
+    }
+  },
+  "limits": [
+    "This is a scoped AI-assisted engineering review, not an external financial, security or accessibility audit or certification.",
+    "No full unit/browser suites or independent financial reference were rerun by this reviewer; final integrated gates have separate receipts.",
+    "No hosted deployment, GitHub release-asset download or native desktop operation was performed in this review.",
+    "The v4 local VERIFICATION entry was checked against existing local receipts. Public receipt publication, hosted release checks and native delivery observations remain separate. Superseded intermediate logs are not presented as current evidence."
+  ],
+  "documentationRefreshedAtUtc": "2026-10-20T01:58:17.575011Z"
+}

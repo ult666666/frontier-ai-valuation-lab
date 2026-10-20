@@ -1,0 +1,101 @@
+{
+  "appVersion": "4.0.0",
+  "rendered": [
+    {
+      "name": "Frontier_AI_Capital_Decision",
+      "htmlSha256": "f747151a109fe425bf73f2cc9bf81a85fc2150df5bf3e7d2ebfff928c57d5552",
+      "pdfSha256": "2249a7176594ed3d2ae1b9e6a6406d14ddfbf37ec9b27573f4bc9b08bc1bc8e5",
+      "pdfBytes": 235627
+    },
+    {
+      "name": "Frontier_AI_Financing_Lens",
+      "htmlSha256": "932562c240b5babe863688d2c76ac253577a2f0c222645710f1e5bd558793b06",
+      "pdfSha256": "f1c5ee4ef9bfcfdc40a952fa953b916e60e8a87a024b16311b63778b193ddbca",
+      "pdfBytes": 160102
+    },
+    {
+      "name": "Frontier_AI_Value_Horizon",
+      "htmlSha256": "79d1b7e6d26adbf5d4b213a1e5d03e6a70a8303c3dfc5e7b918b2ef83dc0360c",
+      "pdfSha256": "9e13c0faf0c50bf232a311b6697faee00c6f547405b965ae42eed186d485c2d3",
+      "pdfBytes": 113404
+    },
+    {
+      "name": "Frontier_AI_Research_Brief",
+      "htmlSha256": "4ee767f4327202ee3afae91d7160c631942563bf32ff2d2e659606f47fcb54c8",
+      "pdfSha256": "f0f91aa739ef15d9fa68ab19979f1aad26b571757a489ffd85f4598a7bf39883",
+      "pdfBytes": 168139
+    },
+    {
+      "name": "Frontier_AI_Thesis_Comparison",
+      "htmlSha256": "f38acf98e55b83600e620179769b58603a9520b8703a413d2ef0f8df99efeaed",
+      "pdfSha256": "1c7cf311365b1111a7a4540b5093112c62dc6f39d472fdfe2b882112beedce26",
+      "pdfBytes": 145872
+    }
+  ],
+  "visualReviewPending": false,
+  "pageChecks": [
+    {
+      "name": "Frontier_AI_Capital_Decision",
+      "pages": 7,
+      "pdfSha256": "2249a7176594ed3d2ae1b9e6a6406d14ddfbf37ec9b27573f4bc9b08bc1bc8e5",
+      "textCharacters": [
+        2540,
+        1882,
+        2555,
+        2148,
+        2021,
+        2510,
+        3143
+      ]
+    },
+    {
+      "name": "Frontier_AI_Financing_Lens",
+      "pages": 3,
+      "pdfSha256": "f1c5ee4ef9bfcfdc40a952fa953b916e60e8a87a024b16311b63778b193ddbca",
+      "textCharacters": [
+        1902,
+        2341,
+        1804
+      ]
+    },
+    {
+      "name": "Frontier_AI_Value_Horizon",
+      "pages": 2,
+      "pdfSha256": "9e13c0faf0c50bf232a311b6697faee00c6f547405b965ae42eed186d485c2d3",
+      "textCharacters": [
+        1890,
+        2933
+      ]
+    },
+    {
+      "name": "Frontier_AI_Research_Brief",
+      "pages": 4,
+      "pdfSha256": "f0f91aa739ef15d9fa68ab19979f1aad26b571757a489ffd85f4598a7bf39883",
+      "textCharacters": [
+        2050,
+        2260,
+        2219,
+        2949
+      ]
+    },
+    {
+      "name": "Frontier_AI_Thesis_Comparison",
+      "pages": 3,
+      "pdfSha256": "1c7cf311365b1111a7a4540b5093112c62dc6f39d472fdfe2b882112beedce26",
+      "textCharacters": [
+        1815,
+        1942,
+        3171
+      ]
+    }
+  ],
+  "visualReview": {
+    "reviewedAtUtc": "2026-10-20T01:17:31.296269+00:00",
+    "reviewedPages": 19,
+    "documents": 5,
+    "capitalPages": 7,
+    "method": "Rendered actual PDF pages; checked headings, complete tables, signs, exact inputs, warnings, pagination and updated method scope. Final capital page7 re-rendered after wording clarification.",
+    "findings": [],
+    "initialConcernResolved": "Financing headers were checked with PDF text geometry and high-resolution crops; complete text fits the page. No source change was needed."
+  }
+}

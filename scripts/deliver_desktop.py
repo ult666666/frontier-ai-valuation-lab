@@ -10,15 +10,18 @@ from pathlib import Path
 import plistlib
 import re
 import shutil
+import subprocess
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-APP_VERSION = "3.6.0"
+APP_VERSION = "4.0.0"
+CAPITAL_VERSION = "1.0.0"
 FINANCING_VERSION = "1.0.0"
 OWNERSHIP_VERSION = "1.0.0"
 MODEL_VERSION = "3.0.0"
 VALUATION_DATE = "2026-10-18"
 APP = "https://frontier-ai-valuation-lab.vercel.app/"
+CAPITAL = APP + "capital.html#worked-decision"
 FINANCING = APP + "index.html#financing-example"
 OWNERSHIP = APP + "index.html#ownership-example"
 HORIZON = APP + "horizon.html"
@@ -26,10 +29,11 @@ THESIS = APP + "thesis.html"
 CASEBOOK = APP + "casebook.html"
 REPO = "https://github.com/ult666666/frontier-ai-valuation-lab"
 PORTFOLIO = "https://ult666666.github.io/fintech.html"
-DEFAULT_DESTINATION = Path.home() / "Desktop/Anthropic-vs-OpenAI-Valuation/Ownership_Frontier_V3_6_2026-10-19"
+DEFAULT_DESTINATION = Path.home() / "Desktop/Anthropic-vs-OpenAI-Valuation/Capital_Strategy_V4_0_2026-10-19"
 MANIFEST_NAME = "SHA256_manifest.json"
 SHORTCUTS = {
-    "Open_Live_Demo.webloc": OWNERSHIP,
+    "Open_Live_Demo.webloc": CAPITAL,
+    "Open_Capital_Strategy_Studio.webloc": CAPITAL,
     "Open_Ownership_Frontier.webloc": OWNERSHIP,
     "Open_Financing_Lens.webloc": FINANCING,
     "Open_Value_Horizon.webloc": HORIZON,
@@ -43,6 +47,13 @@ SHORTCUTS = {
 
 def source_files():
     return {
+        "downloads/Frontier_AI_Capital_Decision.json": ROOT / "public/downloads/Frontier_AI_Capital_Decision.json",
+        "downloads/Frontier_AI_Capital_Decision.html": ROOT / "public/downloads/Frontier_AI_Capital_Decision.html",
+        "downloads/Frontier_AI_Capital_Decision.pdf": ROOT / "public/downloads/Frontier_AI_Capital_Decision.pdf",
+        "Capital_Strategy_Preview.png": ROOT / "docs/demo-capital.png",
+        "Capital_Strategy_Methodology.md": ROOT / "docs/CAPITAL_STRATEGY.md",
+        "Capital_Strategy_Walkthrough.md": ROOT / "docs/DEMO_WALKTHROUGH.md",
+        "Architecture.md": ROOT / "docs/ARCHITECTURE.md",
         "report.html": ROOT / "public/report.html",
         "downloads/Frontier_AI_Valuation_Model.xlsx": ROOT / "public/downloads/Frontier_AI_Valuation_Model.xlsx",
         "downloads/Frontier_AI_Valuation_Review.pdf": ROOT / "public/downloads/Frontier_AI_Valuation_Review.pdf",
@@ -118,6 +129,29 @@ def strict_json(text):
     value = json.loads(text, parse_constant=reject_constant, object_pairs_hook=unique_record)
     inspect(value)
     return value
+
+
+def check_capital_metadata(path):
+    """Recompute the complete capital record; require Node 24, no network or writes."""
+    if path.stat().st_size > 256 * 1024:
+        raise ValueError("Capital decision exceeds the 256 KiB UTF-8 import limit.")
+    text = path.read_text(encoding="utf-8")
+    strict_json(text)  # Reject duplicate fields before a normal JSON parser can discard them.
+    node = shutil.which("node")
+    if node is None:
+        raise RuntimeError("Node.js 24 is required to recompute the capital decision package.")
+    script = """
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {parseCapitalRecord} from './public/lib/capital-record.js';
+const text=await readFile(process.argv[1],'utf8');
+const supplied=JSON.parse(text),checked=parseCapitalRecord(text);
+assert.deepEqual(supplied.analysis,checked.analysis,'Stored capital analysis differs from the recomputed record.');
+"""
+    result = subprocess.run([node, "--input-type=module", "-e", script, str(path.resolve())],
+                            cwd=ROOT, capture_output=True, text=True, timeout=10)
+    if result.returncode != 0:
+        raise ValueError("Capital decision has incompatible inputs or a stored analysis that differs from the recomputed record.")
 
 
 def ownership_constraint(value):
@@ -430,7 +464,7 @@ def check_opening_links(destination):
     for name in ("START_HERE.html", "index.html"):
         parser = OpeningLinks()
         parser.feed((destination / name).read_text(encoding="utf-8"))
-        if any(url not in parser.urls for url in (OWNERSHIP, FINANCING, HORIZON, CASEBOOK, PORTFOLIO)):
+        if any(url not in parser.urls for url in (CAPITAL, OWNERSHIP, FINANCING, HORIZON, CASEBOOK, PORTFOLIO)):
             raise ValueError(f"{name} is missing a workspace or portfolio destination.")
         for value in parser.urls:
             url = urlsplit(value)
@@ -451,8 +485,8 @@ def verify_delivery(destination, expected_sources=None):
     """Read-only manifest, local navigation and analysis-contract verification."""
     manifest = json.loads((destination / MANIFEST_NAME).read_text(encoding="utf-8"))
     expected_metadata = {"appVersion": APP_VERSION, "modelVersion": MODEL_VERSION,
-                         "financingVersion": FINANCING_VERSION, "ownershipVersion": OWNERSHIP_VERSION,
-                         "valuationDate": VALUATION_DATE, "demo": OWNERSHIP, "ownership": OWNERSHIP, "financing": FINANCING,
+                         "financingVersion": FINANCING_VERSION, "ownershipVersion": OWNERSHIP_VERSION, "capitalVersion": CAPITAL_VERSION,
+                         "valuationDate": VALUATION_DATE, "demo": CAPITAL, "capital": CAPITAL, "ownership": OWNERSHIP, "financing": FINANCING,
                          "horizon": HORIZON, "casebook": CASEBOOK, "thesis": THESIS,
                          "workbench": APP, "repository": REPO, "portfolio": PORTFOLIO}
     for key, value in expected_metadata.items():
@@ -481,34 +515,44 @@ def verify_delivery(destination, expected_sources=None):
     check_opening_links(destination)
     check_financing_metadata(destination / "downloads/Frontier_AI_Financing_Lens.json", require_ownership=True)
     check_horizon_metadata(destination / "downloads/Frontier_AI_Value_Horizon.json")
+    check_capital_metadata(destination / "downloads/Frontier_AI_Capital_Decision.json")
     return {"destination": str(destination), "files": len(actual),
             "appVersion": APP_VERSION, "status": "verified"}
 
 
 def opening_page():
-    navigation = [("Overview", APP + "index.html#research-story"),
+    navigation = [("Capital Studio", CAPITAL), ("Overview", APP + "index.html#research-story"),
                   ("Model", APP + "index.html#workspace"), ("Thesis Lab", THESIS),
                   ("Value Horizon", HORIZON), ("Casebook", CASEBOOK),
                   ("Evidence", APP + "index.html#sources")]
     nav = "".join(f'<a href="{url}">{label}</a>' for label, url in navigation)
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ownership Frontier · Frontier AI Valuation Lab</title>
+<title>Capital Strategy Studio · Frontier AI Valuation Lab</title>
 <style>
 *{{box-sizing:border-box}}body{{margin:0;background:#f4f3eb;color:#20382f;font:16px/1.7 system-ui,sans-serif}}main{{max-width:900px;margin:4vh auto;padding:32px}}h1{{font:clamp(38px,7vw,66px)/1.06 Georgia,serif;letter-spacing:-2px;margin:28px 0 22px;max-width:720px}}h2{{font:28px/1.2 Georgia,serif;margin-top:34px}}a{{color:#21654c;text-underline-offset:4px}}a:focus-visible{{outline:3px solid #b26842;outline-offset:5px}}.tag{{font:11px/1.7 monospace;letter-spacing:1.5px;color:#68755e}}nav{{display:flex;gap:12px 20px;flex-wrap:wrap;border-bottom:1px solid #c6cfbc;padding:18px 0;font-size:12px}}.lead{{max-width:710px;color:#4f6457}}.card{{border:1px solid #b9cab3;background:#e9ede0;padding:22px 26px;margin:26px 0}}.card>a{{font-size:19px;font-weight:650}}.card p{{font-size:14px;margin-bottom:0}}img{{display:block;width:100%;height:auto;border:1px solid #cad2c3;margin:24px 0}}ul{{padding-left:22px}}li{{margin:9px 0}}.downloads{{display:grid;grid-template-columns:1fr 1fr;gap:16px 35px}}.downloads h2{{font-size:25px}}.downloads ul{{font-size:14px}}small{{color:#5e715f}}footer{{border-top:1px solid #c6cfbc;margin-top:32px;padding-top:18px}}@media(max-width:600px){{main{{padding:22px}}.downloads{{grid-template-columns:1fr;gap:0}}h1{{letter-spacing:-1.3px}}.card{{padding:20px}}}}
 </style></head><body><main>
 <div class="tag">CHARLES DAI / FINTECH / APPLICATION {APP_VERSION}</div>
 <nav aria-label="Open the research workspace">{nav}</nav>
-<h1>How much capital fits your ownership floor?</h1>
-<p class="lead">Explore a fixed-quote primary round in Financing Lens. Set the fraction of starting ownership to retain, trace the capital-versus-ownership curve and compare your current round with the analytical boundary.</p>
-<div class="card"><a href="{OWNERSHIP}">Open Ownership Frontier ↗</a><p>The hypothetical example uses a $250B pre-money quote, $25B primary capital, a 10% starting holder and a 90% retention floor. The floor means keeping 90% of starting stakes; the tracked holder's corresponding floor is 9% of the company.</p></div>
-<img src="Ownership_Frontier_Preview.png" alt="Ownership Frontier in Financing Lens: retained ownership curve, current round, chosen retention floor and capital boundary." width="1440">
+<h1>A capital decision.<br>Made inspectable.</h1>
+<p class="lead">Define a capital objective, compare hypothetical financing plans, challenge their modeled consequences across explicit scenarios, and preserve the reasoning behind your choice.</p>
+<div class="card"><a href="{CAPITAL}">Open Capital Strategy Studio ↗</a><p>The worked decision compares three hypothetical plans against a $25B capital objective and 88% retained starting stake. Change the floor to 90%, then the capital objective to $30B, to see how the eligible plans change.</p></div>
+<img src="Capital_Strategy_Preview.png" alt="The working Capital Strategy Studio compares three hypothetical financing plans against explicit capital and retained ownership objectives." width="1440">
+<div class="card"><strong>Read or reopen the exact decision</strong><ul>
+<li><a href="downloads/Frontier_AI_Capital_Decision.pdf">Complete capital decision · PDF</a></li>
+<li><a href="downloads/Frontier_AI_Capital_Decision.html">Standalone decision · HTML with exact reopening link</a></li>
+<li><a href="downloads/Frontier_AI_Capital_Decision.json" download>Exact importable decision · JSON</a></li>
+<li><a href="Capital_Strategy_Methodology.md">Capital method, equations and limits</a></li>
+<li><a href="Capital_Strategy_Walkthrough.md">Complete demo walkthrough</a></li>
+<li><a href="Architecture.md">Full stack architecture and trust boundaries</a></li>
+</ul><p>For Plans A and B, the signed modeled existing-cohort allocations meet at a $635B pre-money residual. The business brief preserves the analyst’s choice, tradeoff, information needed and review trigger. Named scenarios have no assigned probabilities.</p></div>
 <div class="downloads"><section><h2>The ownership example</h2><ul>
 <li><a href="downloads/Frontier_AI_Financing_Lens.pdf">Financing and Ownership Frontier brief · PDF</a></li>
 <li><a href="downloads/Frontier_AI_Financing_Lens.html">Script-free brief, ownership curve and exact reopening link</a></li>
 <li><a href="downloads/Frontier_AI_Financing_Lens.json" download>Complete financing and ownership snapshot · JSON</a></li>
 <li><a href="Ownership_Frontier_Methodology.md">Ownership constraint, curve and numerical boundaries</a></li>
 <li><a href="Financing_Lens_Methodology.md">Financing formulas, sources and boundaries</a></li>
+<li><a href="{OWNERSHIP}">Open Ownership Frontier</a></li>
 <li><a href="{FINANCING}">Open the ordinary Financing Lens example</a></li>
 </ul><p><small>The new exact link adds the selected retention floor to all thirteen operating assumptions, the explicit bridge and the four round fields. One primary round, equal participating rights, no existing-holder subscriptions, zero fees and retained cash are assumed. The capital boundary is conditional on the entered quote and floor; it does not estimate financing need or availability.</small></p>
 <h2>The Horizon example</h2><ul>
@@ -539,7 +583,7 @@ def opening_page():
 <li><a href="{REPO}/blob/main/docs/VERIFICATION.md">Verification record and scope</a></li>
 <li><a href="{REPO}/releases">Release history and artifacts</a></li>
 </ul></section></div>
-<footer><small>Application {APP_VERSION}; financial engine {MODEL_VERSION}; financing method {FINANCING_VERSION}; ownership method {OWNERSHIP_VERSION}. Valuation date: 18 October 2026. Amounts are USD billions. Research and implementation developed with AI assistance. Financing terms, balances and retention floors are hypothetical; a quoted stake value is not an investment return. Retained primary cash raises modeled equity and cash equally while operating EV stays fixed. A continuation cutoff is a conditional assumption, not a company lifespan. The reviewed workbook and company-research snapshot remain dated. Casebook storage belongs to the current browser; export JSON to move saved reasoning across devices. Original desktop files and earlier handoffs are preserved.</small></footer>
+<footer><small>Application {APP_VERSION}; financial engine {MODEL_VERSION}; capital method {CAPITAL_VERSION}; financing method {FINANCING_VERSION}; ownership method {OWNERSHIP_VERSION}. Valuation date: 18 October 2026. Amounts are USD billions. Research and implementation developed with AI assistance. Financing terms, balances and retention floors are hypothetical; a quoted stake value is not an investment return. Retained primary cash raises modeled equity and cash equally while operating EV stays fixed. A continuation cutoff is a conditional assumption, not a company lifespan. The reviewed workbook and company-research snapshot remain dated. Casebook storage belongs to the current browser; export JSON to move saved reasoning across devices. Original desktop files and earlier handoffs are preserved.</small></footer>
 </main></body></html>'''
 
 
@@ -556,6 +600,7 @@ def main():
     for source in files.values():
         if not source.is_file() or source.stat().st_size == 0:
             raise FileNotFoundError(f"Required source file is missing or empty: {source}")
+    check_capital_metadata(files["downloads/Frontier_AI_Capital_Decision.json"])
     check_horizon_metadata(files["downloads/Frontier_AI_Value_Horizon.json"])
     check_financing_metadata(files["downloads/Frontier_AI_Financing_Lens.json"], require_ownership=True)
     destination.mkdir(parents=True, exist_ok=False)
@@ -571,8 +616,8 @@ def main():
         (destination / name).write_bytes(plistlib.dumps({"URL": url}))
     manifest = {
         "appVersion": APP_VERSION, "modelVersion": MODEL_VERSION, "valuationDate": VALUATION_DATE,
-        "financingVersion": FINANCING_VERSION, "ownershipVersion": OWNERSHIP_VERSION,
-        "demo": OWNERSHIP, "ownership": OWNERSHIP, "financing": FINANCING, "horizon": HORIZON, "casebook": CASEBOOK, "thesis": THESIS,
+        "financingVersion": FINANCING_VERSION, "ownershipVersion": OWNERSHIP_VERSION, "capitalVersion": CAPITAL_VERSION,
+        "demo": CAPITAL, "capital": CAPITAL, "ownership": OWNERSHIP, "financing": FINANCING, "horizon": HORIZON, "casebook": CASEBOOK, "thesis": THESIS,
         "workbench": APP, "repository": REPO, "portfolio": PORTFOLIO,
         "files": {p.relative_to(destination).as_posix(): digest(p)
                   for p in sorted(destination.rglob("*")) if p.is_file()},

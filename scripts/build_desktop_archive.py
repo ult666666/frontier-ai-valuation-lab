@@ -9,9 +9,10 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-FOLDER = "Ownership_Frontier_V3_6_2026-10-19"
-OUTPUT = ROOT / "public/downloads/Frontier_AI_Ownership_Frontier_Package.zip"
+FOLDER = "Capital_Strategy_V4_0_2026-10-19"
+OUTPUT = ROOT / "public/downloads/Frontier_AI_Capital_Strategy_Package.zip"
 PREVIOUS_PACKAGES = (
+    ROOT / "public/downloads/Frontier_AI_Ownership_Frontier_Package.zip",
     ROOT / "public/downloads/Frontier_AI_Financing_Lens_Package.zip",
     ROOT / "public/downloads/Frontier_AI_Value_Horizon_Package.zip",
 )
@@ -22,7 +23,7 @@ def main():
         raise FileExistsError(f"Refusing to overwrite an existing package: {OUTPUT}")
     previous_hashes = {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
                        for path in PREVIOUS_PACKAGES}
-    with tempfile.TemporaryDirectory(prefix="frontier-ownership-package-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="frontier-capital-package-") as temporary:
         destination = Path(temporary) / FOLDER
         created = subprocess.run(
             [sys.executable, str(ROOT / "scripts/deliver_desktop.py"),

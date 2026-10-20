@@ -64,7 +64,7 @@ try{
   check('Fresh browser opens an honest empty Casebook',await page.locator('.entry-card').count(),0);
   check('Empty state points to the real Thesis Lab',await page.locator('.empty-actions a').first().getAttribute('href'),'./thesis.html');
   check('Export is unavailable until a saved record exists',await page.locator('#export-all').isDisabled());
-  check('All six research navigation destinations are visible',await page.locator('.app-nav a').count(),6);
+  check('All seven research navigation destinations are visible',await page.locator('.app-nav a').count(),7);
   await capture(page,'empty-desktop');
 
   await page.locator('#import-open').click();await upload(page,fixtureText);await page.locator('#import-merge:not([disabled])').waitFor();
@@ -180,7 +180,7 @@ try{
   for(const width of[390,768,1440]){
     await page.setViewportSize({width,height:1000});await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
     check(`No horizontal page overflow at ${width}px`,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-    check(`All six navigation links remain available at ${width}px`,await page.locator('.app-nav a:visible').count(),6);
+    check(`All seven navigation links remain available at ${width}px`,await page.locator('.app-nav a:visible').count(),7);
     await capture(page,`populated-${width}`);
     if(width===390){await choose(page,'qa-margins');check('Selecting a card on mobile brings the detail heading into view',await page.locator('#detail-title').evaluate(el=>{const box=el.getBoundingClientRect();return box.top>=0&&box.bottom<innerHeight;}));check('Mobile currency amounts stay on one readable line',await page.locator('.snapshot-stat > strong').evaluateAll(elements=>elements.every(el=>getComputedStyle(el).whiteSpace==='nowrap'&&el.scrollWidth<=el.clientWidth+1)));await capture(page,'detail-mobile');}
   }

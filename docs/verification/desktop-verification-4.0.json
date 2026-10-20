@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "appVersion": "4.0.0",
+  "testedAtUtc": "2026-10-20T01:45:09.839389+00:00",
+  "scope": "Actual temporary desktop creation and read-only verification; this does not assert a native desktop copy or launch.",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Complete real handoff contains 47 files and all 34 source copies match",
+      "passed": true
+    },
+    {
+      "name": "Read-only verification preserves all bytes, sizes and file modification times",
+      "passed": true
+    },
+    {
+      "name": "Existing destination refuses without changing it or the earlier handoff",
+      "passed": true
+    },
+    {
+      "name": "Reject altered PDF bytes",
+      "passed": true,
+      "verificationWasReadOnly": true
+    },
+    {
+      "name": "Reject forged complete analysis even with an updated manifest",
+      "passed": true,
+      "verificationWasReadOnly": true
+    },
+    {
+      "name": "Reject wrong destination even with an updated manifest",
+      "passed": true,
+      "verificationWasReadOnly": true
+    },
+    {
+      "name": "Reject broken local brief link even with an updated manifest",
+      "passed": true,
+      "verificationWasReadOnly": true
+    }
+  ],
+  "manifestListedFiles": 46,
+  "totalFiles": 47,
+  "sourceFiles": {
+    "scripts/deliver_desktop.py": "31695c563a391924ce8a5bf121ea67f9c52f88ac5626718e5145ab12ed93f3f0",
+    "public/downloads/Frontier_AI_Capital_Decision.json": "4d26443bd387a7dda0b8796f4977bb234c0697f0828755644a821aec5c608684",
+    "public/downloads/Frontier_AI_Capital_Decision.html": "f747151a109fe425bf73f2cc9bf81a85fc2150df5bf3e7d2ebfff928c57d5552",
+    "public/downloads/Frontier_AI_Capital_Decision.pdf": "2249a7176594ed3d2ae1b9e6a6406d14ddfbf37ec9b27573f4bc9b08bc1bc8e5",
+    "docs/demo-capital.png": "58d46330442f6226f84c1773cbc30546bdb691711acd8cbffd4c9355f5728772",
+    "docs/CAPITAL_STRATEGY.md": "52d2f3d114b4b5da85b7c6cc5caec8ac6792ecbda065be3a046efc1079c378c7",
+    "docs/DEMO_WALKTHROUGH.md": "b8a4b88d3ffcafb5e4133276105f6bed3462c38379f8efa50b4e4509afc22991",
+    "docs/ARCHITECTURE.md": "0ad27ae84758b25d3e48e973417322f35a469e51a069626c772b241569294db8",
+    "public/report.html": "1ac8d7bf552060d5188c2a033020fb92c673b6fe6f90f4e7e1fec42d8c3cc335",
+    "public/downloads/Frontier_AI_Valuation_Model.xlsx": "0a692f43f8459ffb6a162f065c10912a5ca23738d55104b272f74dbecdf73438",
+    "public/downloads/Frontier_AI_Valuation_Review.pdf": "08c94a33ea36870ca05ba437077bcec9d308ad87b90a4a7e3b80806d16edec36",
+    "public/downloads/Frontier_AI_Thesis_Comparison.html": "f38acf98e55b83600e620179769b58603a9520b8703a413d2ef0f8df99efeaed",
+    "public/downloads/Frontier_AI_Thesis_Comparison.pdf": "1c7cf311365b1111a7a4540b5093112c62dc6f39d472fdfe2b882112beedce26",
+    "public/downloads/Frontier_AI_Research_Brief.html": "4ee767f4327202ee3afae91d7160c631942563bf32ff2d2e659606f47fcb54c8",
+    "public/downloads/Frontier_AI_Research_Brief.pdf": "f0f91aa739ef15d9fa68ab19979f1aad26b571757a489ffd85f4598a7bf39883",
+    "public/downloads/Frontier_AI_Research_Casebook.json": "d4f76abc483f72d2274e26400a246fee91ebccfb6f4d9bd2a5c9bb7582523ef3",
+    "public/downloads/Frontier_AI_Value_Horizon.html": "79d1b7e6d26adbf5d4b213a1e5d03e6a70a8303c3dfc5e7b918b2ef83dc0360c",
+    "public/downloads/Frontier_AI_Value_Horizon.pdf": "9e13c0faf0c50bf232a311b6697faee00c6f547405b965ae42eed186d485c2d3",
+    "public/downloads/Frontier_AI_Value_Horizon.json": "7a60e38a05c7e86abfaf31afe30eceaacc2f23ad059fde718cd20c2e261117ed",
+    "public/downloads/Frontier_AI_Financing_Lens.html": "932562c240b5babe863688d2c76ac253577a2f0c222645710f1e5bd558793b06",
+    "public/downloads/Frontier_AI_Financing_Lens.pdf": "f1c5ee4ef9bfcfdc40a952fa953b916e60e8a87a024b16311b63778b193ddbca",
+    "public/downloads/Frontier_AI_Financing_Lens.json": "e3945962a17f2bb1ffc35e8a77b9d7ff5bc9723a59c14e3559577527fe791e46",
+    "docs/OWNERSHIP_FRONTIER.md": "ec5529a2470e5a8d467634dfc7c0acdf3299d803195dcdfb8d50d4d1e783eabd",
+    "docs/demo-ownership.png": "6c5fec5f5e9b8c1aaa8d340407f3159581b6189773672893b9fbe5edec091105",
+    "docs/FINANCING_LENS.md": "f3a42fc2c0417f21962338761954ee7dd6c2ba36b12d008066d81599a72ceb5e",
+    "docs/demo-financing.png": "6582c4ada18498f9ca82ead1a199c8d845894e17d21fac428db63107a71b3b71",
+    "docs/VALUE_HORIZON.md": "be42ad79f1040265467ff4142c6fe08517cac52eac5b7997037f8ff748c1851f",
+    "public/assets/horizon-preview.png": "a7670a8b00411fbce6c60ce90d4eb3593879082f84c2796d1c40f6f99cd57abe",
+    "public/data/evidence.json": "5b24b888cabdbddbb4e0af221933b14fcb6c6cd8143d4f08293afe84ecff0289",
+    "public/assets/casebook-preview.png": "420b9ad3294b9fe05a4e7843d59c95b1a0dcec0fca380cb796f555c5ef48bdfd",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "public/data/current-results.json": "10ebc4ec4bd8bfe4440dcb1ab303aa4df26b542e4e60ddf4c174f9e72c738fa7",
+    "data/research.json": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65",
+    "docs/DESKTOP_GUIDE.md": "c6a286ee4389c750d7fa391ca0b0bd93679082e74850e00496e484dab819b929",
+    "public/assets/thesis-preview.png": "5b294918d7ee2181ae1e284592620a8a3e4d312f05bc6975bc7a0325eded91d0",
+    "public/lib/capital-strategy.js": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842",
+    "public/lib/financing-format.js": "8b14818b59819f5b1eb506318422cbbe8731a8fed174864111e7cfad862ac302",
+    "public/lib/horizon-share.js": "062d578cd93957ca7733e25ed04192a4fc195381d0ba38f837930c8418b234a8",
+    "public/lib/casebook-brief.js": "49afda42f775b83e9419db4184e087981c2ca186c20588975cc2786bf0382aae",
+    "public/lib/evidence.js": "091c775ead94aed83c0195a9789e403bca75457453957371fb095080b8c16bb4",
+    "public/lib/financing-brief.js": "c90edbf24e172062c52226eef0bfd09d9adc325f991c9a3f5a7d7ef376336211",
+    "public/lib/analytics.js": "ef35d80f9ad805de540dd0d9fda943ba969913cb9b0e3742c9a2e0d2ea00b75f",
+    "public/lib/ownership.js": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7",
+    "public/lib/capital-example.js": "5082804eceaaae470fb4e1f205ef9b7402f21c997d5ce995b497ad7b487cf916",
+    "public/lib/share.js": "658b1103278e1702a1f0616c9ff920f98d331b7dce552e0f97ce21bac9bc98ab",
+    "public/lib/capital-record.js": "d194fd1c8ca756428f64dd3411c527060a76efa1a56b56b5685947fa654f45ac",
+    "public/lib/journey.js": "442e60ec027b80cec25584afdab09a9783b3dabaa503c319cd8a7ebc4deb7dbe",
+    "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+    "public/lib/horizon.js": "31e88f039b640a9627b1a5d78bc62c93dbd82d1cb50015b4606e2efb3923eec5",
+    "public/lib/thesis-brief.js": "0ea9dbc0c17cd2f6bde00e1991ff0aa678918807447f33bff08ea24a63085b6e",
+    "public/lib/casebook.js": "89cf76f1cf4ffccb1d9eb3512a7c34308d16e02403a6a092983793a9aaec1f04",
+    "public/lib/capital-chart.js": "9a27e26d2ce6fc61a8d17a61d0d3696418dadbec68794483c7390878c0b523fb",
+    "public/lib/thesis.js": "a2ad37f4d9d12d7556efea1adbdcddb0424b2599700b15000b0dbbccc6c245e3",
+    "public/lib/horizon-brief.js": "40a85b484a9b8c8b501d8669aff2d324a65aab10e3495f6d863c35df10d54a56",
+    "public/lib/briefing.js": "428afb688cd2b589e9f03033989460db63777aee3bb75bacdf30d30a181fee2a",
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/capital-share.js": "c857667b233397345303791d4e9added14fb8153c21d7f27811bde9221a010a7",
+    "public/lib/release.js": "ca5c5d7e2169ab76b4a0d2ca3af7c08d2b37bd467d1038d3c0912ef3ee87862a",
+    "public/lib/thesis-share.js": "9c724b710c88747d252cd5e245867dc0e5287c40e2438db5d21db5ed8e577046",
+    "public/lib/financing-share.js": "3359e1d7f4e2b61ef0c6a1df85760ed036d070f338b0512b7068510cadfcf5d7",
+    "public/lib/ownership-chart.js": "9662a49031c9012f4560e053e5244f79d19c49f63131a2577ac21e6b645f2813",
+    "public/lib/casebook-store.js": "73beb3444dcb67f858f9c580e4e3c1e88bc246ee7e2af88d58a94119ad9d6819",
+    "public/lib/capital-brief.js": "a49176acf1d2752365cca33b624aa4683061fe1a3873a11b7fc352e8d7c4d590"
+  },
+  "sourcesUnchanged": true,
+  "nativeDesktopDelivery": false,
+  "nativeExcelRecalculation": false
+}

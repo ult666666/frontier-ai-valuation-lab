@@ -39,5 +39,7 @@ jobs:
         run: python3 -B scripts/check_ownership_reference.py --output /tmp/ownership-reference.json
       - name: Independent financing shares and equity-reconciliation checks
         run: python3 -B scripts/check_financing_reference.py --output /tmp/financing-reference.json
+      - name: Independent capital strategy and finite-scenario comparisons
+        run: python3 -B scripts/check_capital_reference.py --output /tmp/capital-reference.json
       - name: Build public application snapshot
         run: npm run build

@@ -80,7 +80,7 @@ def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
 
 
-def public_assets():
+def public_assets(required=REQUIRED):
     public = ROOT / "public"
     paths = []
     for path in public.rglob("*"):
@@ -94,9 +94,10 @@ def public_assets():
                 raise RuntimeError("Unsupported public asset type: " + str(relative))
             paths.append(relative.as_posix())
     paths.sort()
-    missing = sorted(set(REQUIRED) - set(paths))
+    missing = sorted(set(required) - set(paths))
     if missing:
-        raise RuntimeError("Required financing assets are not ready: " + ", ".join(missing))
+        subject = "financing" if tuple(required) == REQUIRED else "release"
+        raise RuntimeError(f"Required {subject} assets are not ready: " + ", ".join(missing))
     sizes = [(public / path).stat().st_size for path in paths]
     if len(paths) > MAX_ASSETS or sum(sizes) > MAX_TOTAL_ASSET_BYTES or max(sizes) > MAX_RESPONSE_BYTES:
         raise RuntimeError("The asset inventory exceeds this bounded verifier's limits.")
@@ -188,7 +189,13 @@ def fetch(base, path, work, deadline, request=None):
     return status, mime.split(";", 1)[0].strip().lower(), content
 
 
-def main():
+def main(*, extra_cases=(), extra_required=(), extra_sources=(),
+         purpose="financing-and-ownership-deployment-consistency"):
+    """Run the shared transport; optional profiles add cases, assets and source bindings.
+
+    A case factory is evaluated after source hashes are captured. Existing CLI
+    callers retain the Financing/Ownership profile and its original defaults.
+    """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", required=True, help="HTTPS origin or an HTTP loopback origin.")
     parser.add_argument("--output", required=True, type=Path, help="Write the complete verification receipt.")
@@ -205,7 +212,7 @@ def main():
     base = args.base_url.rstrip("/")
     started = time.monotonic()
     checks = []
-    report = dict(schema=1, purpose="financing-and-ownership-deployment-consistency", baseUrl=base,
+    report = dict(schema=1, purpose=purpose, baseUrl=base,
                   testedAtUtc=datetime.now(timezone.utc).isoformat(), checks=checks,
                   tlsVerification=True, tlsUsed=origin.scheme == "https",
                   transport="System curl with configuration files disabled; no redirects; certificate verification remains enabled.",
@@ -214,15 +221,17 @@ def main():
                   bounds=dict(maxAssets=MAX_ASSETS, maxResponseBytes=MAX_RESPONSE_BYTES,
                               maxTotalAssetBytes=MAX_TOTAL_ASSET_BYTES, deadlineSeconds=args.deadline_seconds))
     try:
-        assets = public_assets()
+        required = tuple(dict.fromkeys((*REQUIRED, *extra_required)))
+        assets = public_assets(required)
         sources = ["public/" + path for path in assets] + ["lib/http.js", "server.js", "package.json",
                    "data/presets.json", "data/research.json", "scripts/verify_financing_http.py"]
         sources += [path.relative_to(ROOT).as_posix() for path in sorted((ROOT / "api").glob("*.js"))]
+        sources = list(dict.fromkeys((*sources, *extra_sources)))
         before = {path: digest((ROOT / path).read_bytes()) for path in sources}
         report["sourceHashes"] = before
-        report["requiredAssets"] = list(REQUIRED)
+        report["requiredAssets"] = list(required)
         report["assetInventory"] = assets
-        requests = api_cases()
+        requests = api_cases() + list(extra_cases() if callable(extra_cases) else extra_cases)
         node = os.environ.get("CODEX_PRIMARY_RUNTIME_NODE") or shutil.which("node")
         if not node:
             raise RuntimeError("Node 24 is required to evaluate the local handler.")
@@ -269,7 +278,7 @@ def main():
                 checks.append(record)
         after = {path: digest((ROOT / path).read_bytes()) for path in sources}
         report["sourceBinding"] = dict(unchangedDuringRun=before == after,
-                                       assetInventoryUnchanged=assets == public_assets())
+                                       assetInventoryUnchanged=assets == public_assets(required))
     except Exception as error:
         report["error"] = str(error) if isinstance(error, RuntimeError) else type(error).__name__
     report["counts"] = {kind: sum(check["kind"] == kind for check in checks)

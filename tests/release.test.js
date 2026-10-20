@@ -8,11 +8,15 @@ import {APP_VERSION} from '../public/lib/release.js';
 import {createHorizonBrief,createHorizonExport} from '../public/lib/horizon-brief.js';
 import {createFinancingBrief,createFinancingExport} from '../public/lib/financing-brief.js';
 import {decodeFinancing} from '../public/lib/financing-share.js';
+import {createCapitalExample} from '../public/lib/capital-example.js';
+import {parseCapitalRecord} from '../public/lib/capital-record.js';
+import {capitalBriefHtml} from '../public/lib/capital-brief.js';
+import {capitalUrl,decodeCapitalShare} from '../public/lib/capital-share.js';
 
 const publicRoot=path.resolve(fileURLToPath(new URL('../public/',import.meta.url)));
 
 test('published HTML links resolve to actual public assets',async()=>{
-  for(const name of ['index.html','report.html','thesis.html','casebook.html','horizon.html']){
+  for(const name of ['index.html','report.html','thesis.html','casebook.html','horizon.html','capital.html']){
     const text=await readFile(path.join(publicRoot,name),'utf8');
     for(const match of text.matchAll(/(?:href|src)="([^"]+)"/g)){
       const ref=match[1];
@@ -24,6 +28,26 @@ test('published HTML links resolve to actual public assets',async()=>{
       assert.ok((await stat(resolved)).isFile(),`${name} has missing asset ${ref}`);
     }
   }
+});
+
+test('the published Capital Studio record, brief and reopening link preserve the complete worked decision',async()=>{
+  const presets=JSON.parse(await readFile(path.join(publicRoot,'data/presets.json'),'utf8'));
+  const expected=createCapitalExample(presets);
+  const text=await readFile(path.join(publicRoot,'downloads/Frontier_AI_Capital_Decision.json'),'utf8');
+  const html=await readFile(path.join(publicRoot,'downloads/Frontier_AI_Capital_Decision.html'),'utf8');
+  const pdf=await readFile(path.join(publicRoot,'downloads/Frontier_AI_Capital_Decision.pdf'));
+  assert.deepEqual(JSON.parse(text),expected);
+  assert.deepEqual(parseCapitalRecord(text),expected);
+  assert.equal(html,capitalBriefHtml(expected));
+  assert.deepEqual(decodeCapitalShare(new URL(capitalUrl(expected)).hash.slice('#decision='.length)),expected);
+  assert.equal(expected.analysis.matrix.length,9);
+  assert.equal(expected.analysis.comparison.crossovers.length,3);
+  assert.equal(expected.modelVersion,MODEL_VERSION);
+  assert.equal(expected.valuationDate,VALUATION_DATE);
+  assert.ok(html.includes(`Application ${APP_VERSION}`));
+  assert.ok(!/<script\b|\son\w+=/i.test(html));
+  assert.equal(pdf.subarray(0,5).toString(),'%PDF-');
+  assert.ok(pdf.length>10000);
 });
 
 test('release downloads are real PDF and XLSX files',async()=>{

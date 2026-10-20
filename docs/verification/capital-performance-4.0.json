@@ -1,0 +1,1414 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "generatedAt": "2026-10-20T01:50:37.306Z",
+  "purpose": "Bounded local capital API workload cost observations, with no network load or deployment SLA claim.",
+  "timingMethod": {
+    "clock": "node:perf_hooks performance.now() monotonic clock",
+    "measuredRegion": "In-process Request construction, real shared handleRequest body parsing and validation, capital calculation, Response.json serialization, and response arrayBuffer consumption.",
+    "excluded": "Module import, fixture loading and request JSON.stringify are outside the per-call measured region. No network, deployment cold start, authentication proxy or concurrent traffic is measured.",
+    "processCpu": "process.cpuUsage() user+system delta; process-wide CPU can include V8 background activity.",
+    "schedule": "One Node process; cases in listed order, ten warmup calls then forty measured calls per case. No forced garbage collection.",
+    "percentile": "p95 is the nearest-rank observation ceil(0.95*n); median is the mean of the middle two for forty observations.",
+    "memory": "Process snapshots in bytes. These are not per-request peak allocations or a retained-memory/leak test; natural GC and process reuse affect them."
+  },
+  "runtime": {
+    "node": "24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "osRelease": "6.18.55",
+    "reportedCpuModel": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "reportedLogicalCpuCount": 9,
+    "availableParallelism": 8,
+    "wordSizeBits": 64
+  },
+  "moduleImportObservationMs": 16.344453,
+  "totalObservationWindowMs": 451.9058150000001,
+  "initialMemoryBytes": {
+    "rss": 33419264,
+    "heapTotal": 8122368,
+    "heapUsed": 5845552,
+    "external": 2378919,
+    "arrayBuffers": 274719
+  },
+  "endingMemoryBytes": {
+    "rss": 57585664,
+    "heapTotal": 19656704,
+    "heapUsed": 12747136,
+    "external": 5296315,
+    "arrayBuffers": 1570151
+  },
+  "osProcessHighWaterRssKiB": 57304,
+  "configuration": {
+    "requestByteLimit": 16384,
+    "requestLimitSource": "lib/http.js MAX_BYTES",
+    "configuredMaxDurationSeconds": 10,
+    "durationSource": "vercel.json functions.api/index.js.maxDuration"
+  },
+  "observations": [
+    {
+      "name": "canonical-three-scenarios-three-plans",
+      "fixtureSource": "scripts/verify_capital_http.py capital_cases: Capital worked Anthropic decision",
+      "derivation": "Unmodified current HTTP fixture.",
+      "snapshotSha256": "b08112577decb92f2465fbe80eb08abd48af0d2f3c1b3258ecbaa6198017422c",
+      "requestBytes": 1112,
+      "response": {
+        "status": 200,
+        "bytes": 29026,
+        "sha256": "9418a9db4786d1c893fd50e10072bf0b6da2f7fc554d274dce273826c9955fad",
+        "appVersion": "4.0.0",
+        "modelVersion": "3.0.0",
+        "valuationDate": "2026-10-18",
+        "scenarios": 3,
+        "plans": 3,
+        "allocations": 9,
+        "crossovers": 3,
+        "crossoverStatuses": {
+          "finite": 3
+        }
+      },
+      "warmup": {
+        "iterations": 10,
+        "elapsedMs": {
+          "count": 10,
+          "median": 4.591249999999988,
+          "p95NearestRank": 60.628859000000006,
+          "max": 60.628859000000006,
+          "min": 1.7409240000000068
+        },
+        "processCpuMs": {
+          "count": 10,
+          "median": 5.593500000000001,
+          "p95NearestRank": 78.286,
+          "max": 78.286,
+          "min": 2.154
+        },
+        "observations": [
+          {
+            "elapsedMs": 60.628859000000006,
+            "processCpuMs": 78.286,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 2.9905630000000087,
+            "processCpuMs": 3.346,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 5.627735999999999,
+            "processCpuMs": 7.959,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 5.265598000000011,
+            "processCpuMs": 6.144,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 4.079003999999998,
+            "processCpuMs": 5.107,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 6.072230000000019,
+            "processCpuMs": 6.08,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 2.305803999999995,
+            "processCpuMs": 2.955,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.9132280000000037,
+            "processCpuMs": 2.161,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 5.1034959999999785,
+            "processCpuMs": 6.723,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.7409240000000068,
+            "processCpuMs": 2.154,
+            "responseBytes": 29026
+          }
+        ]
+      },
+      "measured": {
+        "iterations": 40,
+        "elapsedMs": {
+          "count": 40,
+          "median": 1.206548500000011,
+          "p95NearestRank": 3.1233190000000093,
+          "max": 5.049323999999984,
+          "min": 0.6652369999999905
+        },
+        "processCpuMs": {
+          "count": 40,
+          "median": 1.3445,
+          "p95NearestRank": 4.155,
+          "max": 7.316,
+          "min": 0.669
+        },
+        "observations": [
+          {
+            "elapsedMs": 2.890357999999992,
+            "processCpuMs": 2.992,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 2.7893959999999822,
+            "processCpuMs": 6.134,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 3.8317459999999812,
+            "processCpuMs": 4.155,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 3.1233190000000093,
+            "processCpuMs": 7.316,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 2.5025469999999927,
+            "processCpuMs": 2.843,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.7457169999999849,
+            "processCpuMs": 1.752,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.8602490000000103,
+            "processCpuMs": 0.866,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.7520159999999976,
+            "processCpuMs": 0.848,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.8354129999999884,
+            "processCpuMs": 1.229,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 2.6214769999999987,
+            "processCpuMs": 2.908,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.1315079999999966,
+            "processCpuMs": 1.164,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.3512949999999933,
+            "processCpuMs": 1.396,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.158709999999985,
+            "processCpuMs": 1.165,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.9130900000000111,
+            "processCpuMs": 1.061,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 5.049323999999984,
+            "processCpuMs": 1.565,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.7512650000000178,
+            "processCpuMs": 0.757,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.6652369999999905,
+            "processCpuMs": 0.669,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.9382499999999823,
+            "processCpuMs": 0.943,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.8750739999999837,
+            "processCpuMs": 0.879,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 2.3163059999999973,
+            "processCpuMs": 2.538,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.4922640000000058,
+            "processCpuMs": 1.593,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.9827449999999942,
+            "processCpuMs": 1.988,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.8043270000000007,
+            "processCpuMs": 1.958,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.914276000000001,
+            "processCpuMs": 0.92,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.2465640000000064,
+            "processCpuMs": 1.595,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.230696000000023,
+            "processCpuMs": 1.282,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.7155060000000049,
+            "processCpuMs": 0.719,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.8522509999999954,
+            "processCpuMs": 2.086,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.0982580000000155,
+            "processCpuMs": 1.104,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.9159060000000068,
+            "processCpuMs": 0.921,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.0559039999999982,
+            "processCpuMs": 1.133,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.9933279999999911,
+            "processCpuMs": 0.998,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.2917500000000075,
+            "processCpuMs": 2.027,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.2870080000000144,
+            "processCpuMs": 1.293,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.6744710000000111,
+            "processCpuMs": 0.679,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 2.2103050000000053,
+            "processCpuMs": 2.904,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 2.058530000000019,
+            "processCpuMs": 2.56,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 1.1824009999999987,
+            "processCpuMs": 1.188,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 0.8948790000000031,
+            "processCpuMs": 1.506,
+            "responseBytes": 29026
+          },
+          {
+            "elapsedMs": 2.598419000000007,
+            "processCpuMs": 2.063,
+            "responseBytes": 29026
+          }
+        ]
+      },
+      "memoryBytes": {
+        "beforeWarmup": {
+          "rss": 33419264,
+          "heapTotal": 8122368,
+          "heapUsed": 5850208,
+          "external": 2378959,
+          "arrayBuffers": 274719
+        },
+        "afterWarmup": {
+          "rss": 44953600,
+          "heapTotal": 13889536,
+          "heapUsed": 10727592,
+          "external": 4569881,
+          "arrayBuffers": 843717
+        },
+        "afterMeasured": {
+          "rss": 49680384,
+          "heapTotal": 14413824,
+          "heapUsed": 10607304,
+          "external": 4753745,
+          "arrayBuffers": 1027581
+        }
+      },
+      "osProcessHighWaterRssKiB": 48540
+    },
+    {
+      "name": "maximum-nine-scenarios-six-plans-finite-100",
+      "fixtureSource": "scripts/verify_capital_http.py capital_cases: Capital maximum nine scenarios and six plans",
+      "derivation": "Same nine scenarios and six plans; every continuationYears set to the existing accepted maximum of100.",
+      "snapshotSha256": "1b47baa4059e1b6f32bf53ad34fe149d3ae705d88d48256e7480c08c86b9f473",
+      "requestBytes": 2735,
+      "response": {
+        "status": 200,
+        "bytes": 71442,
+        "sha256": "6245a7e22a3e311f652e771fa26ddcc2ce13d90165753b03f4b74bc21c61ade8",
+        "appVersion": "4.0.0",
+        "modelVersion": "3.0.0",
+        "valuationDate": "2026-10-18",
+        "scenarios": 9,
+        "plans": 6,
+        "allocations": 54,
+        "crossovers": 15,
+        "crossoverStatuses": {
+          "finite": 15
+        }
+      },
+      "warmup": {
+        "iterations": 10,
+        "elapsedMs": {
+          "count": 10,
+          "median": 4.069378499999999,
+          "p95NearestRank": 10.626222000000013,
+          "max": 10.626222000000013,
+          "min": 2.5804259999999886
+        },
+        "processCpuMs": {
+          "count": 10,
+          "median": 4.795,
+          "p95NearestRank": 17.748,
+          "max": 17.748,
+          "min": 3.24
+        },
+        "observations": [
+          {
+            "elapsedMs": 10.626222000000013,
+            "processCpuMs": 12.428,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 5.116086999999993,
+            "processCpuMs": 7.886,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 4.010904000000039,
+            "processCpuMs": 4.749,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.6522580000000175,
+            "processCpuMs": 3.88,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.4831009999999765,
+            "processCpuMs": 4.011,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 4.127852999999959,
+            "processCpuMs": 4.841,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.5804259999999886,
+            "processCpuMs": 4.524,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 7.560678999999993,
+            "processCpuMs": 17.748,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 4.555564000000004,
+            "processCpuMs": 5.743,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.2339830000000234,
+            "processCpuMs": 3.24,
+            "responseBytes": 71442
+          }
+        ]
+      },
+      "measured": {
+        "iterations": 40,
+        "elapsedMs": {
+          "count": 40,
+          "median": 2.6591450000000236,
+          "p95NearestRank": 4.5106400000000235,
+          "max": 5.736927999999978,
+          "min": 1.7912719999999922
+        },
+        "processCpuMs": {
+          "count": 40,
+          "median": 3.1435000000000004,
+          "p95NearestRank": 5.54,
+          "max": 8.952,
+          "min": 1.984
+        },
+        "observations": [
+          {
+            "elapsedMs": 3.6392020000000116,
+            "processCpuMs": 3.736,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 1.9886810000000423,
+            "processCpuMs": 1.994,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.523331999999982,
+            "processCpuMs": 3.951,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.6540950000000407,
+            "processCpuMs": 5.54,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.6641950000000065,
+            "processCpuMs": 3.694,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.317305000000033,
+            "processCpuMs": 3.801,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.83888300000001,
+            "processCpuMs": 3.001,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.166336000000001,
+            "processCpuMs": 2.716,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.9879159999999843,
+            "processCpuMs": 4.439,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.4583709999999996,
+            "processCpuMs": 3.026,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.717974999999967,
+            "processCpuMs": 3.119,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.5598699999999894,
+            "processCpuMs": 2.726,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.3978030000000103,
+            "processCpuMs": 2.403,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.3286319999999705,
+            "processCpuMs": 2.971,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.8770379999999705,
+            "processCpuMs": 3.605,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.438574000000017,
+            "processCpuMs": 4.167,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.201439999999991,
+            "processCpuMs": 3.513,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.756744000000026,
+            "processCpuMs": 2.885,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 1.7912719999999922,
+            "processCpuMs": 3.023,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.929314999999974,
+            "processCpuMs": 2.884,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.194580999999971,
+            "processCpuMs": 4.697,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.156112999999948,
+            "processCpuMs": 2.163,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 4.330972999999972,
+            "processCpuMs": 4.212,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.335627000000045,
+            "processCpuMs": 3.341,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 4.769431999999995,
+            "processCpuMs": 4.868,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.653417000000047,
+            "processCpuMs": 3.317,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.5093590000000177,
+            "processCpuMs": 3.458,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.0867229999999495,
+            "processCpuMs": 6.394,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.1288700000000063,
+            "processCpuMs": 2.135,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.6323429999999917,
+            "processCpuMs": 2.637,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.3258299999999963,
+            "processCpuMs": 3.549,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.0446399999999585,
+            "processCpuMs": 3.05,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 4.5106400000000235,
+            "processCpuMs": 5.162,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 5.736927999999978,
+            "processCpuMs": 8.952,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.136818000000005,
+            "processCpuMs": 2.142,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 3.0380680000000098,
+            "processCpuMs": 3.168,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 1.977912999999944,
+            "processCpuMs": 1.984,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.554838000000018,
+            "processCpuMs": 2.56,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.6471469999999613,
+            "processCpuMs": 2.832,
+            "responseBytes": 71442
+          },
+          {
+            "elapsedMs": 2.313890000000015,
+            "processCpuMs": 2.319,
+            "responseBytes": 71442
+          }
+        ]
+      },
+      "memoryBytes": {
+        "beforeWarmup": {
+          "rss": 49680384,
+          "heapTotal": 14413824,
+          "heapUsed": 10662192,
+          "external": 4753745,
+          "arrayBuffers": 1027581
+        },
+        "afterWarmup": {
+          "rss": 55316480,
+          "heapTotal": 19132416,
+          "heapUsed": 12016800,
+          "external": 4688107,
+          "arrayBuffers": 961943
+        },
+        "afterMeasured": {
+          "rss": 56074240,
+          "heapTotal": 19394560,
+          "heapUsed": 11748584,
+          "external": 4688107,
+          "arrayBuffers": 961943
+        }
+      },
+      "osProcessHighWaterRssKiB": 55044
+    },
+    {
+      "name": "existing-resolved-near-parallel-rounding-case",
+      "fixtureSource": "scripts/check_capital_reference.py fixtures: entered-term addition rounding",
+      "derivation": "Unmodified existing valid reference snapshot.",
+      "snapshotSha256": "3ffb9e8e31832399b5332e0b00b382c399ea3695bb48121c09766eaa868fa5d7",
+      "requestBytes": 1053,
+      "response": {
+        "status": 200,
+        "bytes": 20815,
+        "sha256": "738b846ea5fab75fecccf3c06f3d57b8acd2c0a55f659120b6cbb0787dbbdc30",
+        "appVersion": "4.0.0",
+        "modelVersion": "3.0.0",
+        "valuationDate": "2026-10-18",
+        "scenarios": 3,
+        "plans": 2,
+        "allocations": 6,
+        "crossovers": 1,
+        "crossoverStatuses": {
+          "finite": 1
+        }
+      },
+      "warmup": {
+        "iterations": 10,
+        "elapsedMs": {
+          "count": 10,
+          "median": 0.8942809999999781,
+          "p95NearestRank": 1.9151549999999702,
+          "max": 1.9151549999999702,
+          "min": 0.4827769999999987
+        },
+        "processCpuMs": {
+          "count": 10,
+          "median": 0.9864999999999999,
+          "p95NearestRank": 1.921,
+          "max": 1.921,
+          "min": 0.486
+        },
+        "observations": [
+          {
+            "elapsedMs": 0.8431489999999826,
+            "processCpuMs": 0.998,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.0570370000000366,
+            "processCpuMs": 1.064,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.0285010000000057,
+            "processCpuMs": 1.746,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.7197079999999687,
+            "processCpuMs": 0.736,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.6146130000000198,
+            "processCpuMs": 0.619,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.83517599999999,
+            "processCpuMs": 1.896,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.9151549999999702,
+            "processCpuMs": 1.921,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.7367150000000038,
+            "processCpuMs": 0.966,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.9454129999999736,
+            "processCpuMs": 0.975,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.4827769999999987,
+            "processCpuMs": 0.486,
+            "responseBytes": 20815
+          }
+        ]
+      },
+      "measured": {
+        "iterations": 40,
+        "elapsedMs": {
+          "count": 40,
+          "median": 0.735089500000015,
+          "p95NearestRank": 1.7099570000000313,
+          "max": 2.386513999999977,
+          "min": 0.4297080000000051
+        },
+        "processCpuMs": {
+          "count": 40,
+          "median": 0.7925,
+          "p95NearestRank": 2.48,
+          "max": 2.879,
+          "min": 0.433
+        },
+        "observations": [
+          {
+            "elapsedMs": 0.6840190000000348,
+            "processCpuMs": 0.688,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.4514909999999759,
+            "processCpuMs": 0.454,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.5091659999999933,
+            "processCpuMs": 0.513,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.6161020000000121,
+            "processCpuMs": 0.621,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.6035769999999729,
+            "processCpuMs": 0.608,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.6322910000000093,
+            "processCpuMs": 0.637,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.8452749999999583,
+            "processCpuMs": 0.85,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 2.012802000000022,
+            "processCpuMs": 2.879,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 2.386513999999977,
+            "processCpuMs": 2.391,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.2700449999999819,
+            "processCpuMs": 1.429,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.8769030000000271,
+            "processCpuMs": 0.881,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.8274170000000254,
+            "processCpuMs": 1.175,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.6903850000000489,
+            "processCpuMs": 0.695,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.6109630000000266,
+            "processCpuMs": 0.616,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.6969540000000052,
+            "processCpuMs": 0.702,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.0422270000000253,
+            "processCpuMs": 1.218,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.8938170000000127,
+            "processCpuMs": 0.9,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.7099570000000313,
+            "processCpuMs": 2.48,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.1441839999999956,
+            "processCpuMs": 2.724,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.7126739999999927,
+            "processCpuMs": 0.718,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.1341520000000287,
+            "processCpuMs": 2.316,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.8837849999999889,
+            "processCpuMs": 1.133,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.46581700000001547,
+            "processCpuMs": 0.468,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.9909739999999942,
+            "processCpuMs": 1.185,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.5463110000000029,
+            "processCpuMs": 0.55,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.4297080000000051,
+            "processCpuMs": 0.433,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.7256750000000238,
+            "processCpuMs": 0.73,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.8729700000000093,
+            "processCpuMs": 0.995,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.4688069999999698,
+            "processCpuMs": 0.472,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.6644679999999994,
+            "processCpuMs": 0.669,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.6761249999999563,
+            "processCpuMs": 1.222,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.4753299999999854,
+            "processCpuMs": 0.479,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.0424519999999688,
+            "processCpuMs": 1.047,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.5656989999999951,
+            "processCpuMs": 0.569,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.0991649999999709,
+            "processCpuMs": 1.108,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.8291300000000206,
+            "processCpuMs": 0.835,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.0428449999999998,
+            "processCpuMs": 1.799,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 1.2793340000000057,
+            "processCpuMs": 1.93,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.5655140000000074,
+            "processCpuMs": 0.57,
+            "responseBytes": 20815
+          },
+          {
+            "elapsedMs": 0.7445040000000063,
+            "processCpuMs": 0.75,
+            "responseBytes": 20815
+          }
+        ]
+      },
+      "memoryBytes": {
+        "beforeWarmup": {
+          "rss": 56074240,
+          "heapTotal": 19394560,
+          "heapUsed": 11771760,
+          "external": 4688107,
+          "arrayBuffers": 961943
+        },
+        "afterWarmup": {
+          "rss": 56598528,
+          "heapTotal": 19394560,
+          "heapUsed": 10633320,
+          "external": 4523293,
+          "arrayBuffers": 797129
+        },
+        "afterMeasured": {
+          "rss": 57647104,
+          "heapTotal": 19394560,
+          "heapUsed": 10218376,
+          "external": 4352497,
+          "arrayBuffers": 626333
+        }
+      },
+      "osProcessHighWaterRssKiB": 56424
+    },
+    {
+      "name": "existing-subnormal-half-tie-case",
+      "fixtureSource": "scripts/check_capital_reference.py fixtures: subnormal half tie",
+      "derivation": "Unmodified existing valid reference snapshot.",
+      "snapshotSha256": "97ef1f98496701151b841f4d72c612b0368b6d0ccc400d67df8ba779afbdc39c",
+      "requestBytes": 1043,
+      "response": {
+        "status": 200,
+        "bytes": 20375,
+        "sha256": "1456940fceffdf260bd42d239f1fcd86d3d2681dbf2e74ae3d362bfe8df682c0",
+        "appVersion": "4.0.0",
+        "modelVersion": "3.0.0",
+        "valuationDate": "2026-10-18",
+        "scenarios": 3,
+        "plans": 2,
+        "allocations": 6,
+        "crossovers": 1,
+        "crossoverStatuses": {
+          "finite": 1
+        }
+      },
+      "warmup": {
+        "iterations": 10,
+        "elapsedMs": {
+          "count": 10,
+          "median": 1.0060864999999808,
+          "p95NearestRank": 3.4400440000000003,
+          "max": 3.4400440000000003,
+          "min": 0.5483840000000555
+        },
+        "processCpuMs": {
+          "count": 10,
+          "median": 1.867,
+          "p95NearestRank": 7.362,
+          "max": 7.362,
+          "min": 0.736
+        },
+        "observations": [
+          {
+            "elapsedMs": 2.070231999999976,
+            "processCpuMs": 5.846,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.601391000000035,
+            "processCpuMs": 1.746,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 3.4400440000000003,
+            "processCpuMs": 7.362,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.613602999999955,
+            "processCpuMs": 5.716,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.8600649999999632,
+            "processCpuMs": 0.866,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.1303479999999695,
+            "processCpuMs": 1.162,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.5797530000000393,
+            "processCpuMs": 1.988,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.7315649999999891,
+            "processCpuMs": 0.736,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.5483840000000555,
+            "processCpuMs": 4.766,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.8818249999999921,
+            "processCpuMs": 0.887,
+            "responseBytes": 20375
+          }
+        ]
+      },
+      "measured": {
+        "iterations": 40,
+        "elapsedMs": {
+          "count": 40,
+          "median": 0.9586970000000292,
+          "p95NearestRank": 3.020740000000046,
+          "max": 6.272280000000023,
+          "min": 0.4347590000000423
+        },
+        "processCpuMs": {
+          "count": 40,
+          "median": 1.109,
+          "p95NearestRank": 5.744,
+          "max": 6.056,
+          "min": 0.437
+        },
+        "observations": [
+          {
+            "elapsedMs": 0.7584149999999568,
+            "processCpuMs": 0.764,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 2.625212000000033,
+            "processCpuMs": 4.637,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.526170000000036,
+            "processCpuMs": 0.53,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.5587859999999978,
+            "processCpuMs": 0.564,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.45436599999999316,
+            "processCpuMs": 0.457,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.49866600000001426,
+            "processCpuMs": 0.501,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.4347590000000423,
+            "processCpuMs": 0.437,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.5780979999999545,
+            "processCpuMs": 1.584,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.0040199999999686,
+            "processCpuMs": 1.014,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.504887999999994,
+            "processCpuMs": 0.508,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 2.3699439999999754,
+            "processCpuMs": 2.899,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 2.288039000000026,
+            "processCpuMs": 2.293,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.4634419999999864,
+            "processCpuMs": 1.471,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 6.272280000000023,
+            "processCpuMs": 5.957,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 4.622885999999994,
+            "processCpuMs": 5.174,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.4642409999999586,
+            "processCpuMs": 1.683,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 2.589542999999992,
+            "processCpuMs": 3.745,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 2.3458709999999883,
+            "processCpuMs": 2.351,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.5062750000000165,
+            "processCpuMs": 0.509,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 2.047842000000003,
+            "processCpuMs": 6.056,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.7979660000000308,
+            "processCpuMs": 0.803,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.6741939999999431,
+            "processCpuMs": 0.679,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.8898890000000392,
+            "processCpuMs": 4.394,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.9152440000000297,
+            "processCpuMs": 1.3,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.7346499999999878,
+            "processCpuMs": 0.741,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.6684989999999971,
+            "processCpuMs": 0.674,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.7116700000000264,
+            "processCpuMs": 0.716,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.5101160000000391,
+            "processCpuMs": 0.513,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.4274260000000822,
+            "processCpuMs": 1.606,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.1892710000000761,
+            "processCpuMs": 1.474,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.005055000000084,
+            "processCpuMs": 1.011,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.7838339999999562,
+            "processCpuMs": 1.79,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.6575739999999541,
+            "processCpuMs": 0.815,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.1850689999999986,
+            "processCpuMs": 1.204,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.647246999999993,
+            "processCpuMs": 0.652,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 3.020740000000046,
+            "processCpuMs": 5.744,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.755170000000021,
+            "processCpuMs": 0.89,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 0.8335739999999987,
+            "processCpuMs": 4.882,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.2941369999999779,
+            "processCpuMs": 1.757,
+            "responseBytes": 20375
+          },
+          {
+            "elapsedMs": 1.0021500000000287,
+            "processCpuMs": 1.007,
+            "responseBytes": 20375
+          }
+        ]
+      },
+      "memoryBytes": {
+        "beforeWarmup": {
+          "rss": 57778176,
+          "heapTotal": 19394560,
+          "heapUsed": 10240400,
+          "external": 4352497,
+          "arrayBuffers": 626333
+        },
+        "afterWarmup": {
+          "rss": 58679296,
+          "heapTotal": 19394560,
+          "heapUsed": 13301288,
+          "external": 5385285,
+          "arrayBuffers": 1659121
+        },
+        "afterMeasured": {
+          "rss": 57585664,
+          "heapTotal": 19656704,
+          "heapUsed": 12726776,
+          "external": 5296315,
+          "arrayBuffers": 1570151
+        }
+      },
+      "osProcessHighWaterRssKiB": 57304
+    }
+  ],
+  "assessment": {
+    "maxMeasuredElapsedMs": 6.272280000000023,
+    "maxRequestBytes": 2735,
+    "maxResponseBytes": 71442,
+    "anyMeasuredDurationAtConfiguredLimit": false,
+    "anyFixtureExceedsRequestLimit": false,
+    "interpretation": "These accepted bounded workloads do not show a local CPU or response-size expansion that threatens the configured stateless request budget. The observation set does not prove a global worst case or a deployed latency, memory or throughput guarantee."
+  },
+  "sourceHashes": {
+    "lib/http.js": "917591c4154a8451b45ec4a1e2e1e76548da9c514aa6d62bef3bc8b208c97d47",
+    "public/lib/capital-strategy.js": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842",
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/horizon.js": "31e88f039b640a9627b1a5d78bc62c93dbd82d1cb50015b4606e2efb3923eec5",
+    "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+    "public/lib/ownership.js": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7",
+    "public/lib/analytics.js": "ef35d80f9ad805de540dd0d9fda943ba969913cb9b0e3742c9a2e0d2ea00b75f",
+    "public/lib/thesis.js": "a2ad37f4d9d12d7556efea1adbdcddb0424b2599700b15000b0dbbccc6c245e3",
+    "public/lib/release.js": "ca5c5d7e2169ab76b4a0d2ca3af7c08d2b37bd467d1038d3c0912ef3ee87862a",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "data/research.json": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65",
+    "vercel.json": "0348ad0f0207a97dd0da090f41b26e5f7b22a92db7305991e111f551cdd2393f",
+    "scripts/verify_capital_http.py": "23d4770c1bc9ebfbf6280aca3f577559a0d514f390ce7d7e3b858e418a511883",
+    "scripts/check_capital_reference.py": "d6255cab209ee0bba5c45a87f5b24e31c7561be981ef6aa737b6ed5887ea012b"
+  },
+  "sourcesUnchangedDuringObservation": true,
+  "fixtureFileSha256": "a83317dc559c842c0baf2fefe6b4c70b1af8c0233181698668366a53244c95ce",
+  "harnessSha256": "c29215bf3ec2bb6e5605ccfadea30d6f7e635161e7c0b9a9c70b6530e9282a5a"
+}

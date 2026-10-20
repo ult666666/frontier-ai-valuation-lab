@@ -1,0 +1,1546 @@
+{
+  "kind": "frontier-capital-decision",
+  "schema": 1,
+  "modelVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "capitalVersion": "1.0.0",
+  "snapshot": {
+    "company": "Anthropic",
+    "scenarios": [
+      {
+        "id": "bear",
+        "label": "Bear",
+        "assumptions": {
+          "rev2026": 49.9,
+          "g1": 0.25,
+          "g2": 0.13,
+          "g3": 0.06,
+          "m27": -0.1,
+          "m30": 0.06,
+          "m36": 0.12,
+          "turns": 1.5,
+          "wacc": 0.16,
+          "tg": 0.025,
+          "roic": 0.12,
+          "stub": -6,
+          "tax": 0.25
+        },
+        "continuationYears": null
+      },
+      {
+        "id": "base",
+        "label": "Base",
+        "assumptions": {
+          "rev2026": 53.26,
+          "g1": 0.45,
+          "g2": 0.24,
+          "g3": 0.12,
+          "m27": -0.02,
+          "m30": 0.18,
+          "m36": 0.22,
+          "turns": 2.5,
+          "wacc": 0.125,
+          "tg": 0.03,
+          "roic": 0.2,
+          "stub": -3,
+          "tax": 0.25
+        },
+        "continuationYears": null
+      },
+      {
+        "id": "bull",
+        "label": "Bull",
+        "assumptions": {
+          "rev2026": 56.62,
+          "g1": 0.65,
+          "g2": 0.3,
+          "g3": 0.15,
+          "m27": 0.05,
+          "m30": 0.25,
+          "m36": 0.3,
+          "turns": 3.5,
+          "wacc": 0.105,
+          "tg": 0.035,
+          "roic": 0.25,
+          "stub": -1,
+          "tax": 0.25
+        },
+        "continuationYears": null
+      }
+    ],
+    "plans": [
+      {
+        "id": "a",
+        "label": "Smaller round",
+        "basis": "pre",
+        "quote": 250,
+        "primaryCapital": 25
+      },
+      {
+        "id": "b",
+        "label": "More capital",
+        "basis": "pre",
+        "quote": 300,
+        "primaryCapital": 35
+      },
+      {
+        "id": "c",
+        "label": "Higher retention",
+        "basis": "pre",
+        "quote": 300,
+        "primaryCapital": 20
+      }
+    ],
+    "policy": {
+      "capitalTarget": 25,
+      "retentionFloor": 0.88,
+      "modelCoverageFloor": 1,
+      "holderStake": 0.1
+    },
+    "bridge": {
+      "cash": 20,
+      "debt": 5,
+      "otherClaims": 0
+    }
+  },
+  "decision": {
+    "selectedPlanId": "a",
+    "rationale": "Illustrative analyst choice: prefer Smaller round because it meets the $25B capital objective and the 88% retained-stake floor with less issuance than More capital. The declared comparison rule is shown separately and must be read alongside the objectives. This is a worked decision, not a real company financing recommendation.",
+    "tradeoff": "More capital raises an additional $10B and allocates more signed modeled residual to existing holders when pre-money modeled equity is below the $635B switching point. Smaller round allocates more above that point. New cash is retained; no operating growth benefit or investment return is inferred.",
+    "reviewTrigger": "Revisit the choice if the capital objective rises above $25B, the retained-stake requirement changes, or the quoted terms change. Recalculate the scenario comparison when dated operating evidence or the explicit equity bridge changes; the $635B switching point belongs to these two offers only.",
+    "informationNeeded": "Confirm unrestricted pre-close cash, current debt and uncovered claims, participating economic rights, transaction costs, use of proceeds, and the basis of the operating forecasts. Seek evidence of achievable financing terms. The assumed quotes and model-conditioned pricing envelope do not establish capital availability."
+  },
+  "analysis": {
+    "version": "1.0.0",
+    "modelVersion": "3.0.0",
+    "valuationDate": "2026-10-18",
+    "snapshot": {
+      "company": "Anthropic",
+      "scenarios": [
+        {
+          "id": "bear",
+          "label": "Bear",
+          "assumptions": {
+            "rev2026": 49.9,
+            "g1": 0.25,
+            "g2": 0.13,
+            "g3": 0.06,
+            "m27": -0.1,
+            "m30": 0.06,
+            "m36": 0.12,
+            "turns": 1.5,
+            "wacc": 0.16,
+            "tg": 0.025,
+            "roic": 0.12,
+            "stub": -6,
+            "tax": 0.25
+          },
+          "continuationYears": null
+        },
+        {
+          "id": "base",
+          "label": "Base",
+          "assumptions": {
+            "rev2026": 53.26,
+            "g1": 0.45,
+            "g2": 0.24,
+            "g3": 0.12,
+            "m27": -0.02,
+            "m30": 0.18,
+            "m36": 0.22,
+            "turns": 2.5,
+            "wacc": 0.125,
+            "tg": 0.03,
+            "roic": 0.2,
+            "stub": -3,
+            "tax": 0.25
+          },
+          "continuationYears": null
+        },
+        {
+          "id": "bull",
+          "label": "Bull",
+          "assumptions": {
+            "rev2026": 56.62,
+            "g1": 0.65,
+            "g2": 0.3,
+            "g3": 0.15,
+            "m27": 0.05,
+            "m30": 0.25,
+            "m36": 0.3,
+            "turns": 3.5,
+            "wacc": 0.105,
+            "tg": 0.035,
+            "roic": 0.25,
+            "stub": -1,
+            "tax": 0.25
+          },
+          "continuationYears": null
+        }
+      ],
+      "plans": [
+        {
+          "id": "a",
+          "label": "Smaller round",
+          "basis": "pre",
+          "quote": 250,
+          "primaryCapital": 25
+        },
+        {
+          "id": "b",
+          "label": "More capital",
+          "basis": "pre",
+          "quote": 300,
+          "primaryCapital": 35
+        },
+        {
+          "id": "c",
+          "label": "Higher retention",
+          "basis": "pre",
+          "quote": 300,
+          "primaryCapital": 20
+        }
+      ],
+      "policy": {
+        "capitalTarget": 25,
+        "retentionFloor": 0.88,
+        "modelCoverageFloor": 1,
+        "holderStake": 0.1
+      },
+      "bridge": {
+        "cash": 20,
+        "debt": 5,
+        "otherClaims": 0
+      }
+    },
+    "scenarios": [
+      {
+        "id": "bear",
+        "label": "Bear",
+        "assumptions": {
+          "rev2026": 49.9,
+          "g1": 0.25,
+          "g2": 0.13,
+          "g3": 0.06,
+          "m27": -0.1,
+          "m30": 0.06,
+          "m36": 0.12,
+          "turns": 1.5,
+          "wacc": 0.16,
+          "tg": 0.025,
+          "roic": 0.12,
+          "stub": -6,
+          "tax": 0.25
+        },
+        "continuationYears": null,
+        "operatingEv": -13.161877608879355,
+        "perpetualEv": -13.161877608879355,
+        "modelPreMoneyEquity": 1.8381223911206455,
+        "warnings": [
+          "Terminal FCFF changes by more than 25% from 2036; review the growth and capital-return transition.",
+          "Terminal ROIC is below WACC; perpetual growth can reduce value.",
+          "This scenario has nonpositive operating enterprise value; no valuation floor is imposed."
+        ]
+      },
+      {
+        "id": "base",
+        "label": "Base",
+        "assumptions": {
+          "rev2026": 53.26,
+          "g1": 0.45,
+          "g2": 0.24,
+          "g3": 0.12,
+          "m27": -0.02,
+          "m30": 0.18,
+          "m36": 0.22,
+          "turns": 2.5,
+          "wacc": 0.125,
+          "tg": 0.03,
+          "roic": 0.2,
+          "stub": -3,
+          "tax": 0.25
+        },
+        "continuationYears": null,
+        "operatingEv": 367.7712947995601,
+        "perpetualEv": 367.7712947995601,
+        "modelPreMoneyEquity": 382.7712947995601,
+        "warnings": [
+          "More than 75% of enterprise value comes from the terminal value.",
+          "Terminal ROIC differs from the incremental return implied by the final explicit margin and capital turns."
+        ]
+      },
+      {
+        "id": "bull",
+        "label": "Bull",
+        "assumptions": {
+          "rev2026": 56.62,
+          "g1": 0.65,
+          "g2": 0.3,
+          "g3": 0.15,
+          "m27": 0.05,
+          "m30": 0.25,
+          "m36": 0.3,
+          "turns": 3.5,
+          "wacc": 0.105,
+          "tg": 0.035,
+          "roic": 0.25,
+          "stub": -1,
+          "tax": 0.25
+        },
+        "continuationYears": null,
+        "operatingEv": 1884.3087784008526,
+        "perpetualEv": 1884.3087784008526,
+        "modelPreMoneyEquity": 1899.3087784008526,
+        "warnings": [
+          "More than 75% of enterprise value comes from the terminal value.",
+          "Terminal ROIC differs from the incremental return implied by the final explicit margin and capital turns."
+        ]
+      }
+    ],
+    "plans": [
+      {
+        "id": "a",
+        "label": "Smaller round",
+        "round": {
+          "basis": "pre",
+          "quote": 250,
+          "primaryCapital": 25,
+          "holderStake": 0.1
+        },
+        "pricing": {
+          "preMoney": 250,
+          "postMoney": 275,
+          "primaryCapital": 25,
+          "existingOwnership": 0.9090909090909091,
+          "newOwnership": 0.09090909090909091,
+          "holderBefore": 0.1,
+          "holderAfter": 0.09090909090909091,
+          "otherExistingAfter": 0.8181818181818181,
+          "holderDilution": 0.009090909090909092,
+          "relativeDilution": 0.09090909090909091,
+          "holderValueBefore": 25,
+          "holderValueAfter": 25
+        },
+        "capitalGap": 0,
+        "meetsCapital": true,
+        "retainedFraction": 0.9090909090909091,
+        "meetsRetention": true,
+        "eligible": true,
+        "ownership": {
+          "version": "1.0.0",
+          "constraint": {
+            "retentionFloor": 0.88
+          },
+          "current": {
+            "primaryCapital": 25,
+            "retainedFraction": 0.9090909090909091,
+            "holderAfter": 0.09090909090909091,
+            "holderFloor": 0.08800000000000001,
+            "status": "above-floor",
+            "capitalHeadroom": 9.090909090909086,
+            "capitalExcess": 0
+          },
+          "ceiling": {
+            "analyticalCapital": 34.090909090909086,
+            "supportedCapital": 34.090909090909086,
+            "status": "resolved"
+          },
+          "graph": {
+            "status": "ready",
+            "capitalMax": 40.9090909090909,
+            "points": [
+              {
+                "primaryCapital": 0,
+                "retainedFraction": 1,
+                "holderAfter": 0.1
+              },
+              {
+                "primaryCapital": 0.8522727272727271,
+                "retainedFraction": 0.9966024915062288,
+                "holderAfter": 0.09966024915062288
+              },
+              {
+                "primaryCapital": 1.7045454545454541,
+                "retainedFraction": 0.9932279909706546,
+                "holderAfter": 0.09932279909706547
+              },
+              {
+                "primaryCapital": 2.556818181818181,
+                "retainedFraction": 0.9898762654668166,
+                "holderAfter": 0.09898762654668167
+              },
+              {
+                "primaryCapital": 3.4090909090909083,
+                "retainedFraction": 0.9865470852017937,
+                "holderAfter": 0.09865470852017938
+              },
+              {
+                "primaryCapital": 4.261363636363636,
+                "retainedFraction": 0.9832402234636872,
+                "holderAfter": 0.09832402234636872
+              },
+              {
+                "primaryCapital": 5.113636363636362,
+                "retainedFraction": 0.9799554565701558,
+                "holderAfter": 0.09799554565701558
+              },
+              {
+                "primaryCapital": 5.96590909090909,
+                "retainedFraction": 0.97669256381798,
+                "holderAfter": 0.097669256381798
+              },
+              {
+                "primaryCapital": 6.818181818181817,
+                "retainedFraction": 0.9734513274336284,
+                "holderAfter": 0.09734513274336284
+              },
+              {
+                "primaryCapital": 7.670454545454543,
+                "retainedFraction": 0.970231532524807,
+                "holderAfter": 0.0970231532524807
+              },
+              {
+                "primaryCapital": 8.522727272727272,
+                "retainedFraction": 0.9670329670329672,
+                "holderAfter": 0.09670329670329672
+              },
+              {
+                "primaryCapital": 9.374999999999998,
+                "retainedFraction": 0.963855421686747,
+                "holderAfter": 0.0963855421686747
+              },
+              {
+                "primaryCapital": 10.227272727272725,
+                "retainedFraction": 0.9606986899563318,
+                "holderAfter": 0.09606986899563319
+              },
+              {
+                "primaryCapital": 11.079545454545451,
+                "retainedFraction": 0.9575625680087052,
+                "holderAfter": 0.09575625680087052
+              },
+              {
+                "primaryCapital": 11.93181818181818,
+                "retainedFraction": 0.9544468546637744,
+                "holderAfter": 0.09544468546637745
+              },
+              {
+                "primaryCapital": 12.784090909090907,
+                "retainedFraction": 0.9513513513513515,
+                "holderAfter": 0.09513513513513516
+              },
+              {
+                "primaryCapital": 13.636363636363633,
+                "retainedFraction": 0.9482758620689655,
+                "holderAfter": 0.09482758620689656
+              },
+              {
+                "primaryCapital": 14.488636363636362,
+                "retainedFraction": 0.945220193340494,
+                "holderAfter": 0.09452201933404941
+              },
+              {
+                "primaryCapital": 15.340909090909086,
+                "retainedFraction": 0.942184154175589,
+                "holderAfter": 0.0942184154175589
+              },
+              {
+                "primaryCapital": 16.193181818181813,
+                "retainedFraction": 0.9391675560298827,
+                "holderAfter": 0.09391675560298827
+              },
+              {
+                "primaryCapital": 17.045454545454543,
+                "retainedFraction": 0.9361702127659574,
+                "holderAfter": 0.09361702127659574
+              },
+              {
+                "primaryCapital": 17.89772727272727,
+                "retainedFraction": 0.9331919406150584,
+                "holderAfter": 0.09331919406150585
+              },
+              {
+                "primaryCapital": 18.749999999999996,
+                "retainedFraction": 0.9302325581395349,
+                "holderAfter": 0.09302325581395349
+              },
+              {
+                "primaryCapital": 19.602272727272723,
+                "retainedFraction": 0.9272918861959957,
+                "holderAfter": 0.09272918861959957
+              },
+              {
+                "primaryCapital": 20.45454545454545,
+                "retainedFraction": 0.9243697478991597,
+                "holderAfter": 0.09243697478991597
+              },
+              {
+                "primaryCapital": 21.30681818181818,
+                "retainedFraction": 0.9214659685863874,
+                "holderAfter": 0.09214659685863874
+              },
+              {
+                "primaryCapital": 22.159090909090903,
+                "retainedFraction": 0.9185803757828811,
+                "holderAfter": 0.09185803757828812
+              },
+              {
+                "primaryCapital": 23.01136363636363,
+                "retainedFraction": 0.9157127991675339,
+                "holderAfter": 0.0915712799167534
+              },
+              {
+                "primaryCapital": 23.86363636363636,
+                "retainedFraction": 0.9128630705394191,
+                "holderAfter": 0.09128630705394192
+              },
+              {
+                "primaryCapital": 24.715909090909083,
+                "retainedFraction": 0.9100310237849019,
+                "holderAfter": 0.09100310237849019
+              },
+              {
+                "primaryCapital": 25,
+                "retainedFraction": 0.9090909090909091,
+                "holderAfter": 0.09090909090909091
+              },
+              {
+                "primaryCapital": 25.568181818181813,
+                "retainedFraction": 0.9072164948453608,
+                "holderAfter": 0.0907216494845361
+              },
+              {
+                "primaryCapital": 26.42045454545454,
+                "retainedFraction": 0.9044193216855086,
+                "holderAfter": 0.09044193216855087
+              },
+              {
+                "primaryCapital": 27.272727272727266,
+                "retainedFraction": 0.9016393442622952,
+                "holderAfter": 0.09016393442622953
+              },
+              {
+                "primaryCapital": 28.124999999999993,
+                "retainedFraction": 0.898876404494382,
+                "holderAfter": 0.0898876404494382
+              },
+              {
+                "primaryCapital": 28.977272727272723,
+                "retainedFraction": 0.8961303462321791,
+                "holderAfter": 0.08961303462321792
+              },
+              {
+                "primaryCapital": 29.829545454545446,
+                "retainedFraction": 0.8934010152284264,
+                "holderAfter": 0.08934010152284265
+              },
+              {
+                "primaryCapital": 30.681818181818173,
+                "retainedFraction": 0.8906882591093117,
+                "holderAfter": 0.08906882591093118
+              },
+              {
+                "primaryCapital": 31.534090909090903,
+                "retainedFraction": 0.8879919273461151,
+                "holderAfter": 0.08879919273461151
+              },
+              {
+                "primaryCapital": 32.386363636363626,
+                "retainedFraction": 0.8853118712273642,
+                "holderAfter": 0.08853118712273643
+              },
+              {
+                "primaryCapital": 33.23863636363635,
+                "retainedFraction": 0.8826479438314945,
+                "holderAfter": 0.08826479438314945
+              },
+              {
+                "primaryCapital": 34.090909090909086,
+                "retainedFraction": 0.8800000000000001,
+                "holderAfter": 0.08800000000000002
+              },
+              {
+                "primaryCapital": 34.943181818181806,
+                "retainedFraction": 0.8773678963110668,
+                "holderAfter": 0.08773678963110669
+              },
+              {
+                "primaryCapital": 35.79545454545454,
+                "retainedFraction": 0.8747514910536779,
+                "holderAfter": 0.0874751491053678
+              },
+              {
+                "primaryCapital": 36.647727272727266,
+                "retainedFraction": 0.8721506442021805,
+                "holderAfter": 0.08721506442021805
+              },
+              {
+                "primaryCapital": 37.49999999999999,
+                "retainedFraction": 0.8695652173913043,
+                "holderAfter": 0.08695652173913043
+              },
+              {
+                "primaryCapital": 38.35227272727272,
+                "retainedFraction": 0.8669950738916256,
+                "holderAfter": 0.08669950738916256
+              },
+              {
+                "primaryCapital": 39.204545454545446,
+                "retainedFraction": 0.8644400785854618,
+                "holderAfter": 0.08644400785854618
+              },
+              {
+                "primaryCapital": 40.05681818181817,
+                "retainedFraction": 0.8619000979431929,
+                "holderAfter": 0.08619000979431929
+              },
+              {
+                "primaryCapital": 40.9090909090909,
+                "retainedFraction": 0.8593750000000001,
+                "holderAfter": 0.08593750000000001
+              }
+            ],
+            "ceilingInDomain": true,
+            "currentInDomain": true
+          },
+          "method": {
+            "basis": "fixed-quote-primary-round",
+            "fixedQuoteBasis": "pre",
+            "retentionScope": "fraction-of-starting-stakes",
+            "existingHoldersSubscribe": false,
+            "retentionFloorMin": 0.01,
+            "retentionFloorMax": 1,
+            "comparisonBand": 7.105427357601002e-15,
+            "capitalInputLimit": 1000000000000,
+            "sampleIntervals": 48
+          },
+          "warnings": []
+        }
+      },
+      {
+        "id": "b",
+        "label": "More capital",
+        "round": {
+          "basis": "pre",
+          "quote": 300,
+          "primaryCapital": 35,
+          "holderStake": 0.1
+        },
+        "pricing": {
+          "preMoney": 300,
+          "postMoney": 335,
+          "primaryCapital": 35,
+          "existingOwnership": 0.8955223880597015,
+          "newOwnership": 0.1044776119402985,
+          "holderBefore": 0.1,
+          "holderAfter": 0.08955223880597016,
+          "otherExistingAfter": 0.8059701492537313,
+          "holderDilution": 0.010447761194029851,
+          "relativeDilution": 0.1044776119402985,
+          "holderValueBefore": 30,
+          "holderValueAfter": 30
+        },
+        "capitalGap": 10,
+        "meetsCapital": true,
+        "retainedFraction": 0.8955223880597015,
+        "meetsRetention": true,
+        "eligible": true,
+        "ownership": {
+          "version": "1.0.0",
+          "constraint": {
+            "retentionFloor": 0.88
+          },
+          "current": {
+            "primaryCapital": 35,
+            "retainedFraction": 0.8955223880597015,
+            "holderAfter": 0.08955223880597016,
+            "holderFloor": 0.08800000000000001,
+            "status": "above-floor",
+            "capitalHeadroom": 5.9090909090909065,
+            "capitalExcess": 0
+          },
+          "ceiling": {
+            "analyticalCapital": 40.90909090909091,
+            "supportedCapital": 40.90909090909091,
+            "status": "resolved"
+          },
+          "graph": {
+            "status": "ready",
+            "capitalMax": 49.090909090909086,
+            "points": [
+              {
+                "primaryCapital": 0,
+                "retainedFraction": 1,
+                "holderAfter": 0.1
+              },
+              {
+                "primaryCapital": 1.0227272727272725,
+                "retainedFraction": 0.9966024915062288,
+                "holderAfter": 0.09966024915062288
+              },
+              {
+                "primaryCapital": 2.045454545454545,
+                "retainedFraction": 0.9932279909706546,
+                "holderAfter": 0.09932279909706547
+              },
+              {
+                "primaryCapital": 3.068181818181818,
+                "retainedFraction": 0.9898762654668166,
+                "holderAfter": 0.09898762654668167
+              },
+              {
+                "primaryCapital": 4.09090909090909,
+                "retainedFraction": 0.9865470852017938,
+                "holderAfter": 0.09865470852017938
+              },
+              {
+                "primaryCapital": 5.113636363636363,
+                "retainedFraction": 0.9832402234636871,
+                "holderAfter": 0.09832402234636872
+              },
+              {
+                "primaryCapital": 6.136363636363636,
+                "retainedFraction": 0.9799554565701559,
+                "holderAfter": 0.0979955456570156
+              },
+              {
+                "primaryCapital": 7.159090909090909,
+                "retainedFraction": 0.97669256381798,
+                "holderAfter": 0.097669256381798
+              },
+              {
+                "primaryCapital": 8.18181818181818,
+                "retainedFraction": 0.9734513274336283,
+                "holderAfter": 0.09734513274336283
+              },
+              {
+                "primaryCapital": 9.204545454545453,
+                "retainedFraction": 0.9702315325248071,
+                "holderAfter": 0.09702315325248072
+              },
+              {
+                "primaryCapital": 10.227272727272727,
+                "retainedFraction": 0.9670329670329669,
+                "holderAfter": 0.09670329670329669
+              },
+              {
+                "primaryCapital": 11.249999999999998,
+                "retainedFraction": 0.963855421686747,
+                "holderAfter": 0.0963855421686747
+              },
+              {
+                "primaryCapital": 12.272727272727272,
+                "retainedFraction": 0.9606986899563319,
+                "holderAfter": 0.09606986899563319
+              },
+              {
+                "primaryCapital": 13.295454545454543,
+                "retainedFraction": 0.9575625680087051,
+                "holderAfter": 0.09575625680087052
+              },
+              {
+                "primaryCapital": 14.318181818181818,
+                "retainedFraction": 0.9544468546637744,
+                "holderAfter": 0.09544468546637745
+              },
+              {
+                "primaryCapital": 15.34090909090909,
+                "retainedFraction": 0.9513513513513514,
+                "holderAfter": 0.09513513513513515
+              },
+              {
+                "primaryCapital": 16.36363636363636,
+                "retainedFraction": 0.9482758620689655,
+                "holderAfter": 0.09482758620689656
+              },
+              {
+                "primaryCapital": 17.386363636363637,
+                "retainedFraction": 0.9452201933404941,
+                "holderAfter": 0.09452201933404941
+              },
+              {
+                "primaryCapital": 18.409090909090907,
+                "retainedFraction": 0.942184154175589,
+                "holderAfter": 0.0942184154175589
+              },
+              {
+                "primaryCapital": 19.43181818181818,
+                "retainedFraction": 0.9391675560298826,
+                "holderAfter": 0.09391675560298826
+              },
+              {
+                "primaryCapital": 20.454545454545453,
+                "retainedFraction": 0.9361702127659575,
+                "holderAfter": 0.09361702127659575
+              },
+              {
+                "primaryCapital": 21.477272727272727,
+                "retainedFraction": 0.9331919406150583,
+                "holderAfter": 0.09331919406150584
+              },
+              {
+                "primaryCapital": 22.499999999999996,
+                "retainedFraction": 0.9302325581395349,
+                "holderAfter": 0.09302325581395349
+              },
+              {
+                "primaryCapital": 23.52272727272727,
+                "retainedFraction": 0.9272918861959959,
+                "holderAfter": 0.0927291886195996
+              },
+              {
+                "primaryCapital": 24.545454545454543,
+                "retainedFraction": 0.9243697478991596,
+                "holderAfter": 0.09243697478991597
+              },
+              {
+                "primaryCapital": 25.568181818181817,
+                "retainedFraction": 0.9214659685863874,
+                "holderAfter": 0.09214659685863874
+              },
+              {
+                "primaryCapital": 26.590909090909086,
+                "retainedFraction": 0.9185803757828811,
+                "holderAfter": 0.09185803757828812
+              },
+              {
+                "primaryCapital": 27.61363636363636,
+                "retainedFraction": 0.9157127991675338,
+                "holderAfter": 0.09157127991675339
+              },
+              {
+                "primaryCapital": 28.636363636363637,
+                "retainedFraction": 0.9128630705394191,
+                "holderAfter": 0.09128630705394192
+              },
+              {
+                "primaryCapital": 29.659090909090903,
+                "retainedFraction": 0.9100310237849019,
+                "holderAfter": 0.09100310237849019
+              },
+              {
+                "primaryCapital": 30.68181818181818,
+                "retainedFraction": 0.9072164948453608,
+                "holderAfter": 0.0907216494845361
+              },
+              {
+                "primaryCapital": 31.704545454545453,
+                "retainedFraction": 0.9044193216855088,
+                "holderAfter": 0.09044193216855088
+              },
+              {
+                "primaryCapital": 32.72727272727272,
+                "retainedFraction": 0.901639344262295,
+                "holderAfter": 0.0901639344262295
+              },
+              {
+                "primaryCapital": 33.75,
+                "retainedFraction": 0.898876404494382,
+                "holderAfter": 0.0898876404494382
+              },
+              {
+                "primaryCapital": 34.77272727272727,
+                "retainedFraction": 0.8961303462321792,
+                "holderAfter": 0.08961303462321793
+              },
+              {
+                "primaryCapital": 35,
+                "retainedFraction": 0.8955223880597015,
+                "holderAfter": 0.08955223880597016
+              },
+              {
+                "primaryCapital": 35.79545454545454,
+                "retainedFraction": 0.8934010152284264,
+                "holderAfter": 0.08934010152284265
+              },
+              {
+                "primaryCapital": 36.81818181818181,
+                "retainedFraction": 0.8906882591093117,
+                "holderAfter": 0.08906882591093118
+              },
+              {
+                "primaryCapital": 37.840909090909086,
+                "retainedFraction": 0.8879919273461151,
+                "holderAfter": 0.08879919273461151
+              },
+              {
+                "primaryCapital": 38.86363636363636,
+                "retainedFraction": 0.8853118712273642,
+                "holderAfter": 0.08853118712273643
+              },
+              {
+                "primaryCapital": 39.88636363636363,
+                "retainedFraction": 0.8826479438314945,
+                "holderAfter": 0.08826479438314945
+              },
+              {
+                "primaryCapital": 40.90909090909091,
+                "retainedFraction": 0.8800000000000001,
+                "holderAfter": 0.08800000000000002
+              },
+              {
+                "primaryCapital": 41.93181818181817,
+                "retainedFraction": 0.8773678963110668,
+                "holderAfter": 0.08773678963110669
+              },
+              {
+                "primaryCapital": 42.95454545454545,
+                "retainedFraction": 0.874751491053678,
+                "holderAfter": 0.0874751491053678
+              },
+              {
+                "primaryCapital": 43.97727272727273,
+                "retainedFraction": 0.8721506442021804,
+                "holderAfter": 0.08721506442021804
+              },
+              {
+                "primaryCapital": 44.99999999999999,
+                "retainedFraction": 0.8695652173913043,
+                "holderAfter": 0.08695652173913043
+              },
+              {
+                "primaryCapital": 46.022727272727266,
+                "retainedFraction": 0.8669950738916257,
+                "holderAfter": 0.08669950738916257
+              },
+              {
+                "primaryCapital": 47.04545454545454,
+                "retainedFraction": 0.8644400785854617,
+                "holderAfter": 0.08644400785854617
+              },
+              {
+                "primaryCapital": 48.06818181818181,
+                "retainedFraction": 0.861900097943193,
+                "holderAfter": 0.0861900097943193
+              },
+              {
+                "primaryCapital": 49.090909090909086,
+                "retainedFraction": 0.8593750000000001,
+                "holderAfter": 0.08593750000000001
+              }
+            ],
+            "ceilingInDomain": true,
+            "currentInDomain": true
+          },
+          "method": {
+            "basis": "fixed-quote-primary-round",
+            "fixedQuoteBasis": "pre",
+            "retentionScope": "fraction-of-starting-stakes",
+            "existingHoldersSubscribe": false,
+            "retentionFloorMin": 0.01,
+            "retentionFloorMax": 1,
+            "comparisonBand": 7.105427357601002e-15,
+            "capitalInputLimit": 1000000000000,
+            "sampleIntervals": 48
+          },
+          "warnings": []
+        }
+      },
+      {
+        "id": "c",
+        "label": "Higher retention",
+        "round": {
+          "basis": "pre",
+          "quote": 300,
+          "primaryCapital": 20,
+          "holderStake": 0.1
+        },
+        "pricing": {
+          "preMoney": 300,
+          "postMoney": 320,
+          "primaryCapital": 20,
+          "existingOwnership": 0.9375,
+          "newOwnership": 0.0625,
+          "holderBefore": 0.1,
+          "holderAfter": 0.09375,
+          "otherExistingAfter": 0.84375,
+          "holderDilution": 0.00625,
+          "relativeDilution": 0.0625,
+          "holderValueBefore": 30,
+          "holderValueAfter": 30
+        },
+        "capitalGap": -5,
+        "meetsCapital": false,
+        "retainedFraction": 0.9375,
+        "meetsRetention": true,
+        "eligible": false,
+        "ownership": {
+          "version": "1.0.0",
+          "constraint": {
+            "retentionFloor": 0.88
+          },
+          "current": {
+            "primaryCapital": 20,
+            "retainedFraction": 0.9375,
+            "holderAfter": 0.09375,
+            "holderFloor": 0.08800000000000001,
+            "status": "above-floor",
+            "capitalHeadroom": 20.909090909090907,
+            "capitalExcess": 0
+          },
+          "ceiling": {
+            "analyticalCapital": 40.90909090909091,
+            "supportedCapital": 40.90909090909091,
+            "status": "resolved"
+          },
+          "graph": {
+            "status": "ready",
+            "capitalMax": 49.090909090909086,
+            "points": [
+              {
+                "primaryCapital": 0,
+                "retainedFraction": 1,
+                "holderAfter": 0.1
+              },
+              {
+                "primaryCapital": 1.0227272727272725,
+                "retainedFraction": 0.9966024915062288,
+                "holderAfter": 0.09966024915062288
+              },
+              {
+                "primaryCapital": 2.045454545454545,
+                "retainedFraction": 0.9932279909706546,
+                "holderAfter": 0.09932279909706547
+              },
+              {
+                "primaryCapital": 3.068181818181818,
+                "retainedFraction": 0.9898762654668166,
+                "holderAfter": 0.09898762654668167
+              },
+              {
+                "primaryCapital": 4.09090909090909,
+                "retainedFraction": 0.9865470852017938,
+                "holderAfter": 0.09865470852017938
+              },
+              {
+                "primaryCapital": 5.113636363636363,
+                "retainedFraction": 0.9832402234636871,
+                "holderAfter": 0.09832402234636872
+              },
+              {
+                "primaryCapital": 6.136363636363636,
+                "retainedFraction": 0.9799554565701559,
+                "holderAfter": 0.0979955456570156
+              },
+              {
+                "primaryCapital": 7.159090909090909,
+                "retainedFraction": 0.97669256381798,
+                "holderAfter": 0.097669256381798
+              },
+              {
+                "primaryCapital": 8.18181818181818,
+                "retainedFraction": 0.9734513274336283,
+                "holderAfter": 0.09734513274336283
+              },
+              {
+                "primaryCapital": 9.204545454545453,
+                "retainedFraction": 0.9702315325248071,
+                "holderAfter": 0.09702315325248072
+              },
+              {
+                "primaryCapital": 10.227272727272727,
+                "retainedFraction": 0.9670329670329669,
+                "holderAfter": 0.09670329670329669
+              },
+              {
+                "primaryCapital": 11.249999999999998,
+                "retainedFraction": 0.963855421686747,
+                "holderAfter": 0.0963855421686747
+              },
+              {
+                "primaryCapital": 12.272727272727272,
+                "retainedFraction": 0.9606986899563319,
+                "holderAfter": 0.09606986899563319
+              },
+              {
+                "primaryCapital": 13.295454545454543,
+                "retainedFraction": 0.9575625680087051,
+                "holderAfter": 0.09575625680087052
+              },
+              {
+                "primaryCapital": 14.318181818181818,
+                "retainedFraction": 0.9544468546637744,
+                "holderAfter": 0.09544468546637745
+              },
+              {
+                "primaryCapital": 15.34090909090909,
+                "retainedFraction": 0.9513513513513514,
+                "holderAfter": 0.09513513513513515
+              },
+              {
+                "primaryCapital": 16.36363636363636,
+                "retainedFraction": 0.9482758620689655,
+                "holderAfter": 0.09482758620689656
+              },
+              {
+                "primaryCapital": 17.386363636363637,
+                "retainedFraction": 0.9452201933404941,
+                "holderAfter": 0.09452201933404941
+              },
+              {
+                "primaryCapital": 18.409090909090907,
+                "retainedFraction": 0.942184154175589,
+                "holderAfter": 0.0942184154175589
+              },
+              {
+                "primaryCapital": 19.43181818181818,
+                "retainedFraction": 0.9391675560298826,
+                "holderAfter": 0.09391675560298826
+              },
+              {
+                "primaryCapital": 20,
+                "retainedFraction": 0.9375,
+                "holderAfter": 0.09375
+              },
+              {
+                "primaryCapital": 20.454545454545453,
+                "retainedFraction": 0.9361702127659575,
+                "holderAfter": 0.09361702127659575
+              },
+              {
+                "primaryCapital": 21.477272727272727,
+                "retainedFraction": 0.9331919406150583,
+                "holderAfter": 0.09331919406150584
+              },
+              {
+                "primaryCapital": 22.499999999999996,
+                "retainedFraction": 0.9302325581395349,
+                "holderAfter": 0.09302325581395349
+              },
+              {
+                "primaryCapital": 23.52272727272727,
+                "retainedFraction": 0.9272918861959959,
+                "holderAfter": 0.0927291886195996
+              },
+              {
+                "primaryCapital": 24.545454545454543,
+                "retainedFraction": 0.9243697478991596,
+                "holderAfter": 0.09243697478991597
+              },
+              {
+                "primaryCapital": 25.568181818181817,
+                "retainedFraction": 0.9214659685863874,
+                "holderAfter": 0.09214659685863874
+              },
+              {
+                "primaryCapital": 26.590909090909086,
+                "retainedFraction": 0.9185803757828811,
+                "holderAfter": 0.09185803757828812
+              },
+              {
+                "primaryCapital": 27.61363636363636,
+                "retainedFraction": 0.9157127991675338,
+                "holderAfter": 0.09157127991675339
+              },
+              {
+                "primaryCapital": 28.636363636363637,
+                "retainedFraction": 0.9128630705394191,
+                "holderAfter": 0.09128630705394192
+              },
+              {
+                "primaryCapital": 29.659090909090903,
+                "retainedFraction": 0.9100310237849019,
+                "holderAfter": 0.09100310237849019
+              },
+              {
+                "primaryCapital": 30.68181818181818,
+                "retainedFraction": 0.9072164948453608,
+                "holderAfter": 0.0907216494845361
+              },
+              {
+                "primaryCapital": 31.704545454545453,
+                "retainedFraction": 0.9044193216855088,
+                "holderAfter": 0.09044193216855088
+              },
+              {
+                "primaryCapital": 32.72727272727272,
+                "retainedFraction": 0.901639344262295,
+                "holderAfter": 0.0901639344262295
+              },
+              {
+                "primaryCapital": 33.75,
+                "retainedFraction": 0.898876404494382,
+                "holderAfter": 0.0898876404494382
+              },
+              {
+                "primaryCapital": 34.77272727272727,
+                "retainedFraction": 0.8961303462321792,
+                "holderAfter": 0.08961303462321793
+              },
+              {
+                "primaryCapital": 35.79545454545454,
+                "retainedFraction": 0.8934010152284264,
+                "holderAfter": 0.08934010152284265
+              },
+              {
+                "primaryCapital": 36.81818181818181,
+                "retainedFraction": 0.8906882591093117,
+                "holderAfter": 0.08906882591093118
+              },
+              {
+                "primaryCapital": 37.840909090909086,
+                "retainedFraction": 0.8879919273461151,
+                "holderAfter": 0.08879919273461151
+              },
+              {
+                "primaryCapital": 38.86363636363636,
+                "retainedFraction": 0.8853118712273642,
+                "holderAfter": 0.08853118712273643
+              },
+              {
+                "primaryCapital": 39.88636363636363,
+                "retainedFraction": 0.8826479438314945,
+                "holderAfter": 0.08826479438314945
+              },
+              {
+                "primaryCapital": 40.90909090909091,
+                "retainedFraction": 0.8800000000000001,
+                "holderAfter": 0.08800000000000002
+              },
+              {
+                "primaryCapital": 41.93181818181817,
+                "retainedFraction": 0.8773678963110668,
+                "holderAfter": 0.08773678963110669
+              },
+              {
+                "primaryCapital": 42.95454545454545,
+                "retainedFraction": 0.874751491053678,
+                "holderAfter": 0.0874751491053678
+              },
+              {
+                "primaryCapital": 43.97727272727273,
+                "retainedFraction": 0.8721506442021804,
+                "holderAfter": 0.08721506442021804
+              },
+              {
+                "primaryCapital": 44.99999999999999,
+                "retainedFraction": 0.8695652173913043,
+                "holderAfter": 0.08695652173913043
+              },
+              {
+                "primaryCapital": 46.022727272727266,
+                "retainedFraction": 0.8669950738916257,
+                "holderAfter": 0.08669950738916257
+              },
+              {
+                "primaryCapital": 47.04545454545454,
+                "retainedFraction": 0.8644400785854617,
+                "holderAfter": 0.08644400785854617
+              },
+              {
+                "primaryCapital": 48.06818181818181,
+                "retainedFraction": 0.861900097943193,
+                "holderAfter": 0.0861900097943193
+              },
+              {
+                "primaryCapital": 49.090909090909086,
+                "retainedFraction": 0.8593750000000001,
+                "holderAfter": 0.08593750000000001
+              }
+            ],
+            "ceilingInDomain": true,
+            "currentInDomain": true
+          },
+          "method": {
+            "basis": "fixed-quote-primary-round",
+            "fixedQuoteBasis": "pre",
+            "retentionScope": "fraction-of-starting-stakes",
+            "existingHoldersSubscribe": false,
+            "retentionFloorMin": 0.01,
+            "retentionFloorMax": 1,
+            "comparisonBand": 7.105427357601002e-15,
+            "capitalInputLimit": 1000000000000,
+            "sampleIntervals": 48
+          },
+          "warnings": []
+        }
+      }
+    ],
+    "matrix": [
+      {
+        "scenarioId": "bear",
+        "planId": "a",
+        "modelPreMoneyEquity": 1.8381223911206455,
+        "modelPostMoneyEquity": 26.838122391120645,
+        "existingCohortAllocation": 24.39829308283695,
+        "trackedHolderAllocation": 2.439829308283695,
+        "modelToQuote": 0.007352489564482582,
+        "meetsModelCoverage": false,
+        "regret": 8.591070252494973,
+        "warnings": []
+      },
+      {
+        "scenarioId": "bear",
+        "planId": "b",
+        "modelPreMoneyEquity": 1.8381223911206455,
+        "modelPostMoneyEquity": 36.83812239112065,
+        "existingCohortAllocation": 32.98936333533192,
+        "trackedHolderAllocation": 3.2989363335331925,
+        "modelToQuote": 0.006127074637068818,
+        "meetsModelCoverage": false,
+        "regret": 0,
+        "warnings": []
+      },
+      {
+        "scenarioId": "bear",
+        "planId": "c",
+        "modelPreMoneyEquity": 1.8381223911206455,
+        "modelPostMoneyEquity": 21.838122391120645,
+        "existingCohortAllocation": 20.473239741675606,
+        "trackedHolderAllocation": 2.047323974167561,
+        "modelToQuote": 0.006127074637068818,
+        "meetsModelCoverage": false,
+        "regret": null,
+        "warnings": []
+      },
+      {
+        "scenarioId": "base",
+        "planId": "a",
+        "modelPreMoneyEquity": 382.7712947995601,
+        "modelPostMoneyEquity": 407.7712947995601,
+        "existingCohortAllocation": 370.7011770905092,
+        "trackedHolderAllocation": 37.07011770905092,
+        "modelToQuote": 1.5310851791982405,
+        "meetsModelCoverage": true,
+        "regret": 3.4223704911864274,
+        "warnings": []
+      },
+      {
+        "scenarioId": "base",
+        "planId": "b",
+        "modelPreMoneyEquity": 382.7712947995601,
+        "modelPostMoneyEquity": 417.7712947995601,
+        "existingCohortAllocation": 374.1235475816956,
+        "trackedHolderAllocation": 37.41235475816956,
+        "modelToQuote": 1.2759043159985337,
+        "meetsModelCoverage": true,
+        "regret": 0,
+        "warnings": []
+      },
+      {
+        "scenarioId": "base",
+        "planId": "c",
+        "modelPreMoneyEquity": 382.7712947995601,
+        "modelPostMoneyEquity": 402.7712947995601,
+        "existingCohortAllocation": 377.5980888745876,
+        "trackedHolderAllocation": 37.75980888745876,
+        "modelToQuote": 1.2759043159985337,
+        "meetsModelCoverage": true,
+        "regret": null,
+        "warnings": []
+      },
+      {
+        "scenarioId": "bull",
+        "planId": "a",
+        "modelPreMoneyEquity": 1899.3087784008526,
+        "modelPostMoneyEquity": 1924.3087784008526,
+        "existingCohortAllocation": 1749.3716167280477,
+        "trackedHolderAllocation": 174.9371616728048,
+        "modelToQuote": 7.597235113603411,
+        "meetsModelCoverage": true,
+        "regret": 0,
+        "warnings": []
+      },
+      {
+        "scenarioId": "bull",
+        "planId": "b",
+        "modelPreMoneyEquity": 1899.3087784008526,
+        "modelPostMoneyEquity": 1934.3087784008526,
+        "existingCohortAllocation": 1732.2168164783754,
+        "trackedHolderAllocation": 173.22168164783756,
+        "modelToQuote": 6.331029261336175,
+        "meetsModelCoverage": true,
+        "regret": 17.154800249672235,
+        "warnings": []
+      },
+      {
+        "scenarioId": "bull",
+        "planId": "c",
+        "modelPreMoneyEquity": 1899.3087784008526,
+        "modelPostMoneyEquity": 1919.3087784008526,
+        "existingCohortAllocation": 1799.3519797507993,
+        "trackedHolderAllocation": 179.93519797507994,
+        "modelToQuote": 6.331029261336175,
+        "meetsModelCoverage": true,
+        "regret": null,
+        "warnings": []
+      }
+    ],
+    "comparison": {
+      "eligiblePlanIds": [
+        "a",
+        "b"
+      ],
+      "scenarioIds": [
+        "bear",
+        "base",
+        "bull"
+      ],
+      "metric": "existing-cohort-signed-residual",
+      "range": {
+        "minEquity": 1.8381223911206455,
+        "maxEquity": 1899.3087784008526
+      },
+      "perScenario": [
+        {
+          "scenarioId": "bear",
+          "bestAllocation": 32.98936333533192,
+          "bestPlanIds": [
+            "b"
+          ]
+        },
+        {
+          "scenarioId": "base",
+          "bestAllocation": 374.1235475816956,
+          "bestPlanIds": [
+            "b"
+          ]
+        },
+        {
+          "scenarioId": "bull",
+          "bestAllocation": 1749.3716167280477,
+          "bestPlanIds": [
+            "a"
+          ]
+        }
+      ],
+      "planMetrics": [
+        {
+          "planId": "a",
+          "eligible": true,
+          "worstRegret": 8.591070252494973,
+          "worstScenarioIds": [
+            "bear"
+          ],
+          "minAllocation": 24.39829308283695,
+          "maxAllocation": 1749.3716167280477,
+          "meetsModelCoverageIn": 2,
+          "totalScenarios": 3
+        },
+        {
+          "planId": "b",
+          "eligible": true,
+          "worstRegret": 17.154800249672235,
+          "worstScenarioIds": [
+            "bull"
+          ],
+          "minAllocation": 32.98936333533192,
+          "maxAllocation": 1732.2168164783754,
+          "meetsModelCoverageIn": 2,
+          "totalScenarios": 3
+        },
+        {
+          "planId": "c",
+          "eligible": false,
+          "worstRegret": null,
+          "worstScenarioIds": [],
+          "minAllocation": 20.473239741675606,
+          "maxAllocation": 1799.3519797507993,
+          "meetsModelCoverageIn": 2,
+          "totalScenarios": 3
+        }
+      ],
+      "minimax": {
+        "status": "available",
+        "planIds": [
+          "a"
+        ],
+        "worstRegret": 8.591070252494973
+      },
+      "dominance": [],
+      "dominanceStatus": "available",
+      "crossovers": [
+        {
+          "planA": "a",
+          "planB": "b",
+          "eligiblePair": true,
+          "status": "finite",
+          "equityResidual": 635,
+          "allocation": 600,
+          "inSelectedRange": true,
+          "higherResidualPreferred": "a",
+          "lowerResidualPreferred": "b"
+        },
+        {
+          "planA": "a",
+          "planB": "c",
+          "eligiblePair": false,
+          "status": "finite",
+          "equityResidual": 140,
+          "allocation": 150,
+          "inSelectedRange": true,
+          "higherResidualPreferred": "c",
+          "lowerResidualPreferred": "a"
+        },
+        {
+          "planA": "b",
+          "planB": "c",
+          "eligiblePair": false,
+          "status": "finite",
+          "equityResidual": 300,
+          "allocation": 300,
+          "inSelectedRange": true,
+          "higherResidualPreferred": "c",
+          "lowerResidualPreferred": "b"
+        }
+      ]
+    },
+    "envelope": {
+      "status": "available",
+      "modelQuoteCeiling": 1.8381223911206455,
+      "limitingScenarioIds": [
+        "bear"
+      ],
+      "maximumPrimaryCapital": 0.25065305333463345,
+      "plans": [
+        {
+          "planId": "a",
+          "lowerPreMoney": 183.33333333333334,
+          "upperPreMoney": 1.8381223911206455,
+          "status": "empty",
+          "includesLower": true,
+          "withinInputRange": false,
+          "currentQuoteMeets": false
+        },
+        {
+          "planId": "b",
+          "lowerPreMoney": 256.6666666666667,
+          "upperPreMoney": 1.8381223911206455,
+          "status": "empty",
+          "includesLower": true,
+          "withinInputRange": false,
+          "currentQuoteMeets": false
+        },
+        {
+          "planId": "c",
+          "lowerPreMoney": 146.66666666666669,
+          "upperPreMoney": 1.8381223911206455,
+          "status": "empty",
+          "includesLower": true,
+          "withinInputRange": false,
+          "currentQuoteMeets": false
+        }
+      ]
+    },
+    "method": {
+      "basis": "finite-scenario-capital-comparison",
+      "allocationMetric": "existing-cohort-signed-residual",
+      "scenarioWeighting": "none",
+      "comparisonScope": "eligible-submitted-plans-and-listed-scenarios",
+      "proceeds": "retained-as-cash",
+      "operations": "unchanged",
+      "rights": "equal-participating",
+      "fees": 0,
+      "bridgeStatus": "hypothetical",
+      "capitalTargetSource": "analyst-input",
+      "comparisonBand": 7.105427357601002e-15,
+      "quoteInputLimit": 1000000000000,
+      "capitalInputLimit": 1000000000000,
+      "finiteContinuation": "zero-residual-at-cutoff"
+    },
+    "warnings": [
+      "Scenario counts describe submitted cases and are not probabilities. Comparisons are conditional on these scenarios, plans and the signed cohort-residual metric.",
+      "Primary proceeds remain cash and operating forecasts are unchanged. The capital objective is an analyst input, not a forecast of funding need."
+    ]
+  }
+}

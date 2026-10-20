@@ -1,8 +1,91 @@
 # Release verification
 
-The current **v3.6 local verification** appears first. Earlier records retain their dates and scope. Numerical agreement, browser behavior, printable-artifact review and deployment checks are separate evidence. The [v3.6 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v3.6.0) carries the subsequent publication record.
+The current **v4.0 local verification** appears first. Earlier records retain their dates and scope. Numerical agreement, browser behavior, printable-artifact review and deployment checks are separate evidence. Consult the [v4.0 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v4.0.0) for the subsequent exact-commit production and native-desktop observations.
 
-## Version 3.6 local verification
+## Version 4.0 local verification
+
+Application **4.0.0** introduces Capital Strategy Studio: explicit business objectives, hypothetical financing plans, a common scenario matrix and a portable record of the analyst's judgment. Capital method **1.0.0** composes the existing financial engine **3.0.0**, financing and ownership methods **1.0.0**, and the **18 October 2026** valuation snapshot. The [local release record](verification/release-4.0-local.json) binds the implementation, test harnesses, evidence and artifacts by SHA-256.
+
+| Verification layer | Result | Evidence |
+| --- | --- | --- |
+| Node financial, API, transport, portable-record and release tests | **314 passed; 0 failed or skipped** | [Node gate](verification/node-tests-4.0.json) |
+| All eleven local Chromium workflows | **842 assertions; 0 page errors** | [Browser workflows](verification/browser-workflows-4.0.json) |
+| Capital Studio's complete browser workflow | **86 assertions**, included in the total above | [Capital browser](verification/capital-browser-4.0.json) |
+| Independent Capital reference | **74 valid; 38 rejected JSON; 11 JavaScript-only rejections; 16,635 numerical and 134,357 structural comparisons; 510 exact rounded crossover checks** | [Capital reference](verification/capital-reference-4.0.json) |
+| Existing financial, Thesis, Horizon, Financing and Ownership references | **All five passed freshly** | [Reference gates](verification/reference-gates-4.0.json) |
+| Static application build | **82 exact public assets staged; reviewed inputs unchanged** | [Build](verification/build-4.0.json) |
+| Local HTTP assets and complete API responses | **144 passed: 83 asset routes, 1 health, 24 valid API and 36 rejections** | [HTTP receipt](verification/http-local-4.0.json) |
+| Bounded local API workload cost | **Four accepted workloads; 10 warmup and 40 measured calls each** | [Observations and scope](verification/capital-performance-4.0.json) |
+| Worked printable artifacts | **19 pages visually reviewed across five PDFs**, including the seven-page capital decision | [Print record](verification/printed-artifacts-4.0.json) |
+| Versioned desktop package | **47 ZIP members; 46 manifest-listed files; seven actual creation/verification checks** | [Archive](verification/desktop-archive-4.0.json), [package checks](verification/desktop-verification-4.0.json) |
+| Scoped independent engineering review | **No unresolved material findings** | [Review record](verification/independent-review-4.0.json) |
+
+### Business judgment and the calculation contract
+
+The worked example compares three hypothetical offers against a **$25B capital objective and an 88% retained-starting-stake floor**. Plans A and B are eligible. Plan C retains more ownership but misses the capital objective by $5B. Raising the ownership floor to 90% leaves A; raising the capital objective to $30B at that floor leaves no eligible submitted offer. These are declared constraints, not estimates of funding need.
+
+The same Bear, Base and Bull operating cases are applied to every offer. Capital is retained as cash, participants have equal economic rights, and operating forecasts are unchanged. Scenario counts are not probabilities. The minimax comparison uses signed modeled allocations to the existing shareholder cohort; it does not estimate returns or select an analyst preference automatically. The [capital method](CAPITAL_STRATEGY.md) and [walkthrough](DEMO_WALKTHROUGH.md) explain the metric, empty and unavailable states, switching values and more demanding model-conditioned pricing interval.
+
+For A and B, the exact entered-term share ledgers imply a switching pre-money residual of **$635B**, where both modeled existing-cohort allocations are **$600B**. This is a conditional algebraic result, not a transaction valuation. The complete record carries all thirteen inputs for every scenario, finite-continuation choices, all offers, balances, objectives, the analyst's selection and four reasoning fields.
+
+### Independent arithmetic and precision
+
+The Capital reference derives cash flows separately using 100-digit Decimal arithmetic and an explicit annual finite-continuation sum. Fraction arithmetic constructs a 100-existing-share ledger from the exact binary values of the entered quote and primary raise. It imports no application calculation function. Its comparisons cover eligibility, allocation, dominance, regret, switching values and inverse pricing bounds, including missing bridges, signed residuals, subnormal inputs and the maximum nine-by-six matrix.
+
+The production DCF and allocation outputs use floating-point arithmetic. Switching diagnostics derive coefficients from exact entered terms before the pre-plus-raise or post-minus-raise operation rounds, then round the reported root once. Both corresponding allocation expressions must reconcile. Unresolved numerical cases remain unavailable. Ordinary thresholds use the documented relative band; any positive issuance strictly breaches a 100% retained-stake floor. This numerical convention has no statistical-confidence meaning.
+
+The reference receipt publishes its tolerances and the scale and units beside maximum errors. Passing a numerical reference checks the stated method within those conventions; it does not validate the forecast assumptions or establish transaction prices.
+
+### Browser, API and portable-record behavior
+
+The final eleven suites cover Capital, Model/Overview, scenario portability, Thesis, Thesis entry, Casebook, cross-workspace journeys, pending-save behavior, Horizon, Financing and Ownership. The totals are **86 + 76 + 75 + 79 + 14 + 85 + 94 + 16 + 148 + 92 + 77 = 842**. Checks include narrow viewports, 200% zoom, keyboard use, exact input handoffs, malformed drafts, delayed API responses, rejected imports and text/HTML export behavior. These are scoped Chromium observations, not a certification of every browser or assistive technology.
+
+Capital requests use the real shared Web-standard handler. The API enforces its existing 16 KiB streamed byte limit, fatal UTF-8 decoding, supported media type and strict nested inputs. Complete results are compared; a successful HTTP status alone cannot mark a changed decision verified. Edits invalidate completed and in-flight verification. Ordinary transport checks are separate from the independent Python arithmetic.
+
+Decision JSON allows 256 KiB of UTF-8 and recomputes supplied analysis. Share links have smaller explicit bounds, with JSON export available when an otherwise valid decision is too large to share. The maximum-size portable fixture and full nine-by-six matrix were checked. Lone surrogate code units are rejected in plan/scenario labels and prose; valid paired emoji round-trip. Standalone briefs escape authored text and contain no executing script.
+
+The local workload observation addresses the cost of composing the maximum matrix and exact-rational diagnostics. It exercised the actual in-process HTTP handler with the canonical decision, a nine-by-six matrix at 100 finite years, and existing near-parallel and subnormal reference cases. The largest measured response was 71,442 bytes; the receipt retains every timing, separate warmup observations, process-memory snapshots and runtime details. Network latency, deployed cold starts, concurrent traffic and global worst-case behavior are outside that observation. Reproduce it from the repository root with the [saved harness](verification/capital-performance-harness-4.0.mjs) and [accepted fixtures](verification/capital-performance-inputs-4.0.json):
+
+```sh
+node docs/verification/capital-performance-harness-4.0.mjs \
+  docs/verification/capital-performance-inputs-4.0.json \
+  /tmp/capital-performance.json
+```
+
+The final review closed a destructive example-selector behavior: browsing another worked example now queues it while preserving all edits; a separately labeled replacement action applies the example. It also closed a near-parallel crossover precision defect and the malformed-label HTML export defect. Regression checks exercise those behaviors. The fresh release reviewer additionally checked run prerequisites, metadata and the scope of the public design and README.
+
+### Documents, preservation and release boundaries
+
+The actual rendered PDFs were reviewed page by page: **Capital 7, Financing 3, Horizon 2, Research 4 and Thesis 3**. The capital document contains the decision, exact offers, scenario allocations, regret and switching diagnostics, pricing interval, complete operating inputs, and reopening link. Each supplied HTML/PDF pair is hash-bound in the print receipt. Different analyst text can produce different pagination.
+
+The new ZIP was created from an actual verified desktop handoff. CRC, deterministic entry metadata, exact membership, all copied source bytes and the recomputed complete capital record passed. Temporary execution confirmed that an existing destination is refused, verification changes no bytes or modification times, and altered output, wrong shortcuts or broken local links are rejected even when relevant manifest entries are updated. These local checks do not by themselves establish a native desktop copy.
+
+The frozen model, Horizon, Financing and Ownership engines, presets, research register, original workbook, original nine-page financial-review PDF and all three earlier package ZIPs remain byte identical to the preceding published release. Historical workbook recalculation counts remain historical evidence; no native Microsoft Excel recalculation is added by this release.
+
+The separate portfolio retains the concurrent public-file allowlist, staged manifest verification, navigation fallback and three other generated case studies. Its current [portfolio receipt](https://github.com/ult666666/ult666666.github.io/blob/main/docs/verification/capital-4.0-local.json) records 34 structural tests, the browser workflow and 56 navigation-resilience assertions. The new application capture is an actual 1440 × 1381 rendering.
+
+### Reproduction
+
+Use Node.js 24 and Python 3.11+ for the complete suite:
+
+```sh
+npm test
+npm run build
+python3 -B scripts/check_capital_reference.py --output /tmp/capital-reference.json
+npm start
+```
+
+With the local server running, compare its complete asset inventory and API profile:
+
+```sh
+python3 -B scripts/verify_capital_http.py \
+  --base-url http://127.0.0.1:4321 \
+  --output /tmp/capital-http.json
+```
+
+The browser harnesses use an optional Playwright/Chromium development environment and are not application runtime dependencies. Hosted CI, production HTTPS, live browser journeys, native delivery and downloaded release hashes are observed after publication and recorded separately. Hashes bind evidence to reviewed bytes; they are not signatures or financial-audit opinions.
+
+## Version 3.6 historical local verification
 
 Application **3.6.0** adds Ownership Frontier within Financing Lens. Its one optional retained-starting-stake constraint is preserved by the complete financing API, schema-two links, JSON and standalone brief. The financial engine remains **3.0.0**, financing engine **1.0.0**, ownership method **1.0.0**, and valuation snapshot **18 October 2026**. The original workbook, reviewed financial PDF, operating engine, round engine, presets, research register and earlier ZIPs remain byte identical. The [local release record](verification/release-3.6-local.json) binds the current implementation and artifacts by hash.
 

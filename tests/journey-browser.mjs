@@ -114,7 +114,7 @@ try{
     await page.setViewportSize({width,height:1000});
     for(const route of ['index.html','thesis.html','casebook.html']){
       await page.goto(new URL(route,base).href,{waitUntil:'networkidle'});
-      check(`${route} at ${width}px uses the same six navigation items`,await page.locator('.app-nav a').allTextContents(),['Overview','Model','Thesis Lab','Value Horizon','Casebook','Evidence']);
+      check(`${route} at ${width}px uses the same seven navigation items`,await page.locator('.app-nav a').allTextContents(),['Capital Studio','Overview','Model','Thesis Lab','Value Horizon','Casebook','Evidence']);
       check(`${route} at ${width}px has one current navigation item`,await page.locator('.app-nav a[aria-current]').count(),1);
       check(`${route} at ${width}px has no page overflow`,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     }

@@ -1,0 +1,557 @@
+[
+  {
+    "name": "canonical-three-scenarios-three-plans",
+    "fixtureSource": "scripts/verify_capital_http.py capital_cases: Capital worked Anthropic decision",
+    "derivation": "Unmodified current HTTP fixture.",
+    "body": {
+      "action": "capital",
+      "snapshot": {
+        "company": "Anthropic",
+        "scenarios": [
+          {
+            "id": "bear",
+            "label": "Bear",
+            "assumptions": {
+              "rev2026": 49.9,
+              "g1": 0.25,
+              "g2": 0.13,
+              "g3": 0.06,
+              "m27": -0.1,
+              "m30": 0.06,
+              "m36": 0.12,
+              "turns": 1.5,
+              "wacc": 0.16,
+              "tg": 0.025,
+              "roic": 0.12,
+              "stub": -6,
+              "tax": 0.25
+            },
+            "continuationYears": null
+          },
+          {
+            "id": "base",
+            "label": "Base",
+            "assumptions": {
+              "rev2026": 53.26,
+              "g1": 0.45,
+              "g2": 0.24,
+              "g3": 0.12,
+              "m27": -0.02,
+              "m30": 0.18,
+              "m36": 0.22,
+              "turns": 2.5,
+              "wacc": 0.125,
+              "tg": 0.03,
+              "roic": 0.2,
+              "stub": -3,
+              "tax": 0.25
+            },
+            "continuationYears": null
+          },
+          {
+            "id": "bull",
+            "label": "Bull",
+            "assumptions": {
+              "rev2026": 56.62,
+              "g1": 0.65,
+              "g2": 0.3,
+              "g3": 0.15,
+              "m27": 0.05,
+              "m30": 0.25,
+              "m36": 0.3,
+              "turns": 3.5,
+              "wacc": 0.105,
+              "tg": 0.035,
+              "roic": 0.25,
+              "stub": -1,
+              "tax": 0.25
+            },
+            "continuationYears": null
+          }
+        ],
+        "plans": [
+          {
+            "id": "a",
+            "label": "Smaller round",
+            "basis": "pre",
+            "quote": 250,
+            "primaryCapital": 25
+          },
+          {
+            "id": "b",
+            "label": "More capital",
+            "basis": "pre",
+            "quote": 300,
+            "primaryCapital": 35
+          },
+          {
+            "id": "c",
+            "label": "Higher retention",
+            "basis": "pre",
+            "quote": 300,
+            "primaryCapital": 20
+          }
+        ],
+        "policy": {
+          "capitalTarget": 25,
+          "retentionFloor": 0.88,
+          "modelCoverageFloor": 1,
+          "holderStake": 0.1
+        },
+        "bridge": {
+          "cash": 20,
+          "debt": 5,
+          "otherClaims": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "maximum-nine-scenarios-six-plans-finite-100",
+    "fixtureSource": "scripts/verify_capital_http.py capital_cases: Capital maximum nine scenarios and six plans",
+    "derivation": "Same nine scenarios and six plans; every continuationYears set to the existing accepted maximum of100.",
+    "body": {
+      "action": "capital",
+      "snapshot": {
+        "company": "Anthropic",
+        "scenarios": [
+          {
+            "id": "case-1",
+            "label": "Scenario 1",
+            "assumptions": {
+              "rev2026": 49.9,
+              "g1": 0.25,
+              "g2": 0.13,
+              "g3": 0.06,
+              "m27": -0.1,
+              "m30": 0.06,
+              "m36": 0.12,
+              "turns": 1.5,
+              "wacc": 0.16,
+              "tg": 0.025,
+              "roic": 0.12,
+              "stub": -6,
+              "tax": 0.25
+            },
+            "continuationYears": 100
+          },
+          {
+            "id": "case-2",
+            "label": "Scenario 2",
+            "assumptions": {
+              "rev2026": 53.26,
+              "g1": 0.45,
+              "g2": 0.24,
+              "g3": 0.12,
+              "m27": -0.02,
+              "m30": 0.18,
+              "m36": 0.22,
+              "turns": 2.5,
+              "wacc": 0.125,
+              "tg": 0.03,
+              "roic": 0.2,
+              "stub": -3,
+              "tax": 0.25
+            },
+            "continuationYears": 100
+          },
+          {
+            "id": "case-3",
+            "label": "Scenario 3",
+            "assumptions": {
+              "rev2026": 56.62,
+              "g1": 0.65,
+              "g2": 0.3,
+              "g3": 0.15,
+              "m27": 0.05,
+              "m30": 0.25,
+              "m36": 0.3,
+              "turns": 3.5,
+              "wacc": 0.105,
+              "tg": 0.035,
+              "roic": 0.25,
+              "stub": -1,
+              "tax": 0.25
+            },
+            "continuationYears": 100
+          },
+          {
+            "id": "case-4",
+            "label": "Scenario 4",
+            "assumptions": {
+              "rev2026": 49.9,
+              "g1": 0.25,
+              "g2": 0.13,
+              "g3": 0.06,
+              "m27": -0.1,
+              "m30": 0.06,
+              "m36": 0.12,
+              "turns": 1.5,
+              "wacc": 0.16,
+              "tg": 0.025,
+              "roic": 0.12,
+              "stub": -6,
+              "tax": 0.25
+            },
+            "continuationYears": 100
+          },
+          {
+            "id": "case-5",
+            "label": "Scenario 5",
+            "assumptions": {
+              "rev2026": 53.26,
+              "g1": 0.45,
+              "g2": 0.24,
+              "g3": 0.12,
+              "m27": -0.02,
+              "m30": 0.18,
+              "m36": 0.22,
+              "turns": 2.5,
+              "wacc": 0.125,
+              "tg": 0.03,
+              "roic": 0.2,
+              "stub": -3,
+              "tax": 0.25
+            },
+            "continuationYears": 100
+          },
+          {
+            "id": "case-6",
+            "label": "Scenario 6",
+            "assumptions": {
+              "rev2026": 56.62,
+              "g1": 0.65,
+              "g2": 0.3,
+              "g3": 0.15,
+              "m27": 0.05,
+              "m30": 0.25,
+              "m36": 0.3,
+              "turns": 3.5,
+              "wacc": 0.105,
+              "tg": 0.035,
+              "roic": 0.25,
+              "stub": -1,
+              "tax": 0.25
+            },
+            "continuationYears": 100
+          },
+          {
+            "id": "case-7",
+            "label": "Scenario 7",
+            "assumptions": {
+              "rev2026": 49.9,
+              "g1": 0.25,
+              "g2": 0.13,
+              "g3": 0.06,
+              "m27": -0.1,
+              "m30": 0.06,
+              "m36": 0.12,
+              "turns": 1.5,
+              "wacc": 0.16,
+              "tg": 0.025,
+              "roic": 0.12,
+              "stub": -6,
+              "tax": 0.25
+            },
+            "continuationYears": 100
+          },
+          {
+            "id": "case-8",
+            "label": "Scenario 8",
+            "assumptions": {
+              "rev2026": 53.26,
+              "g1": 0.45,
+              "g2": 0.24,
+              "g3": 0.12,
+              "m27": -0.02,
+              "m30": 0.18,
+              "m36": 0.22,
+              "turns": 2.5,
+              "wacc": 0.125,
+              "tg": 0.03,
+              "roic": 0.2,
+              "stub": -3,
+              "tax": 0.25
+            },
+            "continuationYears": 100
+          },
+          {
+            "id": "case-9",
+            "label": "Scenario 9",
+            "assumptions": {
+              "rev2026": 56.62,
+              "g1": 0.65,
+              "g2": 0.3,
+              "g3": 0.15,
+              "m27": 0.05,
+              "m30": 0.25,
+              "m36": 0.3,
+              "turns": 3.5,
+              "wacc": 0.105,
+              "tg": 0.035,
+              "roic": 0.25,
+              "stub": -1,
+              "tax": 0.25
+            },
+            "continuationYears": 100
+          }
+        ],
+        "plans": [
+          {
+            "id": "a",
+            "label": "Smaller round",
+            "basis": "pre",
+            "quote": 250,
+            "primaryCapital": 25
+          },
+          {
+            "id": "b",
+            "label": "More capital",
+            "basis": "pre",
+            "quote": 300,
+            "primaryCapital": 35
+          },
+          {
+            "id": "c",
+            "label": "Higher retention",
+            "basis": "pre",
+            "quote": 300,
+            "primaryCapital": 20
+          },
+          {
+            "id": "d",
+            "label": "Larger primary raise",
+            "basis": "pre",
+            "quote": 500,
+            "primaryCapital": 70
+          },
+          {
+            "id": "e",
+            "label": "Post-money offer",
+            "basis": "post",
+            "quote": 600,
+            "primaryCapital": 65
+          },
+          {
+            "id": "f",
+            "label": "No new primary capital",
+            "basis": "pre",
+            "quote": 200,
+            "primaryCapital": 0
+          }
+        ],
+        "policy": {
+          "capitalTarget": 25,
+          "retentionFloor": 0.88,
+          "modelCoverageFloor": 1,
+          "holderStake": 0.1
+        },
+        "bridge": {
+          "cash": 20,
+          "debt": 5,
+          "otherClaims": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "existing-resolved-near-parallel-rounding-case",
+    "fixtureSource": "scripts/check_capital_reference.py fixtures: entered-term addition rounding",
+    "derivation": "Unmodified existing valid reference snapshot.",
+    "body": {
+      "action": "capital",
+      "snapshot": {
+        "company": "Anthropic",
+        "scenarios": [
+          {
+            "id": "bear",
+            "label": "Bear",
+            "assumptions": {
+              "rev2026": 49.9,
+              "g1": 0.25,
+              "g2": 0.13,
+              "g3": 0.06,
+              "m27": -0.1,
+              "m30": 0.06,
+              "m36": 0.12,
+              "turns": 1.5,
+              "wacc": 0.16,
+              "tg": 0.025,
+              "roic": 0.12,
+              "stub": -6,
+              "tax": 0.25
+            },
+            "continuationYears": null
+          },
+          {
+            "id": "base",
+            "label": "Base",
+            "assumptions": {
+              "rev2026": 53.26,
+              "g1": 0.45,
+              "g2": 0.24,
+              "g3": 0.12,
+              "m27": -0.02,
+              "m30": 0.18,
+              "m36": 0.22,
+              "turns": 2.5,
+              "wacc": 0.125,
+              "tg": 0.03,
+              "roic": 0.2,
+              "stub": -3,
+              "tax": 0.25
+            },
+            "continuationYears": null
+          },
+          {
+            "id": "bull",
+            "label": "Bull",
+            "assumptions": {
+              "rev2026": 56.62,
+              "g1": 0.65,
+              "g2": 0.3,
+              "g3": 0.15,
+              "m27": 0.05,
+              "m30": 0.25,
+              "m36": 0.3,
+              "turns": 3.5,
+              "wacc": 0.105,
+              "tg": 0.035,
+              "roic": 0.25,
+              "stub": -1,
+              "tax": 0.25
+            },
+            "continuationYears": null
+          }
+        ],
+        "plans": [
+          {
+            "id": "a",
+            "label": "Smaller round",
+            "basis": "pre",
+            "quote": 250.00000000000003,
+            "primaryCapital": 25
+          },
+          {
+            "id": "b",
+            "label": "More capital",
+            "basis": "pre",
+            "quote": 350.0000000001,
+            "primaryCapital": 35
+          }
+        ],
+        "policy": {
+          "capitalTarget": 0,
+          "retentionFloor": 0.88,
+          "modelCoverageFloor": 1,
+          "holderStake": 0.1
+        },
+        "bridge": {
+          "cash": 20,
+          "debt": 5,
+          "otherClaims": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "existing-subnormal-half-tie-case",
+    "fixtureSource": "scripts/check_capital_reference.py fixtures: subnormal half tie",
+    "derivation": "Unmodified existing valid reference snapshot.",
+    "body": {
+      "action": "capital",
+      "snapshot": {
+        "company": "Anthropic",
+        "scenarios": [
+          {
+            "id": "bear",
+            "label": "Bear",
+            "assumptions": {
+              "rev2026": 49.9,
+              "g1": 0.25,
+              "g2": 0.13,
+              "g3": 0.06,
+              "m27": -0.1,
+              "m30": 0.06,
+              "m36": 0.12,
+              "turns": 1.5,
+              "wacc": 0.16,
+              "tg": 0.025,
+              "roic": 0.12,
+              "stub": -6,
+              "tax": 0.25
+            },
+            "continuationYears": null
+          },
+          {
+            "id": "base",
+            "label": "Base",
+            "assumptions": {
+              "rev2026": 53.26,
+              "g1": 0.45,
+              "g2": 0.24,
+              "g3": 0.12,
+              "m27": -0.02,
+              "m30": 0.18,
+              "m36": 0.22,
+              "turns": 2.5,
+              "wacc": 0.125,
+              "tg": 0.03,
+              "roic": 0.2,
+              "stub": -3,
+              "tax": 0.25
+            },
+            "continuationYears": null
+          },
+          {
+            "id": "bull",
+            "label": "Bull",
+            "assumptions": {
+              "rev2026": 56.62,
+              "g1": 0.65,
+              "g2": 0.3,
+              "g3": 0.15,
+              "m27": 0.05,
+              "m30": 0.25,
+              "m36": 0.3,
+              "turns": 3.5,
+              "wacc": 0.105,
+              "tg": 0.035,
+              "roic": 0.25,
+              "stub": -1,
+              "tax": 0.25
+            },
+            "continuationYears": null
+          }
+        ],
+        "plans": [
+          {
+            "id": "a",
+            "label": "Smaller round",
+            "basis": "pre",
+            "quote": 1e-323,
+            "primaryCapital": 1e-323
+          },
+          {
+            "id": "b",
+            "label": "More capital",
+            "basis": "pre",
+            "quote": 1.5e-323,
+            "primaryCapital": 5e-324
+          }
+        ],
+        "policy": {
+          "capitalTarget": 0,
+          "retentionFloor": 0.01,
+          "modelCoverageFloor": 1,
+          "holderStake": 0.1
+        },
+        "bridge": {
+          "cash": 20,
+          "debt": 5,
+          "otherClaims": 0
+        }
+      }
+    }
+  }
+]

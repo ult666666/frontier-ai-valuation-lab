@@ -29,14 +29,14 @@ const page=await context.newPage();page.on('pageerror',error=>errors.push(error.
 page.on('request',request=>{if(request.url().includes('/api/valuation')&&request.method()==='POST')requests.push(request.postDataJSON());});
 const ready=async(target=page)=>{await target.locator('body[data-horizon-state="ready"]').waitFor();};
 const value=selector=>page.locator(selector).getAttribute('data-value').then(Number);
-const nav=['Overview','Model','Thesis Lab','Value Horizon','Casebook','Evidence'];
+const nav=['Capital Studio','Overview','Model','Thesis Lab','Value Horizon','Casebook','Evidence'];
 const defaultSnapshot={case:{company:'Anthropic',scenario:'Base',assumptions:presets.Anthropic.Base,bridge:null},years:10,target:250};
 const wrapped=result=>({appVersion:APP_VERSION,modelVersion:MODEL_VERSION,valuationDate:VALUATION_DATE,result});
 let failed=null;
 try{
   await page.goto(new URL('horizon.html',base).href,{waitUntil:'networkidle'});await ready();
   check('A fresh visitor opens a populated analysis',await page.locator('#horizon-error').isHidden());
-  check('The current horizon is the fourth consistent workspace destination',await page.locator('.app-nav a').allTextContents(),nav);
+  check('The current horizon is the consistent workspace destination',await page.locator('.app-nav a').allTextContents(),nav);
   check('Only Value Horizon has current navigation state',await page.locator('.app-nav a[aria-current]').allTextContents(),['Value Horizon']);
   check('Opening the demo creates no saved browser research',await page.evaluate(()=>localStorage.length),0);
   check('The years and range inputs have native labels',await page.locator('#horizon-years,#horizon-range,#horizon-target').evaluateAll(inputs=>inputs.every(input=>input.labels.length>0)));
@@ -164,7 +164,7 @@ try{
   for(const width of [320,390,768,1440]){
     await page.setViewportSize({width,height:width<600?844:1100});
     check(`No horizontal page overflow at ${width}px`,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-    check(`All workspace destinations remain visible at ${width}px`,await page.locator('.app-nav a:visible').count(),6);
+    check(`All workspace destinations remain visible at ${width}px`,await page.locator('.app-nav a:visible').count(),7);
     check(`Chart coordinates are finite at ${width}px`,await page.locator('#horizon-chart svg').evaluate(svg=>!/(?:NaN|Infinity)/.test(svg.outerHTML)));
     check(`Responsive copy keeps separate words at ${width}px`,await page.locator('#method-title,.intro-note>p').allInnerTexts().then(text=>text.every(value=>!value.includes('boundaryon')&&!value.includes('more.Choose'))));
     if(width===390)await page.screenshot({path:`${output}/mobile-full.png`,fullPage:true,animations:'disabled'});

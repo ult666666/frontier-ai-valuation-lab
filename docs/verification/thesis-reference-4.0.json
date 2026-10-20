@@ -1,0 +1,715 @@
+{
+  "status": "pass",
+  "version": "1.0.0",
+  "testedAtUtc": "2026-10-20T01:45:47Z",
+  "runtime": {
+    "python": "3.12.14",
+    "node": "v24.19.0"
+  },
+  "command": "python scripts/check_thesis_reference.py",
+  "sourceHashes": {
+    "public/lib/thesis.js": "a2ad37f4d9d12d7556efea1adbdcddb0424b2599700b15000b0dbbccc6c245e3",
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "scripts/reference_model.py": "8cbc2359afc02f0246e93e722febcb82df5f85e5014521249e8555825d3651d4",
+    "scripts/check_thesis_reference.py": "fb39a663daba0339b50ecf610d14dc10fa808e54e086f5cccf731feadc4a790b"
+  },
+  "sourceBinding": {
+    "pythonFilesUnchangedDuringVerification": true,
+    "nodeLoadedExpectedSources": true,
+    "nodeFilesUnchangedDuringVerification": true,
+    "pythonReferenceMatchesLoadedSource": true
+  },
+  "fixtureSha256": "99375b02f3d63887069cdb3313fd40b5bf4db68ceba4bc393e3a9ff70e09350b",
+  "fixtureGeneration": "Deterministic build_fixtures() in scripts/check_thesis_reference.py",
+  "source": "scripts/reference_model.py + full permutation enumeration + affine tax-segment roots",
+  "tolerances": {
+    "evAbsoluteUSD_B": 1e-08,
+    "evRelative": 2e-11,
+    "marginAbsolute": 2e-09,
+    "frontierTargetAbsoluteUSD_B": 1e-06,
+    "frontierTargetRelative": 2e-09
+  },
+  "counts": {
+    "presetOrderedPairs": 18,
+    "editedPairs": 10,
+    "overflowHybridPairs": 2,
+    "landscapes": 22,
+    "rejectedInputs": 5
+  },
+  "metrics": {
+    "maxEvAbsoluteError": 1.8189894035458565e-12,
+    "maxContributionAbsoluteError": 4.547473508864641e-13,
+    "maxContributionScaledError": 1.4210854715202004e-14,
+    "maxMarginAbsoluteError": 6.661338147750939e-16,
+    "maxFrontierEvResidual": 4.547473508864641e-13,
+    "permutations": 20160,
+    "marginalSteps": 120960,
+    "directGridCells": 390,
+    "validGridCells": 341,
+    "invalidGridCells": 49,
+    "frontierEntries": 80,
+    "numericChecks": 1002,
+    "frontierStatuses": {
+      "invalid": 13,
+      "solved": 37,
+      "above_range": 25,
+      "below_range": 5
+    },
+    "independentProjectionEvaluations": 1514
+  },
+  "interactionFixture": {
+    "oneAtATimeSum": -2414.3569866797798,
+    "actualDelta": 15249.702636377671,
+    "oneAtATimeReconciliationGap": -17664.059623057452,
+    "strongestTwoGroupInteractionAtReference": {
+      "groups": [
+        "growth",
+        "capital"
+      ],
+      "mixedDifference": 1962.9285406187787
+    }
+  },
+  "comparisonSummary": [
+    {
+      "name": "Anthropic/Bear->Bear",
+      "status": "ok",
+      "referenceEV": -13.161877608879369,
+      "alternativeEV": -13.161877608879369,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 0.0,
+        "capital": 0.0,
+        "continuation": 0.0,
+        "tax": 0.0,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "Anthropic/Bear->Base",
+      "status": "ok",
+      "referenceEV": -13.161877608879369,
+      "alternativeEV": 367.7712947995601,
+      "contributions": {
+        "growth": 82.87487491336721,
+        "margins": 150.64985810738722,
+        "capital": 46.88219413647129,
+        "continuation": 97.60604962572957,
+        "tax": 0.0,
+        "stub": 2.9201956254841956
+      }
+    },
+    {
+      "name": "Anthropic/Bear->Bull",
+      "status": "ok",
+      "referenceEV": -13.161877608879369,
+      "alternativeEV": 1884.3087784008526,
+      "contributions": {
+        "growth": 597.1815776961498,
+        "margins": 608.7535488470651,
+        "capital": 138.3686245524381,
+        "continuation": 548.2910248173383,
+        "tax": 0.0,
+        "stub": 4.875880096740614
+      }
+    },
+    {
+      "name": "Anthropic/Base->Bear",
+      "status": "ok",
+      "referenceEV": 367.7712947995601,
+      "alternativeEV": -13.161877608879369,
+      "contributions": {
+        "growth": -82.87487491336721,
+        "margins": -150.64985810738722,
+        "capital": -46.88219413647129,
+        "continuation": -97.60604962572957,
+        "tax": 0.0,
+        "stub": -2.9201956254841956
+      }
+    },
+    {
+      "name": "Anthropic/Base->Base",
+      "status": "ok",
+      "referenceEV": 367.7712947995601,
+      "alternativeEV": 367.7712947995601,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 0.0,
+        "capital": 0.0,
+        "continuation": 0.0,
+        "tax": 0.0,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "Anthropic/Base->Bull",
+      "status": "ok",
+      "referenceEV": 367.7712947995601,
+      "alternativeEV": 1884.3087784008526,
+      "contributions": {
+        "growth": 639.5144167897298,
+        "margins": 363.3997739786622,
+        "capital": 56.59207776142885,
+        "continuation": 455.0748210901654,
+        "tax": 0.0,
+        "stub": 1.9563939813062043
+      }
+    },
+    {
+      "name": "Anthropic/Bull->Bear",
+      "status": "ok",
+      "referenceEV": 1884.3087784008526,
+      "alternativeEV": -13.161877608879369,
+      "contributions": {
+        "growth": -597.1815776961498,
+        "margins": -608.7535488470651,
+        "capital": -138.3686245524381,
+        "continuation": -548.2910248173383,
+        "tax": 0.0,
+        "stub": -4.875880096740614
+      }
+    },
+    {
+      "name": "Anthropic/Bull->Base",
+      "status": "ok",
+      "referenceEV": 1884.3087784008526,
+      "alternativeEV": 367.7712947995601,
+      "contributions": {
+        "growth": -639.5144167897298,
+        "margins": -363.3997739786622,
+        "capital": -56.59207776142885,
+        "continuation": -455.0748210901654,
+        "tax": 0.0,
+        "stub": -1.9563939813062043
+      }
+    },
+    {
+      "name": "Anthropic/Bull->Bull",
+      "status": "ok",
+      "referenceEV": 1884.3087784008526,
+      "alternativeEV": 1884.3087784008526,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 0.0,
+        "capital": 0.0,
+        "continuation": 0.0,
+        "tax": 0.0,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "OpenAI/Bear->Bear",
+      "status": "ok",
+      "referenceEV": -68.49581061785655,
+      "alternativeEV": -68.49581061785655,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 0.0,
+        "capital": 0.0,
+        "continuation": 0.0,
+        "tax": 0.0,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "OpenAI/Bear->Base",
+      "status": "ok",
+      "referenceEV": -68.49581061785655,
+      "alternativeEV": 258.86259028034846,
+      "contributions": {
+        "growth": 37.92650426294829,
+        "margins": 164.17783157921275,
+        "capital": 42.51457142467892,
+        "continuation": 75.92570383856857,
+        "tax": 0.0,
+        "stub": 6.8137897927964595
+      }
+    },
+    {
+      "name": "OpenAI/Bear->Bull",
+      "status": "ok",
+      "referenceEV": -68.49581061785655,
+      "alternativeEV": 1505.6838953114666,
+      "contributions": {
+        "growth": 415.7293854029284,
+        "margins": 574.9498578220137,
+        "capital": 135.1929044474984,
+        "continuation": 437.5806220440534,
+        "tax": 0.0,
+        "stub": 10.726936212829308
+      }
+    },
+    {
+      "name": "OpenAI/Base->Bear",
+      "status": "ok",
+      "referenceEV": 258.86259028034846,
+      "alternativeEV": -68.49581061785655,
+      "contributions": {
+        "growth": -37.92650426294829,
+        "margins": -164.17783157921275,
+        "capital": -42.51457142467892,
+        "continuation": -75.92570383856857,
+        "tax": 0.0,
+        "stub": -6.8137897927964595
+      }
+    },
+    {
+      "name": "OpenAI/Base->Base",
+      "status": "ok",
+      "referenceEV": 258.86259028034846,
+      "alternativeEV": 258.86259028034846,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 0.0,
+        "capital": 0.0,
+        "continuation": 0.0,
+        "tax": 0.0,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "OpenAI/Base->Bull",
+      "status": "ok",
+      "referenceEV": 258.86259028034846,
+      "alternativeEV": 1505.6838953114666,
+      "contributions": {
+        "growth": 512.3504434965996,
+        "margins": 279.6786975519838,
+        "capital": 65.58736035623531,
+        "continuation": 385.292015663687,
+        "tax": 0.0,
+        "stub": 3.9127879626124202
+      }
+    },
+    {
+      "name": "OpenAI/Bull->Bear",
+      "status": "ok",
+      "referenceEV": 1505.6838953114666,
+      "alternativeEV": -68.49581061785655,
+      "contributions": {
+        "growth": -415.7293854029284,
+        "margins": -574.9498578220137,
+        "capital": -135.1929044474984,
+        "continuation": -437.5806220440534,
+        "tax": 0.0,
+        "stub": -10.726936212829308
+      }
+    },
+    {
+      "name": "OpenAI/Bull->Base",
+      "status": "ok",
+      "referenceEV": 1505.6838953114666,
+      "alternativeEV": 258.86259028034846,
+      "contributions": {
+        "growth": -512.3504434965996,
+        "margins": -279.6786975519838,
+        "capital": -65.58736035623531,
+        "continuation": -385.292015663687,
+        "tax": 0.0,
+        "stub": -3.9127879626124202
+      }
+    },
+    {
+      "name": "OpenAI/Bull->Bull",
+      "status": "ok",
+      "referenceEV": 1505.6838953114666,
+      "alternativeEV": 1505.6838953114666,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 0.0,
+        "capital": 0.0,
+        "continuation": 0.0,
+        "tax": 0.0,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "edits/all_six_interactions",
+      "status": "ok",
+      "referenceEV": -268.18194242849444,
+      "alternativeEV": 14981.520693949176,
+      "contributions": {
+        "growth": 2867.6346564470396,
+        "margins": 5198.751460678372,
+        "capital": 1838.7392661612218,
+        "continuation": 3812.1871413252516,
+        "tax": 1496.2864149562097,
+        "stub": 36.103696809576554
+      }
+    },
+    {
+      "name": "edits/all_six_interactions_reverse",
+      "status": "ok",
+      "referenceEV": 14981.520693949176,
+      "alternativeEV": -268.18194242849444,
+      "contributions": {
+        "growth": -2867.6346564470396,
+        "margins": -5198.751460678372,
+        "capital": -1838.7392661612218,
+        "continuation": -3812.1871413252516,
+        "tax": -1496.2864149562097,
+        "stub": -36.103696809576554
+      }
+    },
+    {
+      "name": "edits/negative_reference",
+      "status": "ok",
+      "referenceEV": -5306.017503979147,
+      "alternativeEV": 367.7712947995601,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 0.0,
+        "capital": 5673.788798778707,
+        "continuation": 0.0,
+        "tax": 0.0,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "edits/negative_alternative",
+      "status": "ok",
+      "referenceEV": 367.7712947995601,
+      "alternativeEV": -5306.017503979147,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 0.0,
+        "capital": -5673.788798778707,
+        "continuation": 0.0,
+        "tax": 0.0,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "edits/stub_only",
+      "status": "ok",
+      "referenceEV": 367.7712947995601,
+      "alternativeEV": 370.5800077211389,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 0.0,
+        "capital": 0.0,
+        "continuation": 0.0,
+        "tax": 0.0,
+        "stub": 2.808712921578774
+      }
+    },
+    {
+      "name": "edits/tax_kink_transition",
+      "status": "ok",
+      "referenceEV": -68.49581061785655,
+      "alternativeEV": -74.79303041560848,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 4.665256505237011,
+        "capital": 0.0,
+        "continuation": 0.0,
+        "tax": -10.962476302988946,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "edits/coupled_long_run",
+      "status": "ok",
+      "referenceEV": 2399.979585973548,
+      "alternativeEV": 569.7486491408106,
+      "contributions": {
+        "growth": 0.0,
+        "margins": 0.0,
+        "capital": 0.0,
+        "continuation": -1830.2309368327376,
+        "tax": 0.0,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "edits/high_precision",
+      "status": "ok",
+      "referenceEV": 367.7712947995601,
+      "alternativeEV": 367.77286380589453,
+      "contributions": {
+        "growth": 0.000129403670409071,
+        "margins": 0.0022256854020952233,
+        "capital": 0.0,
+        "continuation": -0.0007859622479031714,
+        "tax": 0.0,
+        "stub": -1.204901802035844e-07
+      }
+    },
+    {
+      "name": "edits/accounting_relabel",
+      "status": "ok",
+      "referenceEV": 367.7712947995601,
+      "alternativeEV": 367.7712947995601,
+      "contributions": {
+        "growth": -389.2355810059072,
+        "margins": 510.81676955116524,
+        "capital": -121.58118854525799,
+        "continuation": 0.0,
+        "tax": 0.0,
+        "stub": 0.0
+      }
+    },
+    {
+      "name": "edits/zero_ev_reference",
+      "status": "ok",
+      "referenceEV": 0.0,
+      "alternativeEV": 367.7712947995601,
+      "contributions": {
+        "growth": 177.85244465057394,
+        "margins": 257.5844502440543,
+        "capital": 0.0,
+        "continuation": -9.037810957551269,
+        "tax": -55.69184690468434,
+        "stub": -2.9359422328325917
+      }
+    },
+    {
+      "name": "extreme/overflow_hybrid",
+      "status": "unavailable",
+      "overflowingHybrids": 16
+    },
+    {
+      "name": "extreme/overflow_hybrid_reverse",
+      "status": "unavailable",
+      "overflowingHybrids": 16
+    }
+  ],
+  "landscapeSummary": [
+    {
+      "name": "grid/Anthropic/Bear",
+      "target": 158.2312059749498,
+      "validCells": 30,
+      "frontierStatuses": [
+        "invalid",
+        "solved",
+        "solved",
+        "solved",
+        "above_range",
+        "above_range"
+      ]
+    },
+    {
+      "name": "grid/Anthropic/Base",
+      "target": 1077.318590513741,
+      "validCells": 36,
+      "frontierStatuses": [
+        "invalid",
+        "solved",
+        "solved",
+        "solved",
+        "above_range",
+        "above_range",
+        "above_range"
+      ]
+    },
+    {
+      "name": "grid/Anthropic/Bull",
+      "target": 3781.4315859361386,
+      "validCells": 36,
+      "frontierStatuses": [
+        "invalid",
+        "solved",
+        "solved",
+        "solved",
+        "above_range",
+        "above_range",
+        "above_range"
+      ]
+    },
+    {
+      "name": "grid/OpenAI/Bear",
+      "target": 67.0847631365632,
+      "validCells": 30,
+      "frontierStatuses": [
+        "invalid",
+        "solved",
+        "solved",
+        "solved",
+        "above_range",
+        "above_range"
+      ]
+    },
+    {
+      "name": "grid/OpenAI/Base",
+      "target": 776.0380862484224,
+      "validCells": 36,
+      "frontierStatuses": [
+        "invalid",
+        "solved",
+        "solved",
+        "solved",
+        "above_range",
+        "above_range",
+        "above_range"
+      ]
+    },
+    {
+      "name": "grid/OpenAI/Bull",
+      "target": 2911.2375728473407,
+      "validCells": 36,
+      "frontierStatuses": [
+        "invalid",
+        "solved",
+        "solved",
+        "solved",
+        "above_range",
+        "above_range",
+        "above_range"
+      ]
+    },
+    {
+      "name": "frontier/tax_kink/0.1250000000",
+      "target": 872.4716819572778,
+      "validCells": 15,
+      "frontierStatuses": [
+        "solved",
+        "solved",
+        "solved"
+      ]
+    },
+    {
+      "name": "frontier/tax_kink/0.2500000000",
+      "target": 915.2759612170566,
+      "validCells": 15,
+      "frontierStatuses": [
+        "solved",
+        "solved",
+        "solved"
+      ]
+    },
+    {
+      "name": "frontier/tax_kink/0.5000000000",
+      "target": 998.3679632744085,
+      "validCells": 15,
+      "frontierStatuses": [
+        "solved",
+        "solved",
+        "above_range"
+      ]
+    },
+    {
+      "name": "frontier/tax_kink/0.2499999900",
+      "target": 915.2759577927143,
+      "validCells": 15,
+      "frontierStatuses": [
+        "solved",
+        "solved",
+        "solved"
+      ]
+    },
+    {
+      "name": "frontier/tax_kink/0.2500000100",
+      "target": 915.2759645407367,
+      "validCells": 15,
+      "frontierStatuses": [
+        "solved",
+        "solved",
+        "solved"
+      ]
+    },
+    {
+      "name": "frontier/lower_exact",
+      "target": 831.1337972608709,
+      "validCells": 6,
+      "frontierStatuses": [
+        "solved",
+        "below_range"
+      ]
+    },
+    {
+      "name": "frontier/upper_exact",
+      "target": 1144.6119291458365,
+      "validCells": 6,
+      "frontierStatuses": [
+        "solved",
+        "above_range"
+      ]
+    },
+    {
+      "name": "frontier/below_lower",
+      "target": 831.1336972608709,
+      "validCells": 6,
+      "frontierStatuses": [
+        "below_range",
+        "below_range"
+      ]
+    },
+    {
+      "name": "frontier/above_upper",
+      "target": 1144.6120291458365,
+      "validCells": 6,
+      "frontierStatuses": [
+        "above_range",
+        "above_range"
+      ]
+    },
+    {
+      "name": "frontier/near_lower",
+      "target": 831.1337976293745,
+      "validCells": 6,
+      "frontierStatuses": [
+        "solved",
+        "below_range"
+      ]
+    },
+    {
+      "name": "frontier/near_upper",
+      "target": 1160.8612583621198,
+      "validCells": 6,
+      "frontierStatuses": [
+        "solved",
+        "above_range"
+      ]
+    },
+    {
+      "name": "domain/nonpositive_values",
+      "target": 1,
+      "validCells": 9,
+      "frontierStatuses": [
+        "above_range",
+        "above_range",
+        "above_range"
+      ]
+    },
+    {
+      "name": "domain/zero_margin_and_invalid_rate",
+      "target": 1000,
+      "validCells": 2,
+      "frontierStatuses": [
+        "invalid",
+        "invalid",
+        "invalid"
+      ]
+    },
+    {
+      "name": "domain/near_discount_pole",
+      "target": 1000000000000,
+      "validCells": 6,
+      "frontierStatuses": [
+        "invalid",
+        "below_range",
+        "above_range"
+      ]
+    },
+    {
+      "name": "domain/overflow_column",
+      "target": 1000,
+      "validCells": 3,
+      "frontierStatuses": [
+        "invalid",
+        "solved"
+      ]
+    },
+    {
+      "name": "precision/tiny_target_at_normal_scale_ev_cancellation",
+      "target": 1e-300,
+      "validCells": 6,
+      "frontierStatuses": [
+        "invalid",
+        "invalid"
+      ]
+    }
+  ],
+  "failures": [],
+  "elapsedSeconds": 0.5602856639961828
+}

@@ -1,10 +1,10 @@
 # API contract
 
-The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **3.6.0** adds an optional Ownership Frontier constraint to the existing `financing` action. Application **3.5.0** introduced that action, and **3.4.0** introduced the Value Horizon `horizon` action; all earlier actions remain available. No model-provider key is needed.
+The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **4.0.0** adds the `capital` action for complete financing-plan comparisons. The existing financing/ownership, horizon and earlier actions remain available. No model-provider key is needed.
 
 ## GET /api/health
 
-Returns `status`, `appVersion`, `modelVersion` and `valuationDate`. This is service health, not a statement that financial evidence is complete. Application release `3.6.0` retains financial engine `3.0.0` and valuation date `2026-10-18`.
+Returns `status`, `appVersion`, `modelVersion` and `valuationDate`. This is service health, not a statement that financial evidence is complete. Application release `4.0.0` retains financial engine `3.0.0` and valuation date `2026-10-18`.
 
 ## GET /api/valuation
 
@@ -26,6 +26,7 @@ Use `Content-Type: application/json`. Amounts are USD billions and model percent
 | `landscape` | `assumptions`, `rates`, `margins`, positive numeric `target` | EV matrix indexed by margin row and WACC column, invalid-point reasons, and a required-margin frontier |
 | `horizon` | `assumptions`, integer `years` from 0–100; optional positive numeric or `null` `target` | Complete baseline, 101 finite-continuation points, retained/excluded terminal PV, capture milestones and bounded whole-year target requirement |
 | `financing` | `assumptions`, explicit `bridge` object or `null`, complete `round`; optional `ownership: {retentionFloor}` | Full baseline, primary-round pricing and ownership, optional signed equity reconciliation, round-implied operating EV and an optional capital-versus-ownership frontier |
+| `capital` | Complete `snapshot` with company, 1–9 scenarios, 1–6 plans, policy and explicit bridge or `null` | Complete plan eligibility, scenario allocations, finite-scenario regret/dominance, switching values and all-scenario model-conditioned pricing intervals |
 
 Success responses are `{appVersion, modelVersion, valuationDate, result}`. `appVersion` is an additive release identifier; the model/date/result fields retain their existing meanings. Validation failures are HTTP 400 with `{error}`. Unsupported media returns 415, more than 16 KiB returns 413, unsupported methods return 405, and unknown routes return 404. Each original `sensitivity` axis contains 1–9 finite numbers. Each `landscape` axis contains 2–21 finite, strictly increasing numbers.
 
@@ -525,3 +526,90 @@ The graph includes at most 51 bounded round-arithmetic points and never reruns F
 A reverse DCF changes only `g1`, the growth rate for 2027–2030. Margins, later growth, capital efficiency, discount rate, terminal returns and the initial revenue assumption remain fixed. Multiple solutions are all returned; no unique required growth or probability is implied.
 
 The public calculation has bounded inputs, body size and iteration counts. It needs no authentication because it accesses no account data, incurs no paid AI/data call, and changes no server-side records. There is no application-layer distributed rate limiter; hosting-level traffic protection controls deployment-wide abuse.
+
+## Capital Strategy Studio
+
+Send `{action:'capital', snapshot}`. Both fields are required; every other top-level field is rejected. Analyst selection and reasoning do not belong in a calculation request.
+
+```json
+{
+  "action": "capital",
+  "snapshot": {
+    "company": "Anthropic",
+    "scenarios": [{
+      "id": "operating-case",
+      "label": "Illustrative case",
+      "assumptions": {
+        "rev2026": 100, "g1": 0.04, "g2": 0.04, "g3": 0.04,
+        "m27": 0.2, "m30": 0.2, "m36": 0.2, "turns": 2.5,
+        "wacc": 0.1, "tg": 0.03, "roic": 0.2, "stub": -3, "tax": 0.25
+      },
+      "continuationYears": 10
+    }],
+    "plans": [
+      {"id": "a", "label": "Smaller round", "basis": "pre", "quote": 250, "primaryCapital": 25},
+      {"id": "b", "label": "More capital", "basis": "pre", "quote": 300, "primaryCapital": 35}
+    ],
+    "policy": {"capitalTarget": 25, "retentionFloor": 0.88, "modelCoverageFloor": 1, "holderStake": 0.1},
+    "bridge": {"cash": 20, "debt": 5, "otherClaims": 0}
+  }
+}
+```
+
+The numerical operating case above is a synthetic API fixture, not a published company forecast. Use the worked decision JSON's `snapshot` to reproduce the portfolio example. `continuationYears:null` requests the existing perpetual model; an integer0–100 requests the corresponding finite continuation after2036, with zero residual after the cutoff.
+
+### Input contract
+
+All fields shown in each object are required. Unsupported fields are rejected at every level. Company is `Anthropic` or `OpenAI`; scenarios and plans are dense arrays of1–9 and1–6 elements respectively. IDs are unique within their kind and match `^[a-z][a-z0-9-]{0,23}$`. Labels contain1–60 Unicode code points without control characters. Each scenario's complete thirteen assumptions must pass the existing financial validation.
+
+| Field | Domain / interpretation |
+| --- | --- |
+| `plans[].basis` | `pre` or `post`, interpreting the independently entered quote |
+| `plans[].quote` | Positive finite USD billions through1e12, with existing financing precision checks |
+| `plans[].primaryCapital` | Finite USD billions in[0,1e12]; post-money quote must leave positive, resolvable pre-money value |
+| `policy.capitalTarget` | Explicit minimum primary-capital objective in[0,1e12] |
+| `policy.retentionFloor` | Minimum fraction of starting ownership retained in[0.01,1] |
+| `policy.modelCoverageFloor` | Minimum modeled pre-money residual / implied pre-money quote ratio in[0.1,10] |
+| `policy.holderStake` | Tracked holder's pre-round company fraction in[0,1] |
+| `bridge` | Explicit hypothetical `{cash,debt,otherClaims}` under existing bridge bounds, or `null` for unavailable balances |
+
+The fixed-forecast financial interpretation is primary cash retained, equal participating rights, no fees and no operating benefit from deploying the raise. The capital objective is never estimated from economic FCFF.
+
+### Complete result
+
+The ordinary API envelope contains application4.0.0, financial model3.0.0, valuation date2026-10-18 and `result`:
+
+```text
+{
+  version, modelVersion, valuationDate, snapshot,
+  scenarios, plans, matrix, comparison, envelope, method, warnings
+}
+```
+
+- `scenarios` contains each exact case, finite/perpetual operating EV and optional signed modeled pre-money residual.
+- `plans` contains complete round pricing, ownership and separate capital/retention eligibility checks.
+- `matrix` preserves scenario-major, plan-minor order, with signed residual allocations, model/quote coverage, regret and warnings.
+- `comparison` contains the declared metric, eligible IDs, each scenario's eligible best, plan metrics, minimax ties, dominance pairs and pairwise switching values.
+- `envelope` tests all submitted scenarios against the model-coverage floor and retained ownership condition. It is separate from eligibility.
+- `method` and `warnings` retain the interpretation and numerical limits.
+
+See [CAPITAL_STRATEGY.md](CAPITAL_STRATEGY.md) for formulas, exact output fields and numerical conventions. Every derived value is finite or an explicit `null`; missing or unresolved values are never serialized as Infinity or NaN.
+
+### Successful outcomes that are not a recommendation
+
+| Outcome | Interpretation |
+| --- | --- |
+| `minimax.status: available` | Complete eligible-plan comparison across every submitted scenario; all minimizing plan IDs returned |
+| `minimax.status: no-eligible-plans` | No submitted plan meets both explicit capital and retention objectives |
+| `minimax.status: unavailable` | A required modeled allocation is unavailable; no scenario is silently discarded |
+| `crossovers[].status: finite` | A numerically resolvable switching value for the two entered plans; range membership can still be unavailable without a bridge |
+| `crossovers[].status: parallel / identical / unavailable` | Different structural or numerical outcomes, with no invented zero threshold |
+| `envelope.plans[].status: empty` | Retention-imposed lower price and all-scenario model-imposed upper price do not overlap |
+| `no-positive-price` | The all-scenario model-conditioned quote ceiling is nonpositive |
+| `no-finite-quote` | A positive primary raise cannot preserve100% of a non-subscribing existing holder's starting ownership at a finite price |
+
+These outcomes return HTTP200 because the submitted inputs can be valid while their consequences are infeasible or unavailable. Invalid snapshots return400. The same existing UTF-8, method, media and16KiB streaming limits apply.
+
+### Portable decisions are a separate boundary
+
+The browser's capital record also contains analyst selection and reasoning. Its JSON import bound is256KiB, allowing the complete inspectable record even for maximum Unicode notes. Share links are limited to32,768 token characters and24,576 decoded bytes. Those larger document limits do not alter the numeric API's16KiB request limit. Imported stored analysis is recalculated, and an old API badge is not accepted as verification of the reopened decision.

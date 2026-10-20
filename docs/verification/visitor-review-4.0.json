@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "recordedAt": "2026-10-20T01:46:53.338Z",
+  "status": "passed",
+  "scope": {
+    "kind": "AI-assisted portfolio visitor acceptance review",
+    "reviewer": "portfolio_business_40",
+    "reviewerContext": "Portfolio/product subagent who also contributed to the Capital Studio interface.",
+    "coverage": "Define \u2192 Compare \u2192 Challenge \u2192 Record narrative, worked financial claims, local source targets and implemented hash routes.",
+    "separation": "Editorial and product acceptance review; separate from the independent Python arithmetic reference, automated browser suites and deployment verification.",
+    "closurePass": "Only the two corrected instructions were rechecked in this follow-up. Numerical and route results below record the preceding read-only acceptance review.",
+    "productEdits": false,
+    "browserRunInClosurePass": false
+  },
+  "findings": [
+    {
+      "id": "VISITOR-01",
+      "status": "closed",
+      "issue": "The short case-study guide left only B eligible before the scenario-ranking demonstration.",
+      "verification": "The generator and generated case now restore the $25bn objective and 88% floor before Inspect the rule.",
+      "sources": [
+        "portfolio:scripts/build_cases.py",
+        "portfolio:projects/frontier-ai-valuation-lab.html"
+      ]
+    },
+    {
+      "id": "VISITOR-02",
+      "status": "closed",
+      "issue": "The walkthrough named a verification button differently from the interface.",
+      "verification": "Section 6 now says Verify complete analysis, matching capital-verify in the current HTML.",
+      "sources": [
+        "app:docs/DEMO_WALKTHROUGH.md",
+        "app:public/capital.html"
+      ]
+    }
+  ],
+  "openFindings": 0,
+  "numericalReview": {
+    "canonicalSource": "app:public/downloads/Frontier_AI_Capital_Decision.json",
+    "mismatchCount": 0,
+    "assertionsChecked": [
+      "Default quotes/raises: A 250/25, B 300/35, C 300/20; capital objective 25, retention 88%, tracked holder 10%.",
+      "Retained ownership: A 90.9091%, B 89.5522%, C 93.75%; C capital shortfall 5.",
+      "Eligibility at 25/88 \u2192 A+B; 25/90 \u2192 A; 30/90 \u2192 none; 30/88 \u2192 B.",
+      "A/B switching residual 635 and common existing-cohort allocation 600; B preferred below, A above.",
+      "A worst regret 8.5911 in Bear; B 17.1548 in Bull; default minimax A.",
+      "Bear/Base/Bull operating EVs \u221213.1619 / 367.7713 / 1884.3088 and bridged residuals 1.8381 / 382.7713 / 1899.3088.",
+      "Coverage floor 1\u00d7 gives quote ceiling 1.8381; A ownership lower bound 183.3333; all three plan intervals empty.",
+      "Historical 90% ownership illustration: 250 pre-money quote gives 27.7778 capital limit and 2.7778 headroom; 250 post-money gives 25 limit.",
+      "Ten continuation years after 2036 cover 2037\u20132046 with zero residual after the cutoff; frozen model/date/version claims reconcile."
+    ]
+  },
+  "routeReview": {
+    "checkedCount": 104,
+    "unresolvedTargetCount": 0,
+    "mode": "Repository/local-file targets and controller-handled hash routes, not live production HTTP requests.",
+    "controllerRoutes": [
+      "#worked-decision",
+      "#ownership-example",
+      "#sources"
+    ]
+  },
+  "sourceFiles": [
+    {
+      "repository": "portfolio",
+      "path": "fintech.html",
+      "bytes": 16195,
+      "sha256": "c0ac9fb800cb616cb18f07aa9f74f199c68703b527165db40e75f7eaaae548a6"
+    },
+    {
+      "repository": "portfolio",
+      "path": "projects/frontier-ai-valuation-lab.html",
+      "bytes": 24210,
+      "sha256": "338102d421a58234673ab3cd6d44092cc4792acc4f7c61e3ea7473266235813c"
+    },
+    {
+      "repository": "portfolio",
+      "path": "index.html",
+      "bytes": 24321,
+      "sha256": "048a4549bfee652a6b81ca9fe6915ec2ae5090c9338737761516b8ee00346212"
+    },
+    {
+      "repository": "portfolio",
+      "path": "README.md",
+      "bytes": 11259,
+      "sha256": "f80b0561f94b40bc95a9b804ea4c22542f2e9d181f973a1b3cdaec43a909e8f5"
+    },
+    {
+      "repository": "portfolio",
+      "path": "scripts/build_cases.py",
+      "bytes": 33460,
+      "sha256": "b88d0415c2c03624072832f948e6a601f55b6fdc8279de20d2774030333a4cf9"
+    },
+    {
+      "repository": "app",
+      "path": "docs/DEMO_WALKTHROUGH.md",
+      "bytes": 8077,
+      "sha256": "b8a4b88d3ffcafb5e4133276105f6bed3462c38379f8efa50b4e4509afc22991"
+    },
+    {
+      "repository": "app",
+      "path": "public/downloads/Frontier_AI_Capital_Decision.json",
+      "bytes": 52553,
+      "sha256": "4d26443bd387a7dda0b8796f4977bb234c0697f0828755644a821aec5c608684"
+    },
+    {
+      "repository": "app",
+      "path": "public/capital.html",
+      "bytes": 23524,
+      "sha256": "489d4bb2125d174f14ec232892ec7431148a4ab9243017a3e2bd9359418a72a2"
+    },
+    {
+      "repository": "app",
+      "path": "public/app.js",
+      "bytes": 62001,
+      "sha256": "02461630761ae5588d860032db682a68e4ec273eeaf1757e53c79284449c4e21"
+    },
+    {
+      "repository": "app",
+      "path": "public/lib/capital-strategy.js",
+      "bytes": 23933,
+      "sha256": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842"
+    },
+    {
+      "repository": "app",
+      "path": "public/lib/capital-record.js",
+      "bytes": 4277,
+      "sha256": "d194fd1c8ca756428f64dd3411c527060a76efa1a56b56b5685947fa654f45ac"
+    }
+  ]
+}

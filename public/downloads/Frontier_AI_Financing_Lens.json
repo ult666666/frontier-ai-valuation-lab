@@ -1,7 +1,7 @@
 {
   "kind": "frontier-financing-lens",
   "schema": 2,
-  "appVersion": "3.6.0",
+  "appVersion": "4.0.0",
   "financingVersion": "1.0.0",
   "ownershipVersion": "1.0.0",
   "modelVersion": "3.0.0",

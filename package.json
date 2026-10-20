@@ -1,8 +1,8 @@
 {
   "name": "frontier-ai-valuation-lab",
-  "version": "3.6.0",
+  "version": "4.0.0",
   "private": true,
-  "description": "A full stack fintech research workspace with financing and ownership analysis, finite valuation horizons, exact thesis attribution, contextual evidence and a deterministic API.",
+  "description": "A full stack capital strategy and valuation research studio with explicit financing objectives, finite scenario comparisons, portable decision briefs and a deterministic API.",
   "type": "module",
   "engines": { "node": ">=24 <25" },
   "scripts": {

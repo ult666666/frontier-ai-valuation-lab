@@ -109,8 +109,10 @@ try {
   check('Opened stressed case is labeled as edited', await page.locator('#case-label').innerText(), 'Base · edited');
   check('Opened stressed WACC is visible in percent input units', await page.locator('#input-wacc').inputValue(), '14.5');
   await page.locator('#tab-sources').click();
-  await page.locator('.theater-caption a[href="#workspace"]').click();
-  check('Explore-complete-model reopens the workbench from the sources tab', await page.locator('#panel-model').isVisible());
+  check('The homepage comparison entry opens the worked Capital Studio decision', await page.locator('.theater-caption a').getAttribute('href'), './capital.html#worked-decision');
+  await page.getByRole('navigation', {name:'Research workspace'}).getByRole('link', {name:'Model', exact:true}).click();
+  await page.locator('#panel-model:not([hidden])').waitFor();
+  check('Model navigation reopens the workbench from the sources tab', await page.locator('#panel-model').isVisible());
   near('Returning to the workbench retains its edited current assumptions', await numberAttr('[data-result-ev]', 'data-result-ev'), discountStress.stressed.companies.OpenAI.result.ev);
 
   let release;

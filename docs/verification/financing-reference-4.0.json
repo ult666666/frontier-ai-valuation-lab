@@ -1,0 +1,522 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "generatedAt": "2026-10-20T01:45:48.597153+00:00",
+  "financingVersion": "1.0.0",
+  "method": "Independent Python FCFF plus an 80-digit Decimal.from_float share issuance ledger with 100 pre-round shares; post-round cash/claims reconciliation and unchanged-price holder marks.",
+  "validScenarios": 19,
+  "invalidScenarios": 31,
+  "numericComparisons": 3591,
+  "structuralComparisons": 596,
+  "numericFieldPaths": [
+    "assumptions.g1",
+    "assumptions.g2",
+    "assumptions.g3",
+    "assumptions.m27",
+    "assumptions.m30",
+    "assumptions.m36",
+    "assumptions.rev2026",
+    "assumptions.roic",
+    "assumptions.stub",
+    "assumptions.tax",
+    "assumptions.tg",
+    "assumptions.turns",
+    "assumptions.wacc",
+    "baseline.cagr",
+    "baseline.ev",
+    "baseline.implied_incremental_roic",
+    "baseline.peak_funding_need",
+    "baseline.pv_explicit",
+    "baseline.pv_stub",
+    "baseline.pvtv",
+    "baseline.rows[0].cumulative",
+    "baseline.rows[0].df",
+    "baseline.rows[0].ebit",
+    "baseline.rows[0].fcf",
+    "baseline.rows[0].growth",
+    "baseline.rows[0].margin",
+    "baseline.rows[0].nopat",
+    "baseline.rows[0].pv",
+    "baseline.rows[0].reinvestment",
+    "baseline.rows[0].revenue",
+    "baseline.rows[0].t",
+    "baseline.rows[0].tax",
+    "baseline.rows[0].year",
+    "baseline.rows[1].cumulative",
+    "baseline.rows[1].df",
+    "baseline.rows[1].ebit",
+    "baseline.rows[1].fcf",
+    "baseline.rows[1].growth",
+    "baseline.rows[1].margin",
+    "baseline.rows[1].nopat",
+    "baseline.rows[1].pv",
+    "baseline.rows[1].reinvestment",
+    "baseline.rows[1].revenue",
+    "baseline.rows[1].t",
+    "baseline.rows[1].tax",
+    "baseline.rows[1].year",
+    "baseline.rows[2].cumulative",
+    "baseline.rows[2].df",
+    "baseline.rows[2].ebit",
+    "baseline.rows[2].fcf",
+    "baseline.rows[2].growth",
+    "baseline.rows[2].margin",
+    "baseline.rows[2].nopat",
+    "baseline.rows[2].pv",
+    "baseline.rows[2].reinvestment",
+    "baseline.rows[2].revenue",
+    "baseline.rows[2].t",
+    "baseline.rows[2].tax",
+    "baseline.rows[2].year",
+    "baseline.rows[3].cumulative",
+    "baseline.rows[3].df",
+    "baseline.rows[3].ebit",
+    "baseline.rows[3].fcf",
+    "baseline.rows[3].growth",
+    "baseline.rows[3].margin",
+    "baseline.rows[3].nopat",
+    "baseline.rows[3].pv",
+    "baseline.rows[3].reinvestment",
+    "baseline.rows[3].revenue",
+    "baseline.rows[3].t",
+    "baseline.rows[3].tax",
+    "baseline.rows[3].year",
+    "baseline.rows[4].cumulative",
+    "baseline.rows[4].df",
+    "baseline.rows[4].ebit",
+    "baseline.rows[4].fcf",
+    "baseline.rows[4].growth",
+    "baseline.rows[4].margin",
+    "baseline.rows[4].nopat",
+    "baseline.rows[4].pv",
+    "baseline.rows[4].reinvestment",
+    "baseline.rows[4].revenue",
+    "baseline.rows[4].t",
+    "baseline.rows[4].tax",
+    "baseline.rows[4].year",
+    "baseline.rows[5].cumulative",
+    "baseline.rows[5].df",
+    "baseline.rows[5].ebit",
+    "baseline.rows[5].fcf",
+    "baseline.rows[5].growth",
+    "baseline.rows[5].margin",
+    "baseline.rows[5].nopat",
+    "baseline.rows[5].pv",
+    "baseline.rows[5].reinvestment",
+    "baseline.rows[5].revenue",
+    "baseline.rows[5].t",
+    "baseline.rows[5].tax",
+    "baseline.rows[5].year",
+    "baseline.rows[6].cumulative",
+    "baseline.rows[6].df",
+    "baseline.rows[6].ebit",
+    "baseline.rows[6].fcf",
+    "baseline.rows[6].growth",
+    "baseline.rows[6].margin",
+    "baseline.rows[6].nopat",
+    "baseline.rows[6].pv",
+    "baseline.rows[6].reinvestment",
+    "baseline.rows[6].revenue",
+    "baseline.rows[6].t",
+    "baseline.rows[6].tax",
+    "baseline.rows[6].year",
+    "baseline.rows[7].cumulative",
+    "baseline.rows[7].df",
+    "baseline.rows[7].ebit",
+    "baseline.rows[7].fcf",
+    "baseline.rows[7].growth",
+    "baseline.rows[7].margin",
+    "baseline.rows[7].nopat",
+    "baseline.rows[7].pv",
+    "baseline.rows[7].reinvestment",
+    "baseline.rows[7].revenue",
+    "baseline.rows[7].t",
+    "baseline.rows[7].tax",
+    "baseline.rows[7].year",
+    "baseline.rows[8].cumulative",
+    "baseline.rows[8].df",
+    "baseline.rows[8].ebit",
+    "baseline.rows[8].fcf",
+    "baseline.rows[8].growth",
+    "baseline.rows[8].margin",
+    "baseline.rows[8].nopat",
+    "baseline.rows[8].pv",
+    "baseline.rows[8].reinvestment",
+    "baseline.rows[8].revenue",
+    "baseline.rows[8].t",
+    "baseline.rows[8].tax",
+    "baseline.rows[8].year",
+    "baseline.rows[9].cumulative",
+    "baseline.rows[9].df",
+    "baseline.rows[9].ebit",
+    "baseline.rows[9].fcf",
+    "baseline.rows[9].growth",
+    "baseline.rows[9].margin",
+    "baseline.rows[9].nopat",
+    "baseline.rows[9].pv",
+    "baseline.rows[9].reinvestment",
+    "baseline.rows[9].revenue",
+    "baseline.rows[9].t",
+    "baseline.rows[9].tax",
+    "baseline.rows[9].year",
+    "baseline.stub_t",
+    "baseline.terminal_fcf",
+    "baseline.terminal_fcf_change",
+    "baseline.terminal_nopat",
+    "baseline.terminal_reinvestment_rate",
+    "baseline.terminal_revenue",
+    "baseline.terminal_t",
+    "baseline.tv",
+    "baseline.tv_share",
+    "bridge.adjustment",
+    "bridge.cash",
+    "bridge.debt",
+    "bridge.equityValue",
+    "bridge.ev",
+    "bridge.otherClaims",
+    "comparison.cashAfter",
+    "comparison.cashBefore",
+    "comparison.modelPostMoneyEquity",
+    "comparison.modelPreMoneyEquity",
+    "comparison.operatingEvAfter",
+    "comparison.operatingEvBefore",
+    "comparison.priceGap",
+    "comparison.priceGapPercent",
+    "comparison.roundImpliedOperatingEv",
+    "method.fees",
+    "pricing.existingOwnership",
+    "pricing.holderAfter",
+    "pricing.holderBefore",
+    "pricing.holderDilution",
+    "pricing.holderValueAfter",
+    "pricing.holderValueBefore",
+    "pricing.newOwnership",
+    "pricing.otherExistingAfter",
+    "pricing.postMoney",
+    "pricing.preMoney",
+    "pricing.primaryCapital",
+    "pricing.relativeDilution",
+    "round.holderStake",
+    "round.primaryCapital",
+    "round.quote"
+  ],
+  "relativeTolerance": 2e-10,
+  "modelAbsoluteTolerance": 1e-08,
+  "ownershipAbsoluteTolerance": 2e-16,
+  "maxAbsoluteError": 1.0516032489249483e-12,
+  "maxAbsoluteErrorField": "Anthropic Bear.comparison.priceGapPercent",
+  "maxRelativeErrorNormalizedByAtLeastOne": 1.0112206613753362e-14,
+  "economicReconciliations": [
+    {
+      "label": "Anthropic Bear",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Anthropic Base",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Anthropic Bull",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "OpenAI Bear",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "OpenAI Base",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "OpenAI Bull",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "No balance-sheet bridge",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": null
+    },
+    {
+      "label": "Equivalent post-money quotation",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Zero primary capital, pre-money",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Zero primary capital, post-money",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "No pre-round holding",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Sole pre-round holder",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Fractional proceeds and holding",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Small nonzero new ownership",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Small nonzero existing ownership",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Nonpositive model equity is retained",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Negative implied operating value",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "Maximum stated amounts",
+      "ownershipSum": 1.0,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    },
+    {
+      "label": "All thirteen edited operating inputs",
+      "ownershipSum": 1.0000000000000002,
+      "holderMarkPreserved": true,
+      "operatingEvUnchanged": true
+    }
+  ],
+  "rejectionEvidence": [
+    {
+      "label": "Unknown price basis",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Round basis must be pre or post."
+    },
+    {
+      "label": "Zero quote",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+    },
+    {
+      "label": "Negative quote",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+    },
+    {
+      "label": "Quote above limit",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+    },
+    {
+      "label": "Text quote",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+    },
+    {
+      "label": "Boolean quote",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+    },
+    {
+      "label": "Null quote",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "The quoted equity value must be positive, finite and at most $1,000,000,000,000B."
+    },
+    {
+      "label": "Negative capital",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Primary capital must be finite and between $0B and $1,000,000,000,000B."
+    },
+    {
+      "label": "Capital above limit",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Primary capital must be finite and between $0B and $1,000,000,000,000B."
+    },
+    {
+      "label": "Text capital",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Primary capital must be finite and between $0B and $1,000,000,000,000B."
+    },
+    {
+      "label": "Stake below zero",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "The tracked holder stake must be a decimal fraction from 0 to 1."
+    },
+    {
+      "label": "Stake above one",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "The tracked holder stake must be a decimal fraction from 0 to 1."
+    },
+    {
+      "label": "Percent supplied as fraction",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "The tracked holder stake must be a decimal fraction from 0 to 1."
+    },
+    {
+      "label": "Boolean stake",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "The tracked holder stake must be a decimal fraction from 0 to 1."
+    },
+    {
+      "label": "Unknown round field",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Round has missing or unsupported fields."
+    },
+    {
+      "label": "Negative cash",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "cash must be between $0B and $10,000B."
+    },
+    {
+      "label": "Cash above bridge domain",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "cash must be between $0B and $10,000B."
+    },
+    {
+      "label": "Text debt",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "debt must be between $0B and $10,000B."
+    },
+    {
+      "label": "Boolean claims",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "otherClaims must be between $0B and $10,000B."
+    },
+    {
+      "label": "Unknown balance-sheet field",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Hypothetical bridge has missing or unsupported fields."
+    },
+    {
+      "label": "Post-money equals proceeds",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Post-money equity value must exceed new primary capital so pre-money equity value remains positive."
+    },
+    {
+      "label": "Post-money below proceeds",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Post-money equity value must exceed new primary capital so pre-money equity value remains positive."
+    },
+    {
+      "label": "Unresolved post-money subtraction",
+      "rejected": true,
+      "precisionRequired": true,
+      "message": "The remaining pre-money value is too small relative to post-money value and capital to resolve at the supported numeric precision."
+    },
+    {
+      "label": "New ownership underflows",
+      "rejected": true,
+      "precisionRequired": true,
+      "message": "The ownership fractions exceed the supported numeric precision."
+    },
+    {
+      "label": "Existing ownership underflows",
+      "rejected": true,
+      "precisionRequired": true,
+      "message": "The ownership fractions exceed the supported numeric precision."
+    },
+    {
+      "label": "Missing holder fraction",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Round has missing or unsupported fields."
+    },
+    {
+      "label": "Missing bridge claim input",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Hypothetical bridge has missing or unsupported fields."
+    },
+    {
+      "label": "Array supplied as a bridge",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Hypothetical bridge must be a plain object."
+    },
+    {
+      "label": "Missing explicit round object",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Round must be a plain object."
+    },
+    {
+      "label": "Invalid terminal discount boundary",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Require 0 \u2264 terminal growth < WACC \u2264 60%."
+    },
+    {
+      "label": "Unknown model assumption",
+      "rejected": true,
+      "precisionRequired": false,
+      "message": "Assumptions has missing or unsupported fields."
+    }
+  ],
+  "scope": "All six operating presets plus 13 ownership, price-basis, cash-bridge and precision cases. This checks the declared simplified primary-round calculation, not private company balances, security rights, a transaction price, financial forecasts or investment merit.",
+  "sourceHashes": {
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "public/lib/financing.js": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "scripts/reference_model.py": "8cbc2359afc02f0246e93e722febcb82df5f85e5014521249e8555825d3651d4",
+    "scripts/check_financing_reference.py": "f70f3e7975b5ce568fd674f7d234cdfd631191037d686dcfcaae65b044865663"
+  },
+  "failures": []
+}
