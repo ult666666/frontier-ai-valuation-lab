@@ -18,12 +18,14 @@ function marker(index,x,y,color,selected){
   return halo+shape;
 }
 
-export function capitalPlanChart(analysis,{selectedPlanId=null,idPrefix='capital-plan-chart',compact=false}={}){
+export function capitalPlanChart(analysis,{selectedPlanId=null,idPrefix='capital-plan-chart',compact=false,workspace=false,narrow=false}={}){
   const prefix=String(idPrefix).replace(/[^A-Za-z0-9_-]/g,'-')||'capital-plan-chart';
   const plans=analysis.plans;
   const {capitalTarget,retentionFloor}=analysis.snapshot.policy;
-  const width=compact?320:880,height=compact?352:412,left=compact?55:76,right=compact?24:42,top=compact?56:55,bottom=compact?278:326;
-  const tickSize=compact?14:11,axisSize=compact?14:12;
+  // Workspace presentation has readable objective labels and a shallower
+  // desktop plot. Default report rendering remains stable for saved briefs.
+  const width=compact?320:(workspace&&narrow?600:880),height=compact?(workspace?390:352):(workspace?(narrow?376:352):412),left=compact?55:(workspace&&narrow?64:76),right=compact?24:42,top=compact?(workspace?90:56):(workspace?(narrow?80:60):55),bottom=compact?(workspace?310:278):(workspace?(narrow?300:276):326);
+  const tickSize=compact?14:(workspace?(narrow?14:13):11),axisSize=compact?14:(workspace?(narrow?14:13):12);
   const plotWidth=width-left-right,plotHeight=bottom-top;
   const largest=Math.max(capitalTarget,...plans.map(plan=>plan.pricing.primaryCapital));
   // A zero-capital collection still has a positive visual domain. This fallback
@@ -51,14 +53,24 @@ export function capitalPlanChart(analysis,{selectedPlanId=null,idPrefix='capital
   const occupied=[];
   const points=plans.map((plan,index)=>{
     const xx=x(plan.pricing.primaryCapital),yy=y(plan.retainedFraction),color=palette[index%palette.length];
-    let labelY=yy-17;
-    while(occupied.some(p=>Math.abs(p.x-xx)<38&&Math.abs(p.y-labelY)<20))labelY+=25;
-    if(labelY>bottom-4)labelY=yy-38;
-    occupied.push({x:xx,y:labelY});
-    const leader=Math.abs(labelY-yy)>24?`<line x1="${xx}" y1="${yy}" x2="${xx}" y2="${labelY-5}" stroke="${color}" stroke-width=".7" stroke-dasharray="2 3"/>`:'';
-    return `<g><title>${escape(descriptions[index])}</title>${leader}${marker(index,xx,yy,color,plan.id===selectedPlanId)}<text x="${xx}" y="${labelY}" text-anchor="middle" fill="${color}" font-size="${compact?16:13}" font-weight="700">${String.fromCharCode(65+index)}</text></g>`;
+    let labelX=xx,labelY=yy-17;
+    const coincident=workspace?plans.map((other,i)=>({plan:other,index:i})).filter(other=>other.plan.pricing.primaryCapital===plan.pricing.primaryCapital&&other.plan.retainedFraction===plan.retainedFraction):[];
+    if(coincident.length>1){
+      // Fan out labels, never data points, when submitted plans coincide.
+      const span=(coincident.length-1)*24;
+      const start=Math.max(left+18,Math.min(xx-span/2,width-right-span-12));
+      labelX=start+coincident.findIndex(other=>other.index===index)*24;
+      labelY=yy-22>=top+14?yy-22:yy+32;
+    }else{
+      while(occupied.some(p=>Math.abs(p.x-xx)<38&&Math.abs(p.y-labelY)<20))labelY+=25;
+      if(labelY>bottom-4)labelY=yy-38;
+    }
+    occupied.push({x:labelX,y:labelY});
+    const leader=Math.abs(labelY-yy)>24||labelX!==xx?`<line x1="${xx}" y1="${yy}" x2="${labelX}" y2="${labelY-5}" stroke="${color}" stroke-width=".7" stroke-dasharray="2 3"/>`:'';
+    return `<g><title>${escape(descriptions[index])}</title>${leader}${marker(index,xx,yy,color,plan.id===selectedPlanId)}<text x="${labelX}" y="${labelY}" text-anchor="middle" fill="${color}" font-size="${compact?16:13}" font-weight="700">${String.fromCharCode(65+index)}</text></g>`;
   });
-  const qualifyingLabel=width-right-objectiveX>155?`<text x="${width-right-12}" y="${top+18}" text-anchor="end" fill="#b4d7bc" font-size="10">Meets both objectives</text>`:'';
-  const legend=compact?'':`<text x="${left}" y="${height-10}" fill="#a8c0b5" font-size="10">Dashed guides: your objectives · Outer ring: analyst selection · Letters identify submitted plans</text>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="${prefix}-title ${prefix}-description" style="display:block;width:100%;height:auto;font-family:Arial,sans-serif"><title id="${prefix}-title">${title}</title><desc id="${prefix}-description">${escape(description)}</desc><rect width="${width}" height="${height}" fill="#102b35"/><text x="${compact?16:left}" y="26" fill="#d0e0d7" font-size="${axisSize}">Starting stake retained (%)</text><rect x="${objectiveX}" y="${top}" width="${width-right-objectiveX}" height="${Math.max(0,objectiveY-top)}" fill="#345c47" opacity=".44"/>${grid.join('')}<line x1="${objectiveX}" y1="${top}" x2="${objectiveX}" y2="${bottom}" stroke="#b9d5c2" stroke-width="1.3" stroke-dasharray="5 5"/><line x1="${left}" y1="${objectiveY}" x2="${width-right}" y2="${objectiveY}" stroke="#b9d5c2" stroke-width="1.3" stroke-dasharray="5 5"/>${qualifyingLabel}${points.join('')}<line x1="${left}" y1="${bottom}" x2="${width-right}" y2="${bottom}" stroke="#93aca2" stroke-width="1"/><text x="${left+plotWidth/2}" y="${height-(compact?26:32)}" text-anchor="middle" fill="#d0e0d7" font-size="${axisSize}">Primary capital (USD bn)</text>${legend}</svg>`;
+  const qualifyingLabel=width-right-objectiveX>(workspace?185:155)?`<text x="${width-right-12}" y="${top+18}" text-anchor="end" fill="#b4d7bc" font-size="${workspace?12:10}">Meets both objectives</text>`:'';
+  const legend=compact?'':`<text x="${left}" y="${height-10}" fill="#a8c0b5" font-size="${workspace?12:10}">${workspace?'Dashed guides: objectives · Outer ring: analyst selection · Letters: submitted plans':'Dashed guides: your objectives · Outer ring: analyst selection · Letters identify submitted plans'}</text>`;
+  const objectives=!workspace?'':compact?`<g data-chart-objectives="true" fill="#e9ce99" font-size="14"><text x="16" y="49">Minimum capital: $${escape(number(capitalTarget))}B</text><text x="16" y="70">Minimum retention: ${escape(percent(retentionFloor))}</text></g>`:`<text data-chart-objectives="true" x="${narrow?left:width-right}" y="${narrow?52:26}" text-anchor="${narrow?'start':'end'}" fill="#e9ce99" font-size="13">Objectives: ≥$${escape(number(capitalTarget))}B capital · ≥${escape(percent(retentionFloor))} retained</text>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="${prefix}-title ${prefix}-description" style="display:block;width:100%;height:auto;font-family:Arial,sans-serif"><title id="${prefix}-title">${title}</title><desc id="${prefix}-description">${escape(description)}</desc><rect width="${width}" height="${height}" fill="#102b35"/><text x="${compact?16:left}" y="26" fill="#d0e0d7" font-size="${axisSize}">Starting stake retained (%)</text>${objectives}<rect x="${objectiveX}" y="${top}" width="${width-right-objectiveX}" height="${Math.max(0,objectiveY-top)}" fill="#345c47" opacity=".44"/>${grid.join('')}<line x1="${objectiveX}" y1="${top}" x2="${objectiveX}" y2="${bottom}" stroke="#b9d5c2" stroke-width="1.3" stroke-dasharray="5 5"/><line x1="${left}" y1="${objectiveY}" x2="${width-right}" y2="${objectiveY}" stroke="#b9d5c2" stroke-width="1.3" stroke-dasharray="5 5"/>${qualifyingLabel}${points.join('')}<line x1="${left}" y1="${bottom}" x2="${width-right}" y2="${bottom}" stroke="#93aca2" stroke-width="1"/><text x="${left+plotWidth/2}" y="${height-(compact?26:32)}" text-anchor="middle" fill="#d0e0d7" font-size="${axisSize}">Primary capital (USD bn)</text>${legend}</svg>`;
 }

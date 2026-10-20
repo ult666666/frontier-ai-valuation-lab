@@ -10,7 +10,7 @@ A full stack fintech portfolio project by **Charles Dai**, Carnegie Mellon Unive
 
 [Worked decision · PDF](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Capital_Decision.pdf) · [Standalone decision · HTML](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Capital_Decision.html) · [Exact decision · JSON](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Capital_Decision.json) · [Portable desktop package · ZIP](https://frontier-ai-valuation-lab.vercel.app/downloads/Frontier_AI_Capital_Strategy_Package.zip)
 
-![The working Capital Strategy Studio compares hypothetical financing plans against explicit capital and retained ownership objectives](docs/demo-capital.png)
+![The working Capital Strategy Studio compares hypothetical financing plans against explicit capital and retained ownership objectives](docs/demo-capital-visual-20261020.png)
 
 ## Try a complete decision
 

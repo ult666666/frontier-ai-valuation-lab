@@ -1,4 +1,11 @@
 const nav=document.querySelector('.app-nav');
+nav?.addEventListener('focusin',event=>{
+  const link=event.target.closest('a');
+  if(!link||nav.scrollWidth<=nav.clientWidth)return;
+  // Fully expose a focused destination in the small-screen navigation rail.
+  // Some browsers otherwise leave a partly visible link clipped at an edge.
+  link.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
+});
 function mainPath(path){return path.endsWith('/')||path.endsWith('/index.html');}
 function updateNavigation(context){
   if(!nav)return;

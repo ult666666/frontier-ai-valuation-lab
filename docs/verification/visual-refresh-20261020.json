@@ -1,0 +1,1482 @@
+{
+  "schema": 1,
+  "purpose": "Dated local verification of the 20 October 2026 visual refresh",
+  "recordedAtUtc": "2026-10-20T17:01:28.057605+00:00",
+  "applicationVersion": "4.0.0",
+  "capitalMethodVersion": "1.0.0",
+  "financialEngineVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "scope": "Capital Studio presentation, chart labels, shared responsive navigation, fintech portfolio styling and current product screenshot.",
+  "sourceBaseline": {
+    "application": "a47661d28662348c5f586473f9372ed7d90a8497",
+    "portfolio": "59f0f4c91bd352b3ee81a89871a66f72befb3080"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "chromium": "153.0.8010.0",
+    "playwright": "1.62.1"
+  },
+  "nodeGate": {
+    "command": "npm run verify",
+    "passed": 314,
+    "failed": 0,
+    "skipped": 0,
+    "build": "passed",
+    "logSha256": "c9cce599dab19756ac73fb92e545c90affb78476f66e02d59370be6dd58e84a9"
+  },
+  "browserPresentation": {
+    "startedAtUtc": "2026-10-20T16:47:57.716Z",
+    "finishedAtUtc": "2026-10-20T16:48:40.391Z",
+    "counts": {
+      "total": 266,
+      "passed": 266,
+      "failed": 0,
+      "carriedForwardPassed": 35
+    },
+    "checks": [
+      {
+        "name": "Preserved artifact or financial contract: public/lib/capital-brief.js",
+        "pass": true
+      },
+      {
+        "name": "Preserved artifact or financial contract: public/lib/capital-strategy.js",
+        "pass": true
+      },
+      {
+        "name": "Preserved artifact or financial contract: public/lib/capital-record.js",
+        "pass": true
+      },
+      {
+        "name": "Preserved artifact or financial contract: public/downloads/Frontier_AI_Capital_Decision.html",
+        "pass": true
+      },
+      {
+        "name": "Preserved artifact or financial contract: public/downloads/Frontier_AI_Capital_Decision.pdf",
+        "pass": true
+      },
+      {
+        "name": "Preserved artifact or financial contract: public/downloads/Frontier_AI_Capital_Decision.json",
+        "pass": true
+      },
+      {
+        "name": "Preserved artifact or financial contract: public/downloads/Frontier_AI_Capital_Strategy_Package.zip",
+        "pass": true
+      },
+      {
+        "name": "Default exported chart is byte-identical (worked, compact=false, selection=null)",
+        "pass": true
+      },
+      {
+        "name": "Default exported chart is byte-identical (worked, compact=false, selection=a)",
+        "pass": true
+      },
+      {
+        "name": "Default exported chart is byte-identical (worked, compact=true, selection=null)",
+        "pass": true
+      },
+      {
+        "name": "Default exported chart is byte-identical (worked, compact=true, selection=a)",
+        "pass": true
+      },
+      {
+        "name": "Default exported chart is byte-identical (zero-capital, compact=false, selection=null)",
+        "pass": true
+      },
+      {
+        "name": "Default exported chart is byte-identical (zero-capital, compact=false, selection=a)",
+        "pass": true
+      },
+      {
+        "name": "Default exported chart is byte-identical (zero-capital, compact=true, selection=null)",
+        "pass": true
+      },
+      {
+        "name": "Default exported chart is byte-identical (zero-capital, compact=true, selection=a)",
+        "pass": true
+      },
+      {
+        "name": "Canonical standalone brief still reproduces exactly in memory",
+        "pass": true
+      },
+      {
+        "name": "All baseline visible field labels remain exact",
+        "pass": true
+      },
+      {
+        "name": "All editable and readonly fields retain native associated labels",
+        "pass": true
+      },
+      {
+        "name": "The accessible chart retains both financial quantities",
+        "pass": true
+      },
+      {
+        "name": "The initial objectives retain two eligible plans",
+        "pass": true
+      },
+      {
+        "name": "The baseline plan/scenario matrix remains complete",
+        "pass": true
+      },
+      {
+        "name": "The worked A/B switching value remains 635 billion",
+        "pass": true
+      },
+      {
+        "name": "Capital default 1440: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Capital 1440: SVG title and full description are available",
+        "pass": true
+      },
+      {
+        "name": "Capital 1440: all visible SVG text stays within its viewBox",
+        "pass": true
+      },
+      {
+        "name": "Capital 1440: actual SVG text colors meet 4.5:1 contrast",
+        "pass": true
+      },
+      {
+        "name": "Capital 1440: chart axis and tick text renders at least 12 CSS pixels within subpixel rounding",
+        "pass": true
+      },
+      {
+        "name": "Capital 1440: principal introductory prose is at least 14px",
+        "pass": true
+      },
+      {
+        "name": "Capital 1440: main form and action targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "Capital default 768: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Capital 768: SVG title and full description are available",
+        "pass": true
+      },
+      {
+        "name": "Capital 768: all visible SVG text stays within its viewBox",
+        "pass": true
+      },
+      {
+        "name": "Capital 768: actual SVG text colors meet 4.5:1 contrast",
+        "pass": true
+      },
+      {
+        "name": "Capital 768: chart axis and tick text renders at least 12 CSS pixels within subpixel rounding",
+        "pass": true
+      },
+      {
+        "name": "Capital 768: principal introductory prose is at least 14px",
+        "pass": true
+      },
+      {
+        "name": "Capital 768: main form and action targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "Capital default 390: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Capital 390: SVG title and full description are available",
+        "pass": true
+      },
+      {
+        "name": "Capital 390: all visible SVG text stays within its viewBox",
+        "pass": true
+      },
+      {
+        "name": "Capital 390: actual SVG text colors meet 4.5:1 contrast",
+        "pass": true
+      },
+      {
+        "name": "Capital 390: chart axis and tick text renders at least 12 CSS pixels within subpixel rounding",
+        "pass": true
+      },
+      {
+        "name": "Capital 390: principal introductory prose is at least 14px",
+        "pass": true
+      },
+      {
+        "name": "Capital 390: visible native text fields render at least 16px",
+        "pass": true
+      },
+      {
+        "name": "Capital 390: main form and action targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "Capital default 320: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Capital 320: SVG title and full description are available",
+        "pass": true
+      },
+      {
+        "name": "Capital 320: all visible SVG text stays within its viewBox",
+        "pass": true
+      },
+      {
+        "name": "Capital 320: actual SVG text colors meet 4.5:1 contrast",
+        "pass": true
+      },
+      {
+        "name": "Capital 320: chart axis and tick text renders at least 12 CSS pixels within subpixel rounding",
+        "pass": true
+      },
+      {
+        "name": "Capital 320: principal introductory prose is at least 14px",
+        "pass": true
+      },
+      {
+        "name": "Capital 320: visible native text fields render at least 16px",
+        "pass": true
+      },
+      {
+        "name": "Capital 320: main form and action targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast #capital-title \u2014 A financing decision. Made explicit",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast #capital-title em \u2014 Made explicit.",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .intro-detail \u2014 Compare capital, ownership and mode",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .snapshot \u2014 Illustrative research \u00b7 18 Oct 2026",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .section-navigation a \u2014 01 Define",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .section-navigation a \u2014 02 Compare",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .section-navigation a \u2014 03 Challenge",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .control-help \u2014 Your objective for this comparison.",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .control-help \u2014 A percentage of each starting stake",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .control-help \u2014 Scales the holder allocation. The c",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .chart-note \u2014 Only submitted plans are plotted. M",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .plan-legend span \u2014 A Smaller round",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .plan-legend span \u2014 B More capital",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .plan-legend span \u2014 C Higher retention",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast [data-plan-status] \u2014 Meets both explicit objectives",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast [data-plan-status] \u2014 Meets both explicit objectives",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast [data-plan-status] \u2014 $5.00B below capital objective",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .small-note \u2014 A primary round issues new shares; ",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .small-note \u2014 Operating EV + cash \u2212 debt \u2212 other ",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .small-note \u2014 ",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .record-intro>p \u2014 04 / RECORD THE JUDGMENT",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .record-intro>p \u2014 Choose a plan deliberately. Explain",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .capital-footer p \u2014 Charles Dai / Independent fintech r",
+        "pass": true
+      },
+      {
+        "name": "Capital desktop: text contrast .capital-footer p \u2014 Application 4.0.0 \u00b7 Capital method ",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast .app-nav a \u2014 Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast .app-nav a \u2014 Overview",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast .app-nav a \u2014 Model",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast .control-help \u2014 Your objective for this comparison.",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast .control-help \u2014 A percentage of each starting stake",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast .control-help \u2014 Scales the holder allocation. The c",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast .plan-legend span \u2014 A Smaller round",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast .plan-legend span \u2014 B More capital",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast .plan-legend span \u2014 C Higher retention",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast [data-plan-status] \u2014 Meets both explicit objectives",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast [data-plan-status] \u2014 Meets both explicit objectives",
+        "pass": true
+      },
+      {
+        "name": "Capital phone: text contrast [data-plan-status] \u2014 $5.00B below capital objective",
+        "pass": true
+      },
+      {
+        "name": "Workspace emulated print 794: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Print styling suppresses the navigation header",
+        "pass": true
+      },
+      {
+        "name": "Print styling preserves the current objectives and eligibility",
+        "pass": true
+      },
+      {
+        "name": "The empty eligible set is explicit",
+        "pass": true
+      },
+      {
+        "name": "Capital no eligible plans: text contrast #capital-rule-explanation \u2014 None of the submitted plans meets b",
+        "pass": true
+      },
+      {
+        "name": "Capital no eligible plans: text contrast #capital-rule-result .eyebrow \u2014 A DECLARED COMPARISON RULE",
+        "pass": true
+      },
+      {
+        "name": "Capital no eligible plans: text contrast #capital-rule-gap \u2014 Revise the plans or objectives",
+        "pass": true
+      },
+      {
+        "name": "Capital no eligible plans: text contrast #capital-rule-plans \u2014 No eligible plan",
+        "pass": true
+      },
+      {
+        "name": "A missing bridge explicitly makes the allocation rule unavailable",
+        "pass": true
+      },
+      {
+        "name": "Capital unavailable allocation: text contrast #capital-rule-explanation \u2014 Capital and ownership can still be ",
+        "pass": true
+      },
+      {
+        "name": "Capital unavailable allocation: text contrast #capital-rule-result .eyebrow \u2014 A DECLARED COMPARISON RULE",
+        "pass": true
+      },
+      {
+        "name": "Capital unavailable allocation: text contrast #capital-rule-gap \u2014 Allocation context is incomplete",
+        "pass": true
+      },
+      {
+        "name": "Capital unavailable allocation: text contrast #capital-rule-plans \u2014 Unavailable",
+        "pass": true
+      },
+      {
+        "name": "Zero capital and 100% retention remain a valid calculation",
+        "pass": true
+      },
+      {
+        "name": "All zero-capital plans satisfy both boundary objectives",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% chart has finite coordinates at 320",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% chart labels stay inside at 320",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% 320: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% chart has finite coordinates at 390",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% chart labels stay inside at 390",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% 390: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% chart has finite coordinates at 768",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% chart labels stay inside at 768",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% 768: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% chart has finite coordinates at 1440",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% chart labels stay inside at 1440",
+        "pass": true
+      },
+      {
+        "name": "Zero / 100% 1440: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Six coincident zero-capital plans remain valid and eligible",
+        "pass": true
+      },
+      {
+        "name": "Six coincident zero / 100% 320: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart keeps finite coordinates at 320",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart labels stay inside at 320",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart retains all six visible identifiers at 320",
+        "pass": true
+      },
+      {
+        "name": "Six coincident identifiers do not overlap each other at 320",
+        "pass": true
+      },
+      {
+        "name": "Six coincident zero / 100% 390: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart keeps finite coordinates at 390",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart labels stay inside at 390",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart retains all six visible identifiers at 390",
+        "pass": true
+      },
+      {
+        "name": "Six coincident identifiers do not overlap each other at 390",
+        "pass": true
+      },
+      {
+        "name": "Six coincident zero / 100% 768: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart keeps finite coordinates at 768",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart labels stay inside at 768",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart retains all six visible identifiers at 768",
+        "pass": true
+      },
+      {
+        "name": "Six coincident identifiers do not overlap each other at 768",
+        "pass": true
+      },
+      {
+        "name": "Six coincident zero / 100% 1440: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart keeps finite coordinates at 1440",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart labels stay inside at 1440",
+        "pass": true
+      },
+      {
+        "name": "Six coincident chart retains all six visible identifiers at 1440",
+        "pass": true
+      },
+      {
+        "name": "Six coincident identifiers do not overlap each other at 1440",
+        "pass": true
+      },
+      {
+        "name": "Six submitted plans remain supported",
+        "pass": true
+      },
+      {
+        "name": "The add-plan control observes the six-plan capacity",
+        "pass": true
+      },
+      {
+        "name": "Six maximum-length labels retain a complete ready result",
+        "pass": true
+      },
+      {
+        "name": "The full 3-by-6 scenario matrix is present",
+        "pass": true
+      },
+      {
+        "name": "Six 60-character plans 1440: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Six-plan chart includes all full accessible labels at 1440",
+        "pass": true
+      },
+      {
+        "name": "Six-plan text remains within the chart at 1440",
+        "pass": true
+      },
+      {
+        "name": "Six-plan legend retains all exact labels at 1440",
+        "pass": true
+      },
+      {
+        "name": "Six 60-character plans 768: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Six-plan chart includes all full accessible labels at 768",
+        "pass": true
+      },
+      {
+        "name": "Six-plan text remains within the chart at 768",
+        "pass": true
+      },
+      {
+        "name": "Six-plan legend retains all exact labels at 768",
+        "pass": true
+      },
+      {
+        "name": "Six 60-character plans 390: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Six-plan chart includes all full accessible labels at 390",
+        "pass": true
+      },
+      {
+        "name": "Six-plan text remains within the chart at 390",
+        "pass": true
+      },
+      {
+        "name": "Six-plan legend retains all exact labels at 390",
+        "pass": true
+      },
+      {
+        "name": "Six 60-character plans 320: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Six-plan chart includes all full accessible labels at 320",
+        "pass": true
+      },
+      {
+        "name": "Six-plan text remains within the chart at 320",
+        "pass": true
+      },
+      {
+        "name": "Six-plan legend retains all exact labels at 320",
+        "pass": true
+      },
+      {
+        "name": "index.html 320: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "index.html 320: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "index.html 320: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "index.html 320: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "index.html 320: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "index.html 320: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "index.html 320: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "index.html 390: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "index.html 390: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "index.html 390: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "index.html 390: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "index.html 390: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "index.html 390: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "index.html 390: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "index.html 600: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "index.html 600: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "index.html 600: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "index.html 600: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "index.html 600: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "index.html 600: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "index.html 600: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "capital.html 320: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "capital.html 320: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "capital.html 320: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "capital.html 320: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "capital.html 320: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "capital.html 320: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "capital.html 320: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "capital.html 390: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "capital.html 390: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "capital.html 390: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "capital.html 390: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "capital.html 390: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "capital.html 390: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "capital.html 390: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "capital.html 600: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "capital.html 600: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "capital.html 600: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "capital.html 600: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "capital.html 600: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "capital.html 600: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "capital.html 600: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 320: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 320: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 320: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 320: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 320: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 320: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 320: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 390: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 390: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 390: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 390: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 390: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 390: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 390: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 600: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 600: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 600: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 600: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 600: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 600: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "thesis.html 600: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 320: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 320: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 320: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 320: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 320: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 320: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 320: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 390: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 390: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 390: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 390: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 390: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 390: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 390: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 600: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 600: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 600: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 600: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 600: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 600: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "horizon.html 600: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 320: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 320: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 320: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 320: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 320: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 320: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 320: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 390: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 390: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 390: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 390: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 390: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 390: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 390: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 600: real page returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 600: all seven workspace links are available in the navigation rail",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 600: Tab reveals each complete workspace link in the scrollable rail",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 600: workspace navigation remains readable",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 600: navigation targets meet the 24px minimum",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 600: exactly one destination is current",
+        "pass": true
+      },
+      {
+        "name": "casebook.html 600: header stays within the viewport",
+        "pass": true
+      },
+      {
+        "name": "Capital header breakpoint 600: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "600px navigation stays inside the page or its own horizontal scroller",
+        "pass": true
+      },
+      {
+        "name": "No uncaught browser page errors",
+        "pass": true
+      },
+      {
+        "name": "Bound local source stayed unchanged during the run",
+        "pass": true
+      },
+      {
+        "name": "Carried-forward evidence only differs in the three corrected presentation files",
+        "pass": true
+      }
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "sourceUnchangedDuringRun": true
+  },
+  "earlierWorkflowChecks": {
+    "passed": 35,
+    "reason": "Final follow-up repeats display, contrast, responsive navigation and export-presentation checks. The already-passed calculation/API/export and disclosure checks are carried forward with unchanged calculation, record, page-controller and chart sources.",
+    "checks": [
+      {
+        "name": "The first keyboard stop is the skip link",
+        "pass": true
+      },
+      {
+        "name": "The skip link focuses the decision section",
+        "pass": true
+      },
+      {
+        "name": "Capital objective: keyboard focus is visibly indicated",
+        "pass": true
+      },
+      {
+        "name": "Retention range follows its numeric input in keyboard order",
+        "pass": true
+      },
+      {
+        "name": "Arrow key changes the actual retention objective",
+        "pass": true
+      },
+      {
+        "name": "Pricing disclosure opens with the keyboard",
+        "pass": true
+      },
+      {
+        "name": "Pricing table scroll region: keyboard focus is visibly indicated",
+        "pass": true
+      },
+      {
+        "name": "The wide comparison is contained in its own accessible scroller",
+        "pass": true
+      },
+      {
+        "name": "Pricing disclosure closes with the keyboard",
+        "pass": true
+      },
+      {
+        "name": "A scenario disclosure opens with Space",
+        "pass": true
+      },
+      {
+        "name": "The opened scenario exposes all thirteen labelled assumptions",
+        "pass": true
+      },
+      {
+        "name": "Expanded scenario values remain upright",
+        "pass": true
+      },
+      {
+        "name": "25B / 90% leaves only one eligible plan",
+        "pass": true
+      },
+      {
+        "name": "B explicitly reports retention failure",
+        "pass": true
+      },
+      {
+        "name": "30B / 90% has no eligible plans",
+        "pass": true
+      },
+      {
+        "name": "The empty eligible set stays a valid ready result",
+        "pass": true
+      },
+      {
+        "name": "30B / 88% restores one eligible plan",
+        "pass": true
+      },
+      {
+        "name": "B is named by the comparison rule",
+        "pass": true
+      },
+      {
+        "name": "25B / 88% restores both eligible plans",
+        "pass": true
+      },
+      {
+        "name": "Analyst selection leaves the declared comparison separate",
+        "pass": true
+      },
+      {
+        "name": "The pricing interval disclosure opens by keyboard",
+        "pass": true
+      },
+      {
+        "name": "The price conflict diagnostic remains separate",
+        "pass": true
+      },
+      {
+        "name": "Capital expanded diagnostics 390: page has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Actual calculation endpoint returns HTTP 200",
+        "pass": true
+      },
+      {
+        "name": "Actual endpoint receives the exact numeric snapshot",
+        "pass": true
+      },
+      {
+        "name": "The numeric request excludes analyst prose",
+        "pass": true
+      },
+      {
+        "name": "Complete API analysis exactly equals the browser record",
+        "pass": true
+      },
+      {
+        "name": "Application version remains 4.0.0",
+        "pass": true
+      },
+      {
+        "name": "Editing an objective clears the verified badge",
+        "pass": true
+      },
+      {
+        "name": "The real JSON export preserves the exact record",
+        "pass": true
+      },
+      {
+        "name": "The real HTML export equals the exact standalone brief",
+        "pass": true
+      },
+      {
+        "name": "The HTML brief keeps analyst markup inert",
+        "pass": true
+      },
+      {
+        "name": "The shared decision restores Unicode analyst reasoning",
+        "pass": true
+      },
+      {
+        "name": "The shared decision restores the explicit analyst choice",
+        "pass": true
+      },
+      {
+        "name": "The shared record imports no verification badge",
+        "pass": true
+      }
+    ],
+    "originalReportSha256": "8fcc220866f0f0cd0b3b236b17fa75c03f4994fe11b8d1db1e191f8e0e7f1b34"
+  },
+  "portfolio": {
+    "structuralTestsPassed": 43,
+    "semanticPreparationChecksPassed": 27,
+    "previousVisualChecks": {
+      "total": 74,
+      "passed": 74,
+      "failed": 0
+    },
+    "finalImageChecks": {
+      "total": 62,
+      "passed": 62,
+      "failed": 0
+    },
+    "acceptedGatewayCssSha256": "7fb99586ffea45c4405f6e1cf8c765d62535446cf4667533fc80013bed681b9c"
+  },
+  "reviewedApplicationFiles": {
+    "public/capital.html": "ac518800ae525b64eec3fb8274e9b879f2d1176917bd3d18afc705d460675bbc",
+    "public/capital.css": "2b48cf5a7aec90e838577a30f28edb2318264dcd38509c0f528846c1b6272076",
+    "public/capital.js": "d2ffb465ca43ad99c65f35c7140f1b9827166d85435c883de1f371a2544b3a6d",
+    "public/shell.css": "4586dd8915827ba6f01c7e8d7efe17e38e741decdb92a1910685afd4a7740ab1",
+    "public/shell.js": "a4651206b2dda5d70d19f60730350fb0496b32c365e88fce36e2417ee96b69d4",
+    "public/lib/capital-chart.js": "07fc6e79d1ce5c4c5acc973492d3a8594ddf802150b5bd22a7fb6d9ec3294a74",
+    "public/lib/capital-brief.js": "a49176acf1d2752365cca33b624aa4683061fe1a3873a11b7fc352e8d7c4d590",
+    "public/lib/capital-strategy.js": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842",
+    "public/lib/capital-record.js": "d194fd1c8ca756428f64dd3411c527060a76efa1a56b56b5685947fa654f45ac",
+    "public/lib/capital-share.js": "c857667b233397345303791d4e9added14fb8153c21d7f27811bde9221a010a7",
+    "public/lib/capital-example.js": "5082804eceaaae470fb4e1f205ef9b7402f21c997d5ce995b497ad7b487cf916",
+    "public/lib/release.js": "ca5c5d7e2169ab76b4a0d2ca3af7c08d2b37bd467d1038d3c0912ef3ee87862a",
+    "public/data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "public/downloads/Frontier_AI_Capital_Decision.html": "f747151a109fe425bf73f2cc9bf81a85fc2150df5bf3e7d2ebfff928c57d5552",
+    "public/downloads/Frontier_AI_Capital_Decision.pdf": "2249a7176594ed3d2ae1b9e6a6406d14ddfbf37ec9b27573f4bc9b08bc1bc8e5",
+    "public/downloads/Frontier_AI_Capital_Decision.json": "4d26443bd387a7dda0b8796f4977bb234c0697f0828755644a821aec5c608684",
+    "public/downloads/Frontier_AI_Capital_Strategy_Package.zip": "df82c7d6b3000bc26e7fa4c17dba4a7b853f6ff1719acdfd8dedf218725c9195"
+  },
+  "preservedArtifacts": {
+    "baselineCommit": "a47661d28662348c5f586473f9372ed7d90a8497",
+    "files": [
+      {
+        "path": "public/data/current-results.json",
+        "bytes": 37050,
+        "sha256": "10ebc4ec4bd8bfe4440dcb1ab303aa4df26b542e4e60ddf4c174f9e72c738fa7",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/data/evidence.json",
+        "bytes": 47585,
+        "sha256": "5b24b888cabdbddbb4e0af221933b14fcb6c6cd8143d4f08293afe84ecff0289",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/data/presets.json",
+        "bytes": 1658,
+        "sha256": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/data/research.json",
+        "bytes": 12626,
+        "sha256": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Capital_Decision.html",
+        "bytes": 49225,
+        "sha256": "f747151a109fe425bf73f2cc9bf81a85fc2150df5bf3e7d2ebfff928c57d5552",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Capital_Decision.json",
+        "bytes": 52553,
+        "sha256": "4d26443bd387a7dda0b8796f4977bb234c0697f0828755644a821aec5c608684",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Capital_Decision.pdf",
+        "bytes": 235627,
+        "sha256": "2249a7176594ed3d2ae1b9e6a6406d14ddfbf37ec9b27573f4bc9b08bc1bc8e5",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Capital_Strategy_Package.zip",
+        "bytes": 1868606,
+        "sha256": "df82c7d6b3000bc26e7fa4c17dba4a7b853f6ff1719acdfd8dedf218725c9195",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Financing_Lens.html",
+        "bytes": 20978,
+        "sha256": "932562c240b5babe863688d2c76ac253577a2f0c222645710f1e5bd558793b06",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Financing_Lens.json",
+        "bytes": 20427,
+        "sha256": "e3945962a17f2bb1ffc35e8a77b9d7ff5bc9723a59c14e3559577527fe791e46",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Financing_Lens.pdf",
+        "bytes": 160102,
+        "sha256": "f1c5ee4ef9bfcfdc40a952fa953b916e60e8a87a024b16311b63778b193ddbca",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Financing_Lens_Package.zip",
+        "bytes": 1189767,
+        "sha256": "8a98e0d40d97b942b7c8a0d9356b9740da88a26f3ab19578bb969d3e08539a58",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Ownership_Frontier_Package.zip",
+        "bytes": 1433585,
+        "sha256": "60b1ff1907ab893f43b7e9c894bb74cd16d8da95fe3a3b6956438f92c7e28410",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Research_Brief.html",
+        "bytes": 26416,
+        "sha256": "4ee767f4327202ee3afae91d7160c631942563bf32ff2d2e659606f47fcb54c8",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Research_Brief.pdf",
+        "bytes": 168139,
+        "sha256": "f0f91aa739ef15d9fa68ab19979f1aad26b571757a489ffd85f4598a7bf39883",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Research_Casebook.json",
+        "bytes": 5168,
+        "sha256": "d4f76abc483f72d2274e26400a246fee91ebccfb6f4d9bd2a5c9bb7582523ef3",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Thesis_Comparison.html",
+        "bytes": 24563,
+        "sha256": "f38acf98e55b83600e620179769b58603a9520b8703a413d2ef0f8df99efeaed",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Thesis_Comparison.pdf",
+        "bytes": 145872,
+        "sha256": "1c7cf311365b1111a7a4540b5093112c62dc6f39d472fdfe2b882112beedce26",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Valuation_Model.xlsx",
+        "bytes": 42636,
+        "sha256": "0a692f43f8459ffb6a162f065c10912a5ca23738d55104b272f74dbecdf73438",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Valuation_Review.pdf",
+        "bytes": 97927,
+        "sha256": "08c94a33ea36870ca05ba437077bcec9d308ad87b90a4a7e3b80806d16edec36",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Value_Horizon.html",
+        "bytes": 17196,
+        "sha256": "79d1b7e6d26adbf5d4b213a1e5d03e6a70a8303c3dfc5e7b918b2ef83dc0360c",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Value_Horizon.json",
+        "bytes": 42387,
+        "sha256": "7a60e38a05c7e86abfaf31afe30eceaacc2f23ad059fde718cd20c2e261117ed",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Value_Horizon.pdf",
+        "bytes": 113404,
+        "sha256": "9e13c0faf0c50bf232a311b6697faee00c6f547405b965ae42eed186d485c2d3",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Value_Horizon_Package.zip",
+        "bytes": 830904,
+        "sha256": "40f15a73b220d75651abc8529ace281a337e32c6c6fe114d4f2e18926bba3995",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/lib/capital-strategy.js",
+        "bytes": 23933,
+        "sha256": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/lib/financing.js",
+        "bytes": 5863,
+        "sha256": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f",
+        "identicalToBaseline": true
+      },
+      {
+        "path": "public/lib/model.js",
+        "bytes": 9610,
+        "sha256": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+        "identicalToBaseline": true
+      }
+    ],
+    "passed": true
+  },
+  "publishedScreenshot": {
+    "path": "docs/demo-capital-visual-20261020.png",
+    "width": 1440,
+    "height": 1271,
+    "bytes": 226377,
+    "sha256": "db7919bc1165558535d70eb82295791e800b14885450516f0ce716ee5c34fc9d",
+    "source": "Actual local Chromium rendering; no generated or composited product image."
+  },
+  "guidance": [
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "application": "Representative ordinary text uses 4.5:1 and large text uses 3:1. Computed font size and weight determine the threshold."
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+      "application": "Standalone main controls are measured against 24 by 24 CSS pixels. Inline-link exceptions are not treated as failures."
+    }
+  ],
+  "limitations": [
+    "Local browser acceptance establishes the checked source presentation and interaction behavior; deployment identity requires separate live HTTP verification.",
+    "Contrast samples use actual computed colors and alpha-composited ancestor backgrounds. They are representative measurements, not a complete accessibility certification.",
+    "Long labels are tested at the supported 60 Unicode code point boundary. Existing financial result contracts are checked for preservation; this pass does not repeat the independent mathematical audit.",
+    "This is a compact record of observed local checks, not an external financial or accessibility audit.",
+    "The 35 earlier workflow checks are listed separately from the 266 final presentation checks; they were not rerun in the final focused pass.",
+    "Publication identity, ordinary HTTPS and deployed browser observations are separate checks made after this source commit.",
+    "Historical release receipts and downloadable v4.0.0 artifacts retain their original bytes and scope."
+  ]
+}

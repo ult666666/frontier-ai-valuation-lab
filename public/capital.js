@@ -132,7 +132,7 @@ function renderPlans(analysis){
   metric('eligiblePlans',analysis.comparison.eligiblePlanIds.length,value=>String(value));
   $('#capital-eligibility-caption').textContent=`Of ${analysis.plans.length} submitted ${analysis.plans.length===1?'plan':'plans'} · Capital + ownership only`;
   $('#capital-selection-summary').textContent=state.decision.selectedPlanId?planLabel(state.decision.selectedPlanId):'No selection';
-  $('#capital-plan-chart').innerHTML=capitalPlanChart(analysis,{selectedPlanId:state.decision.selectedPlanId,idPrefix:'capital-main-chart',compact:matchMedia('(max-width:650px)').matches});
+  $('#capital-plan-chart').innerHTML=capitalPlanChart(analysis,{selectedPlanId:state.decision.selectedPlanId,idPrefix:'capital-main-chart',compact:matchMedia('(max-width:650px)').matches,workspace:true,narrow:matchMedia('(max-width:900px)').matches});
   $('#capital-plan-legend').innerHTML=analysis.plans.map((plan,index)=>`<span data-selected="${plan.id===state.decision.selectedPlanId}"><b>${String.fromCharCode(65+index)}</b>${escape(plan.label)}</span>`).join('');
   const policy=analysis.snapshot.policy;
   $('#capital-retention-meaning').textContent=`${percent(policy.retentionFloor)} retained means a ${percent(policy.holderStake)} starting stake stays at or above ${percent(policy.holderStake*policy.retentionFloor)} of the company.`;
@@ -353,7 +353,7 @@ async function initialize(){
     for(const control of $$('[data-ready-control]'))control.disabled=false;$('#capital-policy-controls').disabled=false;
     document.addEventListener('input',updateInput);document.addEventListener('change',onChange);document.addEventListener('click',onClick);document.addEventListener('submit',event=>event.preventDefault());
     window.addEventListener('hashchange',()=>{if(state.ready)loadHash();});
-    matchMedia('(max-width:650px)').addEventListener('change',()=>{if(state.record)renderPlans(state.record.analysis);});
+    for(const query of ['(max-width:650px)','(max-width:900px)'])matchMedia(query).addEventListener('change',()=>{if(state.record)renderPlans(state.record.analysis);});
     loadHash({initial:true});
     $('#capital-version').textContent=`Application ${APP_VERSION} · Capital method ${CAPITAL_VERSION} · Financial engine ${MODEL_VERSION}. Developed with AI assistance. Financial snapshot: ${VALUATION_DATE}.`;
   }catch(error){state.ready=false;showError(`Capital Strategy could not load: ${error.message} Reload to try again, or open the standalone research brief.`);}

@@ -29,14 +29,15 @@
   <main class="capital-shell" id="main">
     <section class="capital-intro" aria-labelledby="capital-title">
       <div><p class="eyebrow"><span class="index-mark">F / 05</span> Capital Strategy Studio</p><h1 id="capital-title">A financing decision.<br><em>Made explicit.</em></h1></div>
-      <div class="intro-note"><p>Which plan fits your objectives,<br>and what would change your choice?</p><p class="intro-detail">Compare capital, ownership and modeled allocations across the same explicit scenarios. Keep the judgment with the numbers.</p><p class="snapshot"><span class="status-dot" aria-hidden="true"></span> Illustrative research · 18 Oct 2026 model</p></div>
+      <div class="intro-note"><p>Which plan fits your objectives, <br>and what would change your choice?</p><p class="intro-detail">Compare capital, ownership and modeled allocations across the same explicit scenarios. Keep the judgment with the numbers.</p><p class="snapshot"><span class="status-dot" aria-hidden="true"></span> Illustrative research · 18 Oct 2026 model</p></div>
     </section>
     <div class="case-toolbar">
-      <div class="company-control"><label for="capital-company">Worked example</label><select id="capital-company" aria-describedby="capital-example-help" data-ready-control disabled><option>Anthropic</option><option>OpenAI</option></select></div>
-      <button class="text-button" id="capital-reset-worked" type="button" aria-describedby="capital-example-help" data-ready-control disabled>Replace with Anthropic example <span aria-hidden="true">↻</span></button>
-      <span id="capital-state-label" class="case-status">Loading the worked decision…</span>
-      <span class="unit-note">USD billions · Signed model residuals</span>
-      <p id="capital-example-help" class="example-help">Replaces this page’s plans, scenarios, objectives, balances and decision text.</p>
+      <div class="case-switch">
+        <div class="company-control"><label for="capital-company">Worked example</label><select id="capital-company" aria-describedby="capital-example-help" data-ready-control disabled><option>Anthropic</option><option>OpenAI</option></select></div>
+        <button class="text-button" id="capital-reset-worked" type="button" aria-describedby="capital-example-help" data-ready-control disabled>Replace with Anthropic example <span aria-hidden="true">↻</span></button>
+        <p id="capital-example-help" class="example-help">Replaces this page’s plans, scenarios, objectives, balances and decision text.</p>
+      </div>
+      <div class="case-meta"><span id="capital-state-label" class="case-status">Loading the worked decision…</span><span class="unit-note">USD billions · Signed model residuals</span></div>
     </div>
     <nav class="section-navigation" aria-label="Capital decision sections"><a href="#capital-decision"><span>01</span> Define</a><a href="#capital-plans"><span>02</span> Compare</a><a href="#capital-challenge"><span>03</span> Challenge</a><a href="#capital-record"><span>04</span> Record</a></nav>
     <noscript><div class="notice">This interactive decision needs JavaScript. The <a href="./downloads/Frontier_AI_Capital_Decision.html">standalone worked brief</a> and <a href="./report.html">financial research report</a> remain available.</div></noscript>
@@ -46,13 +47,14 @@
 
     <section class="decision-stage" id="capital-decision" tabindex="-1" aria-labelledby="decision-title">
       <div class="decision-main">
-        <div class="stage-heading"><div><p class="eyebrow">01 / Define the decision</p><h2 id="decision-title">Capital has a price.<br>Make the trade-offs visible.</h2></div><span class="stage-badge">Hypothetical primary rounds</span></div>
+        <div class="stage-heading"><div><p class="eyebrow">01 / Define the decision</p><h2 id="decision-title">Make the trade-offs visible.</h2></div><span class="stage-badge">Hypothetical primary rounds</span></div>
         <div class="decision-readouts"><div class="lead-readout"><span>Plans meeting both objectives</span><strong data-capital-metric="eligiblePlans">—</strong><p id="capital-eligibility-caption">Loading the submitted alternatives.</p></div><div><span>Current analyst selection</span><strong id="capital-selection-summary">—</strong><p>Chosen separately from the comparison rule.</p></div></div>
         <div id="capital-plan-chart" class="capital-plan-chart"><p class="chart-placeholder">Preparing the capital and ownership comparison…</p></div>
         <div id="capital-plan-legend" class="plan-legend"></div>
         <p class="chart-note">Only submitted plans are plotted. Meeting your objectives does not establish that financing is available or that a plan is suitable for an actual company.</p>
       </div>
       <aside class="decision-controls" aria-label="Decision objectives">
+        <p class="control-kicker">Your financing objectives</p>
         <form id="capital-policy-form" novalidate>
           <fieldset id="capital-policy-controls" disabled><legend class="sr-only">Explicit objectives and holder context</legend>
             <div class="policy-field"><label for="capital-objective">Minimum primary capital</label><div class="large-input"><span aria-hidden="true">$</span><input id="capital-objective" type="text" inputmode="decimal" value="25" aria-describedby="capital-objective-help"><span aria-hidden="true">B</span></div><p id="capital-objective-help" class="control-help">Your objective for this comparison. It is not calculated from the operating cash-flow deficit.</p></div>

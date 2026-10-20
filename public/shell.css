@@ -26,3 +26,20 @@
 @media(max-width:540px){.app-header .header-inner{padding:16px 18px 8px;gap:12px;align-items:center}.app-header .brand{font-size:12px;gap:9px;letter-spacing:-.2px}.app-header .brand svg{width:25px;height:25px;flex-basis:25px}.app-utilities{font-size:10px;gap:11px}.app-utilities .utility-author{display:none}.app-header .app-nav{margin:0 18px;gap:0;justify-content:space-between;font-size:11px;min-height:44px}.app-header .app-nav>a{min-height:44px;padding:0 2px}.app-header #presenter-toggle{font-size:10px;padding:7px 8px}.app-header #presenter-toggle .presenter-icon{display:none}.inspection-context{padding:14px 13px;font-size:11px}.inspection-context .button{font-size:11px}.frontier-action{font-size:11px}.casebook-inline-link{font-size:11px}.stress-company .stress-actions{gap:5px 12px}}
 @media print{.app-header,.inspection-context,.casebook-inline-link{display:none!important}}
 @media(max-width:540px){.app-header .app-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 10px}.app-header .app-nav>a{min-height:38px;justify-content:flex-start}}
+/* A single navigable row keeps the research workspace close on small screens. */
+@media screen{
+  .app-header .header-inner{padding-top:15px;padding-bottom:10px}
+  .app-header .app-nav{font-size:13px}
+  .app-header .brand svg{width:29px;height:29px;flex-basis:29px}
+}
+@media screen and (max-width:540px){
+  .app-header .header-inner{padding:14px 18px 7px}
+  .app-header .brand svg{width:25px;height:25px;flex-basis:25px}
+}
+@media screen and (max-width:700px){
+  .app-header .app-nav{display:flex;justify-content:flex-start;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#607f73 #102333;padding:4px 6px 6px;margin-inline:16px;font-size:12px}
+  .app-header .app-nav>a{flex:0 0 auto;min-height:44px;justify-content:center;padding:0 2px;scroll-margin-inline:6px}
+  .app-header .app-nav::-webkit-scrollbar{height:4px}
+  .app-header .app-nav::-webkit-scrollbar-thumb{background:#607f73;border-radius:4px}
+  .app-header .app-nav>a:focus-visible{outline-width:2px;outline-offset:2px}
+}

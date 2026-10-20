@@ -1,6 +1,16 @@
 # Release verification
 
-The current **v4.0 local verification** appears first. Earlier records retain their dates and scope. Numerical agreement, browser behavior, printable-artifact review and deployment checks are separate evidence. Consult the [v4.0 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v4.0.0) for the subsequent exact-commit production and native-desktop observations.
+The latest presentation review appears first, followed by the **v4.0 local verification**. Earlier records retain their dates and scope. Numerical agreement, browser behavior, printable-artifact review and deployment checks are separate evidence. Consult the [v4.0 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v4.0.0) for that release's exact-commit production and native-desktop observations.
+
+## 20 October 2026 visual refresh
+
+The [dated local review record](verification/visual-refresh-20261020.json) binds the refreshed Studio presentation and actual [1440 × 1271 product capture](demo-capital-visual-20261020.png) to their reviewed bytes. The work improves the results-and-controls hierarchy, reading sizes, explicit chart thresholds, coincident-plan labels, disclosure states and responsive navigation. The fintech portfolio uses the same visual direction and current capture.
+
+The final application gate passed **314 tests and the production build**. The focused browser pass completed **266 new checks**, with zero page or failed-request errors. Another **35 previously passed workflow checks** are separately retained against unchanged calculation, record, controller and chart sources. These include complete API/browser parity, eligibility transitions and portable exports; they are not counted as newly executed in the focused pass. All five workspace headers were checked at 320, 390 and 600 pixels, alongside desktop/tablet views, long labels, coincident plans and print emulation. The portfolio passed **43 structural tests**, **74 visual/interaction checks**, **62 final image-integration checks** and **27 prepared semantic checks**.
+
+All eight default-report chart comparisons remained byte-identical, and the canonical standalone brief reproduced exactly. The reviewed financial/data/download artifacts retain their original bytes. This is a presentation refinement within **application 4.0.0**, with capital method **1.0.0**, financial engine **3.0.0** and the **18 October 2026** snapshot.
+
+Representative text contrast and control targets were measured using [W3C contrast guidance](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) and [target-size guidance](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html). This is scoped Chromium and AI-assisted engineering review, not a complete accessibility certification or a new financial audit. The dated local record does not itself establish production publication; deployed source identity and HTTPS behavior are checked separately after publishing.
 
 ## Version 4.0 local verification
 
