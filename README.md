@@ -22,10 +22,12 @@ The worked illustration compares three primary rounds. All figures are **USD bil
 | B · More capital | 300 | 35 | 89.55% | Yes |
 | C · Higher retention | 300 | 20 | 93.75% | No: $5B below the capital objective |
 
-1. **Define.** Open the worked decision. Raise the retention floor from **88% to 90%**: only A remains eligible. Increase the capital objective to **$30B**: no plan meets both. Restore **88%**: B becomes eligible.
-2. **Compare.** Inspect individual plan markers, exact pricing and the equivalent table. A capital shortfall, an ownership constraint and an invalid input have different meanings.
+1. **Define.** Open [Try the tradeoff](https://frontier-ai-valuation-lab.vercel.app/capital.html#capital-explore). Preview **$25B / 90%**: only A meets both objectives in the worked example. Preview **$30B / 90%**: none qualifies. Preview **$30B / 88%**: B qualifies. Each preview uses your current submitted plans; choose **Apply** to update the two objectives together.
+2. **Compare.** Apply **$25B / 88%** again to compare A and B in the worked example. Inspect individual plan markers, exact pricing and the equivalent table. A capital shortfall, an ownership constraint and an invalid input have different meanings.
 3. **Challenge.** Evaluate the same plans against Bear, Base and Bull operating cases, or edit every assumption and continuation horizon. For A and B, the signed modeled existing-cohort allocations cross at **$635B of pre-money modeled equity residual**, with **$600B** allocated to the cohort. B allocates more below that switching value; A allocates more above it.
 4. **Record.** Choose a plan deliberately, explain its tradeoff, name information still needed and set a review trigger. Export an exact decision link, JSON record or script-free brief. Imported output is recalculated from the inputs.
+
+Previewing preserves the exact decision, its analyst text and its verification state. Applying a different pair preserves all plan terms and scenarios, recalculates the complete decision, and marks existing reasoning and API verification for review. Editing the draft clears an old preview. The [preview helper](public/lib/capital-objectives.js) composes the same validated record and calculation engine used by the rest of the application.
 
 The default hypothetical bridge assumes cash of 20, debt of 5 and no other claims. The default capital objective is an analyst input, not an estimate of either company's cash requirement. See the [worked mathematics, numeric conventions and limits](docs/CAPITAL_STRATEGY.md).
 
@@ -86,6 +88,8 @@ curl --fail-with-body http://127.0.0.1:4321/api/valuation \
 ```
 
 A successful response includes `appVersion`, `modelVersion`, `valuationDate` and the **complete** capital analysis. The numeric request excludes analyst prose. The endpoint accepts 1–9 complete scenarios and 1–6 plans, rejects unsupported fields, validates every input, and retains the existing **16 KiB** streamed request limit. See [all endpoints, boundaries and status meanings](docs/API.md).
+
+The Studio distinguishes **exact verification**, a **qualified rounding comparison**, and a mismatch. Browser and server math libraries can approximate finite-continuation functions differently. The qualified state permits a small relative difference only in named modeled outputs; every input, quoted term, eligibility result and comparison status must remain exact. It does not change the current record or exports. See the [comparison policy](docs/CAPITAL_STRATEGY.md#10-browser-and-api-comparison), [pure comparator](public/lib/capital-verification.js) and [captured-runtime regression tests](tests/capital-verification.test.js).
 
 ## Continue into the financial foundations
 

@@ -5,6 +5,8 @@ import {createCapitalRecord,parseCapitalRecord,CAPITAL_RECORD_MAX_BYTES} from '.
 import {decodeCapitalShare,capitalUrl} from './lib/capital-share.js';
 import {capitalBriefHtml} from './lib/capital-brief.js';
 import {createCapitalExample} from './lib/capital-example.js';
+import {CAPITAL_OBJECTIVE_OPTIONS,previewCapitalObjectives} from './lib/capital-objectives.js';
+import {compareCapitalAnalysis} from './lib/capital-verification.js';
 import {capitalPlanChart} from './lib/capital-chart.js';
 import {EVIDENCE_FIELDS,formatEvidenceValue} from './lib/evidence.js';
 import {scenarioUrl} from './lib/share.js';
@@ -13,7 +15,7 @@ import {horizonUrl} from './lib/horizon-share.js';
 const $=selector=>document.querySelector(selector),$$=selector=>[...document.querySelectorAll(selector)];
 const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
 const copy=value=>structuredClone(value);
-const state={ready:false,presets:null,research:null,draft:null,decision:null,record:null,revision:0,controller:null,announcement:null,lastBridge:null,lastYears:new Map(),preview:null,importGeneration:0,needsReview:false,reasoningReviewed:false,origin:'worked'};
+const state={ready:false,presets:null,research:null,draft:null,decision:null,record:null,revision:0,controller:null,announcement:null,lastBridge:null,lastYears:new Map(),preview:null,importGeneration:0,objectivePreview:null,objectiveStatus:'',needsReview:false,reasoningReviewed:false,origin:'worked'};
 const fields={capitalTarget:'#capital-objective',retentionFloor:'#capital-retention',holderStake:'#capital-holder',modelCoverageFloor:'#capital-coverage'};
 const notes={rationale:'#capital-rationale',tradeoff:'#capital-tradeoff',reviewTrigger:'#capital-review-trigger',informationNeeded:'#capital-information-needed'};
 const percentFields=new Set(EVIDENCE_FIELDS.filter(field=>field.unit==='%').map(field=>field.key));
@@ -51,8 +53,12 @@ function setActions(){
   $('#capital-review-reasoning').disabled=!valid||!state.needsReview;
   $('#capital-add-plan').disabled=!state.draft||state.draft.plans.length>=6;
   $('#capital-add-scenario').disabled=!state.draft||state.draft.scenarios.length>=9;
+  for(const button of $$('[data-objective-choice]'))button.disabled=!valid;
+  const preview=state.objectivePreview;
+  $('#capital-objective-preview-apply').disabled=!valid||!preview||preview.revision!==state.revision||sameObjectives(state.record.snapshot.policy,preview.record.snapshot.policy);
 }
 function invalidate({preserveLocation=false,markReasoning=true}={}){
+  state.objectiveStatus=state.objectivePreview?'Your decision changed. Choose a pair to preview the current plans again.':'';state.objectivePreview=null;
   state.revision++;state.controller?.abort();state.controller=null;state.record=null;
   clearTimeout(state.announcement);$('#capital-announcement').textContent='';
   $('#capital-share-area').hidden=true;portableStatus('');
@@ -74,7 +80,7 @@ function showError(message){
   $('#capital-envelope-status').textContent='Complete the current inputs to calculate the pricing intervals.';$('#capital-dominance').textContent='';
   for(const element of $$('[data-plan-status]')){element.textContent='Complete the current decision';element.dataset.state='invalid';delete element.dataset.eligible;}
   for(const element of $$('[data-plan-retained],[data-plan-holder],[data-scenario-ev]')){element.textContent='—';delete element.dataset.value;}
-  $('#capital-state-label').textContent='Draft needs attention';renderReasoningStatus();setActions();announce(message);
+  $('#capital-state-label').textContent='Draft needs attention';renderReasoningStatus();renderObjectivePreview();setActions();announce(message);
 }
 function recalculate(options={}){
   invalidate(options);
@@ -126,6 +132,65 @@ function renderReasoningStatus(){
   else if(state.reasoningReviewed){element.dataset.state='reviewed';element.textContent='You marked this reasoning reviewed for the current page inputs.';}
   else{element.dataset.state='draft';element.textContent=state.origin==='worked'?'Illustrative analyst draft. The comparison rule does not select for you.':'Analyst draft. Review the reasoning alongside its exact inputs.';}
   $('#capital-review-reasoning').disabled=!state.record||!state.needsReview;
+}
+
+const sameObjectives=(current,proposed)=>current.capitalTarget===proposed.capitalTarget&&current.retentionFloor===proposed.retentionFloor;
+const objectivePair=policy=>`${money(policy.capitalTarget)} capital · ${percent(policy.retentionFloor)} retained`;
+function renderObjectiveChoices(){
+  $('#capital-objective-choices').innerHTML=CAPITAL_OBJECTIVE_OPTIONS.map((choice,index)=>`<button type="button" class="objective-choice" data-objective-choice="${choice.id}" aria-pressed="false" aria-controls="capital-objective-preview" disabled><span class="objective-choice-label"><span aria-hidden="true">0${index+1} / </span>${escape(choice.label)}</span><span class="objective-choice-values"><span><strong>${money(choice.capitalTarget,0)}</strong> capital</span><span><strong>${number(choice.retentionFloor*100,0)}%</strong> retained</span></span><span class="objective-choice-current" data-objective-current="${choice.id}"></span></button>`).join('');
+}
+function renderObjectivePreview(){
+  const preview=state.objectivePreview,current=state.record;
+  for(const button of $$('[data-objective-choice]')){
+    const choice=CAPITAL_OBJECTIVE_OPTIONS.find(option=>option.id===button.dataset.objectiveChoice);
+    button.setAttribute('aria-pressed',String(preview?.id===choice.id));
+    button.querySelector('[data-objective-current]').textContent=current&&sameObjectives(current.snapshot.policy,choice)?'Current objectives':'';
+  }
+  const panel=$('#capital-objective-preview'),status=$('#capital-objective-preview-status');
+  if(!current||!preview||preview.revision!==state.revision){
+    panel.hidden=true;$('#capital-objective-preview-plans').replaceChildren();
+    status.textContent=!current?'Complete every submitted input and decision note before previewing objectives.':state.objectiveStatus||'Choose a pair to compare eligibility. Your current decision changes only when you choose Apply.';
+    return;
+  }
+  const proposed=preview.record,plans=proposed.analysis.plans,total=plans.length,unchanged=sameObjectives(current.snapshot.policy,proposed.snapshot.policy);
+  panel.hidden=false;
+  $('#capital-objective-current-count').textContent=`${current.analysis.comparison.eligiblePlanIds.length} of ${total} eligible`;
+  $('#capital-objective-proposed-count').textContent=`${proposed.analysis.comparison.eligiblePlanIds.length} of ${total} eligible`;
+  $('#capital-objective-current-pair').textContent=objectivePair(current.snapshot.policy);
+  $('#capital-objective-proposed-pair').textContent=objectivePair(proposed.snapshot.policy);
+  $('#capital-objective-preview-plans').innerHTML=plans.map((plan,index)=>{
+    const before=current.analysis.plans.find(item=>item.id===plan.id),failures=[];
+    if(!plan.meetsCapital)failures.push(-plan.capitalGap<.01?'Capital shortfall is less than $0.01B':`${money(-plan.capitalGap)} below the capital objective`);
+    if(!plan.meetsRetention){const retained=percent(plan.retainedFraction),floor=percent(proposed.snapshot.policy.retentionFloor);failures.push(retained===floor?`Below the ${floor} retention floor at full precision`:`${retained} retained is below the ${floor} floor`);}
+    return `<article class="objective-preview-plan" data-objective-plan-id="${escape(plan.id)}" data-objective-eligible="${plan.eligible}"><div class="objective-preview-plan-name"><span class="objective-preview-letter" aria-hidden="true">${String.fromCharCode(65+index)}</span><div><h3>${escape(plan.label)}</h3><p>${money(plan.pricing.primaryCapital)} raised · ${percent(plan.retainedFraction)} retained</p></div></div><div class="objective-preview-fit"><span class="objective-fit-label">Current</span><strong data-fit="${before.eligible}">${before.eligible?'Meets both':'Does not meet both'}</strong></div><div class="objective-preview-fit"><span class="objective-fit-label">Preview</span><strong data-fit="${plan.eligible}">${plan.eligible?'Meets both':'Does not meet both'}</strong><p>${escape(plan.eligible?'Capital and retained ownership meet this pair.':failures.join(' · '))}</p></div></article>`;
+  }).join('');
+  $('#capital-objective-preview-context').textContent=(proposed.snapshot.bridge===null?'Capital and retention can be screened with a missing bridge. Modeled allocation comparisons remain unavailable.':'Eligibility checks capital and retained ownership. Model coverage and your analyst selection remain separate.')+' Displayed figures are rounded; eligibility uses full precision.';
+  $('#capital-objective-preview-apply').textContent=unchanged?'Already your current objectives':`Apply ${money(proposed.snapshot.policy.capitalTarget,0)} / ${number(proposed.snapshot.policy.retentionFloor*100,0)}%`;
+  status.textContent=unchanged?'This pair already matches your current objectives. No change is needed.':`Preview ready: ${proposed.analysis.comparison.eligiblePlanIds.length} of ${total} plans meet both objectives. Your current decision is unchanged.`;
+}
+function previewObjectives(id){
+  if(!state.record)return;
+  try{
+    const record=previewCapitalObjectives(state.record,id);
+    state.objectivePreview={id,revision:state.revision,record};state.objectiveStatus='';
+  }catch(error){state.objectivePreview=null;state.objectiveStatus=`The objective preview could not be prepared: ${error.message}`;}
+  renderObjectivePreview();setActions();
+}
+function applyObjectivePreview(){
+  const preview=state.objectivePreview;
+  if(!state.record||!preview||preview.revision!==state.revision)return;
+  // Recompute from the still-current record; apply only the two explicit keys.
+  const proposed=previewCapitalObjectives(state.record,preview.id).snapshot.policy;
+  if(sameObjectives(state.record.snapshot.policy,proposed))return;
+  state.draft.policy.capitalTarget=proposed.capitalTarget;state.draft.policy.retentionFloor=proposed.retentionFloor;
+  $('#capital-objective').value=String(proposed.capitalTarget);$('#capital-retention').value=rawPercent(proposed.retentionFloor);$('#capital-retention-range').value=String(proposed.retentionFloor*100);
+  recalculate();
+  state.objectiveStatus=`Applied ${objectivePair(proposed)}. Review the updated comparison and your decision reasoning.`;
+  renderObjectivePreview();$(`[data-objective-choice="${preview.id}"]`).focus();
+}
+function openObjectiveExplorer(){
+  const explorer=$('#capital-explore');explorer.open=true;
+  explorer.querySelector('summary').focus({preventScroll:true});explorer.scrollIntoView({behavior:'auto',block:'start'});
 }
 
 function renderPlans(analysis){
@@ -216,7 +281,7 @@ function renderWarnings(analysis){
 }
 function renderResults(){
   const analysis=state.record.analysis;
-  renderSelection();renderPlans(analysis);renderScenarios(analysis);renderMatrix(analysis);renderComparison(analysis);renderEnvelope(analysis);renderWarnings(analysis);renderReasoningStatus();renderNoteCounts();
+  renderSelection();renderPlans(analysis);renderScenarios(analysis);renderMatrix(analysis);renderComparison(analysis);renderEnvelope(analysis);renderWarnings(analysis);renderReasoningStatus();renderNoteCounts();renderObjectivePreview();
   const selected=analysis.plans.find(plan=>plan.id===state.decision.selectedPlanId);
   $('#capital-selection-status').textContent=selected?(selected.eligible?'Your selected plan currently meets both explicit capital and ownership objectives.':'Your selection is preserved, but this plan does not currently meet both explicit objectives.'):'No analyst selection has been made. The comparison rule remains separately visible.';
   $('#capital-state-label').textContent=`Current decision: ${state.draft.company} · ${analysis.scenarios.length} scenarios · ${analysis.plans.length} plans · Exact numeric draft`;
@@ -268,7 +333,10 @@ function onChange(event){
   if(input.id==='capital-import-file')previewImport(input.files?.[0]);
 }
 function onClick(event){
+  if(state.ready&&event.target.closest('a[href="#capital-explore"]'))openObjectiveExplorer();
   const button=event.target.closest('button');if(!button||button.disabled||!state.ready)return;
+  if(button.hasAttribute('data-objective-choice')){previewObjectives(button.dataset.objectiveChoice);return;}
+  if(button.id==='capital-objective-preview-apply'){applyObjectivePreview();return;}
   const editor=button.closest('[data-plan-editor]');
   if(button.hasAttribute('data-remove-plan')&&state.draft.plans.length>1){const id=editor.dataset.planId;state.draft.plans=state.draft.plans.filter(plan=>plan.id!==id);if(state.decision.selectedPlanId===id)state.decision.selectedPlanId=null;planEditors();recalculate();$('#capital-add-plan').focus();return;}
   const scenarioEditor=button.closest('[data-scenario-editor]');
@@ -318,24 +386,25 @@ async function previewImport(file){
     $('#capital-import-preview').hidden=false;status.textContent='Valid record. Review the preview before applying it.';status.dataset.state='preview';
   }catch(error){if(generation===state.importGeneration){status.textContent=`Import rejected: ${error.message} Your current draft is unchanged.`;status.dataset.state='error';}}
 }
-function sameResult(a,b){
-  if(Object.is(a,b))return true;if(typeof a!==typeof b||a===null||b===null||typeof a!=='object')return false;
-  if(Array.isArray(a)!==Array.isArray(b))return false;
-  const ak=Object.keys(a).sort(),bk=Object.keys(b).sort();return ak.length===bk.length&&ak.every((key,index)=>key===bk[index]&&sameResult(a[key],b[key]));
-}
 async function verify(){
   if(!state.record||state.controller)return;
   const revision=state.revision,expected=copy(state.record.analysis),body=JSON.stringify({action:'capital',snapshot:state.record.snapshot});
   if(new TextEncoder().encode(body).length>16*1024){apiStatus('This valid decision exceeds the API’s 16 KiB request limit. The browser calculation and complete exports remain available.','unavailable');return;}
-  const controller=new AbortController();state.controller=controller;setActions();apiStatus('Comparing every scenario, plan, allocation and diagnostic with the deployed API…','pending');
+  const controller=new AbortController();state.controller=controller;setActions();$('#capital-verify').textContent='Comparing complete analysis…';apiStatus('Comparing every scenario, plan, allocation and diagnostic with the deployed API…','pending');
   const timeout=setTimeout(()=>controller.abort(),10000);
   try{
     const response=await fetch('./api/valuation',{method:'POST',headers:{'Content-Type':'application/json'},cache:'no-store',body,signal:controller.signal});
     if(!response.ok)throw new Error(`Server returned HTTP ${response.status}.`);
     const payload=await response.json();if(revision!==state.revision||state.controller!==controller)return;
-    if(payload.appVersion!==APP_VERSION||payload.modelVersion!==MODEL_VERSION||payload.valuationDate!==VALUATION_DATE||!sameResult(payload.result,expected))throw new Error('The deployed version or complete result differs from the current browser calculation.');
-    apiStatus('Verified: all submitted scenarios, plans, allocations, comparison results and pricing intervals match the deployed calculation.','verified');$('#capital-verify').textContent='Complete analysis verified ✓';
-  }catch(error){if(revision===state.revision&&state.controller===controller)apiStatus(error.name==='AbortError'?'Verification timed out. The current browser result remains available.':`Verification failed or is unavailable: ${error.message}`,'failed');}
+    if(payload.appVersion!==APP_VERSION||payload.modelVersion!==MODEL_VERSION||payload.valuationDate!==VALUATION_DATE)throw new Error('The deployed version differs from the current browser calculation.');
+    const comparison=compareCapitalAnalysis(expected,payload.result);
+    if(comparison.status==='mismatch')throw new Error(`The complete result differs at ${comparison.firstMismatch}.`);
+    if(comparison.status==='exact'){
+      apiStatus('Verified: all submitted scenarios, plans, allocations, comparison results and pricing intervals match the deployed calculation exactly.','verified');$('#capital-verify').textContent='Complete analysis verified ✓';
+    }else{
+      apiStatus(`Inputs and decision outcomes match. ${comparison.differences.length} calculated values differ within the documented rounding allowance. Exact numerical equality was not established.`,'rounding-consistent');$('#capital-verify').textContent='Rounding comparison complete';
+    }
+  }catch(error){if(revision===state.revision&&state.controller===controller){apiStatus(error.name==='AbortError'?'Verification timed out. The current browser result remains available.':`Verification failed or is unavailable: ${error.message}`,'failed');$('#capital-verify').innerHTML='Verify complete analysis <span aria-hidden="true">↗</span>';}}
   finally{clearTimeout(timeout);if(state.controller===controller){state.controller=null;setActions();}}
 }
 function loadHash({initial=false}={}){
@@ -343,13 +412,14 @@ function loadHash({initial=false}={}){
     try{const record=decodeCapitalShare(location.hash.slice('#decision='.length));applyRecord(record,{origin:'shared',preserveLocation:true,focus:true});$('#capital-notice').hidden=false;$('#capital-notice').textContent='Exact shared decision opened. All calculations were recomputed; no verification badge was imported.';}
     catch(error){$('#capital-notice').hidden=false;$('#capital-notice').textContent=`The shared decision could not be opened: ${error.message} No shared inputs were applied.`;if(initial)showError('This shared decision is invalid. Open the worked decision to start a new comparison, or import a valid record.');}
   }else if(location.hash==='#worked-decision'||initial){applyRecord(createCapitalExample(state.presets,'Anthropic'),{origin:'worked',preserveLocation:true,focus:!initial&&location.hash==='#worked-decision'});}
+  if(location.hash==='#capital-explore')openObjectiveExplorer();
 }
 async function fetchJson(path){const response=await fetch(path,{cache:'no-cache'});if(!response.ok)throw new Error(`Could not load ${path}.`);return response.json();}
 async function initialize(){
   try{
     const [presets,research]=await Promise.all([fetchJson('./data/presets.json'),fetchJson('./data/research.json')]);
     if(research.modelVersion!==MODEL_VERSION||research.asOf!==VALUATION_DATE)throw new Error('Company evidence does not match the financial model and valuation date.');
-    state.presets=presets;state.research=research;state.ready=true;
+    state.presets=presets;state.research=research;state.ready=true;renderObjectiveChoices();
     for(const control of $$('[data-ready-control]'))control.disabled=false;$('#capital-policy-controls').disabled=false;
     document.addEventListener('input',updateInput);document.addEventListener('change',onChange);document.addEventListener('click',onClick);document.addEventListener('submit',event=>event.preventDefault());
     window.addEventListener('hashchange',()=>{if(state.ready)loadHash();});

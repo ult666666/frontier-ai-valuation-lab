@@ -52,6 +52,40 @@ try{
   await page.locator('#capital-decision').screenshot({path:`${output}/desktop-decision.png`,animations:'disabled'});
   await page.screenshot({path:`${output}/desktop-page.png`,fullPage:true,animations:'disabled'});
 
+  const objectiveDisclosure=page.locator('#capital-explore'),objectiveSummary=objectiveDisclosure.locator('summary');
+  const objectiveBefore={url:page.url(),rationale:await page.locator('#capital-rationale').inputValue(),selection:await page.locator('#capital-selected-plan').inputValue(),requests:requests.length};
+  check('The optional objective preview starts collapsed',await objectiveDisclosure.evaluate(element=>!element.open));
+  await objectiveSummary.focus();await page.keyboard.press('Enter');
+  check('The native objective disclosure opens by keyboard',await objectiveDisclosure.evaluate(element=>element.open));
+  await page.locator('[data-objective-choice="25-90"]').click();
+  check('A preview reports the eligible current plan',await page.locator('[data-objective-eligible="true"]').getAttribute('data-objective-plan-id'),'a');
+  check('Previewing does not change the main decision eligibility',await numeric('eligiblePlans'),2);
+  check('Previewing preserves the exact current URL',page.url(),objectiveBefore.url);
+  check('Previewing makes no calculation API request',requests.length,objectiveBefore.requests);
+  await page.locator('[data-objective-choice="25-88"]').click();
+  check('An already-current objective pair has no Apply action',await page.locator('#capital-objective-preview-apply').isDisabled());
+  await page.locator('[data-objective-choice="30-90"]').click();
+  check('The stricter objective preview has no eligible submitted plans',await page.locator('[data-objective-eligible="true"]').count(),0);
+  await page.locator('#capital-objective-preview-apply').click();
+  check('Apply updates both objectives and the range together',[await page.locator('#capital-objective').inputValue(),await page.locator('#capital-retention').inputValue(),await page.locator('#capital-retention-range').inputValue()],['30','90','90']);
+  check('The applied pair is reflected in the complete decision',await numeric('eligiblePlans'),0);
+  check('Objective Apply preserves the analyst selection',await page.locator('#capital-selected-plan').inputValue(),objectiveBefore.selection);
+  check('Objective Apply preserves exact reasoning text',await page.locator('#capital-rationale').inputValue(),objectiveBefore.rationale);
+  await page.locator('[data-objective-choice="30-88"]').click();
+  await page.locator('#capital-plan-a-quote').fill('');
+  check('An invalid edit clears the old objective preview',await page.locator('#capital-objective-preview').evaluate(element=>element.hidden));
+  check('An invalid edit prevents stale objective Apply',await page.locator('#capital-objective-preview-apply').isDisabled());
+  await page.locator('#capital-plan-a-quote').fill('250');
+  await page.locator('[data-objective-choice="25-88"]').click();await page.locator('#capital-objective-preview-apply').click();
+  check('Restoring objectives is explicit and recovers the original eligibility',await numeric('eligiblePlans'),2);
+  await page.locator('#capital-plan-a-quote').fill('224.99');await page.locator('[data-objective-choice="25-90"]').click();
+  check('A rounded retention tie explains its full-precision failure',await page.locator('[data-objective-plan-id="a"]').innerText().then(text=>text.includes('Below the 90.00% retention floor at full precision')&&!text.includes('90.00% retained is below')));
+  await page.locator('#capital-plan-a-quote').fill('250');await page.locator('#capital-plan-a-capital').fill('24.999');await page.locator('[data-objective-choice="25-90"]').click();
+  check('A small capital shortfall is never reported as a zero shortfall',await page.locator('[data-objective-plan-id="a"]').innerText().then(text=>text.includes('Capital shortfall is less than $0.01B')&&!text.includes('$0.00B below')));
+  await page.locator('#capital-plan-a-capital').fill('25');
+  await objectiveSummary.focus();await page.keyboard.press('Space');
+  check('The native objective disclosure closes by keyboard',await objectiveDisclosure.evaluate(element=>!element.open));
+
   await page.locator('#capital-selected-plan').selectOption('b');
   check('The analyst can explicitly choose a plan independently of the comparison rule',await page.locator('#capital-rule-plans').innerText(),'Smaller round');
   await page.locator('#capital-retention').fill('90');
@@ -115,10 +149,23 @@ try{
   check('The exact shared route survives reload',await freshPage.locator('#capital-rationale').inputValue(),unicode);
   await fresh.close();
 
+  const browserAnalysis=await page.evaluate(async snapshot=>{const {createCapitalRecord}=await import('./lib/capital-record.js');return createCapitalRecord(snapshot,{selectedPlanId:null,rationale:'',tradeoff:'',reviewTrigger:'',informationNeeded:''}).analysis;},exact.snapshot);
+  const apiEvent=page.waitForResponse(response=>response.url().includes('/api/valuation')&&response.request().method()==='POST');
   await page.locator('#capital-verify').click();
-  await page.locator('#capital-api-status[data-state="verified"]').waitFor();
+  const apiResult=await (await apiEvent).json(),{compareCapitalAnalysis}=await import(pathToFileURL(`${root}/public/lib/capital-verification.js`).href);
+  const apiComparison=compareCapitalAnalysis(browserAnalysis,apiResult.result);
+  check('The real complete API result passes the documented exact or qualified comparison',apiComparison.status!=='mismatch');
+  const apiState=apiComparison.status==='exact'?'verified':'rounding-consistent';
+  await page.locator(`#capital-api-status[data-state="${apiState}"]`).waitFor();
+  check('Exact verification is reserved for exact complete equality',await page.locator('#capital-verify').innerText(),apiComparison.status==='exact'?'Complete analysis verified ✓':'Rounding comparison complete');
+  if(apiComparison.status==='rounding')check('The qualified result explains that exact equality was not established',await page.locator('#capital-api-status').innerText().then(text=>text.includes(`${apiComparison.differences.length} calculated values`)&&text.includes('Exact numerical equality was not established.')));
   check('The real API receives the complete current numeric snapshot',requests.at(-1),{action:'capital',snapshot:exact.snapshot});
   check('Analyst prose is excluded from the computation request',!JSON.stringify(requests.at(-1)).includes('capitalInjected'));
+  // Deliberate transport fault: a retry must not retain an earlier success label.
+  await page.route('**/api/valuation',route=>route.fulfill({status:503,contentType:'application/json',body:'{"error":"Injected availability failure"}'}));
+  await page.locator('#capital-verify').click();await page.locator('#capital-api-status[data-state="failed"]').waitFor();
+  check('A failed retry clears the earlier exact or qualified completion label',await page.locator('#capital-verify').innerText().then(text=>text.replace(/\s+/g,' ').trim()),'Verify complete analysis ↗');
+  await page.unroute('**/api/valuation');
   await page.locator('#capital-objective').fill('31');
   check('An edit immediately removes the previous verification',await page.locator('#capital-api-status').getAttribute('data-state'),'unverified');
 
@@ -132,6 +179,7 @@ try{
   await page.locator('#capital-verify').click();
   await held;
   check('A real server response can remain pending without a verification claim',await page.locator('#capital-api-status').getAttribute('data-state'),'pending');
+  check('A pending retry uses a neutral comparison label',await page.locator('#capital-verify').innerText(),'Comparing complete analysis…');
   await page.locator('#capital-objective').fill('32');releaseResponse();await completed;
   await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(resolve)));
   check('A late response cannot verify a newer edited draft',await page.locator('#capital-api-status').getAttribute('data-state'),'unverified');
@@ -249,9 +297,9 @@ try{
   const before=Number(await page.locator('#capital-retention-range').inputValue());await page.keyboard.press('ArrowRight');
   check('Keyboard adjustment changes the explicit ownership constraint',Number(await page.locator('#capital-retention').inputValue())>before);
   check('No browser page errors occurred',errors,[]);
-}catch(error){failure={name:error.name,message:error.message,stack:error.stack};}
+}catch(error){failure={name:error.name,message:error.message,stack:error.stack,apiState:await page.locator('#capital-api-status').getAttribute('data-state').catch(()=>null),apiMessage:await page.locator('#capital-api-status').textContent().catch(()=>null)};}
 finally{
-  const files=['public/capital.html','public/capital.css','public/capital.js','public/lib/capital-chart.js','public/lib/capital-strategy.js','public/lib/capital-record.js','public/lib/capital-share.js','public/lib/capital-brief.js','public/lib/capital-example.js','tests/capital-browser.mjs'];
+  const files=['public/capital.html','public/capital.css','public/capital.js','public/shell.css','public/lib/capital-chart.js','public/lib/capital-strategy.js','public/lib/capital-record.js','public/lib/capital-share.js','public/lib/capital-brief.js','public/lib/capital-example.js','public/lib/capital-objectives.js','public/lib/capital-verification.js','tests/capital-browser.mjs'];
   const sourceFiles=[];for(const path of files){try{const data=await readFile(`${root}/${path}`);sourceFiles.push({path,bytes:data.length,sha256:createHash('sha256').update(data).digest('hex')});}catch{}}
   await writeFile(`${output}/report.json`,JSON.stringify({recordedAt:new Date().toISOString(),baseUrl:base,status:failure?'failed':'passed',assertions:checks.length,checks,pageErrors:errors,sourceFiles,failure},null,2)+'\n');
   await browser.close();

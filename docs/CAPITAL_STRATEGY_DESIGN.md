@@ -152,3 +152,19 @@ Independent financial arithmetic, exact hand crossover/envelope fixtures, meanin
 ## Implementation correction: portable record capacity
 
 The original96KiB import bound was raised to256KiB after a concrete valid maximum-size decision produced approximately159KiB of pretty JSON. This preserves the complete inspectable record and its JSON fallback for decisions too large to share by link. A bounded maximum-size Unicode round-trip test verifies the corrected contract. Share-token and API-request limits are unchanged.
+
+## 20 October refinement: preview objectives before applying
+
+An optional native disclosure after the main decision chart presents four illustrative capital/retention pairs. `previewCapitalObjectives` validates and detaches the current complete record, changes only the two objectives, and calls the existing record and financial methods. It contains no separate eligibility arithmetic. Preview state is local to the controller and separate from the import preview; it is excluded from records, URLs and exports.
+
+Each preview compares the current and proposed eligibility of the current submitted plans. Applying a different pair changes both objectives in one recalculation, preserves every other input and decision field, and invalidates earlier verification. Any intervening edit discards the preview. An invalid draft cannot be previewed or applied. The current pair is a disabled no-op, and an empty eligible set is an explicit valid result. A missing equity bridge still permits objective screening while modeled allocations remain unavailable. Returning to the original pair always requires an explicit action.
+
+The `#capital-explore` entry opens this panel. Navigating to that anchor within an existing decision preserves its draft. Native disclosure semantics, visible keyboard focus after Apply, polite status updates and responsive comparison rows keep the additional interaction optional. The shared desktop navigation wraps when enlarged text needs more width; the phone navigation retains its scrollable rail.
+
+## 20 October refinement: distinguish exact and qualified API agreement
+
+A captured finite-continuation case showed small Node/Chromium differences originating in the implementation-approximated `Math.expm1` primitive. The financial engines and API response remain unchanged. The browser now has three explicit comparison outcomes: exact, qualified rounding agreement, or mismatch. Exact agreement alone retains the verified checkmark.
+
+The separate comparison helper permits a relative difference of at most `32 * Number.EPSILON` only on documented FCFF-dependent output paths. Both numbers must be finite, nonzero and have the same sign; there is no absolute floor. Inputs, financial terms, ownership calculations, statuses, rankings, ties, crossovers, versions and structure remain exact. The complete [comparison policy](CAPITAL_STRATEGY.md#10-browser-and-api-comparison) explains the captured fixture and the limits of this policy. It is not a formal propagated-error bound, a financial-materiality threshold or proof of the cause of a later difference.
+
+Both completed states are invalidated by an edit. Pending requests use a neutral label, failed retries remove earlier completion labels, and revision/controller guards prevent late responses from approving a changed draft. No comparison rewrites the browser record or server response.

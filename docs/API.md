@@ -612,4 +612,6 @@ These outcomes return HTTP200 because the submitted inputs can be valid while th
 
 ### Portable decisions are a separate boundary
 
+The browser compares the complete response using a [separate verification policy](CAPITAL_STRATEGY.md#10-browser-and-api-comparison). Exact equality earns the verified badge. Only explicitly named modeled numeric outputs may receive a qualified rounding comparison; versions, the complete snapshot, quoted terms, ownership, categorical outcomes and all other fields remain exact. A qualified comparison is a distinct local UI state, not a change to this API response, the financial method, or the exported record. Either state is invalidated by later edits.
+
 The browser's capital record also contains analyst selection and reasoning. Its JSON import bound is256KiB, allowing the complete inspectable record even for maximum Unicode notes. Share links are limited to32,768 token characters and24,576 decoded bytes. Those larger document limits do not alter the numeric API's16KiB request limit. Imported stored analysis is recalculated, and an old API badge is not accepted as verification of the reopened decision.

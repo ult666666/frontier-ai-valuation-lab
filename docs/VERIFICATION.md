@@ -1,6 +1,27 @@
 # Release verification
 
-The latest presentation review appears first, followed by the **v4.0 local verification**. Earlier records retain their dates and scope. Numerical agreement, browser behavior, printable-artifact review and deployment checks are separate evidence. Consult the [v4.0 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v4.0.0) for that release's exact-commit production and native-desktop observations.
+The latest interaction and presentation reviews appear first, followed by the **v4.0 local verification**. Earlier records retain their dates and scope. Numerical agreement, browser behavior, printable-artifact review and deployment checks are separate evidence. Consult the [v4.0 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v4.0.0) for that release's exact-commit production and native-desktop observations.
+
+## 20 October 2026 objective preview and API comparison
+
+The [dated local review record](verification/objective-preview-20261020.json) binds the optional **Try the tradeoff** interaction, its API-comparison policy, navigation correction, tests and actual [1344 × 1087 product capture](demo-objective-preview-20261020.png) to their reviewed bytes. The portfolio gateway and generated Frontier case link directly to this interaction and explain the same preview/apply sequence.
+
+| Verification layer | Fresh result | Scope |
+| --- | --- | --- |
+| Node tests and production build | **347 passed; 0 failed or skipped; build passed** | Existing model/API/transport/record gates plus detached previews and restricted numeric comparison |
+| Complete Capital browser workflow | **109 assertions; 0 page errors** | Real API, exact or qualified state, stale-response protection, deliberate failure/mismatch rejection, import/share/export, precision labels, keyboard, mobile and zoom |
+| Independent objective and navigation browser review | **380 assertions; 0 page or failed-request errors** | Full preview lifecycle, current/custom/imported/shared decisions, pending real responses, exact state preservation, invalid and missing-bridge cases, precision labels, responsive layout, five workspace headers and the Overview zoom correction |
+| Portfolio | **49 structural tests; 4 generated cases; 30 staged public files verified** | Optional preview link, coherent case guide, exact/qualified comparison wording and preserved publication inventory |
+
+The independent browser pass uses actual API responses, with a local forwarder delaying completed response bytes for freshness checks; it fabricates no API results and uses no browser route mocks. The separate public browser regression deliberately injects an unavailable response and an altered result to prove that they fail. These are different checks. Earlier partial/focused runs are retained as development evidence and are not added to the fresh totals above.
+
+Previewing validates a detached copy of the current complete decision and changes no draft, reasoning, selection, URL, export or verification state. Apply changes only the two objectives, uses the existing calculation path, and invalidates earlier verification. A same-pair action is disabled; an intervening edit clears the preview. Checks cover all four worked objective pairs, six long plan labels, visible focus after Apply and both boundary-label corrections. At 1440 pixels, navigation remains one row at normal size and wraps at 200% enlargement. All seven links on each of five workspace headers remain reachable by keyboard on the 320/600-pixel scroll rails. The Overview financing-heading row also wraps its worked-example button, closing an inherited 200% overflow while preserving normal/mobile geometry. The broader page and preview checks also cover 390 and 768 pixels.
+
+A finite-continuation browser/API comparison exposed a small runtime difference in `Math.expm1`. The [captured synthetic regression fixture](../tests/fixtures/capital-runtime-rounding.json) retains both complete analyses and the intermediate values. The [documented comparison policy](CAPITAL_STRATEGY.md#10-browser-and-api-comparison) reserves the exact-verification checkmark for exact equality. A separate qualified state permits only restricted modeled-output differences within `32 × Number.EPSILON` relative error, with exact inputs, financing terms, ownership, rankings and structure. This policy does not change the financial engine or exported data, and is not a formal propagated-error bound or a financial-materiality threshold. Failed retries clear prior completion labels.
+
+All **87 protected baseline library, data, download, existing Node-test and API/build/package files** checked remain byte-identical to `8e99f6b`. The new preview and comparison modules compose those existing methods. Application **4.0.0**, capital method **1.0.0**, financial engine **3.0.0**, the **18 October 2026** financial snapshot and historical release assets retain their identities.
+
+This is scoped Chromium and AI-assisted engineering review, not a complete accessibility certification or an external financial audit. The local record establishes the checks above; GitHub CI, deployed commit identity, ordinary HTTPS and a live visitor journey are observed separately after publication.
 
 ## 20 October 2026 visual refresh
 

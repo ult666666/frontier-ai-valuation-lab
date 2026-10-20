@@ -62,8 +62,25 @@
             <div class="policy-field compact-field"><label for="capital-holder">Tracked holder before round <span>%</span></label><input id="capital-holder" type="text" inputmode="decimal" value="10"><p class="control-help">Scales the holder allocation. The comparison rule evaluates the whole existing cohort.</p></div>
           </fieldset>
         </form>
+        <a class="objective-explore-link" href="#capital-explore">Preview an objective change <span aria-hidden="true">↓</span></a>
       </aside>
     </section>
+
+    <details id="capital-explore" class="objective-explorer">
+      <summary><span><span class="objective-explorer-kicker">Optional / Explore the decision</span><strong>Try the tradeoff.</strong><span class="objective-explorer-intro">What changes when you ask for more capital or keep more ownership?</span></span><span class="objective-explorer-toggle" aria-hidden="true"></span></summary>
+      <div class="objective-explorer-body">
+        <p class="objective-explorer-context">Four illustrative objective pairs. Each preview uses the plans and scenarios in your current decision. Choose a pair, inspect who qualifies, then apply it when ready.</p>
+        <div id="capital-objective-choices" class="objective-choices" role="group" aria-label="Preview an illustrative capital and retention objective pair"></div>
+        <p id="capital-objective-preview-status" class="objective-preview-status" role="status" aria-live="polite" aria-atomic="true">Loading the current decision before previewing objectives.</p>
+        <section id="capital-objective-preview" class="objective-preview" aria-labelledby="capital-objective-preview-title" hidden>
+          <div class="objective-preview-heading"><div><p class="eyebrow">Preview / Current submitted plans</p><h2 id="capital-objective-preview-title">Plans meeting both objectives</h2></div><span class="objective-preview-badge">Preview only</span></div>
+          <div class="objective-preview-readouts"><div><span>Current decision</span><strong id="capital-objective-current-count">—</strong><p id="capital-objective-current-pair"></p></div><span class="objective-preview-arrow" aria-hidden="true">→</span><div><span>With this objective pair</span><strong id="capital-objective-proposed-count">—</strong><p id="capital-objective-proposed-pair"></p></div></div>
+          <div id="capital-objective-preview-plans" class="objective-preview-plans"></div>
+          <p id="capital-objective-preview-context" class="objective-preview-context"></p>
+          <div class="objective-preview-actions"><button id="capital-objective-preview-apply" class="button button-dark" type="button" disabled>Apply this objective pair</button><p>Apply updates the two objectives together. Your plan terms, scenarios and decision notes stay intact.</p></div>
+        </section>
+      </div>
+    </details>
 
     <section class="capital-section" id="capital-plans" aria-labelledby="plans-title">
       <div class="section-heading"><div><p class="eyebrow">02 / Compare the alternatives</p><h2 id="plans-title">Different terms.<br>Explicit consequences.</h2></div><div class="section-note"><p>Enter each quote independently from the operating model. Every plan uses the same company scenarios and hypothetical balances.</p><button id="capital-add-plan" class="button button-outline" type="button" data-ready-control disabled>Add a financing plan <span aria-hidden="true">+</span></button></div></div>
@@ -102,6 +119,7 @@
     </section>
 
     <section class="portable-section" aria-labelledby="portable-title"><div class="portable-heading"><div><p class="eyebrow">A complete, reproducible record</p><h2 id="portable-title">Take the analysis with you.</h2></div><p>JSON reopens the exact record. The standalone HTML brief can be read offline or printed to PDF.</p></div><div class="portable-actions"><button id="capital-json" class="button button-dark" type="button" disabled>Download decision JSON <span aria-hidden="true">↓</span></button><button id="capital-brief" class="button button-dark" type="button" disabled>Download decision brief <span aria-hidden="true">↓</span></button><button id="capital-share" class="button button-outline" type="button" disabled>Share this exact decision <span aria-hidden="true">↗</span></button></div><p class="small-note">A shared link includes the analyst text you entered. Larger valid decisions remain downloadable even when they exceed the link-size limit.</p><p id="capital-portable-status" class="small-note" role="status"></p><div id="capital-share-area" class="share-area" hidden><label for="capital-share-url">Complete decision link</label><textarea id="capital-share-url" rows="3" readonly spellcheck="false"></textarea><button id="capital-select-share" class="text-button" type="button">Select the whole link</button></div><div class="verification-strip"><div><strong>Check the deployed calculation</strong><p id="capital-api-status" data-state="unverified" role="status">Calculated in this browser. Server verification is available.</p></div><button id="capital-verify" class="button button-outline" type="button" disabled>Verify complete analysis <span aria-hidden="true">↗</span></button></div>
+      <p class="small-note"><a href="https://github.com/ult666666/frontier-ai-valuation-lab/blob/main/docs/CAPITAL_STRATEGY.md#10-browser-and-api-comparison" target="_blank" rel="noopener noreferrer">How exact and rounding comparisons differ <span aria-hidden="true">↗</span></a></p>
       <details class="import-details"><summary>Open a saved decision</summary><div class="import-body"><label for="capital-import-file">Capital decision JSON <span>Up to 256 KiB</span></label><input id="capital-import-file" type="file" accept=".json,application/json" data-ready-control disabled><p id="capital-import-status" class="small-note" role="status">The file is validated and previewed before it can replace your current draft.</p><div id="capital-import-preview" class="import-preview" hidden><h3>Review the incoming decision</h3><p id="capital-import-description"></p><p id="capital-import-selection"></p><p class="small-note">Nothing has changed yet. Applying this record replaces the current page’s draft. Stored result values are recomputed from the validated inputs.</p><div class="import-actions"><button id="capital-import-apply" class="button button-dark" type="button">Apply this decision</button><button id="capital-import-cancel" class="button button-outline" type="button">Keep current draft</button></div></div></div></details>
     </section>
 

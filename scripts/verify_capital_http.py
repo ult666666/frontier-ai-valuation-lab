@@ -19,7 +19,7 @@ from verify_financing_http import ROOT, main as verify_http
 REQUIRED = (
     "capital.html", "capital.js", "capital.css",
     "lib/capital-strategy.js", "lib/capital-chart.js", "lib/capital-record.js",
-    "lib/capital-share.js", "lib/capital-brief.js", "lib/capital-example.js",
+    "lib/capital-share.js", "lib/capital-brief.js", "lib/capital-example.js", "lib/capital-objectives.js", "lib/capital-verification.js",
     "downloads/Frontier_AI_Capital_Decision.json",
     "downloads/Frontier_AI_Capital_Decision.html",
     "downloads/Frontier_AI_Capital_Decision.pdf",

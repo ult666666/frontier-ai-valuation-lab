@@ -36,6 +36,10 @@
   .app-header .header-inner{padding:14px 18px 7px}
   .app-header .brand svg{width:25px;height:25px;flex-basis:25px}
 }
+/* Wrap when zoom reduces usable line width; phones retain their scroll rail. */
+@media screen and (min-width:701px){
+  .app-header .app-nav{flex-wrap:wrap;row-gap:0}
+}
 @media screen and (max-width:700px){
   .app-header .app-nav{display:flex;justify-content:flex-start;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#607f73 #102333;padding:4px 6px 6px;margin-inline:16px;font-size:12px}
   .app-header .app-nav>a{flex:0 0 auto;min-height:44px;justify-content:center;padding:0 2px;scroll-margin-inline:6px}

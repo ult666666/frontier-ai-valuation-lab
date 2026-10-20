@@ -1,0 +1,5329 @@
+{
+  "schema": 1,
+  "purpose": "Dated local review of objective previews, restricted API comparison and responsive navigation",
+  "recordedAtUtc": "2026-10-20T19:19:13.363830+00:00",
+  "applicationVersion": "4.0.0",
+  "capitalMethodVersion": "1.0.0",
+  "financialEngineVersion": "3.0.0",
+  "valuationDate": "2026-10-18",
+  "sourceBaseline": {
+    "application": "8e99f6b4d753a1d4f8fce8167984eae30ec8d628",
+    "portfolio": "ef1a9d8bccb9f2575c1bac23aaf49f46b70a6ddd"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "chromium": "153.0.8010.0",
+    "playwright": "1.62.1"
+  },
+  "nodeGate": {
+    "command": "npm run verify",
+    "passed": 347,
+    "failed": 0,
+    "skipped": 0,
+    "build": "passed",
+    "log": {
+      "path": "qa-local/objective-preview-20261020/app-verification-publish-authorized.log",
+      "bytes": 34653,
+      "sha256": "835da14936d4e984b60a264842900f4232962eef5708cc2d70cf48fc13524b5a"
+    }
+  },
+  "capitalBrowser": {
+    "recordedAtUtc": "2026-10-20T19:09:41.304Z",
+    "assertions": 109,
+    "status": "passed",
+    "pageErrors": [],
+    "harness": "tests/capital-browser.mjs",
+    "checks": [
+      "Capital Strategy is served as a complete page",
+      "The complete seven-destination navigation is present",
+      "Capital Studio is the current navigation destination",
+      "The worked route preserves the introduction and header on arrival",
+      "The worked decision has three editable plans",
+      "The worked decision has three explicit scenarios",
+      "Two worked plans meet the explicit capital and retention objectives",
+      "Plan C shows its capital shortfall",
+      "The plan plot has an accessible title and description",
+      "The plot identifies both financial quantities",
+      "The worked A/B crossover is shown as 635 billion",
+      "The full worked matrix includes every scenario and plan",
+      "Model-conditioned pricing diagnostics stay separate from two eligible plans",
+      "The optional objective preview starts collapsed",
+      "The native objective disclosure opens by keyboard",
+      "A preview reports the eligible current plan",
+      "Previewing does not change the main decision eligibility",
+      "Previewing preserves the exact current URL",
+      "Previewing makes no calculation API request",
+      "An already-current objective pair has no Apply action",
+      "The stricter objective preview has no eligible submitted plans",
+      "Apply updates both objectives and the range together",
+      "The applied pair is reflected in the complete decision",
+      "Objective Apply preserves the analyst selection",
+      "Objective Apply preserves exact reasoning text",
+      "An invalid edit clears the old objective preview",
+      "An invalid edit prevents stale objective Apply",
+      "Restoring objectives is explicit and recovers the original eligibility",
+      "A rounded retention tie explains its full-precision failure",
+      "A small capital shortfall is never reported as a zero shortfall",
+      "The native objective disclosure closes by keyboard",
+      "The analyst can explicitly choose a plan independently of the comparison rule",
+      "A 90-percent floor leaves only Plan A eligible",
+      "Plan B explicitly misses the changed ownership floor",
+      "A 30-billion objective with 90-percent retention has no eligible plan",
+      "No eligible plan is an ordinary valid analytical result",
+      "The comparison explicitly reports no eligible plan",
+      "Relaxing the retention floor restores an eligible plan",
+      "An input change preserves the analyst selection",
+      "Input edits mark existing reasoning for review",
+      "Finite continuation is preserved in the exact snapshot",
+      "Finite continuation affects the scenario analysis",
+      "Editing one precise operating input leaves every other assumption exact",
+      "The operating-model handoff preserves every custom assumption and bridge",
+      "The horizon handoff preserves the selected finite cutoff",
+      "A fourth editable plan is supported",
+      "Added plans recalculate through the complete snapshot",
+      "Changing the quote basis keeps the entered quote fixed",
+      "A post-money quote derives the correct pre-money price",
+      "Unicode reasoning survives the exact share codec",
+      "Markup-like reasoning stays inert",
+      "The clipboard fallback exposes a selectable complete link",
+      "A shared decision restores notes in a fresh browser",
+      "A shared decision restores every added plan",
+      "The exact shared route survives reload",
+      "The real complete API result passes the documented exact or qualified comparison",
+      "Exact verification is reserved for exact complete equality",
+      "The qualified result explains that exact equality was not established",
+      "The real API receives the complete current numeric snapshot",
+      "Analyst prose is excluded from the computation request",
+      "A failed retry clears the earlier exact or qualified completion label",
+      "An edit immediately removes the previous verification",
+      "A real server response can remain pending without a verification claim",
+      "A pending retry uses a neutral comparison label",
+      "A late response cannot verify a newer edited draft",
+      "A mismatch in one nested matrix result fails full verification",
+      "Import preview leaves the current draft unchanged",
+      "Explicit import applies the validated complete decision",
+      "Failed import preserves the current decision",
+      "JSON export carries all exact inputs",
+      "The standalone brief retains the analyst reasoning",
+      "The standalone brief contains no executable script",
+      "Markup-like reasoning is escaped in the standalone brief",
+      "Missing bridge keeps ownership screening available",
+      "Missing bridge makes the modeled allocation rule unavailable",
+      "An invalid input pauses the complete decision",
+      "An invalid input clears the old graph",
+      "An invalid input disables potentially misleading outputs",
+      "The maximum browser fixture exercises the larger complete-record import guard",
+      "The full 9-scenario and 6-plan decision imports through explicit preview and apply",
+      "Plan and scenario additions stop at the supported finite capacities",
+      "Maximum Unicode reasoning is retained exactly",
+      "Oversized link sharing explains the complete JSON fallback",
+      "A share-size limit preserves valid complete exports",
+      "The JSON fallback preserves the entire maximum snapshot and Unicode decision",
+      "Maximum Unicode labels remain contained on a phone",
+      "An oversized import preserves the current complete draft",
+      "A malformed hash change preserves the open decision",
+      "A malformed shared decision does not silently substitute the worked example",
+      "The explicit reset recovers from a malformed shared record",
+      "Choosing another worked example preserves the edited quote, objective, fourth plan and rationale",
+      "The queued example selection leaves the complete exact decision unchanged",
+      "The current company remains explicit while another example is queued",
+      "The replacement action names the queued example and explains its scope",
+      "Only the explicit replace action loads the selected company and default plan inputs",
+      "The explicit company example uses its matching operating presets",
+      "Explicit replacement clearly opens fresh illustrative reasoning",
+      "A 100-percent retention floor rejects all positive-capital worked offers",
+      "An explicit reset focuses the decision for keyboard continuation",
+      "Adding a scenario creates an editable complete operating case",
+      "Removing a scenario returns focus to the add control",
+      "The workspace fits 320 CSS pixels without page overflow",
+      "The workspace fits 390 CSS pixels without page overflow",
+      "The workspace fits 768 CSS pixels without page overflow",
+      "The workspace fits 1440 CSS pixels without page overflow",
+      "The decision reflows under 200-percent CSS zoom",
+      "The native ownership range is keyboard reachable",
+      "Keyboard adjustment changes the explicit ownership constraint",
+      "No browser page errors occurred"
+    ],
+    "report": {
+      "path": "qa-local/objective-preview-20261020/capital-regression-final/report.json",
+      "bytes": 9227,
+      "sha256": "6d88f48fbb4a817cc5dcdaba6be214396ae8631cb277310b553c86094cadadaf"
+    },
+    "faultInjection": "A deliberate 503 retry and a changed nested matrix value test rejection. Real valid requests use the shared API handler."
+  },
+  "independentBrowser": {
+    "startedAtUtc": "2026-10-20T19:17:06.854Z",
+    "finishedAtUtc": "2026-10-20T19:18:06.267Z",
+    "counts": {
+      "total": 380,
+      "passed": 380,
+      "failed": 0
+    },
+    "pageErrors": [],
+    "failedRequests": [],
+    "sourceBinding": {
+      "before": {
+        "head": "8e99f6b4d753a1d4f8fce8167984eae30ec8d628",
+        "files": {
+          "public/capital.html": "e65ced7cdd0258dac95e9234d002757001c6ab3df527f293c257c631ce274821",
+          "public/capital.css": "9ae7fa16d5cfa81f620fd14e4c7052e186e49959fadc2590f964dc7f9449a542",
+          "public/capital.js": "9eb369da59d754adbf8fc277bc51b65fa36770948a899f55ab9e97630c37cf0d",
+          "public/lib/capital-objectives.js": "a46ce8f23e977b7042177832b9a466faa107a20bd04dfbe78dbabe54247676f7",
+          "public/lib/capital-verification.js": "a3dab87f6032a318dcd72e277743bdea3d53f2276dc0c76331b610fe752b2ea9",
+          "public/shell.css": "089e94bbf2df32d0c0f96774e23c162fb2ab6182b74c2a21f5124f3ea3682bfb",
+          "public/shell.js": "a4651206b2dda5d70d19f60730350fb0496b32c365e88fce36e2417ee96b69d4",
+          "public/index.html": "86bd5d1d93e5816715dffb3fead06057450542cd1281ad09ab328e9b837dd4c5",
+          "public/styles.css": "69cd753d8112fc438c9524d7972b927fce7417e26da6860a0adc3faecaef26b7",
+          "public/experience.css": "a44cc5260391159ce398650cbf17302078208f9d3ad8e7c6ecb7961bf101b610",
+          "public/evidence-context.css": "3b8936b1535a6871777915d9e9ab23e10cca83b705c36d4e5fb83536f3c91d08",
+          "public/financing.css": "bcecf745b726388fc7cfae697f690a1c4dca89c355612a5c09a91714a7c1177c",
+          "public/app.js": "02461630761ae5588d860032db682a68e4ec273eeaf1757e53c79284449c4e21",
+          "public/thesis.html": "b8eea25bfd3beb948c5238433f300ae168133c1f7fe594781e8f003e9f5c14ab",
+          "public/thesis.css": "5d76a1bcf935fc50381448df5a08e34727245f423f854e2cbc98812dec583607",
+          "public/thesis.js": "61aed0f4ceddc44f35aae51733258bac523cb8363bdc44348304effd3e568634",
+          "public/horizon.html": "e353523c56d4e385b85fa9cae00e313ff59b452dda03ea9a0ad3078fe68254cd",
+          "public/horizon.css": "e39dc76af2e51f7f095d630afccd0ed3e3446074b3a39255339bbf83678dd7c9",
+          "public/horizon.js": "f21624bc302cdef7321c193e934c25a03b9173946ab7bc14064750f966200478",
+          "public/casebook.html": "d23d19d1e8028d260e60bdc5a0ac1d82e48313f6094ca77ee5e084f8b241f065",
+          "public/casebook.css": "5f7df65a0fbb1074fe1728a19daa223336ceddc49ab4fd18edc86866ea7e8108",
+          "public/casebook.js": "c5768115b218962d0fd04db27715779b5d0f3cccff0ff67f9c6f8c5dc3545c22",
+          "public/lib/capital-example.js": "5082804eceaaae470fb4e1f205ef9b7402f21c997d5ce995b497ad7b487cf916",
+          "public/lib/release.js": "ca5c5d7e2169ab76b4a0d2ca3af7c08d2b37bd467d1038d3c0912ef3ee87862a",
+          "public/data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+          "server.js": "501010c8c7c2dc94acf96244360f2dfeb3d0c6af051322dc1d5b9ea1b01924a0",
+          "lib/http.js": "917591c4154a8451b45ec4a1e2e1e76548da9c514aa6d62bef3bc8b208c97d47",
+          "public/lib/capital-strategy.js": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842",
+          "public/lib/capital-record.js": "d194fd1c8ca756428f64dd3411c527060a76efa1a56b56b5685947fa654f45ac",
+          "public/lib/capital-share.js": "c857667b233397345303791d4e9added14fb8153c21d7f27811bde9221a010a7",
+          "public/lib/capital-brief.js": "a49176acf1d2752365cca33b624aa4683061fe1a3873a11b7fc352e8d7c4d590",
+          "public/lib/capital-chart.js": "07fc6e79d1ce5c4c5acc973492d3a8594ddf802150b5bd22a7fb6d9ec3294a74",
+          "public/downloads/Frontier_AI_Capital_Decision.html": "f747151a109fe425bf73f2cc9bf81a85fc2150df5bf3e7d2ebfff928c57d5552",
+          "public/downloads/Frontier_AI_Capital_Decision.pdf": "2249a7176594ed3d2ae1b9e6a6406d14ddfbf37ec9b27573f4bc9b08bc1bc8e5",
+          "public/downloads/Frontier_AI_Capital_Decision.json": "4d26443bd387a7dda0b8796f4977bb234c0697f0828755644a821aec5c608684",
+          "public/downloads/Frontier_AI_Capital_Strategy_Package.zip": "df82c7d6b3000bc26e7fa4c17dba4a7b853f6ff1719acdfd8dedf218725c9195"
+        }
+      },
+      "after": {
+        "head": "8e99f6b4d753a1d4f8fce8167984eae30ec8d628",
+        "files": {
+          "public/capital.html": "e65ced7cdd0258dac95e9234d002757001c6ab3df527f293c257c631ce274821",
+          "public/capital.css": "9ae7fa16d5cfa81f620fd14e4c7052e186e49959fadc2590f964dc7f9449a542",
+          "public/capital.js": "9eb369da59d754adbf8fc277bc51b65fa36770948a899f55ab9e97630c37cf0d",
+          "public/lib/capital-objectives.js": "a46ce8f23e977b7042177832b9a466faa107a20bd04dfbe78dbabe54247676f7",
+          "public/lib/capital-verification.js": "a3dab87f6032a318dcd72e277743bdea3d53f2276dc0c76331b610fe752b2ea9",
+          "public/shell.css": "089e94bbf2df32d0c0f96774e23c162fb2ab6182b74c2a21f5124f3ea3682bfb",
+          "public/shell.js": "a4651206b2dda5d70d19f60730350fb0496b32c365e88fce36e2417ee96b69d4",
+          "public/index.html": "86bd5d1d93e5816715dffb3fead06057450542cd1281ad09ab328e9b837dd4c5",
+          "public/styles.css": "69cd753d8112fc438c9524d7972b927fce7417e26da6860a0adc3faecaef26b7",
+          "public/experience.css": "a44cc5260391159ce398650cbf17302078208f9d3ad8e7c6ecb7961bf101b610",
+          "public/evidence-context.css": "3b8936b1535a6871777915d9e9ab23e10cca83b705c36d4e5fb83536f3c91d08",
+          "public/financing.css": "bcecf745b726388fc7cfae697f690a1c4dca89c355612a5c09a91714a7c1177c",
+          "public/app.js": "02461630761ae5588d860032db682a68e4ec273eeaf1757e53c79284449c4e21",
+          "public/thesis.html": "b8eea25bfd3beb948c5238433f300ae168133c1f7fe594781e8f003e9f5c14ab",
+          "public/thesis.css": "5d76a1bcf935fc50381448df5a08e34727245f423f854e2cbc98812dec583607",
+          "public/thesis.js": "61aed0f4ceddc44f35aae51733258bac523cb8363bdc44348304effd3e568634",
+          "public/horizon.html": "e353523c56d4e385b85fa9cae00e313ff59b452dda03ea9a0ad3078fe68254cd",
+          "public/horizon.css": "e39dc76af2e51f7f095d630afccd0ed3e3446074b3a39255339bbf83678dd7c9",
+          "public/horizon.js": "f21624bc302cdef7321c193e934c25a03b9173946ab7bc14064750f966200478",
+          "public/casebook.html": "d23d19d1e8028d260e60bdc5a0ac1d82e48313f6094ca77ee5e084f8b241f065",
+          "public/casebook.css": "5f7df65a0fbb1074fe1728a19daa223336ceddc49ab4fd18edc86866ea7e8108",
+          "public/casebook.js": "c5768115b218962d0fd04db27715779b5d0f3cccff0ff67f9c6f8c5dc3545c22",
+          "public/lib/capital-example.js": "5082804eceaaae470fb4e1f205ef9b7402f21c997d5ce995b497ad7b487cf916",
+          "public/lib/release.js": "ca5c5d7e2169ab76b4a0d2ca3af7c08d2b37bd467d1038d3c0912ef3ee87862a",
+          "public/data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+          "server.js": "501010c8c7c2dc94acf96244360f2dfeb3d0c6af051322dc1d5b9ea1b01924a0",
+          "lib/http.js": "917591c4154a8451b45ec4a1e2e1e76548da9c514aa6d62bef3bc8b208c97d47",
+          "public/lib/capital-strategy.js": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842",
+          "public/lib/capital-record.js": "d194fd1c8ca756428f64dd3411c527060a76efa1a56b56b5685947fa654f45ac",
+          "public/lib/capital-share.js": "c857667b233397345303791d4e9added14fb8153c21d7f27811bde9221a010a7",
+          "public/lib/capital-brief.js": "a49176acf1d2752365cca33b624aa4683061fe1a3873a11b7fc352e8d7c4d590",
+          "public/lib/capital-chart.js": "07fc6e79d1ce5c4c5acc973492d3a8594ddf802150b5bd22a7fb6d9ec3294a74",
+          "public/downloads/Frontier_AI_Capital_Decision.html": "f747151a109fe425bf73f2cc9bf81a85fc2150df5bf3e7d2ebfff928c57d5552",
+          "public/downloads/Frontier_AI_Capital_Decision.pdf": "2249a7176594ed3d2ae1b9e6a6406d14ddfbf37ec9b27573f4bc9b08bc1bc8e5",
+          "public/downloads/Frontier_AI_Capital_Decision.json": "4d26443bd387a7dda0b8796f4977bb234c0697f0828755644a821aec5c608684",
+          "public/downloads/Frontier_AI_Capital_Strategy_Package.zip": "df82c7d6b3000bc26e7fa4c17dba4a7b853f6ff1719acdfd8dedf218725c9195"
+        }
+      },
+      "unchangedDuringRun": true
+    },
+    "checks": [
+      {
+        "name": "Unchanged financial/report contract: public/lib/capital-strategy.js",
+        "pass": true
+      },
+      {
+        "name": "Unchanged financial/report contract: public/lib/capital-record.js",
+        "pass": true
+      },
+      {
+        "name": "Unchanged financial/report contract: public/lib/capital-share.js",
+        "pass": true
+      },
+      {
+        "name": "Unchanged financial/report contract: public/lib/capital-brief.js",
+        "pass": true
+      },
+      {
+        "name": "Unchanged financial/report contract: public/lib/capital-chart.js",
+        "pass": true
+      },
+      {
+        "name": "Unchanged financial/report contract: public/downloads/Frontier_AI_Capital_Decision.html",
+        "pass": true
+      },
+      {
+        "name": "Unchanged financial/report contract: public/downloads/Frontier_AI_Capital_Decision.pdf",
+        "pass": true
+      },
+      {
+        "name": "Unchanged financial/report contract: public/downloads/Frontier_AI_Capital_Decision.json",
+        "pass": true
+      },
+      {
+        "name": "Unchanged financial/report contract: public/downloads/Frontier_AI_Capital_Strategy_Package.zip",
+        "pass": true
+      },
+      {
+        "name": "Observed edited draft: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Observed edited draft: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Observed edited draft: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Observed edited draft: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Observed edited draft: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Observed edited draft: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Observed edited draft: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Observed edited draft: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Observed edited draft: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Observed edited draft: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "Preview preserves exact exported record bytes",
+        "pass": true
+      },
+      {
+        "name": "Preview preserves current UI, URL, notes, import and verification state",
+        "pass": true
+      },
+      {
+        "name": "Preview makes no calculation API request",
+        "pass": true
+      },
+      {
+        "name": "An already-current objective pair cannot invalidate verified work",
+        "pass": true
+      },
+      {
+        "name": "No-op preview retains verified badge",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88 exports the exact engine record",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-88 preserves analyst selection",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 25-90 (1)",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90 exports the exact engine record",
+        "pass": true
+      },
+      {
+        "name": "Pair 25-90 preserves analyst selection",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 30-90 (2)",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90 exports the exact engine record",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-90 preserves analyst selection",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 30-88 (3)",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88 exports the exact engine record",
+        "pass": true
+      },
+      {
+        "name": "Pair 30-88 preserves analyst selection",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 30-90 (4)",
+        "pass": true
+      },
+      {
+        "name": "Apply commits no intermediate one-field eligibility result",
+        "pass": true
+      },
+      {
+        "name": "Apply updates both controls and the retention slider",
+        "pass": true
+      },
+      {
+        "name": "Apply invalidates prior server verification",
+        "pass": true
+      },
+      {
+        "name": "Apply marks prior reasoning for review",
+        "pass": true
+      },
+      {
+        "name": "Apply hides prior share output",
+        "pass": true
+      },
+      {
+        "name": "Apply removes obsolete encoded share URL",
+        "pass": true
+      },
+      {
+        "name": "Atomic Apply preserves every non-target record field",
+        "pass": true
+      },
+      {
+        "name": "Custom names: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Custom names: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Custom names: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Custom names: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Custom names: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Custom names: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Custom names: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Custom names: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Custom names: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Custom names: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "A plan edit clears or disables the old preview",
+        "pass": true
+      },
+      {
+        "name": "Edited current plans: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Edited current plans: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Edited current plans: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Edited current plans: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Edited current plans: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Edited current plans: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Edited current plans: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Edited current plans: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Edited current plans: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Edited current plans: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 25-90 (5)",
+        "pass": true
+      },
+      {
+        "name": "Custom Apply retains the current edited draft",
+        "pass": true
+      },
+      {
+        "name": "Invalid quote suppresses cached eligibility claims",
+        "pass": true
+      },
+      {
+        "name": "Invalid draft cannot Apply an objective preview",
+        "pass": true
+      },
+      {
+        "name": "Invalid analyst prose also pauses preview and Apply",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge remains a valid ready draft",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge screen: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge screen: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge screen: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge screen: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge screen: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge screen: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge screen: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge screen: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge screen: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge screen: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 30-88 (6)",
+        "pass": true
+      },
+      {
+        "name": "Missing-bridge Apply preserves the absent bridge",
+        "pass": true
+      },
+      {
+        "name": "Missing bridge does not manufacture an allocation ranking",
+        "pass": true
+      },
+      {
+        "name": "Latency gate holds an actual successful current API result",
+        "pass": true
+      },
+      {
+        "name": "Actual endpoint receives current snapshot without analyst fields",
+        "pass": true
+      },
+      {
+        "name": "Preview leaves an in-flight verification pending",
+        "pass": true
+      },
+      {
+        "name": "Preview permits unchanged current verification to finish",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 25-90 (7)",
+        "pass": true
+      },
+      {
+        "name": "Released old response cannot verify an applied newer pair",
+        "pass": true
+      },
+      {
+        "name": "Pending-response Apply exports only the chosen policy change",
+        "pass": true
+      },
+      {
+        "name": "Import supersedes the old objective preview",
+        "pass": true
+      },
+      {
+        "name": "Imported current record: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Imported current record: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Imported current record: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Imported current record: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Imported current record: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Imported current record: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Imported current record: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Imported current record: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Imported current record: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Imported current record: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 30-90 (8)",
+        "pass": true
+      },
+      {
+        "name": "Imported record retains exact non-objective work",
+        "pass": true
+      },
+      {
+        "name": "Shared draft preview preserves full record",
+        "pass": true
+      },
+      {
+        "name": "Shared draft preview preserves URL and analyst state",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 30-88 (9)",
+        "pass": true
+      },
+      {
+        "name": "Shared draft Apply preserves full non-objective record",
+        "pass": true
+      },
+      {
+        "name": "Shared draft never imports a verification claim",
+        "pass": true
+      },
+      {
+        "name": "Explorer anchor does not reset an edited current draft",
+        "pass": true
+      },
+      {
+        "name": "Fresh explorer deep link opens the native disclosure",
+        "pass": true
+      },
+      {
+        "name": "Fresh explorer link preserves the canonical worked record",
+        "pass": true
+      },
+      {
+        "name": "Preview 320: page fits viewport",
+        "pass": true
+      },
+      {
+        "name": "Disclosure 320: visible keyboard focus",
+        "pass": true
+      },
+      {
+        "name": "Apply 320: visible keyboard focus",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 30-90 (10)",
+        "pass": true
+      },
+      {
+        "name": "Native disclosure closes by keyboard at 320",
+        "pass": true
+      },
+      {
+        "name": "Preview 390: page fits viewport",
+        "pass": true
+      },
+      {
+        "name": "Disclosure 390: visible keyboard focus",
+        "pass": true
+      },
+      {
+        "name": "Apply 390: visible keyboard focus",
+        "pass": true
+      },
+      {
+        "name": "Apply returns visible focus to pair 30-90 (11)",
+        "pass": true
+      },
+      {
+        "name": "Native disclosure closes by keyboard at 390",
+        "pass": true
+      },
+      {
+        "name": "Preview 768: page fits viewport",
+        "pass": true
+      },
+      {
+        "name": "Disclosure 768: visible keyboard focus",
+        "pass": true
+      },
+      {
+        "name": "Apply 768: visible keyboard focus",
+        "pass": true
+      },
+      {
+        "name": "Native disclosure closes by keyboard at 768",
+        "pass": true
+      },
+      {
+        "name": "Preview 1440: page fits viewport",
+        "pass": true
+      },
+      {
+        "name": "Disclosure 1440: visible keyboard focus",
+        "pass": true
+      },
+      {
+        "name": "Apply 1440: visible keyboard focus",
+        "pass": true
+      },
+      {
+        "name": "Native disclosure closes by keyboard at 1440",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: preview includes exact plan name six-3",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: current versus proposed status for six-3",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: preview includes exact plan name six-4",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: current versus proposed status for six-4",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: preview includes exact plan name six-5",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: current versus proposed status for six-5",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 320: page fits viewport",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: preview includes exact plan name six-3",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: current versus proposed status for six-3",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: preview includes exact plan name six-4",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: current versus proposed status for six-4",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: preview includes exact plan name six-5",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: current versus proposed status for six-5",
+        "pass": true
+      },
+      {
+        "name": "Six long plans 390: page fits viewport",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: explanation avoids a rounded contradiction",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: display precision is disclosed",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: exact export remains unchanged",
+        "pass": true
+      },
+      {
+        "name": "rounded-retention: page fits viewport",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: preview targets the chosen pair",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: preview displays the actual current-plan eligibility",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: preview count matches its current-plan result",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: current count remains separately truthful",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: preview includes exact plan name a",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: current versus proposed status for a",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: preview includes exact plan name b",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: current versus proposed status for b",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: preview includes exact plan name c",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: current versus proposed status for c",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: explanation avoids a rounded contradiction",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: display precision is disclosed",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: exact export remains unchanged",
+        "pass": true
+      },
+      {
+        "name": "small-capital-shortfall: page fits viewport",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 1440 zoom 1: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 1440 zoom 1: shared header stays in viewport",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 1440 zoom 1: every link fits its wrapped navigation",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 1440 zoom 1: exactly one current destination",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 1440 zoom 1: Capital page reflows without overflow",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 1440 zoom 2: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 1440 zoom 2: shared header stays in viewport",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 1440 zoom 2: every link fits its wrapped navigation",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 1440 zoom 2: exactly one current destination",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 1440 zoom 2: Capital page reflows without overflow",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 320: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 320: navigation rail stays inside viewport",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 320: horizontal overflow is contained by the rail",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 320: keyboard exposes Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 320: keyboard exposes Overview",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 320: keyboard exposes Model",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 320: keyboard exposes Thesis Lab",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 320: keyboard exposes Value Horizon",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 320: keyboard exposes Casebook",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 320: keyboard exposes Evidence",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 600: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 600: navigation rail stays inside viewport",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 600: horizontal overflow is contained by the rail",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 600: keyboard exposes Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 600: keyboard exposes Overview",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 600: keyboard exposes Model",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 600: keyboard exposes Thesis Lab",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 600: keyboard exposes Value Horizon",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 600: keyboard exposes Casebook",
+        "pass": true
+      },
+      {
+        "name": "capital navigation 600: keyboard exposes Evidence",
+        "pass": true
+      },
+      {
+        "name": "index navigation 1440 zoom 1: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "index navigation 1440 zoom 1: shared header stays in viewport",
+        "pass": true
+      },
+      {
+        "name": "index navigation 1440 zoom 1: every link fits its wrapped navigation",
+        "pass": true
+      },
+      {
+        "name": "index navigation 1440 zoom 1: exactly one current destination",
+        "pass": true
+      },
+      {
+        "name": "index navigation 1440 zoom 1: Overview document fits the full viewport",
+        "pass": true
+      },
+      {
+        "name": "index navigation 1440 zoom 2: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "index navigation 1440 zoom 2: shared header stays in viewport",
+        "pass": true
+      },
+      {
+        "name": "index navigation 1440 zoom 2: every link fits its wrapped navigation",
+        "pass": true
+      },
+      {
+        "name": "index navigation 1440 zoom 2: exactly one current destination",
+        "pass": true
+      },
+      {
+        "name": "index navigation 1440 zoom 2: Overview document fits the full viewport",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: navigation rail stays inside viewport",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: horizontal overflow is contained by the rail",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: Overview document fits the full viewport",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: keyboard exposes Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: keyboard exposes Overview",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: keyboard exposes Model",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: keyboard exposes Thesis Lab",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: keyboard exposes Value Horizon",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: keyboard exposes Casebook",
+        "pass": true
+      },
+      {
+        "name": "index navigation 320: keyboard exposes Evidence",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: navigation rail stays inside viewport",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: horizontal overflow is contained by the rail",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: Overview document fits the full viewport",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: keyboard exposes Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: keyboard exposes Overview",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: keyboard exposes Model",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: keyboard exposes Thesis Lab",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: keyboard exposes Value Horizon",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: keyboard exposes Casebook",
+        "pass": true
+      },
+      {
+        "name": "index navigation 600: keyboard exposes Evidence",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 1440 zoom 1: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 1440 zoom 1: shared header stays in viewport",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 1440 zoom 1: every link fits its wrapped navigation",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 1440 zoom 1: exactly one current destination",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 1440 zoom 2: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 1440 zoom 2: shared header stays in viewport",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 1440 zoom 2: every link fits its wrapped navigation",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 1440 zoom 2: exactly one current destination",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 320: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 320: navigation rail stays inside viewport",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 320: horizontal overflow is contained by the rail",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 320: keyboard exposes Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 320: keyboard exposes Overview",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 320: keyboard exposes Model",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 320: keyboard exposes Thesis Lab",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 320: keyboard exposes Value Horizon",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 320: keyboard exposes Casebook",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 320: keyboard exposes Evidence",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 600: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 600: navigation rail stays inside viewport",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 600: horizontal overflow is contained by the rail",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 600: keyboard exposes Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 600: keyboard exposes Overview",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 600: keyboard exposes Model",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 600: keyboard exposes Thesis Lab",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 600: keyboard exposes Value Horizon",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 600: keyboard exposes Casebook",
+        "pass": true
+      },
+      {
+        "name": "thesis navigation 600: keyboard exposes Evidence",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 1440 zoom 1: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 1440 zoom 1: shared header stays in viewport",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 1440 zoom 1: every link fits its wrapped navigation",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 1440 zoom 1: exactly one current destination",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 1440 zoom 2: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 1440 zoom 2: shared header stays in viewport",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 1440 zoom 2: every link fits its wrapped navigation",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 1440 zoom 2: exactly one current destination",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 320: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 320: navigation rail stays inside viewport",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 320: horizontal overflow is contained by the rail",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 320: keyboard exposes Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 320: keyboard exposes Overview",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 320: keyboard exposes Model",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 320: keyboard exposes Thesis Lab",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 320: keyboard exposes Value Horizon",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 320: keyboard exposes Casebook",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 320: keyboard exposes Evidence",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 600: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 600: navigation rail stays inside viewport",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 600: horizontal overflow is contained by the rail",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 600: keyboard exposes Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 600: keyboard exposes Overview",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 600: keyboard exposes Model",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 600: keyboard exposes Thesis Lab",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 600: keyboard exposes Value Horizon",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 600: keyboard exposes Casebook",
+        "pass": true
+      },
+      {
+        "name": "horizon navigation 600: keyboard exposes Evidence",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 1440 zoom 1: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 1440 zoom 1: shared header stays in viewport",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 1440 zoom 1: every link fits its wrapped navigation",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 1440 zoom 1: exactly one current destination",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 1440 zoom 2: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 1440 zoom 2: shared header stays in viewport",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 1440 zoom 2: every link fits its wrapped navigation",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 1440 zoom 2: exactly one current destination",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 320: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 320: navigation rail stays inside viewport",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 320: horizontal overflow is contained by the rail",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 320: keyboard exposes Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 320: keyboard exposes Overview",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 320: keyboard exposes Model",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 320: keyboard exposes Thesis Lab",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 320: keyboard exposes Value Horizon",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 320: keyboard exposes Casebook",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 320: keyboard exposes Evidence",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 600: all seven destinations remain named",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 600: navigation rail stays inside viewport",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 600: horizontal overflow is contained by the rail",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 600: keyboard exposes Capital Studio",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 600: keyboard exposes Overview",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 600: keyboard exposes Model",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 600: keyboard exposes Thesis Lab",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 600: keyboard exposes Value Horizon",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 600: keyboard exposes Casebook",
+        "pass": true
+      },
+      {
+        "name": "casebook navigation 600: keyboard exposes Evidence",
+        "pass": true
+      },
+      {
+        "name": "Checked source remains unchanged during acceptance",
+        "pass": true
+      },
+      {
+        "name": "No uncaught page errors",
+        "pass": true
+      },
+      {
+        "name": "No unexpected failed network requests",
+        "pass": true
+      }
+    ],
+    "report": {
+      "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/report.json",
+      "bytes": 374073,
+      "sha256": "f640a89d4e09be6305090e19f6520c977c027941423026046e9eaacef41ba752"
+    },
+    "harness": {
+      "path": "qa-local/objective-preview-20261020/objective-preview-acceptance.mjs",
+      "bytes": 27414,
+      "sha256": "15c0f894c0c9556b3adfc578e552836ec306f73ba8ed424b3c73283430a33d15"
+    },
+    "adapter": {
+      "path": "qa-local/objective-preview-20261020/ui-adapter.mjs",
+      "bytes": 2954,
+      "sha256": "8638f3ab5a6302322433191339fdce544a4c6f8369ce2954bec9b77140f1db00"
+    },
+    "latencyServer": {
+      "path": "qa-local/objective-preview-20261020/real-response-server.mjs",
+      "bytes": 3117,
+      "sha256": "b39d498ed1d98ad8cfcd7c3a55c2ba236e60916c6fe7e202b21639993005df81"
+    },
+    "navigationHarness": {
+      "path": "qa-local/objective-preview-20261020/shared-navigation-review.mjs",
+      "bytes": 4796,
+      "sha256": "a846c18af0737f3ca893301d3ad6b975398a798d4a9d52a1f181a4295ffea7ad"
+    },
+    "routeMockingUsed": false,
+    "apiResponseFabricationUsed": false,
+    "latencyMethod": "A local forwarder holds actual completed API response bytes to exercise freshness; it does not fabricate financial responses.",
+    "actualApiTraffic": [
+      {
+        "method": "POST",
+        "path": "/api/valuation",
+        "status": 200,
+        "requestSha256": "f36adcd736afdc78b7d1a1e8d84a367f2f4140f1882fb34048d9b96ab649c71b",
+        "responseSha256": "d12f7ed9cad5fd77421755d945b440cd5d695a41cd092ad390a4ed6c4c309d56",
+        "responseBytes": 29588,
+        "gated": false,
+        "receivedAtUtc": "2026-10-20T19:17:10.277Z",
+        "delivery": "forwarded"
+      },
+      {
+        "method": "POST",
+        "path": "/api/valuation",
+        "status": 200,
+        "requestSha256": "1d378d6b94b47ed7b0e10e20ab3d06802c0b410e84e1516eb2ca6b0b8acb6137",
+        "responseSha256": "9418a9db4786d1c893fd50e10072bf0b6da2f7fc554d274dce273826c9955fad",
+        "responseBytes": 29026,
+        "gated": false,
+        "receivedAtUtc": "2026-10-20T19:17:15.383Z",
+        "delivery": "forwarded"
+      },
+      {
+        "method": "POST",
+        "path": "/api/valuation",
+        "status": 200,
+        "requestSha256": "1d378d6b94b47ed7b0e10e20ab3d06802c0b410e84e1516eb2ca6b0b8acb6137",
+        "responseSha256": "9418a9db4786d1c893fd50e10072bf0b6da2f7fc554d274dce273826c9955fad",
+        "responseBytes": 29026,
+        "gated": true,
+        "receivedAtUtc": "2026-10-20T19:17:22.965Z",
+        "delivery": "forwarded"
+      },
+      {
+        "method": "POST",
+        "path": "/api/valuation",
+        "status": 200,
+        "requestSha256": "1d378d6b94b47ed7b0e10e20ab3d06802c0b410e84e1516eb2ca6b0b8acb6137",
+        "responseSha256": "9418a9db4786d1c893fd50e10072bf0b6da2f7fc554d274dce273826c9955fad",
+        "responseBytes": 29026,
+        "gated": true,
+        "receivedAtUtc": "2026-10-20T19:17:23.706Z",
+        "delivery": "client-aborted"
+      }
+    ],
+    "navigation": [
+      {
+        "label": "capital navigation 1440 zoom 1",
+        "width": 1440,
+        "height": 1000,
+        "zoom": "1",
+        "documentWidth": 1440,
+        "nav": {
+          "left": 48,
+          "right": 1392,
+          "top": 54,
+          "bottom": 97,
+          "clientWidth": 1344,
+          "scrollWidth": 1344,
+          "scrollLeft": 0,
+          "overflowX": "visible"
+        },
+        "header": {
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 98
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 48,
+            "right": 141.125,
+            "top": 54,
+            "bottom": 97,
+            "current": true
+          },
+          {
+            "text": "Overview",
+            "left": 173.125,
+            "right": 236.34375,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 268.34375,
+            "right": 309.390625,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 341.390625,
+            "right": 412.328125,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 444.328125,
+            "right": 535.875,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 567.875,
+            "right": 633.390625,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 665.390625,
+            "right": 726.546875,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          }
+        ]
+      },
+      {
+        "label": "capital navigation 1440 zoom 2",
+        "width": 1440,
+        "height": 1000,
+        "zoom": "2",
+        "documentWidth": 1440,
+        "nav": {
+          "left": 96,
+          "right": 1344,
+          "top": 108,
+          "bottom": 280,
+          "clientWidth": 624,
+          "scrollWidth": 624,
+          "scrollLeft": 0,
+          "overflowX": "visible"
+        },
+        "header": {
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 282
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 96,
+            "right": 282.25,
+            "top": 108,
+            "bottom": 194,
+            "current": true
+          },
+          {
+            "text": "Overview",
+            "left": 346.25,
+            "right": 472.671875,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 536.671875,
+            "right": 618.75,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 682.75,
+            "right": 824.609375,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 888.609375,
+            "right": 1071.6875,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 1135.6875,
+            "right": 1266.703125,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 96,
+            "right": 218.3125,
+            "top": 194,
+            "bottom": 280,
+            "current": false
+          }
+        ]
+      },
+      {
+        "label": "capital navigation 320",
+        "width": 320,
+        "height": 844,
+        "zoom": "1",
+        "documentWidth": 320,
+        "nav": {
+          "left": 16,
+          "right": 304,
+          "top": 51,
+          "bottom": 105,
+          "clientWidth": 288,
+          "scrollWidth": 584,
+          "scrollLeft": 296,
+          "overflowX": "auto"
+        },
+        "header": {
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "bottom": 106
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": -274,
+            "right": -185.875,
+            "top": 55,
+            "bottom": 99,
+            "current": true
+          },
+          {
+            "text": "Overview",
+            "left": -167.875,
+            "right": -107.375,
+            "top": 55,
+            "bottom": 99,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": -89.375,
+            "right": -49.34375,
+            "top": 55,
+            "bottom": 99,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": -31.34375,
+            "right": 36.296875,
+            "top": 55,
+            "bottom": 99,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 54.296875,
+            "right": 140.953125,
+            "top": 55,
+            "bottom": 99,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 158.953125,
+            "right": 221.578125,
+            "top": 55,
+            "bottom": 99,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 239.578125,
+            "right": 298.1875,
+            "top": 55,
+            "bottom": 99,
+            "current": false
+          }
+        ],
+        "focus": [
+          {
+            "text": "Capital Studio",
+            "left": 22,
+            "right": 110.125,
+            "top": 55,
+            "bottom": 99,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Overview",
+            "left": 128.125,
+            "right": 188.625,
+            "top": 55,
+            "bottom": 99,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Model",
+            "left": 206.625,
+            "right": 246.65625,
+            "top": 55,
+            "bottom": 99,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 230.65625,
+            "right": 298.296875,
+            "top": 55,
+            "bottom": 99,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 34,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Value Horizon",
+            "left": 116.296875,
+            "right": 202.953125,
+            "top": 55,
+            "bottom": 99,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 234,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Casebook",
+            "left": 220.953125,
+            "right": 283.578125,
+            "top": 55,
+            "bottom": 99,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 234,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Evidence",
+            "left": 239.578125,
+            "right": 298.1875,
+            "top": 55,
+            "bottom": 99,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 296,
+            "viewportHeight": 844
+          }
+        ]
+      },
+      {
+        "label": "capital navigation 600",
+        "width": 600,
+        "height": 844,
+        "zoom": "1",
+        "documentWidth": 600,
+        "nav": {
+          "left": 16,
+          "right": 584,
+          "top": 54,
+          "bottom": 108,
+          "clientWidth": 568,
+          "scrollWidth": 584,
+          "scrollLeft": 16,
+          "overflowX": "auto"
+        },
+        "header": {
+          "left": 0,
+          "right": 600,
+          "top": 0,
+          "bottom": 109
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 6,
+            "right": 94.125,
+            "top": 58,
+            "bottom": 102,
+            "current": true
+          },
+          {
+            "text": "Overview",
+            "left": 112.125,
+            "right": 172.625,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 190.625,
+            "right": 230.65625,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 248.65625,
+            "right": 316.296875,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 334.296875,
+            "right": 420.953125,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 438.953125,
+            "right": 501.578125,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 519.578125,
+            "right": 578.1875,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          }
+        ],
+        "focus": [
+          {
+            "text": "Capital Studio",
+            "left": 22,
+            "right": 110.125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Overview",
+            "left": 128.125,
+            "right": 188.625,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Model",
+            "left": 206.625,
+            "right": 246.65625,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 264.65625,
+            "right": 332.296875,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Value Horizon",
+            "left": 350.296875,
+            "right": 436.953125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Casebook",
+            "left": 454.953125,
+            "right": 517.578125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Evidence",
+            "left": 519.578125,
+            "right": 578.1875,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 16,
+            "viewportHeight": 844
+          }
+        ]
+      },
+      {
+        "label": "index navigation 1440 zoom 1",
+        "width": 1440,
+        "height": 1000,
+        "zoom": "1",
+        "documentWidth": 1440,
+        "nav": {
+          "left": 48,
+          "right": 1392,
+          "top": 59,
+          "bottom": 102,
+          "clientWidth": 1344,
+          "scrollWidth": 1344,
+          "scrollLeft": 0,
+          "overflowX": "visible"
+        },
+        "header": {
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 103
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 48,
+            "right": 141.125,
+            "top": 59,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 173.125,
+            "right": 236.34375,
+            "top": 59,
+            "bottom": 102,
+            "current": true
+          },
+          {
+            "text": "Model",
+            "left": 268.34375,
+            "right": 309.390625,
+            "top": 59,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 341.390625,
+            "right": 412.328125,
+            "top": 59,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 444.328125,
+            "right": 535.875,
+            "top": 59,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 567.875,
+            "right": 633.390625,
+            "top": 59,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 665.390625,
+            "right": 726.546875,
+            "top": 59,
+            "bottom": 102,
+            "current": false
+          }
+        ]
+      },
+      {
+        "label": "index navigation 1440 zoom 2",
+        "width": 1440,
+        "height": 1000,
+        "zoom": "2",
+        "documentWidth": 1440,
+        "nav": {
+          "left": 96,
+          "right": 1344,
+          "top": 118,
+          "bottom": 290,
+          "clientWidth": 624,
+          "scrollWidth": 624,
+          "scrollLeft": 0,
+          "overflowX": "visible"
+        },
+        "header": {
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 292
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 96,
+            "right": 282.25,
+            "top": 118,
+            "bottom": 204,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 346.25,
+            "right": 472.671875,
+            "top": 118,
+            "bottom": 204,
+            "current": true
+          },
+          {
+            "text": "Model",
+            "left": 536.671875,
+            "right": 618.75,
+            "top": 118,
+            "bottom": 204,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 682.75,
+            "right": 824.609375,
+            "top": 118,
+            "bottom": 204,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 888.609375,
+            "right": 1071.6875,
+            "top": 118,
+            "bottom": 204,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 1135.6875,
+            "right": 1266.703125,
+            "top": 118,
+            "bottom": 204,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 96,
+            "right": 218.3125,
+            "top": 204,
+            "bottom": 290,
+            "current": false
+          }
+        ]
+      },
+      {
+        "label": "index navigation 320",
+        "width": 320,
+        "height": 844,
+        "zoom": "1",
+        "documentWidth": 320,
+        "nav": {
+          "left": 16,
+          "right": 304,
+          "top": 46,
+          "bottom": 100,
+          "clientWidth": 288,
+          "scrollWidth": 584,
+          "scrollLeft": 296,
+          "overflowX": "auto"
+        },
+        "header": {
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "bottom": 101
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": -274,
+            "right": -185.875,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": -167.875,
+            "right": -107.375,
+            "top": 50,
+            "bottom": 94,
+            "current": true
+          },
+          {
+            "text": "Model",
+            "left": -89.375,
+            "right": -49.34375,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": -31.34375,
+            "right": 36.296875,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 54.296875,
+            "right": 140.953125,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 158.953125,
+            "right": 221.578125,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 239.578125,
+            "right": 298.1875,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          }
+        ],
+        "focus": [
+          {
+            "text": "Capital Studio",
+            "left": 22,
+            "right": 110.125,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Overview",
+            "left": 128.125,
+            "right": 188.625,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Model",
+            "left": 206.625,
+            "right": 246.65625,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 230.65625,
+            "right": 298.296875,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 34,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Value Horizon",
+            "left": 116.296875,
+            "right": 202.953125,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 234,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Casebook",
+            "left": 220.953125,
+            "right": 283.578125,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 234,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Evidence",
+            "left": 239.578125,
+            "right": 298.1875,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 296,
+            "viewportHeight": 844
+          }
+        ]
+      },
+      {
+        "label": "index navigation 600",
+        "width": 600,
+        "height": 844,
+        "zoom": "1",
+        "documentWidth": 600,
+        "nav": {
+          "left": 16,
+          "right": 584,
+          "top": 54,
+          "bottom": 108,
+          "clientWidth": 568,
+          "scrollWidth": 584,
+          "scrollLeft": 16,
+          "overflowX": "auto"
+        },
+        "header": {
+          "left": 0,
+          "right": 600,
+          "top": 0,
+          "bottom": 109
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 6,
+            "right": 94.125,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 112.125,
+            "right": 172.625,
+            "top": 58,
+            "bottom": 102,
+            "current": true
+          },
+          {
+            "text": "Model",
+            "left": 190.625,
+            "right": 230.65625,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 248.65625,
+            "right": 316.296875,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 334.296875,
+            "right": 420.953125,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 438.953125,
+            "right": 501.578125,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 519.578125,
+            "right": 578.1875,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          }
+        ],
+        "focus": [
+          {
+            "text": "Capital Studio",
+            "left": 22,
+            "right": 110.125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Overview",
+            "left": 128.125,
+            "right": 188.625,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Model",
+            "left": 206.625,
+            "right": 246.65625,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 264.65625,
+            "right": 332.296875,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Value Horizon",
+            "left": 350.296875,
+            "right": 436.953125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Casebook",
+            "left": 454.953125,
+            "right": 517.578125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Evidence",
+            "left": 519.578125,
+            "right": 578.1875,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "scrollLeft": 16,
+            "viewportHeight": 844
+          }
+        ]
+      },
+      {
+        "label": "thesis navigation 1440 zoom 1",
+        "width": 1440,
+        "height": 1000,
+        "zoom": "1",
+        "documentWidth": 1440,
+        "nav": {
+          "left": 48,
+          "right": 1392,
+          "top": 65,
+          "bottom": 108,
+          "clientWidth": 1344,
+          "scrollWidth": 1344,
+          "scrollLeft": 0,
+          "overflowX": "visible"
+        },
+        "header": {
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 109
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 48,
+            "right": 141.125,
+            "top": 65,
+            "bottom": 108,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 173.125,
+            "right": 236.34375,
+            "top": 65,
+            "bottom": 108,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 268.34375,
+            "right": 309.390625,
+            "top": 65,
+            "bottom": 108,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 341.390625,
+            "right": 412.328125,
+            "top": 65,
+            "bottom": 108,
+            "current": true
+          },
+          {
+            "text": "Value Horizon",
+            "left": 444.328125,
+            "right": 535.875,
+            "top": 65,
+            "bottom": 108,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 567.875,
+            "right": 633.390625,
+            "top": 65,
+            "bottom": 108,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 665.390625,
+            "right": 726.546875,
+            "top": 65,
+            "bottom": 108,
+            "current": false
+          }
+        ]
+      },
+      {
+        "label": "thesis navigation 1440 zoom 2",
+        "width": 1440,
+        "height": 1000,
+        "zoom": "2",
+        "documentWidth": 1440,
+        "nav": {
+          "left": 96,
+          "right": 1344,
+          "top": 130,
+          "bottom": 302,
+          "clientWidth": 624,
+          "scrollWidth": 624,
+          "scrollLeft": 0,
+          "overflowX": "visible"
+        },
+        "header": {
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 304
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 96,
+            "right": 282.25,
+            "top": 130,
+            "bottom": 216,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 346.25,
+            "right": 472.671875,
+            "top": 130,
+            "bottom": 216,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 536.671875,
+            "right": 618.75,
+            "top": 130,
+            "bottom": 216,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 682.75,
+            "right": 824.609375,
+            "top": 130,
+            "bottom": 216,
+            "current": true
+          },
+          {
+            "text": "Value Horizon",
+            "left": 888.609375,
+            "right": 1071.6875,
+            "top": 130,
+            "bottom": 216,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 1135.6875,
+            "right": 1266.703125,
+            "top": 130,
+            "bottom": 216,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 96,
+            "right": 218.3125,
+            "top": 216,
+            "bottom": 302,
+            "current": false
+          }
+        ]
+      },
+      {
+        "label": "thesis navigation 320",
+        "width": 320,
+        "height": 844,
+        "zoom": "1",
+        "documentWidth": 320,
+        "nav": {
+          "left": 16,
+          "right": 304,
+          "top": 54.578125,
+          "bottom": 108.578125,
+          "clientWidth": 288,
+          "scrollWidth": 584,
+          "scrollLeft": 296,
+          "overflowX": "auto"
+        },
+        "header": {
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "bottom": 109.578125
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": -274,
+            "right": -185.875,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": -167.875,
+            "right": -107.375,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": -89.375,
+            "right": -49.34375,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": -31.34375,
+            "right": 36.296875,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "current": true
+          },
+          {
+            "text": "Value Horizon",
+            "left": 54.296875,
+            "right": 140.953125,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 158.953125,
+            "right": 221.578125,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 239.578125,
+            "right": 298.1875,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "current": false
+          }
+        ],
+        "focus": [
+          {
+            "text": "Capital Studio",
+            "left": 22,
+            "right": 110.125,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Overview",
+            "left": 128.125,
+            "right": 188.625,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Model",
+            "left": 206.625,
+            "right": 246.65625,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 230.65625,
+            "right": 298.296875,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 34,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Value Horizon",
+            "left": 116.296875,
+            "right": 202.953125,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 234,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Casebook",
+            "left": 220.953125,
+            "right": 283.578125,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 234,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Evidence",
+            "left": 239.578125,
+            "right": 298.1875,
+            "top": 58.578125,
+            "bottom": 102.578125,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 296,
+            "viewportHeight": 844
+          }
+        ]
+      },
+      {
+        "label": "thesis navigation 600",
+        "width": 600,
+        "height": 844,
+        "zoom": "1",
+        "documentWidth": 600,
+        "nav": {
+          "left": 16,
+          "right": 584,
+          "top": 66.59375,
+          "bottom": 120.59375,
+          "clientWidth": 568,
+          "scrollWidth": 584,
+          "scrollLeft": 16,
+          "overflowX": "auto"
+        },
+        "header": {
+          "left": 0,
+          "right": 600,
+          "top": 0,
+          "bottom": 121.59375
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 6,
+            "right": 94.125,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 112.125,
+            "right": 172.625,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 190.625,
+            "right": 230.65625,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 248.65625,
+            "right": 316.296875,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "current": true
+          },
+          {
+            "text": "Value Horizon",
+            "left": 334.296875,
+            "right": 420.953125,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 438.953125,
+            "right": 501.578125,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 519.578125,
+            "right": 578.1875,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "current": false
+          }
+        ],
+        "focus": [
+          {
+            "text": "Capital Studio",
+            "left": 22,
+            "right": 110.125,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Overview",
+            "left": 128.125,
+            "right": 188.625,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Model",
+            "left": 206.625,
+            "right": 246.65625,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 264.65625,
+            "right": 332.296875,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Value Horizon",
+            "left": 350.296875,
+            "right": 436.953125,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Casebook",
+            "left": 454.953125,
+            "right": 517.578125,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Evidence",
+            "left": 519.578125,
+            "right": 578.1875,
+            "top": 70.59375,
+            "bottom": 114.59375,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 16,
+            "viewportHeight": 844
+          }
+        ]
+      },
+      {
+        "label": "horizon navigation 1440 zoom 1",
+        "width": 1440,
+        "height": 1000,
+        "zoom": "1",
+        "documentWidth": 1440,
+        "nav": {
+          "left": 48,
+          "right": 1392,
+          "top": 54,
+          "bottom": 97,
+          "clientWidth": 1344,
+          "scrollWidth": 1344,
+          "scrollLeft": 0,
+          "overflowX": "visible"
+        },
+        "header": {
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 98
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 48,
+            "right": 141.125,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 173.125,
+            "right": 236.34375,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 268.34375,
+            "right": 309.390625,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 341.390625,
+            "right": 412.328125,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 444.328125,
+            "right": 535.875,
+            "top": 54,
+            "bottom": 97,
+            "current": true
+          },
+          {
+            "text": "Casebook",
+            "left": 567.875,
+            "right": 633.390625,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 665.390625,
+            "right": 726.546875,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          }
+        ]
+      },
+      {
+        "label": "horizon navigation 1440 zoom 2",
+        "width": 1440,
+        "height": 1000,
+        "zoom": "2",
+        "documentWidth": 1440,
+        "nav": {
+          "left": 96,
+          "right": 1344,
+          "top": 108,
+          "bottom": 280,
+          "clientWidth": 624,
+          "scrollWidth": 624,
+          "scrollLeft": 0,
+          "overflowX": "visible"
+        },
+        "header": {
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 282
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 96,
+            "right": 282.25,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 346.25,
+            "right": 472.671875,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 536.671875,
+            "right": 618.75,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 682.75,
+            "right": 824.609375,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 888.609375,
+            "right": 1071.6875,
+            "top": 108,
+            "bottom": 194,
+            "current": true
+          },
+          {
+            "text": "Casebook",
+            "left": 1135.6875,
+            "right": 1266.703125,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 96,
+            "right": 218.3125,
+            "top": 194,
+            "bottom": 280,
+            "current": false
+          }
+        ]
+      },
+      {
+        "label": "horizon navigation 320",
+        "width": 320,
+        "height": 844,
+        "zoom": "1",
+        "documentWidth": 320,
+        "nav": {
+          "left": 16,
+          "right": 304,
+          "top": 46,
+          "bottom": 100,
+          "clientWidth": 288,
+          "scrollWidth": 584,
+          "scrollLeft": 296,
+          "overflowX": "auto"
+        },
+        "header": {
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "bottom": 101
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": -274,
+            "right": -185.875,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": -167.875,
+            "right": -107.375,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": -89.375,
+            "right": -49.34375,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": -31.34375,
+            "right": 36.296875,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 54.296875,
+            "right": 140.953125,
+            "top": 50,
+            "bottom": 94,
+            "current": true
+          },
+          {
+            "text": "Casebook",
+            "left": 158.953125,
+            "right": 221.578125,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 239.578125,
+            "right": 298.1875,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          }
+        ],
+        "focus": [
+          {
+            "text": "Capital Studio",
+            "left": 22,
+            "right": 110.125,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Overview",
+            "left": 128.125,
+            "right": 188.625,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Model",
+            "left": 206.625,
+            "right": 246.65625,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 230.65625,
+            "right": 298.296875,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 34,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Value Horizon",
+            "left": 116.296875,
+            "right": 202.953125,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 234,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Casebook",
+            "left": 220.953125,
+            "right": 283.578125,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 234,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Evidence",
+            "left": 239.578125,
+            "right": 298.1875,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 296,
+            "viewportHeight": 844
+          }
+        ]
+      },
+      {
+        "label": "horizon navigation 600",
+        "width": 600,
+        "height": 844,
+        "zoom": "1",
+        "documentWidth": 600,
+        "nav": {
+          "left": 16,
+          "right": 584,
+          "top": 54,
+          "bottom": 108,
+          "clientWidth": 568,
+          "scrollWidth": 584,
+          "scrollLeft": 16,
+          "overflowX": "auto"
+        },
+        "header": {
+          "left": 0,
+          "right": 600,
+          "top": 0,
+          "bottom": 109
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 6,
+            "right": 94.125,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 112.125,
+            "right": 172.625,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 190.625,
+            "right": 230.65625,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 248.65625,
+            "right": 316.296875,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 334.296875,
+            "right": 420.953125,
+            "top": 58,
+            "bottom": 102,
+            "current": true
+          },
+          {
+            "text": "Casebook",
+            "left": 438.953125,
+            "right": 501.578125,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Evidence",
+            "left": 519.578125,
+            "right": 578.1875,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          }
+        ],
+        "focus": [
+          {
+            "text": "Capital Studio",
+            "left": 22,
+            "right": 110.125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Overview",
+            "left": 128.125,
+            "right": 188.625,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Model",
+            "left": 206.625,
+            "right": 246.65625,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 264.65625,
+            "right": 332.296875,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Value Horizon",
+            "left": 350.296875,
+            "right": 436.953125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Casebook",
+            "left": 454.953125,
+            "right": 517.578125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Evidence",
+            "left": 519.578125,
+            "right": 578.1875,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 16,
+            "viewportHeight": 844
+          }
+        ]
+      },
+      {
+        "label": "casebook navigation 1440 zoom 1",
+        "width": 1440,
+        "height": 1000,
+        "zoom": "1",
+        "documentWidth": 1440,
+        "nav": {
+          "left": 48,
+          "right": 1392,
+          "top": 54,
+          "bottom": 97,
+          "clientWidth": 1344,
+          "scrollWidth": 1344,
+          "scrollLeft": 0,
+          "overflowX": "visible"
+        },
+        "header": {
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 98
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 48,
+            "right": 141.125,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 173.125,
+            "right": 236.34375,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 268.34375,
+            "right": 309.390625,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 341.390625,
+            "right": 412.328125,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 444.328125,
+            "right": 535.875,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 567.875,
+            "right": 633.390625,
+            "top": 54,
+            "bottom": 97,
+            "current": true
+          },
+          {
+            "text": "Evidence",
+            "left": 665.390625,
+            "right": 726.546875,
+            "top": 54,
+            "bottom": 97,
+            "current": false
+          }
+        ]
+      },
+      {
+        "label": "casebook navigation 1440 zoom 2",
+        "width": 1440,
+        "height": 1000,
+        "zoom": "2",
+        "documentWidth": 1440,
+        "nav": {
+          "left": 96,
+          "right": 1344,
+          "top": 108,
+          "bottom": 280,
+          "clientWidth": 624,
+          "scrollWidth": 624,
+          "scrollLeft": 0,
+          "overflowX": "visible"
+        },
+        "header": {
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 282
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 96,
+            "right": 282.25,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 346.25,
+            "right": 472.671875,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 536.671875,
+            "right": 618.75,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 682.75,
+            "right": 824.609375,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 888.609375,
+            "right": 1071.6875,
+            "top": 108,
+            "bottom": 194,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 1135.6875,
+            "right": 1266.703125,
+            "top": 108,
+            "bottom": 194,
+            "current": true
+          },
+          {
+            "text": "Evidence",
+            "left": 96,
+            "right": 218.3125,
+            "top": 194,
+            "bottom": 280,
+            "current": false
+          }
+        ]
+      },
+      {
+        "label": "casebook navigation 320",
+        "width": 320,
+        "height": 844,
+        "zoom": "1",
+        "documentWidth": 320,
+        "nav": {
+          "left": 16,
+          "right": 304,
+          "top": 46,
+          "bottom": 100,
+          "clientWidth": 288,
+          "scrollWidth": 584,
+          "scrollLeft": 296,
+          "overflowX": "auto"
+        },
+        "header": {
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "bottom": 101
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": -274,
+            "right": -185.875,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": -167.875,
+            "right": -107.375,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": -89.375,
+            "right": -49.34375,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": -31.34375,
+            "right": 36.296875,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 54.296875,
+            "right": 140.953125,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 158.953125,
+            "right": 221.578125,
+            "top": 50,
+            "bottom": 94,
+            "current": true
+          },
+          {
+            "text": "Evidence",
+            "left": 239.578125,
+            "right": 298.1875,
+            "top": 50,
+            "bottom": 94,
+            "current": false
+          }
+        ],
+        "focus": [
+          {
+            "text": "Capital Studio",
+            "left": 22,
+            "right": 110.125,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Overview",
+            "left": 128.125,
+            "right": 188.625,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Model",
+            "left": 206.625,
+            "right": 246.65625,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 230.65625,
+            "right": 298.296875,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 34,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Value Horizon",
+            "left": 116.296875,
+            "right": 202.953125,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 234,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Casebook",
+            "left": 220.953125,
+            "right": 283.578125,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 234,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Evidence",
+            "left": 239.578125,
+            "right": 298.1875,
+            "top": 50,
+            "bottom": 94,
+            "navLeft": 16,
+            "navRight": 304,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 296,
+            "viewportHeight": 844
+          }
+        ]
+      },
+      {
+        "label": "casebook navigation 600",
+        "width": 600,
+        "height": 844,
+        "zoom": "1",
+        "documentWidth": 600,
+        "nav": {
+          "left": 16,
+          "right": 584,
+          "top": 54,
+          "bottom": 108,
+          "clientWidth": 568,
+          "scrollWidth": 584,
+          "scrollLeft": 16,
+          "overflowX": "auto"
+        },
+        "header": {
+          "left": 0,
+          "right": 600,
+          "top": 0,
+          "bottom": 109
+        },
+        "links": [
+          {
+            "text": "Capital Studio",
+            "left": 6,
+            "right": 94.125,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Overview",
+            "left": 112.125,
+            "right": 172.625,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Model",
+            "left": 190.625,
+            "right": 230.65625,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 248.65625,
+            "right": 316.296875,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Value Horizon",
+            "left": 334.296875,
+            "right": 420.953125,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          },
+          {
+            "text": "Casebook",
+            "left": 438.953125,
+            "right": 501.578125,
+            "top": 58,
+            "bottom": 102,
+            "current": true
+          },
+          {
+            "text": "Evidence",
+            "left": 519.578125,
+            "right": 578.1875,
+            "top": 58,
+            "bottom": 102,
+            "current": false
+          }
+        ],
+        "focus": [
+          {
+            "text": "Capital Studio",
+            "left": 22,
+            "right": 110.125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Overview",
+            "left": 128.125,
+            "right": 188.625,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Model",
+            "left": 206.625,
+            "right": 246.65625,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Thesis Lab",
+            "left": 264.65625,
+            "right": 332.296875,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Value Horizon",
+            "left": 350.296875,
+            "right": 436.953125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Casebook",
+            "left": 454.953125,
+            "right": 517.578125,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 0,
+            "viewportHeight": 844
+          },
+          {
+            "text": "Evidence",
+            "left": 519.578125,
+            "right": 578.1875,
+            "top": 58,
+            "bottom": 102,
+            "navLeft": 16,
+            "navRight": 584,
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 2,
+            "scrollLeft": 16,
+            "viewportHeight": 844
+          }
+        ]
+      }
+    ],
+    "screenshots": [
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/invalid-current-draft.png",
+        "bytes": 134548,
+        "sha256": "5f60b4c4ae423e21683ab3942dce5d7a4170c647bc5b415143be36e05755ff6a"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/missing-bridge-preview.png",
+        "bytes": 148846,
+        "sha256": "658a529543ab23ed523825fa195246b56be34ea9a18ad4bdd01950695323f3ab"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/preview-320.png",
+        "bytes": 58928,
+        "sha256": "aeba62f8f5afd9ece12f262a0d3ee6d7d4cc0acba126ae9174b73ace12568107"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/preview-320-plans.png",
+        "bytes": 53797,
+        "sha256": "63a8a4cabb9a0dde61565d3b48e166fe86689a1f5b2910657652aca0babf7441"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/preview-320-apply.png",
+        "bytes": 56244,
+        "sha256": "e0bb03a24972d769df17ec9572182440886b4737793660aafc9a6ff34e37159f"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/preview-390.png",
+        "bytes": 71678,
+        "sha256": "39e7d30f9aa055b4df39125ea7b6795954bb9c258dd1c2e927c18f2b2e4f1052"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/preview-390-plans.png",
+        "bytes": 64507,
+        "sha256": "11c160330e8e56dcf809028da2aead3d425afe2b831b0f0372758ff92ffe6ceb"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/preview-390-apply.png",
+        "bytes": 58649,
+        "sha256": "a94513c0c671f0cf18de9e57126f6ee20c3f388daf786166d2b63931243fc350"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/preview-768.png",
+        "bytes": 120373,
+        "sha256": "c8efc307f06d1d5882d0ba32d041342772fa8fe06d921ee89761b024e837f121"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/preview-1440.png",
+        "bytes": 144151,
+        "sha256": "bfbef327e3f3e07ef8d667c137c30673d39cfbccdeace0abdcb86151402ca948"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/objective-preview-panel-1440.png",
+        "bytes": 153933,
+        "sha256": "78cb0666a35944448db00bcb46889372b8986a0f0d01727b0c85fa21bbaacc2f"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/six-long-plans-320.png",
+        "bytes": 45343,
+        "sha256": "16c3b98f5da007e21e6efd64edb41cb3310ddb72d055ea02a6f02ca3e82f7baf"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/six-long-plans-390.png",
+        "bytes": 57752,
+        "sha256": "2aa0ea76b80d1e6a4c4b7fd1ff484a7070cebf75cecdea65b9b5bf6b56f9a7a9"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/rounded-retention.png",
+        "bytes": 59313,
+        "sha256": "a8b04b961363025050accd8df26891a703ad904560bd724b87964284c42053b4"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/small-capital-shortfall.png",
+        "bytes": 59088,
+        "sha256": "dc4694eecd6f1b7c09a4c141c3f7a7a89984de878371bb945c00fbe8f3271589"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-capital-1440-zoom-1.png",
+        "bytes": 184234,
+        "sha256": "4a70c53ba530c257b7d11650793ed988ef6420c59fa9a3ff08b951417ce1deba"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-capital-1440-zoom-2.png",
+        "bytes": 155700,
+        "sha256": "c980bb5518bd054827792a070196088547a1f21a42906e910ef82e522844ae1a"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-capital-320-last-focus.png",
+        "bytes": 70624,
+        "sha256": "f993c1417a5de3004fc0c4597142a1f8564e7eafedf7ff8af64c5e564dacb3fe"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-capital-600-last-focus.png",
+        "bytes": 93887,
+        "sha256": "1bcd5fdbdd371dfa6f449e1925f9f76be1033c21d54bf576df11868bdc0b1c98"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-index-1440-zoom-1.png",
+        "bytes": 126246,
+        "sha256": "18be1d23020ef10e07faaa682510714be0f58e604a27de048ac3f3950b79e4d4"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/overview-financing-zoom-1.png",
+        "bytes": 130322,
+        "sha256": "1ddd60b24f5f80868aa6a31f971bc70568f0210f4d5ce194c6d90ff2dd6db4b8"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-index-1440-zoom-2.png",
+        "bytes": 68757,
+        "sha256": "4227e25c3c0a785be937f66ede4dec361d55ba95bc5fd2cd16e3cd7b02ec6dee"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/overview-financing-zoom-2.png",
+        "bytes": 97637,
+        "sha256": "438bfc81189f997f069bdbefeaf356e4014d795a13b73d22a2729c45e692e1cb"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-index-320-last-focus.png",
+        "bytes": 49410,
+        "sha256": "fe466044fbfec7c53b6e6fed969813928b9a7879ad99a7d435865b0338cabcbb"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-index-600-last-focus.png",
+        "bytes": 65906,
+        "sha256": "3b6a759126e8031143065928633075ddea95f78ce8a27f29f78344a1fc57c59a"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-thesis-1440-zoom-1.png",
+        "bytes": 105240,
+        "sha256": "cfb905eeabd4a478d62dee15210a0b742b3ebb17a7a3e2ac87f4958b251c59c9"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-thesis-1440-zoom-2.png",
+        "bytes": 107985,
+        "sha256": "1fd0787e5318a22c185a8126b202b5e0286ddc31b4723b32e244a9cc80015a8b"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-thesis-320-last-focus.png",
+        "bytes": 52995,
+        "sha256": "594bdfa23e974dd5f58ebe5c283d9c3a89f97febaa1c12e11936fdf394ad70c5"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-thesis-600-last-focus.png",
+        "bytes": 89280,
+        "sha256": "06557a191034b1e19df85c147c9942ff417be92720a0b950467a9a4c75ebf589"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-horizon-1440-zoom-1.png",
+        "bytes": 148446,
+        "sha256": "9239e982780aac2ddfe2462c97c044f557d4818d30b4c3ee04f0cd74317b3954"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-horizon-1440-zoom-2.png",
+        "bytes": 119084,
+        "sha256": "964c92ac280b2a4fc9338617b2747fd882f7427b1528a1edb8183252f7889f49"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-horizon-320-last-focus.png",
+        "bytes": 58010,
+        "sha256": "86d3dff3a66146aba49c89a4341d765c73947d1eb71e4c78e3cbc10a0dfddd77"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-horizon-600-last-focus.png",
+        "bytes": 81171,
+        "sha256": "de6721b5779c4ad58a473e9409eee9d89fb56a176cbef6afa41feeb7517e8eb9"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-casebook-1440-zoom-1.png",
+        "bytes": 123836,
+        "sha256": "e0970cced54fdde1e0abebec00c87e037a79fa642bfa0802e06dea5f6ca38c66"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-casebook-1440-zoom-2.png",
+        "bytes": 83124,
+        "sha256": "04b8635ef0a14d27d5aa9e62d5c1ad69c8ac3b777658dd88230e338a4212d20f"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-casebook-320-last-focus.png",
+        "bytes": 60108,
+        "sha256": "a56a365c1dd362cbbb7f95f1c6dae164b9c96491c0654886e2481123571369ba"
+      },
+      {
+        "path": "qa-local/objective-preview-20261020/final-source-current-zoom-closed-20261020/navigation-casebook-600-last-focus.png",
+        "bytes": 71675,
+        "sha256": "9ac20ed545801ea5914e2c12c381e58b92c9b893ee1845734aad349c56cade32"
+      }
+    ],
+    "scope": "Objective lifecycle, current/custom/imported/shared decisions, missing bridge, invalid draft, pending real responses, precision copy, keyboard, 320/390/768/1440 layouts, five shared headers at normal/200% enlargement and 320/600 keyboard rail navigation, plus Overview full-document fit at 1440 normal/200% and 320/600."
+  },
+  "portfolio": {
+    "structuralTestsPassed": 49,
+    "generatedCasesVerified": 4,
+    "stagedPublicFilesVerified": 30,
+    "otherTrackedFilesByteIdentical": 50,
+    "reviewedFiles": [
+      {
+        "path": "fintech.html",
+        "bytes": 16436,
+        "sha256": "4bd58e15ff9f6c404e615958c37b4708266663666506685eef7d8a1708bb692d"
+      },
+      {
+        "path": "scripts/build_cases.py",
+        "bytes": 44925,
+        "sha256": "400164e7fbde7c01ce6470e68282844728b58e36fb57c1d0a0bba1bc04c305b7"
+      },
+      {
+        "path": "projects/frontier-ai-valuation-lab.html",
+        "bytes": 24356,
+        "sha256": "f4b4693ac93317c691c5f73d6b7ff64f744f3377c3b418f303e842cef4f1c80f"
+      },
+      {
+        "path": "tests/test_case_review.py",
+        "bytes": 5110,
+        "sha256": "5b0a0487d581ac52d4c3ce6031b83a76b2d7b3815fe20807b6a5fa7a7b91d992"
+      }
+    ],
+    "approvedScreenshot": {
+      "path": "assets/frontier-ai-capital-visual-20261020.png",
+      "bytes": 226377,
+      "sha256": "db7919bc1165558535d70eb82295791e800b14885450516f0ce716ee5c34fc9d",
+      "width": 1440,
+      "height": 1271,
+      "approved_sha256": "db7919bc1165558535d70eb82295791e800b14885450516f0ce716ee5c34fc9d"
+    },
+    "reportSha256": "c001dd3bf40b642c258575f6ac28182984a2bcd75b5ff23bf7d947107367946c",
+    "timestampBasis": "Receipt creation time only. This is not a reconstructed execution timestamp for the checks.",
+    "checks": [
+      {
+        "name": "case_generation",
+        "exit_code": 0,
+        "generated_cases": 4,
+        "performed_at_utc": null,
+        "timestamp_basis": "Original check timestamps were not captured; results are transcribed from completed command outputs in this task."
+      },
+      {
+        "name": "structural_tests",
+        "expanded_command": "python3 -B -m unittest discover -s tests -v",
+        "exit_code": 0,
+        "passed": 49,
+        "failed": 0,
+        "reported_test_duration_seconds": 2.968,
+        "performed_at_utc": null,
+        "timestamp_basis": "Original check timestamps were not captured; results are transcribed from completed command outputs in this task."
+      },
+      {
+        "name": "final_build",
+        "expanded_command": "python3 -B scripts/build_cases.py --check && python3 -B scripts/build_site.py",
+        "exit_code": 0,
+        "generated_cases_verified": 4,
+        "public_files": 30,
+        "additional_release_inventory": true,
+        "performed_at_utc": null,
+        "timestamp_basis": "Original check timestamps were not captured; results are transcribed from completed command outputs in this task."
+      },
+      {
+        "name": "staged_verification",
+        "exit_code": 0,
+        "public_files_verified": 30,
+        "performed_at_utc": null,
+        "timestamp_basis": "Original check timestamps were not captured; results are transcribed from completed command outputs in this task."
+      },
+      {
+        "name": "source_preservation_and_stage_equality",
+        "exit_code": 0,
+        "other_tracked_files_compared": 50,
+        "other_tracked_files_identical": 50,
+        "unexpected_changes": [],
+        "unchanged_other_cases": [
+          "projects/lineageguard.html",
+          "projects/motionx.html",
+          "projects/trading-research.html"
+        ],
+        "source_stage_identical": [
+          "fintech.html",
+          "projects/frontier-ai-valuation-lab.html"
+        ],
+        "performed_at_utc": null,
+        "timestamp_basis": "Original check timestamps were not captured; results are transcribed from completed command outputs in this task."
+      },
+      {
+        "name": "diff_hygiene",
+        "exit_code": 0,
+        "performed_at_utc": null,
+        "timestamp_basis": "Original check timestamps were not captured; results are transcribed from completed command outputs in this task."
+      }
+    ]
+  },
+  "closedFindings": [
+    "Apply now restores visible focus after the preview collapses.",
+    "Rounded retention and sub-$0.01B shortfalls no longer contradict full-precision eligibility.",
+    "Captured Math.expm1 runtime differences receive a distinct qualified comparison; exact-only fields and changed decisions still fail.",
+    "Pending requests use a neutral label and failed retries remove earlier completion labels.",
+    "Shared desktop navigation wraps at 200% enlargement while phone navigation keeps its scroll rail.",
+    "The inherited Overview financing-heading overflow at 200% enlargement is closed by wrapping its worked-example button; normal and mobile row geometry is preserved."
+  ],
+  "numericComparison": {
+    "document": "docs/CAPITAL_STRATEGY.md#10-browser-and-api-comparison",
+    "fixture": "tests/fixtures/capital-runtime-rounding.json",
+    "capturedDifferingLeaves": 34,
+    "relativeAllowance": "32 * Number.EPSILON on a restricted list of derived-output paths only",
+    "absoluteToleranceFloor": null,
+    "exactOnly": "Inputs, terms, ownership, crossovers, metadata, categorical outcomes, rankings, ties, structure and all unlisted fields",
+    "preservesBothComparedResults": true
+  },
+  "reviewedApplicationFiles": [
+    {
+      "path": "README.md",
+      "bytes": 14710,
+      "sha256": "3317400db1431771bf5bfa37d5df3a7ef30fd34f0d670aa482afa0bb2f3df62d"
+    },
+    {
+      "path": "docs/API.md",
+      "bytes": 47759,
+      "sha256": "037c8d4e930269f5cf313f5dbb405c4c6e9e4d85a53d22752ba86375d208e8d9"
+    },
+    {
+      "path": "docs/CAPITAL_STRATEGY.md",
+      "bytes": 25862,
+      "sha256": "b6cab7e46f4d298c60a53e82879b2f7c6c34c4c0e2dcdf736b243f188c3e1a4b"
+    },
+    {
+      "path": "docs/CAPITAL_STRATEGY_DESIGN.md",
+      "bytes": 18887,
+      "sha256": "711f26791541dbe84b1bcf2114c47bccab942d92e7879eb8986d021aaedc0176"
+    },
+    {
+      "path": "docs/DEMO_WALKTHROUGH.md",
+      "bytes": 10216,
+      "sha256": "4d26b3a3fe8b5fabccb7f2df79de9bfcef3de4213f7c58a12bf096ba349a3f1b"
+    },
+    {
+      "path": "docs/VERIFICATION.md",
+      "bytes": 74313,
+      "sha256": "c8796e7983c771c0bec381a1d8138e1779650c8b1632b4f164dc4fbcbd89b8c0"
+    },
+    {
+      "path": "public/capital.html",
+      "bytes": 26395,
+      "sha256": "e65ced7cdd0258dac95e9234d002757001c6ab3df527f293c257c631ce274821"
+    },
+    {
+      "path": "public/capital.css",
+      "bytes": 61563,
+      "sha256": "9ae7fa16d5cfa81f620fd14e4c7052e186e49959fadc2590f964dc7f9449a542"
+    },
+    {
+      "path": "public/capital.js",
+      "bytes": 56264,
+      "sha256": "9eb369da59d754adbf8fc277bc51b65fa36770948a899f55ab9e97630c37cf0d"
+    },
+    {
+      "path": "public/shell.css",
+      "bytes": 5712,
+      "sha256": "089e94bbf2df32d0c0f96774e23c162fb2ab6182b74c2a21f5124f3ea3682bfb"
+    },
+    {
+      "path": "public/financing.css",
+      "bytes": 15714,
+      "sha256": "bcecf745b726388fc7cfae697f690a1c4dca89c355612a5c09a91714a7c1177c"
+    },
+    {
+      "path": "public/lib/capital-objectives.js",
+      "bytes": 1243,
+      "sha256": "a46ce8f23e977b7042177832b9a466faa107a20bd04dfbe78dbabe54247676f7"
+    },
+    {
+      "path": "public/lib/capital-verification.js",
+      "bytes": 3300,
+      "sha256": "a3dab87f6032a318dcd72e277743bdea3d53f2276dc0c76331b610fe752b2ea9"
+    },
+    {
+      "path": "tests/capital-objectives.test.js",
+      "bytes": 6721,
+      "sha256": "bf352132a6ece927cb5ae4802ba0cdf6b3104453c1999bb7bf6a262d35318fc3"
+    },
+    {
+      "path": "tests/capital-verification.test.js",
+      "bytes": 5356,
+      "sha256": "e844957f2d27026ee435c158f60933ec8b4f11e0f5f3c7b8c07af7db49b838c3"
+    },
+    {
+      "path": "tests/fixtures/capital-runtime-rounding.json",
+      "bytes": 131805,
+      "sha256": "7ae9323f0530298af5af4404a9eadceb553cfbaa063e7ff7c0ac09941c5c8521"
+    },
+    {
+      "path": "tests/capital-browser.mjs",
+      "bytes": 33253,
+      "sha256": "32e8a0c68013486cf5569f9720b8526f095623ada0ac132ee93e8d0bbf94cc9f"
+    },
+    {
+      "path": "scripts/verify_capital_http.py",
+      "bytes": 7592,
+      "sha256": "65fcb053a26cf268a64ef1608dc1598aea68f0c379e87dd6ace42b49ce9e7685"
+    }
+  ],
+  "preservedArtifacts": {
+    "baseline": "8e99f6b4d753a1d4f8fce8167984eae30ec8d628",
+    "scope": "All baseline public/lib, public/data, public/downloads, existing Node test files and API/build/package entry points",
+    "count": 87,
+    "allByteIdentical": true,
+    "files": [
+      {
+        "path": "api/index.js",
+        "bytes": 84,
+        "sha256": "fd092b0f01a486b02bab7138deefd407693d1153e09062cdaa4066622c338fc4"
+      },
+      {
+        "path": "lib/http.js",
+        "bytes": 6044,
+        "sha256": "917591c4154a8451b45ec4a1e2e1e76548da9c514aa6d62bef3bc8b208c97d47"
+      },
+      {
+        "path": "package-lock.json",
+        "bytes": 292,
+        "sha256": "75567d28e71984dfe5fef8f29414d4796eb6d79c6c4e98eb26c834393add7d53"
+      },
+      {
+        "path": "package.json",
+        "bytes": 734,
+        "sha256": "8605800583a7e2b9f554a42b336e0128e2d0c659290bd7db36ab77dfa45d5767"
+      },
+      {
+        "path": "public/data/current-results.json",
+        "bytes": 37050,
+        "sha256": "10ebc4ec4bd8bfe4440dcb1ab303aa4df26b542e4e60ddf4c174f9e72c738fa7"
+      },
+      {
+        "path": "public/data/evidence.json",
+        "bytes": 47585,
+        "sha256": "5b24b888cabdbddbb4e0af221933b14fcb6c6cd8143d4f08293afe84ecff0289"
+      },
+      {
+        "path": "public/data/presets.json",
+        "bytes": 1658,
+        "sha256": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca"
+      },
+      {
+        "path": "public/data/research.json",
+        "bytes": 12626,
+        "sha256": "72a704b9c4d79f0f827ab0706e68ef56f20ec4dd46a8031ff06d0e7babfdbc65"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Capital_Decision.html",
+        "bytes": 49225,
+        "sha256": "f747151a109fe425bf73f2cc9bf81a85fc2150df5bf3e7d2ebfff928c57d5552"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Capital_Decision.json",
+        "bytes": 52553,
+        "sha256": "4d26443bd387a7dda0b8796f4977bb234c0697f0828755644a821aec5c608684"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Capital_Decision.pdf",
+        "bytes": 235627,
+        "sha256": "2249a7176594ed3d2ae1b9e6a6406d14ddfbf37ec9b27573f4bc9b08bc1bc8e5"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Capital_Strategy_Package.zip",
+        "bytes": 1868606,
+        "sha256": "df82c7d6b3000bc26e7fa4c17dba4a7b853f6ff1719acdfd8dedf218725c9195"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Financing_Lens.html",
+        "bytes": 20978,
+        "sha256": "932562c240b5babe863688d2c76ac253577a2f0c222645710f1e5bd558793b06"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Financing_Lens.json",
+        "bytes": 20427,
+        "sha256": "e3945962a17f2bb1ffc35e8a77b9d7ff5bc9723a59c14e3559577527fe791e46"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Financing_Lens.pdf",
+        "bytes": 160102,
+        "sha256": "f1c5ee4ef9bfcfdc40a952fa953b916e60e8a87a024b16311b63778b193ddbca"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Financing_Lens_Package.zip",
+        "bytes": 1189767,
+        "sha256": "8a98e0d40d97b942b7c8a0d9356b9740da88a26f3ab19578bb969d3e08539a58"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Ownership_Frontier_Package.zip",
+        "bytes": 1433585,
+        "sha256": "60b1ff1907ab893f43b7e9c894bb74cd16d8da95fe3a3b6956438f92c7e28410"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Research_Brief.html",
+        "bytes": 26416,
+        "sha256": "4ee767f4327202ee3afae91d7160c631942563bf32ff2d2e659606f47fcb54c8"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Research_Brief.pdf",
+        "bytes": 168139,
+        "sha256": "f0f91aa739ef15d9fa68ab19979f1aad26b571757a489ffd85f4598a7bf39883"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Research_Casebook.json",
+        "bytes": 5168,
+        "sha256": "d4f76abc483f72d2274e26400a246fee91ebccfb6f4d9bd2a5c9bb7582523ef3"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Thesis_Comparison.html",
+        "bytes": 24563,
+        "sha256": "f38acf98e55b83600e620179769b58603a9520b8703a413d2ef0f8df99efeaed"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Thesis_Comparison.pdf",
+        "bytes": 145872,
+        "sha256": "1c7cf311365b1111a7a4540b5093112c62dc6f39d472fdfe2b882112beedce26"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Valuation_Model.xlsx",
+        "bytes": 42636,
+        "sha256": "0a692f43f8459ffb6a162f065c10912a5ca23738d55104b272f74dbecdf73438"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Valuation_Review.pdf",
+        "bytes": 97927,
+        "sha256": "08c94a33ea36870ca05ba437077bcec9d308ad87b90a4a7e3b80806d16edec36"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Value_Horizon.html",
+        "bytes": 17196,
+        "sha256": "79d1b7e6d26adbf5d4b213a1e5d03e6a70a8303c3dfc5e7b918b2ef83dc0360c"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Value_Horizon.json",
+        "bytes": 42387,
+        "sha256": "7a60e38a05c7e86abfaf31afe30eceaacc2f23ad059fde718cd20c2e261117ed"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Value_Horizon.pdf",
+        "bytes": 113404,
+        "sha256": "9e13c0faf0c50bf232a311b6697faee00c6f547405b965ae42eed186d485c2d3"
+      },
+      {
+        "path": "public/downloads/Frontier_AI_Value_Horizon_Package.zip",
+        "bytes": 830904,
+        "sha256": "40f15a73b220d75651abc8529ace281a337e32c6c6fe114d4f2e18926bba3995"
+      },
+      {
+        "path": "public/lib/analytics.js",
+        "bytes": 6127,
+        "sha256": "ef35d80f9ad805de540dd0d9fda943ba969913cb9b0e3742c9a2e0d2ea00b75f"
+      },
+      {
+        "path": "public/lib/briefing.js",
+        "bytes": 13603,
+        "sha256": "428afb688cd2b589e9f03033989460db63777aee3bb75bacdf30d30a181fee2a"
+      },
+      {
+        "path": "public/lib/capital-brief.js",
+        "bytes": 37628,
+        "sha256": "a49176acf1d2752365cca33b624aa4683061fe1a3873a11b7fc352e8d7c4d590"
+      },
+      {
+        "path": "public/lib/capital-chart.js",
+        "bytes": 8308,
+        "sha256": "07fc6e79d1ce5c4c5acc973492d3a8594ddf802150b5bd22a7fb6d9ec3294a74"
+      },
+      {
+        "path": "public/lib/capital-example.js",
+        "bytes": 2467,
+        "sha256": "5082804eceaaae470fb4e1f205ef9b7402f21c997d5ce995b497ad7b487cf916"
+      },
+      {
+        "path": "public/lib/capital-record.js",
+        "bytes": 4277,
+        "sha256": "d194fd1c8ca756428f64dd3411c527060a76efa1a56b56b5685947fa654f45ac"
+      },
+      {
+        "path": "public/lib/capital-share.js",
+        "bytes": 4049,
+        "sha256": "c857667b233397345303791d4e9added14fb8153c21d7f27811bde9221a010a7"
+      },
+      {
+        "path": "public/lib/capital-strategy.js",
+        "bytes": 23933,
+        "sha256": "996674a14a9b653ddaf519256876777fc21ed2fdd444840a2ac26c9756b40842"
+      },
+      {
+        "path": "public/lib/casebook-brief.js",
+        "bytes": 21360,
+        "sha256": "49afda42f775b83e9419db4184e087981c2ca186c20588975cc2786bf0382aae"
+      },
+      {
+        "path": "public/lib/casebook-store.js",
+        "bytes": 9958,
+        "sha256": "73beb3444dcb67f858f9c580e4e3c1e88bc246ee7e2af88d58a94119ad9d6819"
+      },
+      {
+        "path": "public/lib/casebook.js",
+        "bytes": 13213,
+        "sha256": "89cf76f1cf4ffccb1d9eb3512a7c34308d16e02403a6a092983793a9aaec1f04"
+      },
+      {
+        "path": "public/lib/evidence.js",
+        "bytes": 14049,
+        "sha256": "091c775ead94aed83c0195a9789e403bca75457453957371fb095080b8c16bb4"
+      },
+      {
+        "path": "public/lib/financing-brief.js",
+        "bytes": 18369,
+        "sha256": "c90edbf24e172062c52226eef0bfd09d9adc325f991c9a3f5a7d7ef376336211"
+      },
+      {
+        "path": "public/lib/financing-format.js",
+        "bytes": 1288,
+        "sha256": "8b14818b59819f5b1eb506318422cbbe8731a8fed174864111e7cfad862ac302"
+      },
+      {
+        "path": "public/lib/financing-share.js",
+        "bytes": 4477,
+        "sha256": "3359e1d7f4e2b61ef0c6a1df85760ed036d070f338b0512b7068510cadfcf5d7"
+      },
+      {
+        "path": "public/lib/financing.js",
+        "bytes": 5863,
+        "sha256": "c997b9f5564e63b624acfef87543390c6c500cae6c21e067ea5a75143dde3f3f"
+      },
+      {
+        "path": "public/lib/horizon-brief.js",
+        "bytes": 18868,
+        "sha256": "40a85b484a9b8c8b501d8669aff2d324a65aab10e3495f6d863c35df10d54a56"
+      },
+      {
+        "path": "public/lib/horizon-share.js",
+        "bytes": 3305,
+        "sha256": "062d578cd93957ca7733e25ed04192a4fc195381d0ba38f837930c8418b234a8"
+      },
+      {
+        "path": "public/lib/horizon.js",
+        "bytes": 8681,
+        "sha256": "31e88f039b640a9627b1a5d78bc62c93dbd82d1cb50015b4606e2efb3923eec5"
+      },
+      {
+        "path": "public/lib/journey.js",
+        "bytes": 3251,
+        "sha256": "442e60ec027b80cec25584afdab09a9783b3dabaa503c319cd8a7ebc4deb7dbe"
+      },
+      {
+        "path": "public/lib/model.js",
+        "bytes": 9610,
+        "sha256": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180"
+      },
+      {
+        "path": "public/lib/ownership-chart.js",
+        "bytes": 5256,
+        "sha256": "9662a49031c9012f4560e053e5244f79d19c49f63131a2577ac21e6b645f2813"
+      },
+      {
+        "path": "public/lib/ownership.js",
+        "bytes": 9618,
+        "sha256": "950bf8cba531353be426b02ea451c0cc3b9dc7e528295b6dad8c1ff06e1bf4e7"
+      },
+      {
+        "path": "public/lib/release.js",
+        "bytes": 119,
+        "sha256": "ca5c5d7e2169ab76b4a0d2ca3af7c08d2b37bd467d1038d3c0912ef3ee87862a"
+      },
+      {
+        "path": "public/lib/share.js",
+        "bytes": 3115,
+        "sha256": "658b1103278e1702a1f0616c9ff920f98d331b7dce552e0f97ce21bac9bc98ab"
+      },
+      {
+        "path": "public/lib/thesis-brief.js",
+        "bytes": 18594,
+        "sha256": "0ea9dbc0c17cd2f6bde00e1991ff0aa678918807447f33bff08ea24a63085b6e"
+      },
+      {
+        "path": "public/lib/thesis-share.js",
+        "bytes": 5546,
+        "sha256": "9c724b710c88747d252cd5e245867dc0e5287c40e2438db5d21db5ed8e577046"
+      },
+      {
+        "path": "public/lib/thesis.js",
+        "bytes": 10828,
+        "sha256": "a2ad37f4d9d12d7556efea1adbdcddb0424b2599700b15000b0dbbccc6c245e3"
+      },
+      {
+        "path": "scripts/build.js",
+        "bytes": 2720,
+        "sha256": "a40b81f46c89bc5b6a60884754c9e1cf1e999414b4ead1703b21448a579c5fb3"
+      },
+      {
+        "path": "server.js",
+        "bytes": 2942,
+        "sha256": "501010c8c7c2dc94acf96244360f2dfeb3d0c6af051322dc1d5b9ea1b01924a0"
+      },
+      {
+        "path": "tests/analytics-api.test.js",
+        "bytes": 7723,
+        "sha256": "80c340ca9a9171e80970d855ea195e772bf7135e67fd986809074c4dc36651b1"
+      },
+      {
+        "path": "tests/analytics.test.js",
+        "bytes": 12897,
+        "sha256": "a129875814c40109bd18fc6a46d84d156a2f9fb641f1fcaff05ad9844cda9842"
+      },
+      {
+        "path": "tests/api.test.js",
+        "bytes": 3685,
+        "sha256": "bd962d73dbba9a4f1beaeea64886d800527336572678b9be188178592fbf7df1"
+      },
+      {
+        "path": "tests/briefing.test.js",
+        "bytes": 3058,
+        "sha256": "4c9c4ed18937ec6434a365248945e3f907bb1721d06d47aeed8d7959872260b5"
+      },
+      {
+        "path": "tests/capital-api.test.js",
+        "bytes": 6829,
+        "sha256": "c9c0cae17f296c1fa10f6c72f3d2b828ae904619485e5f92e579a8de590fabe1"
+      },
+      {
+        "path": "tests/capital-brief.test.js",
+        "bytes": 6965,
+        "sha256": "45a0d19d83d5fd74a77101a9df805bcc2b9d4772d18f13af71d1a0046d9d4e33"
+      },
+      {
+        "path": "tests/capital-package.test.js",
+        "bytes": 2410,
+        "sha256": "759b19bf9ec908ad9be64b097ac7398f858eff602fc55e9e32ee41b8157f795c"
+      },
+      {
+        "path": "tests/capital-record.test.js",
+        "bytes": 8910,
+        "sha256": "3d57231ea1f4bc534b55c0e06dca1e5605442c9b09a62be5246ef4caf91c8c15"
+      },
+      {
+        "path": "tests/capital-share.test.js",
+        "bytes": 5160,
+        "sha256": "93622769aeae310ea5563a6b3983b8b4543a9afba7d6e598b3001d6aafa3f4da"
+      },
+      {
+        "path": "tests/capital-strategy.test.js",
+        "bytes": 25047,
+        "sha256": "34c72dea9f36150afba5ccb6ce8485ef69fd650b44dda9127114ea85b117e343"
+      },
+      {
+        "path": "tests/casebook-brief.test.js",
+        "bytes": 8356,
+        "sha256": "4568f83d2bbf2af806b8ba29b8bdf6be79e86ca11d0e4a01e3e066ab313a5e59"
+      },
+      {
+        "path": "tests/casebook-store.test.js",
+        "bytes": 12792,
+        "sha256": "42dda32130e38b43af1fe5aaaf782eaf02bbcdc4da7f48213076e0b9655f5578"
+      },
+      {
+        "path": "tests/casebook.test.js",
+        "bytes": 12639,
+        "sha256": "f33216e6471d562417b94b08cdce71087dba57fdbdde07d38158b98ea35f3517"
+      },
+      {
+        "path": "tests/evidence.test.js",
+        "bytes": 11628,
+        "sha256": "b56506fb41e067d21efdfc421e3d7cb41b5f32335ae09c3e1a395c0175ff5e20"
+      },
+      {
+        "path": "tests/financing-presentation.test.js",
+        "bytes": 3591,
+        "sha256": "986eff6e1a8fad544645fa9b410f6506c8067d03009c467535307a40efe3d510"
+      },
+      {
+        "path": "tests/financing-share.test.js",
+        "bytes": 2864,
+        "sha256": "4f93552026e068b4750a01d72f8a44df1938dc1aeb18209633b201ad814a53e6"
+      },
+      {
+        "path": "tests/financing.test.js",
+        "bytes": 15478,
+        "sha256": "350fbf86ff76d43be9d44a91d4e4dba77f3f4b2b2b72edc0a188f75fbbca7bde"
+      },
+      {
+        "path": "tests/horizon-api.test.js",
+        "bytes": 7474,
+        "sha256": "ea4d4ff8e3377d2684f3bbfd3080b619cc5f74f82c02f346346f89256e8ea0f4"
+      },
+      {
+        "path": "tests/horizon.test.js",
+        "bytes": 14324,
+        "sha256": "0d14b5f04189ab262f3479b15f506f25c16187e8410e4a88ceda71186507f0b2"
+      },
+      {
+        "path": "tests/journey.test.js",
+        "bytes": 4849,
+        "sha256": "ae7d51fa4fb1eca1bb51be6e789e60b0ba28f06e810104374487e8fbd3fdf762"
+      },
+      {
+        "path": "tests/model.test.js",
+        "bytes": 4641,
+        "sha256": "581a2722cbcc8ce0958994b5d815e911cb1049d3d9fa30466fd27c1d43d68f5a"
+      },
+      {
+        "path": "tests/ownership.test.js",
+        "bytes": 15580,
+        "sha256": "f2c5a02b71b74e12e64ea5e5d2eb103ab515081f733cfc5a1d27cecf29d9cd27"
+      },
+      {
+        "path": "tests/release.test.js",
+        "bytes": 7693,
+        "sha256": "933b83d0034e7e77320f7dea7f07f3858913622d35782fcfee0b6b8892278744"
+      },
+      {
+        "path": "tests/research-example.test.js",
+        "bytes": 2092,
+        "sha256": "2e3b9172f9fd5b708e96d923ae59564e099f8a7a2b955e1c27a567c39a52d47c"
+      },
+      {
+        "path": "tests/share.test.js",
+        "bytes": 3568,
+        "sha256": "a9f233b824cf9595c316d0d60d67f91c829640c87c6a546951051411ddce00bd"
+      },
+      {
+        "path": "tests/thesis-api.test.js",
+        "bytes": 5160,
+        "sha256": "bbe931f5bb9dc1507ec473b7e5bca9f5cf39a942a413d6f24afa508d8830d5ae"
+      },
+      {
+        "path": "tests/thesis-brief.test.js",
+        "bytes": 6614,
+        "sha256": "34765b1ed732abecd3acf967e54a4a12a314a636c786bd4b25743a87f9477ff3"
+      },
+      {
+        "path": "tests/thesis-share.test.js",
+        "bytes": 6084,
+        "sha256": "8ef86692b2cfae22f7ccc43fbb9dfbc36fd0548123f568acff175f750870f69f"
+      },
+      {
+        "path": "tests/thesis.test.js",
+        "bytes": 26326,
+        "sha256": "d33b4c26ea9a4646607c9f4e8c60eaf4634e147845eb9e0010b9ca41ca7e2c35"
+      }
+    ]
+  },
+  "publishedScreenshot": {
+    "path": "docs/demo-objective-preview-20261020.png",
+    "bytes": 153933,
+    "sha256": "78cb0666a35944448db00bcb46889372b8986a0f0d01727b0c85fa21bbaacc2f",
+    "width": 1344,
+    "height": 1087,
+    "source": "Actual locator screenshot from the fresh independent browser pass; no compositing or generated imagery"
+  },
+  "guidance": [
+    "https://www.nngroup.com/articles/progressive-disclosure/",
+    "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/",
+    "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+    "https://tc39.es/ecma262/2025/multipage/numbers-and-dates.html#sec-math.expm1"
+  ],
+  "limitations": [
+    "Fresh counts do not include earlier partial or focused development passes.",
+    "This is scoped Chromium and AI-assisted engineering review, not a complete accessibility certification or an external financial audit.",
+    "The comparison allowance is not a formal propagated-error bound, financial-materiality threshold or proof of a future discrepancy cause.",
+    "The synthetic runtime fixture is regression evidence, not an independent numerical oracle.",
+    "Five-workspace navigation checks cover their headers; they are not full content audits of every workspace.",
+    "GitHub CI, deployed source identity, ordinary HTTPS and the live visitor journey are observed separately after publication.",
+    "Evidence hashes bind observations to bytes; they are not digital signatures."
+  ]
+}

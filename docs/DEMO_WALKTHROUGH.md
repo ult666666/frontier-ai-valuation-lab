@@ -18,7 +18,24 @@ A and B meet both objectives. C raises 5 less than required. The chart shows thr
 
 ## 2. Make a conflict visible
 
-Change the retained-stake floor to 90%. A remains eligible, B fails the ownership objective and C still misses the capital objective. Change the capital objective to 30 while keeping 90%: none qualifies. Restore 88% while keeping 30: B qualifies. Restore the original 25/88 settings before continuing.
+Open the optional [Try the tradeoff panel](https://frontier-ai-valuation-lab.vercel.app/capital.html#capital-explore), below the main decision chart. Choose an objective pair to see current and preview eligibility alongside every submitted plan and its reason for passing or missing the two objectives.
+
+![Actual Capital Studio preview: raising the objective to $30B while retaining 90% leaves no eligible submitted plan.](demo-objective-preview-20261020.png)
+
+*Actual product capture, 20 October 2026. The current $25B / 88% decision remains unchanged until Apply is selected.*
+
+| Preview pair | Eligible plans in the unchanged worked example | What the conflict shows |
+| --- | --- | --- |
+| $25B / 88% | A and B | Two submitted offers meet both objectives. |
+| $25B / 90% | A | B misses the tighter ownership floor; C still raises too little. |
+| $30B / 90% | None | No submitted offer satisfies both objectives. |
+| $30B / 88% | B | The lower ownership floor admits the larger round. |
+
+Previewing alone does not change the draft, exact exports, link or API verification. Choose **Apply** to change the capital objective and retained-stake floor together. All plan terms, operating scenarios, balances, holder and coverage settings, analyst selection and exact prose are preserved. A changed objective requires new API verification and review of existing reasoning. A pair already in use has a disabled Apply action.
+
+The preview follows your current inputs, including renamed or edited plans and imported/shared decisions. Any subsequent draft edit clears it, and an invalid draft pauses previewing. A missing equity bridge still permits capital and retention screening while allocation comparisons remain unavailable. You can also edit either objective directly in the main controls.
+
+Explicitly apply the original **$25B / 88%** pair before continuing to the A/B scenario comparison. The panel never restores an earlier pair or chooses an analyst preference automatically.
 
 This is a finite comparison of the submitted plans, not a claim that no other financing could work. Add or edit a plan to test another set of terms. A valid plan that misses an objective remains in the analysis; an invalid quote is identified separately and suppresses dependent outputs until corrected.
 
@@ -70,7 +87,7 @@ Changing the financial inputs marks existing reasoning for review. The tool pres
 
 ## 6. Verify and reproduce
 
-Choose **Verify complete analysis**. The request contains the complete numeric snapshot and no analyst prose. The complete server result and version envelope must match the current browser analysis. Changing a financial input invalidates prior verification; an older response cannot verify a newer draft.
+Choose **Verify complete analysis**. The request contains the complete numeric snapshot and no analyst prose. Versions, inputs, quoted terms and decision outcomes must match exactly. The **verified** badge requires exact complete numerical equality. A separate **rounding comparison** may report small differences only in explicitly permitted modeled outputs; it never receives the exact badge. [The comparison policy](CAPITAL_STRATEGY.md#10-browser-and-api-comparison) defines that conservative allowance and its limits. Changing a financial input invalidates either result; an older response cannot verify a newer draft.
 
 Export the decision JSON and standalone HTML. Copy the exact link and reopen it in a new browser context. Unicode text and full numerical precision travel with the record. JSON imports first show a preview; applying the candidate recalculates its analysis. If a record exceeds the share-link limit, JSON remains available.
 
@@ -82,6 +99,7 @@ The portable brief includes the objectives, alternatives, preference, rationale,
 - [Independent arithmetic](../scripts/check_capital_reference.py) and [capital boundary tests](../tests/capital-strategy.test.js).
 - [Complete API contract](API.md) and [real request tests](../tests/capital-api.test.js).
 - [Browser controller](../public/capital.js), [portable record](../public/lib/capital-record.js) and [share codec](../public/lib/capital-share.js).
+- [Detached objective previews](../public/lib/capital-objectives.js) and [preservation/validation tests](../tests/capital-objectives.test.js).
 - [Architecture](ARCHITECTURE.md), [verification scope](VERIFICATION.md), [portfolio case study](https://ult666666.github.io/projects/frontier-ai-valuation-lab.html).
 
 This is an independent, AI-assisted portfolio demonstration. Its objective is to make a decision inspectable and reproducible, with clear distinctions between financial assumptions, calculations, software checks and business judgment.

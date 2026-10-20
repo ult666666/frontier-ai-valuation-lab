@@ -220,3 +220,40 @@ The reference covers both companies and all six operating presets, finite contin
 DCF comparisons allow accumulated floating-point error using a disclosed component scale. Pairwise crossover numbers must match the independently and correctly rounded exact input-ledger result. The largest absolute error can occur in an intentionally near-singular test with an enormous EV; the receipt identifies that field so an absolute error cannot be advertised without its scale. The general floating-point DCF is not exact, and this reference is algorithmic and arithmetic verification rather than an external audit.
 
 The operating model, horizon engine, financing engine, ownership engine, frozen presets and research baseline remain unchanged. This extension adds an inspectable capital decision method, with explicit limits and a reproducible route from inputs to conclusions.
+
+## 10. Browser and API comparison
+
+The Studio compares a complete local analysis with the complete API result. The [comparison module](../public/lib/capital-verification.js) is separate from the financial engine and never rewrites either result. A response must carry the exact application/model versions and valuation date before its analysis is considered.
+
+| Displayed outcome | Meaning |
+| --- | --- |
+| **Complete analysis verified** | Every result value and field matches exactly, including numerical `Object.is` equality. Object-key serialization order is immaterial; array order remains exact. This verifies software agreement, not financial assumptions. |
+| **Rounding comparison complete** | All exact fields match, and every differing numeric value is in the restricted list below and within the declared relative allowance. Exact numerical equality was not established. |
+| **Verification failed or unavailable** | A version, input, categorical result, structure or value fails comparison, or the network/API request could not complete. The first mismatching field is identified when available. |
+
+JavaScript's mathematical-library operations can be implementation approximations. In particular, the [ECMAScript specification for `Math.expm1`](https://tc39.es/ecma262/2025/multipage/numbers-and-dates.html#sec-math.expm1) permits an implementation-approximated result. A recorded Node24.19/Chromium153 case used the same finite-continuation exponent but produced terminal fractions of `0.7098258228050094` and `0.7098258228050095`. The resulting operating EV differed by approximately `7.1e-15` USD billions. Later subtraction amplified relative differences in some allocations. The [captured synthetic fixture](../tests/fixtures/capital-runtime-rounding.json) preserves both complete results and the intermediate calculation; it is regression evidence, not an independent financial reference.
+
+The qualified comparison allows differences only in these modeled outputs:
+
+| Result area | Permitted numeric fields |
+| --- | --- |
+| `scenarios[]` | `operatingEv`, `perpetualEv`, `modelPreMoneyEquity` |
+| `matrix[]` | `modelPreMoneyEquity`, `modelPostMoneyEquity`, `existingCohortAllocation`, `trackedHolderAllocation`, `modelToQuote`, `regret` |
+| `comparison.range` | `minEquity`, `maxEquity` |
+| `comparison.perScenario[]` | `bestAllocation` |
+| `comparison.planMetrics[]` | `worstRegret`, `minAllocation`, `maxAllocation` |
+| `comparison.minimax` | `worstRegret` |
+| `envelope` | `modelQuoteCeiling`, `maximumPrimaryCapital` |
+| `envelope.plans[]` | `upperPreMoney` |
+
+For a differing pair `a, b` at one of those paths, both must be finite, nonzero and have the same sign, with:
+
+```text
+abs(a − b) / max(abs(a), abs(b)) <= 32 × Number.EPSILON
+```
+
+There is no absolute tolerance floor. Null, zero/nonzero, sign, nonfinite and type differences fail. The complete snapshot, echoed inputs, all plan pricing and ownership, crossover results, envelope lower bounds, method constants, counts, IDs, warnings, status values, eligible sets, rankings and ties remain exact. New or unlisted fields default to exact comparison. A later exact-field mismatch still rejects a result containing earlier permitted numerical differences.
+
+The `32 × Number.EPSILON` allowance is a conservative comparison policy. It is not a formal propagated error bound, an economic materiality threshold, proof of the cause of any discrepancy, or a guarantee that every legitimate runtime variation will qualify. Cancellation can push a value outside this allowance; that result continues to fail. A changed eligibility or ranking always fails even if its underlying numbers are close.
+
+The qualified state uses a separate status and never receives the exact-verification checkmark. Neither state travels with JSON, links or standalone briefs. Any edit clears the current state and aborts pending verification; late responses cannot qualify a newer draft. The [comparator tests](../tests/capital-verification.test.js) cover the observed34-field fixture, the explicit allowance boundary, protected input/term fields, small magnitudes, zero/sign changes and semantic mismatches.
