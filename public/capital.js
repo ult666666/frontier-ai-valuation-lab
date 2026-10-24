@@ -118,7 +118,8 @@ function renderSelection(){
   select.value=state.decision.selectedPlanId||'';
 }
 function renderExampleLauncher(){
-  $('#capital-reset-worked').innerHTML=`Replace with ${escape($('#capital-company').value)} example <span aria-hidden="true">↻</span>`;
+  const icon=document.createElement('span');icon.setAttribute('aria-hidden','true');icon.textContent='↻';
+  $('#capital-reset-worked').replaceChildren(`Replace with ${$('#capital-company').value} example `,icon);
 }
 function renderNoteCounts(){
   for(const [key,selector] of Object.entries(notes)){
