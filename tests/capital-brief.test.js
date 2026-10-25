@@ -13,7 +13,7 @@ const api=(source,name)=>{assert.equal(typeof source[name],'function',`${name} i
 const presets=JSON.parse(await readFile(new URL('../data/presets.json',import.meta.url),'utf8'));
 const example=company=>api(exampleApi,'createCapitalExample')(presets,company);
 const brief=record=>api(briefApi,'capitalBriefHtml')(record);
-const unescape=value=>value.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#39;',"'").replaceAll('&lt;','<').replaceAll('&gt;','>');
+const unescape=value=>value.replaceAll('&quot;','"').replaceAll('&#39;',"'").replaceAll('&lt;','<').replaceAll('&gt;','>').replaceAll('&amp;','&');
 
 test('the worked record uses complete current presets and the declared three-plan decision',()=>{
   const record=example('Anthropic');assert.equal(record.snapshot.company,'Anthropic');
