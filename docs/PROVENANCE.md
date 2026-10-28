@@ -11,7 +11,7 @@ The starting desktop folder contained the original interactive HTML, report HTML
 | Original `README.txt` | `62bea1eb73dacc6b46990ca2892f9dac7754f633d769fac93536606c2c48f610` |
 | Recovered `Anthropic_OpenAI_Fortified_v2.zip` | `4cd934d3dc3760e1bc04e6055182c0cbf0578b930eb5d5fc75cb7212789cf9bc` |
 
-The two connected desktops held identical original HTML and README files. The V2 archive contains a 17-sheet workbook, report, PDF, interactive application and supporting calculations. The original separate Muse workbook/PDF were not present and were not reviewed. Personal paths and account-session information are not part of this public project.
+Both computers that held the original files had identical copies of the HTML and README. The V2 archive contains a 17-sheet workbook, report, PDF, interactive application and supporting calculations. A separate original workbook and PDF were not present and were not reviewed. Personal paths and account-session information are not part of this public project.
 
 ## Research snapshot
 

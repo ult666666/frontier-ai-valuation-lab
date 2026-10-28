@@ -8,9 +8,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "test": "node --test --test-isolation=none tests/*.test.js",
-    "test:model": "node --test --test-isolation=none tests/model.test.js",
-    "test:api": "node --test --test-isolation=none tests/api.test.js",
+    "test": "node scripts/check_node_version.js && node --test --test-isolation=none tests/*.test.js",
+    "test:model": "node scripts/check_node_version.js && node --test --test-isolation=none tests/model.test.js",
+    "test:api": "node scripts/check_node_version.js && node --test --test-isolation=none tests/api.test.js",
     "build": "node scripts/build.js",
     "verify": "npm test && npm run build"
   },

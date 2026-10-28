@@ -1,8 +1,8 @@
-# Final model review
+# Final model review (AI-assisted)
 
 **Review date:** 18 October 2026 · **Release:** 3.0.0 · **Scope:** model, workbook, application and evidence presentation.
 
-This is an independent project review supported by reproducible calculations. It is not an audit opinion on either company's financial statements. The original desktop HTML files and recovered October 16 package were preserved. The separate original Muse workbook and PDF were not available; they are outside the reviewed baseline.
+This is an AI-assisted self-review of the project, supported by reproducible calculations. No third party performed it, and it is not an audit opinion on either company's financial statements. The original desktop HTML files and the recovered October 16 package were preserved. A separate original workbook and PDF were not available; they are outside the reviewed baseline.
 
 ## Material findings and dispositions
 
