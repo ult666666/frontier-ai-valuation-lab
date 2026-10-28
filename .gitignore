@@ -11,3 +11,6 @@ qa-local/
 .venv/
 test-results/
 playwright-report/
+
+# Local AI-agent planning notes
+docs/superpowers/

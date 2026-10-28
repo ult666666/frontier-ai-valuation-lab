@@ -2,7 +2,11 @@
 
 The latest interaction and presentation reviews appear first, followed by the **v4.0 local verification**. Earlier records retain their dates and scope. Numerical agreement, browser behavior, printable-artifact review and deployment checks are separate evidence. Consult the [v4.0 release](https://github.com/ult666666/frontier-ai-valuation-lab/releases/tag/v4.0.0) for that release's exact-commit production and native-desktop observations.
 
+**About the reviews on this page.** Every review recorded here is AI-assisted: an AI agent, usually a different one from the agent that wrote the reviewed code, did the checking. Receipts named `independent-review-*.json` use "independent" only in that sense. None of these reviews is a third-party review, an accessibility certification or a financial audit. Where this page calls a calculation "independent", it means a separate implementation, such as the Python reference checks.
+
 ## 20 October 2026 objective preview and API comparison
+
+These checks ran at commit `36dd518`. A later fix ([#1](https://github.com/ult666666/frontier-ai-valuation-lab/pull/1)) changed `public/capital.js`, so that file no longer matches its recorded hash.
 
 The [dated local review record](verification/objective-preview-20261020.json) binds the optional **Try the tradeoff** interaction, its API-comparison policy, navigation correction, tests and actual [1344 × 1087 product capture](demo-objective-preview-20261020.png) to their reviewed bytes. The portfolio gateway and generated Frontier case link directly to this interaction and explain the same preview/apply sequence.
 
@@ -10,10 +14,10 @@ The [dated local review record](verification/objective-preview-20261020.json) bi
 | --- | --- | --- |
 | Node tests and production build | **347 passed; 0 failed or skipped; build passed** | Existing model/API/transport/record gates plus detached previews and restricted numeric comparison |
 | Complete Capital browser workflow | **109 assertions; 0 page errors** | Real API, exact or qualified state, stale-response protection, deliberate failure/mismatch rejection, import/share/export, precision labels, keyboard, mobile and zoom |
-| Independent objective and navigation browser review | **380 assertions; 0 page or failed-request errors** | Full preview lifecycle, current/custom/imported/shared decisions, pending real responses, exact state preservation, invalid and missing-bridge cases, precision labels, responsive layout, five workspace headers and the Overview zoom correction |
+| Separate AI-assisted objective and navigation browser review | **380 assertions; 0 page or failed-request errors** | Full preview lifecycle, current/custom/imported/shared decisions, pending real responses, exact state preservation, invalid and missing-bridge cases, precision labels, responsive layout, five workspace headers and the Overview zoom correction |
 | Portfolio | **49 structural tests; 4 generated cases; 30 staged public files verified** | Optional preview link, coherent case guide, exact/qualified comparison wording and preserved publication inventory |
 
-The independent browser pass uses actual API responses, with a local forwarder delaying completed response bytes for freshness checks; it fabricates no API results and uses no browser route mocks. The separate public browser regression deliberately injects an unavailable response and an altered result to prove that they fail. These are different checks. Earlier partial/focused runs are retained as development evidence and are not added to the fresh totals above.
+That AI-assisted browser pass uses actual API responses, with a local forwarder delaying completed response bytes for freshness checks; it fabricates no API results and uses no browser route mocks. The separate public browser regression deliberately injects an unavailable response and an altered result to prove that they fail. These are different checks. Earlier partial/focused runs are retained as development evidence and are not added to the fresh totals above.
 
 Previewing validates a detached copy of the current complete decision and changes no draft, reasoning, selection, URL, export or verification state. Apply changes only the two objectives, uses the existing calculation path, and invalidates earlier verification. A same-pair action is disabled; an intervening edit clears the preview. Checks cover all four worked objective pairs, six long plan labels, visible focus after Apply and both boundary-label corrections. At 1440 pixels, navigation remains one row at normal size and wraps at 200% enlargement. All seven links on each of five workspace headers remain reachable by keyboard on the 320/600-pixel scroll rails. The Overview financing-heading row also wraps its worked-example button, closing an inherited 200% overflow while preserving normal/mobile geometry. The broader page and preview checks also cover 390 and 768 pixels.
 
@@ -24,6 +28,8 @@ All **87 protected baseline library, data, download, existing Node-test and API/
 This is scoped Chromium and AI-assisted engineering review, not a complete accessibility certification or an external financial audit. The local record establishes the checks above; GitHub CI, deployed commit identity, ordinary HTTPS and a live visitor journey are observed separately after publication.
 
 ## 20 October 2026 visual refresh
+
+These checks ran at commit `8e99f6b`. Later commits changed `public/capital.html`, `public/capital.css`, `public/capital.js` and `public/shell.css`, so those files no longer match their recorded hashes.
 
 The [dated local review record](verification/visual-refresh-20261020.json) binds the refreshed Studio presentation and actual [1440 × 1271 product capture](demo-capital-visual-20261020.png) to their reviewed bytes. The work improves the results-and-controls hierarchy, reading sizes, explicit chart thresholds, coincident-plan labels, disclosure states and responsive navigation. The fintech portfolio uses the same visual direction and current capture.
 
@@ -49,7 +55,7 @@ Application **4.0.0** introduces Capital Strategy Studio: explicit business obje
 | Bounded local API workload cost | **Four accepted workloads; 10 warmup and 40 measured calls each** | [Observations and scope](verification/capital-performance-4.0.json) |
 | Worked printable artifacts | **19 pages visually reviewed across five PDFs**, including the seven-page capital decision | [Print record](verification/printed-artifacts-4.0.json) |
 | Versioned desktop package | **47 ZIP members; 46 manifest-listed files; seven actual creation/verification checks** | [Archive](verification/desktop-archive-4.0.json), [package checks](verification/desktop-verification-4.0.json) |
-| Scoped independent engineering review | **No unresolved material findings** | [Review record](verification/independent-review-4.0.json) |
+| Scoped AI-assisted engineering review by a separate agent | **No unresolved material findings** | [Review record](verification/independent-review-4.0.json) |
 
 ### Business judgment and the calculation contract
 
@@ -83,7 +89,7 @@ node docs/verification/capital-performance-harness-4.0.mjs \
   /tmp/capital-performance.json
 ```
 
-The final review closed a destructive example-selector behavior: browsing another worked example now queues it while preserving all edits; a separately labeled replacement action applies the example. It also closed a near-parallel crossover precision defect and the malformed-label HTML export defect. Regression checks exercise those behaviors. The fresh release reviewer additionally checked run prerequisites, metadata and the scope of the public design and README.
+The final review closed a destructive example-selector behavior: browsing another worked example now queues it while preserving all edits; a separately labeled replacement action applies the example. It also closed a near-parallel crossover precision defect and the malformed-label HTML export defect. Regression checks exercise those behaviors. The AI-assisted release reviewer also checked run prerequisites, metadata and the scope of the public design and README.
 
 ### Documents, preservation and release boundaries
 
@@ -127,7 +133,7 @@ Application **3.6.0** adds Ownership Frontier within Financing Lens. Its one opt
 | Existing Financing, research journey and Model workflow | **92 + 94 + 57 assertions; 0 page errors** | [Financing](verification/financing-browser-3.6.json), [Journey](verification/journey-browser-3.6.json), [Workbench](verification/workbench-browser-3.6.json) |
 | Independent 100-share Decimal reference | **25 valid; 23 invalid JSON; 8 JavaScript-only rejections; 2,514 numerical and 10,418 structural comparisons** | [Numerical reference](verification/ownership-reference-3.6.json) |
 | Local HTTP assets and complete responses | **98 requests passed** | [HTTP receipt](verification/http-local-3.6.json) |
-| Printable outputs | **12 pages visually reviewed: Financing 3, Horizon 2, Thesis 3, Research 4** | [Independent review](verification/independent-review-3.6.json) |
+| Printable outputs | **12 pages visually reviewed: Financing 3, Horizon 2, Thesis 3, Research 4** | [AI-assisted review](verification/independent-review-3.6.json) |
 | Versioned desktop archive | **39 members; 38 manifest-listed files** | [Archive](verification/desktop-archive-3.6.json), [Package verification](verification/desktop-verification-3.6.json) |
 
 ### Contract, precision and compatibility
@@ -142,7 +148,7 @@ The original financing calculation and schema-one payload are unchanged when the
 
 Native controls, keyboard range adjustment, complete text results and accessible SVG descriptions were checked at 320, 390, 768 and 1440 pixels. The real 975 × 612 landscape panel capture is used by the portfolio. The updated Financing brief has a third page for the exact ownership floor, curve, capital limit, basis interpretation, formula and reopening link. All four worked PDFs retain their dated financial assumptions and identify the current application version.
 
-A separate agent authored the independent share-ledger reference and browser harness and reviewed all twelve rendered PDF pages. Its source-bound [review record](verification/independent-review-3.6.json) discloses that role and reports no unresolved findings within its scope. This is an AI-assisted engineering review, not an external financial or accessibility audit.
+A separate AI agent authored the independent share-ledger reference and browser harness and reviewed all twelve rendered PDF pages. Its source-bound [review record](verification/independent-review-3.6.json) discloses that role and reports no unresolved findings within its scope. This is an AI-assisted engineering review, not an external financial or accessibility audit.
 
 ### Release gates and scope
 
@@ -161,7 +167,7 @@ Application **3.5.0** adds Financing Lens within the existing Model: a hypotheti
 | Connected research journey and Model regression | **94 + 57 assertions; 0 page errors** | [Journey](verification/journey-browser-3.5.json), [Workbench](verification/workbench-browser-3.5.json) |
 | Independent Python financing calculation | **19 valid cases; 31 invalid/boundary cases; 3,591 numerical and 596 structural comparisons** | [Financing reference](verification/financing-reference-3.5.json) |
 | Local HTTP assets and API consistency | **82 of 82 requests passed** | [HTTP receipt](verification/http-local-3.5.json) |
-| Scoped second-agent presentation review | **Three findings closed** | [Review scope and reproductions](verification/independent-review-3.5.json) |
+| Scoped AI-assisted presentation review by a second agent | **Three findings closed** | [Review scope and reproductions](verification/independent-review-3.5.json) |
 | Current printable examples | **Financing: 2 pages; Horizon: 2; Thesis: 3; Research: 4** | [Print review and PDF hashes](verification/release-3.5-local.json) |
 | Versioned portable archive | **36 members; 35 manifest-listed files** | [Archive](verification/desktop-archive-3.5.json), [package checks](verification/desktop-verification-3.5.json) |
 
@@ -261,7 +267,7 @@ Horizon links preserve all thirteen operating inputs, optional bridge, years and
 
 ### Findings closed in the scoped review
 
-The [independent review record](verification/independent-review-3.4.json) documents a separate AI-assisted engineering reviewer, concrete reproducers, numerical rechecks and reviewed source hashes. It is not an external financial audit or full-application certification.
+The [review record](verification/independent-review-3.4.json) documents a separate AI-assisted engineering reviewer, concrete reproducers, numerical rechecks and reviewed source hashes. It is not an external financial audit or full-application certification.
 
 | Finding | Verified resolution |
 | --- | --- |
@@ -313,7 +319,7 @@ Application **3.3.0** passed the local release checks recorded on **19 October 2
 | Local HTTP consistency probe | **53 of 53 passed** | [HTTP report](verification/http-local-3.3.json) |
 | Separate Python forward model | **36 valid and 73 invalid cases passed** | [Forward parity](verification/reference-parity-3.3.json) |
 | Separate Python attribution and target calculations | **1,002 numerical comparisons passed** | [Thesis reference](verification/thesis-reference-3.3.json) |
-| Scoped engineering review | **Six findings closed; none confirmed open in scope** | [Review record](verification/independent-review-3.3.json) |
+| Scoped AI-assisted engineering review | **Six findings closed; none confirmed open in scope** | [Review record](verification/independent-review-3.3.json) |
 | Printable examples | **Three-page Thesis PDF; four-page Research PDF** | [Thesis comparison](../public/downloads/Frontier_AI_Thesis_Comparison.pdf), [Research brief](../public/downloads/Frontier_AI_Research_Brief.pdf) |
 
 ### Research workflow and persistence
@@ -407,7 +413,7 @@ The independent constant-growth fixture returns **$200.31471864537804B EV**. It 
 
 An optional numerical exercise, `node scripts/check_reverse_stress.mjs`, recovered **11,203 supported positive forward targets** from 20,000 deterministic sampled scenarios. It found no missed known roots within `1e-6` early growth. See [reverse-stress.json](verification/reverse-stress.json). The core solver regression fixtures run in ordinary CI; the large exercise is supplementary evidence.
 
-### Thesis Lab calculation and independent review
+### Thesis Lab calculation and AI-assisted review
 
 The new Node tests cover all 36 ordered pairs of the six presets, all 64 attribution combinations, an independent 720-order oracle, swapped and identical cases, isolated groups, equal EVs with offsetting contributions, negative EV and nonfinite endpoint/hybrid failures. Landscape checks cover direct model values, matrix orientation, invalid cells, axis bounds, tax kinks, exact endpoints, out-of-window targets and very small numerical scales. Comparison links preserve exact inputs, bridges and axes; script-free brief tests verify current forecasts, reconciliation, safe links and finite extreme percentage display.
 
@@ -427,7 +433,7 @@ The new Node tests cover all 36 ordered pairs of the six presets, all 64 attribu
 
 Monetary comparison tolerances are absolute `1e-8` USD billions plus relative `2e-11`; recovered margins use absolute `2e-9`. Independent target revaluation uses absolute `1e-6` USD billions plus relative `2e-9`. Passing these deterministic cases does not establish forecast accuracy or scenario probabilities.
 
-The [independent review record](verification/thesis-review.json) documents four resolved defects: extreme percentage display, comparison validation before import mutation, mobile axis-label alignment, and stale screen-reader announcements after invalid input. The reviewer verified the two final UI fixes with focused Chromium reproducers. No confirmed finding remains open in that reviewed scope.
+The [AI-assisted review record](verification/thesis-review.json) documents four resolved defects: extreme percentage display, comparison validation before import mutation, mobile axis-label alignment, and stale screen-reader announcements after invalid input. The reviewer verified the two final UI fixes with focused Chromium reproducers. No confirmed finding remains open in that reviewed scope.
 
 ### Browser interaction and layout
 
@@ -437,7 +443,7 @@ The separate [entry-and-return smoke](verification/thesis-entry-browser.json) pa
 
 The three existing browser harnesses below were rerun for this release: **207 checks passed**. Together with the new two harnesses, the release has **299 browser checks**. These are local Chromium results, not a claim about every browser or assistive technology. Actual desktop, mobile, presenter and portfolio captures were visually inspected. The comparison example PDF prints to **three A4 pages**; every page was reviewed for clipping, overlap and readable tables. The supplied [PDF](../public/downloads/Frontier_AI_Thesis_Comparison.pdf) and [standalone HTML](../public/downloads/Frontier_AI_Thesis_Comparison.html) describe their own exact sample window and carry the current application version.
 
-The guided comparison and stress experience was rechecked with application 3.2 and passed **75 Chromium checks**, with no runtime errors and no horizontal page overflow at **360, 390, 768 and 1440 pixels**. The [experience checklist](verification/experience-browser.json) covers exact model points, signed FCFF geometry, value-component reconciliation, terminal shares above 100%, nonpositive EV, native year keyboard input, chapter keyboard navigation, all four shocks, server agreement, complete-result mismatch detection, stale-response cancellation, unavailable API fallback and exact stressed-case handoff. Reduced-motion behavior was tested. Actual desktop/tablet/mobile screenshots were inspected; a separate reviewer found and prompted a contrast improvement in the nonterminal bars.
+The guided comparison and stress experience was rechecked with application 3.2 and passed **75 Chromium checks**, with no runtime errors and no horizontal page overflow at **360, 390, 768 and 1440 pixels**. The [experience checklist](verification/experience-browser.json) covers exact model points, signed FCFF geometry, value-component reconciliation, terminal shares above 100%, nonpositive EV, native year keyboard input, chapter keyboard navigation, all four shocks, server agreement, complete-result mismatch detection, stale-response cancellation, unavailable API fallback and exact stressed-case handoff. Reduced-motion behavior was tested. Actual desktop/tablet/mobile screenshots were inspected; a separate AI-assisted review prompted a contrast improvement in the nonterminal bars.
 
 Run the optional new experience harness against the started app with `node tests/experience-browser.mjs`. It accepts the same Playwright/browser environment options as the original harness.
 
@@ -463,13 +469,15 @@ node tests/browser-smoke.mjs
 
 `FRONTIER_BASE_URL` can point to a deployment. `FRONTIER_PLAYWRIGHT_MODULE` can identify a separately installed Playwright package; `FRONTIER_CHROMIUM_EXECUTABLE` can select an available test browser. The harness writes ignored QA outputs and refreshes the README demo screenshot. It uses synthetic local scenario names and never needs account credentials.
 
+Playwright is not a dependency of this repository. Install it with `npm install --no-save playwright` and `npx playwright install chromium`. The other harnesses, `tests/*-browser.mjs`, default to paths in the Codex agent environment used to build this project, so they need two settings outside it. Set `FRONTIER_PLAYWRIGHT_MODULE=playwright`; otherwise they look for Playwright under `CODEX_PRIMARY_RUNTIME_NODE_MODULES`. Several also expect Chromium at `/tmp/frontier-chromium-runtime/chromium`, so set `FRONTIER_CHROMIUM_EXECUTABLE` to the path printed by `node -e "console.log(require('playwright').chromium.executablePath())"`. With both set, `tests/capital-browser.mjs` passes against a local server started with `PORT=4340 npm start`.
+
 ### Report and workbook
 
 The application 3.2 release preserves the exact reviewed workbook and nine-page PDF bytes. Their earlier authoring verification remains applicable; they were not regenerated for this presentation update.
 
 The nine-page PDF was rendered and every page visually inspected for clipping, overlap, missing glyphs and table readability. The HTML and PDF share one content builder and consume the same dated model result snapshot. The report exposes source links, assumptions, cash-flow reconciliation, terminal diagnostics and review findings.
 
-The five-sheet workbook passed **2,058 numerical comparisons** across six presets and six independently calculated edited cases, plus **169 invalid-input and scenario-selector cases**. Its **435 formulas** were exported and reimported with matching Base EVs. Evidence is in [workbook-checks.json](verification/workbook-checks.json). Formula consistency and invalid-input rejection are different checks; neither is replaced by a PASS label driven only by an arithmetic identity. Recalculation used the artifact authoring runtime; a native Microsoft Excel calculation was not performed. Sensitivity and reverse DCF remain in the application, rather than an approximate worksheet solver.
+The five-sheet workbook passed **2,058 numerical comparisons** across six presets and six independently calculated edited cases, plus **169 invalid-input and scenario-selector cases**. Its **435 formulas** were exported and reimported with matching Base EVs. Evidence is in [workbook-checks.json](verification/workbook-checks.json). Formula consistency and invalid-input rejection are different checks; neither is replaced by a PASS label driven only by an arithmetic identity. Recalculation used the artifact authoring runtime; a native Microsoft Excel calculation was not performed. The workbook is a committed file: its generator, `scripts/build_workbook.mjs`, needs `@oai/artifact-tool`, which comes from the Codex agent environment used to build this project and is not on the public npm registry. Visitors can open and inspect the committed workbook but cannot rerun the generator. Sensitivity and reverse DCF remain in the application, rather than an approximate worksheet solver.
 
 Read-only inspection confirms every saved formula cache, 19 source URLs and native chart bindings. The exporter omits separate chart point caches; the chart's worksheet references and rendered values were checked, but its display in native Excel was not. The [XML record](verification/workbook-xml.json) states this limit explicitly. Source URLs are readable text, avoiding unsupported hyperlink-formula caches.
 
