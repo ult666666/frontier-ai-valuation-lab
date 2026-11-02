@@ -21,6 +21,28 @@ const text=html=>{
 };
 const headings=(html,level)=>[...html.matchAll(new RegExp(`<h${level}\\b[^>]*>([\\s\\S]*?)</h${level}>`,'g'))].map(match=>match[1]);
 
+// WCAG 2.2 relative luminance and contrast ratio of two hex colors.
+const luminance=hex=>{
+  const full=hex.length===4?`#${[...hex.slice(1)].map(c=>c+c).join('')}`:hex;
+  const [r,g,b]=[1,3,5].map(i=>parseInt(full.slice(i,i+2),16)/255).map(c=>c<=.03928?c/12.92:((c+.055)/1.055)**2.4);
+  return .2126*r+.7152*g+.0722*b;
+};
+const contrast=(a,b)=>{const [hi,lo]=[luminance(a),luminance(b)].sort((x,y)=>y-x);return (hi+.05)/(lo+.05);};
+
+test('the shared field border is visible and leaves state styles in charge',async()=>{
+  const css=await read('shell.css');
+  const token=name=>css.match(new RegExp(`--${name}:(#[0-9a-f]{6}|#[0-9a-f]{3})\\b`,'i'))?.[1];
+  for(const surface of ['surface','surface-2','paper']){
+    assert.ok(contrast(token('field-line'),token(surface))>=3,`Field border on --${surface}`);
+  }
+  // Invalid and focused fields are styled by page rules, which must outrank this
+  // default, so it sits inside :where(), which adds no specificity.
+  const at=css.indexOf('{border-color:var(--field-line)}');
+  assert.ok(at>0,'The shared field border rule exists');
+  const selector=css.slice(Math.max(css.lastIndexOf('}',at)+1,css.lastIndexOf('*/',at)+2),at).trim();
+  assert.match(selector,/^:where\(/);
+});
+
 for(const [name,expected] of Object.entries(pages)){
   test(`${name} opens with one plain page title`,async()=>{
     const html=await read(name),titles=headings(html,1);

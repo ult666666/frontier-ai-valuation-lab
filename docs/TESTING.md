@@ -8,7 +8,7 @@ Every check below runs from the repository root with Node.js 24 and Python 3.11 
 npm test
 ```
 
-`npm test` runs the 403 tests in `tests/*.test.js` with the Node test runner. They cover the FCFF engine, every API action over real HTTP, share links and records, the briefs, the Monte Carlo layer, and the page conventions in [`tests/presentation.test.js`](../tests/presentation.test.js). [`tests/release.test.js`](../tests/release.test.js) rebuilds the committed capital, financing and Value Horizon downloads in `public/downloads/` and fails if they differ from the files.
+`npm test` runs the 404 tests in `tests/*.test.js` with the Node test runner. They cover the FCFF engine, every API action over real HTTP, share links and records, the briefs, the Monte Carlo layer, and the page conventions in [`tests/presentation.test.js`](../tests/presentation.test.js). [`tests/release.test.js`](../tests/release.test.js) rebuilds the committed capital, financing and Value Horizon downloads in `public/downloads/` and fails if they differ from the files.
 
 `npm run build` then copies the public site to `dist/` and checks that the six presets still project.
 

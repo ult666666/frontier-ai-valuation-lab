@@ -10,7 +10,7 @@ This entry covers the plain-presentation change: page titles, section titles, la
 
 | Verification layer | Result | Command or evidence |
 | --- | --- | --- |
-| Node tests | **403 passed; 0 failed or skipped** (380 existing, 23 new) | `npm test` |
+| Node tests | **404 passed; 0 failed or skipped** (380 existing, 24 new) | `npm test` |
 | Python references | **All seven passed.** Their outputs match the run on `main` apart from timestamps | The seven commands in [TESTING.md](TESTING.md#python-reference-checks) |
 | Build | **Passed** | `npm run build` |
 | Browser workflows | **13 of 13 suites passed**, once with the Inter font and once with Inter hidden so pages fall back to DejaVu Sans: smoke 57, Overview 76, capital 108, financing 92, ownership 77, Monte Carlo 35, Value Horizon 148, Thesis Lab 79, Thesis entry 14, journey 94, Casebook 85, save race 16, portability 75 checks | `tests/*-browser.mjs` and `tests/browser-smoke.mjs` against a local server |
@@ -21,7 +21,9 @@ This entry covers the plain-presentation change: page titles, section titles, la
 
 The first CI run of this change failed the 390 px overflow check in the Monte Carlo suite, which had passed locally. Hiding Inter from Chromium, so that pages fall back to the wider DejaVu Sans, reproduced the failure. That setup found three layouts that only fit the narrower font: the Model's export buttons at 390 px, the page header at 360 px and the Thesis Lab case figures at 200% zoom. They were fixed in this change, and the results above include the fixes.
 
-The new tests can fail. `tests/presentation.test.js` fails 17 of its 20 checks when pointed at the pages on `main`. `tests/capital-chart.test.js` caught a light-theme axis color at 2.60:1 against the qualifying zone before the color was darkened.
+A second pass looked for marks that were drawn for the old dark panels: rules whose dark paint became light, and small rendered marks (legend keys, dots, slider parts and chart shapes) compared with what sits behind them on `main` and on this branch. It found three that had lost their contrast: the current-round key in the Ownership limit legend, the Overview year slider and the selected cell in the Thesis Lab value table. They use dark marks again. The same pass found two state styles that this change had weakened: the shared field border outranked the red border of invalid inputs in the Model, Monte Carlo, funding round and Casebook forms, and the Capital Studio objective fields turned a lighter border on focus. Fields now take one `--field-line` border, at least 3:1 against the page, panel and field fills; state rules win again, and a focused objective field shows the accent border.
+
+The new tests can fail. `tests/presentation.test.js` fails 18 of its 21 checks when pointed at the pages on `main`. Its field border check also failed in a scratch copy when the shared rule lost its `:where()` wrapper and when the border went back to the earlier, lighter color. `tests/capital-chart.test.js` caught a light-theme axis color at 2.60:1 against the qualifying zone before the color was darkened.
 
 Before and after screenshots of every page at 1440 and 390 px were reviewed by hand. The current captures are in [`screenshots/`](screenshots/).
 

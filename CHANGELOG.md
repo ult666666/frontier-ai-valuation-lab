@@ -16,7 +16,7 @@ Notable changes to Frontier AI Valuation Lab. The format follows [Keep a Changel
 
 ### Added
 
-- `tests/presentation.test.js` checks each workspace page for a single plain title, unnumbered section titles, prose without em dashes, one method and limits note and the shared footer.
+- `tests/presentation.test.js` checks each workspace page for a single plain title, unnumbered section titles, prose without em dashes, one method and limits note and the shared footer. It also checks that the shared field border has 3:1 contrast and cannot override the styles for invalid or focused fields.
 - `tests/capital-chart.test.js` checks that the dark chart stays the default, that the light chart plots the same geometry and text, and that its text and marks meet WCAG contrast on the plot and the qualifying zone.
 - Valuation under uncertainty (uncertainty method 1.0.0): a seeded Monte Carlo panel in the Model workspace and a matching `simulate` API action. Up to five drivers (revenue growth path, terminal margin, discount rate, terminal growth and, with a hypothetical bridge, dilution) take bounded uniform, triangular or truncated normal distributions, joined by a Gaussian copula with a Cholesky factor. Results include P5 to P95, the share of draws above a hurdle with a Wilson interval, a histogram, the standard error of the mean, a median check across five seeds and a one-way P10 to P90 tornado. See [docs/UNCERTAINTY.md](docs/UNCERTAINTY.md).
 - Seeded xoshiro128** random numbers and fdlibm-based `exp` and `log`, so the same request gives byte-identical JSON in the browser and the API.

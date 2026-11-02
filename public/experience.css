@@ -87,11 +87,11 @@
 .year-range-labels,.stress-range-labels{display: flex; justify-content: space-between; gap: 12px; color:var(--ink);  font-size:12px;}
 .year-range-labels{margin-top: 1px;}
 .research-theater input[type="range"],.stress-lab input[type="range"]{--range-fill: 50%; display: block; width: 100%; min-height: 30px; height: 30px; padding: 0; margin: 0; border:0; border-radius:0; background:transparent; appearance: none; -webkit-appearance: none; cursor: pointer;}
-.research-theater input[type="range"]::-webkit-slider-runnable-track{height: 2px; background:linear-gradient(to right, #c3cfdb var(--range-fill), var(--surface) var(--range-fill));}
-.research-theater input[type="range"]::-webkit-slider-thumb{width: 13px; height: 13px; margin-top: -5.5px; border:2px solid var(--surface); border-radius:50%; background:var(--surface-2); box-shadow: 0 0 0 1px #d3dce5; appearance: none; -webkit-appearance: none;}
-.research-theater input[type="range"]::-moz-range-track{height: 2px; background:var(--surface);}
-.research-theater input[type="range"]::-moz-range-progress{height: 2px; background:#c3cfdb;}
-.research-theater input[type="range"]::-moz-range-thumb{width: 10px; height: 10px; border:2px solid var(--surface); border-radius:50%; background:var(--surface-2); box-shadow: 0 0 0 1px #d3dce5;}
+.research-theater input[type="range"]::-webkit-slider-runnable-track{height: 2px; background:linear-gradient(to right, #536a5c var(--range-fill), #d4d9cb var(--range-fill));}
+.research-theater input[type="range"]::-webkit-slider-thumb{width: 13px; height: 13px; margin-top: -5.5px; border:2px solid var(--surface); border-radius:50%; background:var(--ink); box-shadow: 0 0 0 1px #748172; appearance: none; -webkit-appearance: none;}
+.research-theater input[type="range"]::-moz-range-track{height: 2px; background:#d4d9cb;}
+.research-theater input[type="range"]::-moz-range-progress{height: 2px; background:#536a5c;}
+.research-theater input[type="range"]::-moz-range-thumb{width: 10px; height: 10px; border:2px solid var(--surface); border-radius:50%; background:var(--ink); box-shadow: 0 0 0 1px #748172;}
 .value-composition-note{font-size:12px; color:var(--muted); line-height: 1.8; padding: 14px 0 16px; border-top:1px solid var(--line); margin-top: 16px;}
 .theater-bottom{display: flex; justify-content: space-between; align-items: flex-start; gap: 22px; border-top:1px solid var(--line); padding: 14px 0 16px; position: relative;}
 .theater-bottom > p{font-size:12px; color:var(--muted); line-height: 1.7;}
