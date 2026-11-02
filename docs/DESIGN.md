@@ -1,5 +1,7 @@
 # Frontier AI Valuation Lab: product and model design
 
+> Design history: this note describes application 3.0. The current pages use different labels and a lighter layout. The [documentation index](README.md) lists the current method notes.
+
 The original design below describes the reviewed financial foundation. [Application 3.1 experience design](EXPERIENCE_UPDATE.md) documents the subsequent guided comparison, paired stress tests, exact scenario links and standalone briefing.
 
 ## Purpose

@@ -605,6 +605,23 @@ The public calculation has bounded inputs, body size and iteration counts. It ne
 
 Send `{action:'capital', snapshot}`. Both fields are required; every other top-level field is rejected. Analyst selection and reasoning do not belong in a calculation request.
 
+To send the published worked example, take the numeric snapshot from its record (this example moved here from the README):
+
+```sh
+node --input-type=module <<'JS'
+import {readFile,writeFile} from 'node:fs/promises';
+const record=JSON.parse(await readFile('public/downloads/Frontier_AI_Capital_Decision.json','utf8'));
+await writeFile('/tmp/frontier-capital-request.json',JSON.stringify({action:'capital',snapshot:record.snapshot}));
+JS
+curl --fail-with-body http://127.0.0.1:4321/api/valuation \
+  -H 'Content-Type: application/json' \
+  --data-binary @/tmp/frontier-capital-request.json
+```
+
+A successful response includes `appVersion`, `modelVersion`, `valuationDate` and the complete analysis. The endpoint accepts 1 to 9 scenarios and 1 to 6 plans, rejects unsupported fields and keeps the 16 KiB request limit.
+
+The general request shape:
+
 ```json
 {
   "action": "capital",

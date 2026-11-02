@@ -4,7 +4,7 @@ Application 3.4.0 connects an operating forecast, a valuation question and the e
 
 ## Begin with Value Horizon
 
-Open [Value Horizon](https://frontier-ai-valuation-lab.vercel.app/horizon.html) and ask **“How much future is in the value?”** The selected company and Bear/Base/Bull preset supply all thirteen operating assumptions. Choosing 0–100 whole years after 2036 changes only the continuation retained: the complete explicit forecast stays intact, and no cash flow or residual value is included after the selected cutoff.
+Open [Value Horizon](https://frontier-ai-valuation-lab.vercel.app/horizon.html) to see how much of a case’s value comes from cash flows after 2036. The selected company and Bear/Base/Bull preset supply all thirteen operating assumptions. Choosing 0–100 whole years after 2036 changes only the continuation retained: the complete explicit forecast stays intact, and no cash flow or residual value is included after the selected cutoff.
 
 The page separates the finite operating EV, unchanged perpetual reference and excluded later PV. The reconciliation shows explicit forecast PV plus retained continuation PV. Capture milestones identify how many years retain a specified fraction of terminal PV; a separate target input asks when a positive operating EV is first reached. Neither describes the probability that the cash flows occur. Requirements beyond the visible chart, perpetuity, unreachable targets, bounded search and numerical precision limits are identified explicitly. See the [financial method and timing](VALUE_HORIZON.md).
 

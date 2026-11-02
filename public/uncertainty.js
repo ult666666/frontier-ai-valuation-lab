@@ -49,14 +49,14 @@ export function createUncertaintyPanel({getCase}){
   }).join('');
   root.innerHTML=`<form id="uq-form" class="uq-form" novalidate aria-label="Monte Carlo driver distributions">
     <p id="uq-measure" class="uq-measure"></p>
-    <p id="uq-drivers-note" class="small-note">Percent fields are entered in percent. The growth path multiplies every 2027–2036 growth rate. Low and high bound every shape; triangular uses the middle value as its mode, truncated normal as its mean.</p>
+    <p id="uq-drivers-note" class="small-note">Enter percentages as numbers (12.5 for 12.5%). The growth path multiplies every 2027–2036 growth rate. The middle value is the mode of a triangular range or the mean of a truncated normal.</p>
     <div class="table-scroll uq-table-scroll" tabindex="0" role="region" aria-label="Driver distributions">
       <table class="uq-drivers" aria-describedby="uq-drivers-note"><caption class="sr-only">Driver distributions</caption>
       <thead><tr><th scope="col">Use</th><th scope="col">Driver</th><th scope="col">Case value</th><th scope="col">Shape</th><th scope="col">Low</th><th scope="col">Mode / mean</th><th scope="col">High</th><th scope="col">Std. dev.</th></tr></thead>
       <tbody>${rows}</tbody></table>
     </div>
-    <fieldset class="uq-correlation"><legend>Correlation of the drivers’ normal scores</legend>
-      <p class="small-note">Enter the upper triangle; the lower triangle mirrors it. The matrix must be positive semidefinite. Defaults are illustrative: growth with margin +0.4, discount rate with terminal growth +0.3.</p>
+    <fieldset class="uq-correlation"><legend>Correlations between drivers</legend>
+      <p class="small-note">Edit the upper triangle; the lower triangle mirrors it. The matrix must be positive semidefinite. Defaults: growth with margin +0.4, discount rate with terminal growth +0.3.</p>
       <div id="uq-correlation" class="table-scroll" tabindex="0" role="region" aria-label="Correlation matrix inputs"></div>
     </fieldset>
     <div class="uq-run-row">
@@ -77,9 +77,9 @@ export function createUncertaintyPanel({getCase}){
     </div>
     <div class="uq-figure"><div id="uq-distribution-chart" class="uq-chart-wrap" tabindex="0" role="region" aria-label="Distribution chart"></div>
       <details class="uq-data"><summary>Distribution table <span class="summary-hint">Percentiles and every histogram bin</span></summary><div id="uq-distribution-table" class="table-scroll" tabindex="0" role="region" aria-label="Simulated distribution table"></div></details></div>
-    <div class="uq-figure"><h4 class="uq-subheading">Which driver moves the value most?</h4><div id="uq-tornado-chart" class="uq-chart-wrap" tabindex="0" role="region" aria-label="Tornado chart"></div>
+    <div class="uq-figure"><h4 class="uq-subheading">Sensitivity by driver (P10 to P90)</h4><div id="uq-tornado-chart" class="uq-chart-wrap" tabindex="0" role="region" aria-label="Tornado chart"></div>
       <details class="uq-data"><summary>Tornado table <span class="summary-hint">Values at each driver’s P10 and P90</span></summary><div id="uq-tornado-table" class="table-scroll" tabindex="0" role="region" aria-label="Tornado sensitivity table"></div></details></div>
-    <div class="uq-diagnostics"><h4 class="uq-subheading">Is the simulation precise enough?</h4><div id="uq-diagnostics"></div></div>
+    <div class="uq-diagnostics"><h4 class="uq-subheading">Convergence</h4><div id="uq-diagnostics"></div></div>
     <ul id="uq-warnings" class="uq-warnings" hidden></ul>
     <div class="uq-actions"><button id="uq-verify" type="button" class="button button-outline">Verify on server <span aria-hidden="true">↗</span></button><button id="uq-export" type="button" class="button button-outline">Simulation JSON <span aria-hidden="true">↓</span></button></div>
     <p id="uq-api-status" class="uq-api-status" data-state="idle" role="status">Calculated in your browser. The server can rerun the same seed.</p>

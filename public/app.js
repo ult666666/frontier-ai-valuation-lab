@@ -39,7 +39,7 @@ const fields = [
   { key: 'stub', label: 'Remaining-2026 FCFF', unit: 'bn', group: 'Capital & valuation', wide: true, help: 'Free cash flow to the firm from the valuation date through 31 December 2026. A cash outflow is negative.' },
 ];
 const groupHints = {
-  'Revenue & growth': 'Future revenue is illustrative. Growth inputs are annual rates.',
+  'Revenue & growth': 'Growth inputs are annual rates.',
   'Operating economics': 'Margins interpolate between the three anchors. No NOL offset.',
   'Capital & valuation': 'Net reinvestment includes net capex and working capital. Do not add them again.',
 };
@@ -330,18 +330,18 @@ function renderForecast() {
   if (isRevenue) {
     const line = data.map((item, index) => `${index === 0 ? 'M' : 'L'} ${x(index).toFixed(2)} ${y(item.value).toFixed(2)}`).join(' ');
     const area = `${line} L ${x(data.length - 1).toFixed(2)} ${y(0).toFixed(2)} L ${x(0).toFixed(2)} ${y(0).toFixed(2)} Z`;
-    marks = `<defs><linearGradient id="revenue-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--accent)" stop-opacity=".20"/><stop offset="100%" stop-color="var(--accent)" stop-opacity=".015"/></linearGradient></defs><path d="${area}" fill="url(#revenue-fill)"/><path d="${line}" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linejoin="round"/>${data.map((item, index) => `<circle cx="${x(index)}" cy="${y(item.value)}" r="3.4" class="chart-point"><title>${item.label} revenue: ${money(item.value)}</title></circle>`).join('')}<text x="${x(data.length - 1)}" y="${y(last.revenue) - 13}" text-anchor="middle" class="chart-end-text">${number(last.revenue, 0)}</text>`;
+    marks = `<defs><linearGradient id="revenue-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--company)" stop-opacity=".20"/><stop offset="100%" stop-color="var(--company)" stop-opacity=".015"/></linearGradient></defs><path d="${area}" fill="url(#revenue-fill)"/><path d="${line}" fill="none" stroke="var(--company)" stroke-width="2.4" stroke-linejoin="round"/>${data.map((item, index) => `<circle cx="${x(index)}" cy="${y(item.value)}" r="3.4" class="chart-point"><title>${item.label} revenue: ${money(item.value)}</title></circle>`).join('')}<text x="${x(data.length - 1)}" y="${y(last.revenue) - 13}" text-anchor="middle" class="chart-end-text">${number(last.revenue, 0)}</text>`;
   } else {
     const barWidth = plotWidth / data.length * .48;
     marks = data.map((item, index) => {
       const baseline = y(0), position = y(item.value);
-      return `<rect x="${x(index) - barWidth / 2}" y="${Math.min(position, baseline)}" width="${barWidth}" height="${Math.max(.65, Math.abs(baseline - position))}" rx="1" fill="${item.value < 0 ? '#b8816b' : 'var(--accent)'}" opacity="${item.label === '2026 R' ? '.6' : '.9'}"><title>${item.label === '2026 R' ? 'Remaining 2026' : item.label} free cash flow: ${money(item.value)}</title></rect>`;
+      return `<rect x="${x(index) - barWidth / 2}" y="${Math.min(position, baseline)}" width="${barWidth}" height="${Math.max(.65, Math.abs(baseline - position))}" rx="1" fill="${item.value < 0 ? '#b8816b' : 'var(--company)'}" opacity="${item.label === '2026 R' ? '.6' : '.9'}"><title>${item.label === '2026 R' ? 'Remaining 2026' : item.label} free cash flow: ${money(item.value)}</title></rect>`;
     }).join('');
   }
   const metricName = isRevenue ? 'Revenue' : 'Free cash flow to the firm';
   const description = data.map(item => `${item.label}: ${money(item.value)}`).join('; ');
   $('#forecast-chart').innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="chart-title chart-desc"><title id="chart-title">${escapeHtml(state.company)} ${escapeHtml(state.scenario)}${state.custom ? ' edited' : ''}: ${metricName}</title><desc id="chart-desc">Illustrative forecast in USD billions. ${escapeHtml(description)}. Exact figures are available in the annual forecast table and CSV.</desc>${grids}${marks}${xLabels}</svg>`;
-  $('#chart-note').textContent = isRevenue ? 'Annual forecast · USD billions · 2027–2036. All plotted revenue is illustrative.' : 'FCFF · USD billions · 2026 R is the remaining-year stub. Negative cash flow is shown below zero.';
+  $('#chart-note').textContent = isRevenue ? 'Annual forecast · USD billions · 2027–2036' : 'FCFF · USD billions · 2026 R is the rest of 2026';
   renderForecastTable();
 }
 
@@ -884,7 +884,7 @@ async function initialize() {
     state.presets = presets;
     state.research = research;
     state.ready = true;
-    $('#model-version').textContent = `Model v${MODEL_VERSION} · Browser ready`;
+    $('#model-version').textContent = `Financial engine ${MODEL_VERSION}`;
     renderComparisons();
     renderEvidence();
     initializeCasebook();

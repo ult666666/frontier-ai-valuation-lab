@@ -5,7 +5,7 @@ import { comparePair, stressPair } from './lib/analytics.js';
 
 const COMPANIES = ['Anthropic', 'OpenAI'];
 const CHAPTERS = ['revenue', 'fcf', 'value'];
-const COLORS = { Anthropic: '#ffab82', OpenAI: '#8adfc6' };
+const COLORS = { Anthropic: '#a24f35', OpenAI: '#216859' };
 const ZERO_SHOCKS = { growthPp: 0, marginPp: 0, waccPp: 0, capitalEfficiencyPct: 0 };
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
@@ -115,7 +115,7 @@ export function initExperience({ presets, research, onOpenModel }) {
           <line x1="${plot.right + 4}" x2="${plot.right + 9}" y1="${y(rows.at(-1)[metric])}" y2="${directY}" stroke="${COLORS[company]}" stroke-width="1" opacity=".7"/><text class="plot-direct-label" x="${plot.right + 13}" y="${directY + 3}" fill="${COLORS[company]}"${narrow ? ' style="font-size:9px"' : ''}>${company}</text>`;
       }).join('')}
       ${[2027, 2030, 2033, 2036].filter(year => year !== state.year).map(year => `<text class="plot-axis-label" text-anchor="middle" x="${x(year)}" y="${height - 10}"${narrow ? ' style="font-size:8px"' : ''}>${year}</text>`).join('')}
-      <rect x="${selectedX - 18}" y="${height - 23}" width="36" height="20" fill="#304257" rx="2"/><text class="plot-axis-label is-emphasis" text-anchor="middle" x="${selectedX}" y="${height - 9}"${narrow ? ' style="font-size:9px"' : ''}>${state.year}</text>
+      <rect x="${selectedX - 18}" y="${height - 23}" width="36" height="20" fill="#1b2624" rx="2"/><text class="plot-axis-label is-emphasis" text-anchor="middle" x="${selectedX}" y="${height - 9}"${narrow ? ' style="font-size:9px"' : ''}>${state.year}</text>
     </svg>`;
     chart.innerHTML = svg;
     chart.setAttribute('aria-label', `Paired ${unit} forecast, ${state.scenario} cases`);
@@ -163,16 +163,16 @@ export function initExperience({ presets, research, onOpenModel }) {
     let insight = '';
     if (isValue) {
       const shares = COMPANIES.map(company => state.comparison.companies[company].result.tv_share);
-      if (shares.some(share => share === null)) insight = 'A nonpositive enterprise value has no meaningful terminal-value percentage. <strong>Inspect the dollar contributions.</strong>';
-      else if (shares.some(share => share > 1)) insight = 'Terminal value can exceed <strong>100% of EV</strong> when earlier discounted cash flows make a negative contribution.';
-      else insight = 'The further out the value sits, the more the result depends on <strong>lasting margins, reinvestment and the discount rate.</strong>';
+      if (shares.some(share => share === null)) insight = 'A nonpositive enterprise value has no meaningful terminal-value percentage. Compare the dollar contributions instead.';
+      else if (shares.some(share => share > 1)) insight = 'Terminal value can exceed 100% of EV when earlier discounted cash flows are negative.';
+      else insight = 'Value after 2036 depends on long-run margins, reinvestment and the discount rate.';
     } else if (isFcf) {
-      insight = 'Positive annual cash flow is a milestone. <strong>Recovering the cumulative cash deficit is a separate question.</strong>';
+      insight = 'The first positive year does not recover the cumulative cash deficit.';
     } else {
       const values = COMPANIES.map(company => state.comparison.companies[company].result.rows[state.year - 2027].revenue);
       const leader = values[0] >= values[1] ? 0 : 1;
       const gap = Math.abs(values[0] - values[1]);
-      insight = `In ${state.year}, ${COMPANIES[leader]} leads modeled revenue by <strong>${money(gap)}</strong>. The next chapter asks what converts to cash.`;
+      insight = `In ${state.year}, ${COMPANIES[leader]} leads modeled revenue by <strong>${money(gap)}</strong>.`;
     }
     $('#exp-readout').innerHTML = `<div class="readout-kicker"><strong>${isValue ? 'TERMINAL' : state.year}</strong><span>${isValue ? 'Share of EV' : isFcf ? 'Annual FCFF' : 'Revenue'}</span></div>${COMPANIES.map(company => {
       const data = state.comparison.companies[company];
@@ -198,9 +198,9 @@ export function initExperience({ presets, research, onOpenModel }) {
 
   function renderStory(animate = false) {
     const meta = {
-      revenue: { title: 'Growth is the beginning.', description: 'Follow both modeled revenue paths on the same scale.', units: 'Annual revenue · USD bn' },
-      fcf: { title: 'Cash flow is the test.', description: 'Growth consumes capital before it can create value.', units: 'Annual free cash flow to the firm · USD bn' },
-      value: { title: 'How much rests on the distant future?', description: 'Separate the cash flows in view from the value beyond 2036.', units: 'Discounted cash-flow contributions · USD bn' },
+      revenue: { title: 'Revenue, 2027–2036', description: 'Both companies on one scale.', units: 'Annual revenue · USD bn' },
+      fcf: { title: 'Free cash flow to the firm', description: 'Negative years show what growth costs before it pays back.', units: 'Annual FCFF · USD bn' },
+      value: { title: 'Value by period', description: 'Present value from the rest of 2026, the 2027–2036 forecast and the years after 2036.', units: 'Discounted contributions · USD bn' },
     }[state.chapter];
     $('#exp-story-title').textContent = meta.title;
     $('#exp-story-description').textContent = meta.description;
@@ -398,7 +398,7 @@ export function initExperience({ presets, research, onOpenModel }) {
     theater.setAttribute('aria-busy', 'false');
   } catch (error) {
     theater.setAttribute('aria-busy', 'false');
-    $('#experience-error').textContent = 'The comparison experience could not load. The complete valuation model, research report and workbook remain available below.';
+    $('#experience-error').textContent = 'The comparison could not load. The model, report and workbook below still work.';
     $('#experience-error').hidden = false;
   }
 }

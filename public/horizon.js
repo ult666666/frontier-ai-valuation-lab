@@ -22,7 +22,7 @@ function numeric(input){return input.value.trim()===''||!Number.isFinite(Number(
 function metric(id,value){const element=$(`#${id}`);element.textContent=money(value);element.dataset.value=String(value);element.classList.toggle('is-negative',value<0);}
 function isCustom(){return EVIDENCE_FIELDS.some(field=>state.case.assumptions[field.key]!==state.presets[state.case.company][state.case.scenario][field.key]);}
 function renderCaseSelection(){
-  const custom=isCustom();$('#horizon-case-status').textContent=custom?`Edited inputs · based on ${state.case.scenario}`:`${state.case.scenario} preset · 13 explicit assumptions`;
+  const custom=isCustom();$('#horizon-case-status').textContent=custom?`Edited inputs · based on ${state.case.scenario}`:`${state.case.scenario} preset`;
   $('#horizon-reset').hidden=!custom;$('#horizon-preset').value=state.case.scenario;
   $$('[data-horizon-company]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.horizonCompany===state.case.company)));
 }
@@ -116,9 +116,9 @@ function renderChart(){
   const showTarget=target!==null&&target/unit>=low&&target/unit<=high;
   const targetLine=showTarget?`<line class="target-line" x1="${left}" y1="${px(y(target))}" x2="${width-right}" y2="${px(y(target))}"/>`:'';
   const selectionX=px(x(selected.years)),selectionY=px(y(selected.ev));
-  const content=`<svg viewBox="0 0 ${width} ${height}" aria-hidden="true"><defs><linearGradient id="horizon-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#d5bc83" stop-opacity=".15"/><stop offset="100%" stop-color="#d5bc83" stop-opacity=".01"/></linearGradient></defs>${horizontal}<line x1="${left}" y1="${px(zeroY)}" x2="${width-right}" y2="${px(zeroY)}" stroke="#739085" stroke-width="1"/><polygon points="${left},${px(zeroY)} ${points.join(' ')} ${width-right},${px(zeroY)}" fill="url(#horizon-fill)"/>${targetLine}<line class="perpetual-line" x1="${left}" y1="${px(y(baseline.ev))}" x2="${width-right}" y2="${px(y(baseline.ev))}"/><polyline class="curve-path" points="${points.join(' ')}"/><line class="selection-line" x1="${selectionX}" y1="${top}" x2="${selectionX}" y2="${height-bottom}"/><circle cx="${selectionX}" cy="${selectionY}" r="8" fill="#ead09b" fill-opacity=".15"/><circle cx="${selectionX}" cy="${selectionY}" r="4" fill="#ead09b" stroke="#102333" stroke-width="1.3"/>${vertical}<text class="axis-label" x="${left}" y="12">EV / USD billions</text><text class="axis-label" x="${left+plotWidth/2}" y="${height-4}" text-anchor="middle">Whole years after 2036</text></svg>`;
+  const content=`<svg viewBox="0 0 ${width} ${height}" aria-hidden="true"><defs><linearGradient id="horizon-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#2b6b57" stop-opacity=".12"/><stop offset="100%" stop-color="#2b6b57" stop-opacity=".01"/></linearGradient></defs>${horizontal}<line x1="${left}" y1="${px(zeroY)}" x2="${width-right}" y2="${px(zeroY)}" stroke="#8d968f" stroke-width="1"/><polygon points="${left},${px(zeroY)} ${points.join(' ')} ${width-right},${px(zeroY)}" fill="url(#horizon-fill)"/>${targetLine}<line class="perpetual-line" x1="${left}" y1="${px(y(baseline.ev))}" x2="${width-right}" y2="${px(y(baseline.ev))}"/><polyline class="curve-path" points="${points.join(' ')}"/><line class="selection-line" x1="${selectionX}" y1="${top}" x2="${selectionX}" y2="${height-bottom}"/><circle cx="${selectionX}" cy="${selectionY}" r="8" fill="#2b6b57" fill-opacity=".14"/><circle cx="${selectionX}" cy="${selectionY}" r="4" fill="#2b6b57" stroke="#fff" stroke-width="1.3"/>${vertical}<text class="axis-label" x="${left}" y="12">EV / USD billions</text><text class="axis-label" x="${left+plotWidth/2}" y="${height-4}" text-anchor="middle">Whole years after 2036</text></svg>`;
   $('#horizon-chart').innerHTML=content;$('#horizon-chart').setAttribute('aria-label',`${state.case.company} operating enterprise value from zero through 100 continuation years. Explicit-only value ${money(baseline.pv_explicit)}. Selected ${selected.years}-year value ${money(selected.ev)}. Perpetual reference ${money(baseline.ev)}. The complete values are available in the table below.`);
-  $('#chart-range-note').textContent=`The x-axis counts whole years after 2036. The perpetual reference is not a finite endpoint.${target!==null&&!showTarget?' The target is outside this chart’s value range; its requirement is shown alongside.':''}`;
+  $('#chart-range-note').textContent=`The x-axis counts whole years after 2036.${target!==null&&!showTarget?' The target is outside this chart’s value range; its requirement is shown alongside.':''}`;
 }
 function renderAssumptions(){
   $('#assumptions-caption').textContent=`${state.case.company} · ${state.case.scenario}${isCustom()?' with edited inputs':''}. Exact assumption values; evidence provides context for analyst or user inputs.`;
@@ -134,15 +134,15 @@ function render(){
   $('#horizon-cutoff').textContent=years===0?'No post-2036 cash flow is included. The explicit forecast stays intact.':`Retain 2037–${selected.throughYear}. No later cash flow or residual value is included.`;
   $('#retained-label').textContent=years===0?'No continuation retained':`Continuation / 2037–${selected.throughYear}`;
   $('#retained-description').textContent=years===0?'Zero post-2036 cash flow in this selected horizon.':'Present value of the selected annual continuation cash flows.';
-  $('#reconcile-note').textContent='Forecast PV + retained continuation PV. Negative values remain signed.';
-  $('#horizon-case-status').textContent=custom?`Edited inputs · based on ${state.case.scenario}`:`${state.case.scenario} preset · 13 explicit assumptions`;
+  $('#reconcile-note').textContent='Forecast PV + retained continuation PV.';
+  $('#horizon-case-status').textContent=custom?`Edited inputs · based on ${state.case.scenario}`:`${state.case.scenario} preset`;
   $('#horizon-reset').hidden=!custom;$('#horizon-preset').value=state.case.scenario;
   $$('[data-horizon-company]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.horizonCompany===state.case.company)));
   $$('[data-horizon-years]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.horizonYears)===years)));
   $('#horizon-range').value=String(years);$('#horizon-range').setAttribute('aria-valuetext',`${years} whole years after 2036; retain cash flows through ${selected.throughYear}`);
   const ninety=capture.find(item=>item.fraction===.9);
   $('#capture-90').textContent=ninety.status==='finite'?`${ninety.years.toLocaleString('en-US')} years`:ninety.status==='beyond_range'?'>10,000 years':ninety.status==='precision_limit'?'Precision limit':'Unavailable';
-  $('#capture-description').textContent=ninety.status==='finite'?`Through ${ninety.throughYear}: the first whole year retaining at least 90% of terminal PV. This threshold describes present-value capture, not survival.`:ninety.reason;
+  $('#capture-description').textContent=ninety.status==='finite'?`Through ${ninety.throughYear}: the first whole year that keeps at least 90% of terminal PV.`:ninety.reason;
   $('#horizon-milestones').innerHTML=capture.filter(item=>item.fraction!==.9).map(item=>`<span title="${escape(item.reason)}">${percent(item.fraction)} of terminal PV<strong>${item.status==='finite'?item.years.toLocaleString('en-US')+' years':item.status==='beyond_range'?'>10,000':item.status==='precision_limit'?'Precision limit':'Unavailable'}</strong></span>`).join('');
   const terminalContext=baseline.tv_share===null?`This case has nonpositive operating EV (${money(baseline.ev)}). Terminal concentration as a share of total EV is undefined.`:`${percent(baseline.tv_share)} of this case’s perpetual operating EV comes from cash flows after 2036.`;
   $('#horizon-interpretation').textContent=`${terminalContext} With ${years} continuation years retained, ${money(selected.excludedTerminalPv)} of later present value is excluded. All thirteen operating inputs stay fixed.`;
@@ -231,7 +231,7 @@ async function initialize(){
     state.ready=true;bind();
     for(const selector of ['#horizon-years','#horizon-range','#horizon-target','#horizon-preset','[data-horizon-company]','[data-horizon-years]'])$$(selector).forEach(element=>{element.disabled=false;});
     recalculate({preserveLocation:true});loadHash();
-    $('#horizon-version').textContent=`Application ${APP_VERSION} · Financial engine ${MODEL_VERSION}. Developed with AI assistance. Dated, illustrative analysis.`;
+    $('#horizon-version').textContent=`Application ${APP_VERSION} · Financial engine ${MODEL_VERSION} · Data as of ${VALUATION_DATE}`;
     try{const catalog=await fetchJson('./data/evidence.json');state.evidence=createEvidenceContext({research,catalog});setActions(Boolean(state.snapshot));}
     catch{$$('[data-evidence-key]').forEach(button=>{button.disabled=true;button.title='Contextual evidence could not load. The Evidence page retains the source register.';});}
   }catch(error){state.ready=false;clearResults(`The horizon workspace could not load: ${error.message} Reload to try again, or open the research report.`);}

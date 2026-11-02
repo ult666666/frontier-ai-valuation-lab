@@ -1,5 +1,7 @@
 # Frontier AI Valuation Lab implementation plan
 
+> Design history: this note describes application 3.0. The current pages use different labels and a lighter layout. The [documentation index](README.md) lists the current method notes.
+
 **Goal:** publish an inspectable fintech project that improves the existing analysis and demonstrates working full stack engineering.
 
 **Architecture:** one pure JavaScript financial model powers both the browser and Node API. A separate Python calculation verifies the model and generated workbook. Public source records and explicit assumptions drive reproducible snapshots.

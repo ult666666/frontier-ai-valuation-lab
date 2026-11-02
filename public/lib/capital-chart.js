@@ -4,21 +4,29 @@
 const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
 const number=value=>Math.abs(value)>=1e6||(Math.abs(value)>0&&Math.abs(value)<.001)?value.toExponential(1):value.toLocaleString('en-US',{maximumFractionDigits:2});
 const percent=value=>number(value*100)+'%';
-const palette=['#e9ce99','#b5ddc4','#9bc3db','#d6b1d1','#f2b39d','#bdcfa0'];
+// Saved decision briefs embed the dark chart, so the dark colors are the
+// default and must not change. The workspace page uses the light set.
+const THEMES=Object.freeze({
+  dark:Object.freeze({background:'#102b35',grid:'#304d56',tick:'#b7cbc4',axis:'#d0e0d7',baseline:'#93aca2',zone:'#345c47',zoneOpacity:'.44',guide:'#b9d5c2',zoneLabel:'#b4d7bc',legend:'#a8c0b5',objective:'#e9ce99',ring:'#ffffff',palette:Object.freeze(['#e9ce99','#b5ddc4','#9bc3db','#d6b1d1','#f2b39d','#bdcfa0'])}),
+  light:Object.freeze({background:'#ffffff',grid:'#e3e7e2',tick:'#55615c',axis:'#1b2624',baseline:'#737d76',zone:'#e4f0e9',zoneOpacity:'1',guide:'#2b6b57',zoneLabel:'#2b6b57',legend:'#55615c',objective:'#1b2624',ring:'#1b2624',palette:Object.freeze(['#805510','#2b6b57','#2e6191','#7d4a7a','#a24a2f','#566f24'])})
+});
+export const CAPITAL_CHART_THEMES=THEMES;
 function niceStep(value){
   if(!(value>0))return Number.MIN_VALUE;
   const magnitude=10**Math.floor(Math.log10(value))||Number.MIN_VALUE,fraction=value/magnitude;
   return (fraction<=1?1:fraction<=2?2:fraction<=2.5?2.5:fraction<=5?5:10)*magnitude;
 }
 
-function marker(index,x,y,color,selected){
-  const stroke=selected?'#ffffff':color;
-  const halo=selected?`<circle cx="${x}" cy="${y}" r="12" fill="none" stroke="#ffffff" stroke-width="1.5"/>`:'';
+function marker(index,x,y,color,selected,ring){
+  const stroke=selected?ring:color;
+  const halo=selected?`<circle cx="${x}" cy="${y}" r="12" fill="none" stroke="${ring}" stroke-width="1.5"/>`:'';
   const shape=index%3===0?`<circle cx="${x}" cy="${y}" r="5.5" fill="${color}" stroke="${stroke}" stroke-width="1.5"/>`:index%3===1?`<path d="M${x},${y-7} L${x+7},${y} L${x},${y+7} L${x-7},${y} Z" fill="${color}" stroke="${stroke}" stroke-width="1.5"/>`:`<rect x="${x-5.5}" y="${y-5.5}" width="11" height="11" fill="${color}" stroke="${stroke}" stroke-width="1.5"/>`;
   return halo+shape;
 }
 
-export function capitalPlanChart(analysis,{selectedPlanId=null,idPrefix='capital-plan-chart',compact=false,workspace=false,narrow=false}={}){
+export function capitalPlanChart(analysis,{selectedPlanId=null,idPrefix='capital-plan-chart',compact=false,workspace=false,narrow=false,theme='dark'}={}){
+  const t=THEMES[theme];
+  if(!t)throw new Error(`Unknown chart theme: ${theme}`);
   const prefix=String(idPrefix).replace(/[^A-Za-z0-9_-]/g,'-')||'capital-plan-chart';
   const plans=analysis.plans;
   const {capitalTarget,retentionFloor}=analysis.snapshot.policy;
@@ -44,15 +52,15 @@ export function capitalPlanChart(analysis,{selectedPlanId=null,idPrefix='capital
   const grid=[];
   for(let index=0;index<=Math.round(xmax/xStep);index++){
     const xv=xStep*index,xx=x(xv);
-    grid.push(`<line x1="${xx}" y1="${top}" x2="${xx}" y2="${bottom}" stroke="#304d56" stroke-width="1"/><text x="${xx}" y="${bottom+23}" text-anchor="middle" fill="#b7cbc4" font-size="${tickSize}">${escape(number(xv))}</text>`);
+    grid.push(`<line x1="${xx}" y1="${top}" x2="${xx}" y2="${bottom}" stroke="${t.grid}" stroke-width="1"/><text x="${xx}" y="${bottom+23}" text-anchor="middle" fill="${t.tick}" font-size="${tickSize}">${escape(number(xv))}</text>`);
   }
   for(let index=0;index<=Math.round((1-ymin)/yStep);index++){
     const yv=ymin+yStep*index,yy=y(yv);
-    grid.push(`<line x1="${left}" y1="${yy}" x2="${width-right}" y2="${yy}" stroke="#304d56" stroke-width="1"/><text x="${left-10}" y="${yy+4}" text-anchor="end" fill="#b7cbc4" font-size="${tickSize}">${escape(compact?number(yv*100):percent(yv))}</text>`);
+    grid.push(`<line x1="${left}" y1="${yy}" x2="${width-right}" y2="${yy}" stroke="${t.grid}" stroke-width="1"/><text x="${left-10}" y="${yy+4}" text-anchor="end" fill="${t.tick}" font-size="${tickSize}">${escape(compact?number(yv*100):percent(yv))}</text>`);
   }
   const occupied=[];
   const points=plans.map((plan,index)=>{
-    const xx=x(plan.pricing.primaryCapital),yy=y(plan.retainedFraction),color=palette[index%palette.length];
+    const xx=x(plan.pricing.primaryCapital),yy=y(plan.retainedFraction),color=t.palette[index%t.palette.length];
     let labelX=xx,labelY=yy-17;
     const coincident=workspace?plans.map((other,i)=>({plan:other,index:i})).filter(other=>other.plan.pricing.primaryCapital===plan.pricing.primaryCapital&&other.plan.retainedFraction===plan.retainedFraction):[];
     if(coincident.length>1){
@@ -67,10 +75,10 @@ export function capitalPlanChart(analysis,{selectedPlanId=null,idPrefix='capital
     }
     occupied.push({x:labelX,y:labelY});
     const leader=Math.abs(labelY-yy)>24||labelX!==xx?`<line x1="${xx}" y1="${yy}" x2="${labelX}" y2="${labelY-5}" stroke="${color}" stroke-width=".7" stroke-dasharray="2 3"/>`:'';
-    return `<g><title>${escape(descriptions[index])}</title>${leader}${marker(index,xx,yy,color,plan.id===selectedPlanId)}<text x="${labelX}" y="${labelY}" text-anchor="middle" fill="${color}" font-size="${compact?16:13}" font-weight="700">${String.fromCharCode(65+index)}</text></g>`;
+    return `<g><title>${escape(descriptions[index])}</title>${leader}${marker(index,xx,yy,color,plan.id===selectedPlanId,t.ring)}<text x="${labelX}" y="${labelY}" text-anchor="middle" fill="${color}" font-size="${compact?16:13}" font-weight="700">${String.fromCharCode(65+index)}</text></g>`;
   });
-  const qualifyingLabel=width-right-objectiveX>(workspace?185:155)?`<text x="${width-right-12}" y="${top+18}" text-anchor="end" fill="#b4d7bc" font-size="${workspace?12:10}">Meets both objectives</text>`:'';
-  const legend=compact?'':`<text x="${left}" y="${height-10}" fill="#a8c0b5" font-size="${workspace?12:10}">${workspace?'Dashed guides: objectives · Outer ring: analyst selection · Letters: submitted plans':'Dashed guides: your objectives · Outer ring: analyst selection · Letters identify submitted plans'}</text>`;
-  const objectives=!workspace?'':compact?`<g data-chart-objectives="true" fill="#e9ce99" font-size="14"><text x="16" y="49">Minimum capital: $${escape(number(capitalTarget))}B</text><text x="16" y="70">Minimum retention: ${escape(percent(retentionFloor))}</text></g>`:`<text data-chart-objectives="true" x="${narrow?left:width-right}" y="${narrow?52:26}" text-anchor="${narrow?'start':'end'}" fill="#e9ce99" font-size="13">Objectives: ≥$${escape(number(capitalTarget))}B capital · ≥${escape(percent(retentionFloor))} retained</text>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="${prefix}-title ${prefix}-description" style="display:block;width:100%;height:auto;font-family:Arial,sans-serif"><title id="${prefix}-title">${title}</title><desc id="${prefix}-description">${escape(description)}</desc><rect width="${width}" height="${height}" fill="#102b35"/><text x="${compact?16:left}" y="26" fill="#d0e0d7" font-size="${axisSize}">Starting stake retained (%)</text>${objectives}<rect x="${objectiveX}" y="${top}" width="${width-right-objectiveX}" height="${Math.max(0,objectiveY-top)}" fill="#345c47" opacity=".44"/>${grid.join('')}<line x1="${objectiveX}" y1="${top}" x2="${objectiveX}" y2="${bottom}" stroke="#b9d5c2" stroke-width="1.3" stroke-dasharray="5 5"/><line x1="${left}" y1="${objectiveY}" x2="${width-right}" y2="${objectiveY}" stroke="#b9d5c2" stroke-width="1.3" stroke-dasharray="5 5"/>${qualifyingLabel}${points.join('')}<line x1="${left}" y1="${bottom}" x2="${width-right}" y2="${bottom}" stroke="#93aca2" stroke-width="1"/><text x="${left+plotWidth/2}" y="${height-(compact?26:32)}" text-anchor="middle" fill="#d0e0d7" font-size="${axisSize}">Primary capital (USD bn)</text>${legend}</svg>`;
+  const qualifyingLabel=width-right-objectiveX>(workspace?185:155)?`<text x="${width-right-12}" y="${top+18}" text-anchor="end" fill="${t.zoneLabel}" font-size="${workspace?12:10}">Meets both objectives</text>`:'';
+  const legend=compact?'':`<text x="${left}" y="${height-10}" fill="${t.legend}" font-size="${workspace?12:10}">${workspace?'Dashed lines: objectives · Ring: selected plan · Letters: plans':'Dashed guides: your objectives · Outer ring: analyst selection · Letters identify submitted plans'}</text>`;
+  const objectives=!workspace?'':compact?`<g data-chart-objectives="true" fill="${t.objective}" font-size="14"><text x="16" y="49">Minimum capital: $${escape(number(capitalTarget))}B</text><text x="16" y="70">Minimum retention: ${escape(percent(retentionFloor))}</text></g>`:`<text data-chart-objectives="true" x="${narrow?left:width-right}" y="${narrow?52:26}" text-anchor="${narrow?'start':'end'}" fill="${t.objective}" font-size="13">Objectives: ≥$${escape(number(capitalTarget))}B capital · ≥${escape(percent(retentionFloor))} retained</text>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="${prefix}-title ${prefix}-description" style="display:block;width:100%;height:auto;font-family:Arial,sans-serif"><title id="${prefix}-title">${title}</title><desc id="${prefix}-description">${escape(description)}</desc><rect width="${width}" height="${height}" fill="${t.background}"/><text x="${compact?16:left}" y="26" fill="${t.axis}" font-size="${axisSize}">Starting stake retained (%)</text>${objectives}<rect x="${objectiveX}" y="${top}" width="${width-right-objectiveX}" height="${Math.max(0,objectiveY-top)}" fill="${t.zone}" opacity="${t.zoneOpacity}"/>${grid.join('')}<line x1="${objectiveX}" y1="${top}" x2="${objectiveX}" y2="${bottom}" stroke="${t.guide}" stroke-width="1.3" stroke-dasharray="5 5"/><line x1="${left}" y1="${objectiveY}" x2="${width-right}" y2="${objectiveY}" stroke="${t.guide}" stroke-width="1.3" stroke-dasharray="5 5"/>${qualifyingLabel}${points.join('')}<line x1="${left}" y1="${bottom}" x2="${width-right}" y2="${bottom}" stroke="${t.baseline}" stroke-width="1"/><text x="${left+plotWidth/2}" y="${height-(compact?26:32)}" text-anchor="middle" fill="${t.axis}" font-size="${axisSize}">Primary capital (USD bn)</text>${legend}</svg>`;
 }

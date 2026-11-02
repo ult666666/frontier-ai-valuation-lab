@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#102333">
-  <meta name="description" content="Keep the reasoning behind an AI valuation. Save exact cases and comparisons, record your assumptions, attach dated evidence, and take a complete research brief with you.">
+  <meta name="theme-color" content="#17252d">
+  <meta name="description" content="Save valuation cases and comparisons with your notes and dated sources, and export them as JSON or a research brief.">
   <meta name="author" content="Charles Dai">
   <meta property="og:title" content="Research Casebook · Frontier AI Valuation Lab">
-  <meta property="og:description" content="Keep the reasoning. Exact AI valuation cases, dated evidence and complete research briefs in one workspace.">
+  <meta property="og:description" content="Saved valuation cases and comparisons with notes, dated sources and research briefs.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://frontier-ai-valuation-lab.vercel.app/casebook.html">
   <meta property="og:image" content="https://frontier-ai-valuation-lab.vercel.app/assets/casebook-preview.png">
@@ -26,21 +26,22 @@
   <header class="app-header">
     <div class="header-inner">
       <a class="brand" href="./index.html#research-story" aria-label="Frontier AI Valuation Lab home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V7h22M5 16h15M14 25V7" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="26" cy="25" r="3" fill="currentColor"/></svg><span>Frontier AI <span class="brand-light">Valuation Lab</span></span></a>
-      <div class="app-utilities"><a href="https://ult666666.github.io/">Charles Dai <span aria-hidden="true">↗</span></a></div>
+      <div class="app-utilities"><a href="https://ult666666.github.io/">Charles Dai <span aria-hidden="true">↗</span></a><a class="utility-author" href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div>
     </div>
     <nav class="app-nav" aria-label="Research workspace"><a href="./capital.html">Capital Studio</a><a href="./index.html#research-story">Overview</a><a href="./index.html#workspace">Model</a><a href="./thesis.html">Thesis Lab</a><a href="./horizon.html">Value Horizon</a><a href="./casebook.html" aria-current="page">Casebook</a><a href="./index.html#sources">Evidence</a></nav>
   </header>
   <main id="casebook-main" class="casebook-shell" tabindex="-1">
-    <section class="book-intro" aria-labelledby="casebook-title">
-      <div><div class="eyebrow"><span class="index-mark">F / 03</span> Your research casebook</div><h1 id="casebook-title">Keep the <em>reasoning.</em></h1></div>
-      <div class="intro-note"><p>A value is a result.<br>The assumptions make it an argument.</p><span class="snapshot-date"><span aria-hidden="true"></span>Research snapshot · 18 Oct 2026</span></div>
+    <section class="page-intro" aria-labelledby="casebook-title">
+      <h1 id="casebook-title">Research Casebook</h1>
+      <p class="page-lede">Saved cases and comparisons with your reasoning and the sources behind them.</p>
+      <p class="page-meta">Research snapshot · 18 Oct 2026</p>
     </section>
 
     <section class="book-topbar" aria-label="Casebook actions">
       <div class="book-tally"><strong id="casebook-count">—</strong><span>saved analyses<span id="casebook-capacity">Up to 24 cases & comparisons</span></span></div>
       <div class="book-actions"><button id="import-open" class="button button-outline" type="button" disabled>Import JSON <span aria-hidden="true">↑</span></button><button id="export-all" class="button button-dark" type="button" disabled>Export casebook <span aria-hidden="true">↓</span></button></div>
     </section>
-    <p class="storage-note">Saved in this browser. Export JSON to keep a portable copy of your calculations, notes and source references.</p>
+    <p class="storage-note">Saved only in this browser. Export JSON to keep a copy.</p>
     <div id="storage-error" class="notice is-error" role="alert" hidden></div>
     <div id="casebook-status" class="notice status-notice" role="status" hidden></div>
     <div id="legacy-notice" class="legacy-notice" hidden><div><strong>Earlier saved scenarios found.</strong><p>Review and import valid earlier saves. Their hypothetical equity bridge will be off because the earlier format did not save one.</p></div><button id="migration-open" class="text-button" type="button">Review earlier saves <span aria-hidden="true">↗</span></button></div>
@@ -48,8 +49,8 @@
 
     <div id="casebook-loading" class="book-loading" role="status">Opening your casebook<span aria-hidden="true">…</span></div>
     <section id="casebook-empty" class="book-empty" aria-labelledby="empty-title" hidden>
-      <div class="empty-copy"><div class="eyebrow">The next question belongs here</div><h2 id="empty-title">Start with a calculation.<br><em>Give it a point of view.</em></h2><p>Save a case from the valuation model or a comparison from Thesis Lab. Then record what you believe, what needs to hold, and what would change your mind.</p><div class="empty-actions"><a class="button button-dark" href="./thesis.html">Start a comparison <span aria-hidden="true">↗</span></a><a class="text-button" href="./index.html#workspace">Open the valuation model <span aria-hidden="true">↗</span></a></div><p class="casebook-example-note">Worked examples: <a href="./downloads/Frontier_AI_Research_Brief.pdf" target="_blank" rel="noopener noreferrer">Read an illustrative research brief<span class="sr-only"> (opens in a new tab)</span></a> · <a href="./downloads/Frontier_AI_Research_Casebook.json" download>Download the example casebook</a>. Import the JSON explicitly to explore three labeled examples.</p></div>
-      <div class="empty-process" aria-label="What a saved analysis contains"><div><span>01</span><h3>The calculation</h3><p>Exact assumptions and the case they produce.</p></div><div><span>02</span><h3>The reasoning</h3><p>Your rationale, critical assumption and review trigger.</p></div><div><span>03</span><h3>The evidence</h3><p>Dated source references with their stated limits.</p></div></div>
+      <div class="empty-copy"><h2 id="empty-title">No saved analyses yet</h2><p>Save a case from the model or a comparison from Thesis Lab, then add your reasoning and sources here.</p><div class="empty-actions"><a class="button button-dark" href="./thesis.html">Start a comparison <span aria-hidden="true">↗</span></a><a class="text-button" href="./index.html#workspace">Open the valuation model <span aria-hidden="true">↗</span></a></div><p class="casebook-example-note">Examples: <a href="./downloads/Frontier_AI_Research_Brief.pdf" target="_blank" rel="noopener noreferrer">research brief (PDF)<span class="sr-only"> (opens in a new tab)</span></a> · <a href="./downloads/Frontier_AI_Research_Casebook.json" download>example casebook (JSON)</a>. Import the JSON to load three labeled examples.</p></div>
+      <div class="empty-process" aria-label="What a saved analysis contains"><h3>Each saved analysis keeps</h3><ul><li>The exact assumptions and the result they produce.</li><li>Your rationale, key assumption and review trigger.</li><li>Dated source references and their stated limits.</li></ul></div>
     </section>
 
     <div id="casebook-layout" class="casebook-layout" hidden>
@@ -58,7 +59,7 @@
         <div class="collection-filters"><div class="search-field"><label for="casebook-search">Find an analysis</label><input id="casebook-search" type="search" placeholder="Search titles, notes, company…" autocomplete="off"></div><div class="filter-pair"><div><label for="company-filter">Company</label><select id="company-filter"><option value="all">Both companies</option><option value="Anthropic">Anthropic</option><option value="OpenAI">OpenAI</option></select></div><div><label for="kind-filter">Analysis</label><select id="kind-filter"><option value="all">All analyses</option><option value="scenario">Single cases</option><option value="thesis">Comparisons</option></select></div></div></div>
         <div id="entry-list" class="entry-list" aria-label="Saved analyses"></div>
         <div id="filter-empty" class="filter-empty" hidden><p>No saved analyses match these filters.</p><button id="clear-filters" type="button" class="text-button">Clear filters <span aria-hidden="true">↺</span></button></div>
-        <div class="compare-panel"><div class="eyebrow">Another point of view</div><h3>Compare two saved cases.</h3><p>Choose two single cases for the same company. Your first choice becomes the reference.</p><div id="compare-selection" class="compare-selection" role="status">No cases selected.</div><button id="compare-saved" class="button button-outline" type="button" disabled>Open comparison <span aria-hidden="true">↗</span></button><button id="clear-comparison" class="text-button clear-comparison" type="button" hidden>Clear selection</button></div>
+        <div class="compare-panel"><h3>Compare two saved cases</h3><p>Choose two single cases for the same company. Your first choice becomes the reference.</p><div id="compare-selection" class="compare-selection" role="status">No cases selected.</div><button id="compare-saved" class="button button-outline" type="button" disabled>Open comparison <span aria-hidden="true">↗</span></button><button id="clear-comparison" class="text-button clear-comparison" type="button" hidden>Clear selection</button></div>
       </aside>
 
       <section id="entry-detail" class="entry-detail" aria-labelledby="detail-title" hidden>
@@ -70,26 +71,26 @@
         <div class="verification-line"><p id="entry-verification" role="status">Recalculated in your browser</p><button id="verify-entry" class="text-button" type="button">Verify calculation <span aria-hidden="true">↗</span></button></div>
 
         <form id="entry-notes-form" class="entry-notes-form" novalidate>
-          <div class="notes-heading"><div><div class="eyebrow">The argument behind the number</div><h3>Make the belief explicit.</h3></div><span id="notes-state" class="notes-state" role="status">Saved</span></div>
+          <div class="notes-heading"><div><h3>Notes</h3></div><span id="notes-state" class="notes-state" role="status">Saved</span></div>
           <div id="notes-error" class="notice is-error" role="alert" hidden></div>
           <div id="external-change" class="notice" role="status" hidden>This analysis changed in another view. Your unsaved notes are still here. Saving will replace its current notes. <button id="reload-entry" class="text-button" type="button">Load the saved version</button></div>
-          <div class="note-field title-field"><div class="field-title"><label for="entry-title">Analysis title</label><output id="title-count" for="entry-title">0 / 100</output></div><input id="entry-title" type="text" maxlength="100" required autocomplete="off" aria-describedby="title-help"><p id="title-help">A name you will recognize when you return.</p></div>
-          <div class="note-field"><div class="field-title"><label for="note-rationale">Why this case?</label><output id="rationale-count" for="note-rationale">0 / 1,200</output></div><textarea id="note-rationale" rows="4" maxlength="1200" placeholder="Describe the belief you are testing and why this comparison matters." aria-describedby="rationale-help"></textarea><p id="rationale-help">Your interpretation of the saved assumptions.</p></div>
+          <div class="note-field title-field"><div class="field-title"><label for="entry-title">Analysis title</label><output id="title-count" for="entry-title">0 / 100</output></div><input id="entry-title" type="text" maxlength="100" required autocomplete="off"></div>
+          <div class="note-field"><div class="field-title"><label for="note-rationale">Why this case?</label><output id="rationale-count" for="note-rationale">0 / 1,200</output></div><textarea id="note-rationale" rows="4" maxlength="1200" placeholder="The belief you are testing and why this case matters."></textarea></div>
           <div class="note-field"><div class="field-title"><label for="note-key-assumption">What needs to hold?</label><output id="key-assumption-count" for="note-key-assumption">0 / 600</output></div><textarea id="note-key-assumption" rows="3" maxlength="600" placeholder="Name the operating or valuation assumption your argument depends on."></textarea></div>
           <div class="note-field"><div class="field-title"><label for="note-review-trigger">What would change your mind?</label><output id="review-trigger-count" for="note-review-trigger">0 / 1,000</output></div><textarea id="note-review-trigger" rows="3" maxlength="1000" placeholder="Record the observation or evidence that would make you revisit this case."></textarea></div>
-          <details class="source-picker"><summary><span>Attach dated evidence</span><span id="selected-source-count">0 selected</span></summary><p class="source-picker-note">Select related sources from the research snapshot. A source supplies context; it does not certify your forecast assumptions.</p><div id="source-choices" class="source-choices"></div></details>
+          <details class="source-picker"><summary><span>Attach dated evidence</span><span id="selected-source-count">0 selected</span></summary><p class="source-picker-note">Attach sources from the research snapshot.</p><div id="source-choices" class="source-choices"></div></details>
           <div class="notes-save-row"><button id="save-notes" class="button button-dark" type="submit" disabled>Save notes <span aria-hidden="true">✓</span></button><button id="discard-notes" class="text-button" type="button" hidden>Discard edits</button><p>Save here, or continue to another analysis to save your notes.</p></div>
         </form>
 
         <div class="detail-footer"><div class="entry-export-actions"><button id="export-entry" class="button button-outline" type="button">Export this analysis <span aria-hidden="true">↓</span></button><button id="export-brief" class="button button-outline" type="button">Research brief <span aria-hidden="true">↓</span></button></div><button id="delete-entry" class="delete-button" type="button">Delete saved analysis</button></div>
       </section>
-      <div id="detail-empty" class="detail-empty" hidden><span class="index-mark">F / 03</span><h2>Choose an analysis<br>to inspect its reasoning.</h2><p>Your saved calculations and research notes appear here.</p></div>
+      <div id="detail-empty" class="detail-empty" hidden><h2>Select an analysis</h2><p>Its calculation and notes appear here.</p></div>
     </div>
     <noscript><div class="notice">The Casebook needs JavaScript to read and manage your saved analyses. You can still <a href="./report.html">read the research report</a> or <a href="./downloads/Frontier_AI_Valuation_Model.xlsx">download the workbook</a>.</div></noscript>
   </main>
 
-  <dialog id="import-dialog" class="import-dialog" aria-labelledby="import-title"><div class="dialog-heading"><div><div class="eyebrow">Bring the complete argument</div><h2 id="import-title">Import a casebook.</h2></div><button id="import-close" class="icon-button" type="button" aria-label="Close import">×</button></div><p id="import-intro">Choose an exported casebook JSON file. Review its contents before adding anything to your saved analyses.</p><div id="import-file-field" class="import-file-field"><label for="import-file">Casebook JSON · up to 512 KiB</label><input id="import-file" type="file" accept=".json,application/json"></div><div id="import-error" class="notice is-error" role="alert" hidden></div><div id="import-preview" class="import-preview" hidden><h3 id="import-summary"></h3><p id="import-detail"></p><ul id="import-entries"></ul><div id="migration-invalid" class="migration-invalid" hidden><h3>Earlier records that cannot be imported</h3><ul id="migration-invalid-list"></ul><p>These records remain untouched in their original browser storage.</p></div></div><div class="dialog-actions"><button id="import-cancel" type="button" class="button button-outline">Cancel</button><button id="import-merge" type="button" class="button button-dark" disabled>Merge into casebook <span aria-hidden="true">→</span></button></div><p class="dialog-note">Existing analyses are preserved. Exact duplicates are skipped, and different versions are kept separately. A failed import leaves the saved casebook unchanged.</p></dialog>
+  <dialog id="import-dialog" class="import-dialog" aria-labelledby="import-title"><div class="dialog-heading"><div><h2 id="import-title">Import a casebook</h2></div><button id="import-close" class="icon-button" type="button" aria-label="Close import">×</button></div><p id="import-intro">Choose an exported casebook JSON file. Review its contents before adding anything to your saved analyses.</p><div id="import-file-field" class="import-file-field"><label for="import-file">Casebook JSON · up to 512 KiB</label><input id="import-file" type="file" accept=".json,application/json"></div><div id="import-error" class="notice is-error" role="alert" hidden></div><div id="import-preview" class="import-preview" hidden><h3 id="import-summary"></h3><p id="import-detail"></p><ul id="import-entries"></ul><div id="migration-invalid" class="migration-invalid" hidden><h3>Earlier records that cannot be imported</h3><ul id="migration-invalid-list"></ul><p>These records remain untouched in their original browser storage.</p></div></div><div class="dialog-actions"><button id="import-cancel" type="button" class="button button-outline">Cancel</button><button id="import-merge" type="button" class="button button-dark" disabled>Merge into casebook <span aria-hidden="true">→</span></button></div><p class="dialog-note">Existing analyses are preserved. Exact duplicates are skipped, and different versions are kept separately. A failed import leaves the saved casebook unchanged.</p></dialog>
 
-  <footer class="book-footer"><div><a href="./index.html#research-story">Frontier AI Valuation Lab</a><span>Independent financial research · Charles Dai</span></div><p id="casebook-version">Financial engine 3.0.0 · Research snapshot 18 Oct 2026</p><a href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">Source & methodology <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
+  <footer class="app-footer"><div class="app-footer-inner"><p>Frontier AI Valuation Lab · <a href="https://ult666666.github.io/">Charles Dai</a></p><p id="casebook-version">Financial engine 3.0.0 · Research snapshot 18 Oct 2026</p><p class="app-footer-links"><a href="https://github.com/ult666666/frontier-ai-valuation-lab" target="_blank" rel="noopener noreferrer">Source on GitHub<span class="sr-only"> (opens in a new tab)</span></a><a href="https://github.com/ult666666/frontier-ai-valuation-lab/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License<span class="sr-only"> (opens in a new tab)</span></a></p></div></footer>
 </body>
 </html>
