@@ -91,7 +91,7 @@ The tornado is one-way: it ignores interactions and correlation. The simulation 
 - At most five drivers, 200 to 20,000 draws and a 16 KiB request. The largest permitted request (five drivers, 20,000 draws, five seeds) took 979 ms in `node --test tests/uncertainty-api.test.js` on the development machine; the test fails above 6 s.
 - The copula is Gaussian. It has no tail dependence, so joint extremes may be rarer than in a fat-tailed copula.
 - Only the Model workspace and the API run the simulation. Capital Studio, Thesis Lab and Value Horizon keep their finite cases.
-- Value Horizon still uses `Math.exp`, so its existing browser harness reports last-bit differences between Chromium 153 and Node 24. That predates this method and is unchanged.
+- Browser and API agreement is checked in Chromium only. The unchanged engine's `**` operator is not one of the fdlibm ports; it matched bit for bit between Chromium 153 and Node 24, and other JavaScript engines were not tested.
 
 ## Verification
 

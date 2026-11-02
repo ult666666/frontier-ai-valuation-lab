@@ -14,6 +14,7 @@ Notable changes to Frontier AI Valuation Lab. The format follows [Keep a Changel
 ### Fixed
 
 - The Horizon workspace now produces bit-for-bit the same results in Chromium and in the Node API. It used `Math.exp`, `Math.expm1` and `Math.log1p`, whose last bit differs between engines, so `tests/horizon-browser.mjs` failed when it compared the exported JSON with a Node recalculation (the in-app API check, which allows a 1e-10 relative tolerance, was unaffected). Horizon now uses fdlibm ports of `expm1` and `log1p` next to the existing `exp`. They return the same bits as Node 24 on 2.8 million test inputs, so no Node result changes. A test keeps engine-dependent functions out of the Horizon module, and the `browser-parity` CI job now runs the Horizon suite too.
+- The uncertainty, architecture and Value Horizon documents no longer say that Value Horizon uses `Math.exp` or that its browser suite fails, and the verification record notes that all 13 browser suites now pass.
 - The browser harnesses and build scripts no longer default to paths from the environment this project was first built in. They load the standard `playwright` package and its Chromium unless `FRONTIER_PLAYWRIGHT_MODULE` or `FRONTIER_CHROMIUM_EXECUTABLE` says otherwise, and the Python reference checks take `FRONTIER_NODE` or the `node` on the PATH.
 
 ### Unchanged
