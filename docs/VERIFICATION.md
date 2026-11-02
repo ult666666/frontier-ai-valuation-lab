@@ -4,6 +4,19 @@ The latest interaction and presentation reviews appear first, followed by the **
 
 **About the reviews on this page.** Every review recorded here is AI-assisted: an AI agent, usually a different one from the agent that wrote the reviewed code, did the checking. Receipts named `independent-review-*.json` use "independent" only in that sense. None of these reviews is a third-party review, an accessibility certification or a financial audit. Where this page calls a calculation "independent", it means a separate implementation, such as the Python reference checks.
 
+## 2 November 2026 review of `main` after the uncertainty release
+
+This entry repeats the checks on `main` at `3e7a187`, after the uncertainty release ([#3](https://github.com/ult666666/frontier-ai-valuation-lab/pull/3)) and its Horizon follow-up ([#4](https://github.com/ult666666/frontier-ai-valuation-lab/pull/4)), in a clean export with Node 24.22.1 and Chromium 153.0.8010.12.
+
+| Verification layer | Result | Command or evidence |
+| --- | --- | --- |
+| Node tests | **380 passed; 0 failed or skipped** | `npm test` |
+| Independent Python references | **All seven passed** on Python 3.13.17. The uncertainty and Horizon references and `tests/reference_parity.py` also passed on Python 3.11.17 | The seven `python3 -B` commands in the [README](../README.md#run-the-complete-stack-locally) |
+| Browser workflows | **13 of 13 suites passed** against a local server, including Value Horizon (148 checks) and the uncertainty workflow (35 checks) | `tests/*-browser.mjs` and `tests/browser-smoke.mjs` |
+| README `simulate` example | **P5 $197.2B, P50 $364.2B, P95 $694.6B, 69.5% above the $300B hurdle**, as documented | The README `curl` request |
+
+The Value Horizon failure recorded in the next entry was fixed by #4, which replaced Horizon's `Math.exp`, `Math.expm1` and `Math.log1p` calls with fdlibm ports.
+
 ## 2 November 2026 valuation under uncertainty
 
 This entry covers uncertainty method **1.0.0** on top of application **4.0.0** and financial engine **3.0.0**. The engine, presets and research data are byte-identical to `main`; the Python reference checks the `model.js` and `presets.json` hashes.
@@ -13,7 +26,7 @@ This entry covers uncertainty method **1.0.0** on top of application **4.0.0** a
 | Node tests | **378 passed; 0 failed or skipped** (347 existing, 31 new) | `npm test` |
 | Independent Monte Carlo reference | **Passed: 20,000 generator outputs bit-exact; 199 accepted and 206 rejected correlation matrices agree with exact principal minors (2 boundary cases skipped); 10 pipelines, 46,000 draws valued by the Python DCF; 79,452 numeric and 6,912 structural comparisons** | `python3 -B scripts/check_uncertainty_reference.py`, [receipt](verification/uncertainty-reference-1.0.json) |
 | Uncertainty browser workflow | **35 checks; 0 page or console errors** | `node tests/uncertainty-browser.mjs`, [receipt](verification/uncertainty-browser-1.0.json) |
-| Existing browser workflows | **12 of 13 suites passed.** Value Horizon fails on unchanged `main` too, from last-bit `Math.exp` differences between Node 24 and Chromium 153 | The twelve other `tests/*-browser.mjs` harnesses and `tests/browser-smoke.mjs` against a local server |
+| Existing browser workflows | **12 of 13 suites passed.** Value Horizon fails on unchanged `main` too, from last-bit `Math.exp` differences between Node 24 and Chromium 153 (fixed the same day by #4; see the entry above) | The twelve other `tests/*-browser.mjs` harnesses and `tests/browser-smoke.mjs` against a local server |
 
 Largest differences from the Python reference: normal CDF 6.7e-15 relative (against a 60-digit Decimal evaluation), Cholesky factor 1.3e-15, driver values 7.0e-16 (absolute floor of 1), draw values 6.2e-13 relative and percentiles 2.8e-14 relative. The fdlibm `exp` and `log` ports are within 1 unit in the last place of the C library. The normal quantile matched CPython's AS 241 exactly on all 446 probabilities checked.
 

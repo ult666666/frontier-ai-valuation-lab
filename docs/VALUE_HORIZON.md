@@ -68,10 +68,12 @@ Capture milestones use 50%, 75%, 90% and 95% of **terminal PV**. The result is u
 The shared pure module computes the discount log as:
 
 ```js
-logQ = Math.log1p(-(wacc - tg) / (1 + wacc));
-retainedFraction = -Math.expm1(N * logQ);
-remainingFraction = Math.exp(N * logQ);
+logQ = detLog1p(-(wacc - tg) / (1 + wacc));
+retainedFraction = -detExpm1(N * logQ);
+remainingFraction = detExp(N * logQ);
 ```
+
+`detLog1p`, `detExpm1` and `detExp` are fdlibm ports in [`deterministic-math.js`](../public/lib/deterministic-math.js), built from IEEE-754 basic operations. The platform `Math.log1p`, `Math.expm1` and `Math.exp` can differ in the last bit between engines, so the ports keep browser and API results identical.
 
 Taking the rate difference first avoids cancellation from subtracting nearly equal logarithms when WACC and growth are adjacent representable values. `expm1` preserves small retained fractions. All inputs require exact own enumerable data properties; inherited values, accessors, symbols and unsupported keys are rejected before calculation.
 
