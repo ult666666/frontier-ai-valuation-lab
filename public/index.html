@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="./shell.css">
   <link rel="stylesheet" href="./evidence-context.css">
   <link rel="stylesheet" href="./financing.css">
+  <link rel="stylesheet" href="./uncertainty.css">
   <script type="module" src="./shell.js"></script>
   <script type="module" src="./app.js"></script>
 </head>
@@ -163,6 +164,12 @@
             <div class="section-heading"><div><div class="eyebrow">The valuation range</div><h3 id="sensitivity-heading">Cost of capital × long-term growth</h3></div><span class="unit-label">Enterprise value · USD bn</span></div>
             <div class="table-scroll" id="sensitivity-table" tabindex="0" role="region" aria-label="Enterprise value sensitivity table"><div class="result-placeholder">Sensitivity follows the current assumptions.</div></div>
             <p class="small-note">The outlined cell is the current case. Other assumptions stay fixed. A dash marks an invalid WACC, growth or terminal ROIC combination.</p>
+          </section>
+
+          <section class="uncertainty-section" id="uncertainty" aria-labelledby="uncertainty-heading" tabindex="-1">
+            <div class="section-heading"><div><div class="eyebrow">Valuation under uncertainty</div><h3 id="uncertainty-heading">From three cases to a range of outcomes</h3></div><span class="outline-tag">Monte Carlo · illustrative</span></div>
+            <p class="section-description">Give the value drivers ranges instead of single points. A seeded simulation values thousands of correlated draws with the same cash-flow model, then reports percentile bands, the share of draws above a hurdle and which driver moves the value most. The output describes the ranges you enter, not a forecast or investment advice.</p>
+            <div id="uncertainty-panel"><p class="small-note">Enable JavaScript to run the simulation. The method and its limits are described in <a href="https://github.com/ult666666/frontier-ai-valuation-lab/blob/main/docs/UNCERTAINTY.md">docs/UNCERTAINTY.md</a>.</p></div>
           </section>
 
           <section class="reverse-section" aria-labelledby="reverse-heading">

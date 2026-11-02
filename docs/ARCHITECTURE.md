@@ -32,6 +32,9 @@ The browser and API import the same pure calculation module. They are two execut
 | `capital.js` / `capital-chart.js` | Draft editing, equivalent visual/table presentation, revision-bound verification and export controls | Trusted calculation results from imported files |
 | `capital-record.js` / `capital-share.js` | Strict versioned inputs, bounded Unicode-safe transport and recomputation | Authentication, signatures or confidential link sharing |
 | `capital-brief.js` | Script-free, escaped narrative and exact input/output report | Executing imported markup or claiming a past API verification remains valid |
+| `uncertainty.js` (library) | Bounded driver distributions, corner validation of the driver box, Gaussian copula with a semidefinite Cholesky factor, seeded draws through `project()`, percentiles, hurdle share, seed replicates and the one-way tornado | Calibrating distributions, repairing invalid correlation matrices, weighting draws |
+| `random.js` / `deterministic-math.js` | SplitMix64-seeded xoshiro128**, 52-bit uniforms, AS 241 normal quantile, normal CDF and fdlibm `exp`/`log` built from IEEE-754 basic operations | Engine-provided transcendental functions, whose last bit differs between runtimes |
+| `uncertainty.js` (panel) / `uncertainty-chart.js` | Driver and correlation editing, stale-result protection, server verification, JSON export, accessible histogram and tornado SVGs with equivalent tables | Running a simulation the visitor did not request |
 | `lib/http.js` | Web-standard stateless request handler shared by Node and Vercel | Persisting analyst prose or providing financial-data credentials |
 
 ## Data and numerical boundaries
@@ -41,6 +44,12 @@ Every scenario supplies all thirteen financial assumptions. A rejected scenario 
 The snapshot allows 1–9 scenarios and 1–6 plans. This bounds the cross-product at 54 allocation cells and 15 pairwise switching comparisons. Each plan also receives the existing bounded ownership analysis. Complete input validation precedes calculation. Ordinary ties and thresholds use a documented 32 × Number.EPSILON relative band; the 100% retained-stake boundary remains strict for any positive new capital. Derived overflow and unresolved precision are distinct from an economic zero. The [capital method](CAPITAL_STRATEGY.md) defines the complete arithmetic contract.
 
 The `capital` API accepts only `action` and `snapshot`. The existing parser enforces `application/json`, fatal UTF-8 decoding and a 16 KiB byte limit while streaming, without relying on the client-declared content length. Validation failures return HTTP 400; unsupported media returns 415 and oversize input returns 413. Successful calculations, including valid unavailable or empty outcomes, return the complete versioned result. No response serializes Infinity or NaN. See [API.md](API.md).
+
+## Monte Carlo reproducibility
+
+`simulate` reuses `project()` for every draw; the simulation layer adds sampling and statistics, never valuation formulas. The browser and the API import the same `uncertainty.js`, but they run on different JavaScript engines. ECMAScript does not fix the last bit of `Math.exp` or `Math.log`, and the test harness measured 1,967 differing results out of 40,000 between Node 24 and Chromium 153. The simulation therefore draws only on integer operations, correctly rounded IEEE-754 arithmetic, `Math.sqrt` and fdlibm ports of `exp` and `log`. The browser compares the complete server JSON with its own and reports **identical** only on byte equality. The CI `browser-parity` job repeats that comparison in Chromium on every push and pull request.
+
+A request is bounded before any work: at most five drivers, a 5 × 5 correlation matrix, 20,000 draws (100,000 valuations with the four stability replicates) and the 16 KiB body limit. Every corner of the driver box passes model validation first, so a long run cannot fail halfway on an invalid draw. Value Horizon still uses `Math.exp`; its browser and server results can differ in the last bit, which the existing qualified comparison policy handles.
 
 ## Browser verification lifecycle
 
@@ -70,7 +79,7 @@ The app has no npm runtime dependencies. `server.js` serves the explicit public 
 
 The separate portfolio has an exact public-file inventory and a create-once staged build. Its new Capital Studio capture is deliberately added to that inventory. The existing staged-byte verification, symlink and hardlink rejection, pinned CI actions, read-only verification permissions and main-only Pages deployment are preserved. [Portfolio publication boundary](https://github.com/ult666666/ult666666.github.io/blob/main/docs/PUBLICATION_BOUNDARY.md).
 
-CI runs financial/API regression checks, independent references and the public build. Local release evidence additionally covers real browser workflows, rendered PDFs, package membership and exact hashes. Production HTTPS, browser behavior, deployment commit and downloaded release assets are verified separately after publication. Source hashes tie a receipt to the bytes it inspected; they are not a cryptographic signature or proof of financial forecast accuracy.
+CI runs financial/API regression checks, independent references (including the Monte Carlo reference) and the public build. A second job installs a pinned Playwright, starts the server and runs the uncertainty browser harness against the real API. Local release evidence additionally covers real browser workflows, rendered PDFs, package membership and exact hashes. Production HTTPS, browser behavior, deployment commit and downloaded release assets are verified separately after publication. Source hashes tie a receipt to the bytes it inspected; they are not a cryptographic signature or proof of financial forecast accuracy.
 
 ## Inspect or reproduce
 

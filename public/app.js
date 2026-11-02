@@ -13,6 +13,7 @@ import {createCasebookStore} from './lib/casebook-store.js';
 import {createEvidenceContext} from './evidence-context.js';
 import {createFinancingLens} from './financing.js';
 import {decodeFinancing} from './lib/financing-share.js';
+import {createUncertaintyPanel} from './uncertainty.js';
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
@@ -48,7 +49,7 @@ const state = {
   metric: 'revenue', revision: 0, ready: false, saved: [],
   apiPending: false, apiController: null, apiEverRequested: false,
   apiUnavailable: false, reverseSolved: false, shareRevision: 0,
-  inspection: null, casebook: null, saving: false, evidenceContext: null, financing: null,
+  inspection: null, casebook: null, saving: false, evidenceContext: null, financing: null, uncertainty: null,
 };
 
 function number(value, digits = 1) {
@@ -374,6 +375,7 @@ function renderBridge() {
   const enabled = $('#bridge-enabled').checked;
   for (const id of ['bridge-cash', 'bridge-debt', 'bridge-claims']) $(`#${id}`).disabled = !enabled;
   state.financing?.refresh();
+  state.uncertainty?.refresh();
   const output = $('#bridge-output');
   if (!enabled) { output.textContent = 'Enable the bridge to apply your assumptions.'; return null; }
   if (!state.result) { output.textContent = 'Correct the valuation assumptions before calculating equity.'; return null; }
@@ -696,6 +698,7 @@ function restoreWorkspaceRoute(hash=location.hash){
     selectTab('sources');focusSection(hash==='#sources'?$('#panel-sources'):document.getElementById(hash.slice(1))||$('#panel-sources'));
   }else if(hash==='#methodology'){selectTab('methodology');focusSection($('#panel-methodology'));}
   else if(hash==='#workspace'){selectTab('model');focusSection($('#workspace'));}
+  else if(hash==='#uncertainty'){selectTab('model');focusSection($('#uncertainty'));}
   else if(hash==='#research-story'){focusSection($('#research-story'));window.dispatchEvent(new CustomEvent('workspace:context',{detail:{section:'Overview'}}));}
 }
 
@@ -871,6 +874,7 @@ async function initialize() {
   createFields();
   installPortableActions();
   state.financing=createFinancingLens({getCase:currentPortableScenario,onOpenCase:openWorkbench,getPresets:()=>state.presets,onTermsEdited:clearSharedLocation});
+  state.uncertainty=createUncertaintyPanel({getCase:()=>({...currentPortableScenario(),custom:state.custom})});
   bindEvents();
   try {
     const [presets, research] = await Promise.all([fetchJson('./data/presets.json'), fetchJson('./data/research.json')]);

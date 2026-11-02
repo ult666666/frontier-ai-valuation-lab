@@ -1,0 +1,295 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "generatedAt": "2026-11-02T00:07:19.964843+00:00",
+  "uncertaintyVersion": "1.0.0",
+  "method": "Integer SplitMix64 and xoshiro128** 1.1; exact Fraction uniforms; CPython statistics.NormalDist (AS 241) quantiles; 60-digit Decimal normal CDF; Fraction principal minors for semidefiniteness; independent float Cholesky; reference_model.py DCF per draw; statistics.quantiles inclusive percentiles; Wilson score interval.",
+  "tolerances": {
+    "quantile": 2e-15,
+    "cdf": 6e-14,
+    "driver": 1e-12,
+    "value": 1e-09,
+    "percentile": 1e-09,
+    "factor": 1e-12,
+    "ulps": 1
+  },
+  "generatorOutputsCompared": 20000,
+  "psdDecisions": {
+    "accepted": 199,
+    "rejected": 206,
+    "boundarySkipped": 2
+  },
+  "pipelines": 10,
+  "drawsValued": 46000,
+  "numericComparisons": 79452,
+  "structuralComparisons": 6912,
+  "maxRelativeErrors": {
+    "quantile": 0.0,
+    "cdf": 6.721837778291431e-15,
+    "expUlps": 1,
+    "logUlps": 1,
+    "factor": 1.27675647831893e-15,
+    "driver": 7.032120160229931e-16,
+    "value": 6.172104976539055e-13,
+    "percentile": 2.7938894983290164e-14
+  },
+  "cases": [
+    {
+      "name": "Anthropic Base, four correlated drivers",
+      "draws": 3000,
+      "drivers": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "seed": 20261018,
+      "percentiles": {
+        "p5": 196.76088527473263,
+        "p25": 282.6303205455953,
+        "p50": 369.42115799913245,
+        "p75": 474.8456833487434,
+        "p95": 694.7982427392647
+      },
+      "tornado": [
+        "growth",
+        "wacc",
+        "m36",
+        "tg"
+      ],
+      "stability": "stable"
+    },
+    {
+      "name": "OpenAI Bull, bridge and dilution, mixed signs",
+      "draws": 2000,
+      "drivers": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg",
+        "dilution"
+      ],
+      "seed": 7,
+      "percentiles": {
+        "p5": 685.2877944697775,
+        "p25": 987.7107832452352,
+        "p50": 1359.065164860388,
+        "p75": 1844.1462278635129,
+        "p95": 2804.741550191112
+      },
+      "tornado": [
+        "wacc",
+        "growth",
+        "m36",
+        "tg",
+        "dilution"
+      ],
+      "stability": "unstable"
+    },
+    {
+      "name": "Anthropic Bear, one uniform driver",
+      "draws": 1000,
+      "drivers": [
+        "m36"
+      ],
+      "seed": 0,
+      "percentiles": {
+        "p5": -25.575948682833797,
+        "p25": -20.006220074306327,
+        "p50": -13.131073920285276,
+        "p75": -6.346050875977729,
+        "p95": -0.48281114042853057
+      },
+      "tornado": [
+        "m36"
+      ],
+      "stability": "unstable"
+    },
+    {
+      "name": "OpenAI Base, perfectly correlated growth and margin",
+      "draws": 2000,
+      "drivers": [
+        "growth",
+        "m36",
+        "wacc"
+      ],
+      "seed": 4294967295,
+      "percentiles": {
+        "p5": 105.9174172922565,
+        "p25": 181.80798520615545,
+        "p50": 259.6070454086322,
+        "p75": 374.62342716510545,
+        "p95": 576.8378142585684
+      },
+      "tornado": [
+        "wacc",
+        "growth",
+        "m36"
+      ],
+      "stability": "unstable"
+    },
+    {
+      "name": "Anthropic Bear, zero spread",
+      "draws": 200,
+      "drivers": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "seed": 3,
+      "percentiles": {
+        "p5": -13.161877608879355,
+        "p25": -13.161877608879355,
+        "p50": -13.161877608879355,
+        "p75": -13.161877608879355,
+        "p95": -13.161877608879355
+      },
+      "tornado": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "stability": "stable"
+    },
+    {
+      "name": "Anthropic Base, zero spread",
+      "draws": 200,
+      "drivers": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "seed": 3,
+      "percentiles": {
+        "p5": 367.7712947995601,
+        "p25": 367.7712947995601,
+        "p50": 367.7712947995601,
+        "p75": 367.7712947995601,
+        "p95": 367.7712947995601
+      },
+      "tornado": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "stability": "stable"
+    },
+    {
+      "name": "Anthropic Bull, zero spread",
+      "draws": 200,
+      "drivers": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "seed": 3,
+      "percentiles": {
+        "p5": 1884.3087784008526,
+        "p25": 1884.3087784008526,
+        "p50": 1884.3087784008526,
+        "p75": 1884.3087784008526,
+        "p95": 1884.3087784008526
+      },
+      "tornado": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "stability": "stable"
+    },
+    {
+      "name": "OpenAI Bear, zero spread",
+      "draws": 200,
+      "drivers": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "seed": 3,
+      "percentiles": {
+        "p5": -68.49581061785656,
+        "p25": -68.49581061785656,
+        "p50": -68.49581061785656,
+        "p75": -68.49581061785656,
+        "p95": -68.49581061785656
+      },
+      "tornado": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "stability": "stable"
+    },
+    {
+      "name": "OpenAI Base, zero spread",
+      "draws": 200,
+      "drivers": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "seed": 3,
+      "percentiles": {
+        "p5": 258.86259028034846,
+        "p25": 258.86259028034846,
+        "p50": 258.86259028034846,
+        "p75": 258.86259028034846,
+        "p95": 258.86259028034846
+      },
+      "tornado": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "stability": "stable"
+    },
+    {
+      "name": "OpenAI Bull, zero spread",
+      "draws": 200,
+      "drivers": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "seed": 3,
+      "percentiles": {
+        "p5": 1505.6838953114666,
+        "p25": 1505.6838953114666,
+        "p50": 1505.6838953114666,
+        "p75": 1505.6838953114666,
+        "p95": 1505.6838953114666
+      },
+      "tornado": [
+        "growth",
+        "m36",
+        "wacc",
+        "tg"
+      ],
+      "stability": "stable"
+    }
+  ],
+  "sourceHashes": {
+    "public/lib/uncertainty.js": "86fc6bd4b241d5550211e8ab0454eb22d9d8d0354b92d370f465187ffe21e419",
+    "public/lib/random.js": "8114d3527216388566669e96b85756f36f1fa734d0fa00d799ba76e32e322186",
+    "public/lib/deterministic-math.js": "1757805fbb6883f883c82eaa6301074c8cf10242c40ddf29fd0b535d220ca17c",
+    "public/lib/model.js": "9be65ebd529ab5c19100c9ee1bdf3d017501c42fc689a3d1d0b2232f1edfa180",
+    "data/presets.json": "9239c933d4c19797c0fe98388ca5632a17939f6f42316814c35e54dc1db957ca",
+    "scripts/reference_model.py": "8cbc2359afc02f0246e93e722febcb82df5f85e5014521249e8555825d3651d4",
+    "scripts/check_uncertainty_reference.py": "2e3455db4c908c68ad6e31dc595b8e1b945687ab4a6e5f6a317b28d40ba8508e",
+    "tests/uncertainty.test.js": "978fa4f62e9fe04e33afde004c7bfde046adb4121bc18f5e940f4eae401a25ea"
+  },
+  "scope": "Arithmetic and algorithmic independence for the Monte Carlo layer. Statistical checks use fixed seeds. Not a calibration of the input distributions, a forecast or an external audit.",
+  "failures": [],
+  "failureCount": 0
+}

@@ -1,6 +1,6 @@
 # API contract
 
-The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **4.0.0** adds the `capital` action for complete financing-plan comparisons. The existing financing/ownership, horizon and earlier actions remain available. No model-provider key is needed.
+The public service is stateless. Both deployment and local development use [`lib/http.js`](../lib/http.js). Application **4.0.0** adds the `capital` action for complete financing-plan comparisons, and uncertainty method **1.0.0** adds the `simulate` action. The existing financing/ownership, horizon and earlier actions remain available. No model-provider key is needed.
 
 ## GET /api/health
 
@@ -27,6 +27,7 @@ Use `Content-Type: application/json`. Amounts are USD billions and model percent
 | `horizon` | `assumptions`, integer `years` from 0–100; optional positive numeric or `null` `target` | Complete baseline, 101 finite-continuation points, retained/excluded terminal PV, capture milestones and bounded whole-year target requirement |
 | `financing` | `assumptions`, explicit `bridge` object or `null`, complete `round`; optional `ownership: {retentionFloor}` | Full baseline, primary-round pricing and ownership, optional signed equity reconciliation, round-implied operating EV and an optional capital-versus-ownership frontier |
 | `capital` | Complete `snapshot` with company, 1–9 scenarios, 1–6 plans, policy and explicit bridge or `null` | Complete plan eligibility, scenario allocations, finite-scenario regret/dominance, switching values and all-scenario model-conditioned pricing intervals |
+| `simulate` | `assumptions`, `bridge` or `null`, 1–5 `drivers`, `correlation` or `null`, `draws` from 200 to 20,000, `seed`; optional `hurdle` | Seeded Monte Carlo percentiles, hurdle share, histogram, convergence diagnostics, achieved correlation and a one-way tornado |
 
 Success responses are `{appVersion, modelVersion, valuationDate, result}`. `appVersion` is an additive release identifier; the model/date/result fields retain their existing meanings. Validation failures are HTTP 400 with `{error}`. Unsupported media returns 415, more than 16 KiB returns 413, unsupported methods return 405, and unknown routes return 404. Each original `sensitivity` axis contains 1–9 finite numbers. Each `landscape` axis contains 2–21 finite, strictly increasing numbers.
 
@@ -518,6 +519,79 @@ For a fixed pre-money quote `Q`, retention is `Q / (Q + R)` and the analytical c
 The graph includes at most 51 bounded round-arithmetic points and never reruns FCFF for each point. Its domain focuses on the current raise and chosen floor; its fallback scale is a display choice. An unresolvable graph uses `status: 'unavailable'`, `capitalMax: null`, empty points, and false inclusion flags.
 
 [`public/lib/ownership.js`](../public/lib/ownership.js) exports `OWNERSHIP_VERSION`, `ownershipFrontier(round, constraint)` and `financingAnalysis(assumptions, {bridge, round, ownership?})`. The full [Ownership Frontier method](OWNERSHIP_FRONTIER.md) specifies the formulas, numerical policy, exact metadata, graph domain and backward-compatible schema 1/schema 2 share envelopes. The optional constraint retains the request's existing media, body-size and no-store protections.
+
+## `simulate`: Monte Carlo valuation under uncertainty
+
+The shared [`public/lib/uncertainty.js`](../public/lib/uncertainty.js) exports `simulateValuation(spec)`, `validateSimulation(spec)`, `UNCERTAINTY_VERSION = '1.0.0'`, `UNCERTAINTY_LIMITS` and `UNCERTAINTY_DRIVERS`. The browser panel and this action call the same function, so the same request returns byte-identical JSON in both. The [method document](UNCERTAINTY.md) explains the drivers, copula, generator and statistics.
+
+Send `{action: 'simulate', assumptions, bridge, drivers, correlation, draws, seed, hurdle}`. Every field except `hurdle` is required; `bridge` and `correlation` may be `null`. Unknown fields at any level are rejected.
+
+| Field | Contract |
+| --- | --- |
+| `assumptions` | The complete 13-field case, valid under the model. It is the base point of every driver |
+| `bridge` | `{cash, debt, otherClaims}` within the existing bridge bounds, or `null`. With a bridge the measure is modeled equity |
+| `drivers` | 1–5 objects `{key, distribution}` with unique keys from `growth`, `m36`, `wacc`, `tg` and `dilution`. `dilution` needs a bridge |
+| `distribution` | `{type: 'uniform', min, max}`, `{type: 'triangular', min, mode, max}` or `{type: 'normal', mean, sd, min, max}` (truncated), in driver units: a multiple for `growth`, a decimal fraction otherwise |
+| `correlation` | `null` for independent drivers, or a k × k matrix in `drivers` order: exactly symmetric, unit diagonal, entries in [−1, 1], smallest eigenvalue at least −1e-10 |
+| `draws` | Whole number from 200 to 20,000. Four extra runs of the same size check median stability, so a request values up to 100,000 draws |
+| `seed` | Whole number from 0 to 4,294,967,295 |
+| `hurdle` | `null` or a finite value with absolute value at most 1e12 USD billions |
+
+Before any draw, the engine's own validation runs on every corner of the box spanned by each driver's range and base value. A range that can reach an invalid model input, such as terminal growth at or above the lowest discount rate, returns HTTP 400 and names the corner. No draw is clipped or discarded. A matrix that is not positive semidefinite returns HTTP 400 with its smallest eigenvalue. The existing 16 KiB streamed body limit applies.
+
+This request uses illustrative ranges around the published Anthropic Base case:
+
+```json
+{
+  "action": "simulate",
+  "assumptions": {
+    "rev2026": 53.26, "g1": 0.45, "g2": 0.24, "g3": 0.12,
+    "m27": -0.02, "m30": 0.18, "m36": 0.22, "turns": 2.5,
+    "wacc": 0.125, "tg": 0.03, "roic": 0.2, "stub": -3, "tax": 0.25
+  },
+  "bridge": null,
+  "drivers": [
+    {"key": "growth", "distribution": {"type": "triangular", "min": 0.7, "mode": 1, "max": 1.3}},
+    {"key": "m36", "distribution": {"type": "triangular", "min": 0.16, "mode": 0.22, "max": 0.28}},
+    {"key": "wacc", "distribution": {"type": "normal", "mean": 0.125, "sd": 0.015, "min": 0.095, "max": 0.155}},
+    {"key": "tg", "distribution": {"type": "triangular", "min": 0.02, "mode": 0.03, "max": 0.04}}
+  ],
+  "correlation": [[1, 0.4, 0, 0], [0.4, 1, 0, 0], [0, 0, 1, 0.3], [0, 0, 0.3, 1]],
+  "draws": 10000,
+  "seed": 20261018,
+  "hurdle": 300
+}
+```
+
+Inside the usual envelope, `result` has this shape:
+
+```text
+{
+  version: "1.0.0", modelVersion, valuationDate, units: "USD billions",
+  measure: "operating-ev" | "equity-value" | "equity-after-dilution",
+  assumptions, bridge,
+  drivers: [{ key, label, unit, base, distribution, p10, p90, baseInSupport }],
+  correlation: { requested, factor, eigenvalues, minEigenvalue, reconstructionError, achieved, maxAbsoluteDeviation },
+  sampling: { algorithm, seed, draws, uniform, normal, copula, replicateSeeds },
+  base: { value, operatingEv },
+  summary: { mean, standardDeviation, min, max, percentiles: { p5, p25, p50, p75, p95 } },
+  hurdle: null | { value, count, probabilityAbove, standardError, interval95: [low, high] },
+  histogram: { lower, upper, below, above, bins: [{ lower, upper, count }] },
+  convergence: {
+    standardError, relativeStandardError,
+    prefixes: [{ draws, p5, p50, p95, mean, standardError }],
+    stability: { seeds, p50, range, relativeRange, tolerance: 0.02, status: "stable" | "unstable" | "unavailable" }
+  },
+  tornado: { base, bars: [{ key, label, p10, p90, valueAtP10, valueAtP90, low, high, swing }] },
+  method, warnings
+}
+```
+
+For the request above, `summary.percentiles` is P5 $197.2B, P25 $281.2B, P50 $364.2B, P75 $475.5B and P95 $694.6B. `base.value` is the deterministic Base EV, $367.77B, and `hurdle.probabilityAbove` is 0.6946 with a Wilson 95% interval of 0.6855 to 0.7036. The five seed medians span 1.35% of the primary median, so `stability.status` is `stable`.
+
+`base.value` is the measure with every driver at its base value. When every distribution has zero spread at its base value, every percentile, the mean, the minimum and the maximum equal it exactly. `correlation.achieved` is the sample correlation of the latent normal scores in the primary draws. `prefixes` repeats P5, P50 and P95 for the first 1/8, 1/4, 1/2 and all draws. Tornado bars are sorted by `swing`, largest first. All values are finite or `null`.
+
+These are conditional calculations on entered distributions. They do not estimate the probability of any actual valuation, and they are not investment advice.
 
 ## Interpretation
 
