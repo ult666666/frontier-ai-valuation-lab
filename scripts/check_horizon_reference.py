@@ -181,7 +181,7 @@ def main():
                                  years=[0, 1, 10, 100][index % 4], target=target))
     boundaries = precision_cases()
     all_requests = requests + boundaries
-    node = os.environ.get("CODEX_PRIMARY_RUNTIME_NODE") or shutil.which("node")
+    node = os.environ.get("FRONTIER_NODE") or shutil.which("node")
     if not node:
         raise SystemExit("Node.js 24 is required to compare production outputs.")
     program = """import {readFileSync} from 'node:fs';

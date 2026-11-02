@@ -7,7 +7,7 @@ import {pathToFileURL} from 'node:url';
 
 const root=resolve(process.env.FRONTIER_PROJECT_ROOT||process.cwd());
 const require=createRequire(`${root}/package.json`);
-const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||`${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
+const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||'playwright');
 const {valueHorizon}=await import(pathToFileURL(`${root}/public/lib/horizon.js`).href);
 const {horizonUrl,decodeHorizon}=await import(pathToFileURL(`${root}/public/lib/horizon-share.js`).href);
 const {scenarioUrl,decodeScenario}=await import(pathToFileURL(`${root}/public/lib/share.js`).href);

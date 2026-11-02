@@ -35,8 +35,7 @@ await writeFile(path.join(root,'public/downloads/Frontier_AI_Thesis_Comparison.h
 
 if(process.argv.includes('--pdf')){
   const require=createRequire(import.meta.url);
-  const module=process.env.FRONTIER_PLAYWRIGHT_MODULE||
-    (process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES?path.join(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES,'playwright'):'playwright');
+  const module=process.env.FRONTIER_PLAYWRIGHT_MODULE||'playwright';
   const {chromium}=require(module);
   const executablePath=process.env.FRONTIER_CHROMIUM_EXECUTABLE||undefined;
   const browser=await chromium.launch({headless:true,executablePath,args:executablePath?['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']:[]});

@@ -9,7 +9,7 @@ import {pathToFileURL} from 'node:url';
 const root=resolve(process.env.FRONTIER_PROJECT_ROOT||process.cwd());
 const base=process.env.FRONTIER_BASE_URL||'http://127.0.0.1:4323/';
 const require=createRequire(`${root}/package.json`);
-const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||`${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
+const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||'playwright');
 const {scenarioUrl}=await import(pathToFileURL(`${root}/public/lib/share.js`).href);
 const {thesisUrl}=await import(pathToFileURL(`${root}/public/lib/thesis-share.js`).href);
 const {decodeEntry}=await import(pathToFileURL(`${root}/public/lib/casebook.js`).href);
@@ -25,7 +25,7 @@ const draft={
   landscape:{rates:[.075,.105,.195],margins:[.06,.181234567891,.42],target:500}
 };
 const scenario={company:'Anthropic',scenario:'Base',assumptions:{...presets.Anthropic.Base,g1:.5212345678912345},bridge:{cash:3.45,debt:1.125,otherClaims:.5}};
-const browser=await chromium.launch({headless:true,executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE||'/tmp/frontier-chromium-runtime/chromium',args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const browser=await chromium.launch({headless:true,executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE||undefined,args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 let currentPage;
 
 async function isolated(task){

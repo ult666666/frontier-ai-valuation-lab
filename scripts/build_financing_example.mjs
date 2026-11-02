@@ -1,3 +1,4 @@
+import {createRequire} from 'node:module';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
@@ -11,8 +12,7 @@ await mkdir(dir,{recursive:true});
 await writeFile(path.join(dir,`${name}.json`),JSON.stringify(createFinancingExport(snapshot),null,2)+'\n');
 await writeFile(path.join(dir,`${name}.html`),createFinancingBrief(snapshot));
 if(process.argv.includes('--pdf')){
-  const modules=process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES;
-  const {chromium}=await import(modules?pathToFileURL(path.join(modules,'playwright/index.mjs')).href:'playwright');
+  const {chromium}=createRequire(import.meta.url)(process.env.FRONTIER_PLAYWRIGHT_MODULE||'playwright');
   const browser=await chromium.launch({headless:true,...(process.env.FRONTIER_CHROMIUM_EXECUTABLE?{executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE}:{}),args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
   try{const page=await browser.newPage({viewport:{width:1280,height:980}});await page.goto(pathToFileURL(path.join(dir,`${name}.html`)).href,{waitUntil:'networkidle'});await page.pdf({path:path.join(dir,`${name}.pdf`),format:'A4',printBackground:true,preferCSSPageSize:true});}
   finally{await browser.close();}

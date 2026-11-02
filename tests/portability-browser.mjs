@@ -8,7 +8,7 @@ import { pathToFileURL } from 'node:url';
 
 const root = resolve(process.env.FRONTIER_PROJECT_ROOT || process.cwd());
 const require = createRequire(`${root}/package.json`);
-const { chromium } = require(process.env.FRONTIER_PLAYWRIGHT_MODULE || `${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
+const { chromium } = require(process.env.FRONTIER_PLAYWRIGHT_MODULE || 'playwright');
 const { project, bridgeEquity, MODEL_VERSION, VALUATION_DATE } = await import(pathToFileURL(`${root}/public/lib/model.js`).href);
 const { APP_VERSION } = await import(pathToFileURL(`${root}/public/lib/release.js`).href);
 const { decodeScenario, scenarioUrl } = await import(pathToFileURL(`${root}/public/lib/share.js`).href);

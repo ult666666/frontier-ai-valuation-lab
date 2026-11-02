@@ -4,6 +4,7 @@
  * The cutoff has zero residual value; it does not predict a company lifespan.
  */
 import {project} from './model.js';
+import {detExp,detExpm1,detLog1p} from './deterministic-math.js';
 
 export const HORIZON_VERSION='1.0.0';
 export const HORIZON_MAX_YEARS=100;
@@ -65,12 +66,12 @@ export function valueHorizon(assumptions,config){
   const {years,target}=options(config),baseline=project(input);
   // Using the rate difference avoids cancellation in log1p(g)-log1p(r)
   // when adjacent representable rates are selected close to the singularity.
-  const logQ=Math.log1p(-(input.wacc-input.tg)/(1+input.wacc));
+  const logQ=detLog1p(-(input.wacc-input.tg)/(1+input.wacc));
   if(!Number.isFinite(logQ)||!(logQ<0))throw new Error('The continuation discount ratio exceeds the numeric range.');
   const positiveTerminal=baseline.pvtv>0;
   function point(n){
     const exponent=n*logQ;
-    const fraction=n===0?0:-Math.expm1(exponent),remaining=Math.exp(exponent);
+    const fraction=n===0?0:-detExpm1(exponent),remaining=detExp(exponent);
     const retainedTerminalPv=baseline.pvtv*fraction,excludedTerminalPv=baseline.pvtv*remaining;
     const ev=baseline.pv_explicit+retainedTerminalPv;
     if(![ev,retainedTerminalPv,excludedTerminalPv].every(Number.isFinite))throw new Error('The horizon result exceeds the numeric range.');
@@ -81,7 +82,7 @@ export function valueHorizon(assumptions,config){
   const capture=[.5,.75,.9,.95].map(fraction=>{
     if(!positiveTerminal)return {fraction,status:'unavailable',years:null,throughYear:null,reason:'Terminal present value is zero at the model’s numerical precision.'};
     // Compare the remaining fraction, which avoids rounding 1-q^N to one.
-    const distance=year=>Math.exp(year*logQ)-(1-fraction);
+    const distance=year=>detExp(year*logQ)-(1-fraction);
     const uncertain=year=>Math.abs(distance(year))<=PRECISION_BAND*Math.max(1,Math.abs(year*logQ));
     const n=firstYear(year=>distance(year)<=0);
     // The cap is itself a classification boundary when no year qualifies.

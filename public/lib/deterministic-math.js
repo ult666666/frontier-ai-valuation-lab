@@ -94,3 +94,93 @@ export function detLog(x){
   }
   return k===0?f-s*(f-r):k*LN2_HI-((s*(f-r)-k*LN2_LO)-f);
 }
+
+const Q1=-3.33333333333331316428e-02; // 0xBFA11111 111110F4
+const Q2=1.58730158725481460165e-03; // 0x3F5A01A0 19FE5585
+const Q3=-7.93650757867487942473e-05; // 0xBF14CE19 9EAADBB7
+const Q4=4.00821782732936239552e-06; // 0x3ED0CFCA 86E65239
+const Q5=-2.01099218183624371326e-07; // 0xBE8AFDB7 6E09C32D
+const TWO_1023=8.98846567431158e+307; // 2^1023
+
+/**
+ * e^x - 1 without cancellation near zero. Port of fdlibm s_expm1.c in the
+ * FreeBSD msun form that V8 ships: x = k ln2 + r with a correction term c, a
+ * rational fit for e^r - 1, then scaling by 2^k.
+ */
+export function detExpm1(x){
+  const high=highWord(x),negative=high<0;
+  const hx=high&0x7fffffff;
+  if(hx>=0x4043687A){ // |x| >= 56 ln2
+    if(hx>=0x40862E42){ // |x| >= 709.78
+      if(hx>=0x7ff00000)return ((hx&0xfffff)|lowWord(x))!==0?x+x:negative?-1:x;
+      if(x>O_THRESHOLD)return Infinity;
+    }
+    if(negative)return -1; // e^x is below half an ulp of 1
+  }
+  let k=0,c=0;
+  if(hx>0x3fd62e42){ // |x| > ln2/2
+    let hi,lo;
+    if(hx<0x3FF0A2B2){ // and |x| < 1.5 ln2
+      if(negative){hi=x+LN2_HI;lo=-LN2_LO;k=-1;}else{hi=x-LN2_HI;lo=LN2_LO;k=1;}
+    }else{
+      k=Math.trunc(INV_LN2*x+(negative?-.5:.5));
+      hi=x-k*LN2_HI; // exact: k has at most 11 bits and LN2_HI has 21 trailing zero bits
+      lo=k*LN2_LO;
+    }
+    x=hi-lo;
+    c=(hi-x)-lo;
+  }else if(hx<0x3c900000)return x; // |x| < 2^-54
+  const hfx=.5*x,hxs=x*hfx;
+  const r1=1+hxs*(Q1+hxs*(Q2+hxs*(Q3+hxs*(Q4+hxs*Q5))));
+  const t=3-r1*hfx;
+  let e=hxs*((r1-t)/(6-x*t));
+  if(k===0)return x-(x*e-hxs);
+  const twopk=withHighWord(0,(0x3ff00000+(k<<20))|0);
+  e=x*(e-c)-c;
+  e-=hxs;
+  if(k===-1)return .5*(x-e)-.5;
+  if(k===1)return x< -.25?-2*(e-(x+.5)):1+2*(x-e);
+  if(k<=-2||k>56){
+    const y=1-(e-x);
+    return (k===1024?y*2*TWO_1023:y*twopk)-1;
+  }
+  if(k<20)return (withHighWord(1,0x3ff00000-(0x200000>>k))-(e-x))*twopk; // (1 - 2^-k) - (e - x)
+  return ((x-(e+withHighWord(1,(0x3ff-k)<<20)))+1)*twopk; // x - (e + 2^-k) + 1
+}
+
+/**
+ * log(1 + x) without losing the low bits of x. Port of fdlibm s_log1p.c in the
+ * FreeBSD msun form that V8 ships: 1 + x = 2^k (1 + f) plus a correction term
+ * for the rounding of 1 + x, then the same series as detLog.
+ */
+export function detLog1p(x){
+  const hx=highWord(x),ax=hx&0x7fffffff;
+  let k=1,f=0,c=0,hu=0;
+  if(hx<0x3FDA827A){ // 1 + x < sqrt(2)
+    if(ax>=0x3ff00000)return x===-1?-Infinity:NaN; // x <= -1
+    if(ax<0x3e200000)return ax<0x3c900000?x:x-x*x*.5; // |x| < 2^-29
+    if(hx>0||hx<=(0xBFD2BEC4|0)){k=0;f=x;hu=1;} // sqrt(2)/2 <= 1 + x < sqrt(2)
+  }
+  if(hx>=0x7ff00000)return x+x;
+  if(k!==0){
+    let u;
+    if(hx<0x43400000){
+      u=1+x;hu=highWord(u);k=(hu>>20)-1023;
+      c=k>0?1-(u-x):x-(u-1); // the part of x lost when rounding 1 + x
+      c/=u;
+    }else{u=x;hu=highWord(u);k=(hu>>20)-1023;c=0;}
+    hu&=0x000fffff;
+    if(hu<0x6a09e)u=withHighWord(u,hu|0x3ff00000); // normalize u
+    else{k+=1;u=withHighWord(u,hu|0x3fe00000);hu=(0x00100000-hu)>>2;} // normalize u/2
+    f=u-1;
+  }
+  const hfsq=.5*f*f;
+  if(hu===0){ // |f| < 2^-20
+    if(f===0)return k===0?0:k*LN2_HI+(c+k*LN2_LO);
+    const r=hfsq*(1-.66666666666666666*f);
+    return k===0?f-r:k*LN2_HI-((r-(k*LN2_LO+c))-f);
+  }
+  const s=f/(2+f),z=s*s;
+  const r=z*(LG1+z*(LG2+z*(LG3+z*(LG4+z*(LG5+z*(LG6+z*LG7))))));
+  return k===0?f-(hfsq-s*(hfsq+r)):k*LN2_HI-((hfsq-(s*(hfsq+r)+(k*LN2_LO+c)))-f);
+}

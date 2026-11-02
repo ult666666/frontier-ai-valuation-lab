@@ -418,7 +418,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, default=ROOT / 'qa-local/v4-0/quant/capital-reference.json')
     args = parser.parse_args()
-    node = os.environ.get('CODEX_PRIMARY_RUNTIME_NODE') or shutil.which('node')
+    node = os.environ.get('FRONTIER_NODE') or shutil.which('node')
     if not node:
         raise SystemExit('Node.js is required to evaluate the production target.')
     with localcontext() as context:

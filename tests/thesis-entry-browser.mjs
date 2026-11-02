@@ -10,7 +10,7 @@ import {decodeThesis} from '../public/lib/thesis-share.js';
 
 const root=resolve(process.env.FRONTIER_PROJECT_ROOT||process.cwd());
 const require=createRequire(`${root}/package.json`);
-const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||`${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
+const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||'playwright');
 const presets=JSON.parse(await readFile(`${root}/data/presets.json`,'utf8'));
 const base=process.env.FRONTIER_BASE_URL||'http://127.0.0.1:4322/';
 const qa=resolve(process.env.FRONTIER_QA_OUTPUT||`${root}/qa-local/thesis-entry`);

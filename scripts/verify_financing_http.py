@@ -232,7 +232,7 @@ def main(*, extra_cases=(), extra_required=(), extra_sources=(),
         report["requiredAssets"] = list(required)
         report["assetInventory"] = assets
         requests = api_cases() + list(extra_cases() if callable(extra_cases) else extra_cases)
-        node = os.environ.get("CODEX_PRIMARY_RUNTIME_NODE") or shutil.which("node")
+        node = os.environ.get("FRONTIER_NODE") or shutil.which("node")
         if not node:
             raise RuntimeError("Node 24 is required to evaluate the local handler.")
         local = subprocess.run([node, "--input-type=module", "-e", NODE], cwd=ROOT,

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {valueHorizon,HORIZON_VERSION,HORIZON_MAX_YEARS,HORIZON_SOLVER_MAX_YEARS} from '../public/lib/horizon.js';
 import {project} from '../public/lib/model.js';
@@ -222,4 +223,15 @@ test('script-free horizon briefing contains exact inputs and states the cutoff a
   assert.match(html,/zero residual/i);assert.match(html,/hypothetical bridge/i);
   assert.match(html,/horizon=/);assert.match(html,/scenario=/);
   assert.match(html,/2026-10-18/);assert.match(html,/younggrowth\.pdf/);
+});
+
+test('Horizon calls no elementary function whose last bit depends on the JavaScript engine',()=>{
+  // ECMAScript leaves the last bit of exp, log, pow and the trigonometric
+  // functions to each engine, so Chromium and Node can disagree. Horizon uses
+  // the fdlibm ports instead; sqrt, abs and rounding are exact everywhere.
+  const source=readFileSync(new URL('../public/lib/horizon.js',import.meta.url),'utf8')
+    .replace(/\/\*[\s\S]*?\*\//g,'').replace(/\/\/.*$/gm,''); // code only, without comments
+  const engineDependent=source.match(/Math\.(exp|expm1|log|log1p|log2|log10|pow|cbrt|hypot|sinh|cosh|tanh|asinh|acosh|atanh|sin|cos|tan|asin|acos|atan|atan2)\b|\*\*/g);
+  assert.deepEqual(engineDependent,null);
+  assert.match(source,/from '\.\/deterministic-math\.js'/);
 });

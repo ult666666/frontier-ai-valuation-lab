@@ -9,7 +9,7 @@ import {pathToFileURL} from 'node:url';
 
 const root=resolve(process.env.FRONTIER_PROJECT_ROOT||process.cwd());
 const require=createRequire(`${root}/package.json`);
-const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||`${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
+const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||'playwright');
 const {financingAnalysis}=await import(pathToFileURL(`${root}/public/lib/ownership.js`).href);
 const {financingUrl,decodeFinancing}=await import(pathToFileURL(`${root}/public/lib/financing-share.js`).href);
 const {scenarioUrl}=await import(pathToFileURL(`${root}/public/lib/share.js`).href);
@@ -23,7 +23,7 @@ const checks=[],errors=[],requests=[];
 const check=(label,actual,expected=true)=>{assert.deepEqual(actual,expected,label);checks.push(label);};
 const near=(label,actual,expected)=>{assert.ok(Number.isFinite(actual)&&Math.abs(actual-expected)<=1e-9*Math.max(1,Math.abs(expected)),`${label}: ${actual} != ${expected}`);checks.push(label);};
 const override=process.env.FRONTIER_ALLOW_BROWSER_CERT_OVERRIDE==='1';
-const browser=await chromium.launch({headless:true,executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE||'/tmp/frontier-chromium-runtime/chromium',args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const browser=await chromium.launch({headless:true,executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE||undefined,args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const context=await browser.newContext({viewport:{width:1440,height:1100},deviceScaleFactor:1,reducedMotion:'reduce',acceptDownloads:true,ignoreHTTPSErrors:override});
 context.setDefaultTimeout(12000);context.setDefaultNavigationTimeout(25000);
 await context.addInitScript(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new DOMException('Clipboard unavailable in the test fixture','NotAllowedError');}}}));
