@@ -13,7 +13,12 @@ const pages={
   'casebook.html':{title:'Research Casebook',limits:null}
 };
 const read=name=>readFile(new URL(`../public/${name}`,import.meta.url),'utf8');
-const text=html=>html.replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
+// Visible text of a trusted local fragment: drop everything between < and >.
+const text=html=>{
+  let out='',inTag=false;
+  for(const ch of html){if(ch==='<')inTag=true;else if(ch==='>')inTag=false;else if(!inTag)out+=ch;}
+  return out.replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
+};
 const headings=(html,level)=>[...html.matchAll(new RegExp(`<h${level}\\b[^>]*>([\\s\\S]*?)</h${level}>`,'g'))].map(match=>match[1]);
 
 for(const [name,expected] of Object.entries(pages)){

@@ -68,6 +68,9 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
   .app-header .brand svg{width:29px;height:29px;flex-basis:29px}
 }
 @media screen and (max-width:540px){
+  /* Let the name wrap before the links run past a narrow screen. */
+  .app-header .brand{min-width:0;white-space:normal;line-height:1.25}
+  .app-utilities{flex-shrink:0}
   .app-header .header-inner{padding:14px 18px 7px}
   .app-header .brand svg{width:25px;height:25px;flex-basis:25px}
 }

@@ -13,11 +13,13 @@ This entry covers the plain-presentation change: page titles, section titles, la
 | Node tests | **403 passed; 0 failed or skipped** (380 existing, 23 new) | `npm test` |
 | Python references | **All seven passed.** Their outputs match the run on `main` apart from timestamps | The seven commands in [TESTING.md](TESTING.md#python-reference-checks) |
 | Build | **Passed** | `npm run build` |
-| Browser workflows | **13 of 13 suites passed**: smoke 57, Overview 76, capital 108, financing 92, ownership 77, Monte Carlo 35, Value Horizon 148, Thesis Lab 79, Thesis entry 14, journey 94, Casebook 85, save race 16, portability 75 checks | `tests/*-browser.mjs` and `tests/browser-smoke.mjs` against a local server |
+| Browser workflows | **13 of 13 suites passed**, once with the Inter font and once with Inter hidden so pages fall back to DejaVu Sans: smoke 57, Overview 76, capital 108, financing 92, ownership 77, Monte Carlo 35, Value Horizon 148, Thesis Lab 79, Thesis entry 14, journey 94, Casebook 85, save race 16, portability 75 checks | `tests/*-browser.mjs` and `tests/browser-smoke.mjs` against a local server |
 | Calculations and exports | **Unchanged.** SHA-256 hashes of 62 outputs match `main`: every file in `public/downloads` and `public/data`, every brief and record generator, the chart drawn in saved briefs and the response to every API action. The two in-app chart variants differ, by legend wording and colors only | A fingerprint script run before and after the change |
 | Text contrast | **0 of about 3,500 visible text runs below WCAG AA** across the Capital Studio, Overview and Model, Sources, Method, Thesis Lab, Value Horizon and Casebook views at 1440 px, against 476 on `main`. SVG text and disabled controls were not counted | An in-browser audit of each text node's color against its effective background |
 
 `tests/experience-browser.mjs` failed on `main` at its 360 px overflow check, because the Overview's two Base case cards could not shrink below their content. With `minmax(0, 1fr)` columns it passed in five consecutive runs and in the full run above.
+
+The first CI run of this change failed the 390 px overflow check in the Monte Carlo suite, which had passed locally. Hiding Inter from Chromium, so that pages fall back to the wider DejaVu Sans, reproduced the failure. That setup found three layouts that only fit the narrower font: the Model's export buttons at 390 px, the page header at 360 px and the Thesis Lab case figures at 200% zoom. They were fixed in this change, and the results above include the fixes.
 
 The new tests can fail. `tests/presentation.test.js` fails 17 of its 20 checks when pointed at the pages on `main`. `tests/capital-chart.test.js` caught a light-theme axis color at 2.60:1 against the qualifying zone before the color was darkened.
 
