@@ -4,6 +4,38 @@ The latest interaction and presentation reviews appear first, followed by the **
 
 **About the reviews on this page.** Every review recorded here is AI-assisted: an AI agent, usually a different one from the agent that wrote the reviewed code, did the checking. Receipts named `independent-review-*.json` use "independent" only in that sense. None of these reviews is a third-party review, an accessibility certification or a financial audit. Where this page calls a calculation "independent", it means a separate implementation, such as the Python reference checks.
 
+## 2 November 2026 valuation under uncertainty
+
+This entry covers uncertainty method **1.0.0** on top of application **4.0.0** and financial engine **3.0.0**. The engine, presets and research data are byte-identical to `main`; the Python reference checks the `model.js` and `presets.json` hashes.
+
+| Verification layer | Result | Command or evidence |
+| --- | --- | --- |
+| Node tests | **378 passed; 0 failed or skipped** (347 existing, 31 new) | `npm test` |
+| Independent Monte Carlo reference | **Passed: 20,000 generator outputs bit-exact; 199 accepted and 206 rejected correlation matrices agree with exact principal minors (2 boundary cases skipped); 10 pipelines, 46,000 draws valued by the Python DCF; 79,452 numeric and 6,912 structural comparisons** | `python3 -B scripts/check_uncertainty_reference.py`, [receipt](verification/uncertainty-reference-1.0.json) |
+| Uncertainty browser workflow | **35 checks; 0 page or console errors** | `node tests/uncertainty-browser.mjs`, [receipt](verification/uncertainty-browser-1.0.json) |
+| Existing browser workflows | **12 of 13 suites passed.** Value Horizon fails on unchanged `main` too, from last-bit `Math.exp` differences between Node 24 and Chromium 153 | The twelve other `tests/*-browser.mjs` harnesses and `tests/browser-smoke.mjs` against a local server |
+
+Largest differences from the Python reference: normal CDF 6.7e-15 relative (against a 60-digit Decimal evaluation), Cholesky factor 1.3e-15, driver values 7.0e-16 (absolute floor of 1), draw values 6.2e-13 relative and percentiles 2.8e-14 relative. The fdlibm `exp` and `log` ports are within 1 unit in the last place of the C library. The normal quantile matched CPython's AS 241 exactly on all 446 probabilities checked.
+
+In the browser harness, 1,967 of 40,000 `Math.exp` and `Math.log` results differed between Node 24.22.1 and Chromium 153.0.8010.12, while the fdlibm ports and the `**` operator differed on none. An API request repeated from the exported browser record returned byte-identical JSON.
+
+Mutation checks were run in a scratch copy, one change at a time. Each mutant below was rejected by the named check:
+
+| Deliberate defect | Rejected by |
+| --- | --- |
+| Tornado uses the mean plus or minus 1.28 standard deviations | Monotone-transform tornado property test |
+| Copula ignores the Cholesky factor | Correlation recovery test; Python reference |
+| Triangular quantile swaps its two widths | Convergence and Kolmogorov-Smirnov tests |
+| Positive semidefinite check tolerates eigenvalues down to −0.1 | Principal-minor differential test |
+| Mean summed directly instead of around the case | Zero-spread identity test |
+| Signed shift in the uniform mapping | Uniform range and chi-square test |
+| One AS 241 coefficient off in the seventh digit | Published significand-sum test |
+| Normal CDF continued fraction cut to depth 10 | 60-digit reference test |
+| Histogram edge guard removed | Edge-placement test |
+| xoshiro rotation constant changed; percentile index off by one; replicate seeds shifted; truncated normal loses its lower mass; dilution applied before the bridge | Python reference (each reported failures) |
+
+These are automated checks with fixed seeds and a scoped Chromium run on one machine. They are not a calibration of the input distributions, an accessibility certification or an external audit.
+
 ## 20 October 2026 objective preview and API comparison
 
 These checks ran at commit `36dd518`. A later fix ([#1](https://github.com/ult666666/frontier-ai-valuation-lab/pull/1)) changed `public/capital.js`, so that file no longer matches its recorded hash.

@@ -55,6 +55,30 @@ Only plans meeting the capital and retention objectives enter regret and dominan
 
 The **model-conditioned pricing interval** is a separate diagnostic. Every submitted scenario must meet the chosen modeled-value-to-quote ratio, while the quote must also preserve the ownership floor. The default Bear residual makes the interval empty for all three entered raises. That conflict remains visible even though A and B meet the capital and ownership objectives.
 
+## Valuation under uncertainty
+
+Three cases hide the spread of outcomes between and around them. The Model workspace now has a **Monte Carlo** panel ([open it](https://frontier-ai-valuation-lab.vercel.app/index.html#uncertainty)) and the API a matching `simulate` action. Both reuse the unchanged DCF engine for every draw.
+
+- **Drivers with ranges.** Revenue growth path, terminal operating margin, discount rate, terminal growth and, with a hypothetical equity bridge, uncompensated dilution. Each takes a bounded uniform, triangular or truncated normal distribution.
+- **Correlated draws.** A Gaussian copula with a Cholesky factor of your correlation matrix. A matrix that is not positive semidefinite is rejected with its smallest eigenvalue.
+- **Reproducible.** A seeded xoshiro128** generator. The same request returns byte-identical JSON in the browser and the API, which CI checks in Chromium.
+- **Outputs.** P5, P25, P50, P75 and P95, the share of draws above a hurdle with a 95% interval, a tornado of one-way P10 to P90 swings, and convergence diagnostics: the standard error of the mean and the median across five seeds.
+
+With the server running, this request gives the default panel ranges around the Anthropic Base case:
+
+```sh
+curl --fail-with-body http://127.0.0.1:4321/api/valuation \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"simulate","assumptions":{"rev2026":53.26,"g1":0.45,"g2":0.24,"g3":0.12,"m27":-0.02,"m30":0.18,"m36":0.22,"turns":2.5,"wacc":0.125,"tg":0.03,"roic":0.2,"stub":-3,"tax":0.25},"bridge":null,
+       "drivers":[{"key":"growth","distribution":{"type":"triangular","min":0.7,"mode":1,"max":1.3}},
+                  {"key":"m36","distribution":{"type":"triangular","min":0.16,"mode":0.22,"max":0.28}},
+                  {"key":"wacc","distribution":{"type":"normal","mean":0.125,"sd":0.015,"min":0.095,"max":0.155}},
+                  {"key":"tg","distribution":{"type":"triangular","min":0.02,"mode":0.03,"max":0.04}}],
+       "correlation":[[1,0.4,0,0],[0.4,1,0,0],[0,0,1,0.3],[0,0,0.3,1]],"draws":10000,"seed":20261018,"hurdle":300}'
+```
+
+It returns P5 **$197.2B**, P50 **$364.2B** and P95 **$694.6B** around the deterministic Base value of $367.8B, with 69.5% of draws above the $300B hurdle. The growth path and the discount rate swing value most (about $240B and $236B between their own P10 and P90). These figures describe the illustrative ranges in the request; they are not a forecast or a probability that either company is worth any amount. See the [method, references and limits](docs/UNCERTAINTY.md) and the [API contract](docs/API.md#simulate-monte-carlo-valuation-under-uncertainty).
+
 ## Run the complete stack locally
 
 The commands at the top run the tests and start the server. Node.js 24 is the supported version for serving, building and testing. On an older Node.js, `npm test` stops with a message asking for Node.js 24; `nvm use` switches to the version in `.nvmrc`. The test suite also needs **Python 3.11+** for desktop-package verification. The application has **zero npm runtime dependencies**, and needs no API key, account, database or paid data feed.
@@ -70,6 +94,7 @@ python3 -B scripts/check_horizon_reference.py --output /tmp/horizon-reference.js
 python3 -B scripts/check_financing_reference.py --output /tmp/financing-reference.json
 python3 -B scripts/check_ownership_reference.py --output /tmp/ownership-reference.json
 python3 -B scripts/check_thesis_reference.py --output /tmp/thesis-reference.json
+python3 -B scripts/check_uncertainty_reference.py --output /tmp/uncertainty-reference.json
 ```
 
 The capital reference uses separate arithmetic and declares its tolerances and tested cases. Browser/API agreement is a deployment and state-transport check, not an independent proof of the formulas. Current and historical evidence are distinguished in the [verification record](docs/VERIFICATION.md).
@@ -101,6 +126,7 @@ The original research workflow remains connected through seven navigation destin
 | --- | --- | --- |
 | **Overview and Model** | What operating assumptions and annual cash flows support the valuation? | [Company comparison](https://frontier-ai-valuation-lab.vercel.app/), [complete model](https://frontier-ai-valuation-lab.vercel.app/index.html#workspace) |
 | **Financing Lens and Ownership Frontier** | How does one hypothetical primary round translate price into cash and ownership? | [Worked ownership example](https://frontier-ai-valuation-lab.vercel.app/index.html#ownership-example), [method](docs/OWNERSHIP_FRONTIER.md) |
+| **Valuation under uncertainty** | What range of value do ranges on the main drivers imply, and which driver matters most? | [Monte Carlo panel](https://frontier-ai-valuation-lab.vercel.app/index.html#uncertainty), [method](docs/UNCERTAINTY.md) |
 | **Value Horizon** | How much value depends on cash flows after the explicit forecast? | [Finite continuation tool](https://frontier-ai-valuation-lab.vercel.app/horizon.html), [method](docs/VALUE_HORIZON.md) |
 | **Thesis Lab** | Which declared assumption groups account for the difference between two operating cases? | [Exact attribution and target landscape](https://frontier-ai-valuation-lab.vercel.app/thesis.html), [method](docs/THESIS_LAB.md) |
 | **Research Casebook** | Why keep an operating case, and what would change the argument? | [Saved research](https://frontier-ai-valuation-lab.vercel.app/casebook.html), [workflow guide](docs/RESEARCH_WORKSPACE.md) |

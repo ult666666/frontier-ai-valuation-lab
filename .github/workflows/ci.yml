@@ -41,5 +41,29 @@ jobs:
         run: python3 -B scripts/check_financing_reference.py --output /tmp/financing-reference.json
       - name: Independent capital strategy and finite-scenario comparisons
         run: python3 -B scripts/check_capital_reference.py --output /tmp/capital-reference.json
+      - name: Independent Monte Carlo generator, copula and percentile checks
+        run: python3 -B scripts/check_uncertainty_reference.py --output /tmp/uncertainty-reference.json
       - name: Build public application snapshot
         run: npm run build
+
+  browser-parity:
+    # The same seed must give byte-identical simulation JSON in Chromium and
+    # in the Node API. Playwright is a CI-only tool, not an app dependency.
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Install the pinned browser test tool
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.63.0
+          npx playwright install --with-deps chromium
+      - name: Monte Carlo panel in a real browser against the real API
+        run: |
+          PORT=4341 node server.js &
+          for attempt in $(seq 1 30); do curl -sf http://127.0.0.1:4341/api/health && break; sleep 1; done
+          FRONTIER_BASE_URL=http://127.0.0.1:4341/ node tests/uncertainty-browser.mjs
