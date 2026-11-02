@@ -7,7 +7,7 @@ import {pathToFileURL} from 'node:url';
 
 const root=resolve(process.env.FRONTIER_PROJECT_ROOT||process.cwd());
 const require=createRequire(`${root}/package.json`);
-const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||`${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
+const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||'playwright');
 const moduleAt=path=>import(pathToFileURL(`${root}/${path}`).href);
 const {createCasebook,createScenarioEntry,createThesisEntry,parseCasebook,serializeCasebook,decodeEntry}=await moduleAt('public/lib/casebook.js');
 const {CASEBOOK_STORAGE_KEY,LEGACY_STORAGE_KEY}=await moduleAt('public/lib/casebook-store.js');
@@ -21,7 +21,7 @@ const presets=JSON.parse(await readFile(`${root}/data/presets.json`,'utf8'));
 const base=process.env.FRONTIER_BASE_URL||'http://127.0.0.1:4323/';
 const qa=resolve(process.env.FRONTIER_QA_OUTPUT||`${root}/qa-local/v3-3/casebook`);
 await mkdir(qa,{recursive:true});
-const browser=await chromium.launch({headless:true,executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE||'/tmp/frontier-chromium-runtime/chromium',args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const browser=await chromium.launch({headless:true,executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE||undefined,args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const checks=[],browserErrors=[],screenshots={};
 const check=(name,actual,expected=true)=>{assert.deepEqual(actual,expected,name);checks.push(name);};
 const capture=async(page,name,fullPage=false)=>{const path=`${qa}/${name}.png`;await page.screenshot({path,fullPage});screenshots[name]=path;};

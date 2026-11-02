@@ -48,7 +48,8 @@ jobs:
 
   browser-parity:
     # The same seed must give byte-identical simulation JSON in Chromium and
-    # in the Node API. Playwright is a CI-only tool, not an app dependency.
+    # in the Node API, and the Horizon curve must match the API exactly.
+    # Playwright is a CI-only tool, not an app dependency.
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -67,3 +68,5 @@ jobs:
           PORT=4341 node server.js &
           for attempt in $(seq 1 30); do curl -sf http://127.0.0.1:4341/api/health && break; sleep 1; done
           FRONTIER_BASE_URL=http://127.0.0.1:4341/ node tests/uncertainty-browser.mjs
+      - name: Horizon curve in a real browser matches the API bit for bit
+        run: FRONTIER_BASE_URL=http://127.0.0.1:4341/ node tests/horizon-browser.mjs

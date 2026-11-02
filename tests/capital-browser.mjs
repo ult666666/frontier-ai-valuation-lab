@@ -9,13 +9,13 @@ import {pathToFileURL} from 'node:url';
 
 const root=resolve(process.env.FRONTIER_PROJECT_ROOT||process.cwd());
 const require=createRequire(`${root}/package.json`);
-const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||`${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
+const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||'playwright');
 const base=process.env.FRONTIER_BASE_URL||'http://127.0.0.1:4340/';
 const output=resolve(process.env.FRONTIER_CAPITAL_QA_DIR||`${root}/qa-local/v4-0/capital-browser`);
 await mkdir(output,{recursive:true});
 const checks=[],errors=[],requests=[];
 const check=(label,actual,expected=true)=>{assert.deepEqual(actual,expected,label);checks.push(label);};
-const browser=await chromium.launch({headless:true,executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE||'/tmp/frontier-chromium-runtime/chromium',args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const browser=await chromium.launch({headless:true,executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE||undefined,args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const context=await browser.newContext({viewport:{width:1440,height:1100},deviceScaleFactor:1,reducedMotion:'reduce',acceptDownloads:true});
 context.setDefaultTimeout(12000);
 context.setDefaultNavigationTimeout(25000);

@@ -150,7 +150,7 @@ def main():
     parser.add_argument("--output", type=Path, help="Write a source-bound verification receipt.")
     args = parser.parse_args()
     valid, invalid = cases()
-    node = os.environ.get("CODEX_PRIMARY_RUNTIME_NODE") or shutil.which("node")
+    node = os.environ.get("FRONTIER_NODE") or shutil.which("node")
     if not node:
         raise SystemExit("Node.js 24 is required to evaluate the production module.")
     program = """import {readFileSync} from 'node:fs';

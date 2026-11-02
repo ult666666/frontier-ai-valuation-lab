@@ -7,7 +7,7 @@ import {pathToFileURL} from 'node:url';
 
 const root=resolve(process.env.FRONTIER_PROJECT_ROOT||process.cwd());
 const require=createRequire(`${root}/package.json`);
-const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||`${process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES}/playwright`);
+const {chromium}=require(process.env.FRONTIER_PLAYWRIGHT_MODULE||'playwright');
 const {project,MODEL_VERSION,VALUATION_DATE}=await import(pathToFileURL(`${root}/public/lib/model.js`).href);
 const {scenarioUrl,decodeScenario}=await import(pathToFileURL(`${root}/public/lib/share.js`).href);
 const {decodeInspection}=await import(pathToFileURL(`${root}/public/lib/journey.js`).href);
@@ -20,7 +20,7 @@ await mkdir(qa,{recursive:true});
 const checks=[],browserErrors=[];
 const check=(name,actual,expected=true)=>{assert.deepEqual(actual,expected,name);checks.push(name);};
 const near=(name,actual,expected)=>{assert.ok(Number.isFinite(actual)&&Math.abs(actual-expected)<=1e-9*Math.max(1,Math.abs(expected)),`${name}: ${actual} != ${expected}`);checks.push(name);};
-const executablePath=process.env.FRONTIER_CHROMIUM_EXECUTABLE||'/tmp/frontier-chromium-runtime/chromium';
+const executablePath=process.env.FRONTIER_CHROMIUM_EXECUTABLE||undefined;
 const browser=await chromium.launch({headless:true,executablePath,args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const context=await browser.newContext({viewport:{width:1440,height:1100},acceptDownloads:true,reducedMotion:'reduce'});
 await context.addInitScript(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new DOMException('Browser test denies clipboard','NotAllowedError');}}}));

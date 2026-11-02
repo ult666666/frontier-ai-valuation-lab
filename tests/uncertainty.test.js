@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {project,bridgeEquity} from '../public/lib/model.js';
-import {detExp,detLog} from '../public/lib/deterministic-math.js';
+import {detExp,detLog,detExpm1,detLog1p} from '../public/lib/deterministic-math.js';
 import {createRandom,splitMix64,normalCdf,normalQuantile,AS241_COEFFICIENTS,MAX_SEED} from '../public/lib/random.js';
 import {simulateValuation,sampleDrivers,validateSimulation,correlationFactor,distributionQuantile,tornadoBars,percentile,histogram,UNCERTAINTY_LIMITS} from '../public/lib/uncertainty.js';
 import {suggestedDistributions} from '../public/uncertainty.js';
@@ -75,6 +75,28 @@ test('fdlibm exp and log stay within one unit in the last place of the platform 
   assert.ok(ulps(detExp(1),Math.E)<=1n);
   assert.equal(detLog(1),0);assert.equal(detLog(0),-Infinity);assert.ok(Number.isNaN(detLog(-1)));
   assert.equal(detLog(Infinity),Infinity);assert.ok(ulps(detLog(5e-324),-744.4400719213812)<=1n);
+});
+
+test('fdlibm expm1 and log1p stay within one unit in the last place of the platform functions',()=>{
+  // Horizon uses these so that the browser and the API produce identical bits.
+  const random=lcg(1234);let worstExpm1=0n,worstLog1p=0n;
+  for(let i=0;i<100000;i++){
+    const scale=10**(-12+random()*14); // magnitudes from 1e-12 to 100
+    const x=(random()-.5)*2*scale;
+    const a=ulps(detExpm1(x),Math.expm1(x));if(a>worstExpm1)worstExpm1=a;
+    const y=-1+(1+random()*1e3)*random()**8; // dense near -1, up to 1e3
+    const b=ulps(detLog1p(y),Math.log1p(y));if(b>worstLog1p)worstLog1p=b;
+    const c=ulps(detLog1p(x),Math.log1p(x));if(c>worstLog1p)worstLog1p=c;
+  }
+  assert.ok(worstExpm1<=1n&&worstLog1p<=1n,`expm1 ${worstExpm1} ulps, log1p ${worstLog1p} ulps`);
+  assert.ok(Object.is(detExpm1(-0),-0)&&Object.is(detLog1p(-0),-0));
+  assert.equal(detExpm1(1e-300),1e-300);assert.equal(detLog1p(1e-300),1e-300);
+  assert.equal(detExpm1(-Infinity),-1);assert.equal(detExpm1(-40),-1);assert.equal(detExpm1(Infinity),Infinity);
+  assert.equal(detExpm1(710),Infinity);assert.ok(Number.isNaN(detExpm1(NaN)));
+  assert.ok(ulps(detExpm1(1),Math.E-1)<=1n);
+  assert.equal(detLog1p(-1),-Infinity);assert.ok(Number.isNaN(detLog1p(-1.5)));assert.ok(Number.isNaN(detLog1p(-Infinity)));
+  assert.equal(detLog1p(Infinity),Infinity);assert.ok(Number.isNaN(detLog1p(NaN)));
+  assert.ok(ulps(detLog1p(Math.E-1),1)<=1n);
 });
 
 test('AS 241 coefficients reproduce the published significand check sums and known quantiles',()=>{
