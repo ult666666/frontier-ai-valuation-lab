@@ -1,4 +1,6 @@
-# Capital Strategy Studio — v4.0 design
+# Capital Strategy Studio: v4.0 design
+
+> Design history: this note describes application 4.0. The current pages use different labels and a lighter layout. The [documentation index](README.md) lists the current method notes.
 
 ## Product intent
 

@@ -166,7 +166,7 @@ try{
     check(`No horizontal page overflow at ${width}px`,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     check(`All workspace destinations remain visible at ${width}px`,await page.locator('.app-nav a:visible').count(),7);
     check(`Chart coordinates are finite at ${width}px`,await page.locator('#horizon-chart svg').evaluate(svg=>!/(?:NaN|Infinity)/.test(svg.outerHTML)));
-    check(`Responsive copy keeps separate words at ${width}px`,await page.locator('#method-title,.intro-note>p').allInnerTexts().then(text=>text.every(value=>!value.includes('boundaryon')&&!value.includes('more.Choose'))));
+    check(`Responsive copy keeps separate words at ${width}px`,await page.locator('#method-title,.page-lede').allInnerTexts().then(text=>text.length===2&&text.every(value=>!/[a-z][.!?][A-Z]/.test(value)&&!value.includes('boundaryon'))));
     if(width===390)await page.screenshot({path:`${output}/mobile-full.png`,fullPage:true,animations:'disabled'});
   }
   const captureBoundary={...defaultSnapshot,case:{...defaultSnapshot.case,assumptions:{...presets.Anthropic.Base,wacc:.5874010519681995,tg:0}}};

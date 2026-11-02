@@ -4,6 +4,8 @@
 
 **How much primary capital is consistent with retaining a chosen fraction of existing ownership?**
 
+![The Ownership limit panel in the Model workspace: at a $250B pre-money valuation and a 90% minimum, at most $27.78B can be raised, and the current $25B round retains 90.91%.](screenshots/ownership-frontier.png)
+
 Application **3.6.0** extends the existing Financing Lens with one optional ownership constraint. It holds the entered equity quote fixed under its selected pre-money or post-money interpretation and varies primary capital. The result is conditional round arithmetic, not a cash-need forecast, a negotiated financing offer, a recommendation or an estimate of capital the company can raise.
 
 The financial engine remains **3.0.0**, Financing Lens remains **1.0.0**, and Ownership Frontier is **1.0.0**. The valuation date remains **18 October 2026**. Company evidence, operating forecasts and existing financial calculations are unchanged. This addition introduces no additional company balance-sheet or capitalization-table claims.

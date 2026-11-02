@@ -1,5 +1,7 @@
 # Application 3.1: a comparison that invites investigation
 
+> Design history: this note describes application 3.1. The current pages use different labels and a lighter layout. The [documentation index](README.md) lists the current method notes.
+
 ## Intended outcome
 
 Application 3.1 gives a first-time reviewer a clear question, an immediate interaction and a path into the full financial model. Its guided comparison makes the analytical decisions easier to explore and present.

@@ -66,7 +66,7 @@ Open `http://127.0.0.1:4321/capital.html#worked-decision`. No API key, paid data
 python3 -B scripts/check_capital_reference.py --output /tmp/capital-reference.json
 ```
 
-The README contains the other independent references and a complete capital API example. `node scripts/build_release_briefs.mjs` regenerates the five current worked HTML/JSON artifacts. Add `--pdf` when an optional Playwright/Chromium authoring environment is installed; PDF rendering is separate from the application's zero-dependency runtime. Inspect rendered pages after changing a brief.
+[TESTING.md](TESTING.md) lists the other independent references, and the [API contract](API.md#capital-strategy-studio) has a complete capital API example. `node scripts/build_release_briefs.mjs` regenerates the five current worked HTML/JSON artifacts. Add `--pdf` when an optional Playwright/Chromium authoring environment is installed; PDF rendering is separate from the application's zero-dependency runtime. Inspect rendered pages after changing a brief.
 
 ## Create or verify a new package
 

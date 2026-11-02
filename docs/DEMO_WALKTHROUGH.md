@@ -18,11 +18,11 @@ A and B meet both objectives. C raises 5 less than required. The chart shows thr
 
 ## 2. Make a conflict visible
 
-Open the optional [Try the tradeoff panel](https://frontier-ai-valuation-lab.vercel.app/capital.html#capital-explore), below the main decision chart. Choose an objective pair to see current and preview eligibility alongside every submitted plan and its reason for passing or missing the two objectives.
+Open the optional [Preview other objectives](https://frontier-ai-valuation-lab.vercel.app/capital.html#capital-explore) panel below the main decision chart. Choose an objective pair to see current and preview eligibility alongside every submitted plan and its reason for passing or missing the two objectives.
 
-![Actual Capital Studio preview: raising the objective to $30B while retaining 90% leaves no eligible submitted plan.](demo-objective-preview-20261020.png)
+![Capital Studio preview: raising the objective to $30B while retaining 90% leaves no eligible submitted plan.](screenshots/capital-objective-preview.png)
 
-*Actual product capture, 20 October 2026. The current $25B / 88% decision remains unchanged until Apply is selected.*
+*Product capture, 2 November 2026. The current $25B / 88% decision stays unchanged until Apply is selected.*
 
 | Preview pair | Eligible plans in the unchanged worked example | What the conflict shows |
 | --- | --- | --- |
@@ -55,7 +55,7 @@ The declared metric is the signed residual allocated to the existing cohort afte
 
 For each case, regret is the difference from the largest allocation among eligible plans. The default minimax result is A: its largest gap is approximately 8.5911 in Bear, compared with B's approximately 17.1548 in Bull. This finite-scenario result neither assigns probabilities nor overrides the analyst's preference.
 
-### Explain the switching value
+### Explain the break-even value
 
 For the two eligible plans:
 
@@ -65,9 +65,9 @@ For the two eligible plans:
 
 Setting the expressions equal gives M=635; each allocates600 to the existing cohort. Below635, B has the larger allocation; above635, A does. This is a conditional threshold for these entered terms, with operating assumptions varying through M. It is not a price target, operating EV or expected outcome. The software reports a floating-point result near635 with documented tie conventions; the rational fixture independently establishes the hand calculation.
 
-### Test the separate pricing interval
+### Test the valuation range
 
-Open the model-conditioned pricing interval. At a model/quote floor of 1×, every case must have M at least as large as the pre-money quote. The Bear case limits that quote to approximately 1.8381. Plan A's25 raise at88% retention requires at least 183.3333 pre-money. The interval is empty. B and C also have empty intervals.
+Open **Valuation range supported by every scenario**, the model-conditioned pricing interval. At a model/quote floor of 1×, every case must have M at least as large as the pre-money quote. The Bear case limits that quote to approximately 1.8381. Plan A's25 raise at88% retention requires at least 183.3333 pre-money. The interval is empty. B and C also have empty intervals.
 
 The capital/retention screen and this model-conditioned diagnostic answer different questions. A and B can meet the first pair of objectives while all three plans fail the additional all-scenario pricing conditions. The tool does not silently add the latter condition to plan eligibility or present the analytical interval as available financing.
 
@@ -101,5 +101,3 @@ The portable brief includes the objectives, alternatives, preference, rationale,
 - [Browser controller](../public/capital.js), [portable record](../public/lib/capital-record.js) and [share codec](../public/lib/capital-share.js).
 - [Detached objective previews](../public/lib/capital-objectives.js) and [preservation/validation tests](../tests/capital-objectives.test.js).
 - [Architecture](ARCHITECTURE.md), [verification scope](VERIFICATION.md), [portfolio case study](https://ult666666.github.io/projects/frontier-ai-valuation-lab.html).
-
-This is an independent, AI-assisted portfolio demonstration. Its objective is to make a decision inspectable and reproducible, with clear distinctions between financial assumptions, calculations, software checks and business judgment.

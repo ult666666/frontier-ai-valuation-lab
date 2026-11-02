@@ -317,7 +317,7 @@ async function initialize(){
     const response=await fetch(new URL('./data/research.json',import.meta.url),{headers:{Accept:'application/json'}});if(!response.ok)throw new Error(`The dated research register could not be loaded (HTTP ${response.status}).`);
     const research=await response.json();if(research.modelVersion!==MODEL_VERSION||research.asOf!==VALUATION_DATE||!Array.isArray(research.sources))throw new Error('The research register and financial model must use the same version and date.');
     state.research=research;state.store=createCasebookStore({research});state.store.subscribe(receiveStoreUpdate);
-    $('#casebook-version').textContent=`Application ${APP_VERSION} · Financial engine ${MODEL_VERSION} · Research snapshot ${dateLabel(VALUATION_DATE)}`;
+    $('#casebook-version').textContent=`Application ${APP_VERSION} · Financial engine ${MODEL_VERSION} · Data as of ${VALUATION_DATE}`;
     state.book=await state.store.read();state.selected=requestedEntry();renderBook();await checkMigration();
   }catch(error){$('#casebook-loading').hidden=true;$('#casebook-empty').hidden=true;document.body.dataset.casebookState='unavailable';storageError(error);}
 }

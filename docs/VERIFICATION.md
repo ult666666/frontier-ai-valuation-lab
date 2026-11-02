@@ -4,6 +4,29 @@ The latest interaction and presentation reviews appear first, followed by the **
 
 **About the reviews on this page.** Every review recorded here is AI-assisted: an AI agent, usually a different one from the agent that wrote the reviewed code, did the checking. Receipts named `independent-review-*.json` use "independent" only in that sense. None of these reviews is a third-party review, an accessibility certification or a financial audit. Where this page calls a calculation "independent", it means a separate implementation, such as the Python reference checks.
 
+## 2 November 2026 presentation update
+
+This entry covers the plain-presentation change: page titles, section titles, labels, the shared light style, one method and limits note per page, and the README and docs reorganisation. It ran on Node 24.22.1, Python 3.13.17 and Chromium 153.0.8010.12.
+
+| Verification layer | Result | Command or evidence |
+| --- | --- | --- |
+| Node tests | **404 passed; 0 failed or skipped** (380 existing, 24 new) | `npm test` |
+| Python references | **All seven passed.** Their outputs match the run on `main` apart from timestamps | The seven commands in [TESTING.md](TESTING.md#python-reference-checks) |
+| Build | **Passed** | `npm run build` |
+| Browser workflows | **13 of 13 suites passed**, once with the Inter font and once with Inter hidden so pages fall back to DejaVu Sans: smoke 57, Overview 76, capital 108, financing 92, ownership 77, Monte Carlo 35, Value Horizon 148, Thesis Lab 79, Thesis entry 14, journey 94, Casebook 85, save race 16, portability 75 checks | `tests/*-browser.mjs` and `tests/browser-smoke.mjs` against a local server |
+| Calculations and exports | **Unchanged.** SHA-256 hashes of 62 outputs match `main`: every file in `public/downloads` and `public/data`, every brief and record generator, the chart drawn in saved briefs and the response to every API action. The two in-app chart variants differ, by legend wording and colors only | A fingerprint script run before and after the change |
+| Text contrast | **0 of about 3,500 visible text runs below WCAG AA** across the Capital Studio, Overview and Model, Sources, Method, Thesis Lab, Value Horizon and Casebook views at 1440 px, against 476 on `main`. SVG text and disabled controls were not counted | An in-browser audit of each text node's color against its effective background |
+
+`tests/experience-browser.mjs` failed on `main` at its 360 px overflow check, because the Overview's two Base case cards could not shrink below their content. With `minmax(0, 1fr)` columns it passed in five consecutive runs and in the full run above.
+
+The first CI run of this change failed the 390 px overflow check in the Monte Carlo suite, which had passed locally. Hiding Inter from Chromium, so that pages fall back to the wider DejaVu Sans, reproduced the failure. That setup found three layouts that only fit the narrower font: the Model's export buttons at 390 px, the page header at 360 px and the Thesis Lab case figures at 200% zoom. They were fixed in this change, and the results above include the fixes.
+
+A second pass looked for marks that were drawn for the old dark panels: rules whose dark paint became light, and small rendered marks (legend keys, dots, slider parts and chart shapes) compared with what sits behind them on `main` and on this branch. It found three that had lost their contrast: the current-round key in the Ownership limit legend, the Overview year slider and the selected cell in the Thesis Lab value table. They use dark marks again. The same pass found two state styles that this change had weakened: the shared field border outranked the red border of invalid inputs in the Model, Monte Carlo, funding round and Casebook forms, and the Capital Studio objective fields turned a lighter border on focus. Fields now take one `--field-line` border, at least 3:1 against the page, panel and field fills; state rules win again, and a focused objective field shows the accent border.
+
+The new tests can fail. `tests/presentation.test.js` fails 18 of its 21 checks when pointed at the pages on `main`. Its field border check also failed in a scratch copy when the shared rule lost its `:where()` wrapper and when the border went back to the earlier, lighter color. `tests/capital-chart.test.js` caught a light-theme axis color at 2.60:1 against the qualifying zone before the color was darkened.
+
+Before and after screenshots of every page at 1440 and 390 px were reviewed by hand. The current captures are in [`screenshots/`](screenshots/).
+
 ## 2 November 2026 review of `main` after the uncertainty release
 
 This entry repeats the checks on `main` at `3e7a187`, after the uncertainty release ([#3](https://github.com/ult666666/frontier-ai-valuation-lab/pull/3)) and its Horizon follow-up ([#4](https://github.com/ult666666/frontier-ai-valuation-lab/pull/4)), in a clean export with Node 24.22.1 and Chromium 153.0.8010.12.
@@ -11,7 +34,7 @@ This entry repeats the checks on `main` at `3e7a187`, after the uncertainty rele
 | Verification layer | Result | Command or evidence |
 | --- | --- | --- |
 | Node tests | **380 passed; 0 failed or skipped** | `npm test` |
-| Independent Python references | **All seven passed** on Python 3.13.17. The uncertainty and Horizon references and `tests/reference_parity.py` also passed on Python 3.11.17 | The seven `python3 -B` commands in the [README](../README.md#run-the-complete-stack-locally) |
+| Independent Python references | **All seven passed** on Python 3.13.17. The uncertainty and Horizon references and `tests/reference_parity.py` also passed on Python 3.11.17 | The seven `python3 -B` commands in [TESTING.md](TESTING.md#python-reference-checks) |
 | Browser workflows | **13 of 13 suites passed** against a local server, including Value Horizon (148 checks) and the uncertainty workflow (35 checks) | `tests/*-browser.mjs` and `tests/browser-smoke.mjs` |
 | README `simulate` example | **P5 $197.2B, P50 $364.2B, P95 $694.6B, 69.5% above the $300B hurdle**, as documented | The README `curl` request |
 
