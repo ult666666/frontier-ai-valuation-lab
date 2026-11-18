@@ -15,7 +15,10 @@ const output=resolve(process.env.FRONTIER_CAPITAL_QA_DIR||`${root}/qa-local/v4-0
 await mkdir(output,{recursive:true});
 const checks=[],errors=[],requests=[];
 const check=(label,actual,expected=true)=>{assert.deepEqual(actual,expected,label);checks.push(label);};
-const browser=await chromium.launch({headless:true,executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE||undefined,args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const browserArgs=['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'];
+// The full mobile page exceeds SwiftShader’s macOS compositor texture limit.
+if(process.platform==='darwin')browserArgs.push('--disable-gpu-compositing');
+const browser=await chromium.launch({headless:true,executablePath:process.env.FRONTIER_CHROMIUM_EXECUTABLE||undefined,args:browserArgs});
 const context=await browser.newContext({viewport:{width:1440,height:1100},deviceScaleFactor:1,reducedMotion:'reduce',acceptDownloads:true});
 context.setDefaultTimeout(12000);
 context.setDefaultNavigationTimeout(25000);
@@ -287,6 +290,7 @@ try{
   }
   await page.setViewportSize({width:390,height:844});
   await page.locator('#capital-decision').screenshot({path:`${output}/mobile-decision.png`,animations:'disabled'});
+  await page.locator('.app-header').scrollIntoViewIfNeeded();
   await page.screenshot({path:`${output}/mobile-page.png`,fullPage:true,animations:'disabled'});
   await page.setViewportSize({width:1440,height:1000});
   await page.evaluate(()=>document.body.style.zoom='2');
